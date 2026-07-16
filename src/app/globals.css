@@ -1,0 +1,187 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-midnight-ink: 18 18 18;
+  --color-slate-900: 31 31 31;
+  --color-slate-700: 46 46 46;
+  --color-slate-600: 58 58 58;
+  --color-cloud-gray: 242 242 242;
+  --color-ash: 142 142 147;
+  --color-pure-white: 255 255 255;
+  --color-peloton-red: 230 57 70;
+  --color-peloton-red-dark: 197 34 48;
+  --color-signal-blue: 0 122 255;
+  --color-signal-blue-light: 51 149 255;
+  --color-lime-badge: 199 255 0;
+  --color-coral: 255 125 133;
+  --color-warning: 255 184 77;
+  --color-code-bg: 11 11 11;
+  --color-code-accent: 97 218 251;
+  --color-deep-navy: 28 37 38;
+  --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-display: var(--font-sans);
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', monospace;
+}
+
+@layer base {
+  html {
+    min-width: 320px;
+  }
+
+  body {
+    @apply bg-midnight text-white antialiased;
+    overflow-x: hidden;
+  }
+
+  html[data-font-size='large'] {
+    font-size: 112.5%;
+  }
+
+  html[data-font-size='xlarge'] {
+    font-size: 125%;
+  }
+
+  html[data-contrast='high'] body {
+    @apply bg-black text-white;
+  }
+
+  html[data-contrast='high'] .card {
+    @apply border-white bg-black;
+  }
+
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-signal-blue rounded;
+  }
+
+  .reduced-motion * {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer components {
+  .card {
+    @apply bg-slate border border-slate-secondary rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.25)]
+           transition-shadow duration-200;
+  }
+
+  .btn-primary {
+    @apply bg-vermillion text-white px-6 py-3 min-h-11 rounded-full font-semibold
+           hover:bg-vermillion-dark transition-colors duration-150
+           focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-vermillion
+           disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .btn-secondary {
+    @apply bg-slate-secondary text-white px-6 py-3 min-h-11 rounded-full font-semibold
+           hover:bg-paper-warm transition-colors duration-150
+           focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-signal-blue
+           disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .btn-vermillion {
+    @apply bg-vermillion text-white px-6 py-3 min-h-11 rounded-full font-semibold
+           hover:bg-vermillion-dark transition-colors duration-150
+           focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-vermillion
+           disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .nav-link {
+    @apply text-ash hover:text-white transition-colors duration-150
+           px-3 py-3 rounded-full text-sm font-medium;
+  }
+
+  .nav-item-active {
+    @apply bg-vermillion-dark text-white;
+  }
+
+  .mobile-bottom-nav-item.nav-item-active {
+    @apply text-white;
+  }
+
+  .mobile-bottom-nav {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  .mobile-bottom-nav-item {
+    @apply flex min-h-11 min-w-0 flex-1 flex-col items-center justify-center gap-1 rounded-full px-1 py-2 text-[11px] font-medium text-ash transition-colors;
+  }
+
+  html,
+  .app-main-scroll {
+    scrollbar-color: #2e2e2e #121212;
+    scrollbar-width: thin;
+  }
+
+  html::-webkit-scrollbar,
+  .app-main-scroll::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  html::-webkit-scrollbar-track,
+  .app-main-scroll::-webkit-scrollbar-track {
+    background: #121212;
+  }
+
+  html::-webkit-scrollbar-thumb,
+  .app-main-scroll::-webkit-scrollbar-thumb {
+    border-radius: 999px;
+    background: #2e2e2e;
+  }
+
+
+  .form-control {
+    @apply min-h-11 rounded-[10px] border border-slate-secondary bg-slate text-white;
+  }
+
+  .tag {
+    @apply rounded-md bg-slate-secondary px-2 py-1 text-xs text-ash;
+  }
+
+  .achievement-badge {
+    @apply rounded-md bg-lime-badge px-3 py-1.5 font-semibold text-black;
+  }
+
+  .copy-code-button {
+    opacity: 1;
+  }
+
+  @media (hover: hover) and (pointer: fine) and (min-width: 1024px) {
+    .copy-code-button {
+      opacity: 0;
+    }
+
+    .copy-code-button:hover,
+    .copy-code-button:focus-visible {
+      opacity: 1;
+    }
+  }
+
+  @media (max-width: 1023px) {
+    .mobile-bottom-nav {
+      min-height: calc(64px + env(safe-area-inset-bottom));
+    }
+  }
+}
+
+@layer utilities {
+  .scroll-snap-container {
+    scroll-snap-type: y proximity;
+  }
+  .scroll-snap-child {
+    scroll-snap-align: start;
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "name": "learn-next",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint src --max-warnings=0",
+    "test": "vitest run",
+    "audit:content": "node scripts/content-audit-report.mjs",
+    "verify:sources": "LIVE_SOURCE_CHECK=1 vitest run src/lib/content/source-links.live.test.ts",
+    "test:watch": "vitest",
+    "typecheck": "next typegen && tsc --noEmit"
+  },
+  "dependencies": {
+    "next": "15.5.20",
+    "react": "19.2.7",
+    "react-dom": "19.2.7",
+    "zustand": "^5.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "autoprefixer": "^10.5.2",
+    "eslint": "^9.0.0",
+    "eslint-config-next": "15.5.20",
+    "postcss": "^8.5.19",
+    "tailwindcss": "^3.4.17",
+    "typescript": "^5.7.0",
+    "vitest": "^4.1.10"
+  }
+}
