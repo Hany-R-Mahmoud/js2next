@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "1.0",
+  "id": "JS-M05-REVIEW",
+  "kind": "module-review",
+  "trackId": "javascript",
+  "moduleId": "JS-M05",
+  "title": "Data Structures and Functional Techniques — Module Review",
+  "questionIds": [
+    "JS-13-Q04",
+    "JS-14-Q04",
+    "JS-15-Q04",
+    "JS-16-Q04",
+    "JS-13-Q05",
+    "JS-14-Q05",
+    "JS-15-Q05",
+    "JS-16-Q05",
+    "JS-13-Q06",
+    "JS-14-Q06",
+    "JS-15-Q06",
+    "JS-16-Q06"
+  ],
+  "masteryThresholdPercent": 80,
+  "attemptPolicy": "unlimited",
+  "failurePolicy": "Show explanations, identify missed objectives, recommend targeted topic review, and allow retry.",
+  "randomizeQuestionOrder": true,
+  "randomizeChoiceOrder": false,
+  "version": 1,
+  "status": "draft",
+  "reviewStatus": "pending-human-review"
+}

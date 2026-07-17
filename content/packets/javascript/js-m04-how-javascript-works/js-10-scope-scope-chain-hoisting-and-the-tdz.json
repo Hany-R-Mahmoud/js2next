@@ -1,0 +1,619 @@
+{
+  "schemaVersion": "1.0",
+  "id": "JS-10",
+  "slug": "scope-scope-chain-hoisting-and-the-tdz",
+  "trackId": "javascript",
+  "moduleId": "JS-M04",
+  "order": 2,
+  "title": "Scope, Scope Chain, Hoisting, and the TDZ",
+  "required": true,
+  "optional": false,
+  "advanced": false,
+  "contentType": "core",
+  "difficulty": 2,
+  "estimatedMinutes": 30,
+  "requiredPrerequisiteTopicIds": [
+    "JS-09"
+  ],
+  "recommendedPrerequisiteTopicIds": [],
+  "learningObjectives": [
+    {
+      "id": "JS-10-LO1",
+      "text": "Explain lexical scope using a new example and justify the result.",
+      "subtopic": "Lexical scope",
+      "cognitiveLevel": "understand"
+    },
+    {
+      "id": "JS-10-LO2",
+      "text": "Trace and explain scope chain using a new example and justify the result.",
+      "subtopic": "Scope chain",
+      "cognitiveLevel": "apply"
+    },
+    {
+      "id": "JS-10-LO3",
+      "text": "Explain variable environment using a new example and justify the result.",
+      "subtopic": "Variable environment",
+      "cognitiveLevel": "analyze"
+    },
+    {
+      "id": "JS-10-LO4",
+      "text": "Explain hoisting using a new example and justify the result.",
+      "subtopic": "Hoisting",
+      "cognitiveLevel": "analyze"
+    },
+    {
+      "id": "JS-10-LO5",
+      "text": "Explain temporal dead zone using a new example and justify the result.",
+      "subtopic": "Temporal Dead Zone",
+      "cognitiveLevel": "analyze"
+    }
+  ],
+  "whyThisMatters": "The ideas in scope, scope chain, hoisting, and the tdz recur throughout later JavaScript work, reducing memorization and debugging later. It belongs to the **How JavaScript Works** module.",
+  "mentalModel": "Draw a decision map: **Lexical scope** → **Scope chain** → **Variable environment** → **Hoisting** → **Temporal Dead Zone**. Add branches where the learner must choose an alternative and label the evidence for the choice.",
+  "sections": [
+    {
+      "id": "JS-10-S1",
+      "type": "concept",
+      "title": "Lexical scope",
+      "body": "Lexical scope is determined by where code is written. Inner code can access surrounding bindings, while outer code cannot access bindings declared only inside an inner scope.",
+      "objectiveIds": [
+        "JS-10-LO1"
+      ],
+      "checkQuestionId": "JS-10-Q01"
+    },
+    {
+      "id": "JS-10-S2",
+      "type": "concept",
+      "title": "Scope chain",
+      "body": "Identifier lookup starts in the current lexical environment and continues outward until a matching binding is found or the global boundary is reached.",
+      "objectiveIds": [
+        "JS-10-LO2"
+      ],
+      "checkQuestionId": "JS-10-Q02"
+    },
+    {
+      "id": "JS-10-S3",
+      "type": "concept",
+      "title": "Variable environment",
+      "body": "A variable environment records bindings for an execution context. Declaration kinds differ in scope, initialization, and observable behavior before their declaration line.",
+      "objectiveIds": [
+        "JS-10-LO3"
+      ],
+      "checkQuestionId": "JS-10-Q03"
+    },
+    {
+      "id": "JS-10-S4",
+      "type": "concept",
+      "title": "Hoisting",
+      "body": "Hoisting describes behavior created during environment setup. Function declarations are available early, var starts as undefined, and let/const/class bindings exist but remain uninitialized.",
+      "objectiveIds": [
+        "JS-10-LO4"
+      ],
+      "checkQuestionId": "JS-10-Q03"
+    },
+    {
+      "id": "JS-10-S5",
+      "type": "concept",
+      "title": "Temporal Dead Zone",
+      "body": "The Temporal Dead Zone lasts from entering a scope until a lexical declaration is initialized. Reading the binding during that period throws a ReferenceError.",
+      "objectiveIds": [
+        "JS-10-LO5"
+      ],
+      "checkQuestionId": "JS-10-Q03"
+    },
+    {
+      "id": "JS-10-EX1",
+      "type": "code-example",
+      "title": "Worked example",
+      "language": "js",
+      "source": "const track = 'JavaScript';\nfunction describeModule() {\n  const moduleName = 'Runtime';\n  function label() {\n    return `${track}: ${moduleName}`;\n  }\n  return label();\n}\nconsole.log(describeModule());",
+      "explanation": "The inner function resolves names through local and outer lexical environments.",
+      "objectiveIds": [
+        "JS-10-LO1",
+        "JS-10-LO2",
+        "JS-10-LO3",
+        "JS-10-LO4",
+        "JS-10-LO5"
+      ]
+    }
+  ],
+  "commonMistakes": [
+    "Memorizing syntax without predicting the underlying value or execution order.",
+    "Mutating shared data when the task expects a new value or explicit ownership.",
+    "Treating browser APIs and language features as the same layer.",
+    "Choosing an abstraction from habit rather than required operations."
+  ],
+  "summary": [
+    "Scope, Scope Chain, Hoisting, and the TDZ connects Lexical scope, Scope chain, Variable environment.",
+    "Use the topic to make behavior and decisions explicit rather than memorizing isolated syntax.",
+    "Verify understanding by explaining a new example and answering the topic quiz without looking back."
+  ],
+  "inLessonQuestionIds": [
+    "JS-10-Q01",
+    "JS-10-Q02",
+    "JS-10-Q03"
+  ],
+  "topicQuiz": {
+    "id": "JS-10-QUIZ",
+    "questionIds": [
+      "JS-10-Q04",
+      "JS-10-Q05",
+      "JS-10-Q06",
+      "JS-10-Q07",
+      "JS-10-Q08"
+    ],
+    "masteryThresholdPercent": 80,
+    "attemptPolicy": "unlimited",
+    "failurePolicy": "Show explanations, add missed objectives to local review, and allow immediate or later retry.",
+    "randomizeQuestionOrder": true,
+    "randomizeChoiceOrder": false
+  },
+  "questions": [
+    {
+      "id": "JS-10-Q01",
+      "trackId": "javascript",
+      "moduleId": "JS-M04",
+      "topicId": "JS-10",
+      "objectiveIds": [
+        "JS-10-LO1"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which statement best explains “Lexical scope” in the context of Scope, Scope Chain, Hoisting, and the TDZ?",
+      "choices": [
+        {
+          "id": "JS-10-Q01-C1",
+          "label": "Refactoring improves internal structure while preserving observable behavior. Work in small verified steps and stop when the design is clearer.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Lexical scope."
+        },
+        {
+          "id": "JS-10-Q01-C2",
+          "label": "Debugging is an evidence-driven loop: reproduce, narrow, inspect, hypothesize, change one thing, and verify. Random edits hide the cause and create new variables.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Lexical scope."
+        },
+        {
+          "id": "JS-10-Q01-C3",
+          "label": "Synchronous code completes on the current stack. Asynchronous operations begin work that finishes later, allowing the runtime to continue.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Lexical scope."
+        },
+        {
+          "id": "JS-10-Q01-C4",
+          "label": "Lexical scope is determined by where code is written. Inner code can access surrounding bindings, while outer code cannot access bindings declared only inside an inner scope.",
+          "feedback": "Lexical scope is best understood as follows: Lexical scope is determined by where code is written. Inner code can access surrounding bindings, while outer code cannot access bindings declared only inside an inner scope."
+        }
+      ],
+      "correctChoiceIds": [
+        "JS-10-Q01-C4"
+      ],
+      "explanation": "Lexical scope is best understood as follows: Lexical scope is determined by where code is written. Inner code can access surrounding bindings, while outer code cannot access bindings declared only inside an inner scope.",
+      "hint": "Focus on what the concept changes, enables, or constrains—not only on its syntax.",
+      "difficulty": 1,
+      "cognitiveLevel": "recognize",
+      "estimatedSeconds": 75,
+      "tags": [
+        "lexical-scope",
+        "scope-scope-chain-hoisting-and-the-tdz"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JS-10-Q02",
+      "trackId": "javascript",
+      "moduleId": "JS-M04",
+      "topicId": "JS-10",
+      "objectiveIds": [
+        "JS-10-LO2"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which statement best explains “Scope chain” in the context of Scope, Scope Chain, Hoisting, and the TDZ?",
+      "choices": [
+        {
+          "id": "JS-10-Q02-C1",
+          "label": "Synchronous code completes on the current stack. Asynchronous operations begin work that finishes later, allowing the runtime to continue.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Scope chain."
+        },
+        {
+          "id": "JS-10-Q02-C2",
+          "label": "Identifier lookup starts in the current lexical environment and continues outward until a matching binding is found or the global boundary is reached.",
+          "feedback": "Scope chain is best understood as follows: Identifier lookup starts in the current lexical environment and continues outward until a matching binding is found or the global boundary is reached."
+        },
+        {
+          "id": "JS-10-Q02-C3",
+          "label": "Debugging is an evidence-driven loop: reproduce, narrow, inspect, hypothesize, change one thing, and verify. Random edits hide the cause and create new variables.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Scope chain."
+        },
+        {
+          "id": "JS-10-Q02-C4",
+          "label": "Refactoring improves internal structure while preserving observable behavior. Work in small verified steps and stop when the design is clearer.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Scope chain."
+        }
+      ],
+      "correctChoiceIds": [
+        "JS-10-Q02-C2"
+      ],
+      "explanation": "Scope chain is best understood as follows: Identifier lookup starts in the current lexical environment and continues outward until a matching binding is found or the global boundary is reached.",
+      "hint": "Focus on what the concept changes, enables, or constrains—not only on its syntax.",
+      "difficulty": 1,
+      "cognitiveLevel": "explain",
+      "estimatedSeconds": 75,
+      "tags": [
+        "scope-chain",
+        "scope-scope-chain-hoisting-and-the-tdz"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JS-10-Q03",
+      "trackId": "javascript",
+      "moduleId": "JS-M04",
+      "topicId": "JS-10",
+      "objectiveIds": [
+        "JS-10-LO3"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which statement best explains “Variable environment” in the context of Scope, Scope Chain, Hoisting, and the TDZ?",
+      "choices": [
+        {
+          "id": "JS-10-Q03-C1",
+          "label": "Debugging is an evidence-driven loop: reproduce, narrow, inspect, hypothesize, change one thing, and verify. Random edits hide the cause and create new variables.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Variable environment."
+        },
+        {
+          "id": "JS-10-Q03-C2",
+          "label": "A variable environment records bindings for an execution context. Declaration kinds differ in scope, initialization, and observable behavior before their declaration line.",
+          "feedback": "Variable environment is best understood as follows: A variable environment records bindings for an execution context. Declaration kinds differ in scope, initialization, and observable behavior before their declaration line."
+        },
+        {
+          "id": "JS-10-Q03-C3",
+          "label": "Synchronous code completes on the current stack. Asynchronous operations begin work that finishes later, allowing the runtime to continue.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Variable environment."
+        },
+        {
+          "id": "JS-10-Q03-C4",
+          "label": "Refactoring improves internal structure while preserving observable behavior. Work in small verified steps and stop when the design is clearer.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Variable environment."
+        }
+      ],
+      "correctChoiceIds": [
+        "JS-10-Q03-C2"
+      ],
+      "explanation": "Variable environment is best understood as follows: A variable environment records bindings for an execution context. Declaration kinds differ in scope, initialization, and observable behavior before their declaration line.",
+      "hint": "Focus on what the concept changes, enables, or constrains—not only on its syntax.",
+      "difficulty": 1,
+      "cognitiveLevel": "predict",
+      "estimatedSeconds": 120,
+      "tags": [
+        "variable-environment",
+        "scope-scope-chain-hoisting-and-the-tdz"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JS-10-Q04",
+      "trackId": "javascript",
+      "moduleId": "JS-M04",
+      "topicId": "JS-10",
+      "objectiveIds": [
+        "JS-10-LO1",
+        "JS-10-LO2"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "A learner must use Scope, Scope Chain, Hoisting, and the TDZ in a new situation. Which approach best demonstrates transferable understanding?",
+      "choices": [
+        {
+          "id": "JS-10-Q04-C1",
+          "label": "Add more state and abstraction immediately, before identifying the smallest requirement.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Scope, Scope Chain, Hoisting, and the TDZ."
+        },
+        {
+          "id": "JS-10-Q04-C2",
+          "label": "Skip the underlying model and rely on memorized syntax, even when the result is unclear.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Scope, Scope Chain, Hoisting, and the TDZ."
+        },
+        {
+          "id": "JS-10-Q04-C3",
+          "label": "Treat the concept as isolated trivia and avoid connecting it to earlier prerequisites.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Scope, Scope Chain, Hoisting, and the TDZ."
+        },
+        {
+          "id": "JS-10-Q04-C4",
+          "label": "Apply Lexical scope deliberately, make the relevant inputs and assumptions explicit, and verify the observable result before adding more complexity.",
+          "feedback": "Transfer comes from using the concept with explicit assumptions and checking the resulting behavior, not from reproducing a memorized example."
+        }
+      ],
+      "correctChoiceIds": [
+        "JS-10-Q04-C4"
+      ],
+      "explanation": "Transfer comes from using the concept with explicit assumptions and checking the resulting behavior, not from reproducing a memorized example.",
+      "hint": "Choose the option that would still work when the surrounding example changes.",
+      "difficulty": 2,
+      "cognitiveLevel": "apply",
+      "estimatedSeconds": 120,
+      "tags": [
+        "scope-scope-chain-hoisting-and-the-tdz",
+        "lexical-scope"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JS-10-Q05",
+      "trackId": "javascript",
+      "moduleId": "JS-M04",
+      "topicId": "JS-10",
+      "objectiveIds": [
+        "JS-10-LO1",
+        "JS-10-LO2",
+        "JS-10-LO3",
+        "JS-10-LO4",
+        "JS-10-LO5"
+      ],
+      "kind": "single-choice",
+      "presentation": "code",
+      "prompt": "What is the most accurate explanation of the following Scope, Scope Chain, Hoisting, and the TDZ example?",
+      "choices": [
+        {
+          "id": "JS-10-Q05-C1",
+          "label": "The snippet removes the need to understand the data flowing through the program.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Scope, Scope Chain, Hoisting, and the TDZ."
+        },
+        {
+          "id": "JS-10-Q05-C2",
+          "label": "The snippet is valid only because JavaScript ignores variable scope and evaluation order.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Scope, Scope Chain, Hoisting, and the TDZ."
+        },
+        {
+          "id": "JS-10-Q05-C3",
+          "label": "The inner function resolves names through local and outer lexical environments.",
+          "feedback": "The correct choice connects the example to the underlying model rather than treating the syntax as isolated trivia."
+        },
+        {
+          "id": "JS-10-Q05-C4",
+          "label": "The snippet guarantees that all values are immutable and all operations are asynchronous.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Scope, Scope Chain, Hoisting, and the TDZ."
+        }
+      ],
+      "correctChoiceIds": [
+        "JS-10-Q05-C3"
+      ],
+      "explanation": "The correct choice connects the example to the underlying model rather than treating the syntax as isolated trivia.",
+      "hint": "Trace data, control flow, ownership, or rendering step by step.",
+      "difficulty": 2,
+      "cognitiveLevel": "predict",
+      "estimatedSeconds": 120,
+      "tags": [
+        "scope-scope-chain-hoisting-and-the-tdz",
+        "lexical-scope",
+        "scope-chain"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review",
+      "code": {
+        "language": "js",
+        "source": "const track = 'JavaScript';\nfunction describeModule() {\n  const moduleName = 'Runtime';\n  function label() {\n    return `${track}: ${moduleName}`;\n  }\n  return label();\n}\nconsole.log(describeModule());"
+      }
+    },
+    {
+      "id": "JS-10-Q06",
+      "trackId": "javascript",
+      "moduleId": "JS-M04",
+      "topicId": "JS-10",
+      "objectiveIds": [
+        "JS-10-LO1",
+        "JS-10-LO2",
+        "JS-10-LO3",
+        "JS-10-LO4",
+        "JS-10-LO5"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which response best addresses this common mistake: “Memorizing syntax without predicting the underlying value or execution order.”?",
+      "choices": [
+        {
+          "id": "JS-10-Q06-C1",
+          "label": "The statement is a misconception. A better approach is to reason from the concept's inputs, rules, and observable outcome, then verify the result.",
+          "feedback": "Good feedback names the misconception and replaces it with a usable reasoning process."
+        },
+        {
+          "id": "JS-10-Q06-C2",
+          "label": "The statement is always correct, so no further reasoning about Scope, Scope Chain, Hoisting, and the TDZ is needed.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Scope, Scope Chain, Hoisting, and the TDZ."
+        },
+        {
+          "id": "JS-10-Q06-C3",
+          "label": "The statement is unrelated to program behavior and cannot cause defects.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Scope, Scope Chain, Hoisting, and the TDZ."
+        },
+        {
+          "id": "JS-10-Q06-C4",
+          "label": "The statement is correct only when variable names are short.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Scope, Scope Chain, Hoisting, and the TDZ."
+        }
+      ],
+      "correctChoiceIds": [
+        "JS-10-Q06-C1"
+      ],
+      "explanation": "Good feedback names the misconception and replaces it with a usable reasoning process.",
+      "hint": "Look for the option that corrects both the belief and the learner's next action.",
+      "difficulty": 2,
+      "cognitiveLevel": "debug",
+      "estimatedSeconds": 120,
+      "tags": [
+        "scope-scope-chain-hoisting-and-the-tdz",
+        "common-mistakes"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JS-10-Q07",
+      "trackId": "javascript",
+      "moduleId": "JS-M04",
+      "topicId": "JS-10",
+      "objectiveIds": [
+        "JS-10-LO1",
+        "JS-10-LO2",
+        "JS-10-LO3",
+        "JS-10-LO4",
+        "JS-10-LO5"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which sequence is most reliable when solving a problem involving Scope, Scope Chain, Hoisting, and the TDZ?",
+      "choices": [
+        {
+          "id": "JS-10-Q07-C1",
+          "label": "Optimize first, then decide what the code is supposed to do.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Scope, Scope Chain, Hoisting, and the TDZ."
+        },
+        {
+          "id": "JS-10-Q07-C2",
+          "label": "First identify the requirement, then apply the relevant rule from Lexical scope, inspect the result, and only then refactor or optimize.",
+          "feedback": "The reliable sequence starts from the requirement, applies a known rule, observes behavior, and improves the solution afterward."
+        },
+        {
+          "id": "JS-10-Q07-C3",
+          "label": "Copy an unrelated implementation, hide the assumptions, and test only the happy path.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Scope, Scope Chain, Hoisting, and the TDZ."
+        },
+        {
+          "id": "JS-10-Q07-C4",
+          "label": "Start with a framework abstraction and avoid checking the underlying language behavior.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Scope, Scope Chain, Hoisting, and the TDZ."
+        }
+      ],
+      "correctChoiceIds": [
+        "JS-10-Q07-C2"
+      ],
+      "explanation": "The reliable sequence starts from the requirement, applies a known rule, observes behavior, and improves the solution afterward.",
+      "hint": "Prefer a sequence that makes failures visible early.",
+      "difficulty": 2,
+      "cognitiveLevel": "explain",
+      "estimatedSeconds": 75,
+      "tags": [
+        "scope-scope-chain-hoisting-and-the-tdz",
+        "problem-solving"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JS-10-Q08",
+      "trackId": "javascript",
+      "moduleId": "JS-M04",
+      "topicId": "JS-10",
+      "objectiveIds": [
+        "JS-10-LO1",
+        "JS-10-LO2",
+        "JS-10-LO3",
+        "JS-10-LO4",
+        "JS-10-LO5"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which guideline shows the best judgment about when to use Scope, Scope Chain, Hoisting, and the TDZ?",
+      "choices": [
+        {
+          "id": "JS-10-Q08-C1",
+          "label": "Avoid Scope, Scope Chain, Hoisting, and the TDZ completely because all abstractions reduce maintainability.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Scope, Scope Chain, Hoisting, and the TDZ."
+        },
+        {
+          "id": "JS-10-Q08-C2",
+          "label": "Choose based only on line count, without considering readability, correctness, or future change.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Scope, Scope Chain, Hoisting, and the TDZ."
+        },
+        {
+          "id": "JS-10-Q08-C3",
+          "label": "Use Scope, Scope Chain, Hoisting, and the TDZ in every file because more abstraction is always better.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Scope, Scope Chain, Hoisting, and the TDZ."
+        },
+        {
+          "id": "JS-10-Q08-C4",
+          "label": "Use Scope, Scope Chain, Hoisting, and the TDZ when it makes intent, ownership, or data flow clearer; avoid adding it mechanically when a simpler, equally explicit solution is sufficient.",
+          "feedback": "Engineering judgment balances clarity and cost. The concept should serve the requirement rather than become an end in itself."
+        }
+      ],
+      "correctChoiceIds": [
+        "JS-10-Q08-C4"
+      ],
+      "explanation": "Engineering judgment balances clarity and cost. The concept should serve the requirement rather than become an end in itself.",
+      "hint": "Choose the option that acknowledges both benefits and trade-offs.",
+      "difficulty": 3,
+      "cognitiveLevel": "tradeoff",
+      "estimatedSeconds": 120,
+      "tags": [
+        "scope-scope-chain-hoisting-and-the-tdz",
+        "tradeoffs"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    }
+  ],
+  "researchSources": [
+    {
+      "kind": "research-transcript",
+      "title": "Scope and The Scope Chain",
+      "pathwayOrder": 16,
+      "sourceLine": 39263,
+      "usage": "Coverage research only; no transcript wording is canonical."
+    },
+    {
+      "kind": "research-transcript",
+      "title": "Variable Environment: Hoisting and The TDZ",
+      "pathwayOrder": 17,
+      "sourceLine": 41229,
+      "usage": "Coverage research only; no transcript wording is canonical."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "MDN JavaScript Guide",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "MDN DOM",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "MDN Using promises",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "MDN JavaScript modules",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules",
+      "usage": "Technical verification and freshness review."
+    }
+  ],
+  "contentAuthority": {
+    "canonical": "New JS2Next Release 1 curriculum and independently authored content.",
+    "legacyProjectContent": "Supplementary internal reference only; excluded from runtime unless explicitly re-authored and approved.",
+    "courseTranscripts": "Coverage and sequencing research only; never learner-facing authority.",
+    "officialDocumentation": "Technical verification source."
+  },
+  "version": 1,
+  "status": "draft",
+  "reviewStatus": "pending-human-review",
+  "publicationStatus": "unpublished",
+  "createdAt": "2026-07-17",
+  "updatedAt": "2026-07-17"
+}

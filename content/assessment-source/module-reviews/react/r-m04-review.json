@@ -1,0 +1,28 @@
+{
+  "schemaVersion": "1.0",
+  "id": "R-M04-REVIEW",
+  "kind": "module-review",
+  "trackId": "react",
+  "moduleId": "R-M04",
+  "title": "Component Design and Reusability — Module Review",
+  "questionIds": [
+    "R-09-Q04",
+    "R-10-Q04",
+    "R-11-Q04",
+    "R-09-Q05",
+    "R-10-Q05",
+    "R-11-Q05",
+    "R-09-Q06",
+    "R-10-Q06",
+    "R-11-Q06",
+    "R-09-Q07"
+  ],
+  "masteryThresholdPercent": 80,
+  "attemptPolicy": "unlimited",
+  "failurePolicy": "Show explanations, identify missed objectives, recommend targeted topic review, and allow retry.",
+  "randomizeQuestionOrder": true,
+  "randomizeChoiceOrder": false,
+  "version": 1,
+  "status": "draft",
+  "reviewStatus": "pending-human-review"
+}

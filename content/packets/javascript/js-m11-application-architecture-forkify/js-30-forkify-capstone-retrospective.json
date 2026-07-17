@@ -1,0 +1,551 @@
+{
+  "schemaVersion": "1.0",
+  "id": "JS-30",
+  "slug": "forkify-capstone-retrospective",
+  "trackId": "javascript",
+  "moduleId": "JS-M11",
+  "order": 3,
+  "title": "Forkify Capstone Retrospective",
+  "required": false,
+  "optional": true,
+  "advanced": false,
+  "contentType": "recap",
+  "difficulty": 4,
+  "estimatedMinutes": 15,
+  "requiredPrerequisiteTopicIds": [],
+  "recommendedPrerequisiteTopicIds": [],
+  "learningObjectives": [
+    {
+      "id": "JS-30-LO1",
+      "text": "Explain architecture review using a new example and justify the result.",
+      "subtopic": "Architecture review",
+      "cognitiveLevel": "understand"
+    },
+    {
+      "id": "JS-30-LO2",
+      "text": "Choose and justify trade-offs using a new example and justify the result.",
+      "subtopic": "Trade-offs",
+      "cognitiveLevel": "apply"
+    },
+    {
+      "id": "JS-30-LO3",
+      "text": "Explain what to carry into future projects using a new example and justify the result.",
+      "subtopic": "What to carry into future projects",
+      "cognitiveLevel": "analyze"
+    }
+  ],
+  "whyThisMatters": "This topic turns forkify capstone retrospective from isolated terminology into a practical tool for reading, writing, and reviewing code. It belongs to the **Application Architecture: Forkify** module.",
+  "mentalModel": "Draw a decision map: **Architecture review** → **Trade-offs** → **What to carry into future projects**. Add branches where the learner must choose an alternative and label the evidence for the choice.",
+  "sections": [
+    {
+      "id": "JS-30-S1",
+      "type": "concept",
+      "title": "Architecture review",
+      "body": "A retrospective compares outcomes with goals, identifies successful decisions and accidental complexity, and records lessons that should influence the next project.",
+      "objectiveIds": [
+        "JS-30-LO1"
+      ],
+      "checkQuestionId": "JS-30-Q01"
+    },
+    {
+      "id": "JS-30-S2",
+      "type": "concept",
+      "title": "Trade-offs",
+      "body": "Evaluate alternatives by complexity, clarity, testability, performance, team understanding, and likely change rather than searching for a universally perfect pattern.",
+      "objectiveIds": [
+        "JS-30-LO2"
+      ],
+      "checkQuestionId": "JS-30-Q02"
+    },
+    {
+      "id": "JS-30-S3",
+      "type": "concept",
+      "title": "What to carry into future projects",
+      "body": "A retrospective compares outcomes with goals, identifies successful decisions and accidental complexity, and records lessons that should influence the next project.",
+      "objectiveIds": [
+        "JS-30-LO3"
+      ],
+      "checkQuestionId": "JS-30-Q03"
+    }
+  ],
+  "commonMistakes": [
+    "Memorizing syntax without predicting the underlying value or execution order.",
+    "Mutating shared data when the task expects a new value or explicit ownership.",
+    "Treating browser APIs and language features as the same layer.",
+    "Choosing an abstraction from habit rather than required operations."
+  ],
+  "summary": [
+    "Forkify Capstone Retrospective connects Architecture review, Trade-offs, What to carry into future projects.",
+    "Use the topic to make behavior and decisions explicit rather than memorizing isolated syntax.",
+    "Verify understanding by explaining a new example and answering the topic quiz without looking back."
+  ],
+  "inLessonQuestionIds": [
+    "JS-30-Q01",
+    "JS-30-Q02",
+    "JS-30-Q03"
+  ],
+  "topicQuiz": {
+    "id": "JS-30-QUIZ",
+    "questionIds": [
+      "JS-30-Q04",
+      "JS-30-Q05",
+      "JS-30-Q06",
+      "JS-30-Q07",
+      "JS-30-Q08"
+    ],
+    "masteryThresholdPercent": 80,
+    "attemptPolicy": "unlimited",
+    "failurePolicy": "Show explanations, add missed objectives to local review, and allow immediate or later retry.",
+    "randomizeQuestionOrder": true,
+    "randomizeChoiceOrder": false
+  },
+  "questions": [
+    {
+      "id": "JS-30-Q01",
+      "trackId": "javascript",
+      "moduleId": "JS-M11",
+      "topicId": "JS-30",
+      "objectiveIds": [
+        "JS-30-LO1"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which statement best explains “Architecture review” in the context of Forkify Capstone Retrospective?",
+      "choices": [
+        {
+          "id": "JS-30-Q01-C1",
+          "label": "A variable environment records bindings for an execution context. Declaration kinds differ in scope, initialization, and observable behavior before their declaration line.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Architecture review."
+        },
+        {
+          "id": "JS-30-Q01-C2",
+          "label": "Turn a problem into observable inputs, outputs, constraints, and smaller transformations. Describe behavior before syntax, then identify the smallest step that can be tested independently.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Architecture review."
+        },
+        {
+          "id": "JS-30-Q01-C3",
+          "label": "Class syntax provides constructors, methods, static methods, extends, and super while still using prototype delegation underneath.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Architecture review."
+        },
+        {
+          "id": "JS-30-Q01-C4",
+          "label": "A retrospective compares outcomes with goals, identifies successful decisions and accidental complexity, and records lessons that should influence the next project.",
+          "feedback": "Architecture review is best understood as follows: A retrospective compares outcomes with goals, identifies successful decisions and accidental complexity, and records lessons that should influence the next project."
+        }
+      ],
+      "correctChoiceIds": [
+        "JS-30-Q01-C4"
+      ],
+      "explanation": "Architecture review is best understood as follows: A retrospective compares outcomes with goals, identifies successful decisions and accidental complexity, and records lessons that should influence the next project.",
+      "hint": "Focus on what the concept changes, enables, or constrains—not only on its syntax.",
+      "difficulty": 3,
+      "cognitiveLevel": "recognize",
+      "estimatedSeconds": 75,
+      "tags": [
+        "architecture-review",
+        "forkify-capstone-retrospective"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JS-30-Q02",
+      "trackId": "javascript",
+      "moduleId": "JS-M11",
+      "topicId": "JS-30",
+      "objectiveIds": [
+        "JS-30-LO2"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which statement best explains “Trade-offs” in the context of Forkify Capstone Retrospective?",
+      "choices": [
+        {
+          "id": "JS-30-Q02-C1",
+          "label": "Evaluate alternatives by complexity, clarity, testability, performance, team understanding, and likely change rather than searching for a universally perfect pattern.",
+          "feedback": "Trade-offs is best understood as follows: Evaluate alternatives by complexity, clarity, testability, performance, team understanding, and likely change rather than searching for a universally perfect pattern."
+        },
+        {
+          "id": "JS-30-Q02-C2",
+          "label": "Class syntax provides constructors, methods, static methods, extends, and super while still using prototype delegation underneath.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Trade-offs."
+        },
+        {
+          "id": "JS-30-Q02-C3",
+          "label": "A variable environment records bindings for an execution context. Declaration kinds differ in scope, initialization, and observable behavior before their declaration line.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Trade-offs."
+        },
+        {
+          "id": "JS-30-Q02-C4",
+          "label": "Turn a problem into observable inputs, outputs, constraints, and smaller transformations. Describe behavior before syntax, then identify the smallest step that can be tested independently.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Trade-offs."
+        }
+      ],
+      "correctChoiceIds": [
+        "JS-30-Q02-C1"
+      ],
+      "explanation": "Trade-offs is best understood as follows: Evaluate alternatives by complexity, clarity, testability, performance, team understanding, and likely change rather than searching for a universally perfect pattern.",
+      "hint": "Focus on what the concept changes, enables, or constrains—not only on its syntax.",
+      "difficulty": 3,
+      "cognitiveLevel": "explain",
+      "estimatedSeconds": 75,
+      "tags": [
+        "trade-offs",
+        "forkify-capstone-retrospective"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JS-30-Q03",
+      "trackId": "javascript",
+      "moduleId": "JS-M11",
+      "topicId": "JS-30",
+      "objectiveIds": [
+        "JS-30-LO3"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which statement best explains “What to carry into future projects” in the context of Forkify Capstone Retrospective?",
+      "choices": [
+        {
+          "id": "JS-30-Q03-C1",
+          "label": "Class syntax provides constructors, methods, static methods, extends, and super while still using prototype delegation underneath.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of What to carry into future projects."
+        },
+        {
+          "id": "JS-30-Q03-C2",
+          "label": "A retrospective compares outcomes with goals, identifies successful decisions and accidental complexity, and records lessons that should influence the next project.",
+          "feedback": "What to carry into future projects is best understood as follows: A retrospective compares outcomes with goals, identifies successful decisions and accidental complexity, and records lessons that should influence the next project."
+        },
+        {
+          "id": "JS-30-Q03-C3",
+          "label": "Turn a problem into observable inputs, outputs, constraints, and smaller transformations. Describe behavior before syntax, then identify the smallest step that can be tested independently.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of What to carry into future projects."
+        },
+        {
+          "id": "JS-30-Q03-C4",
+          "label": "A variable environment records bindings for an execution context. Declaration kinds differ in scope, initialization, and observable behavior before their declaration line.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of What to carry into future projects."
+        }
+      ],
+      "correctChoiceIds": [
+        "JS-30-Q03-C2"
+      ],
+      "explanation": "What to carry into future projects is best understood as follows: A retrospective compares outcomes with goals, identifies successful decisions and accidental complexity, and records lessons that should influence the next project.",
+      "hint": "Focus on what the concept changes, enables, or constrains—not only on its syntax.",
+      "difficulty": 3,
+      "cognitiveLevel": "predict",
+      "estimatedSeconds": 120,
+      "tags": [
+        "what-to-carry-into-future-projects",
+        "forkify-capstone-retrospective"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JS-30-Q04",
+      "trackId": "javascript",
+      "moduleId": "JS-M11",
+      "topicId": "JS-30",
+      "objectiveIds": [
+        "JS-30-LO1",
+        "JS-30-LO2"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "A learner must use Forkify Capstone Retrospective in a new situation. Which approach best demonstrates transferable understanding?",
+      "choices": [
+        {
+          "id": "JS-30-Q04-C1",
+          "label": "Skip the underlying model and rely on memorized syntax, even when the result is unclear.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Forkify Capstone Retrospective."
+        },
+        {
+          "id": "JS-30-Q04-C2",
+          "label": "Treat the concept as isolated trivia and avoid connecting it to earlier prerequisites.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Forkify Capstone Retrospective."
+        },
+        {
+          "id": "JS-30-Q04-C3",
+          "label": "Apply Architecture review deliberately, make the relevant inputs and assumptions explicit, and verify the observable result before adding more complexity.",
+          "feedback": "Transfer comes from using the concept with explicit assumptions and checking the resulting behavior, not from reproducing a memorized example."
+        },
+        {
+          "id": "JS-30-Q04-C4",
+          "label": "Add more state and abstraction immediately, before identifying the smallest requirement.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Forkify Capstone Retrospective."
+        }
+      ],
+      "correctChoiceIds": [
+        "JS-30-Q04-C3"
+      ],
+      "explanation": "Transfer comes from using the concept with explicit assumptions and checking the resulting behavior, not from reproducing a memorized example.",
+      "hint": "Choose the option that would still work when the surrounding example changes.",
+      "difficulty": 4,
+      "cognitiveLevel": "apply",
+      "estimatedSeconds": 120,
+      "tags": [
+        "forkify-capstone-retrospective",
+        "architecture-review"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JS-30-Q05",
+      "trackId": "javascript",
+      "moduleId": "JS-M11",
+      "topicId": "JS-30",
+      "objectiveIds": [
+        "JS-30-LO1",
+        "JS-30-LO2",
+        "JS-30-LO3"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which mental model is most useful when reasoning about Forkify Capstone Retrospective?",
+      "choices": [
+        {
+          "id": "JS-30-Q05-C1",
+          "label": "The topic is best learned as a list of unrelated syntax rules.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Forkify Capstone Retrospective."
+        },
+        {
+          "id": "JS-30-Q05-C2",
+          "label": "Draw a decision map: **Architecture review** → **Trade-offs** → **What to carry into future projects**. Add branches where the learner must choose an alternative and label the evidence for the choice.",
+          "feedback": "The correct choice connects the example to the underlying model rather than treating the syntax as isolated trivia."
+        },
+        {
+          "id": "JS-30-Q05-C3",
+          "label": "The topic matters only for naming style and does not affect behavior.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Forkify Capstone Retrospective."
+        },
+        {
+          "id": "JS-30-Q05-C4",
+          "label": "The topic eliminates the need to model state, data flow, or dependencies.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Forkify Capstone Retrospective."
+        }
+      ],
+      "correctChoiceIds": [
+        "JS-30-Q05-C2"
+      ],
+      "explanation": "The correct choice connects the example to the underlying model rather than treating the syntax as isolated trivia.",
+      "hint": "Trace data, control flow, ownership, or rendering step by step.",
+      "difficulty": 4,
+      "cognitiveLevel": "predict",
+      "estimatedSeconds": 120,
+      "tags": [
+        "forkify-capstone-retrospective",
+        "architecture-review",
+        "trade-offs"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JS-30-Q06",
+      "trackId": "javascript",
+      "moduleId": "JS-M11",
+      "topicId": "JS-30",
+      "objectiveIds": [
+        "JS-30-LO1",
+        "JS-30-LO2",
+        "JS-30-LO3"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which response best addresses this common mistake: “Memorizing syntax without predicting the underlying value or execution order.”?",
+      "choices": [
+        {
+          "id": "JS-30-Q06-C1",
+          "label": "The statement is unrelated to program behavior and cannot cause defects.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Forkify Capstone Retrospective."
+        },
+        {
+          "id": "JS-30-Q06-C2",
+          "label": "The statement is correct only when variable names are short.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Forkify Capstone Retrospective."
+        },
+        {
+          "id": "JS-30-Q06-C3",
+          "label": "The statement is a misconception. A better approach is to reason from the concept's inputs, rules, and observable outcome, then verify the result.",
+          "feedback": "Good feedback names the misconception and replaces it with a usable reasoning process."
+        },
+        {
+          "id": "JS-30-Q06-C4",
+          "label": "The statement is always correct, so no further reasoning about Forkify Capstone Retrospective is needed.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Forkify Capstone Retrospective."
+        }
+      ],
+      "correctChoiceIds": [
+        "JS-30-Q06-C3"
+      ],
+      "explanation": "Good feedback names the misconception and replaces it with a usable reasoning process.",
+      "hint": "Look for the option that corrects both the belief and the learner's next action.",
+      "difficulty": 4,
+      "cognitiveLevel": "debug",
+      "estimatedSeconds": 120,
+      "tags": [
+        "forkify-capstone-retrospective",
+        "common-mistakes"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JS-30-Q07",
+      "trackId": "javascript",
+      "moduleId": "JS-M11",
+      "topicId": "JS-30",
+      "objectiveIds": [
+        "JS-30-LO1",
+        "JS-30-LO2",
+        "JS-30-LO3"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which sequence is most reliable when solving a problem involving Forkify Capstone Retrospective?",
+      "choices": [
+        {
+          "id": "JS-30-Q07-C1",
+          "label": "Optimize first, then decide what the code is supposed to do.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Forkify Capstone Retrospective."
+        },
+        {
+          "id": "JS-30-Q07-C2",
+          "label": "Copy an unrelated implementation, hide the assumptions, and test only the happy path.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Forkify Capstone Retrospective."
+        },
+        {
+          "id": "JS-30-Q07-C3",
+          "label": "First identify the requirement, then apply the relevant rule from Architecture review, inspect the result, and only then refactor or optimize.",
+          "feedback": "The reliable sequence starts from the requirement, applies a known rule, observes behavior, and improves the solution afterward."
+        },
+        {
+          "id": "JS-30-Q07-C4",
+          "label": "Start with a framework abstraction and avoid checking the underlying language behavior.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Forkify Capstone Retrospective."
+        }
+      ],
+      "correctChoiceIds": [
+        "JS-30-Q07-C3"
+      ],
+      "explanation": "The reliable sequence starts from the requirement, applies a known rule, observes behavior, and improves the solution afterward.",
+      "hint": "Prefer a sequence that makes failures visible early.",
+      "difficulty": 4,
+      "cognitiveLevel": "explain",
+      "estimatedSeconds": 75,
+      "tags": [
+        "forkify-capstone-retrospective",
+        "problem-solving"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JS-30-Q08",
+      "trackId": "javascript",
+      "moduleId": "JS-M11",
+      "topicId": "JS-30",
+      "objectiveIds": [
+        "JS-30-LO1",
+        "JS-30-LO2",
+        "JS-30-LO3"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which guideline shows the best judgment about when to use Forkify Capstone Retrospective?",
+      "choices": [
+        {
+          "id": "JS-30-Q08-C1",
+          "label": "Choose based only on line count, without considering readability, correctness, or future change.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Forkify Capstone Retrospective."
+        },
+        {
+          "id": "JS-30-Q08-C2",
+          "label": "Avoid Forkify Capstone Retrospective completely because all abstractions reduce maintainability.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Forkify Capstone Retrospective."
+        },
+        {
+          "id": "JS-30-Q08-C3",
+          "label": "Use Forkify Capstone Retrospective when it makes intent, ownership, or data flow clearer; avoid adding it mechanically when a simpler, equally explicit solution is sufficient.",
+          "feedback": "Engineering judgment balances clarity and cost. The concept should serve the requirement rather than become an end in itself."
+        },
+        {
+          "id": "JS-30-Q08-C4",
+          "label": "Use Forkify Capstone Retrospective in every file because more abstraction is always better.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Forkify Capstone Retrospective."
+        }
+      ],
+      "correctChoiceIds": [
+        "JS-30-Q08-C3"
+      ],
+      "explanation": "Engineering judgment balances clarity and cost. The concept should serve the requirement rather than become an end in itself.",
+      "hint": "Choose the option that acknowledges both benefits and trade-offs.",
+      "difficulty": 5,
+      "cognitiveLevel": "tradeoff",
+      "estimatedSeconds": 120,
+      "tags": [
+        "forkify-capstone-retrospective",
+        "tradeoffs"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    }
+  ],
+  "researchSources": [
+    {
+      "kind": "research-transcript",
+      "title": "Wrapping Up: Final Considerations",
+      "pathwayOrder": 48,
+      "sourceLine": 150246,
+      "usage": "Coverage research only; no transcript wording is canonical."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "MDN JavaScript Guide",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "MDN DOM",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "MDN Using promises",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "MDN JavaScript modules",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules",
+      "usage": "Technical verification and freshness review."
+    }
+  ],
+  "contentAuthority": {
+    "canonical": "New JS2Next Release 1 curriculum and independently authored content.",
+    "legacyProjectContent": "Supplementary internal reference only; excluded from runtime unless explicitly re-authored and approved.",
+    "courseTranscripts": "Coverage and sequencing research only; never learner-facing authority.",
+    "officialDocumentation": "Technical verification source."
+  },
+  "version": 1,
+  "status": "draft",
+  "reviewStatus": "pending-human-review",
+  "publicationStatus": "unpublished",
+  "createdAt": "2026-07-17",
+  "updatedAt": "2026-07-17"
+}

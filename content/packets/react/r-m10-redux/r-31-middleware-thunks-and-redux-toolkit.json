@@ -1,0 +1,621 @@
+{
+  "schemaVersion": "1.0",
+  "id": "R-31",
+  "slug": "middleware-thunks-and-redux-toolkit",
+  "trackId": "react",
+  "moduleId": "R-M10",
+  "order": 2,
+  "title": "Middleware, Thunks, and Redux Toolkit",
+  "required": true,
+  "optional": false,
+  "advanced": false,
+  "contentType": "core",
+  "difficulty": 5,
+  "estimatedMinutes": 15,
+  "requiredPrerequisiteTopicIds": [
+    "R-30"
+  ],
+  "recommendedPrerequisiteTopicIds": [],
+  "learningObjectives": [
+    {
+      "id": "R-31-LO1",
+      "text": "Explain redux middleware using a new example and justify the result.",
+      "subtopic": "Redux middleware",
+      "cognitiveLevel": "understand"
+    },
+    {
+      "id": "R-31-LO2",
+      "text": "Explain async logic with thunks using a new example and justify the result.",
+      "subtopic": "Async logic with thunks",
+      "cognitiveLevel": "apply"
+    },
+    {
+      "id": "R-31-LO3",
+      "text": "Explain redux toolkit conventions using a new example and justify the result.",
+      "subtopic": "Redux Toolkit conventions",
+      "cognitiveLevel": "analyze"
+    }
+  ],
+  "whyThisMatters": "The ideas in middleware, thunks, and redux toolkit recur throughout later React work, reducing memorization and debugging later. It belongs to the **Redux** module.",
+  "mentalModel": "Draw a decision map: **Redux middleware** → **Async logic with thunks** → **Redux Toolkit conventions**. Add branches where the learner must choose an alternative and label the evidence for the choice.",
+  "sections": [
+    {
+      "id": "R-31-S1",
+      "type": "concept",
+      "title": "Redux middleware",
+      "body": "Middleware surrounds dispatch and can observe, transform, delay, or respond to actions.",
+      "objectiveIds": [
+        "R-31-LO1"
+      ],
+      "checkQuestionId": "R-31-Q01"
+    },
+    {
+      "id": "R-31-S2",
+      "type": "concept",
+      "title": "Async logic with thunks",
+      "body": "A thunk can run async work, read state, and dispatch lifecycle actions through middleware.",
+      "objectiveIds": [
+        "R-31-LO2"
+      ],
+      "checkQuestionId": "R-31-Q02"
+    },
+    {
+      "id": "R-31-S3",
+      "type": "concept",
+      "title": "Redux Toolkit conventions",
+      "body": "Redux Toolkit is the recommended Redux approach through configureStore, createSlice, and async helpers.",
+      "objectiveIds": [
+        "R-31-LO3"
+      ],
+      "checkQuestionId": "R-31-Q03"
+    },
+    {
+      "id": "R-31-EX1",
+      "type": "code-example",
+      "title": "Worked example",
+      "language": "js",
+      "source": "const progressSlice = createSlice({\n  name: 'progress',\n  initialState: { status: 'idle', topics: [] },\n  reducers: {\n    topicCompleted(state, action) {\n      state.topics.push(action.payload);\n    },\n  },\n});",
+      "explanation": "Redux Toolkit creates actions and a reducer while preserving immutable semantics.",
+      "objectiveIds": [
+        "R-31-LO1",
+        "R-31-LO2",
+        "R-31-LO3"
+      ]
+    }
+  ],
+  "commonMistakes": [
+    "Putting every local input into Redux.",
+    "Performing side effects inside a reducer.",
+    "Mutating props or state instead of producing the next value.",
+    "Adding state or an Effect for a value that can be derived during render."
+  ],
+  "summary": [
+    "Middleware, Thunks, and Redux Toolkit connects Redux middleware, Async logic with thunks, Redux Toolkit conventions.",
+    "Use the topic to make behavior and decisions explicit rather than memorizing isolated syntax.",
+    "Verify understanding by explaining a new example and answering the topic quiz without looking back."
+  ],
+  "inLessonQuestionIds": [
+    "R-31-Q01",
+    "R-31-Q02",
+    "R-31-Q03"
+  ],
+  "topicQuiz": {
+    "id": "R-31-QUIZ",
+    "questionIds": [
+      "R-31-Q04",
+      "R-31-Q05",
+      "R-31-Q06",
+      "R-31-Q07",
+      "R-31-Q08"
+    ],
+    "masteryThresholdPercent": 80,
+    "attemptPolicy": "unlimited",
+    "failurePolicy": "Show explanations, add missed objectives to local review, and allow immediate or later retry.",
+    "randomizeQuestionOrder": true,
+    "randomizeChoiceOrder": false
+  },
+  "questions": [
+    {
+      "id": "R-31-Q01",
+      "trackId": "react",
+      "moduleId": "R-M10",
+      "topicId": "R-31",
+      "objectiveIds": [
+        "R-31-LO1"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which statement best explains “Redux middleware” in the context of Middleware, Thunks, and Redux Toolkit?",
+      "choices": [
+        {
+          "id": "R-31-Q01-C1",
+          "label": "State is preserved when the same type remains at the same logical position. A changed key or type creates a new instance and resets local state.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Redux middleware."
+        },
+        {
+          "id": "R-31-Q01-C2",
+          "label": "Local state serves one instance or nearby subtree; global state coordinates distant consumers. Keep state local by default.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Redux middleware."
+        },
+        {
+          "id": "R-31-Q01-C3",
+          "label": "A single-page application updates views on the client after an application shell loads, requiring deliberate loading, errors, metadata, and accessibility.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Redux middleware."
+        },
+        {
+          "id": "R-31-Q01-C4",
+          "label": "Middleware surrounds dispatch and can observe, transform, delay, or respond to actions.",
+          "feedback": "Redux middleware is best understood as follows: Middleware surrounds dispatch and can observe, transform, delay, or respond to actions."
+        }
+      ],
+      "correctChoiceIds": [
+        "R-31-Q01-C4"
+      ],
+      "explanation": "Redux middleware is best understood as follows: Middleware surrounds dispatch and can observe, transform, delay, or respond to actions.",
+      "hint": "Focus on what the concept changes, enables, or constrains—not only on its syntax.",
+      "difficulty": 4,
+      "cognitiveLevel": "recognize",
+      "estimatedSeconds": 75,
+      "tags": [
+        "redux-middleware",
+        "middleware-thunks-and-redux-toolkit"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "R-31-Q02",
+      "trackId": "react",
+      "moduleId": "R-M10",
+      "topicId": "R-31",
+      "objectiveIds": [
+        "R-31-LO2"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which statement best explains “Async logic with thunks” in the context of Middleware, Thunks, and Redux Toolkit?",
+      "choices": [
+        {
+          "id": "R-31-Q02-C1",
+          "label": "A thunk can run async work, read state, and dispatch lifecycle actions through middleware.",
+          "feedback": "Async logic with thunks is best understood as follows: A thunk can run async work, read state, and dispatch lifecycle actions through middleware."
+        },
+        {
+          "id": "R-31-Q02-C2",
+          "label": "State is preserved when the same type remains at the same logical position. A changed key or type creates a new instance and resets local state.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Async logic with thunks."
+        },
+        {
+          "id": "R-31-Q02-C3",
+          "label": "A single-page application updates views on the client after an application shell loads, requiring deliberate loading, errors, metadata, and accessibility.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Async logic with thunks."
+        },
+        {
+          "id": "R-31-Q02-C4",
+          "label": "Local state serves one instance or nearby subtree; global state coordinates distant consumers. Keep state local by default.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Async logic with thunks."
+        }
+      ],
+      "correctChoiceIds": [
+        "R-31-Q02-C1"
+      ],
+      "explanation": "Async logic with thunks is best understood as follows: A thunk can run async work, read state, and dispatch lifecycle actions through middleware.",
+      "hint": "Focus on what the concept changes, enables, or constrains—not only on its syntax.",
+      "difficulty": 4,
+      "cognitiveLevel": "explain",
+      "estimatedSeconds": 75,
+      "tags": [
+        "async-logic-with-thunks",
+        "middleware-thunks-and-redux-toolkit"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "R-31-Q03",
+      "trackId": "react",
+      "moduleId": "R-M10",
+      "topicId": "R-31",
+      "objectiveIds": [
+        "R-31-LO3"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which statement best explains “Redux Toolkit conventions” in the context of Middleware, Thunks, and Redux Toolkit?",
+      "choices": [
+        {
+          "id": "R-31-Q03-C1",
+          "label": "A single-page application updates views on the client after an application shell loads, requiring deliberate loading, errors, metadata, and accessibility.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Redux Toolkit conventions."
+        },
+        {
+          "id": "R-31-Q03-C2",
+          "label": "Redux Toolkit is the recommended Redux approach through configureStore, createSlice, and async helpers.",
+          "feedback": "Redux Toolkit conventions is best understood as follows: Redux Toolkit is the recommended Redux approach through configureStore, createSlice, and async helpers."
+        },
+        {
+          "id": "R-31-Q03-C3",
+          "label": "Local state serves one instance or nearby subtree; global state coordinates distant consumers. Keep state local by default.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Redux Toolkit conventions."
+        },
+        {
+          "id": "R-31-Q03-C4",
+          "label": "State is preserved when the same type remains at the same logical position. A changed key or type creates a new instance and resets local state.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Redux Toolkit conventions."
+        }
+      ],
+      "correctChoiceIds": [
+        "R-31-Q03-C2"
+      ],
+      "explanation": "Redux Toolkit conventions is best understood as follows: Redux Toolkit is the recommended Redux approach through configureStore, createSlice, and async helpers.",
+      "hint": "Focus on what the concept changes, enables, or constrains—not only on its syntax.",
+      "difficulty": 4,
+      "cognitiveLevel": "predict",
+      "estimatedSeconds": 120,
+      "tags": [
+        "redux-toolkit-conventions",
+        "middleware-thunks-and-redux-toolkit"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "R-31-Q04",
+      "trackId": "react",
+      "moduleId": "R-M10",
+      "topicId": "R-31",
+      "objectiveIds": [
+        "R-31-LO1",
+        "R-31-LO2"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "A learner must use Middleware, Thunks, and Redux Toolkit in a new situation. Which approach best demonstrates transferable understanding?",
+      "choices": [
+        {
+          "id": "R-31-Q04-C1",
+          "label": "Treat the concept as isolated trivia and avoid connecting it to earlier prerequisites.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Middleware, Thunks, and Redux Toolkit."
+        },
+        {
+          "id": "R-31-Q04-C2",
+          "label": "Apply Redux middleware deliberately, make the relevant inputs and assumptions explicit, and verify the observable result before adding more complexity.",
+          "feedback": "Transfer comes from using the concept with explicit assumptions and checking the resulting behavior, not from reproducing a memorized example."
+        },
+        {
+          "id": "R-31-Q04-C3",
+          "label": "Add more state and abstraction immediately, before identifying the smallest requirement.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Middleware, Thunks, and Redux Toolkit."
+        },
+        {
+          "id": "R-31-Q04-C4",
+          "label": "Skip the underlying model and rely on memorized syntax, even when the result is unclear.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Middleware, Thunks, and Redux Toolkit."
+        }
+      ],
+      "correctChoiceIds": [
+        "R-31-Q04-C2"
+      ],
+      "explanation": "Transfer comes from using the concept with explicit assumptions and checking the resulting behavior, not from reproducing a memorized example.",
+      "hint": "Choose the option that would still work when the surrounding example changes.",
+      "difficulty": 5,
+      "cognitiveLevel": "apply",
+      "estimatedSeconds": 120,
+      "tags": [
+        "middleware-thunks-and-redux-toolkit",
+        "redux-middleware"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "R-31-Q05",
+      "trackId": "react",
+      "moduleId": "R-M10",
+      "topicId": "R-31",
+      "objectiveIds": [
+        "R-31-LO1",
+        "R-31-LO2",
+        "R-31-LO3"
+      ],
+      "kind": "single-choice",
+      "presentation": "code",
+      "prompt": "What is the most accurate explanation of the following Middleware, Thunks, and Redux Toolkit example?",
+      "choices": [
+        {
+          "id": "R-31-Q05-C1",
+          "label": "The snippet guarantees that all values are immutable and all operations are asynchronous.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Middleware, Thunks, and Redux Toolkit."
+        },
+        {
+          "id": "R-31-Q05-C2",
+          "label": "The snippet is valid only because JavaScript ignores variable scope and evaluation order.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Middleware, Thunks, and Redux Toolkit."
+        },
+        {
+          "id": "R-31-Q05-C3",
+          "label": "Redux Toolkit creates actions and a reducer while preserving immutable semantics.",
+          "feedback": "The correct choice connects the example to the underlying model rather than treating the syntax as isolated trivia."
+        },
+        {
+          "id": "R-31-Q05-C4",
+          "label": "The snippet removes the need to understand the data flowing through the program.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Middleware, Thunks, and Redux Toolkit."
+        }
+      ],
+      "correctChoiceIds": [
+        "R-31-Q05-C3"
+      ],
+      "explanation": "The correct choice connects the example to the underlying model rather than treating the syntax as isolated trivia.",
+      "hint": "Trace data, control flow, ownership, or rendering step by step.",
+      "difficulty": 5,
+      "cognitiveLevel": "predict",
+      "estimatedSeconds": 120,
+      "tags": [
+        "middleware-thunks-and-redux-toolkit",
+        "redux-middleware",
+        "async-logic-with-thunks"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review",
+      "code": {
+        "language": "js",
+        "source": "const progressSlice = createSlice({\n  name: 'progress',\n  initialState: { status: 'idle', topics: [] },\n  reducers: {\n    topicCompleted(state, action) {\n      state.topics.push(action.payload);\n    },\n  },\n});"
+      }
+    },
+    {
+      "id": "R-31-Q06",
+      "trackId": "react",
+      "moduleId": "R-M10",
+      "topicId": "R-31",
+      "objectiveIds": [
+        "R-31-LO1",
+        "R-31-LO2",
+        "R-31-LO3"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which response best addresses this common mistake: “Putting every local input into Redux.”?",
+      "choices": [
+        {
+          "id": "R-31-Q06-C1",
+          "label": "The statement is a misconception. A better approach is to reason from the concept's inputs, rules, and observable outcome, then verify the result.",
+          "feedback": "Good feedback names the misconception and replaces it with a usable reasoning process."
+        },
+        {
+          "id": "R-31-Q06-C2",
+          "label": "The statement is correct only when variable names are short.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Middleware, Thunks, and Redux Toolkit."
+        },
+        {
+          "id": "R-31-Q06-C3",
+          "label": "The statement is always correct, so no further reasoning about Middleware, Thunks, and Redux Toolkit is needed.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Middleware, Thunks, and Redux Toolkit."
+        },
+        {
+          "id": "R-31-Q06-C4",
+          "label": "The statement is unrelated to program behavior and cannot cause defects.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Middleware, Thunks, and Redux Toolkit."
+        }
+      ],
+      "correctChoiceIds": [
+        "R-31-Q06-C1"
+      ],
+      "explanation": "Good feedback names the misconception and replaces it with a usable reasoning process.",
+      "hint": "Look for the option that corrects both the belief and the learner's next action.",
+      "difficulty": 5,
+      "cognitiveLevel": "debug",
+      "estimatedSeconds": 120,
+      "tags": [
+        "middleware-thunks-and-redux-toolkit",
+        "common-mistakes"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "R-31-Q07",
+      "trackId": "react",
+      "moduleId": "R-M10",
+      "topicId": "R-31",
+      "objectiveIds": [
+        "R-31-LO1",
+        "R-31-LO2",
+        "R-31-LO3"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which sequence is most reliable when solving a problem involving Middleware, Thunks, and Redux Toolkit?",
+      "choices": [
+        {
+          "id": "R-31-Q07-C1",
+          "label": "First identify the requirement, then apply the relevant rule from Redux middleware, inspect the result, and only then refactor or optimize.",
+          "feedback": "The reliable sequence starts from the requirement, applies a known rule, observes behavior, and improves the solution afterward."
+        },
+        {
+          "id": "R-31-Q07-C2",
+          "label": "Optimize first, then decide what the code is supposed to do.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Middleware, Thunks, and Redux Toolkit."
+        },
+        {
+          "id": "R-31-Q07-C3",
+          "label": "Copy an unrelated implementation, hide the assumptions, and test only the happy path.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Middleware, Thunks, and Redux Toolkit."
+        },
+        {
+          "id": "R-31-Q07-C4",
+          "label": "Start with a framework abstraction and avoid checking the underlying language behavior.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Middleware, Thunks, and Redux Toolkit."
+        }
+      ],
+      "correctChoiceIds": [
+        "R-31-Q07-C1"
+      ],
+      "explanation": "The reliable sequence starts from the requirement, applies a known rule, observes behavior, and improves the solution afterward.",
+      "hint": "Prefer a sequence that makes failures visible early.",
+      "difficulty": 5,
+      "cognitiveLevel": "explain",
+      "estimatedSeconds": 75,
+      "tags": [
+        "middleware-thunks-and-redux-toolkit",
+        "problem-solving"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "R-31-Q08",
+      "trackId": "react",
+      "moduleId": "R-M10",
+      "topicId": "R-31",
+      "objectiveIds": [
+        "R-31-LO1",
+        "R-31-LO2",
+        "R-31-LO3"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which guideline shows the best judgment about when to use Middleware, Thunks, and Redux Toolkit?",
+      "choices": [
+        {
+          "id": "R-31-Q08-C1",
+          "label": "Avoid Middleware, Thunks, and Redux Toolkit completely because all abstractions reduce maintainability.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Middleware, Thunks, and Redux Toolkit."
+        },
+        {
+          "id": "R-31-Q08-C2",
+          "label": "Use Middleware, Thunks, and Redux Toolkit in every file because more abstraction is always better.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Middleware, Thunks, and Redux Toolkit."
+        },
+        {
+          "id": "R-31-Q08-C3",
+          "label": "Use Middleware, Thunks, and Redux Toolkit when it makes intent, ownership, or data flow clearer; avoid adding it mechanically when a simpler, equally explicit solution is sufficient.",
+          "feedback": "Engineering judgment balances clarity and cost. The concept should serve the requirement rather than become an end in itself."
+        },
+        {
+          "id": "R-31-Q08-C4",
+          "label": "Choose based only on line count, without considering readability, correctness, or future change.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Middleware, Thunks, and Redux Toolkit."
+        }
+      ],
+      "correctChoiceIds": [
+        "R-31-Q08-C3"
+      ],
+      "explanation": "Engineering judgment balances clarity and cost. The concept should serve the requirement rather than become an end in itself.",
+      "hint": "Choose the option that acknowledges both benefits and trade-offs.",
+      "difficulty": 5,
+      "cognitiveLevel": "tradeoff",
+      "estimatedSeconds": 120,
+      "tags": [
+        "middleware-thunks-and-redux-toolkit",
+        "tradeoffs"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    }
+  ],
+  "researchSources": [
+    {
+      "kind": "research-transcript",
+      "title": "Redux Middleware and Thunks",
+      "pathwayOrder": 56,
+      "sourceLine": 88820,
+      "usage": "Coverage research only; no transcript wording is canonical."
+    },
+    {
+      "kind": "research-transcript",
+      "title": "What is Redux Toolkit (RTK)?",
+      "pathwayOrder": 57,
+      "sourceLine": 89981,
+      "usage": "Coverage research only; no transcript wording is canonical."
+    },
+    {
+      "kind": "supporting-research",
+      "title": "Creating a Redux Store",
+      "usage": "Optional coverage reference; learner-facing wording must be original."
+    },
+    {
+      "kind": "supporting-research",
+      "title": "Professional Redux File Structure: State Slices",
+      "usage": "Optional coverage reference; learner-facing wording must be original."
+    },
+    {
+      "kind": "supporting-research",
+      "title": "Back to React! Connecting our Redux App With React",
+      "usage": "Optional coverage reference; learner-facing wording must be original."
+    },
+    {
+      "kind": "supporting-research",
+      "title": "Redux Thunks With createAsyncThunk",
+      "usage": "Optional coverage reference; learner-facing wording must be original."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "React Learn",
+      "url": "https://react.dev/learn",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "React Managing State",
+      "url": "https://react.dev/learn/managing-state",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "React Escape Hatches",
+      "url": "https://react.dev/learn/escape-hatches",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "React API Reference",
+      "url": "https://react.dev/reference/react",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "Redux Essentials",
+      "url": "https://redux.js.org/tutorials/essentials/part-1-overview-concepts",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "TanStack Query Overview",
+      "url": "https://tanstack.com/query/latest/docs/framework/react/overview",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "Supabase Documentation",
+      "url": "https://supabase.com/docs",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "Tailwind CSS Documentation",
+      "url": "https://tailwindcss.com/docs",
+      "usage": "Technical verification and freshness review."
+    }
+  ],
+  "contentAuthority": {
+    "canonical": "New JS2Next Release 1 curriculum and independently authored content.",
+    "legacyProjectContent": "Supplementary internal reference only; excluded from runtime unless explicitly re-authored and approved.",
+    "courseTranscripts": "Coverage and sequencing research only; never learner-facing authority.",
+    "officialDocumentation": "Technical verification source."
+  },
+  "version": 1,
+  "status": "draft",
+  "reviewStatus": "pending-human-review",
+  "publicationStatus": "unpublished",
+  "createdAt": "2026-07-17",
+  "updatedAt": "2026-07-17"
+}

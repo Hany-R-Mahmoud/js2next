@@ -1,0 +1,568 @@
+{
+  "schemaVersion": "1.0",
+  "id": "JS-02",
+  "slug": "introduction-to-javascript",
+  "trackId": "javascript",
+  "moduleId": "JS-M01",
+  "order": 2,
+  "title": "Introduction to JavaScript",
+  "required": true,
+  "optional": false,
+  "advanced": false,
+  "contentType": "core",
+  "difficulty": 1,
+  "estimatedMinutes": 15,
+  "requiredPrerequisiteTopicIds": [],
+  "recommendedPrerequisiteTopicIds": [],
+  "learningObjectives": [
+    {
+      "id": "JS-02-LO1",
+      "text": "Explain what javascript is using a new example and justify the result.",
+      "subtopic": "What JavaScript is",
+      "cognitiveLevel": "understand"
+    },
+    {
+      "id": "JS-02-LO2",
+      "text": "Explain javascript's role in the web using a new example and justify the result.",
+      "subtopic": "JavaScript's role in the web",
+      "cognitiveLevel": "apply"
+    },
+    {
+      "id": "JS-02-LO3",
+      "text": "Explain where javascript runs using a new example and justify the result.",
+      "subtopic": "Where JavaScript runs",
+      "cognitiveLevel": "analyze"
+    }
+  ],
+  "whyThisMatters": "Introduction to JavaScript is part of the mental model learners need before making reliable implementation decisions. It belongs to the **Orientation and Foundations** module.",
+  "mentalModel": "Draw a decision map: **What JavaScript is** → **JavaScript's role in the web** → **Where JavaScript runs**. Add branches where the learner must choose an alternative and label the evidence for the choice.",
+  "sections": [
+    {
+      "id": "JS-02-S1",
+      "type": "concept",
+      "title": "What JavaScript is",
+      "body": "JavaScript is a general-purpose programming language standardized through ECMAScript. It is dynamically typed, supports multiple programming styles, and treats functions as values. A host runtime supplies capabilities beyond the language itself.",
+      "objectiveIds": [
+        "JS-02-LO1"
+      ],
+      "checkQuestionId": "JS-02-Q01"
+    },
+    {
+      "id": "JS-02-S2",
+      "type": "concept",
+      "title": "JavaScript's role in the web",
+      "body": "HTML describes structure, CSS describes presentation, and JavaScript expresses behavior and application logic. It responds to events, changes the document, communicates with servers, and coordinates state.",
+      "objectiveIds": [
+        "JS-02-LO2"
+      ],
+      "checkQuestionId": "JS-02-Q02"
+    },
+    {
+      "id": "JS-02-S3",
+      "type": "concept",
+      "title": "Where JavaScript runs",
+      "body": "JavaScript runs inside an engine embedded in a host environment. Browsers expose the DOM, timers, networking, and storage; server runtimes expose different APIs. Language features are portable, but host APIs depend on the environment.",
+      "objectiveIds": [
+        "JS-02-LO3"
+      ],
+      "checkQuestionId": "JS-02-Q03"
+    },
+    {
+      "id": "JS-02-EX1",
+      "type": "code-example",
+      "title": "Worked example",
+      "language": "js",
+      "source": "const platform = 'JS2Next';\nconsole.log(`${platform} runs JavaScript in the browser.`);",
+      "explanation": "A value is created, interpolated into a string, and passed to a host-provided console API.",
+      "objectiveIds": [
+        "JS-02-LO1",
+        "JS-02-LO2",
+        "JS-02-LO3"
+      ]
+    }
+  ],
+  "commonMistakes": [
+    "Memorizing syntax without predicting the underlying value or execution order.",
+    "Mutating shared data when the task expects a new value or explicit ownership.",
+    "Treating browser APIs and language features as the same layer.",
+    "Choosing an abstraction from habit rather than required operations."
+  ],
+  "summary": [
+    "Introduction to JavaScript connects What JavaScript is, JavaScript's role in the web, Where JavaScript runs.",
+    "Use the topic to make behavior and decisions explicit rather than memorizing isolated syntax.",
+    "Verify understanding by explaining a new example and answering the topic quiz without looking back."
+  ],
+  "inLessonQuestionIds": [
+    "JS-02-Q01",
+    "JS-02-Q02",
+    "JS-02-Q03"
+  ],
+  "topicQuiz": {
+    "id": "JS-02-QUIZ",
+    "questionIds": [
+      "JS-02-Q04",
+      "JS-02-Q05",
+      "JS-02-Q06",
+      "JS-02-Q07",
+      "JS-02-Q08"
+    ],
+    "masteryThresholdPercent": 80,
+    "attemptPolicy": "unlimited",
+    "failurePolicy": "Show explanations, add missed objectives to local review, and allow immediate or later retry.",
+    "randomizeQuestionOrder": true,
+    "randomizeChoiceOrder": false
+  },
+  "questions": [
+    {
+      "id": "JS-02-Q01",
+      "trackId": "javascript",
+      "moduleId": "JS-M01",
+      "topicId": "JS-02",
+      "objectiveIds": [
+        "JS-02-LO1"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which statement best explains “What JavaScript is” in the context of Introduction to JavaScript?",
+      "choices": [
+        {
+          "id": "JS-02-Q01-C1",
+          "label": "JavaScript is a general-purpose programming language standardized through ECMAScript. It is dynamically typed, supports multiple programming styles, and treats functions as values. A host runtime supplies…",
+          "feedback": "What JavaScript is is best understood as follows: JavaScript is a general-purpose programming language standardized through ECMAScript. It is dynamically typed, supports multiple programming styles, and treats functions as values. A host runtime supplies…"
+        },
+        {
+          "id": "JS-02-Q01-C2",
+          "label": "In object.method(), the object before the dot provides this for that call. Detaching the method changes the call form and may lose the intended receiver.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of What JavaScript is."
+        },
+        {
+          "id": "JS-02-Q01-C3",
+          "label": "Variables are not permanently bound to one type. Each value still has a definite runtime type, but a variable may refer to different kinds of values over time. Clear data boundaries and validation are therefore…",
+          "feedback": "This does not match the lesson's model. Reconsider the role of What JavaScript is."
+        },
+        {
+          "id": "JS-02-Q01-C4",
+          "label": "Array filter returns a new array containing only elements whose predicate is truthy.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of What JavaScript is."
+        }
+      ],
+      "correctChoiceIds": [
+        "JS-02-Q01-C1"
+      ],
+      "explanation": "What JavaScript is is best understood as follows: JavaScript is a general-purpose programming language standardized through ECMAScript. It is dynamically typed, supports multiple programming styles, and treats functions as values. A host runtime supplies…",
+      "hint": "Focus on what the concept changes, enables, or constrains—not only on its syntax.",
+      "difficulty": 1,
+      "cognitiveLevel": "recognize",
+      "estimatedSeconds": 75,
+      "tags": [
+        "what-javascript-is",
+        "introduction-to-javascript"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JS-02-Q02",
+      "trackId": "javascript",
+      "moduleId": "JS-M01",
+      "topicId": "JS-02",
+      "objectiveIds": [
+        "JS-02-LO2"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which statement best explains “JavaScript's role in the web” in the context of Introduction to JavaScript?",
+      "choices": [
+        {
+          "id": "JS-02-Q02-C1",
+          "label": "HTML describes structure, CSS describes presentation, and JavaScript expresses behavior and application logic. It responds to events, changes the document, communicates with servers, and coordinates state.",
+          "feedback": "JavaScript's role in the web is best understood as follows: HTML describes structure, CSS describes presentation, and JavaScript expresses behavior and application logic. It responds to events, changes the document, communicates with servers, and coordinates state."
+        },
+        {
+          "id": "JS-02-Q02-C2",
+          "label": "In object.method(), the object before the dot provides this for that call. Detaching the method changes the call form and may lose the intended receiver.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of JavaScript's role in the web."
+        },
+        {
+          "id": "JS-02-Q02-C3",
+          "label": "Array filter returns a new array containing only elements whose predicate is truthy.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of JavaScript's role in the web."
+        },
+        {
+          "id": "JS-02-Q02-C4",
+          "label": "Variables are not permanently bound to one type. Each value still has a definite runtime type, but a variable may refer to different kinds of values over time. Clear data boundaries and validation are therefore…",
+          "feedback": "This does not match the lesson's model. Reconsider the role of JavaScript's role in the web."
+        }
+      ],
+      "correctChoiceIds": [
+        "JS-02-Q02-C1"
+      ],
+      "explanation": "JavaScript's role in the web is best understood as follows: HTML describes structure, CSS describes presentation, and JavaScript expresses behavior and application logic. It responds to events, changes the document, communicates with servers, and coordinates state.",
+      "hint": "Focus on what the concept changes, enables, or constrains—not only on its syntax.",
+      "difficulty": 1,
+      "cognitiveLevel": "explain",
+      "estimatedSeconds": 75,
+      "tags": [
+        "javascript-s-role-in-the-web",
+        "introduction-to-javascript"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JS-02-Q03",
+      "trackId": "javascript",
+      "moduleId": "JS-M01",
+      "topicId": "JS-02",
+      "objectiveIds": [
+        "JS-02-LO3"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which statement best explains “Where JavaScript runs” in the context of Introduction to JavaScript?",
+      "choices": [
+        {
+          "id": "JS-02-Q03-C1",
+          "label": "JavaScript runs inside an engine embedded in a host environment. Browsers expose the DOM, timers, networking, and storage; server runtimes expose different APIs. Language features are portable, but host APIs depend…",
+          "feedback": "Where JavaScript runs is best understood as follows: JavaScript runs inside an engine embedded in a host environment. Browsers expose the DOM, timers, networking, and storage; server runtimes expose different APIs. Language features are portable, but host APIs depend…"
+        },
+        {
+          "id": "JS-02-Q03-C2",
+          "label": "Array filter returns a new array containing only elements whose predicate is truthy.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Where JavaScript runs."
+        },
+        {
+          "id": "JS-02-Q03-C3",
+          "label": "Variables are not permanently bound to one type. Each value still has a definite runtime type, but a variable may refer to different kinds of values over time. Clear data boundaries and validation are therefore…",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Where JavaScript runs."
+        },
+        {
+          "id": "JS-02-Q03-C4",
+          "label": "In object.method(), the object before the dot provides this for that call. Detaching the method changes the call form and may lose the intended receiver.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Where JavaScript runs."
+        }
+      ],
+      "correctChoiceIds": [
+        "JS-02-Q03-C1"
+      ],
+      "explanation": "Where JavaScript runs is best understood as follows: JavaScript runs inside an engine embedded in a host environment. Browsers expose the DOM, timers, networking, and storage; server runtimes expose different APIs. Language features are portable, but host APIs depend…",
+      "hint": "Focus on what the concept changes, enables, or constrains—not only on its syntax.",
+      "difficulty": 1,
+      "cognitiveLevel": "predict",
+      "estimatedSeconds": 120,
+      "tags": [
+        "where-javascript-runs",
+        "introduction-to-javascript"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JS-02-Q04",
+      "trackId": "javascript",
+      "moduleId": "JS-M01",
+      "topicId": "JS-02",
+      "objectiveIds": [
+        "JS-02-LO1",
+        "JS-02-LO2"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "A learner must use Introduction to JavaScript in a new situation. Which approach best demonstrates transferable understanding?",
+      "choices": [
+        {
+          "id": "JS-02-Q04-C1",
+          "label": "Skip the underlying model and rely on memorized syntax, even when the result is unclear.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Introduction to JavaScript."
+        },
+        {
+          "id": "JS-02-Q04-C2",
+          "label": "Apply What JavaScript is deliberately, make the relevant inputs and assumptions explicit, and verify the observable result before adding more complexity.",
+          "feedback": "Transfer comes from using the concept with explicit assumptions and checking the resulting behavior, not from reproducing a memorized example."
+        },
+        {
+          "id": "JS-02-Q04-C3",
+          "label": "Add more state and abstraction immediately, before identifying the smallest requirement.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Introduction to JavaScript."
+        },
+        {
+          "id": "JS-02-Q04-C4",
+          "label": "Treat the concept as isolated trivia and avoid connecting it to earlier prerequisites.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Introduction to JavaScript."
+        }
+      ],
+      "correctChoiceIds": [
+        "JS-02-Q04-C2"
+      ],
+      "explanation": "Transfer comes from using the concept with explicit assumptions and checking the resulting behavior, not from reproducing a memorized example.",
+      "hint": "Choose the option that would still work when the surrounding example changes.",
+      "difficulty": 1,
+      "cognitiveLevel": "apply",
+      "estimatedSeconds": 120,
+      "tags": [
+        "introduction-to-javascript",
+        "what-javascript-is"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JS-02-Q05",
+      "trackId": "javascript",
+      "moduleId": "JS-M01",
+      "topicId": "JS-02",
+      "objectiveIds": [
+        "JS-02-LO1",
+        "JS-02-LO2",
+        "JS-02-LO3"
+      ],
+      "kind": "single-choice",
+      "presentation": "code",
+      "prompt": "What is the most accurate explanation of the following Introduction to JavaScript example?",
+      "choices": [
+        {
+          "id": "JS-02-Q05-C1",
+          "label": "The snippet guarantees that all values are immutable and all operations are asynchronous.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Introduction to JavaScript."
+        },
+        {
+          "id": "JS-02-Q05-C2",
+          "label": "The snippet is valid only because JavaScript ignores variable scope and evaluation order.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Introduction to JavaScript."
+        },
+        {
+          "id": "JS-02-Q05-C3",
+          "label": "The snippet removes the need to understand the data flowing through the program.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Introduction to JavaScript."
+        },
+        {
+          "id": "JS-02-Q05-C4",
+          "label": "A value is created, interpolated into a string, and passed to a host-provided console API.",
+          "feedback": "The correct choice connects the example to the underlying model rather than treating the syntax as isolated trivia."
+        }
+      ],
+      "correctChoiceIds": [
+        "JS-02-Q05-C4"
+      ],
+      "explanation": "The correct choice connects the example to the underlying model rather than treating the syntax as isolated trivia.",
+      "hint": "Trace data, control flow, ownership, or rendering step by step.",
+      "difficulty": 1,
+      "cognitiveLevel": "predict",
+      "estimatedSeconds": 120,
+      "tags": [
+        "introduction-to-javascript",
+        "what-javascript-is",
+        "javascript-s-role-in-the-web"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review",
+      "code": {
+        "language": "js",
+        "source": "const platform = 'JS2Next';\nconsole.log(`${platform} runs JavaScript in the browser.`);"
+      }
+    },
+    {
+      "id": "JS-02-Q06",
+      "trackId": "javascript",
+      "moduleId": "JS-M01",
+      "topicId": "JS-02",
+      "objectiveIds": [
+        "JS-02-LO1",
+        "JS-02-LO2",
+        "JS-02-LO3"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which response best addresses this common mistake: “Memorizing syntax without predicting the underlying value or execution order.”?",
+      "choices": [
+        {
+          "id": "JS-02-Q06-C1",
+          "label": "The statement is correct only when variable names are short.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Introduction to JavaScript."
+        },
+        {
+          "id": "JS-02-Q06-C2",
+          "label": "The statement is unrelated to program behavior and cannot cause defects.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Introduction to JavaScript."
+        },
+        {
+          "id": "JS-02-Q06-C3",
+          "label": "The statement is a misconception. A better approach is to reason from the concept's inputs, rules, and observable outcome, then verify the result.",
+          "feedback": "Good feedback names the misconception and replaces it with a usable reasoning process."
+        },
+        {
+          "id": "JS-02-Q06-C4",
+          "label": "The statement is always correct, so no further reasoning about Introduction to JavaScript is needed.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Introduction to JavaScript."
+        }
+      ],
+      "correctChoiceIds": [
+        "JS-02-Q06-C3"
+      ],
+      "explanation": "Good feedback names the misconception and replaces it with a usable reasoning process.",
+      "hint": "Look for the option that corrects both the belief and the learner's next action.",
+      "difficulty": 1,
+      "cognitiveLevel": "debug",
+      "estimatedSeconds": 120,
+      "tags": [
+        "introduction-to-javascript",
+        "common-mistakes"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JS-02-Q07",
+      "trackId": "javascript",
+      "moduleId": "JS-M01",
+      "topicId": "JS-02",
+      "objectiveIds": [
+        "JS-02-LO1",
+        "JS-02-LO2",
+        "JS-02-LO3"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which sequence is most reliable when solving a problem involving Introduction to JavaScript?",
+      "choices": [
+        {
+          "id": "JS-02-Q07-C1",
+          "label": "Start with a framework abstraction and avoid checking the underlying language behavior.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Introduction to JavaScript."
+        },
+        {
+          "id": "JS-02-Q07-C2",
+          "label": "Copy an unrelated implementation, hide the assumptions, and test only the happy path.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Introduction to JavaScript."
+        },
+        {
+          "id": "JS-02-Q07-C3",
+          "label": "First identify the requirement, then apply the relevant rule from What JavaScript is, inspect the result, and only then refactor or optimize.",
+          "feedback": "The reliable sequence starts from the requirement, applies a known rule, observes behavior, and improves the solution afterward."
+        },
+        {
+          "id": "JS-02-Q07-C4",
+          "label": "Optimize first, then decide what the code is supposed to do.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Introduction to JavaScript."
+        }
+      ],
+      "correctChoiceIds": [
+        "JS-02-Q07-C3"
+      ],
+      "explanation": "The reliable sequence starts from the requirement, applies a known rule, observes behavior, and improves the solution afterward.",
+      "hint": "Prefer a sequence that makes failures visible early.",
+      "difficulty": 1,
+      "cognitiveLevel": "explain",
+      "estimatedSeconds": 75,
+      "tags": [
+        "introduction-to-javascript",
+        "problem-solving"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JS-02-Q08",
+      "trackId": "javascript",
+      "moduleId": "JS-M01",
+      "topicId": "JS-02",
+      "objectiveIds": [
+        "JS-02-LO1",
+        "JS-02-LO2",
+        "JS-02-LO3"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which guideline shows the best judgment about when to use Introduction to JavaScript?",
+      "choices": [
+        {
+          "id": "JS-02-Q08-C1",
+          "label": "Use Introduction to JavaScript when it makes intent, ownership, or data flow clearer; avoid adding it mechanically when a simpler, equally explicit solution is sufficient.",
+          "feedback": "Engineering judgment balances clarity and cost. The concept should serve the requirement rather than become an end in itself."
+        },
+        {
+          "id": "JS-02-Q08-C2",
+          "label": "Choose based only on line count, without considering readability, correctness, or future change.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Introduction to JavaScript."
+        },
+        {
+          "id": "JS-02-Q08-C3",
+          "label": "Avoid Introduction to JavaScript completely because all abstractions reduce maintainability.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Introduction to JavaScript."
+        },
+        {
+          "id": "JS-02-Q08-C4",
+          "label": "Use Introduction to JavaScript in every file because more abstraction is always better.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Introduction to JavaScript."
+        }
+      ],
+      "correctChoiceIds": [
+        "JS-02-Q08-C1"
+      ],
+      "explanation": "Engineering judgment balances clarity and cost. The concept should serve the requirement rather than become an end in itself.",
+      "hint": "Choose the option that acknowledges both benefits and trade-offs.",
+      "difficulty": 2,
+      "cognitiveLevel": "tradeoff",
+      "estimatedSeconds": 120,
+      "tags": [
+        "introduction-to-javascript",
+        "tradeoffs"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    }
+  ],
+  "researchSources": [
+    {
+      "kind": "research-transcript",
+      "title": "A Brief Introduction to JavaScript",
+      "pathwayOrder": 2,
+      "sourceLine": 1382,
+      "usage": "Coverage research only; no transcript wording is canonical."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "MDN JavaScript Guide",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "MDN DOM",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "MDN Using promises",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "MDN JavaScript modules",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules",
+      "usage": "Technical verification and freshness review."
+    }
+  ],
+  "contentAuthority": {
+    "canonical": "New JS2Next Release 1 curriculum and independently authored content.",
+    "legacyProjectContent": "Supplementary internal reference only; excluded from runtime unless explicitly re-authored and approved.",
+    "courseTranscripts": "Coverage and sequencing research only; never learner-facing authority.",
+    "officialDocumentation": "Technical verification source."
+  },
+  "version": 1,
+  "status": "draft",
+  "reviewStatus": "pending-human-review",
+  "publicationStatus": "unpublished",
+  "createdAt": "2026-07-17",
+  "updatedAt": "2026-07-17"
+}

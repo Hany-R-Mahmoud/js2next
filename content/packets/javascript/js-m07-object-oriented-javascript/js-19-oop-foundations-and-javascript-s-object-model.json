@@ -1,0 +1,592 @@
+{
+  "schemaVersion": "1.0",
+  "id": "JS-19",
+  "slug": "oop-foundations-and-javascript-s-object-model",
+  "trackId": "javascript",
+  "moduleId": "JS-M07",
+  "order": 1,
+  "title": "OOP Foundations and JavaScript's Object Model",
+  "required": true,
+  "optional": false,
+  "advanced": false,
+  "contentType": "core",
+  "difficulty": 3,
+  "estimatedMinutes": 25,
+  "requiredPrerequisiteTopicIds": [
+    "JS-18"
+  ],
+  "recommendedPrerequisiteTopicIds": [],
+  "learningObjectives": [
+    {
+      "id": "JS-19-LO1",
+      "text": "Explain oop principles using a new example and justify the result.",
+      "subtopic": "OOP principles",
+      "cognitiveLevel": "understand"
+    },
+    {
+      "id": "JS-19-LO2",
+      "text": "Explain objects and classes as mental models using a new example and justify the result.",
+      "subtopic": "Objects and classes as mental models",
+      "cognitiveLevel": "apply"
+    },
+    {
+      "id": "JS-19-LO3",
+      "text": "Explain javascript oop approaches using a new example and justify the result.",
+      "subtopic": "JavaScript OOP approaches",
+      "cognitiveLevel": "analyze"
+    }
+  ],
+  "whyThisMatters": "OOP Foundations and JavaScript's Object Model is part of the mental model learners need before making reliable implementation decisions. It belongs to the **Object-Oriented JavaScript** module.",
+  "mentalModel": "Draw a decision map: **OOP principles** → **Objects and classes as mental models** → **JavaScript OOP approaches**. Add branches where the learner must choose an alternative and label the evidence for the choice.",
+  "sections": [
+    {
+      "id": "JS-19-S1",
+      "type": "concept",
+      "title": "OOP principles",
+      "body": "Object-oriented design groups data with behavior and uses ideas such as abstraction, encapsulation, inheritance, and polymorphism as design tools.",
+      "objectiveIds": [
+        "JS-19-LO1"
+      ],
+      "checkQuestionId": "JS-19-Q01"
+    },
+    {
+      "id": "JS-19-S2",
+      "type": "concept",
+      "title": "Objects and classes as mental models",
+      "body": "A class describes a family of objects; an instance stores state and uses shared behavior. JavaScript can express this through prototypes, classes, factories, or delegation.",
+      "objectiveIds": [
+        "JS-19-LO2"
+      ],
+      "checkQuestionId": "JS-19-Q02"
+    },
+    {
+      "id": "JS-19-S3",
+      "type": "concept",
+      "title": "JavaScript OOP approaches",
+      "body": "JavaScript supports constructor functions, class syntax, factory functions, and Object.create delegation. Choose a consistent style that communicates ownership and reuse.",
+      "objectiveIds": [
+        "JS-19-LO3"
+      ],
+      "checkQuestionId": "JS-19-Q03"
+    },
+    {
+      "id": "JS-19-EX1",
+      "type": "code-example",
+      "title": "Worked example",
+      "language": "js",
+      "source": "class TopicProgress {\n  constructor(topicId) {\n    this.topicId = topicId;\n    this.score = 0;\n  }\n  record(score) {\n    this.score = Math.max(this.score, score);\n  }\n}",
+      "explanation": "The object groups progress data with behavior that protects its invariant.",
+      "objectiveIds": [
+        "JS-19-LO1",
+        "JS-19-LO2",
+        "JS-19-LO3"
+      ]
+    }
+  ],
+  "commonMistakes": [
+    "Memorizing syntax without predicting the underlying value or execution order.",
+    "Mutating shared data when the task expects a new value or explicit ownership.",
+    "Treating browser APIs and language features as the same layer.",
+    "Choosing an abstraction from habit rather than required operations."
+  ],
+  "summary": [
+    "OOP Foundations and JavaScript's Object Model connects OOP principles, Objects and classes as mental models, JavaScript OOP approaches.",
+    "Use the topic to make behavior and decisions explicit rather than memorizing isolated syntax.",
+    "Verify understanding by explaining a new example and answering the topic quiz without looking back."
+  ],
+  "inLessonQuestionIds": [
+    "JS-19-Q01",
+    "JS-19-Q02",
+    "JS-19-Q03"
+  ],
+  "topicQuiz": {
+    "id": "JS-19-QUIZ",
+    "questionIds": [
+      "JS-19-Q04",
+      "JS-19-Q05",
+      "JS-19-Q06",
+      "JS-19-Q07",
+      "JS-19-Q08"
+    ],
+    "masteryThresholdPercent": 80,
+    "attemptPolicy": "unlimited",
+    "failurePolicy": "Show explanations, add missed objectives to local review, and allow immediate or later retry.",
+    "randomizeQuestionOrder": true,
+    "randomizeChoiceOrder": false
+  },
+  "questions": [
+    {
+      "id": "JS-19-Q01",
+      "trackId": "javascript",
+      "moduleId": "JS-M07",
+      "topicId": "JS-19",
+      "objectiveIds": [
+        "JS-19-LO1"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which statement best explains “OOP principles” in the context of OOP Foundations and JavaScript's Object Model?",
+      "choices": [
+        {
+          "id": "JS-19-Q01-C1",
+          "label": "Common errors include passing an unbound method as a callback, expecting an arrow to receive a dynamic receiver, and assuming nested ordinary functions inherit a method's this.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of OOP principles."
+        },
+        {
+          "id": "JS-19-Q01-C2",
+          "label": "Chaining passes one method's result to the next to form a transformation pipeline. Name intermediate values when the chain becomes hard to inspect.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of OOP principles."
+        },
+        {
+          "id": "JS-19-Q01-C3",
+          "label": "Object-oriented design groups data with behavior and uses ideas such as abstraction, encapsulation, inheritance, and polymorphism as design tools.",
+          "feedback": "OOP principles is best understood as follows: Object-oriented design groups data with behavior and uses ideas such as abstraction, encapsulation, inheritance, and polymorphism as design tools."
+        },
+        {
+          "id": "JS-19-Q01-C4",
+          "label": "A Set models unique values and membership. A Map models an explicit key-value collection with flexible keys and predictable iteration.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of OOP principles."
+        }
+      ],
+      "correctChoiceIds": [
+        "JS-19-Q01-C3"
+      ],
+      "explanation": "OOP principles is best understood as follows: Object-oriented design groups data with behavior and uses ideas such as abstraction, encapsulation, inheritance, and polymorphism as design tools.",
+      "hint": "Focus on what the concept changes, enables, or constrains—not only on its syntax.",
+      "difficulty": 2,
+      "cognitiveLevel": "recognize",
+      "estimatedSeconds": 75,
+      "tags": [
+        "oop-principles",
+        "oop-foundations-and-javascript-s-object-model"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JS-19-Q02",
+      "trackId": "javascript",
+      "moduleId": "JS-M07",
+      "topicId": "JS-19",
+      "objectiveIds": [
+        "JS-19-LO2"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which statement best explains “Objects and classes as mental models” in the context of OOP Foundations and JavaScript's Object Model?",
+      "choices": [
+        {
+          "id": "JS-19-Q02-C1",
+          "label": "A class describes a family of objects; an instance stores state and uses shared behavior. JavaScript can express this through prototypes, classes, factories, or delegation.",
+          "feedback": "Objects and classes as mental models is best understood as follows: A class describes a family of objects; an instance stores state and uses shared behavior. JavaScript can express this through prototypes, classes, factories, or delegation."
+        },
+        {
+          "id": "JS-19-Q02-C2",
+          "label": "Chaining passes one method's result to the next to form a transformation pipeline. Name intermediate values when the chain becomes hard to inspect.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Objects and classes as mental models."
+        },
+        {
+          "id": "JS-19-Q02-C3",
+          "label": "A Set models unique values and membership. A Map models an explicit key-value collection with flexible keys and predictable iteration.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Objects and classes as mental models."
+        },
+        {
+          "id": "JS-19-Q02-C4",
+          "label": "Common errors include passing an unbound method as a callback, expecting an arrow to receive a dynamic receiver, and assuming nested ordinary functions inherit a method's this.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Objects and classes as mental models."
+        }
+      ],
+      "correctChoiceIds": [
+        "JS-19-Q02-C1"
+      ],
+      "explanation": "Objects and classes as mental models is best understood as follows: A class describes a family of objects; an instance stores state and uses shared behavior. JavaScript can express this through prototypes, classes, factories, or delegation.",
+      "hint": "Focus on what the concept changes, enables, or constrains—not only on its syntax.",
+      "difficulty": 2,
+      "cognitiveLevel": "explain",
+      "estimatedSeconds": 75,
+      "tags": [
+        "objects-and-classes-as-mental-models",
+        "oop-foundations-and-javascript-s-object-model"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JS-19-Q03",
+      "trackId": "javascript",
+      "moduleId": "JS-M07",
+      "topicId": "JS-19",
+      "objectiveIds": [
+        "JS-19-LO3"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which statement best explains “JavaScript OOP approaches” in the context of OOP Foundations and JavaScript's Object Model?",
+      "choices": [
+        {
+          "id": "JS-19-Q03-C1",
+          "label": "A Set models unique values and membership. A Map models an explicit key-value collection with flexible keys and predictable iteration.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of JavaScript OOP approaches."
+        },
+        {
+          "id": "JS-19-Q03-C2",
+          "label": "Chaining passes one method's result to the next to form a transformation pipeline. Name intermediate values when the chain becomes hard to inspect.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of JavaScript OOP approaches."
+        },
+        {
+          "id": "JS-19-Q03-C3",
+          "label": "JavaScript supports constructor functions, class syntax, factory functions, and Object.create delegation. Choose a consistent style that communicates ownership and reuse.",
+          "feedback": "JavaScript OOP approaches is best understood as follows: JavaScript supports constructor functions, class syntax, factory functions, and Object.create delegation. Choose a consistent style that communicates ownership and reuse."
+        },
+        {
+          "id": "JS-19-Q03-C4",
+          "label": "Common errors include passing an unbound method as a callback, expecting an arrow to receive a dynamic receiver, and assuming nested ordinary functions inherit a method's this.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of JavaScript OOP approaches."
+        }
+      ],
+      "correctChoiceIds": [
+        "JS-19-Q03-C3"
+      ],
+      "explanation": "JavaScript OOP approaches is best understood as follows: JavaScript supports constructor functions, class syntax, factory functions, and Object.create delegation. Choose a consistent style that communicates ownership and reuse.",
+      "hint": "Focus on what the concept changes, enables, or constrains—not only on its syntax.",
+      "difficulty": 2,
+      "cognitiveLevel": "predict",
+      "estimatedSeconds": 120,
+      "tags": [
+        "javascript-oop-approaches",
+        "oop-foundations-and-javascript-s-object-model"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JS-19-Q04",
+      "trackId": "javascript",
+      "moduleId": "JS-M07",
+      "topicId": "JS-19",
+      "objectiveIds": [
+        "JS-19-LO1",
+        "JS-19-LO2"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "A learner must use OOP Foundations and JavaScript's Object Model in a new situation. Which approach best demonstrates transferable understanding?",
+      "choices": [
+        {
+          "id": "JS-19-Q04-C1",
+          "label": "Skip the underlying model and rely on memorized syntax, even when the result is unclear.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of OOP Foundations and JavaScript's Object Model."
+        },
+        {
+          "id": "JS-19-Q04-C2",
+          "label": "Treat the concept as isolated trivia and avoid connecting it to earlier prerequisites.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of OOP Foundations and JavaScript's Object Model."
+        },
+        {
+          "id": "JS-19-Q04-C3",
+          "label": "Apply OOP principles deliberately, make the relevant inputs and assumptions explicit, and verify the observable result before adding more complexity.",
+          "feedback": "Transfer comes from using the concept with explicit assumptions and checking the resulting behavior, not from reproducing a memorized example."
+        },
+        {
+          "id": "JS-19-Q04-C4",
+          "label": "Add more state and abstraction immediately, before identifying the smallest requirement.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of OOP Foundations and JavaScript's Object Model."
+        }
+      ],
+      "correctChoiceIds": [
+        "JS-19-Q04-C3"
+      ],
+      "explanation": "Transfer comes from using the concept with explicit assumptions and checking the resulting behavior, not from reproducing a memorized example.",
+      "hint": "Choose the option that would still work when the surrounding example changes.",
+      "difficulty": 3,
+      "cognitiveLevel": "apply",
+      "estimatedSeconds": 120,
+      "tags": [
+        "oop-foundations-and-javascript-s-object-model",
+        "oop-principles"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JS-19-Q05",
+      "trackId": "javascript",
+      "moduleId": "JS-M07",
+      "topicId": "JS-19",
+      "objectiveIds": [
+        "JS-19-LO1",
+        "JS-19-LO2",
+        "JS-19-LO3"
+      ],
+      "kind": "single-choice",
+      "presentation": "code",
+      "prompt": "What is the most accurate explanation of the following OOP Foundations and JavaScript's Object Model example?",
+      "choices": [
+        {
+          "id": "JS-19-Q05-C1",
+          "label": "The snippet is valid only because JavaScript ignores variable scope and evaluation order.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of OOP Foundations and JavaScript's Object Model."
+        },
+        {
+          "id": "JS-19-Q05-C2",
+          "label": "The snippet removes the need to understand the data flowing through the program.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of OOP Foundations and JavaScript's Object Model."
+        },
+        {
+          "id": "JS-19-Q05-C3",
+          "label": "The snippet guarantees that all values are immutable and all operations are asynchronous.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of OOP Foundations and JavaScript's Object Model."
+        },
+        {
+          "id": "JS-19-Q05-C4",
+          "label": "The object groups progress data with behavior that protects its invariant.",
+          "feedback": "The correct choice connects the example to the underlying model rather than treating the syntax as isolated trivia."
+        }
+      ],
+      "correctChoiceIds": [
+        "JS-19-Q05-C4"
+      ],
+      "explanation": "The correct choice connects the example to the underlying model rather than treating the syntax as isolated trivia.",
+      "hint": "Trace data, control flow, ownership, or rendering step by step.",
+      "difficulty": 3,
+      "cognitiveLevel": "predict",
+      "estimatedSeconds": 120,
+      "tags": [
+        "oop-foundations-and-javascript-s-object-model",
+        "oop-principles",
+        "objects-and-classes-as-mental-models"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review",
+      "code": {
+        "language": "js",
+        "source": "class TopicProgress {\n  constructor(topicId) {\n    this.topicId = topicId;\n    this.score = 0;\n  }\n  record(score) {\n    this.score = Math.max(this.score, score);\n  }\n}"
+      }
+    },
+    {
+      "id": "JS-19-Q06",
+      "trackId": "javascript",
+      "moduleId": "JS-M07",
+      "topicId": "JS-19",
+      "objectiveIds": [
+        "JS-19-LO1",
+        "JS-19-LO2",
+        "JS-19-LO3"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which response best addresses this common mistake: “Memorizing syntax without predicting the underlying value or execution order.”?",
+      "choices": [
+        {
+          "id": "JS-19-Q06-C1",
+          "label": "The statement is always correct, so no further reasoning about OOP Foundations and JavaScript's Object Model is needed.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of OOP Foundations and JavaScript's Object Model."
+        },
+        {
+          "id": "JS-19-Q06-C2",
+          "label": "The statement is a misconception. A better approach is to reason from the concept's inputs, rules, and observable outcome, then verify the result.",
+          "feedback": "Good feedback names the misconception and replaces it with a usable reasoning process."
+        },
+        {
+          "id": "JS-19-Q06-C3",
+          "label": "The statement is correct only when variable names are short.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of OOP Foundations and JavaScript's Object Model."
+        },
+        {
+          "id": "JS-19-Q06-C4",
+          "label": "The statement is unrelated to program behavior and cannot cause defects.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of OOP Foundations and JavaScript's Object Model."
+        }
+      ],
+      "correctChoiceIds": [
+        "JS-19-Q06-C2"
+      ],
+      "explanation": "Good feedback names the misconception and replaces it with a usable reasoning process.",
+      "hint": "Look for the option that corrects both the belief and the learner's next action.",
+      "difficulty": 3,
+      "cognitiveLevel": "debug",
+      "estimatedSeconds": 120,
+      "tags": [
+        "oop-foundations-and-javascript-s-object-model",
+        "common-mistakes"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JS-19-Q07",
+      "trackId": "javascript",
+      "moduleId": "JS-M07",
+      "topicId": "JS-19",
+      "objectiveIds": [
+        "JS-19-LO1",
+        "JS-19-LO2",
+        "JS-19-LO3"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which sequence is most reliable when solving a problem involving OOP Foundations and JavaScript's Object Model?",
+      "choices": [
+        {
+          "id": "JS-19-Q07-C1",
+          "label": "Start with a framework abstraction and avoid checking the underlying language behavior.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of OOP Foundations and JavaScript's Object Model."
+        },
+        {
+          "id": "JS-19-Q07-C2",
+          "label": "Optimize first, then decide what the code is supposed to do.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of OOP Foundations and JavaScript's Object Model."
+        },
+        {
+          "id": "JS-19-Q07-C3",
+          "label": "First identify the requirement, then apply the relevant rule from OOP principles, inspect the result, and only then refactor or optimize.",
+          "feedback": "The reliable sequence starts from the requirement, applies a known rule, observes behavior, and improves the solution afterward."
+        },
+        {
+          "id": "JS-19-Q07-C4",
+          "label": "Copy an unrelated implementation, hide the assumptions, and test only the happy path.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of OOP Foundations and JavaScript's Object Model."
+        }
+      ],
+      "correctChoiceIds": [
+        "JS-19-Q07-C3"
+      ],
+      "explanation": "The reliable sequence starts from the requirement, applies a known rule, observes behavior, and improves the solution afterward.",
+      "hint": "Prefer a sequence that makes failures visible early.",
+      "difficulty": 3,
+      "cognitiveLevel": "explain",
+      "estimatedSeconds": 75,
+      "tags": [
+        "oop-foundations-and-javascript-s-object-model",
+        "problem-solving"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JS-19-Q08",
+      "trackId": "javascript",
+      "moduleId": "JS-M07",
+      "topicId": "JS-19",
+      "objectiveIds": [
+        "JS-19-LO1",
+        "JS-19-LO2",
+        "JS-19-LO3"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which guideline shows the best judgment about when to use OOP Foundations and JavaScript's Object Model?",
+      "choices": [
+        {
+          "id": "JS-19-Q08-C1",
+          "label": "Avoid OOP Foundations and JavaScript's Object Model completely because all abstractions reduce maintainability.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of OOP Foundations and JavaScript's Object Model."
+        },
+        {
+          "id": "JS-19-Q08-C2",
+          "label": "Use OOP Foundations and JavaScript's Object Model in every file because more abstraction is always better.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of OOP Foundations and JavaScript's Object Model."
+        },
+        {
+          "id": "JS-19-Q08-C3",
+          "label": "Choose based only on line count, without considering readability, correctness, or future change.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of OOP Foundations and JavaScript's Object Model."
+        },
+        {
+          "id": "JS-19-Q08-C4",
+          "label": "Use OOP Foundations and JavaScript's Object Model when it makes intent, ownership, or data flow clearer; avoid adding it mechanically when a simpler, equally explicit solution is sufficient.",
+          "feedback": "Engineering judgment balances clarity and cost. The concept should serve the requirement rather than become an end in itself."
+        }
+      ],
+      "correctChoiceIds": [
+        "JS-19-Q08-C4"
+      ],
+      "explanation": "Engineering judgment balances clarity and cost. The concept should serve the requirement rather than become an end in itself.",
+      "hint": "Choose the option that acknowledges both benefits and trade-offs.",
+      "difficulty": 4,
+      "cognitiveLevel": "tradeoff",
+      "estimatedSeconds": 120,
+      "tags": [
+        "oop-foundations-and-javascript-s-object-model",
+        "tradeoffs"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    }
+  ],
+  "researchSources": [
+    {
+      "kind": "research-transcript",
+      "title": "What is Object-Oriented Programming?",
+      "pathwayOrder": 29,
+      "sourceLine": 95490,
+      "usage": "Coverage research only; no transcript wording is canonical."
+    },
+    {
+      "kind": "research-transcript",
+      "title": "OOP in JavaScript",
+      "pathwayOrder": 30,
+      "sourceLine": 96419,
+      "usage": "Coverage research only; no transcript wording is canonical."
+    },
+    {
+      "kind": "supporting-research",
+      "title": "Constructor Functions and the new Operator",
+      "usage": "Optional coverage reference; learner-facing wording must be original."
+    },
+    {
+      "kind": "supporting-research",
+      "title": "Prototypes",
+      "usage": "Optional coverage reference; learner-facing wording must be original."
+    },
+    {
+      "kind": "supporting-research",
+      "title": "ES6 Classes",
+      "usage": "Optional coverage reference; learner-facing wording must be original."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "MDN JavaScript Guide",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "MDN DOM",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "MDN Using promises",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "MDN JavaScript modules",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules",
+      "usage": "Technical verification and freshness review."
+    }
+  ],
+  "contentAuthority": {
+    "canonical": "New JS2Next Release 1 curriculum and independently authored content.",
+    "legacyProjectContent": "Supplementary internal reference only; excluded from runtime unless explicitly re-authored and approved.",
+    "courseTranscripts": "Coverage and sequencing research only; never learner-facing authority.",
+    "officialDocumentation": "Technical verification source."
+  },
+  "version": 1,
+  "status": "draft",
+  "reviewStatus": "pending-human-review",
+  "publicationStatus": "unpublished",
+  "createdAt": "2026-07-17",
+  "updatedAt": "2026-07-17"
+}

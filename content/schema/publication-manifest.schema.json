@@ -1,0 +1,83 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://js2next.local/schemas/publication-manifest.schema.json",
+  "title": "JS2Next Publication Manifest",
+  "type": "object",
+  "required": [
+    "release",
+    "curriculumPath",
+    "topicPackets",
+    "assessmentSets",
+    "publicationStatus",
+    "humanApproval"
+  ],
+  "properties": {
+    "release": {
+      "const": "Release 1"
+    },
+    "curriculumPath": {
+      "type": "string"
+    },
+    "topicPackets": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "path",
+          "version",
+          "status",
+          "reviewStatus"
+        ]
+      }
+    },
+    "assessmentSets": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "path",
+          "version",
+          "status",
+          "reviewStatus"
+        ]
+      }
+    },
+    "publicationStatus": {
+      "enum": [
+        "draft",
+        "reviewed",
+        "published"
+      ]
+    },
+    "humanApproval": {
+      "type": "object",
+      "required": [
+        "required",
+        "approved"
+      ],
+      "properties": {
+        "required": {
+          "const": true
+        },
+        "approved": {
+          "type": "boolean"
+        },
+        "reviewer": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "reviewedAt": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    }
+  },
+  "additionalProperties": true
+}

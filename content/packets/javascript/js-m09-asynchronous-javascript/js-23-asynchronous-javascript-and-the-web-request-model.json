@@ -1,0 +1,577 @@
+{
+  "schemaVersion": "1.0",
+  "id": "JS-23",
+  "slug": "asynchronous-javascript-and-the-web-request-model",
+  "trackId": "javascript",
+  "moduleId": "JS-M09",
+  "order": 1,
+  "title": "Asynchronous JavaScript and the Web Request Model",
+  "required": true,
+  "optional": false,
+  "advanced": false,
+  "contentType": "core",
+  "difficulty": 3,
+  "estimatedMinutes": 30,
+  "requiredPrerequisiteTopicIds": [
+    "JS-22"
+  ],
+  "recommendedPrerequisiteTopicIds": [],
+  "learningObjectives": [
+    {
+      "id": "JS-23-LO1",
+      "text": "Compare synchronous versus asynchronous work using a new example and justify the result.",
+      "subtopic": "Synchronous versus asynchronous work",
+      "cognitiveLevel": "understand"
+    },
+    {
+      "id": "JS-23-LO2",
+      "text": "Apply ajax and apis using a new example and justify the result.",
+      "subtopic": "AJAX and APIs",
+      "cognitiveLevel": "apply"
+    },
+    {
+      "id": "JS-23-LO3",
+      "text": "Trace and explain http requests and responses using a new example and justify the result.",
+      "subtopic": "HTTP requests and responses",
+      "cognitiveLevel": "analyze"
+    }
+  ],
+  "whyThisMatters": "The ideas in asynchronous javascript and the web request model recur throughout later JavaScript work, reducing memorization and debugging later. It belongs to the **Asynchronous JavaScript** module.",
+  "mentalModel": "Draw a decision map: **Synchronous versus asynchronous work** → **AJAX and APIs** → **HTTP requests and responses**. Add branches where the learner must choose an alternative and label the evidence for the choice.",
+  "sections": [
+    {
+      "id": "JS-23-S1",
+      "type": "concept",
+      "title": "Synchronous versus asynchronous work",
+      "body": "Synchronous code completes on the current stack. Asynchronous operations begin work that finishes later, allowing the runtime to continue.",
+      "objectiveIds": [
+        "JS-23-LO1"
+      ],
+      "checkQuestionId": "JS-23-Q01"
+    },
+    {
+      "id": "JS-23-S2",
+      "type": "concept",
+      "title": "AJAX and APIs",
+      "body": "AJAX is the practice of exchanging data without replacing the whole page. An API defines endpoints, inputs, outputs, status codes, and error behavior.",
+      "objectiveIds": [
+        "JS-23-LO2"
+      ],
+      "checkQuestionId": "JS-23-Q02"
+    },
+    {
+      "id": "JS-23-S3",
+      "type": "concept",
+      "title": "HTTP requests and responses",
+      "body": "Requests contain a method, URL, headers, and optional body; responses contain status, headers, and body. Network success and application success differ.",
+      "objectiveIds": [
+        "JS-23-LO3"
+      ],
+      "checkQuestionId": "JS-23-Q03"
+    },
+    {
+      "id": "JS-23-EX1",
+      "type": "code-example",
+      "title": "Worked example",
+      "language": "js",
+      "source": "async function loadTopic(id) {\n  const response = await fetch(`/api/topics/${id}`);\n  if (!response.ok) throw new Error(`Request failed: ${response.status}`);\n  return response.json();\n}",
+      "explanation": "The function separates HTTP status validation from body parsing.",
+      "objectiveIds": [
+        "JS-23-LO1",
+        "JS-23-LO2",
+        "JS-23-LO3"
+      ]
+    }
+  ],
+  "commonMistakes": [
+    "Memorizing syntax without predicting the underlying value or execution order.",
+    "Mutating shared data when the task expects a new value or explicit ownership.",
+    "Treating browser APIs and language features as the same layer.",
+    "Choosing an abstraction from habit rather than required operations."
+  ],
+  "summary": [
+    "Asynchronous JavaScript and the Web Request Model connects Synchronous versus asynchronous work, AJAX and APIs, HTTP requests and responses.",
+    "Use the topic to make behavior and decisions explicit rather than memorizing isolated syntax.",
+    "Verify understanding by explaining a new example and answering the topic quiz without looking back."
+  ],
+  "inLessonQuestionIds": [
+    "JS-23-Q01",
+    "JS-23-Q02",
+    "JS-23-Q03"
+  ],
+  "topicQuiz": {
+    "id": "JS-23-QUIZ",
+    "questionIds": [
+      "JS-23-Q04",
+      "JS-23-Q05",
+      "JS-23-Q06",
+      "JS-23-Q07",
+      "JS-23-Q08"
+    ],
+    "masteryThresholdPercent": 80,
+    "attemptPolicy": "unlimited",
+    "failurePolicy": "Show explanations, add missed objectives to local review, and allow immediate or later retry.",
+    "randomizeQuestionOrder": true,
+    "randomizeChoiceOrder": false
+  },
+  "questions": [
+    {
+      "id": "JS-23-Q01",
+      "trackId": "javascript",
+      "moduleId": "JS-M09",
+      "topicId": "JS-23",
+      "objectiveIds": [
+        "JS-23-LO1"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which statement best explains “Synchronous versus asynchronous work” in the context of Asynchronous JavaScript and the Web Request Model?",
+      "choices": [
+        {
+          "id": "JS-23-Q01-C1",
+          "label": "Synchronous code completes on the current stack. Asynchronous operations begin work that finishes later, allowing the runtime to continue.",
+          "feedback": "Synchronous versus asynchronous work is best understood as follows: Synchronous code completes on the current stack. Asynchronous operations begin work that finishes later, allowing the runtime to continue."
+        },
+        {
+          "id": "JS-23-Q01-C2",
+          "label": "Functional principles favor pure transformations, immutability, explicit inputs, and composition where they improve predictability.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Synchronous versus asynchronous work."
+        },
+        {
+          "id": "JS-23-Q01-C3",
+          "label": "ECMAScript is the language specification implemented by JavaScript engines. Labels such as ES5 and ES2015 identify milestones, while yearly editions describe ongoing additions.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Synchronous versus asynchronous work."
+        },
+        {
+          "id": "JS-23-Q01-C4",
+          "label": "The DOM is a tree of node objects connected through parent, child, and sibling relationships. Traversal APIs expose those relationships.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Synchronous versus asynchronous work."
+        }
+      ],
+      "correctChoiceIds": [
+        "JS-23-Q01-C1"
+      ],
+      "explanation": "Synchronous versus asynchronous work is best understood as follows: Synchronous code completes on the current stack. Asynchronous operations begin work that finishes later, allowing the runtime to continue.",
+      "hint": "Focus on what the concept changes, enables, or constrains—not only on its syntax.",
+      "difficulty": 2,
+      "cognitiveLevel": "recognize",
+      "estimatedSeconds": 75,
+      "tags": [
+        "synchronous-versus-asynchronous-work",
+        "asynchronous-javascript-and-the-web-request-model"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JS-23-Q02",
+      "trackId": "javascript",
+      "moduleId": "JS-M09",
+      "topicId": "JS-23",
+      "objectiveIds": [
+        "JS-23-LO2"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which statement best explains “AJAX and APIs” in the context of Asynchronous JavaScript and the Web Request Model?",
+      "choices": [
+        {
+          "id": "JS-23-Q02-C1",
+          "label": "Functional principles favor pure transformations, immutability, explicit inputs, and composition where they improve predictability.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of AJAX and APIs."
+        },
+        {
+          "id": "JS-23-Q02-C2",
+          "label": "ECMAScript is the language specification implemented by JavaScript engines. Labels such as ES5 and ES2015 identify milestones, while yearly editions describe ongoing additions.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of AJAX and APIs."
+        },
+        {
+          "id": "JS-23-Q02-C3",
+          "label": "AJAX is the practice of exchanging data without replacing the whole page. An API defines endpoints, inputs, outputs, status codes, and error behavior.",
+          "feedback": "AJAX and APIs is best understood as follows: AJAX is the practice of exchanging data without replacing the whole page. An API defines endpoints, inputs, outputs, status codes, and error behavior."
+        },
+        {
+          "id": "JS-23-Q02-C4",
+          "label": "The DOM is a tree of node objects connected through parent, child, and sibling relationships. Traversal APIs expose those relationships.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of AJAX and APIs."
+        }
+      ],
+      "correctChoiceIds": [
+        "JS-23-Q02-C3"
+      ],
+      "explanation": "AJAX and APIs is best understood as follows: AJAX is the practice of exchanging data without replacing the whole page. An API defines endpoints, inputs, outputs, status codes, and error behavior.",
+      "hint": "Focus on what the concept changes, enables, or constrains—not only on its syntax.",
+      "difficulty": 2,
+      "cognitiveLevel": "explain",
+      "estimatedSeconds": 75,
+      "tags": [
+        "ajax-and-apis",
+        "asynchronous-javascript-and-the-web-request-model"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JS-23-Q03",
+      "trackId": "javascript",
+      "moduleId": "JS-M09",
+      "topicId": "JS-23",
+      "objectiveIds": [
+        "JS-23-LO3"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which statement best explains “HTTP requests and responses” in the context of Asynchronous JavaScript and the Web Request Model?",
+      "choices": [
+        {
+          "id": "JS-23-Q03-C1",
+          "label": "The DOM is a tree of node objects connected through parent, child, and sibling relationships. Traversal APIs expose those relationships.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of HTTP requests and responses."
+        },
+        {
+          "id": "JS-23-Q03-C2",
+          "label": "Functional principles favor pure transformations, immutability, explicit inputs, and composition where they improve predictability.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of HTTP requests and responses."
+        },
+        {
+          "id": "JS-23-Q03-C3",
+          "label": "Requests contain a method, URL, headers, and optional body; responses contain status, headers, and body. Network success and application success differ.",
+          "feedback": "HTTP requests and responses is best understood as follows: Requests contain a method, URL, headers, and optional body; responses contain status, headers, and body. Network success and application success differ."
+        },
+        {
+          "id": "JS-23-Q03-C4",
+          "label": "ECMAScript is the language specification implemented by JavaScript engines. Labels such as ES5 and ES2015 identify milestones, while yearly editions describe ongoing additions.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of HTTP requests and responses."
+        }
+      ],
+      "correctChoiceIds": [
+        "JS-23-Q03-C3"
+      ],
+      "explanation": "HTTP requests and responses is best understood as follows: Requests contain a method, URL, headers, and optional body; responses contain status, headers, and body. Network success and application success differ.",
+      "hint": "Focus on what the concept changes, enables, or constrains—not only on its syntax.",
+      "difficulty": 2,
+      "cognitiveLevel": "predict",
+      "estimatedSeconds": 120,
+      "tags": [
+        "http-requests-and-responses",
+        "asynchronous-javascript-and-the-web-request-model"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JS-23-Q04",
+      "trackId": "javascript",
+      "moduleId": "JS-M09",
+      "topicId": "JS-23",
+      "objectiveIds": [
+        "JS-23-LO1",
+        "JS-23-LO2"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "A learner must use Asynchronous JavaScript and the Web Request Model in a new situation. Which approach best demonstrates transferable understanding?",
+      "choices": [
+        {
+          "id": "JS-23-Q04-C1",
+          "label": "Skip the underlying model and rely on memorized syntax, even when the result is unclear.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Asynchronous JavaScript and the Web Request Model."
+        },
+        {
+          "id": "JS-23-Q04-C2",
+          "label": "Apply Synchronous versus asynchronous work deliberately, make the relevant inputs and assumptions explicit, and verify the observable result before adding more complexity.",
+          "feedback": "Transfer comes from using the concept with explicit assumptions and checking the resulting behavior, not from reproducing a memorized example."
+        },
+        {
+          "id": "JS-23-Q04-C3",
+          "label": "Add more state and abstraction immediately, before identifying the smallest requirement.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Asynchronous JavaScript and the Web Request Model."
+        },
+        {
+          "id": "JS-23-Q04-C4",
+          "label": "Treat the concept as isolated trivia and avoid connecting it to earlier prerequisites.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Asynchronous JavaScript and the Web Request Model."
+        }
+      ],
+      "correctChoiceIds": [
+        "JS-23-Q04-C2"
+      ],
+      "explanation": "Transfer comes from using the concept with explicit assumptions and checking the resulting behavior, not from reproducing a memorized example.",
+      "hint": "Choose the option that would still work when the surrounding example changes.",
+      "difficulty": 3,
+      "cognitiveLevel": "apply",
+      "estimatedSeconds": 120,
+      "tags": [
+        "asynchronous-javascript-and-the-web-request-model",
+        "synchronous-versus-asynchronous-work"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JS-23-Q05",
+      "trackId": "javascript",
+      "moduleId": "JS-M09",
+      "topicId": "JS-23",
+      "objectiveIds": [
+        "JS-23-LO1",
+        "JS-23-LO2",
+        "JS-23-LO3"
+      ],
+      "kind": "single-choice",
+      "presentation": "code",
+      "prompt": "What is the most accurate explanation of the following Asynchronous JavaScript and the Web Request Model example?",
+      "choices": [
+        {
+          "id": "JS-23-Q05-C1",
+          "label": "The function separates HTTP status validation from body parsing.",
+          "feedback": "The correct choice connects the example to the underlying model rather than treating the syntax as isolated trivia."
+        },
+        {
+          "id": "JS-23-Q05-C2",
+          "label": "The snippet guarantees that all values are immutable and all operations are asynchronous.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Asynchronous JavaScript and the Web Request Model."
+        },
+        {
+          "id": "JS-23-Q05-C3",
+          "label": "The snippet removes the need to understand the data flowing through the program.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Asynchronous JavaScript and the Web Request Model."
+        },
+        {
+          "id": "JS-23-Q05-C4",
+          "label": "The snippet is valid only because JavaScript ignores variable scope and evaluation order.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Asynchronous JavaScript and the Web Request Model."
+        }
+      ],
+      "correctChoiceIds": [
+        "JS-23-Q05-C1"
+      ],
+      "explanation": "The correct choice connects the example to the underlying model rather than treating the syntax as isolated trivia.",
+      "hint": "Trace data, control flow, ownership, or rendering step by step.",
+      "difficulty": 3,
+      "cognitiveLevel": "predict",
+      "estimatedSeconds": 120,
+      "tags": [
+        "asynchronous-javascript-and-the-web-request-model",
+        "synchronous-versus-asynchronous-work",
+        "ajax-and-apis"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review",
+      "code": {
+        "language": "js",
+        "source": "async function loadTopic(id) {\n  const response = await fetch(`/api/topics/${id}`);\n  if (!response.ok) throw new Error(`Request failed: ${response.status}`);\n  return response.json();\n}"
+      }
+    },
+    {
+      "id": "JS-23-Q06",
+      "trackId": "javascript",
+      "moduleId": "JS-M09",
+      "topicId": "JS-23",
+      "objectiveIds": [
+        "JS-23-LO1",
+        "JS-23-LO2",
+        "JS-23-LO3"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which response best addresses this common mistake: “Memorizing syntax without predicting the underlying value or execution order.”?",
+      "choices": [
+        {
+          "id": "JS-23-Q06-C1",
+          "label": "The statement is unrelated to program behavior and cannot cause defects.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Asynchronous JavaScript and the Web Request Model."
+        },
+        {
+          "id": "JS-23-Q06-C2",
+          "label": "The statement is a misconception. A better approach is to reason from the concept's inputs, rules, and observable outcome, then verify the result.",
+          "feedback": "Good feedback names the misconception and replaces it with a usable reasoning process."
+        },
+        {
+          "id": "JS-23-Q06-C3",
+          "label": "The statement is correct only when variable names are short.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Asynchronous JavaScript and the Web Request Model."
+        },
+        {
+          "id": "JS-23-Q06-C4",
+          "label": "The statement is always correct, so no further reasoning about Asynchronous JavaScript and the Web Request Model is needed.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Asynchronous JavaScript and the Web Request Model."
+        }
+      ],
+      "correctChoiceIds": [
+        "JS-23-Q06-C2"
+      ],
+      "explanation": "Good feedback names the misconception and replaces it with a usable reasoning process.",
+      "hint": "Look for the option that corrects both the belief and the learner's next action.",
+      "difficulty": 3,
+      "cognitiveLevel": "debug",
+      "estimatedSeconds": 120,
+      "tags": [
+        "asynchronous-javascript-and-the-web-request-model",
+        "common-mistakes"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JS-23-Q07",
+      "trackId": "javascript",
+      "moduleId": "JS-M09",
+      "topicId": "JS-23",
+      "objectiveIds": [
+        "JS-23-LO1",
+        "JS-23-LO2",
+        "JS-23-LO3"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which sequence is most reliable when solving a problem involving Asynchronous JavaScript and the Web Request Model?",
+      "choices": [
+        {
+          "id": "JS-23-Q07-C1",
+          "label": "Start with a framework abstraction and avoid checking the underlying language behavior.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Asynchronous JavaScript and the Web Request Model."
+        },
+        {
+          "id": "JS-23-Q07-C2",
+          "label": "First identify the requirement, then apply the relevant rule from Synchronous versus asynchronous work, inspect the result, and only then refactor or optimize.",
+          "feedback": "The reliable sequence starts from the requirement, applies a known rule, observes behavior, and improves the solution afterward."
+        },
+        {
+          "id": "JS-23-Q07-C3",
+          "label": "Optimize first, then decide what the code is supposed to do.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Asynchronous JavaScript and the Web Request Model."
+        },
+        {
+          "id": "JS-23-Q07-C4",
+          "label": "Copy an unrelated implementation, hide the assumptions, and test only the happy path.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Asynchronous JavaScript and the Web Request Model."
+        }
+      ],
+      "correctChoiceIds": [
+        "JS-23-Q07-C2"
+      ],
+      "explanation": "The reliable sequence starts from the requirement, applies a known rule, observes behavior, and improves the solution afterward.",
+      "hint": "Prefer a sequence that makes failures visible early.",
+      "difficulty": 3,
+      "cognitiveLevel": "explain",
+      "estimatedSeconds": 75,
+      "tags": [
+        "asynchronous-javascript-and-the-web-request-model",
+        "problem-solving"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JS-23-Q08",
+      "trackId": "javascript",
+      "moduleId": "JS-M09",
+      "topicId": "JS-23",
+      "objectiveIds": [
+        "JS-23-LO1",
+        "JS-23-LO2",
+        "JS-23-LO3"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which guideline shows the best judgment about when to use Asynchronous JavaScript and the Web Request Model?",
+      "choices": [
+        {
+          "id": "JS-23-Q08-C1",
+          "label": "Use Asynchronous JavaScript and the Web Request Model in every file because more abstraction is always better.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Asynchronous JavaScript and the Web Request Model."
+        },
+        {
+          "id": "JS-23-Q08-C2",
+          "label": "Choose based only on line count, without considering readability, correctness, or future change.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Asynchronous JavaScript and the Web Request Model."
+        },
+        {
+          "id": "JS-23-Q08-C3",
+          "label": "Avoid Asynchronous JavaScript and the Web Request Model completely because all abstractions reduce maintainability.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Asynchronous JavaScript and the Web Request Model."
+        },
+        {
+          "id": "JS-23-Q08-C4",
+          "label": "Use Asynchronous JavaScript and the Web Request Model when it makes intent, ownership, or data flow clearer; avoid adding it mechanically when a simpler, equally explicit solution is sufficient.",
+          "feedback": "Engineering judgment balances clarity and cost. The concept should serve the requirement rather than become an end in itself."
+        }
+      ],
+      "correctChoiceIds": [
+        "JS-23-Q08-C4"
+      ],
+      "explanation": "Engineering judgment balances clarity and cost. The concept should serve the requirement rather than become an end in itself.",
+      "hint": "Choose the option that acknowledges both benefits and trade-offs.",
+      "difficulty": 4,
+      "cognitiveLevel": "tradeoff",
+      "estimatedSeconds": 120,
+      "tags": [
+        "asynchronous-javascript-and-the-web-request-model",
+        "tradeoffs"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    }
+  ],
+  "researchSources": [
+    {
+      "kind": "research-transcript",
+      "title": "Asynchronous JavaScript, AJAX and APIs",
+      "pathwayOrder": 38,
+      "sourceLine": 112935,
+      "usage": "Coverage research only; no transcript wording is canonical."
+    },
+    {
+      "kind": "research-transcript",
+      "title": "[OPTIONAL] How the Web Works: Requests and Responses",
+      "pathwayOrder": 39,
+      "sourceLine": 114425,
+      "usage": "Coverage research only; no transcript wording is canonical."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "MDN JavaScript Guide",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "MDN DOM",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "MDN Using promises",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "MDN JavaScript modules",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules",
+      "usage": "Technical verification and freshness review."
+    }
+  ],
+  "contentAuthority": {
+    "canonical": "New JS2Next Release 1 curriculum and independently authored content.",
+    "legacyProjectContent": "Supplementary internal reference only; excluded from runtime unless explicitly re-authored and approved.",
+    "courseTranscripts": "Coverage and sequencing research only; never learner-facing authority.",
+    "officialDocumentation": "Technical verification source."
+  },
+  "version": 1,
+  "status": "draft",
+  "reviewStatus": "pending-human-review",
+  "publicationStatus": "unpublished",
+  "createdAt": "2026-07-17",
+  "updatedAt": "2026-07-17"
+}

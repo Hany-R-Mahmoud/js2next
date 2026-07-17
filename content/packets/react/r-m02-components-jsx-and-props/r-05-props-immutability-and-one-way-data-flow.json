@@ -1,0 +1,604 @@
+{
+  "schemaVersion": "1.0",
+  "id": "R-05",
+  "slug": "props-immutability-and-one-way-data-flow",
+  "trackId": "react",
+  "moduleId": "R-M02",
+  "order": 2,
+  "title": "Props, Immutability, and One-Way Data Flow",
+  "required": true,
+  "optional": false,
+  "advanced": false,
+  "contentType": "core",
+  "difficulty": 1,
+  "estimatedMinutes": 15,
+  "requiredPrerequisiteTopicIds": [
+    "R-04"
+  ],
+  "recommendedPrerequisiteTopicIds": [],
+  "learningObjectives": [
+    {
+      "id": "R-05-LO1",
+      "text": "Explain passing data with props using a new example and justify the result.",
+      "subtopic": "Passing data with props",
+      "cognitiveLevel": "understand"
+    },
+    {
+      "id": "R-05-LO2",
+      "text": "Explain read-only props using a new example and justify the result.",
+      "subtopic": "Read-only props",
+      "cognitiveLevel": "apply"
+    },
+    {
+      "id": "R-05-LO3",
+      "text": "Trace and explain parent-to-child data flow using a new example and justify the result.",
+      "subtopic": "Parent-to-child data flow",
+      "cognitiveLevel": "analyze"
+    }
+  ],
+  "whyThisMatters": "Props, Immutability, and One-Way Data Flow is part of the mental model learners need before making reliable implementation decisions. It belongs to the **Components, JSX, and Props** module.",
+  "mentalModel": "Draw a decision map: **Passing data with props** → **Read-only props** → **Parent-to-child data flow**. Add branches where the learner must choose an alternative and label the evidence for the choice.",
+  "sections": [
+    {
+      "id": "R-05-S1",
+      "type": "concept",
+      "title": "Passing data with props",
+      "body": "Props are inputs supplied by a parent. They can contain values, objects, functions, or elements and form the child's public data contract.",
+      "objectiveIds": [
+        "R-05-LO1"
+      ],
+      "checkQuestionId": "R-05-Q01"
+    },
+    {
+      "id": "R-05-S2",
+      "type": "concept",
+      "title": "Read-only props",
+      "body": "A component treats props as immutable snapshots for a render. Mutating them creates hidden coupling with the owner.",
+      "objectiveIds": [
+        "R-05-LO2"
+      ],
+      "checkQuestionId": "R-05-Q02"
+    },
+    {
+      "id": "R-05-S3",
+      "type": "concept",
+      "title": "Parent-to-child data flow",
+      "body": "Data normally flows down through props. Children communicate intent upward by invoking callbacks supplied by parents.",
+      "objectiveIds": [
+        "R-05-LO3"
+      ],
+      "checkQuestionId": "R-05-Q03"
+    },
+    {
+      "id": "R-05-EX1",
+      "type": "code-example",
+      "title": "Worked example",
+      "language": "jsx",
+      "source": "function Track({ title, onSelect }) {\n  return <button onClick={() => onSelect(title)}>{title}</button>;\n}",
+      "explanation": "The child receives read-only data and communicates intent through a callback.",
+      "objectiveIds": [
+        "R-05-LO1",
+        "R-05-LO2",
+        "R-05-LO3"
+      ]
+    }
+  ],
+  "commonMistakes": [
+    "Mutating props or state instead of producing the next value.",
+    "Adding state or an Effect for a value that can be derived during render.",
+    "Using global state before identifying the real owner and consumers.",
+    "Optimizing renders without a measured user-facing problem."
+  ],
+  "summary": [
+    "Props, Immutability, and One-Way Data Flow connects Passing data with props, Read-only props, Parent-to-child data flow.",
+    "Use the topic to make behavior and decisions explicit rather than memorizing isolated syntax.",
+    "Verify understanding by explaining a new example and answering the topic quiz without looking back."
+  ],
+  "inLessonQuestionIds": [
+    "R-05-Q01",
+    "R-05-Q02",
+    "R-05-Q03"
+  ],
+  "topicQuiz": {
+    "id": "R-05-QUIZ",
+    "questionIds": [
+      "R-05-Q04",
+      "R-05-Q05",
+      "R-05-Q06",
+      "R-05-Q07",
+      "R-05-Q08"
+    ],
+    "masteryThresholdPercent": 80,
+    "attemptPolicy": "unlimited",
+    "failurePolicy": "Show explanations, add missed objectives to local review, and allow immediate or later retry.",
+    "randomizeQuestionOrder": true,
+    "randomizeChoiceOrder": false
+  },
+  "questions": [
+    {
+      "id": "R-05-Q01",
+      "trackId": "react",
+      "moduleId": "R-M02",
+      "topicId": "R-05",
+      "objectiveIds": [
+        "R-05-LO1"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which statement best explains “Passing data with props” in the context of Props, Immutability, and One-Way Data Flow?",
+      "choices": [
+        {
+          "id": "R-05-Q01-C1",
+          "label": "Props are inputs supplied by a parent. They can contain values, objects, functions, or elements and form the child's public data contract.",
+          "feedback": "Passing data with props is best understood as follows: Props are inputs supplied by a parent. They can contain values, objects, functions, or elements and form the child's public data contract."
+        },
+        {
+          "id": "R-05-Q01-C2",
+          "label": "Evaluate alternatives by complexity, clarity, testability, performance, team understanding, and likely change rather than searching for a universally perfect pattern.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Passing data with props."
+        },
+        {
+          "id": "R-05-Q01-C3",
+          "label": "TanStack Query identifies remote data by query keys, caches results, tracks freshness, refetches, and coordinates mutation invalidation.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Passing data with props."
+        },
+        {
+          "id": "R-05-Q01-C4",
+          "label": "Compare scope, update complexity, async behavior, debugging needs, ecosystem cost, and team familiarity.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Passing data with props."
+        }
+      ],
+      "correctChoiceIds": [
+        "R-05-Q01-C1"
+      ],
+      "explanation": "Passing data with props is best understood as follows: Props are inputs supplied by a parent. They can contain values, objects, functions, or elements and form the child's public data contract.",
+      "hint": "Focus on what the concept changes, enables, or constrains—not only on its syntax.",
+      "difficulty": 1,
+      "cognitiveLevel": "recognize",
+      "estimatedSeconds": 75,
+      "tags": [
+        "passing-data-with-props",
+        "props-immutability-and-one-way-data-flow"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "R-05-Q02",
+      "trackId": "react",
+      "moduleId": "R-M02",
+      "topicId": "R-05",
+      "objectiveIds": [
+        "R-05-LO2"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which statement best explains “Read-only props” in the context of Props, Immutability, and One-Way Data Flow?",
+      "choices": [
+        {
+          "id": "R-05-Q02-C1",
+          "label": "A component treats props as immutable snapshots for a render. Mutating them creates hidden coupling with the owner.",
+          "feedback": "Read-only props is best understood as follows: A component treats props as immutable snapshots for a render. Mutating them creates hidden coupling with the owner."
+        },
+        {
+          "id": "R-05-Q02-C2",
+          "label": "TanStack Query identifies remote data by query keys, caches results, tracks freshness, refetches, and coordinates mutation invalidation.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Read-only props."
+        },
+        {
+          "id": "R-05-Q02-C3",
+          "label": "Compare scope, update complexity, async behavior, debugging needs, ecosystem cost, and team familiarity.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Read-only props."
+        },
+        {
+          "id": "R-05-Q02-C4",
+          "label": "Evaluate alternatives by complexity, clarity, testability, performance, team understanding, and likely change rather than searching for a universally perfect pattern.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Read-only props."
+        }
+      ],
+      "correctChoiceIds": [
+        "R-05-Q02-C1"
+      ],
+      "explanation": "Read-only props is best understood as follows: A component treats props as immutable snapshots for a render. Mutating them creates hidden coupling with the owner.",
+      "hint": "Focus on what the concept changes, enables, or constrains—not only on its syntax.",
+      "difficulty": 1,
+      "cognitiveLevel": "explain",
+      "estimatedSeconds": 75,
+      "tags": [
+        "read-only-props",
+        "props-immutability-and-one-way-data-flow"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "R-05-Q03",
+      "trackId": "react",
+      "moduleId": "R-M02",
+      "topicId": "R-05",
+      "objectiveIds": [
+        "R-05-LO3"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which statement best explains “Parent-to-child data flow” in the context of Props, Immutability, and One-Way Data Flow?",
+      "choices": [
+        {
+          "id": "R-05-Q03-C1",
+          "label": "Data normally flows down through props. Children communicate intent upward by invoking callbacks supplied by parents.",
+          "feedback": "Parent-to-child data flow is best understood as follows: Data normally flows down through props. Children communicate intent upward by invoking callbacks supplied by parents."
+        },
+        {
+          "id": "R-05-Q03-C2",
+          "label": "Evaluate alternatives by complexity, clarity, testability, performance, team understanding, and likely change rather than searching for a universally perfect pattern.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Parent-to-child data flow."
+        },
+        {
+          "id": "R-05-Q03-C3",
+          "label": "TanStack Query identifies remote data by query keys, caches results, tracks freshness, refetches, and coordinates mutation invalidation.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Parent-to-child data flow."
+        },
+        {
+          "id": "R-05-Q03-C4",
+          "label": "Compare scope, update complexity, async behavior, debugging needs, ecosystem cost, and team familiarity.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Parent-to-child data flow."
+        }
+      ],
+      "correctChoiceIds": [
+        "R-05-Q03-C1"
+      ],
+      "explanation": "Parent-to-child data flow is best understood as follows: Data normally flows down through props. Children communicate intent upward by invoking callbacks supplied by parents.",
+      "hint": "Focus on what the concept changes, enables, or constrains—not only on its syntax.",
+      "difficulty": 1,
+      "cognitiveLevel": "predict",
+      "estimatedSeconds": 120,
+      "tags": [
+        "parent-to-child-data-flow",
+        "props-immutability-and-one-way-data-flow"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "R-05-Q04",
+      "trackId": "react",
+      "moduleId": "R-M02",
+      "topicId": "R-05",
+      "objectiveIds": [
+        "R-05-LO1",
+        "R-05-LO2"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "A learner must use Props, Immutability, and One-Way Data Flow in a new situation. Which approach best demonstrates transferable understanding?",
+      "choices": [
+        {
+          "id": "R-05-Q04-C1",
+          "label": "Treat the concept as isolated trivia and avoid connecting it to earlier prerequisites.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Props, Immutability, and One-Way Data Flow."
+        },
+        {
+          "id": "R-05-Q04-C2",
+          "label": "Apply Passing data with props deliberately, make the relevant inputs and assumptions explicit, and verify the observable result before adding more complexity.",
+          "feedback": "Transfer comes from using the concept with explicit assumptions and checking the resulting behavior, not from reproducing a memorized example."
+        },
+        {
+          "id": "R-05-Q04-C3",
+          "label": "Skip the underlying model and rely on memorized syntax, even when the result is unclear.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Props, Immutability, and One-Way Data Flow."
+        },
+        {
+          "id": "R-05-Q04-C4",
+          "label": "Add more state and abstraction immediately, before identifying the smallest requirement.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Props, Immutability, and One-Way Data Flow."
+        }
+      ],
+      "correctChoiceIds": [
+        "R-05-Q04-C2"
+      ],
+      "explanation": "Transfer comes from using the concept with explicit assumptions and checking the resulting behavior, not from reproducing a memorized example.",
+      "hint": "Choose the option that would still work when the surrounding example changes.",
+      "difficulty": 1,
+      "cognitiveLevel": "apply",
+      "estimatedSeconds": 120,
+      "tags": [
+        "props-immutability-and-one-way-data-flow",
+        "passing-data-with-props"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "R-05-Q05",
+      "trackId": "react",
+      "moduleId": "R-M02",
+      "topicId": "R-05",
+      "objectiveIds": [
+        "R-05-LO1",
+        "R-05-LO2",
+        "R-05-LO3"
+      ],
+      "kind": "single-choice",
+      "presentation": "code",
+      "prompt": "What is the most accurate explanation of the following Props, Immutability, and One-Way Data Flow example?",
+      "choices": [
+        {
+          "id": "R-05-Q05-C1",
+          "label": "The snippet is valid only because JavaScript ignores variable scope and evaluation order.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Props, Immutability, and One-Way Data Flow."
+        },
+        {
+          "id": "R-05-Q05-C2",
+          "label": "The child receives read-only data and communicates intent through a callback.",
+          "feedback": "The correct choice connects the example to the underlying model rather than treating the syntax as isolated trivia."
+        },
+        {
+          "id": "R-05-Q05-C3",
+          "label": "The snippet removes the need to understand the data flowing through the program.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Props, Immutability, and One-Way Data Flow."
+        },
+        {
+          "id": "R-05-Q05-C4",
+          "label": "The snippet guarantees that all values are immutable and all operations are asynchronous.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Props, Immutability, and One-Way Data Flow."
+        }
+      ],
+      "correctChoiceIds": [
+        "R-05-Q05-C2"
+      ],
+      "explanation": "The correct choice connects the example to the underlying model rather than treating the syntax as isolated trivia.",
+      "hint": "Trace data, control flow, ownership, or rendering step by step.",
+      "difficulty": 1,
+      "cognitiveLevel": "predict",
+      "estimatedSeconds": 120,
+      "tags": [
+        "props-immutability-and-one-way-data-flow",
+        "passing-data-with-props",
+        "read-only-props"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review",
+      "code": {
+        "language": "jsx",
+        "source": "function Track({ title, onSelect }) {\n  return <button onClick={() => onSelect(title)}>{title}</button>;\n}"
+      }
+    },
+    {
+      "id": "R-05-Q06",
+      "trackId": "react",
+      "moduleId": "R-M02",
+      "topicId": "R-05",
+      "objectiveIds": [
+        "R-05-LO1",
+        "R-05-LO2",
+        "R-05-LO3"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which response best addresses this common mistake: “Mutating props or state instead of producing the next value.”?",
+      "choices": [
+        {
+          "id": "R-05-Q06-C1",
+          "label": "The statement is unrelated to program behavior and cannot cause defects.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Props, Immutability, and One-Way Data Flow."
+        },
+        {
+          "id": "R-05-Q06-C2",
+          "label": "The statement is correct only when variable names are short.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Props, Immutability, and One-Way Data Flow."
+        },
+        {
+          "id": "R-05-Q06-C3",
+          "label": "The statement is always correct, so no further reasoning about Props, Immutability, and One-Way Data Flow is needed.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Props, Immutability, and One-Way Data Flow."
+        },
+        {
+          "id": "R-05-Q06-C4",
+          "label": "The statement is a misconception. A better approach is to reason from the concept's inputs, rules, and observable outcome, then verify the result.",
+          "feedback": "Good feedback names the misconception and replaces it with a usable reasoning process."
+        }
+      ],
+      "correctChoiceIds": [
+        "R-05-Q06-C4"
+      ],
+      "explanation": "Good feedback names the misconception and replaces it with a usable reasoning process.",
+      "hint": "Look for the option that corrects both the belief and the learner's next action.",
+      "difficulty": 1,
+      "cognitiveLevel": "debug",
+      "estimatedSeconds": 120,
+      "tags": [
+        "props-immutability-and-one-way-data-flow",
+        "common-mistakes"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "R-05-Q07",
+      "trackId": "react",
+      "moduleId": "R-M02",
+      "topicId": "R-05",
+      "objectiveIds": [
+        "R-05-LO1",
+        "R-05-LO2",
+        "R-05-LO3"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which sequence is most reliable when solving a problem involving Props, Immutability, and One-Way Data Flow?",
+      "choices": [
+        {
+          "id": "R-05-Q07-C1",
+          "label": "Start with a framework abstraction and avoid checking the underlying language behavior.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Props, Immutability, and One-Way Data Flow."
+        },
+        {
+          "id": "R-05-Q07-C2",
+          "label": "Optimize first, then decide what the code is supposed to do.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Props, Immutability, and One-Way Data Flow."
+        },
+        {
+          "id": "R-05-Q07-C3",
+          "label": "First identify the requirement, then apply the relevant rule from Passing data with props, inspect the result, and only then refactor or optimize.",
+          "feedback": "The reliable sequence starts from the requirement, applies a known rule, observes behavior, and improves the solution afterward."
+        },
+        {
+          "id": "R-05-Q07-C4",
+          "label": "Copy an unrelated implementation, hide the assumptions, and test only the happy path.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Props, Immutability, and One-Way Data Flow."
+        }
+      ],
+      "correctChoiceIds": [
+        "R-05-Q07-C3"
+      ],
+      "explanation": "The reliable sequence starts from the requirement, applies a known rule, observes behavior, and improves the solution afterward.",
+      "hint": "Prefer a sequence that makes failures visible early.",
+      "difficulty": 1,
+      "cognitiveLevel": "explain",
+      "estimatedSeconds": 75,
+      "tags": [
+        "props-immutability-and-one-way-data-flow",
+        "problem-solving"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "R-05-Q08",
+      "trackId": "react",
+      "moduleId": "R-M02",
+      "topicId": "R-05",
+      "objectiveIds": [
+        "R-05-LO1",
+        "R-05-LO2",
+        "R-05-LO3"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which guideline shows the best judgment about when to use Props, Immutability, and One-Way Data Flow?",
+      "choices": [
+        {
+          "id": "R-05-Q08-C1",
+          "label": "Avoid Props, Immutability, and One-Way Data Flow completely because all abstractions reduce maintainability.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Props, Immutability, and One-Way Data Flow."
+        },
+        {
+          "id": "R-05-Q08-C2",
+          "label": "Use Props, Immutability, and One-Way Data Flow in every file because more abstraction is always better.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Props, Immutability, and One-Way Data Flow."
+        },
+        {
+          "id": "R-05-Q08-C3",
+          "label": "Choose based only on line count, without considering readability, correctness, or future change.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Props, Immutability, and One-Way Data Flow."
+        },
+        {
+          "id": "R-05-Q08-C4",
+          "label": "Use Props, Immutability, and One-Way Data Flow when it makes intent, ownership, or data flow clearer; avoid adding it mechanically when a simpler, equally explicit solution is sufficient.",
+          "feedback": "Engineering judgment balances clarity and cost. The concept should serve the requirement rather than become an end in itself."
+        }
+      ],
+      "correctChoiceIds": [
+        "R-05-Q08-C4"
+      ],
+      "explanation": "Engineering judgment balances clarity and cost. The concept should serve the requirement rather than become an end in itself.",
+      "hint": "Choose the option that acknowledges both benefits and trade-offs.",
+      "difficulty": 2,
+      "cognitiveLevel": "tradeoff",
+      "estimatedSeconds": 120,
+      "tags": [
+        "props-immutability-and-one-way-data-flow",
+        "tradeoffs"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    }
+  ],
+  "researchSources": [
+    {
+      "kind": "research-transcript",
+      "title": "Props, Immutability, and One-Way Data Flow",
+      "pathwayOrder": 8,
+      "sourceLine": 11933,
+      "usage": "Coverage research only; no transcript wording is canonical."
+    },
+    {
+      "kind": "supporting-research",
+      "title": "Passing and Receiving Props",
+      "usage": "Optional coverage reference; learner-facing wording must be original."
+    },
+    {
+      "kind": "supporting-research",
+      "title": "Destructuring Props",
+      "usage": "Optional coverage reference; learner-facing wording must be original."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "React Learn",
+      "url": "https://react.dev/learn",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "React Managing State",
+      "url": "https://react.dev/learn/managing-state",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "React Escape Hatches",
+      "url": "https://react.dev/learn/escape-hatches",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "React API Reference",
+      "url": "https://react.dev/reference/react",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "Redux Essentials",
+      "url": "https://redux.js.org/tutorials/essentials/part-1-overview-concepts",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "TanStack Query Overview",
+      "url": "https://tanstack.com/query/latest/docs/framework/react/overview",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "Supabase Documentation",
+      "url": "https://supabase.com/docs",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "Tailwind CSS Documentation",
+      "url": "https://tailwindcss.com/docs",
+      "usage": "Technical verification and freshness review."
+    }
+  ],
+  "contentAuthority": {
+    "canonical": "New JS2Next Release 1 curriculum and independently authored content.",
+    "legacyProjectContent": "Supplementary internal reference only; excluded from runtime unless explicitly re-authored and approved.",
+    "courseTranscripts": "Coverage and sequencing research only; never learner-facing authority.",
+    "officialDocumentation": "Technical verification source."
+  },
+  "version": 1,
+  "status": "draft",
+  "reviewStatus": "pending-human-review",
+  "publicationStatus": "unpublished",
+  "createdAt": "2026-07-17",
+  "updatedAt": "2026-07-17"
+}

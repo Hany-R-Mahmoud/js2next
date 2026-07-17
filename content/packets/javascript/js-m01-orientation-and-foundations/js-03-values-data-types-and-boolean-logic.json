@@ -1,0 +1,607 @@
+{
+  "schemaVersion": "1.0",
+  "id": "JS-03",
+  "slug": "values-data-types-and-boolean-logic",
+  "trackId": "javascript",
+  "moduleId": "JS-M01",
+  "order": 3,
+  "title": "Values, Data Types, and Boolean Logic",
+  "required": true,
+  "optional": false,
+  "advanced": false,
+  "contentType": "core",
+  "difficulty": 1,
+  "estimatedMinutes": 25,
+  "requiredPrerequisiteTopicIds": [
+    "JS-02"
+  ],
+  "recommendedPrerequisiteTopicIds": [],
+  "learningObjectives": [
+    {
+      "id": "JS-03-LO1",
+      "text": "Explain primitive data types using a new example and justify the result.",
+      "subtopic": "Primitive data types",
+      "cognitiveLevel": "understand"
+    },
+    {
+      "id": "JS-03-LO2",
+      "text": "Explain dynamic typing using a new example and justify the result.",
+      "subtopic": "Dynamic typing",
+      "cognitiveLevel": "apply"
+    },
+    {
+      "id": "JS-03-LO3",
+      "text": "Explain boolean values and logical reasoning using a new example and justify the result.",
+      "subtopic": "Boolean values and logical reasoning",
+      "cognitiveLevel": "analyze"
+    }
+  ],
+  "whyThisMatters": "This topic turns values, data types, and boolean logic from isolated terminology into a practical tool for reading, writing, and reviewing code. It belongs to the **Orientation and Foundations** module.",
+  "mentalModel": "Draw a decision map: **Primitive data types** → **Dynamic typing** → **Boolean values and logical reasoning**. Add branches where the learner must choose an alternative and label the evidence for the choice.",
+  "sections": [
+    {
+      "id": "JS-03-S1",
+      "type": "concept",
+      "title": "Primitive data types",
+      "body": "Primitive values include string, number, bigint, boolean, undefined, symbol, and null. They represent atomic values and are copied by value. Objects, arrays, and functions are reference-based values.",
+      "objectiveIds": [
+        "JS-03-LO1"
+      ],
+      "checkQuestionId": "JS-03-Q01"
+    },
+    {
+      "id": "JS-03-S2",
+      "type": "concept",
+      "title": "Dynamic typing",
+      "body": "Variables are not permanently bound to one type. Each value still has a definite runtime type, but a variable may refer to different kinds of values over time. Clear data boundaries and validation are therefore important.",
+      "objectiveIds": [
+        "JS-03-LO2"
+      ],
+      "checkQuestionId": "JS-03-Q02"
+    },
+    {
+      "id": "JS-03-S3",
+      "type": "concept",
+      "title": "Boolean values and logical reasoning",
+      "body": "Boolean reasoning combines propositions with NOT, AND, and OR. Translate requirements into smaller conditions, then inspect how short-circuiting affects both the result and which expressions execute.",
+      "objectiveIds": [
+        "JS-03-LO3"
+      ],
+      "checkQuestionId": "JS-03-Q03"
+    },
+    {
+      "id": "JS-03-EX1",
+      "type": "code-example",
+      "title": "Worked example",
+      "language": "js",
+      "source": "const lessons = 12;\nconst title = 'JavaScript';\nconst isPublished = false;\n\nconsole.log(typeof lessons, typeof title, typeof isPublished);",
+      "explanation": "Each value has a runtime type even though variables are not permanently restricted to that type.",
+      "objectiveIds": [
+        "JS-03-LO1",
+        "JS-03-LO2",
+        "JS-03-LO3"
+      ]
+    }
+  ],
+  "commonMistakes": [
+    "Memorizing syntax without predicting the underlying value or execution order.",
+    "Mutating shared data when the task expects a new value or explicit ownership.",
+    "Treating browser APIs and language features as the same layer.",
+    "Choosing an abstraction from habit rather than required operations."
+  ],
+  "summary": [
+    "Values, Data Types, and Boolean Logic connects Primitive data types, Dynamic typing, Boolean values and logical reasoning.",
+    "Use the topic to make behavior and decisions explicit rather than memorizing isolated syntax.",
+    "Verify understanding by explaining a new example and answering the topic quiz without looking back."
+  ],
+  "inLessonQuestionIds": [
+    "JS-03-Q01",
+    "JS-03-Q02",
+    "JS-03-Q03"
+  ],
+  "topicQuiz": {
+    "id": "JS-03-QUIZ",
+    "questionIds": [
+      "JS-03-Q04",
+      "JS-03-Q05",
+      "JS-03-Q06",
+      "JS-03-Q07",
+      "JS-03-Q08"
+    ],
+    "masteryThresholdPercent": 80,
+    "attemptPolicy": "unlimited",
+    "failurePolicy": "Show explanations, add missed objectives to local review, and allow immediate or later retry.",
+    "randomizeQuestionOrder": true,
+    "randomizeChoiceOrder": false
+  },
+  "questions": [
+    {
+      "id": "JS-03-Q01",
+      "trackId": "javascript",
+      "moduleId": "JS-M01",
+      "topicId": "JS-03",
+      "objectiveIds": [
+        "JS-03-LO1"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which statement best explains “Primitive data types” in the context of Values, Data Types, and Boolean Logic?",
+      "choices": [
+        {
+          "id": "JS-03-Q01-C1",
+          "label": "Primitive values include string, number, bigint, boolean, undefined, symbol, and null. They represent atomic values and are copied by value. Objects, arrays, and functions are reference-based values.",
+          "feedback": "Primitive data types is best understood as follows: Primitive values include string, number, bigint, boolean, undefined, symbol, and null. They represent atomic values and are copied by value. Objects, arrays, and functions are reference-based values."
+        },
+        {
+          "id": "JS-03-Q01-C2",
+          "label": "Objects can delegate missing property lookup to another object through a prototype link. Shared methods live on prototypes rather than being copied.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Primitive data types."
+        },
+        {
+          "id": "JS-03-Q01-C3",
+          "label": "Use a minimal failing case, logs, breakpoints, stack traces, and binary isolation to locate where observed behavior diverges from expected behavior.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Primitive data types."
+        },
+        {
+          "id": "JS-03-Q01-C4",
+          "label": "Publisher–subscriber communication lets one part announce an event without directly knowing every consumer. Subscribers respond through a documented event and payload contract.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Primitive data types."
+        }
+      ],
+      "correctChoiceIds": [
+        "JS-03-Q01-C1"
+      ],
+      "explanation": "Primitive data types is best understood as follows: Primitive values include string, number, bigint, boolean, undefined, symbol, and null. They represent atomic values and are copied by value. Objects, arrays, and functions are reference-based values.",
+      "hint": "Focus on what the concept changes, enables, or constrains—not only on its syntax.",
+      "difficulty": 1,
+      "cognitiveLevel": "recognize",
+      "estimatedSeconds": 75,
+      "tags": [
+        "primitive-data-types",
+        "values-data-types-and-boolean-logic"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JS-03-Q02",
+      "trackId": "javascript",
+      "moduleId": "JS-M01",
+      "topicId": "JS-03",
+      "objectiveIds": [
+        "JS-03-LO2"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which statement best explains “Dynamic typing” in the context of Values, Data Types, and Boolean Logic?",
+      "choices": [
+        {
+          "id": "JS-03-Q02-C1",
+          "label": "Objects can delegate missing property lookup to another object through a prototype link. Shared methods live on prototypes rather than being copied.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Dynamic typing."
+        },
+        {
+          "id": "JS-03-Q02-C2",
+          "label": "Variables are not permanently bound to one type. Each value still has a definite runtime type, but a variable may refer to different kinds of values over time. Clear data boundaries and validation are therefore…",
+          "feedback": "Dynamic typing is best understood as follows: Variables are not permanently bound to one type. Each value still has a definite runtime type, but a variable may refer to different kinds of values over time. Clear data boundaries and validation are therefore…"
+        },
+        {
+          "id": "JS-03-Q02-C3",
+          "label": "Publisher–subscriber communication lets one part announce an event without directly knowing every consumer. Subscribers respond through a documented event and payload contract.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Dynamic typing."
+        },
+        {
+          "id": "JS-03-Q02-C4",
+          "label": "Use a minimal failing case, logs, breakpoints, stack traces, and binary isolation to locate where observed behavior diverges from expected behavior.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Dynamic typing."
+        }
+      ],
+      "correctChoiceIds": [
+        "JS-03-Q02-C2"
+      ],
+      "explanation": "Dynamic typing is best understood as follows: Variables are not permanently bound to one type. Each value still has a definite runtime type, but a variable may refer to different kinds of values over time. Clear data boundaries and validation are therefore…",
+      "hint": "Focus on what the concept changes, enables, or constrains—not only on its syntax.",
+      "difficulty": 1,
+      "cognitiveLevel": "explain",
+      "estimatedSeconds": 75,
+      "tags": [
+        "dynamic-typing",
+        "values-data-types-and-boolean-logic"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JS-03-Q03",
+      "trackId": "javascript",
+      "moduleId": "JS-M01",
+      "topicId": "JS-03",
+      "objectiveIds": [
+        "JS-03-LO3"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which statement best explains “Boolean values and logical reasoning” in the context of Values, Data Types, and Boolean Logic?",
+      "choices": [
+        {
+          "id": "JS-03-Q03-C1",
+          "label": "Objects can delegate missing property lookup to another object through a prototype link. Shared methods live on prototypes rather than being copied.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Boolean values and logical reasoning."
+        },
+        {
+          "id": "JS-03-Q03-C2",
+          "label": "Use a minimal failing case, logs, breakpoints, stack traces, and binary isolation to locate where observed behavior diverges from expected behavior.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Boolean values and logical reasoning."
+        },
+        {
+          "id": "JS-03-Q03-C3",
+          "label": "Publisher–subscriber communication lets one part announce an event without directly knowing every consumer. Subscribers respond through a documented event and payload contract.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Boolean values and logical reasoning."
+        },
+        {
+          "id": "JS-03-Q03-C4",
+          "label": "Boolean reasoning combines propositions with NOT, AND, and OR. Translate requirements into smaller conditions, then inspect how short-circuiting affects both the result and which expressions execute.",
+          "feedback": "Boolean values and logical reasoning is best understood as follows: Boolean reasoning combines propositions with NOT, AND, and OR. Translate requirements into smaller conditions, then inspect how short-circuiting affects both the result and which expressions execute."
+        }
+      ],
+      "correctChoiceIds": [
+        "JS-03-Q03-C4"
+      ],
+      "explanation": "Boolean values and logical reasoning is best understood as follows: Boolean reasoning combines propositions with NOT, AND, and OR. Translate requirements into smaller conditions, then inspect how short-circuiting affects both the result and which expressions execute.",
+      "hint": "Focus on what the concept changes, enables, or constrains—not only on its syntax.",
+      "difficulty": 1,
+      "cognitiveLevel": "predict",
+      "estimatedSeconds": 120,
+      "tags": [
+        "boolean-values-and-logical-reasoning",
+        "values-data-types-and-boolean-logic"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JS-03-Q04",
+      "trackId": "javascript",
+      "moduleId": "JS-M01",
+      "topicId": "JS-03",
+      "objectiveIds": [
+        "JS-03-LO1",
+        "JS-03-LO2"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "A learner must use Values, Data Types, and Boolean Logic in a new situation. Which approach best demonstrates transferable understanding?",
+      "choices": [
+        {
+          "id": "JS-03-Q04-C1",
+          "label": "Skip the underlying model and rely on memorized syntax, even when the result is unclear.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Values, Data Types, and Boolean Logic."
+        },
+        {
+          "id": "JS-03-Q04-C2",
+          "label": "Treat the concept as isolated trivia and avoid connecting it to earlier prerequisites.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Values, Data Types, and Boolean Logic."
+        },
+        {
+          "id": "JS-03-Q04-C3",
+          "label": "Apply Primitive data types deliberately, make the relevant inputs and assumptions explicit, and verify the observable result before adding more complexity.",
+          "feedback": "Transfer comes from using the concept with explicit assumptions and checking the resulting behavior, not from reproducing a memorized example."
+        },
+        {
+          "id": "JS-03-Q04-C4",
+          "label": "Add more state and abstraction immediately, before identifying the smallest requirement.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Values, Data Types, and Boolean Logic."
+        }
+      ],
+      "correctChoiceIds": [
+        "JS-03-Q04-C3"
+      ],
+      "explanation": "Transfer comes from using the concept with explicit assumptions and checking the resulting behavior, not from reproducing a memorized example.",
+      "hint": "Choose the option that would still work when the surrounding example changes.",
+      "difficulty": 1,
+      "cognitiveLevel": "apply",
+      "estimatedSeconds": 120,
+      "tags": [
+        "values-data-types-and-boolean-logic",
+        "primitive-data-types"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JS-03-Q05",
+      "trackId": "javascript",
+      "moduleId": "JS-M01",
+      "topicId": "JS-03",
+      "objectiveIds": [
+        "JS-03-LO1",
+        "JS-03-LO2",
+        "JS-03-LO3"
+      ],
+      "kind": "single-choice",
+      "presentation": "code",
+      "prompt": "What is the most accurate explanation of the following Values, Data Types, and Boolean Logic example?",
+      "choices": [
+        {
+          "id": "JS-03-Q05-C1",
+          "label": "The snippet guarantees that all values are immutable and all operations are asynchronous.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Values, Data Types, and Boolean Logic."
+        },
+        {
+          "id": "JS-03-Q05-C2",
+          "label": "Each value has a runtime type even though variables are not permanently restricted to that type.",
+          "feedback": "The correct choice connects the example to the underlying model rather than treating the syntax as isolated trivia."
+        },
+        {
+          "id": "JS-03-Q05-C3",
+          "label": "The snippet removes the need to understand the data flowing through the program.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Values, Data Types, and Boolean Logic."
+        },
+        {
+          "id": "JS-03-Q05-C4",
+          "label": "The snippet is valid only because JavaScript ignores variable scope and evaluation order.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Values, Data Types, and Boolean Logic."
+        }
+      ],
+      "correctChoiceIds": [
+        "JS-03-Q05-C2"
+      ],
+      "explanation": "The correct choice connects the example to the underlying model rather than treating the syntax as isolated trivia.",
+      "hint": "Trace data, control flow, ownership, or rendering step by step.",
+      "difficulty": 1,
+      "cognitiveLevel": "predict",
+      "estimatedSeconds": 120,
+      "tags": [
+        "values-data-types-and-boolean-logic",
+        "primitive-data-types",
+        "dynamic-typing"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review",
+      "code": {
+        "language": "js",
+        "source": "const lessons = 12;\nconst title = 'JavaScript';\nconst isPublished = false;\n\nconsole.log(typeof lessons, typeof title, typeof isPublished);"
+      }
+    },
+    {
+      "id": "JS-03-Q06",
+      "trackId": "javascript",
+      "moduleId": "JS-M01",
+      "topicId": "JS-03",
+      "objectiveIds": [
+        "JS-03-LO1",
+        "JS-03-LO2",
+        "JS-03-LO3"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which response best addresses this common mistake: “Memorizing syntax without predicting the underlying value or execution order.”?",
+      "choices": [
+        {
+          "id": "JS-03-Q06-C1",
+          "label": "The statement is a misconception. A better approach is to reason from the concept's inputs, rules, and observable outcome, then verify the result.",
+          "feedback": "Good feedback names the misconception and replaces it with a usable reasoning process."
+        },
+        {
+          "id": "JS-03-Q06-C2",
+          "label": "The statement is correct only when variable names are short.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Values, Data Types, and Boolean Logic."
+        },
+        {
+          "id": "JS-03-Q06-C3",
+          "label": "The statement is always correct, so no further reasoning about Values, Data Types, and Boolean Logic is needed.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Values, Data Types, and Boolean Logic."
+        },
+        {
+          "id": "JS-03-Q06-C4",
+          "label": "The statement is unrelated to program behavior and cannot cause defects.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Values, Data Types, and Boolean Logic."
+        }
+      ],
+      "correctChoiceIds": [
+        "JS-03-Q06-C1"
+      ],
+      "explanation": "Good feedback names the misconception and replaces it with a usable reasoning process.",
+      "hint": "Look for the option that corrects both the belief and the learner's next action.",
+      "difficulty": 1,
+      "cognitiveLevel": "debug",
+      "estimatedSeconds": 120,
+      "tags": [
+        "values-data-types-and-boolean-logic",
+        "common-mistakes"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JS-03-Q07",
+      "trackId": "javascript",
+      "moduleId": "JS-M01",
+      "topicId": "JS-03",
+      "objectiveIds": [
+        "JS-03-LO1",
+        "JS-03-LO2",
+        "JS-03-LO3"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which sequence is most reliable when solving a problem involving Values, Data Types, and Boolean Logic?",
+      "choices": [
+        {
+          "id": "JS-03-Q07-C1",
+          "label": "Optimize first, then decide what the code is supposed to do.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Values, Data Types, and Boolean Logic."
+        },
+        {
+          "id": "JS-03-Q07-C2",
+          "label": "First identify the requirement, then apply the relevant rule from Primitive data types, inspect the result, and only then refactor or optimize.",
+          "feedback": "The reliable sequence starts from the requirement, applies a known rule, observes behavior, and improves the solution afterward."
+        },
+        {
+          "id": "JS-03-Q07-C3",
+          "label": "Start with a framework abstraction and avoid checking the underlying language behavior.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Values, Data Types, and Boolean Logic."
+        },
+        {
+          "id": "JS-03-Q07-C4",
+          "label": "Copy an unrelated implementation, hide the assumptions, and test only the happy path.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Values, Data Types, and Boolean Logic."
+        }
+      ],
+      "correctChoiceIds": [
+        "JS-03-Q07-C2"
+      ],
+      "explanation": "The reliable sequence starts from the requirement, applies a known rule, observes behavior, and improves the solution afterward.",
+      "hint": "Prefer a sequence that makes failures visible early.",
+      "difficulty": 1,
+      "cognitiveLevel": "explain",
+      "estimatedSeconds": 75,
+      "tags": [
+        "values-data-types-and-boolean-logic",
+        "problem-solving"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JS-03-Q08",
+      "trackId": "javascript",
+      "moduleId": "JS-M01",
+      "topicId": "JS-03",
+      "objectiveIds": [
+        "JS-03-LO1",
+        "JS-03-LO2",
+        "JS-03-LO3"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which guideline shows the best judgment about when to use Values, Data Types, and Boolean Logic?",
+      "choices": [
+        {
+          "id": "JS-03-Q08-C1",
+          "label": "Use Values, Data Types, and Boolean Logic when it makes intent, ownership, or data flow clearer; avoid adding it mechanically when a simpler, equally explicit solution is sufficient.",
+          "feedback": "Engineering judgment balances clarity and cost. The concept should serve the requirement rather than become an end in itself."
+        },
+        {
+          "id": "JS-03-Q08-C2",
+          "label": "Use Values, Data Types, and Boolean Logic in every file because more abstraction is always better.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Values, Data Types, and Boolean Logic."
+        },
+        {
+          "id": "JS-03-Q08-C3",
+          "label": "Choose based only on line count, without considering readability, correctness, or future change.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Values, Data Types, and Boolean Logic."
+        },
+        {
+          "id": "JS-03-Q08-C4",
+          "label": "Avoid Values, Data Types, and Boolean Logic completely because all abstractions reduce maintainability.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Values, Data Types, and Boolean Logic."
+        }
+      ],
+      "correctChoiceIds": [
+        "JS-03-Q08-C1"
+      ],
+      "explanation": "Engineering judgment balances clarity and cost. The concept should serve the requirement rather than become an end in itself.",
+      "hint": "Choose the option that acknowledges both benefits and trade-offs.",
+      "difficulty": 2,
+      "cognitiveLevel": "tradeoff",
+      "estimatedSeconds": 120,
+      "tags": [
+        "values-data-types-and-boolean-logic",
+        "tradeoffs"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    }
+  ],
+  "researchSources": [
+    {
+      "kind": "research-transcript",
+      "title": "Data Types",
+      "pathwayOrder": 3,
+      "sourceLine": 3091,
+      "usage": "Coverage research only; no transcript wording is canonical."
+    },
+    {
+      "kind": "research-transcript",
+      "title": "Boolean Logic",
+      "pathwayOrder": 4,
+      "sourceLine": 8538,
+      "usage": "Coverage research only; no transcript wording is canonical."
+    },
+    {
+      "kind": "supporting-research",
+      "title": "Values and Variables",
+      "usage": "Optional coverage reference; learner-facing wording must be original."
+    },
+    {
+      "kind": "supporting-research",
+      "title": "let, const and var",
+      "usage": "Optional coverage reference; learner-facing wording must be original."
+    },
+    {
+      "kind": "supporting-research",
+      "title": "Basic Operators",
+      "usage": "Optional coverage reference; learner-facing wording must be original."
+    },
+    {
+      "kind": "supporting-research",
+      "title": "Type Conversion and Coercion",
+      "usage": "Optional coverage reference; learner-facing wording must be original."
+    },
+    {
+      "kind": "supporting-research",
+      "title": "Truthy and Falsy Values",
+      "usage": "Optional coverage reference; learner-facing wording must be original."
+    },
+    {
+      "kind": "supporting-research",
+      "title": "Logical Operators",
+      "usage": "Optional coverage reference; learner-facing wording must be original."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "MDN JavaScript Guide",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "MDN DOM",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "MDN Using promises",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "MDN JavaScript modules",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules",
+      "usage": "Technical verification and freshness review."
+    }
+  ],
+  "contentAuthority": {
+    "canonical": "New JS2Next Release 1 curriculum and independently authored content.",
+    "legacyProjectContent": "Supplementary internal reference only; excluded from runtime unless explicitly re-authored and approved.",
+    "courseTranscripts": "Coverage and sequencing research only; never learner-facing authority.",
+    "officialDocumentation": "Technical verification source."
+  },
+  "version": 1,
+  "status": "draft",
+  "reviewStatus": "pending-human-review",
+  "publicationStatus": "unpublished",
+  "createdAt": "2026-07-17",
+  "updatedAt": "2026-07-17"
+}

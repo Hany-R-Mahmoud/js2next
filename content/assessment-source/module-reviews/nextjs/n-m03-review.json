@@ -1,0 +1,26 @@
+{
+  "schemaVersion": "1.0",
+  "id": "N-M03-REVIEW",
+  "kind": "module-review",
+  "trackId": "nextjs",
+  "moduleId": "N-M03",
+  "title": "Project Planning — Module Review",
+  "questionIds": [
+    "N-05-Q04",
+    "N-05-Q05",
+    "N-05-Q06",
+    "N-05-Q07",
+    "N-05-Q08",
+    "N-05-Q01",
+    "N-05-Q02",
+    "N-05-Q03"
+  ],
+  "masteryThresholdPercent": 80,
+  "attemptPolicy": "unlimited",
+  "failurePolicy": "Show explanations, identify missed objectives, recommend targeted topic review, and allow retry.",
+  "randomizeQuestionOrder": true,
+  "randomizeChoiceOrder": false,
+  "version": 1,
+  "status": "draft",
+  "reviewStatus": "pending-human-review"
+}

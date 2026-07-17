@@ -1,0 +1,592 @@
+{
+  "schemaVersion": "1.0",
+  "id": "JS-05",
+  "slug": "functions-working-together",
+  "trackId": "javascript",
+  "moduleId": "JS-M01",
+  "order": 5,
+  "title": "Functions Working Together",
+  "required": true,
+  "optional": false,
+  "advanced": false,
+  "contentType": "core",
+  "difficulty": 1,
+  "estimatedMinutes": 25,
+  "requiredPrerequisiteTopicIds": [
+    "JS-04"
+  ],
+  "recommendedPrerequisiteTopicIds": [],
+  "learningObjectives": [
+    {
+      "id": "JS-05-LO1",
+      "text": "Explain functions calling functions using a new example and justify the result.",
+      "subtopic": "Functions calling functions",
+      "cognitiveLevel": "understand"
+    },
+    {
+      "id": "JS-05-LO2",
+      "text": "Explain function inputs and outputs using a new example and justify the result.",
+      "subtopic": "Function inputs and outputs",
+      "cognitiveLevel": "apply"
+    },
+    {
+      "id": "JS-05-LO3",
+      "text": "Apply function review and composition using a new example and justify the result.",
+      "subtopic": "Function review and composition",
+      "cognitiveLevel": "analyze"
+    }
+  ],
+  "whyThisMatters": "The ideas in functions working together recur throughout later JavaScript work, reducing memorization and debugging later. It belongs to the **Orientation and Foundations** module.",
+  "mentalModel": "Draw a decision map: **Functions calling functions** → **Function inputs and outputs** → **Function review and composition**. Add branches where the learner must choose an alternative and label the evidence for the choice.",
+  "sections": [
+    {
+      "id": "JS-05-S1",
+      "type": "concept",
+      "title": "Functions calling functions",
+      "body": "Functions can delegate to other functions, turning a large operation into named, testable transformations. The caller coordinates the sequence while each helper owns one responsibility.",
+      "objectiveIds": [
+        "JS-05-LO1"
+      ],
+      "checkQuestionId": "JS-05-Q01"
+    },
+    {
+      "id": "JS-05-S2",
+      "type": "concept",
+      "title": "Function inputs and outputs",
+      "body": "Parameters define what a function needs; return values define what it produces. Explicit inputs and outputs reduce hidden dependencies and make functions easier to compose and test.",
+      "objectiveIds": [
+        "JS-05-LO2"
+      ],
+      "checkQuestionId": "JS-05-Q02"
+    },
+    {
+      "id": "JS-05-S3",
+      "type": "concept",
+      "title": "Function review and composition",
+      "body": "Composition builds larger behavior from smaller functions whose outputs can become later inputs. Even without a composition utility, the principle encourages narrow responsibilities and predictable data flow.",
+      "objectiveIds": [
+        "JS-05-LO3"
+      ],
+      "checkQuestionId": "JS-05-Q03"
+    },
+    {
+      "id": "JS-05-EX1",
+      "type": "code-example",
+      "title": "Worked example",
+      "language": "js",
+      "source": "function normalizeScore(score) {\n  return Math.max(0, Math.min(100, score));\n}\nfunction describeScore(score) {\n  const safe = normalizeScore(score);\n  return safe >= 80 ? 'mastered' : 'keep practicing';\n}\nconsole.log(describeScore(87));",
+      "explanation": "One function delegates validation to another and uses the returned value.",
+      "objectiveIds": [
+        "JS-05-LO1",
+        "JS-05-LO2",
+        "JS-05-LO3"
+      ]
+    }
+  ],
+  "commonMistakes": [
+    "Memorizing syntax without predicting the underlying value or execution order.",
+    "Mutating shared data when the task expects a new value or explicit ownership.",
+    "Treating browser APIs and language features as the same layer.",
+    "Choosing an abstraction from habit rather than required operations."
+  ],
+  "summary": [
+    "Functions Working Together connects Functions calling functions, Function inputs and outputs, Function review and composition.",
+    "Use the topic to make behavior and decisions explicit rather than memorizing isolated syntax.",
+    "Verify understanding by explaining a new example and answering the topic quiz without looking back."
+  ],
+  "inLessonQuestionIds": [
+    "JS-05-Q01",
+    "JS-05-Q02",
+    "JS-05-Q03"
+  ],
+  "topicQuiz": {
+    "id": "JS-05-QUIZ",
+    "questionIds": [
+      "JS-05-Q04",
+      "JS-05-Q05",
+      "JS-05-Q06",
+      "JS-05-Q07",
+      "JS-05-Q08"
+    ],
+    "masteryThresholdPercent": 80,
+    "attemptPolicy": "unlimited",
+    "failurePolicy": "Show explanations, add missed objectives to local review, and allow immediate or later retry.",
+    "randomizeQuestionOrder": true,
+    "randomizeChoiceOrder": false
+  },
+  "questions": [
+    {
+      "id": "JS-05-Q01",
+      "trackId": "javascript",
+      "moduleId": "JS-M01",
+      "topicId": "JS-05",
+      "objectiveIds": [
+        "JS-05-LO1"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which statement best explains “Functions calling functions” in the context of Functions Working Together?",
+      "choices": [
+        {
+          "id": "JS-05-Q01-C1",
+          "label": "HTML describes structure, CSS describes presentation, and JavaScript expresses behavior and application logic. It responds to events, changes the document, communicates with servers, and coordinates state.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Functions calling functions."
+        },
+        {
+          "id": "JS-05-Q01-C2",
+          "label": "A Promise begins pending and settles once as fulfilled or rejected. then, catch, and finally schedule reactions asynchronously.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Functions calling functions."
+        },
+        {
+          "id": "JS-05-Q01-C3",
+          "label": "DOM APIs locate nodes by selector or relationship, then update text, attributes, classes, styles, or structure. Prefer focused updates and class changes over scattered inline mutations.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Functions calling functions."
+        },
+        {
+          "id": "JS-05-Q01-C4",
+          "label": "Functions can delegate to other functions, turning a large operation into named, testable transformations. The caller coordinates the sequence while each helper owns one responsibility.",
+          "feedback": "Functions calling functions is best understood as follows: Functions can delegate to other functions, turning a large operation into named, testable transformations. The caller coordinates the sequence while each helper owns one responsibility."
+        }
+      ],
+      "correctChoiceIds": [
+        "JS-05-Q01-C4"
+      ],
+      "explanation": "Functions calling functions is best understood as follows: Functions can delegate to other functions, turning a large operation into named, testable transformations. The caller coordinates the sequence while each helper owns one responsibility.",
+      "hint": "Focus on what the concept changes, enables, or constrains—not only on its syntax.",
+      "difficulty": 1,
+      "cognitiveLevel": "recognize",
+      "estimatedSeconds": 75,
+      "tags": [
+        "functions-calling-functions",
+        "functions-working-together"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JS-05-Q02",
+      "trackId": "javascript",
+      "moduleId": "JS-M01",
+      "topicId": "JS-05",
+      "objectiveIds": [
+        "JS-05-LO2"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which statement best explains “Function inputs and outputs” in the context of Functions Working Together?",
+      "choices": [
+        {
+          "id": "JS-05-Q02-C1",
+          "label": "HTML describes structure, CSS describes presentation, and JavaScript expresses behavior and application logic. It responds to events, changes the document, communicates with servers, and coordinates state.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Function inputs and outputs."
+        },
+        {
+          "id": "JS-05-Q02-C2",
+          "label": "A Promise begins pending and settles once as fulfilled or rejected. then, catch, and finally schedule reactions asynchronously.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Function inputs and outputs."
+        },
+        {
+          "id": "JS-05-Q02-C3",
+          "label": "DOM APIs locate nodes by selector or relationship, then update text, attributes, classes, styles, or structure. Prefer focused updates and class changes over scattered inline mutations.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Function inputs and outputs."
+        },
+        {
+          "id": "JS-05-Q02-C4",
+          "label": "Parameters define what a function needs; return values define what it produces. Explicit inputs and outputs reduce hidden dependencies and make functions easier to compose and test.",
+          "feedback": "Function inputs and outputs is best understood as follows: Parameters define what a function needs; return values define what it produces. Explicit inputs and outputs reduce hidden dependencies and make functions easier to compose and test."
+        }
+      ],
+      "correctChoiceIds": [
+        "JS-05-Q02-C4"
+      ],
+      "explanation": "Function inputs and outputs is best understood as follows: Parameters define what a function needs; return values define what it produces. Explicit inputs and outputs reduce hidden dependencies and make functions easier to compose and test.",
+      "hint": "Focus on what the concept changes, enables, or constrains—not only on its syntax.",
+      "difficulty": 1,
+      "cognitiveLevel": "explain",
+      "estimatedSeconds": 75,
+      "tags": [
+        "function-inputs-and-outputs",
+        "functions-working-together"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JS-05-Q03",
+      "trackId": "javascript",
+      "moduleId": "JS-M01",
+      "topicId": "JS-05",
+      "objectiveIds": [
+        "JS-05-LO3"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which statement best explains “Function review and composition” in the context of Functions Working Together?",
+      "choices": [
+        {
+          "id": "JS-05-Q03-C1",
+          "label": "HTML describes structure, CSS describes presentation, and JavaScript expresses behavior and application logic. It responds to events, changes the document, communicates with servers, and coordinates state.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Function review and composition."
+        },
+        {
+          "id": "JS-05-Q03-C2",
+          "label": "Composition builds larger behavior from smaller functions whose outputs can become later inputs. Even without a composition utility, the principle encourages narrow responsibilities and predictable data flow.",
+          "feedback": "Function review and composition is best understood as follows: Composition builds larger behavior from smaller functions whose outputs can become later inputs. Even without a composition utility, the principle encourages narrow responsibilities and predictable data flow."
+        },
+        {
+          "id": "JS-05-Q03-C3",
+          "label": "DOM APIs locate nodes by selector or relationship, then update text, attributes, classes, styles, or structure. Prefer focused updates and class changes over scattered inline mutations.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Function review and composition."
+        },
+        {
+          "id": "JS-05-Q03-C4",
+          "label": "A Promise begins pending and settles once as fulfilled or rejected. then, catch, and finally schedule reactions asynchronously.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Function review and composition."
+        }
+      ],
+      "correctChoiceIds": [
+        "JS-05-Q03-C2"
+      ],
+      "explanation": "Function review and composition is best understood as follows: Composition builds larger behavior from smaller functions whose outputs can become later inputs. Even without a composition utility, the principle encourages narrow responsibilities and predictable data flow.",
+      "hint": "Focus on what the concept changes, enables, or constrains—not only on its syntax.",
+      "difficulty": 1,
+      "cognitiveLevel": "predict",
+      "estimatedSeconds": 120,
+      "tags": [
+        "function-review-and-composition",
+        "functions-working-together"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JS-05-Q04",
+      "trackId": "javascript",
+      "moduleId": "JS-M01",
+      "topicId": "JS-05",
+      "objectiveIds": [
+        "JS-05-LO1",
+        "JS-05-LO2"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "A learner must use Functions Working Together in a new situation. Which approach best demonstrates transferable understanding?",
+      "choices": [
+        {
+          "id": "JS-05-Q04-C1",
+          "label": "Skip the underlying model and rely on memorized syntax, even when the result is unclear.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Functions Working Together."
+        },
+        {
+          "id": "JS-05-Q04-C2",
+          "label": "Treat the concept as isolated trivia and avoid connecting it to earlier prerequisites.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Functions Working Together."
+        },
+        {
+          "id": "JS-05-Q04-C3",
+          "label": "Apply Functions calling functions deliberately, make the relevant inputs and assumptions explicit, and verify the observable result before adding more complexity.",
+          "feedback": "Transfer comes from using the concept with explicit assumptions and checking the resulting behavior, not from reproducing a memorized example."
+        },
+        {
+          "id": "JS-05-Q04-C4",
+          "label": "Add more state and abstraction immediately, before identifying the smallest requirement.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Functions Working Together."
+        }
+      ],
+      "correctChoiceIds": [
+        "JS-05-Q04-C3"
+      ],
+      "explanation": "Transfer comes from using the concept with explicit assumptions and checking the resulting behavior, not from reproducing a memorized example.",
+      "hint": "Choose the option that would still work when the surrounding example changes.",
+      "difficulty": 1,
+      "cognitiveLevel": "apply",
+      "estimatedSeconds": 120,
+      "tags": [
+        "functions-working-together",
+        "functions-calling-functions"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JS-05-Q05",
+      "trackId": "javascript",
+      "moduleId": "JS-M01",
+      "topicId": "JS-05",
+      "objectiveIds": [
+        "JS-05-LO1",
+        "JS-05-LO2",
+        "JS-05-LO3"
+      ],
+      "kind": "single-choice",
+      "presentation": "code",
+      "prompt": "What is the most accurate explanation of the following Functions Working Together example?",
+      "choices": [
+        {
+          "id": "JS-05-Q05-C1",
+          "label": "The snippet guarantees that all values are immutable and all operations are asynchronous.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Functions Working Together."
+        },
+        {
+          "id": "JS-05-Q05-C2",
+          "label": "The snippet is valid only because JavaScript ignores variable scope and evaluation order.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Functions Working Together."
+        },
+        {
+          "id": "JS-05-Q05-C3",
+          "label": "The snippet removes the need to understand the data flowing through the program.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Functions Working Together."
+        },
+        {
+          "id": "JS-05-Q05-C4",
+          "label": "One function delegates validation to another and uses the returned value.",
+          "feedback": "The correct choice connects the example to the underlying model rather than treating the syntax as isolated trivia."
+        }
+      ],
+      "correctChoiceIds": [
+        "JS-05-Q05-C4"
+      ],
+      "explanation": "The correct choice connects the example to the underlying model rather than treating the syntax as isolated trivia.",
+      "hint": "Trace data, control flow, ownership, or rendering step by step.",
+      "difficulty": 1,
+      "cognitiveLevel": "predict",
+      "estimatedSeconds": 120,
+      "tags": [
+        "functions-working-together",
+        "functions-calling-functions",
+        "function-inputs-and-outputs"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review",
+      "code": {
+        "language": "js",
+        "source": "function normalizeScore(score) {\n  return Math.max(0, Math.min(100, score));\n}\nfunction describeScore(score) {\n  const safe = normalizeScore(score);\n  return safe >= 80 ? 'mastered' : 'keep practicing';\n}\nconsole.log(describeScore(87));"
+      }
+    },
+    {
+      "id": "JS-05-Q06",
+      "trackId": "javascript",
+      "moduleId": "JS-M01",
+      "topicId": "JS-05",
+      "objectiveIds": [
+        "JS-05-LO1",
+        "JS-05-LO2",
+        "JS-05-LO3"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which response best addresses this common mistake: “Memorizing syntax without predicting the underlying value or execution order.”?",
+      "choices": [
+        {
+          "id": "JS-05-Q06-C1",
+          "label": "The statement is always correct, so no further reasoning about Functions Working Together is needed.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Functions Working Together."
+        },
+        {
+          "id": "JS-05-Q06-C2",
+          "label": "The statement is correct only when variable names are short.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Functions Working Together."
+        },
+        {
+          "id": "JS-05-Q06-C3",
+          "label": "The statement is a misconception. A better approach is to reason from the concept's inputs, rules, and observable outcome, then verify the result.",
+          "feedback": "Good feedback names the misconception and replaces it with a usable reasoning process."
+        },
+        {
+          "id": "JS-05-Q06-C4",
+          "label": "The statement is unrelated to program behavior and cannot cause defects.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Functions Working Together."
+        }
+      ],
+      "correctChoiceIds": [
+        "JS-05-Q06-C3"
+      ],
+      "explanation": "Good feedback names the misconception and replaces it with a usable reasoning process.",
+      "hint": "Look for the option that corrects both the belief and the learner's next action.",
+      "difficulty": 1,
+      "cognitiveLevel": "debug",
+      "estimatedSeconds": 120,
+      "tags": [
+        "functions-working-together",
+        "common-mistakes"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JS-05-Q07",
+      "trackId": "javascript",
+      "moduleId": "JS-M01",
+      "topicId": "JS-05",
+      "objectiveIds": [
+        "JS-05-LO1",
+        "JS-05-LO2",
+        "JS-05-LO3"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which sequence is most reliable when solving a problem involving Functions Working Together?",
+      "choices": [
+        {
+          "id": "JS-05-Q07-C1",
+          "label": "First identify the requirement, then apply the relevant rule from Functions calling functions, inspect the result, and only then refactor or optimize.",
+          "feedback": "The reliable sequence starts from the requirement, applies a known rule, observes behavior, and improves the solution afterward."
+        },
+        {
+          "id": "JS-05-Q07-C2",
+          "label": "Copy an unrelated implementation, hide the assumptions, and test only the happy path.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Functions Working Together."
+        },
+        {
+          "id": "JS-05-Q07-C3",
+          "label": "Optimize first, then decide what the code is supposed to do.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Functions Working Together."
+        },
+        {
+          "id": "JS-05-Q07-C4",
+          "label": "Start with a framework abstraction and avoid checking the underlying language behavior.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Functions Working Together."
+        }
+      ],
+      "correctChoiceIds": [
+        "JS-05-Q07-C1"
+      ],
+      "explanation": "The reliable sequence starts from the requirement, applies a known rule, observes behavior, and improves the solution afterward.",
+      "hint": "Prefer a sequence that makes failures visible early.",
+      "difficulty": 1,
+      "cognitiveLevel": "explain",
+      "estimatedSeconds": 75,
+      "tags": [
+        "functions-working-together",
+        "problem-solving"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JS-05-Q08",
+      "trackId": "javascript",
+      "moduleId": "JS-M01",
+      "topicId": "JS-05",
+      "objectiveIds": [
+        "JS-05-LO1",
+        "JS-05-LO2",
+        "JS-05-LO3"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which guideline shows the best judgment about when to use Functions Working Together?",
+      "choices": [
+        {
+          "id": "JS-05-Q08-C1",
+          "label": "Avoid Functions Working Together completely because all abstractions reduce maintainability.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Functions Working Together."
+        },
+        {
+          "id": "JS-05-Q08-C2",
+          "label": "Use Functions Working Together when it makes intent, ownership, or data flow clearer; avoid adding it mechanically when a simpler, equally explicit solution is sufficient.",
+          "feedback": "Engineering judgment balances clarity and cost. The concept should serve the requirement rather than become an end in itself."
+        },
+        {
+          "id": "JS-05-Q08-C3",
+          "label": "Choose based only on line count, without considering readability, correctness, or future change.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Functions Working Together."
+        },
+        {
+          "id": "JS-05-Q08-C4",
+          "label": "Use Functions Working Together in every file because more abstraction is always better.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Functions Working Together."
+        }
+      ],
+      "correctChoiceIds": [
+        "JS-05-Q08-C2"
+      ],
+      "explanation": "Engineering judgment balances clarity and cost. The concept should serve the requirement rather than become an end in itself.",
+      "hint": "Choose the option that acknowledges both benefits and trade-offs.",
+      "difficulty": 2,
+      "cognitiveLevel": "tradeoff",
+      "estimatedSeconds": 120,
+      "tags": [
+        "functions-working-together",
+        "tradeoffs"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    }
+  ],
+  "researchSources": [
+    {
+      "kind": "research-transcript",
+      "title": "Functions Calling Other Functions",
+      "pathwayOrder": 6,
+      "sourceLine": 12952,
+      "usage": "Coverage research only; no transcript wording is canonical."
+    },
+    {
+      "kind": "research-transcript",
+      "title": "Reviewing Functions",
+      "pathwayOrder": 7,
+      "sourceLine": 13351,
+      "usage": "Coverage research only; no transcript wording is canonical."
+    },
+    {
+      "kind": "supporting-research",
+      "title": "Functions",
+      "usage": "Optional coverage reference; learner-facing wording must be original."
+    },
+    {
+      "kind": "supporting-research",
+      "title": "Function Declarations vs. Expressions",
+      "usage": "Optional coverage reference; learner-facing wording must be original."
+    },
+    {
+      "kind": "supporting-research",
+      "title": "Arrow Functions",
+      "usage": "Optional coverage reference; learner-facing wording must be original."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "MDN JavaScript Guide",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "MDN DOM",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "MDN Using promises",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "MDN JavaScript modules",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules",
+      "usage": "Technical verification and freshness review."
+    }
+  ],
+  "contentAuthority": {
+    "canonical": "New JS2Next Release 1 curriculum and independently authored content.",
+    "legacyProjectContent": "Supplementary internal reference only; excluded from runtime unless explicitly re-authored and approved.",
+    "courseTranscripts": "Coverage and sequencing research only; never learner-facing authority.",
+    "officialDocumentation": "Technical verification source."
+  },
+  "version": 1,
+  "status": "draft",
+  "reviewStatus": "pending-human-review",
+  "publicationStatus": "unpublished",
+  "createdAt": "2026-07-17",
+  "updatedAt": "2026-07-17"
+}

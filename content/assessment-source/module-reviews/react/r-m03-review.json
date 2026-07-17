@@ -1,0 +1,28 @@
+{
+  "schemaVersion": "1.0",
+  "id": "R-M03-REVIEW",
+  "kind": "module-review",
+  "trackId": "react",
+  "moduleId": "R-M03",
+  "title": "State and Thinking in React — Module Review",
+  "questionIds": [
+    "R-07-Q04",
+    "R-08-Q04",
+    "R-07-Q05",
+    "R-08-Q05",
+    "R-07-Q06",
+    "R-08-Q06",
+    "R-07-Q07",
+    "R-08-Q07",
+    "R-07-Q08",
+    "R-08-Q08"
+  ],
+  "masteryThresholdPercent": 80,
+  "attemptPolicy": "unlimited",
+  "failurePolicy": "Show explanations, identify missed objectives, recommend targeted topic review, and allow retry.",
+  "randomizeQuestionOrder": true,
+  "randomizeChoiceOrder": false,
+  "version": 1,
+  "status": "draft",
+  "reviewStatus": "pending-human-review"
+}

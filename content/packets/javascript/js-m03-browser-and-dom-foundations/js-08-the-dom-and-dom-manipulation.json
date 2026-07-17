@@ -1,0 +1,585 @@
+{
+  "schemaVersion": "1.0",
+  "id": "JS-08",
+  "slug": "the-dom-and-dom-manipulation",
+  "trackId": "javascript",
+  "moduleId": "JS-M03",
+  "order": 1,
+  "title": "The DOM and DOM Manipulation",
+  "required": true,
+  "optional": false,
+  "advanced": false,
+  "contentType": "core",
+  "difficulty": 1,
+  "estimatedMinutes": 15,
+  "requiredPrerequisiteTopicIds": [
+    "JS-07"
+  ],
+  "recommendedPrerequisiteTopicIds": [],
+  "learningObjectives": [
+    {
+      "id": "JS-08-LO1",
+      "text": "Explain dom tree using a new example and justify the result.",
+      "subtopic": "DOM tree",
+      "cognitiveLevel": "understand"
+    },
+    {
+      "id": "JS-08-LO2",
+      "text": "Explain selecting and changing elements using a new example and justify the result.",
+      "subtopic": "Selecting and changing elements",
+      "cognitiveLevel": "apply"
+    },
+    {
+      "id": "JS-08-LO3",
+      "text": "Explain javascript-browser interaction using a new example and justify the result.",
+      "subtopic": "JavaScript-browser interaction",
+      "cognitiveLevel": "analyze"
+    }
+  ],
+  "whyThisMatters": "Learners frequently use the dom and dom manipulation without a clear model of why it behaves as it does; this lesson makes that model explicit. It belongs to the **Browser and DOM Foundations** module.",
+  "mentalModel": "Draw a decision map: **DOM tree** → **Selecting and changing elements** → **JavaScript-browser interaction**. Add branches where the learner must choose an alternative and label the evidence for the choice.",
+  "sections": [
+    {
+      "id": "JS-08-S1",
+      "type": "concept",
+      "title": "DOM tree",
+      "body": "The browser parses a document into a tree of node objects. Elements, text, and other nodes have parent-child relationships that scripts can query and change.",
+      "objectiveIds": [
+        "JS-08-LO1"
+      ],
+      "checkQuestionId": "JS-08-Q01"
+    },
+    {
+      "id": "JS-08-S2",
+      "type": "concept",
+      "title": "Selecting and changing elements",
+      "body": "DOM APIs locate nodes by selector or relationship, then update text, attributes, classes, styles, or structure. Prefer focused updates and class changes over scattered inline mutations.",
+      "objectiveIds": [
+        "JS-08-LO2"
+      ],
+      "checkQuestionId": "JS-08-Q02"
+    },
+    {
+      "id": "JS-08-S3",
+      "type": "concept",
+      "title": "JavaScript-browser interaction",
+      "body": "Browser APIs provide events, DOM access, networking, storage, and timers. These are host capabilities used from JavaScript, not part of the ECMAScript language itself.",
+      "objectiveIds": [
+        "JS-08-LO3"
+      ],
+      "checkQuestionId": "JS-08-Q03"
+    },
+    {
+      "id": "JS-08-EX1",
+      "type": "code-example",
+      "title": "Worked example",
+      "language": "js",
+      "source": "const status = document.querySelector('[data-status]');\nconst button = document.querySelector('[data-complete]');\n\nbutton.addEventListener('click', () => {\n  status.textContent = 'Completed';\n  status.classList.add('is-complete');\n});",
+      "explanation": "DOM APIs select nodes, observe an event, and update text and classes.",
+      "objectiveIds": [
+        "JS-08-LO1",
+        "JS-08-LO2",
+        "JS-08-LO3"
+      ]
+    }
+  ],
+  "commonMistakes": [
+    "Memorizing syntax without predicting the underlying value or execution order.",
+    "Mutating shared data when the task expects a new value or explicit ownership.",
+    "Treating browser APIs and language features as the same layer.",
+    "Choosing an abstraction from habit rather than required operations."
+  ],
+  "summary": [
+    "The DOM and DOM Manipulation connects DOM tree, Selecting and changing elements, JavaScript-browser interaction.",
+    "Use the topic to make behavior and decisions explicit rather than memorizing isolated syntax.",
+    "Verify understanding by explaining a new example and answering the topic quiz without looking back."
+  ],
+  "inLessonQuestionIds": [
+    "JS-08-Q01",
+    "JS-08-Q02",
+    "JS-08-Q03"
+  ],
+  "topicQuiz": {
+    "id": "JS-08-QUIZ",
+    "questionIds": [
+      "JS-08-Q04",
+      "JS-08-Q05",
+      "JS-08-Q06",
+      "JS-08-Q07",
+      "JS-08-Q08"
+    ],
+    "masteryThresholdPercent": 80,
+    "attemptPolicy": "unlimited",
+    "failurePolicy": "Show explanations, add missed objectives to local review, and allow immediate or later retry.",
+    "randomizeQuestionOrder": true,
+    "randomizeChoiceOrder": false
+  },
+  "questions": [
+    {
+      "id": "JS-08-Q01",
+      "trackId": "javascript",
+      "moduleId": "JS-M03",
+      "topicId": "JS-08",
+      "objectiveIds": [
+        "JS-08-LO1"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which statement best explains “DOM tree” in the context of The DOM and DOM Manipulation?",
+      "choices": [
+        {
+          "id": "JS-08-Q01-C1",
+          "label": "Identifier lookup starts in the current lexical environment and continues outward until a matching binding is found or the global boundary is reached.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of DOM tree."
+        },
+        {
+          "id": "JS-08-Q01-C2",
+          "label": "The browser parses a document into a tree of node objects. Elements, text, and other nodes have parent-child relationships that scripts can query and change.",
+          "feedback": "DOM tree is best understood as follows: The browser parses a document into a tree of node objects. Elements, text, and other nodes have parent-child relationships that scripts can query and change."
+        },
+        {
+          "id": "JS-08-Q01-C3",
+          "label": "The call stack records active execution contexts. Calls push frames and returns pop them. Long synchronous work blocks later JavaScript and delays queued work.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of DOM tree."
+        },
+        {
+          "id": "JS-08-Q01-C4",
+          "label": "HTML describes structure, CSS describes presentation, and JavaScript expresses behavior and application logic. It responds to events, changes the document, communicates with servers, and coordinates state.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of DOM tree."
+        }
+      ],
+      "correctChoiceIds": [
+        "JS-08-Q01-C2"
+      ],
+      "explanation": "DOM tree is best understood as follows: The browser parses a document into a tree of node objects. Elements, text, and other nodes have parent-child relationships that scripts can query and change.",
+      "hint": "Focus on what the concept changes, enables, or constrains—not only on its syntax.",
+      "difficulty": 1,
+      "cognitiveLevel": "recognize",
+      "estimatedSeconds": 75,
+      "tags": [
+        "dom-tree",
+        "the-dom-and-dom-manipulation"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JS-08-Q02",
+      "trackId": "javascript",
+      "moduleId": "JS-M03",
+      "topicId": "JS-08",
+      "objectiveIds": [
+        "JS-08-LO2"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which statement best explains “Selecting and changing elements” in the context of The DOM and DOM Manipulation?",
+      "choices": [
+        {
+          "id": "JS-08-Q02-C1",
+          "label": "Identifier lookup starts in the current lexical environment and continues outward until a matching binding is found or the global boundary is reached.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Selecting and changing elements."
+        },
+        {
+          "id": "JS-08-Q02-C2",
+          "label": "DOM APIs locate nodes by selector or relationship, then update text, attributes, classes, styles, or structure. Prefer focused updates and class changes over scattered inline mutations.",
+          "feedback": "Selecting and changing elements is best understood as follows: DOM APIs locate nodes by selector or relationship, then update text, attributes, classes, styles, or structure. Prefer focused updates and class changes over scattered inline mutations."
+        },
+        {
+          "id": "JS-08-Q02-C3",
+          "label": "The call stack records active execution contexts. Calls push frames and returns pop them. Long synchronous work blocks later JavaScript and delays queued work.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Selecting and changing elements."
+        },
+        {
+          "id": "JS-08-Q02-C4",
+          "label": "HTML describes structure, CSS describes presentation, and JavaScript expresses behavior and application logic. It responds to events, changes the document, communicates with servers, and coordinates state.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Selecting and changing elements."
+        }
+      ],
+      "correctChoiceIds": [
+        "JS-08-Q02-C2"
+      ],
+      "explanation": "Selecting and changing elements is best understood as follows: DOM APIs locate nodes by selector or relationship, then update text, attributes, classes, styles, or structure. Prefer focused updates and class changes over scattered inline mutations.",
+      "hint": "Focus on what the concept changes, enables, or constrains—not only on its syntax.",
+      "difficulty": 1,
+      "cognitiveLevel": "explain",
+      "estimatedSeconds": 75,
+      "tags": [
+        "selecting-and-changing-elements",
+        "the-dom-and-dom-manipulation"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JS-08-Q03",
+      "trackId": "javascript",
+      "moduleId": "JS-M03",
+      "topicId": "JS-08",
+      "objectiveIds": [
+        "JS-08-LO3"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which statement best explains “JavaScript-browser interaction” in the context of The DOM and DOM Manipulation?",
+      "choices": [
+        {
+          "id": "JS-08-Q03-C1",
+          "label": "Browser APIs provide events, DOM access, networking, storage, and timers. These are host capabilities used from JavaScript, not part of the ECMAScript language itself.",
+          "feedback": "JavaScript-browser interaction is best understood as follows: Browser APIs provide events, DOM access, networking, storage, and timers. These are host capabilities used from JavaScript, not part of the ECMAScript language itself."
+        },
+        {
+          "id": "JS-08-Q03-C2",
+          "label": "Identifier lookup starts in the current lexical environment and continues outward until a matching binding is found or the global boundary is reached.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of JavaScript-browser interaction."
+        },
+        {
+          "id": "JS-08-Q03-C3",
+          "label": "The call stack records active execution contexts. Calls push frames and returns pop them. Long synchronous work blocks later JavaScript and delays queued work.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of JavaScript-browser interaction."
+        },
+        {
+          "id": "JS-08-Q03-C4",
+          "label": "HTML describes structure, CSS describes presentation, and JavaScript expresses behavior and application logic. It responds to events, changes the document, communicates with servers, and coordinates state.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of JavaScript-browser interaction."
+        }
+      ],
+      "correctChoiceIds": [
+        "JS-08-Q03-C1"
+      ],
+      "explanation": "JavaScript-browser interaction is best understood as follows: Browser APIs provide events, DOM access, networking, storage, and timers. These are host capabilities used from JavaScript, not part of the ECMAScript language itself.",
+      "hint": "Focus on what the concept changes, enables, or constrains—not only on its syntax.",
+      "difficulty": 1,
+      "cognitiveLevel": "predict",
+      "estimatedSeconds": 120,
+      "tags": [
+        "javascript-browser-interaction",
+        "the-dom-and-dom-manipulation"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JS-08-Q04",
+      "trackId": "javascript",
+      "moduleId": "JS-M03",
+      "topicId": "JS-08",
+      "objectiveIds": [
+        "JS-08-LO1",
+        "JS-08-LO2"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "A learner must use The DOM and DOM Manipulation in a new situation. Which approach best demonstrates transferable understanding?",
+      "choices": [
+        {
+          "id": "JS-08-Q04-C1",
+          "label": "Treat the concept as isolated trivia and avoid connecting it to earlier prerequisites.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of The DOM and DOM Manipulation."
+        },
+        {
+          "id": "JS-08-Q04-C2",
+          "label": "Skip the underlying model and rely on memorized syntax, even when the result is unclear.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of The DOM and DOM Manipulation."
+        },
+        {
+          "id": "JS-08-Q04-C3",
+          "label": "Apply DOM tree deliberately, make the relevant inputs and assumptions explicit, and verify the observable result before adding more complexity.",
+          "feedback": "Transfer comes from using the concept with explicit assumptions and checking the resulting behavior, not from reproducing a memorized example."
+        },
+        {
+          "id": "JS-08-Q04-C4",
+          "label": "Add more state and abstraction immediately, before identifying the smallest requirement.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of The DOM and DOM Manipulation."
+        }
+      ],
+      "correctChoiceIds": [
+        "JS-08-Q04-C3"
+      ],
+      "explanation": "Transfer comes from using the concept with explicit assumptions and checking the resulting behavior, not from reproducing a memorized example.",
+      "hint": "Choose the option that would still work when the surrounding example changes.",
+      "difficulty": 1,
+      "cognitiveLevel": "apply",
+      "estimatedSeconds": 120,
+      "tags": [
+        "the-dom-and-dom-manipulation",
+        "dom-tree"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JS-08-Q05",
+      "trackId": "javascript",
+      "moduleId": "JS-M03",
+      "topicId": "JS-08",
+      "objectiveIds": [
+        "JS-08-LO1",
+        "JS-08-LO2",
+        "JS-08-LO3"
+      ],
+      "kind": "single-choice",
+      "presentation": "code",
+      "prompt": "What is the most accurate explanation of the following The DOM and DOM Manipulation example?",
+      "choices": [
+        {
+          "id": "JS-08-Q05-C1",
+          "label": "The snippet guarantees that all values are immutable and all operations are asynchronous.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of The DOM and DOM Manipulation."
+        },
+        {
+          "id": "JS-08-Q05-C2",
+          "label": "DOM APIs select nodes, observe an event, and update text and classes.",
+          "feedback": "The correct choice connects the example to the underlying model rather than treating the syntax as isolated trivia."
+        },
+        {
+          "id": "JS-08-Q05-C3",
+          "label": "The snippet is valid only because JavaScript ignores variable scope and evaluation order.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of The DOM and DOM Manipulation."
+        },
+        {
+          "id": "JS-08-Q05-C4",
+          "label": "The snippet removes the need to understand the data flowing through the program.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of The DOM and DOM Manipulation."
+        }
+      ],
+      "correctChoiceIds": [
+        "JS-08-Q05-C2"
+      ],
+      "explanation": "The correct choice connects the example to the underlying model rather than treating the syntax as isolated trivia.",
+      "hint": "Trace data, control flow, ownership, or rendering step by step.",
+      "difficulty": 1,
+      "cognitiveLevel": "predict",
+      "estimatedSeconds": 120,
+      "tags": [
+        "the-dom-and-dom-manipulation",
+        "dom-tree",
+        "selecting-and-changing-elements"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review",
+      "code": {
+        "language": "js",
+        "source": "const status = document.querySelector('[data-status]');\nconst button = document.querySelector('[data-complete]');\n\nbutton.addEventListener('click', () => {\n  status.textContent = 'Completed';\n  status.classList.add('is-complete');\n});"
+      }
+    },
+    {
+      "id": "JS-08-Q06",
+      "trackId": "javascript",
+      "moduleId": "JS-M03",
+      "topicId": "JS-08",
+      "objectiveIds": [
+        "JS-08-LO1",
+        "JS-08-LO2",
+        "JS-08-LO3"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which response best addresses this common mistake: “Memorizing syntax without predicting the underlying value or execution order.”?",
+      "choices": [
+        {
+          "id": "JS-08-Q06-C1",
+          "label": "The statement is always correct, so no further reasoning about The DOM and DOM Manipulation is needed.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of The DOM and DOM Manipulation."
+        },
+        {
+          "id": "JS-08-Q06-C2",
+          "label": "The statement is correct only when variable names are short.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of The DOM and DOM Manipulation."
+        },
+        {
+          "id": "JS-08-Q06-C3",
+          "label": "The statement is unrelated to program behavior and cannot cause defects.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of The DOM and DOM Manipulation."
+        },
+        {
+          "id": "JS-08-Q06-C4",
+          "label": "The statement is a misconception. A better approach is to reason from the concept's inputs, rules, and observable outcome, then verify the result.",
+          "feedback": "Good feedback names the misconception and replaces it with a usable reasoning process."
+        }
+      ],
+      "correctChoiceIds": [
+        "JS-08-Q06-C4"
+      ],
+      "explanation": "Good feedback names the misconception and replaces it with a usable reasoning process.",
+      "hint": "Look for the option that corrects both the belief and the learner's next action.",
+      "difficulty": 1,
+      "cognitiveLevel": "debug",
+      "estimatedSeconds": 120,
+      "tags": [
+        "the-dom-and-dom-manipulation",
+        "common-mistakes"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JS-08-Q07",
+      "trackId": "javascript",
+      "moduleId": "JS-M03",
+      "topicId": "JS-08",
+      "objectiveIds": [
+        "JS-08-LO1",
+        "JS-08-LO2",
+        "JS-08-LO3"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which sequence is most reliable when solving a problem involving The DOM and DOM Manipulation?",
+      "choices": [
+        {
+          "id": "JS-08-Q07-C1",
+          "label": "Start with a framework abstraction and avoid checking the underlying language behavior.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of The DOM and DOM Manipulation."
+        },
+        {
+          "id": "JS-08-Q07-C2",
+          "label": "Copy an unrelated implementation, hide the assumptions, and test only the happy path.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of The DOM and DOM Manipulation."
+        },
+        {
+          "id": "JS-08-Q07-C3",
+          "label": "First identify the requirement, then apply the relevant rule from DOM tree, inspect the result, and only then refactor or optimize.",
+          "feedback": "The reliable sequence starts from the requirement, applies a known rule, observes behavior, and improves the solution afterward."
+        },
+        {
+          "id": "JS-08-Q07-C4",
+          "label": "Optimize first, then decide what the code is supposed to do.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of The DOM and DOM Manipulation."
+        }
+      ],
+      "correctChoiceIds": [
+        "JS-08-Q07-C3"
+      ],
+      "explanation": "The reliable sequence starts from the requirement, applies a known rule, observes behavior, and improves the solution afterward.",
+      "hint": "Prefer a sequence that makes failures visible early.",
+      "difficulty": 1,
+      "cognitiveLevel": "explain",
+      "estimatedSeconds": 75,
+      "tags": [
+        "the-dom-and-dom-manipulation",
+        "problem-solving"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JS-08-Q08",
+      "trackId": "javascript",
+      "moduleId": "JS-M03",
+      "topicId": "JS-08",
+      "objectiveIds": [
+        "JS-08-LO1",
+        "JS-08-LO2",
+        "JS-08-LO3"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which guideline shows the best judgment about when to use The DOM and DOM Manipulation?",
+      "choices": [
+        {
+          "id": "JS-08-Q08-C1",
+          "label": "Avoid The DOM and DOM Manipulation completely because all abstractions reduce maintainability.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of The DOM and DOM Manipulation."
+        },
+        {
+          "id": "JS-08-Q08-C2",
+          "label": "Choose based only on line count, without considering readability, correctness, or future change.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of The DOM and DOM Manipulation."
+        },
+        {
+          "id": "JS-08-Q08-C3",
+          "label": "Use The DOM and DOM Manipulation when it makes intent, ownership, or data flow clearer; avoid adding it mechanically when a simpler, equally explicit solution is sufficient.",
+          "feedback": "Engineering judgment balances clarity and cost. The concept should serve the requirement rather than become an end in itself."
+        },
+        {
+          "id": "JS-08-Q08-C4",
+          "label": "Use The DOM and DOM Manipulation in every file because more abstraction is always better.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of The DOM and DOM Manipulation."
+        }
+      ],
+      "correctChoiceIds": [
+        "JS-08-Q08-C3"
+      ],
+      "explanation": "Engineering judgment balances clarity and cost. The concept should serve the requirement rather than become an end in itself.",
+      "hint": "Choose the option that acknowledges both benefits and trade-offs.",
+      "difficulty": 2,
+      "cognitiveLevel": "tradeoff",
+      "estimatedSeconds": 120,
+      "tags": [
+        "the-dom-and-dom-manipulation",
+        "tradeoffs"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    }
+  ],
+  "researchSources": [
+    {
+      "kind": "research-transcript",
+      "title": "What's the DOM and DOM Manipulation",
+      "pathwayOrder": 12,
+      "sourceLine": 29282,
+      "usage": "Coverage research only; no transcript wording is canonical."
+    },
+    {
+      "kind": "supporting-research",
+      "title": "Selecting and Manipulating Elements",
+      "usage": "Optional coverage reference; learner-facing wording must be original."
+    },
+    {
+      "kind": "supporting-research",
+      "title": "Handling Click Events",
+      "usage": "Optional coverage reference; learner-facing wording must be original."
+    },
+    {
+      "kind": "supporting-research",
+      "title": "Manipulating CSS Styles",
+      "usage": "Optional coverage reference; learner-facing wording must be original."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "MDN JavaScript Guide",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "MDN DOM",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "MDN Using promises",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "MDN JavaScript modules",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules",
+      "usage": "Technical verification and freshness review."
+    }
+  ],
+  "contentAuthority": {
+    "canonical": "New JS2Next Release 1 curriculum and independently authored content.",
+    "legacyProjectContent": "Supplementary internal reference only; excluded from runtime unless explicitly re-authored and approved.",
+    "courseTranscripts": "Coverage and sequencing research only; never learner-facing authority.",
+    "officialDocumentation": "Technical verification source."
+  },
+  "version": 1,
+  "status": "draft",
+  "reviewStatus": "pending-human-review",
+  "publicationStatus": "unpublished",
+  "createdAt": "2026-07-17",
+  "updatedAt": "2026-07-17"
+}

@@ -1,0 +1,595 @@
+{
+  "schemaVersion": "1.0",
+  "id": "JS-13",
+  "slug": "choosing-the-right-data-structure",
+  "trackId": "javascript",
+  "moduleId": "JS-M05",
+  "order": 1,
+  "title": "Choosing the Right Data Structure",
+  "required": true,
+  "optional": false,
+  "advanced": false,
+  "contentType": "core",
+  "difficulty": 2,
+  "estimatedMinutes": 15,
+  "requiredPrerequisiteTopicIds": [
+    "JS-12"
+  ],
+  "recommendedPrerequisiteTopicIds": [],
+  "learningObjectives": [
+    {
+      "id": "JS-13-LO1",
+      "text": "Explain arrays and objects using a new example and justify the result.",
+      "subtopic": "Arrays and objects",
+      "cognitiveLevel": "understand"
+    },
+    {
+      "id": "JS-13-LO2",
+      "text": "Explain sets and maps using a new example and justify the result.",
+      "subtopic": "Sets and maps",
+      "cognitiveLevel": "apply"
+    },
+    {
+      "id": "JS-13-LO3",
+      "text": "Choose and justify selection criteria and trade-offs using a new example and justify the result.",
+      "subtopic": "Selection criteria and trade-offs",
+      "cognitiveLevel": "analyze"
+    }
+  ],
+  "whyThisMatters": "Learners frequently use choosing the right data structure without a clear model of why it behaves as it does; this lesson makes that model explicit. It belongs to the **Data Structures and Functional Techniques** module.",
+  "mentalModel": "Draw a decision map: **Arrays and objects** → **Sets and maps** → **Selection criteria and trade-offs**. Add branches where the learner must choose an alternative and label the evidence for the choice.",
+  "sections": [
+    {
+      "id": "JS-13-S1",
+      "type": "concept",
+      "title": "Arrays and objects",
+      "body": "Arrays model ordered sequences; objects model records with named properties. Choose the shape that matches the data and operations.",
+      "objectiveIds": [
+        "JS-13-LO1"
+      ],
+      "checkQuestionId": "JS-13-Q01"
+    },
+    {
+      "id": "JS-13-S2",
+      "type": "concept",
+      "title": "Sets and maps",
+      "body": "A Set models unique values and membership. A Map models an explicit key-value collection with flexible keys and predictable iteration.",
+      "objectiveIds": [
+        "JS-13-LO2"
+      ],
+      "checkQuestionId": "JS-13-Q02"
+    },
+    {
+      "id": "JS-13-S3",
+      "type": "concept",
+      "title": "Selection criteria and trade-offs",
+      "body": "Choose a data structure by the dominant operations: ordered iteration, lookup, uniqueness, insertion, deletion, and serialization. No structure is universally best.",
+      "objectiveIds": [
+        "JS-13-LO3"
+      ],
+      "checkQuestionId": "JS-13-Q03"
+    },
+    {
+      "id": "JS-13-EX1",
+      "type": "code-example",
+      "title": "Worked example",
+      "language": "js",
+      "source": "const topics = [\n  { id: 'js-15', title: 'Closures' },\n  { id: 'js-24', title: 'Promises' },\n];\nconst byId = new Map(topics.map(topic => [topic.id, topic]));\nconst tags = new Set(['js', 'async', 'js']);\n\nconsole.log(byId.get('js-24').title, tags.size);",
+      "explanation": "An array stores order, a Map provides keyed lookup, and a Set enforces uniqueness.",
+      "objectiveIds": [
+        "JS-13-LO1",
+        "JS-13-LO2",
+        "JS-13-LO3"
+      ]
+    }
+  ],
+  "commonMistakes": [
+    "Memorizing syntax without predicting the underlying value or execution order.",
+    "Mutating shared data when the task expects a new value or explicit ownership.",
+    "Treating browser APIs and language features as the same layer.",
+    "Choosing an abstraction from habit rather than required operations."
+  ],
+  "summary": [
+    "Choosing the Right Data Structure connects Arrays and objects, Sets and maps, Selection criteria and trade-offs.",
+    "Use the topic to make behavior and decisions explicit rather than memorizing isolated syntax.",
+    "Verify understanding by explaining a new example and answering the topic quiz without looking back."
+  ],
+  "inLessonQuestionIds": [
+    "JS-13-Q01",
+    "JS-13-Q02",
+    "JS-13-Q03"
+  ],
+  "topicQuiz": {
+    "id": "JS-13-QUIZ",
+    "questionIds": [
+      "JS-13-Q04",
+      "JS-13-Q05",
+      "JS-13-Q06",
+      "JS-13-Q07",
+      "JS-13-Q08"
+    ],
+    "masteryThresholdPercent": 80,
+    "attemptPolicy": "unlimited",
+    "failurePolicy": "Show explanations, add missed objectives to local review, and allow immediate or later retry.",
+    "randomizeQuestionOrder": true,
+    "randomizeChoiceOrder": false
+  },
+  "questions": [
+    {
+      "id": "JS-13-Q01",
+      "trackId": "javascript",
+      "moduleId": "JS-M05",
+      "topicId": "JS-13",
+      "objectiveIds": [
+        "JS-13-LO1"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which statement best explains “Arrays and objects” in the context of Choosing the Right Data Structure?",
+      "choices": [
+        {
+          "id": "JS-13-Q01-C1",
+          "label": "Arrays model ordered sequences; objects model records with named properties. Choose the shape that matches the data and operations.",
+          "feedback": "Arrays and objects is best understood as follows: Arrays model ordered sequences; objects model records with named properties. Choose the shape that matches the data and operations."
+        },
+        {
+          "id": "JS-13-Q01-C2",
+          "label": "Exports define a module's public API; imports declare required values. Narrow APIs and acyclic dependencies improve maintainability.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Arrays and objects."
+        },
+        {
+          "id": "JS-13-Q01-C3",
+          "label": "Array filter returns a new array containing only elements whose predicate is truthy.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Arrays and objects."
+        },
+        {
+          "id": "JS-13-Q01-C4",
+          "label": "AJAX is the practice of exchanging data without replacing the whole page. An API defines endpoints, inputs, outputs, status codes, and error behavior.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Arrays and objects."
+        }
+      ],
+      "correctChoiceIds": [
+        "JS-13-Q01-C1"
+      ],
+      "explanation": "Arrays and objects is best understood as follows: Arrays model ordered sequences; objects model records with named properties. Choose the shape that matches the data and operations.",
+      "hint": "Focus on what the concept changes, enables, or constrains—not only on its syntax.",
+      "difficulty": 1,
+      "cognitiveLevel": "recognize",
+      "estimatedSeconds": 75,
+      "tags": [
+        "arrays-and-objects",
+        "choosing-the-right-data-structure"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JS-13-Q02",
+      "trackId": "javascript",
+      "moduleId": "JS-M05",
+      "topicId": "JS-13",
+      "objectiveIds": [
+        "JS-13-LO2"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which statement best explains “Sets and maps” in the context of Choosing the Right Data Structure?",
+      "choices": [
+        {
+          "id": "JS-13-Q02-C1",
+          "label": "A Set models unique values and membership. A Map models an explicit key-value collection with flexible keys and predictable iteration.",
+          "feedback": "Sets and maps is best understood as follows: A Set models unique values and membership. A Map models an explicit key-value collection with flexible keys and predictable iteration."
+        },
+        {
+          "id": "JS-13-Q02-C2",
+          "label": "Array filter returns a new array containing only elements whose predicate is truthy.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Sets and maps."
+        },
+        {
+          "id": "JS-13-Q02-C3",
+          "label": "AJAX is the practice of exchanging data without replacing the whole page. An API defines endpoints, inputs, outputs, status codes, and error behavior.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Sets and maps."
+        },
+        {
+          "id": "JS-13-Q02-C4",
+          "label": "Exports define a module's public API; imports declare required values. Narrow APIs and acyclic dependencies improve maintainability.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Sets and maps."
+        }
+      ],
+      "correctChoiceIds": [
+        "JS-13-Q02-C1"
+      ],
+      "explanation": "Sets and maps is best understood as follows: A Set models unique values and membership. A Map models an explicit key-value collection with flexible keys and predictable iteration.",
+      "hint": "Focus on what the concept changes, enables, or constrains—not only on its syntax.",
+      "difficulty": 1,
+      "cognitiveLevel": "explain",
+      "estimatedSeconds": 75,
+      "tags": [
+        "sets-and-maps",
+        "choosing-the-right-data-structure"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JS-13-Q03",
+      "trackId": "javascript",
+      "moduleId": "JS-M05",
+      "topicId": "JS-13",
+      "objectiveIds": [
+        "JS-13-LO3"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which statement best explains “Selection criteria and trade-offs” in the context of Choosing the Right Data Structure?",
+      "choices": [
+        {
+          "id": "JS-13-Q03-C1",
+          "label": "Array filter returns a new array containing only elements whose predicate is truthy.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Selection criteria and trade-offs."
+        },
+        {
+          "id": "JS-13-Q03-C2",
+          "label": "Choose a data structure by the dominant operations: ordered iteration, lookup, uniqueness, insertion, deletion, and serialization. No structure is universally best.",
+          "feedback": "Selection criteria and trade-offs is best understood as follows: Choose a data structure by the dominant operations: ordered iteration, lookup, uniqueness, insertion, deletion, and serialization. No structure is universally best."
+        },
+        {
+          "id": "JS-13-Q03-C3",
+          "label": "AJAX is the practice of exchanging data without replacing the whole page. An API defines endpoints, inputs, outputs, status codes, and error behavior.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Selection criteria and trade-offs."
+        },
+        {
+          "id": "JS-13-Q03-C4",
+          "label": "Exports define a module's public API; imports declare required values. Narrow APIs and acyclic dependencies improve maintainability.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Selection criteria and trade-offs."
+        }
+      ],
+      "correctChoiceIds": [
+        "JS-13-Q03-C2"
+      ],
+      "explanation": "Selection criteria and trade-offs is best understood as follows: Choose a data structure by the dominant operations: ordered iteration, lookup, uniqueness, insertion, deletion, and serialization. No structure is universally best.",
+      "hint": "Focus on what the concept changes, enables, or constrains—not only on its syntax.",
+      "difficulty": 1,
+      "cognitiveLevel": "predict",
+      "estimatedSeconds": 120,
+      "tags": [
+        "selection-criteria-and-trade-offs",
+        "choosing-the-right-data-structure"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JS-13-Q04",
+      "trackId": "javascript",
+      "moduleId": "JS-M05",
+      "topicId": "JS-13",
+      "objectiveIds": [
+        "JS-13-LO1",
+        "JS-13-LO2"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "A learner must use Choosing the Right Data Structure in a new situation. Which approach best demonstrates transferable understanding?",
+      "choices": [
+        {
+          "id": "JS-13-Q04-C1",
+          "label": "Add more state and abstraction immediately, before identifying the smallest requirement.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Choosing the Right Data Structure."
+        },
+        {
+          "id": "JS-13-Q04-C2",
+          "label": "Skip the underlying model and rely on memorized syntax, even when the result is unclear.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Choosing the Right Data Structure."
+        },
+        {
+          "id": "JS-13-Q04-C3",
+          "label": "Apply Arrays and objects deliberately, make the relevant inputs and assumptions explicit, and verify the observable result before adding more complexity.",
+          "feedback": "Transfer comes from using the concept with explicit assumptions and checking the resulting behavior, not from reproducing a memorized example."
+        },
+        {
+          "id": "JS-13-Q04-C4",
+          "label": "Treat the concept as isolated trivia and avoid connecting it to earlier prerequisites.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Choosing the Right Data Structure."
+        }
+      ],
+      "correctChoiceIds": [
+        "JS-13-Q04-C3"
+      ],
+      "explanation": "Transfer comes from using the concept with explicit assumptions and checking the resulting behavior, not from reproducing a memorized example.",
+      "hint": "Choose the option that would still work when the surrounding example changes.",
+      "difficulty": 2,
+      "cognitiveLevel": "apply",
+      "estimatedSeconds": 120,
+      "tags": [
+        "choosing-the-right-data-structure",
+        "arrays-and-objects"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JS-13-Q05",
+      "trackId": "javascript",
+      "moduleId": "JS-M05",
+      "topicId": "JS-13",
+      "objectiveIds": [
+        "JS-13-LO1",
+        "JS-13-LO2",
+        "JS-13-LO3"
+      ],
+      "kind": "single-choice",
+      "presentation": "code",
+      "prompt": "What is the most accurate explanation of the following Choosing the Right Data Structure example?",
+      "choices": [
+        {
+          "id": "JS-13-Q05-C1",
+          "label": "An array stores order, a Map provides keyed lookup, and a Set enforces uniqueness.",
+          "feedback": "The correct choice connects the example to the underlying model rather than treating the syntax as isolated trivia."
+        },
+        {
+          "id": "JS-13-Q05-C2",
+          "label": "The snippet removes the need to understand the data flowing through the program.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Choosing the Right Data Structure."
+        },
+        {
+          "id": "JS-13-Q05-C3",
+          "label": "The snippet guarantees that all values are immutable and all operations are asynchronous.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Choosing the Right Data Structure."
+        },
+        {
+          "id": "JS-13-Q05-C4",
+          "label": "The snippet is valid only because JavaScript ignores variable scope and evaluation order.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Choosing the Right Data Structure."
+        }
+      ],
+      "correctChoiceIds": [
+        "JS-13-Q05-C1"
+      ],
+      "explanation": "The correct choice connects the example to the underlying model rather than treating the syntax as isolated trivia.",
+      "hint": "Trace data, control flow, ownership, or rendering step by step.",
+      "difficulty": 2,
+      "cognitiveLevel": "predict",
+      "estimatedSeconds": 120,
+      "tags": [
+        "choosing-the-right-data-structure",
+        "arrays-and-objects",
+        "sets-and-maps"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review",
+      "code": {
+        "language": "js",
+        "source": "const topics = [\n  { id: 'js-15', title: 'Closures' },\n  { id: 'js-24', title: 'Promises' },\n];\nconst byId = new Map(topics.map(topic => [topic.id, topic]));\nconst tags = new Set(['js', 'async', 'js']);\n\nconsole.log(byId.get('js-24').title, tags.size);"
+      }
+    },
+    {
+      "id": "JS-13-Q06",
+      "trackId": "javascript",
+      "moduleId": "JS-M05",
+      "topicId": "JS-13",
+      "objectiveIds": [
+        "JS-13-LO1",
+        "JS-13-LO2",
+        "JS-13-LO3"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which response best addresses this common mistake: “Memorizing syntax without predicting the underlying value or execution order.”?",
+      "choices": [
+        {
+          "id": "JS-13-Q06-C1",
+          "label": "The statement is unrelated to program behavior and cannot cause defects.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Choosing the Right Data Structure."
+        },
+        {
+          "id": "JS-13-Q06-C2",
+          "label": "The statement is correct only when variable names are short.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Choosing the Right Data Structure."
+        },
+        {
+          "id": "JS-13-Q06-C3",
+          "label": "The statement is always correct, so no further reasoning about Choosing the Right Data Structure is needed.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Choosing the Right Data Structure."
+        },
+        {
+          "id": "JS-13-Q06-C4",
+          "label": "The statement is a misconception. A better approach is to reason from the concept's inputs, rules, and observable outcome, then verify the result.",
+          "feedback": "Good feedback names the misconception and replaces it with a usable reasoning process."
+        }
+      ],
+      "correctChoiceIds": [
+        "JS-13-Q06-C4"
+      ],
+      "explanation": "Good feedback names the misconception and replaces it with a usable reasoning process.",
+      "hint": "Look for the option that corrects both the belief and the learner's next action.",
+      "difficulty": 2,
+      "cognitiveLevel": "debug",
+      "estimatedSeconds": 120,
+      "tags": [
+        "choosing-the-right-data-structure",
+        "common-mistakes"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JS-13-Q07",
+      "trackId": "javascript",
+      "moduleId": "JS-M05",
+      "topicId": "JS-13",
+      "objectiveIds": [
+        "JS-13-LO1",
+        "JS-13-LO2",
+        "JS-13-LO3"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which sequence is most reliable when solving a problem involving Choosing the Right Data Structure?",
+      "choices": [
+        {
+          "id": "JS-13-Q07-C1",
+          "label": "Copy an unrelated implementation, hide the assumptions, and test only the happy path.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Choosing the Right Data Structure."
+        },
+        {
+          "id": "JS-13-Q07-C2",
+          "label": "Start with a framework abstraction and avoid checking the underlying language behavior.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Choosing the Right Data Structure."
+        },
+        {
+          "id": "JS-13-Q07-C3",
+          "label": "First identify the requirement, then apply the relevant rule from Arrays and objects, inspect the result, and only then refactor or optimize.",
+          "feedback": "The reliable sequence starts from the requirement, applies a known rule, observes behavior, and improves the solution afterward."
+        },
+        {
+          "id": "JS-13-Q07-C4",
+          "label": "Optimize first, then decide what the code is supposed to do.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Choosing the Right Data Structure."
+        }
+      ],
+      "correctChoiceIds": [
+        "JS-13-Q07-C3"
+      ],
+      "explanation": "The reliable sequence starts from the requirement, applies a known rule, observes behavior, and improves the solution afterward.",
+      "hint": "Prefer a sequence that makes failures visible early.",
+      "difficulty": 2,
+      "cognitiveLevel": "explain",
+      "estimatedSeconds": 75,
+      "tags": [
+        "choosing-the-right-data-structure",
+        "problem-solving"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JS-13-Q08",
+      "trackId": "javascript",
+      "moduleId": "JS-M05",
+      "topicId": "JS-13",
+      "objectiveIds": [
+        "JS-13-LO1",
+        "JS-13-LO2",
+        "JS-13-LO3"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which guideline shows the best judgment about when to use Choosing the Right Data Structure?",
+      "choices": [
+        {
+          "id": "JS-13-Q08-C1",
+          "label": "Avoid Choosing the Right Data Structure completely because all abstractions reduce maintainability.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Choosing the Right Data Structure."
+        },
+        {
+          "id": "JS-13-Q08-C2",
+          "label": "Use Choosing the Right Data Structure in every file because more abstraction is always better.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Choosing the Right Data Structure."
+        },
+        {
+          "id": "JS-13-Q08-C3",
+          "label": "Use Choosing the Right Data Structure when it makes intent, ownership, or data flow clearer; avoid adding it mechanically when a simpler, equally explicit solution is sufficient.",
+          "feedback": "Engineering judgment balances clarity and cost. The concept should serve the requirement rather than become an end in itself."
+        },
+        {
+          "id": "JS-13-Q08-C4",
+          "label": "Choose based only on line count, without considering readability, correctness, or future change.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Choosing the Right Data Structure."
+        }
+      ],
+      "correctChoiceIds": [
+        "JS-13-Q08-C3"
+      ],
+      "explanation": "Engineering judgment balances clarity and cost. The concept should serve the requirement rather than become an end in itself.",
+      "hint": "Choose the option that acknowledges both benefits and trade-offs.",
+      "difficulty": 3,
+      "cognitiveLevel": "tradeoff",
+      "estimatedSeconds": 120,
+      "tags": [
+        "choosing-the-right-data-structure",
+        "tradeoffs"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    }
+  ],
+  "researchSources": [
+    {
+      "kind": "research-transcript",
+      "title": "Summary: Which Data Structure to Use?",
+      "pathwayOrder": 21,
+      "sourceLine": 53698,
+      "usage": "Coverage research only; no transcript wording is canonical."
+    },
+    {
+      "kind": "supporting-research",
+      "title": "Introduction to Arrays",
+      "usage": "Optional coverage reference; learner-facing wording must be original."
+    },
+    {
+      "kind": "supporting-research",
+      "title": "Introduction to Objects",
+      "usage": "Optional coverage reference; learner-facing wording must be original."
+    },
+    {
+      "kind": "supporting-research",
+      "title": "Sets",
+      "usage": "Optional coverage reference; learner-facing wording must be original."
+    },
+    {
+      "kind": "supporting-research",
+      "title": "Maps: Fundamentals",
+      "usage": "Optional coverage reference; learner-facing wording must be original."
+    },
+    {
+      "kind": "supporting-research",
+      "title": "Maps: Iteration",
+      "usage": "Optional coverage reference; learner-facing wording must be original."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "MDN JavaScript Guide",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "MDN DOM",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "MDN Using promises",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "MDN JavaScript modules",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules",
+      "usage": "Technical verification and freshness review."
+    }
+  ],
+  "contentAuthority": {
+    "canonical": "New JS2Next Release 1 curriculum and independently authored content.",
+    "legacyProjectContent": "Supplementary internal reference only; excluded from runtime unless explicitly re-authored and approved.",
+    "courseTranscripts": "Coverage and sequencing research only; never learner-facing authority.",
+    "officialDocumentation": "Technical verification source."
+  },
+  "version": 1,
+  "status": "draft",
+  "reviewStatus": "pending-human-review",
+  "publicationStatus": "unpublished",
+  "createdAt": "2026-07-17",
+  "updatedAt": "2026-07-17"
+}

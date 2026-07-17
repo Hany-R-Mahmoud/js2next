@@ -1,0 +1,531 @@
+{
+  "schemaVersion": "1.0",
+  "id": "JS-01",
+  "slug": "course-orientation",
+  "trackId": "javascript",
+  "moduleId": "JS-M01",
+  "order": 1,
+  "title": "Course Orientation",
+  "required": false,
+  "optional": true,
+  "advanced": false,
+  "contentType": "orientation",
+  "difficulty": 1,
+  "estimatedMinutes": 10,
+  "requiredPrerequisiteTopicIds": [],
+  "recommendedPrerequisiteTopicIds": [],
+  "learningObjectives": [
+    {
+      "id": "JS-01-LO1",
+      "text": "Explain how to use the pathway using a new example and justify the result.",
+      "subtopic": "How to use the pathway",
+      "cognitiveLevel": "understand"
+    },
+    {
+      "id": "JS-01-LO2",
+      "text": "Explain expectations and study approach using a new example and justify the result.",
+      "subtopic": "Expectations and study approach",
+      "cognitiveLevel": "apply"
+    }
+  ],
+  "whyThisMatters": "This orientation establishes how to use the JavaScript pathway deliberately. It explains the order of study, retrieval practice, and how mistakes become evidence for review rather than failure.",
+  "mentalModel": "Draw a decision map: **How to use the pathway** → **Expectations and study approach**. Add branches where the learner must choose an alternative and label the evidence for the choice.",
+  "sections": [
+    {
+      "id": "JS-01-S1",
+      "type": "concept",
+      "title": "How to use the pathway",
+      "body": "Follow the pathway in order unless a diagnostic or prior experience gives a clear reason to skip. Read the objective before the lesson, answer checks without looking back, and use explanations to repair the mental model. Opening a page is not completion; the learner should be able to retrieve and apply the critical ideas.",
+      "objectiveIds": [
+        "JS-01-LO1"
+      ],
+      "checkQuestionId": "JS-01-Q01"
+    },
+    {
+      "id": "JS-01-S2",
+      "type": "concept",
+      "title": "Expectations and study approach",
+      "body": "Programming is cumulative. Short, frequent sessions with active recall are usually more effective than passive marathons. Type and modify examples, predict outcomes before revealing them, and record recurring misconceptions.",
+      "objectiveIds": [
+        "JS-01-LO2"
+      ],
+      "checkQuestionId": "JS-01-Q02"
+    }
+  ],
+  "commonMistakes": [
+    "Memorizing syntax without predicting the underlying value or execution order.",
+    "Mutating shared data when the task expects a new value or explicit ownership.",
+    "Treating browser APIs and language features as the same layer.",
+    "Choosing an abstraction from habit rather than required operations."
+  ],
+  "summary": [
+    "Course Orientation connects How to use the pathway, Expectations and study approach.",
+    "Use the topic to make behavior and decisions explicit rather than memorizing isolated syntax.",
+    "Verify understanding by explaining a new example and answering the topic quiz without looking back."
+  ],
+  "inLessonQuestionIds": [
+    "JS-01-Q01",
+    "JS-01-Q02",
+    "JS-01-Q03"
+  ],
+  "topicQuiz": {
+    "id": "JS-01-QUIZ",
+    "questionIds": [
+      "JS-01-Q04",
+      "JS-01-Q05",
+      "JS-01-Q06",
+      "JS-01-Q07",
+      "JS-01-Q08"
+    ],
+    "masteryThresholdPercent": 80,
+    "attemptPolicy": "unlimited",
+    "failurePolicy": "Show explanations, add missed objectives to local review, and allow immediate or later retry.",
+    "randomizeQuestionOrder": true,
+    "randomizeChoiceOrder": false
+  },
+  "questions": [
+    {
+      "id": "JS-01-Q01",
+      "trackId": "javascript",
+      "moduleId": "JS-M01",
+      "topicId": "JS-01",
+      "objectiveIds": [
+        "JS-01-LO1"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which statement best explains “How to use the pathway” in the context of Course Orientation?",
+      "choices": [
+        {
+          "id": "JS-01-Q01-C1",
+          "label": "Readable code communicates intent through naming, coherent units, consistent shapes, and limited hidden mutation.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of How to use the pathway."
+        },
+        {
+          "id": "JS-01-Q01-C2",
+          "label": "Browser APIs perform work outside the JavaScript call stack and queue callbacks or promise reactions when results are ready.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of How to use the pathway."
+        },
+        {
+          "id": "JS-01-Q01-C3",
+          "label": "The engine evaluates source and manages execution. A runtime combines the engine with host APIs, an event loop, and supporting infrastructure.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of How to use the pathway."
+        },
+        {
+          "id": "JS-01-Q01-C4",
+          "label": "Follow the pathway in order unless a diagnostic or prior experience gives a clear reason to skip. Read the objective before the lesson, answer checks without looking back, and use explanations to repair the mental…",
+          "feedback": "How to use the pathway is best understood as follows: Follow the pathway in order unless a diagnostic or prior experience gives a clear reason to skip. Read the objective before the lesson, answer checks without looking back, and use explanations to repair the mental…"
+        }
+      ],
+      "correctChoiceIds": [
+        "JS-01-Q01-C4"
+      ],
+      "explanation": "How to use the pathway is best understood as follows: Follow the pathway in order unless a diagnostic or prior experience gives a clear reason to skip. Read the objective before the lesson, answer checks without looking back, and use explanations to repair the mental…",
+      "hint": "Focus on what the concept changes, enables, or constrains—not only on its syntax.",
+      "difficulty": 1,
+      "cognitiveLevel": "recognize",
+      "estimatedSeconds": 75,
+      "tags": [
+        "how-to-use-the-pathway",
+        "course-orientation"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JS-01-Q02",
+      "trackId": "javascript",
+      "moduleId": "JS-M01",
+      "topicId": "JS-01",
+      "objectiveIds": [
+        "JS-01-LO2"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which statement best explains “Expectations and study approach” in the context of Course Orientation?",
+      "choices": [
+        {
+          "id": "JS-01-Q02-C1",
+          "label": "Readable code communicates intent through naming, coherent units, consistent shapes, and limited hidden mutation.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Expectations and study approach."
+        },
+        {
+          "id": "JS-01-Q02-C2",
+          "label": "The engine evaluates source and manages execution. A runtime combines the engine with host APIs, an event loop, and supporting infrastructure.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Expectations and study approach."
+        },
+        {
+          "id": "JS-01-Q02-C3",
+          "label": "Browser APIs perform work outside the JavaScript call stack and queue callbacks or promise reactions when results are ready.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Expectations and study approach."
+        },
+        {
+          "id": "JS-01-Q02-C4",
+          "label": "Programming is cumulative. Short, frequent sessions with active recall are usually more effective than passive marathons. Type and modify examples, predict outcomes before revealing them, and record recurring…",
+          "feedback": "Expectations and study approach is best understood as follows: Programming is cumulative. Short, frequent sessions with active recall are usually more effective than passive marathons. Type and modify examples, predict outcomes before revealing them, and record recurring…"
+        }
+      ],
+      "correctChoiceIds": [
+        "JS-01-Q02-C4"
+      ],
+      "explanation": "Expectations and study approach is best understood as follows: Programming is cumulative. Short, frequent sessions with active recall are usually more effective than passive marathons. Type and modify examples, predict outcomes before revealing them, and record recurring…",
+      "hint": "Focus on what the concept changes, enables, or constrains—not only on its syntax.",
+      "difficulty": 1,
+      "cognitiveLevel": "explain",
+      "estimatedSeconds": 75,
+      "tags": [
+        "expectations-and-study-approach",
+        "course-orientation"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JS-01-Q03",
+      "trackId": "javascript",
+      "moduleId": "JS-M01",
+      "topicId": "JS-01",
+      "objectiveIds": [
+        "JS-01-LO1"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which statement best explains “How to use the pathway” in the context of Course Orientation?",
+      "choices": [
+        {
+          "id": "JS-01-Q03-C1",
+          "label": "Browser APIs perform work outside the JavaScript call stack and queue callbacks or promise reactions when results are ready.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of How to use the pathway."
+        },
+        {
+          "id": "JS-01-Q03-C2",
+          "label": "The engine evaluates source and manages execution. A runtime combines the engine with host APIs, an event loop, and supporting infrastructure.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of How to use the pathway."
+        },
+        {
+          "id": "JS-01-Q03-C3",
+          "label": "Readable code communicates intent through naming, coherent units, consistent shapes, and limited hidden mutation.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of How to use the pathway."
+        },
+        {
+          "id": "JS-01-Q03-C4",
+          "label": "Follow the pathway in order unless a diagnostic or prior experience gives a clear reason to skip. Read the objective before the lesson, answer checks without looking back, and use explanations to repair the mental…",
+          "feedback": "How to use the pathway is best understood as follows: Follow the pathway in order unless a diagnostic or prior experience gives a clear reason to skip. Read the objective before the lesson, answer checks without looking back, and use explanations to repair the mental…"
+        }
+      ],
+      "correctChoiceIds": [
+        "JS-01-Q03-C4"
+      ],
+      "explanation": "How to use the pathway is best understood as follows: Follow the pathway in order unless a diagnostic or prior experience gives a clear reason to skip. Read the objective before the lesson, answer checks without looking back, and use explanations to repair the mental…",
+      "hint": "Focus on what the concept changes, enables, or constrains—not only on its syntax.",
+      "difficulty": 1,
+      "cognitiveLevel": "predict",
+      "estimatedSeconds": 120,
+      "tags": [
+        "how-to-use-the-pathway",
+        "course-orientation"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JS-01-Q04",
+      "trackId": "javascript",
+      "moduleId": "JS-M01",
+      "topicId": "JS-01",
+      "objectiveIds": [
+        "JS-01-LO1",
+        "JS-01-LO2"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "A learner must use Course Orientation in a new situation. Which approach best demonstrates transferable understanding?",
+      "choices": [
+        {
+          "id": "JS-01-Q04-C1",
+          "label": "Treat the concept as isolated trivia and avoid connecting it to earlier prerequisites.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Course Orientation."
+        },
+        {
+          "id": "JS-01-Q04-C2",
+          "label": "Skip the underlying model and rely on memorized syntax, even when the result is unclear.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Course Orientation."
+        },
+        {
+          "id": "JS-01-Q04-C3",
+          "label": "Apply How to use the pathway deliberately, make the relevant inputs and assumptions explicit, and verify the observable result before adding more complexity.",
+          "feedback": "Transfer comes from using the concept with explicit assumptions and checking the resulting behavior, not from reproducing a memorized example."
+        },
+        {
+          "id": "JS-01-Q04-C4",
+          "label": "Add more state and abstraction immediately, before identifying the smallest requirement.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Course Orientation."
+        }
+      ],
+      "correctChoiceIds": [
+        "JS-01-Q04-C3"
+      ],
+      "explanation": "Transfer comes from using the concept with explicit assumptions and checking the resulting behavior, not from reproducing a memorized example.",
+      "hint": "Choose the option that would still work when the surrounding example changes.",
+      "difficulty": 1,
+      "cognitiveLevel": "apply",
+      "estimatedSeconds": 120,
+      "tags": [
+        "course-orientation",
+        "how-to-use-the-pathway"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JS-01-Q05",
+      "trackId": "javascript",
+      "moduleId": "JS-M01",
+      "topicId": "JS-01",
+      "objectiveIds": [
+        "JS-01-LO1",
+        "JS-01-LO2"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which mental model is most useful when reasoning about Course Orientation?",
+      "choices": [
+        {
+          "id": "JS-01-Q05-C1",
+          "label": "The topic eliminates the need to model state, data flow, or dependencies.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Course Orientation."
+        },
+        {
+          "id": "JS-01-Q05-C2",
+          "label": "The topic matters only for naming style and does not affect behavior.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Course Orientation."
+        },
+        {
+          "id": "JS-01-Q05-C3",
+          "label": "Draw a decision map: **How to use the pathway** → **Expectations and study approach**. Add branches where the learner must choose an alternative and label the evidence for the choice.",
+          "feedback": "The correct choice connects the example to the underlying model rather than treating the syntax as isolated trivia."
+        },
+        {
+          "id": "JS-01-Q05-C4",
+          "label": "The topic is best learned as a list of unrelated syntax rules.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Course Orientation."
+        }
+      ],
+      "correctChoiceIds": [
+        "JS-01-Q05-C3"
+      ],
+      "explanation": "The correct choice connects the example to the underlying model rather than treating the syntax as isolated trivia.",
+      "hint": "Trace data, control flow, ownership, or rendering step by step.",
+      "difficulty": 1,
+      "cognitiveLevel": "predict",
+      "estimatedSeconds": 120,
+      "tags": [
+        "course-orientation",
+        "how-to-use-the-pathway",
+        "expectations-and-study-approach"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JS-01-Q06",
+      "trackId": "javascript",
+      "moduleId": "JS-M01",
+      "topicId": "JS-01",
+      "objectiveIds": [
+        "JS-01-LO1",
+        "JS-01-LO2"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which response best addresses this common mistake: “Memorizing syntax without predicting the underlying value or execution order.”?",
+      "choices": [
+        {
+          "id": "JS-01-Q06-C1",
+          "label": "The statement is unrelated to program behavior and cannot cause defects.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Course Orientation."
+        },
+        {
+          "id": "JS-01-Q06-C2",
+          "label": "The statement is a misconception. A better approach is to reason from the concept's inputs, rules, and observable outcome, then verify the result.",
+          "feedback": "Good feedback names the misconception and replaces it with a usable reasoning process."
+        },
+        {
+          "id": "JS-01-Q06-C3",
+          "label": "The statement is always correct, so no further reasoning about Course Orientation is needed.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Course Orientation."
+        },
+        {
+          "id": "JS-01-Q06-C4",
+          "label": "The statement is correct only when variable names are short.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Course Orientation."
+        }
+      ],
+      "correctChoiceIds": [
+        "JS-01-Q06-C2"
+      ],
+      "explanation": "Good feedback names the misconception and replaces it with a usable reasoning process.",
+      "hint": "Look for the option that corrects both the belief and the learner's next action.",
+      "difficulty": 1,
+      "cognitiveLevel": "debug",
+      "estimatedSeconds": 120,
+      "tags": [
+        "course-orientation",
+        "common-mistakes"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JS-01-Q07",
+      "trackId": "javascript",
+      "moduleId": "JS-M01",
+      "topicId": "JS-01",
+      "objectiveIds": [
+        "JS-01-LO1",
+        "JS-01-LO2"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which sequence is most reliable when solving a problem involving Course Orientation?",
+      "choices": [
+        {
+          "id": "JS-01-Q07-C1",
+          "label": "Start with a framework abstraction and avoid checking the underlying language behavior.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Course Orientation."
+        },
+        {
+          "id": "JS-01-Q07-C2",
+          "label": "Copy an unrelated implementation, hide the assumptions, and test only the happy path.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Course Orientation."
+        },
+        {
+          "id": "JS-01-Q07-C3",
+          "label": "Optimize first, then decide what the code is supposed to do.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Course Orientation."
+        },
+        {
+          "id": "JS-01-Q07-C4",
+          "label": "First identify the requirement, then apply the relevant rule from How to use the pathway, inspect the result, and only then refactor or optimize.",
+          "feedback": "The reliable sequence starts from the requirement, applies a known rule, observes behavior, and improves the solution afterward."
+        }
+      ],
+      "correctChoiceIds": [
+        "JS-01-Q07-C4"
+      ],
+      "explanation": "The reliable sequence starts from the requirement, applies a known rule, observes behavior, and improves the solution afterward.",
+      "hint": "Prefer a sequence that makes failures visible early.",
+      "difficulty": 1,
+      "cognitiveLevel": "explain",
+      "estimatedSeconds": 75,
+      "tags": [
+        "course-orientation",
+        "problem-solving"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JS-01-Q08",
+      "trackId": "javascript",
+      "moduleId": "JS-M01",
+      "topicId": "JS-01",
+      "objectiveIds": [
+        "JS-01-LO1",
+        "JS-01-LO2"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which guideline shows the best judgment about when to use Course Orientation?",
+      "choices": [
+        {
+          "id": "JS-01-Q08-C1",
+          "label": "Choose based only on line count, without considering readability, correctness, or future change.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Course Orientation."
+        },
+        {
+          "id": "JS-01-Q08-C2",
+          "label": "Use Course Orientation in every file because more abstraction is always better.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Course Orientation."
+        },
+        {
+          "id": "JS-01-Q08-C3",
+          "label": "Use Course Orientation when it makes intent, ownership, or data flow clearer; avoid adding it mechanically when a simpler, equally explicit solution is sufficient.",
+          "feedback": "Engineering judgment balances clarity and cost. The concept should serve the requirement rather than become an end in itself."
+        },
+        {
+          "id": "JS-01-Q08-C4",
+          "label": "Avoid Course Orientation completely because all abstractions reduce maintainability.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Course Orientation."
+        }
+      ],
+      "correctChoiceIds": [
+        "JS-01-Q08-C3"
+      ],
+      "explanation": "Engineering judgment balances clarity and cost. The concept should serve the requirement rather than become an end in itself.",
+      "hint": "Choose the option that acknowledges both benefits and trade-offs.",
+      "difficulty": 2,
+      "cognitiveLevel": "tradeoff",
+      "estimatedSeconds": 120,
+      "tags": [
+        "course-orientation",
+        "tradeoffs"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    }
+  ],
+  "researchSources": [
+    {
+      "kind": "research-transcript",
+      "title": "Watch Before You Start!",
+      "pathwayOrder": 1,
+      "sourceLine": 514,
+      "usage": "Coverage research only; no transcript wording is canonical."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "MDN JavaScript Guide",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "MDN DOM",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "MDN Using promises",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "MDN JavaScript modules",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules",
+      "usage": "Technical verification and freshness review."
+    }
+  ],
+  "contentAuthority": {
+    "canonical": "New JS2Next Release 1 curriculum and independently authored content.",
+    "legacyProjectContent": "Supplementary internal reference only; excluded from runtime unless explicitly re-authored and approved.",
+    "courseTranscripts": "Coverage and sequencing research only; never learner-facing authority.",
+    "officialDocumentation": "Technical verification source."
+  },
+  "version": 1,
+  "status": "draft",
+  "reviewStatus": "pending-human-review",
+  "publicationStatus": "unpublished",
+  "createdAt": "2026-07-17",
+  "updatedAt": "2026-07-17"
+}

@@ -1,0 +1,584 @@
+{
+  "schemaVersion": "1.0",
+  "id": "R-17",
+  "slug": "react-ecosystem-overview",
+  "trackId": "react",
+  "moduleId": "R-M05",
+  "order": 6,
+  "title": "React Ecosystem Overview",
+  "required": true,
+  "optional": false,
+  "advanced": false,
+  "contentType": "synthesis",
+  "difficulty": 3,
+  "estimatedMinutes": 20,
+  "requiredPrerequisiteTopicIds": [
+    "R-16"
+  ],
+  "recommendedPrerequisiteTopicIds": [],
+  "learningObjectives": [
+    {
+      "id": "R-17-LO1",
+      "text": "Compare libraries versus frameworks using a new example and justify the result.",
+      "subtopic": "Libraries versus frameworks",
+      "cognitiveLevel": "understand"
+    },
+    {
+      "id": "R-17-LO2",
+      "text": "Explain common react ecosystem categories using a new example and justify the result.",
+      "subtopic": "Common React ecosystem categories",
+      "cognitiveLevel": "apply"
+    },
+    {
+      "id": "R-17-LO3",
+      "text": "Explain how to evaluate third-party tools using a new example and justify the result.",
+      "subtopic": "How to evaluate third-party tools",
+      "cognitiveLevel": "analyze"
+    }
+  ],
+  "whyThisMatters": "The ideas in react ecosystem overview recur throughout later React work, reducing memorization and debugging later. It belongs to the **How React Renders** module.",
+  "mentalModel": "Draw a decision map: **Libraries versus frameworks** → **Common React ecosystem categories** → **How to evaluate third-party tools**. Add branches where the learner must choose an alternative and label the evidence for the choice.",
+  "sections": [
+    {
+      "id": "R-17-S1",
+      "type": "concept",
+      "title": "Libraries versus frameworks",
+      "body": "A library provides focused capabilities while an application chooses broader structure; a framework supplies more conventions and lifecycle.",
+      "objectiveIds": [
+        "R-17-LO1"
+      ],
+      "checkQuestionId": "R-17-Q01"
+    },
+    {
+      "id": "R-17-S2",
+      "type": "concept",
+      "title": "Common React ecosystem categories",
+      "body": "The ecosystem includes routing, styling, forms, global state, server-state tools, testing, component libraries, and full-stack frameworks.",
+      "objectiveIds": [
+        "R-17-LO2"
+      ],
+      "checkQuestionId": "R-17-Q02"
+    },
+    {
+      "id": "R-17-S3",
+      "type": "concept",
+      "title": "How to evaluate third-party tools",
+      "body": "Assess maintenance, documentation, accessibility, bundle impact, compatibility, escape hatches, and whether the tool solves a stable problem.",
+      "objectiveIds": [
+        "R-17-LO3"
+      ],
+      "checkQuestionId": "R-17-Q03"
+    }
+  ],
+  "commonMistakes": [
+    "Mutating props or state instead of producing the next value.",
+    "Adding state or an Effect for a value that can be derived during render.",
+    "Using global state before identifying the real owner and consumers.",
+    "Optimizing renders without a measured user-facing problem."
+  ],
+  "summary": [
+    "React Ecosystem Overview connects Libraries versus frameworks, Common React ecosystem categories, How to evaluate third-party tools.",
+    "Use the topic to make behavior and decisions explicit rather than memorizing isolated syntax.",
+    "Verify understanding by explaining a new example and answering the topic quiz without looking back."
+  ],
+  "inLessonQuestionIds": [
+    "R-17-Q01",
+    "R-17-Q02",
+    "R-17-Q03"
+  ],
+  "topicQuiz": {
+    "id": "R-17-QUIZ",
+    "questionIds": [
+      "R-17-Q04",
+      "R-17-Q05",
+      "R-17-Q06",
+      "R-17-Q07",
+      "R-17-Q08"
+    ],
+    "masteryThresholdPercent": 80,
+    "attemptPolicy": "unlimited",
+    "failurePolicy": "Show explanations, add missed objectives to local review, and allow immediate or later retry.",
+    "randomizeQuestionOrder": true,
+    "randomizeChoiceOrder": false
+  },
+  "questions": [
+    {
+      "id": "R-17-Q01",
+      "trackId": "react",
+      "moduleId": "R-M05",
+      "topicId": "R-17",
+      "objectiveIds": [
+        "R-17-LO1"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which statement best explains “Libraries versus frameworks” in the context of React Ecosystem Overview?",
+      "choices": [
+        {
+          "id": "R-17-Q01-C1",
+          "label": "A library provides focused capabilities while an application chooses broader structure; a framework supplies more conventions and lifecycle.",
+          "feedback": "Libraries versus frameworks is best understood as follows: A library provides focused capabilities while an application chooses broader structure; a framework supplies more conventions and lifecycle."
+        },
+        {
+          "id": "R-17-Q01-C2",
+          "label": "UI state describes current interaction. Remote state is server-owned and adds asynchronous freshness, caching, and synchronization concerns.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Libraries versus frameworks."
+        },
+        {
+          "id": "R-17-Q01-C3",
+          "label": "Redux reducers calculate next state from current state and an action. They must be predictable and side-effect free.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Libraries versus frameworks."
+        },
+        {
+          "id": "R-17-Q01-C4",
+          "label": "Different element types replace a subtree; matching types are updated. Position and keys determine identity and state preservation.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Libraries versus frameworks."
+        }
+      ],
+      "correctChoiceIds": [
+        "R-17-Q01-C1"
+      ],
+      "explanation": "Libraries versus frameworks is best understood as follows: A library provides focused capabilities while an application chooses broader structure; a framework supplies more conventions and lifecycle.",
+      "hint": "Focus on what the concept changes, enables, or constrains—not only on its syntax.",
+      "difficulty": 2,
+      "cognitiveLevel": "recognize",
+      "estimatedSeconds": 75,
+      "tags": [
+        "libraries-versus-frameworks",
+        "react-ecosystem-overview"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "R-17-Q02",
+      "trackId": "react",
+      "moduleId": "R-M05",
+      "topicId": "R-17",
+      "objectiveIds": [
+        "R-17-LO2"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which statement best explains “Common React ecosystem categories” in the context of React Ecosystem Overview?",
+      "choices": [
+        {
+          "id": "R-17-Q02-C1",
+          "label": "The ecosystem includes routing, styling, forms, global state, server-state tools, testing, component libraries, and full-stack frameworks.",
+          "feedback": "Common React ecosystem categories is best understood as follows: The ecosystem includes routing, styling, forms, global state, server-state tools, testing, component libraries, and full-stack frameworks."
+        },
+        {
+          "id": "R-17-Q02-C2",
+          "label": "Redux reducers calculate next state from current state and an action. They must be predictable and side-effect free.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Common React ecosystem categories."
+        },
+        {
+          "id": "R-17-Q02-C3",
+          "label": "Different element types replace a subtree; matching types are updated. Position and keys determine identity and state preservation.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Common React ecosystem categories."
+        },
+        {
+          "id": "R-17-Q02-C4",
+          "label": "UI state describes current interaction. Remote state is server-owned and adds asynchronous freshness, caching, and synchronization concerns.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Common React ecosystem categories."
+        }
+      ],
+      "correctChoiceIds": [
+        "R-17-Q02-C1"
+      ],
+      "explanation": "Common React ecosystem categories is best understood as follows: The ecosystem includes routing, styling, forms, global state, server-state tools, testing, component libraries, and full-stack frameworks.",
+      "hint": "Focus on what the concept changes, enables, or constrains—not only on its syntax.",
+      "difficulty": 2,
+      "cognitiveLevel": "explain",
+      "estimatedSeconds": 75,
+      "tags": [
+        "common-react-ecosystem-categories",
+        "react-ecosystem-overview"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "R-17-Q03",
+      "trackId": "react",
+      "moduleId": "R-M05",
+      "topicId": "R-17",
+      "objectiveIds": [
+        "R-17-LO3"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which statement best explains “How to evaluate third-party tools” in the context of React Ecosystem Overview?",
+      "choices": [
+        {
+          "id": "R-17-Q03-C1",
+          "label": "Assess maintenance, documentation, accessibility, bundle impact, compatibility, escape hatches, and whether the tool solves a stable problem.",
+          "feedback": "How to evaluate third-party tools is best understood as follows: Assess maintenance, documentation, accessibility, bundle impact, compatibility, escape hatches, and whether the tool solves a stable problem."
+        },
+        {
+          "id": "R-17-Q03-C2",
+          "label": "Different element types replace a subtree; matching types are updated. Position and keys determine identity and state preservation.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of How to evaluate third-party tools."
+        },
+        {
+          "id": "R-17-Q03-C3",
+          "label": "Redux reducers calculate next state from current state and an action. They must be predictable and side-effect free.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of How to evaluate third-party tools."
+        },
+        {
+          "id": "R-17-Q03-C4",
+          "label": "UI state describes current interaction. Remote state is server-owned and adds asynchronous freshness, caching, and synchronization concerns.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of How to evaluate third-party tools."
+        }
+      ],
+      "correctChoiceIds": [
+        "R-17-Q03-C1"
+      ],
+      "explanation": "How to evaluate third-party tools is best understood as follows: Assess maintenance, documentation, accessibility, bundle impact, compatibility, escape hatches, and whether the tool solves a stable problem.",
+      "hint": "Focus on what the concept changes, enables, or constrains—not only on its syntax.",
+      "difficulty": 2,
+      "cognitiveLevel": "predict",
+      "estimatedSeconds": 120,
+      "tags": [
+        "how-to-evaluate-third-party-tools",
+        "react-ecosystem-overview"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "R-17-Q04",
+      "trackId": "react",
+      "moduleId": "R-M05",
+      "topicId": "R-17",
+      "objectiveIds": [
+        "R-17-LO1",
+        "R-17-LO2"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "A learner must use React Ecosystem Overview in a new situation. Which approach best demonstrates transferable understanding?",
+      "choices": [
+        {
+          "id": "R-17-Q04-C1",
+          "label": "Treat the concept as isolated trivia and avoid connecting it to earlier prerequisites.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of React Ecosystem Overview."
+        },
+        {
+          "id": "R-17-Q04-C2",
+          "label": "Skip the underlying model and rely on memorized syntax, even when the result is unclear.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of React Ecosystem Overview."
+        },
+        {
+          "id": "R-17-Q04-C3",
+          "label": "Apply Libraries versus frameworks deliberately, make the relevant inputs and assumptions explicit, and verify the observable result before adding more complexity.",
+          "feedback": "Transfer comes from using the concept with explicit assumptions and checking the resulting behavior, not from reproducing a memorized example."
+        },
+        {
+          "id": "R-17-Q04-C4",
+          "label": "Add more state and abstraction immediately, before identifying the smallest requirement.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of React Ecosystem Overview."
+        }
+      ],
+      "correctChoiceIds": [
+        "R-17-Q04-C3"
+      ],
+      "explanation": "Transfer comes from using the concept with explicit assumptions and checking the resulting behavior, not from reproducing a memorized example.",
+      "hint": "Choose the option that would still work when the surrounding example changes.",
+      "difficulty": 3,
+      "cognitiveLevel": "apply",
+      "estimatedSeconds": 120,
+      "tags": [
+        "react-ecosystem-overview",
+        "libraries-versus-frameworks"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "R-17-Q05",
+      "trackId": "react",
+      "moduleId": "R-M05",
+      "topicId": "R-17",
+      "objectiveIds": [
+        "R-17-LO1",
+        "R-17-LO2",
+        "R-17-LO3"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which mental model is most useful when reasoning about React Ecosystem Overview?",
+      "choices": [
+        {
+          "id": "R-17-Q05-C1",
+          "label": "Draw a decision map: **Libraries versus frameworks** → **Common React ecosystem categories** → **How to evaluate third-party tools**. Add branches where the learner must choose an alternative and label the evidence for the choice.",
+          "feedback": "The correct choice connects the example to the underlying model rather than treating the syntax as isolated trivia."
+        },
+        {
+          "id": "R-17-Q05-C2",
+          "label": "The topic is best learned as a list of unrelated syntax rules.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of React Ecosystem Overview."
+        },
+        {
+          "id": "R-17-Q05-C3",
+          "label": "The topic eliminates the need to model state, data flow, or dependencies.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of React Ecosystem Overview."
+        },
+        {
+          "id": "R-17-Q05-C4",
+          "label": "The topic matters only for naming style and does not affect behavior.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of React Ecosystem Overview."
+        }
+      ],
+      "correctChoiceIds": [
+        "R-17-Q05-C1"
+      ],
+      "explanation": "The correct choice connects the example to the underlying model rather than treating the syntax as isolated trivia.",
+      "hint": "Trace data, control flow, ownership, or rendering step by step.",
+      "difficulty": 3,
+      "cognitiveLevel": "predict",
+      "estimatedSeconds": 120,
+      "tags": [
+        "react-ecosystem-overview",
+        "libraries-versus-frameworks",
+        "common-react-ecosystem-categories"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "R-17-Q06",
+      "trackId": "react",
+      "moduleId": "R-M05",
+      "topicId": "R-17",
+      "objectiveIds": [
+        "R-17-LO1",
+        "R-17-LO2",
+        "R-17-LO3"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which response best addresses this common mistake: “Mutating props or state instead of producing the next value.”?",
+      "choices": [
+        {
+          "id": "R-17-Q06-C1",
+          "label": "The statement is a misconception. A better approach is to reason from the concept's inputs, rules, and observable outcome, then verify the result.",
+          "feedback": "Good feedback names the misconception and replaces it with a usable reasoning process."
+        },
+        {
+          "id": "R-17-Q06-C2",
+          "label": "The statement is always correct, so no further reasoning about React Ecosystem Overview is needed.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of React Ecosystem Overview."
+        },
+        {
+          "id": "R-17-Q06-C3",
+          "label": "The statement is correct only when variable names are short.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of React Ecosystem Overview."
+        },
+        {
+          "id": "R-17-Q06-C4",
+          "label": "The statement is unrelated to program behavior and cannot cause defects.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of React Ecosystem Overview."
+        }
+      ],
+      "correctChoiceIds": [
+        "R-17-Q06-C1"
+      ],
+      "explanation": "Good feedback names the misconception and replaces it with a usable reasoning process.",
+      "hint": "Look for the option that corrects both the belief and the learner's next action.",
+      "difficulty": 3,
+      "cognitiveLevel": "debug",
+      "estimatedSeconds": 120,
+      "tags": [
+        "react-ecosystem-overview",
+        "common-mistakes"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "R-17-Q07",
+      "trackId": "react",
+      "moduleId": "R-M05",
+      "topicId": "R-17",
+      "objectiveIds": [
+        "R-17-LO1",
+        "R-17-LO2",
+        "R-17-LO3"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which sequence is most reliable when solving a problem involving React Ecosystem Overview?",
+      "choices": [
+        {
+          "id": "R-17-Q07-C1",
+          "label": "First identify the requirement, then apply the relevant rule from Libraries versus frameworks, inspect the result, and only then refactor or optimize.",
+          "feedback": "The reliable sequence starts from the requirement, applies a known rule, observes behavior, and improves the solution afterward."
+        },
+        {
+          "id": "R-17-Q07-C2",
+          "label": "Copy an unrelated implementation, hide the assumptions, and test only the happy path.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of React Ecosystem Overview."
+        },
+        {
+          "id": "R-17-Q07-C3",
+          "label": "Optimize first, then decide what the code is supposed to do.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of React Ecosystem Overview."
+        },
+        {
+          "id": "R-17-Q07-C4",
+          "label": "Start with a framework abstraction and avoid checking the underlying language behavior.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of React Ecosystem Overview."
+        }
+      ],
+      "correctChoiceIds": [
+        "R-17-Q07-C1"
+      ],
+      "explanation": "The reliable sequence starts from the requirement, applies a known rule, observes behavior, and improves the solution afterward.",
+      "hint": "Prefer a sequence that makes failures visible early.",
+      "difficulty": 3,
+      "cognitiveLevel": "explain",
+      "estimatedSeconds": 75,
+      "tags": [
+        "react-ecosystem-overview",
+        "problem-solving"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "R-17-Q08",
+      "trackId": "react",
+      "moduleId": "R-M05",
+      "topicId": "R-17",
+      "objectiveIds": [
+        "R-17-LO1",
+        "R-17-LO2",
+        "R-17-LO3"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which guideline shows the best judgment about when to use React Ecosystem Overview?",
+      "choices": [
+        {
+          "id": "R-17-Q08-C1",
+          "label": "Choose based only on line count, without considering readability, correctness, or future change.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of React Ecosystem Overview."
+        },
+        {
+          "id": "R-17-Q08-C2",
+          "label": "Use React Ecosystem Overview in every file because more abstraction is always better.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of React Ecosystem Overview."
+        },
+        {
+          "id": "R-17-Q08-C3",
+          "label": "Avoid React Ecosystem Overview completely because all abstractions reduce maintainability.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of React Ecosystem Overview."
+        },
+        {
+          "id": "R-17-Q08-C4",
+          "label": "Use React Ecosystem Overview when it makes intent, ownership, or data flow clearer; avoid adding it mechanically when a simpler, equally explicit solution is sufficient.",
+          "feedback": "Engineering judgment balances clarity and cost. The concept should serve the requirement rather than become an end in itself."
+        }
+      ],
+      "correctChoiceIds": [
+        "R-17-Q08-C4"
+      ],
+      "explanation": "Engineering judgment balances clarity and cost. The concept should serve the requirement rather than become an end in itself.",
+      "hint": "Choose the option that acknowledges both benefits and trade-offs.",
+      "difficulty": 4,
+      "cognitiveLevel": "tradeoff",
+      "estimatedSeconds": 120,
+      "tags": [
+        "react-ecosystem-overview",
+        "tradeoffs"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    }
+  ],
+  "researchSources": [
+    {
+      "kind": "research-transcript",
+      "title": "Libraries vs. Frameworks & The React Ecosystem",
+      "pathwayOrder": 32,
+      "sourceLine": 42549,
+      "usage": "Coverage research only; no transcript wording is canonical."
+    },
+    {
+      "kind": "research-transcript",
+      "title": "Section Summary: Practical Takeaways",
+      "pathwayOrder": 33,
+      "sourceLine": 42942,
+      "usage": "Coverage research only; no transcript wording is canonical."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "React Learn",
+      "url": "https://react.dev/learn",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "React Managing State",
+      "url": "https://react.dev/learn/managing-state",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "React Escape Hatches",
+      "url": "https://react.dev/learn/escape-hatches",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "React API Reference",
+      "url": "https://react.dev/reference/react",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "Redux Essentials",
+      "url": "https://redux.js.org/tutorials/essentials/part-1-overview-concepts",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "TanStack Query Overview",
+      "url": "https://tanstack.com/query/latest/docs/framework/react/overview",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "Supabase Documentation",
+      "url": "https://supabase.com/docs",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "Tailwind CSS Documentation",
+      "url": "https://tailwindcss.com/docs",
+      "usage": "Technical verification and freshness review."
+    }
+  ],
+  "contentAuthority": {
+    "canonical": "New JS2Next Release 1 curriculum and independently authored content.",
+    "legacyProjectContent": "Supplementary internal reference only; excluded from runtime unless explicitly re-authored and approved.",
+    "courseTranscripts": "Coverage and sequencing research only; never learner-facing authority.",
+    "officialDocumentation": "Technical verification source."
+  },
+  "version": 1,
+  "status": "draft",
+  "reviewStatus": "pending-human-review",
+  "publicationStatus": "unpublished",
+  "createdAt": "2026-07-17",
+  "updatedAt": "2026-07-17"
+}

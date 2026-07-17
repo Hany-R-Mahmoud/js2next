@@ -1,0 +1,601 @@
+{
+  "schemaVersion": "1.0",
+  "id": "R-10",
+  "slug": "designing-component-trees",
+  "trackId": "react",
+  "moduleId": "R-M04",
+  "order": 2,
+  "title": "Designing Component Trees",
+  "required": true,
+  "optional": false,
+  "advanced": false,
+  "contentType": "core",
+  "difficulty": 2,
+  "estimatedMinutes": 15,
+  "requiredPrerequisiteTopicIds": [
+    "R-09"
+  ],
+  "recommendedPrerequisiteTopicIds": [],
+  "learningObjectives": [
+    {
+      "id": "R-10-LO1",
+      "text": "Explain splitting a ui into components using a new example and justify the result.",
+      "subtopic": "Splitting a UI into components",
+      "cognitiveLevel": "understand"
+    },
+    {
+      "id": "R-10-LO2",
+      "text": "Explain component boundaries using a new example and justify the result.",
+      "subtopic": "Component boundaries",
+      "cognitiveLevel": "apply"
+    },
+    {
+      "id": "R-10-LO3",
+      "text": "Explain component categories using a new example and justify the result.",
+      "subtopic": "Component categories",
+      "cognitiveLevel": "analyze"
+    }
+  ],
+  "whyThisMatters": "Designing Component Trees is part of the mental model learners need before making reliable implementation decisions. It belongs to the **Component Design and Reusability** module.",
+  "mentalModel": "Draw a decision map: **Splitting a UI into components** → **Component boundaries** → **Component categories**. Add branches where the learner must choose an alternative and label the evidence for the choice.",
+  "sections": [
+    {
+      "id": "R-10-S1",
+      "type": "concept",
+      "title": "Splitting a UI into components",
+      "body": "Split where a region has a coherent responsibility, repeated pattern, independent state, or meaningful data boundary.",
+      "objectiveIds": [
+        "R-10-LO1"
+      ],
+      "checkQuestionId": "R-10-Q01"
+    },
+    {
+      "id": "R-10-S2",
+      "type": "concept",
+      "title": "Component boundaries",
+      "body": "A component boundary defines ownership of markup, behavior, and dependencies. Good boundaries minimize reasons to change.",
+      "objectiveIds": [
+        "R-10-LO2"
+      ],
+      "checkQuestionId": "R-10-Q02"
+    },
+    {
+      "id": "R-10-S3",
+      "type": "concept",
+      "title": "Component categories",
+      "body": "Page, layout, feature, and reusable UI categories can clarify ownership and dependency direction, but they are team conventions rather than React rules.",
+      "objectiveIds": [
+        "R-10-LO3"
+      ],
+      "checkQuestionId": "R-10-Q03"
+    },
+    {
+      "id": "R-10-EX1",
+      "type": "code-example",
+      "title": "Worked example",
+      "language": "jsx",
+      "source": "function TopicPage({ topic }) {\n  return (\n    <main>\n      <TopicHeader topic={topic} />\n      <LessonSections sections={topic.sections} />\n      <TopicQuiz topicId={topic.id} />\n    </main>\n  );\n}",
+      "explanation": "The page is split along distinct responsibilities.",
+      "objectiveIds": [
+        "R-10-LO1",
+        "R-10-LO2",
+        "R-10-LO3"
+      ]
+    }
+  ],
+  "commonMistakes": [
+    "Mutating props or state instead of producing the next value.",
+    "Adding state or an Effect for a value that can be derived during render.",
+    "Using global state before identifying the real owner and consumers.",
+    "Optimizing renders without a measured user-facing problem."
+  ],
+  "summary": [
+    "Designing Component Trees connects Splitting a UI into components, Component boundaries, Component categories.",
+    "Use the topic to make behavior and decisions explicit rather than memorizing isolated syntax.",
+    "Verify understanding by explaining a new example and answering the topic quiz without looking back."
+  ],
+  "inLessonQuestionIds": [
+    "R-10-Q01",
+    "R-10-Q02",
+    "R-10-Q03"
+  ],
+  "topicQuiz": {
+    "id": "R-10-QUIZ",
+    "questionIds": [
+      "R-10-Q04",
+      "R-10-Q05",
+      "R-10-Q06",
+      "R-10-Q07",
+      "R-10-Q08"
+    ],
+    "masteryThresholdPercent": 80,
+    "attemptPolicy": "unlimited",
+    "failurePolicy": "Show explanations, add missed objectives to local review, and allow immediate or later retry.",
+    "randomizeQuestionOrder": true,
+    "randomizeChoiceOrder": false
+  },
+  "questions": [
+    {
+      "id": "R-10-Q01",
+      "trackId": "react",
+      "moduleId": "R-M04",
+      "topicId": "R-10",
+      "objectiveIds": [
+        "R-10-LO1"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which statement best explains “Splitting a UI into components” in the context of Designing Component Trees?",
+      "choices": [
+        {
+          "id": "R-10-Q01-C1",
+          "label": "Split where a region has a coherent responsibility, repeated pattern, independent state, or meaningful data boundary.",
+          "feedback": "Splitting a UI into components is best understood as follows: Split where a region has a coherent responsibility, repeated pattern, independent state, or meaningful data boundary."
+        },
+        {
+          "id": "R-10-Q01-C2",
+          "label": "Keys give siblings stable identity across insertion, removal, and reordering. Use data identifiers rather than indexes for changing lists.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Splitting a UI into components."
+        },
+        {
+          "id": "R-10-Q01-C3",
+          "label": "Evaluate alternatives by complexity, clarity, testability, performance, team understanding, and likely change rather than searching for a universally perfect pattern.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Splitting a UI into components."
+        },
+        {
+          "id": "R-10-Q01-C4",
+          "label": "Do not use Effects for render-time derivation, click logic, or duplicate-state synchronization.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Splitting a UI into components."
+        }
+      ],
+      "correctChoiceIds": [
+        "R-10-Q01-C1"
+      ],
+      "explanation": "Splitting a UI into components is best understood as follows: Split where a region has a coherent responsibility, repeated pattern, independent state, or meaningful data boundary.",
+      "hint": "Focus on what the concept changes, enables, or constrains—not only on its syntax.",
+      "difficulty": 1,
+      "cognitiveLevel": "recognize",
+      "estimatedSeconds": 75,
+      "tags": [
+        "splitting-a-ui-into-components",
+        "designing-component-trees"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "R-10-Q02",
+      "trackId": "react",
+      "moduleId": "R-M04",
+      "topicId": "R-10",
+      "objectiveIds": [
+        "R-10-LO2"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which statement best explains “Component boundaries” in the context of Designing Component Trees?",
+      "choices": [
+        {
+          "id": "R-10-Q02-C1",
+          "label": "A component boundary defines ownership of markup, behavior, and dependencies. Good boundaries minimize reasons to change.",
+          "feedback": "Component boundaries is best understood as follows: A component boundary defines ownership of markup, behavior, and dependencies. Good boundaries minimize reasons to change."
+        },
+        {
+          "id": "R-10-Q02-C2",
+          "label": "Keys give siblings stable identity across insertion, removal, and reordering. Use data identifiers rather than indexes for changing lists.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Component boundaries."
+        },
+        {
+          "id": "R-10-Q02-C3",
+          "label": "Evaluate alternatives by complexity, clarity, testability, performance, team understanding, and likely change rather than searching for a universally perfect pattern.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Component boundaries."
+        },
+        {
+          "id": "R-10-Q02-C4",
+          "label": "Do not use Effects for render-time derivation, click logic, or duplicate-state synchronization.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Component boundaries."
+        }
+      ],
+      "correctChoiceIds": [
+        "R-10-Q02-C1"
+      ],
+      "explanation": "Component boundaries is best understood as follows: A component boundary defines ownership of markup, behavior, and dependencies. Good boundaries minimize reasons to change.",
+      "hint": "Focus on what the concept changes, enables, or constrains—not only on its syntax.",
+      "difficulty": 1,
+      "cognitiveLevel": "explain",
+      "estimatedSeconds": 75,
+      "tags": [
+        "component-boundaries",
+        "designing-component-trees"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "R-10-Q03",
+      "trackId": "react",
+      "moduleId": "R-M04",
+      "topicId": "R-10",
+      "objectiveIds": [
+        "R-10-LO3"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which statement best explains “Component categories” in the context of Designing Component Trees?",
+      "choices": [
+        {
+          "id": "R-10-Q03-C1",
+          "label": "Keys give siblings stable identity across insertion, removal, and reordering. Use data identifiers rather than indexes for changing lists.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Component categories."
+        },
+        {
+          "id": "R-10-Q03-C2",
+          "label": "Page, layout, feature, and reusable UI categories can clarify ownership and dependency direction, but they are team conventions rather than React rules.",
+          "feedback": "Component categories is best understood as follows: Page, layout, feature, and reusable UI categories can clarify ownership and dependency direction, but they are team conventions rather than React rules."
+        },
+        {
+          "id": "R-10-Q03-C3",
+          "label": "Do not use Effects for render-time derivation, click logic, or duplicate-state synchronization.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Component categories."
+        },
+        {
+          "id": "R-10-Q03-C4",
+          "label": "Evaluate alternatives by complexity, clarity, testability, performance, team understanding, and likely change rather than searching for a universally perfect pattern.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Component categories."
+        }
+      ],
+      "correctChoiceIds": [
+        "R-10-Q03-C2"
+      ],
+      "explanation": "Component categories is best understood as follows: Page, layout, feature, and reusable UI categories can clarify ownership and dependency direction, but they are team conventions rather than React rules.",
+      "hint": "Focus on what the concept changes, enables, or constrains—not only on its syntax.",
+      "difficulty": 1,
+      "cognitiveLevel": "predict",
+      "estimatedSeconds": 120,
+      "tags": [
+        "component-categories",
+        "designing-component-trees"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "R-10-Q04",
+      "trackId": "react",
+      "moduleId": "R-M04",
+      "topicId": "R-10",
+      "objectiveIds": [
+        "R-10-LO1",
+        "R-10-LO2"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "A learner must use Designing Component Trees in a new situation. Which approach best demonstrates transferable understanding?",
+      "choices": [
+        {
+          "id": "R-10-Q04-C1",
+          "label": "Apply Splitting a UI into components deliberately, make the relevant inputs and assumptions explicit, and verify the observable result before adding more complexity.",
+          "feedback": "Transfer comes from using the concept with explicit assumptions and checking the resulting behavior, not from reproducing a memorized example."
+        },
+        {
+          "id": "R-10-Q04-C2",
+          "label": "Add more state and abstraction immediately, before identifying the smallest requirement.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Designing Component Trees."
+        },
+        {
+          "id": "R-10-Q04-C3",
+          "label": "Skip the underlying model and rely on memorized syntax, even when the result is unclear.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Designing Component Trees."
+        },
+        {
+          "id": "R-10-Q04-C4",
+          "label": "Treat the concept as isolated trivia and avoid connecting it to earlier prerequisites.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Designing Component Trees."
+        }
+      ],
+      "correctChoiceIds": [
+        "R-10-Q04-C1"
+      ],
+      "explanation": "Transfer comes from using the concept with explicit assumptions and checking the resulting behavior, not from reproducing a memorized example.",
+      "hint": "Choose the option that would still work when the surrounding example changes.",
+      "difficulty": 2,
+      "cognitiveLevel": "apply",
+      "estimatedSeconds": 120,
+      "tags": [
+        "designing-component-trees",
+        "splitting-a-ui-into-components"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "R-10-Q05",
+      "trackId": "react",
+      "moduleId": "R-M04",
+      "topicId": "R-10",
+      "objectiveIds": [
+        "R-10-LO1",
+        "R-10-LO2",
+        "R-10-LO3"
+      ],
+      "kind": "single-choice",
+      "presentation": "code",
+      "prompt": "What is the most accurate explanation of the following Designing Component Trees example?",
+      "choices": [
+        {
+          "id": "R-10-Q05-C1",
+          "label": "The page is split along distinct responsibilities.",
+          "feedback": "The correct choice connects the example to the underlying model rather than treating the syntax as isolated trivia."
+        },
+        {
+          "id": "R-10-Q05-C2",
+          "label": "The snippet removes the need to understand the data flowing through the program.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Designing Component Trees."
+        },
+        {
+          "id": "R-10-Q05-C3",
+          "label": "The snippet guarantees that all values are immutable and all operations are asynchronous.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Designing Component Trees."
+        },
+        {
+          "id": "R-10-Q05-C4",
+          "label": "The snippet is valid only because JavaScript ignores variable scope and evaluation order.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Designing Component Trees."
+        }
+      ],
+      "correctChoiceIds": [
+        "R-10-Q05-C1"
+      ],
+      "explanation": "The correct choice connects the example to the underlying model rather than treating the syntax as isolated trivia.",
+      "hint": "Trace data, control flow, ownership, or rendering step by step.",
+      "difficulty": 2,
+      "cognitiveLevel": "predict",
+      "estimatedSeconds": 120,
+      "tags": [
+        "designing-component-trees",
+        "splitting-a-ui-into-components",
+        "component-boundaries"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review",
+      "code": {
+        "language": "jsx",
+        "source": "function TopicPage({ topic }) {\n  return (\n    <main>\n      <TopicHeader topic={topic} />\n      <LessonSections sections={topic.sections} />\n      <TopicQuiz topicId={topic.id} />\n    </main>\n  );\n}"
+      }
+    },
+    {
+      "id": "R-10-Q06",
+      "trackId": "react",
+      "moduleId": "R-M04",
+      "topicId": "R-10",
+      "objectiveIds": [
+        "R-10-LO1",
+        "R-10-LO2",
+        "R-10-LO3"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which response best addresses this common mistake: “Mutating props or state instead of producing the next value.”?",
+      "choices": [
+        {
+          "id": "R-10-Q06-C1",
+          "label": "The statement is unrelated to program behavior and cannot cause defects.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Designing Component Trees."
+        },
+        {
+          "id": "R-10-Q06-C2",
+          "label": "The statement is always correct, so no further reasoning about Designing Component Trees is needed.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Designing Component Trees."
+        },
+        {
+          "id": "R-10-Q06-C3",
+          "label": "The statement is a misconception. A better approach is to reason from the concept's inputs, rules, and observable outcome, then verify the result.",
+          "feedback": "Good feedback names the misconception and replaces it with a usable reasoning process."
+        },
+        {
+          "id": "R-10-Q06-C4",
+          "label": "The statement is correct only when variable names are short.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Designing Component Trees."
+        }
+      ],
+      "correctChoiceIds": [
+        "R-10-Q06-C3"
+      ],
+      "explanation": "Good feedback names the misconception and replaces it with a usable reasoning process.",
+      "hint": "Look for the option that corrects both the belief and the learner's next action.",
+      "difficulty": 2,
+      "cognitiveLevel": "debug",
+      "estimatedSeconds": 120,
+      "tags": [
+        "designing-component-trees",
+        "common-mistakes"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "R-10-Q07",
+      "trackId": "react",
+      "moduleId": "R-M04",
+      "topicId": "R-10",
+      "objectiveIds": [
+        "R-10-LO1",
+        "R-10-LO2",
+        "R-10-LO3"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which sequence is most reliable when solving a problem involving Designing Component Trees?",
+      "choices": [
+        {
+          "id": "R-10-Q07-C1",
+          "label": "First identify the requirement, then apply the relevant rule from Splitting a UI into components, inspect the result, and only then refactor or optimize.",
+          "feedback": "The reliable sequence starts from the requirement, applies a known rule, observes behavior, and improves the solution afterward."
+        },
+        {
+          "id": "R-10-Q07-C2",
+          "label": "Start with a framework abstraction and avoid checking the underlying language behavior.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Designing Component Trees."
+        },
+        {
+          "id": "R-10-Q07-C3",
+          "label": "Optimize first, then decide what the code is supposed to do.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Designing Component Trees."
+        },
+        {
+          "id": "R-10-Q07-C4",
+          "label": "Copy an unrelated implementation, hide the assumptions, and test only the happy path.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Designing Component Trees."
+        }
+      ],
+      "correctChoiceIds": [
+        "R-10-Q07-C1"
+      ],
+      "explanation": "The reliable sequence starts from the requirement, applies a known rule, observes behavior, and improves the solution afterward.",
+      "hint": "Prefer a sequence that makes failures visible early.",
+      "difficulty": 2,
+      "cognitiveLevel": "explain",
+      "estimatedSeconds": 75,
+      "tags": [
+        "designing-component-trees",
+        "problem-solving"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "R-10-Q08",
+      "trackId": "react",
+      "moduleId": "R-M04",
+      "topicId": "R-10",
+      "objectiveIds": [
+        "R-10-LO1",
+        "R-10-LO2",
+        "R-10-LO3"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which guideline shows the best judgment about when to use Designing Component Trees?",
+      "choices": [
+        {
+          "id": "R-10-Q08-C1",
+          "label": "Avoid Designing Component Trees completely because all abstractions reduce maintainability.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Designing Component Trees."
+        },
+        {
+          "id": "R-10-Q08-C2",
+          "label": "Choose based only on line count, without considering readability, correctness, or future change.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Designing Component Trees."
+        },
+        {
+          "id": "R-10-Q08-C3",
+          "label": "Use Designing Component Trees in every file because more abstraction is always better.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Designing Component Trees."
+        },
+        {
+          "id": "R-10-Q08-C4",
+          "label": "Use Designing Component Trees when it makes intent, ownership, or data flow clearer; avoid adding it mechanically when a simpler, equally explicit solution is sufficient.",
+          "feedback": "Engineering judgment balances clarity and cost. The concept should serve the requirement rather than become an end in itself."
+        }
+      ],
+      "correctChoiceIds": [
+        "R-10-Q08-C4"
+      ],
+      "explanation": "Engineering judgment balances clarity and cost. The concept should serve the requirement rather than become an end in itself.",
+      "hint": "Choose the option that acknowledges both benefits and trade-offs.",
+      "difficulty": 3,
+      "cognitiveLevel": "tradeoff",
+      "estimatedSeconds": 120,
+      "tags": [
+        "designing-component-trees",
+        "tradeoffs"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    }
+  ],
+  "researchSources": [
+    {
+      "kind": "research-transcript",
+      "title": "How to Split a UI Into Components",
+      "pathwayOrder": 19,
+      "sourceLine": 31754,
+      "usage": "Coverage research only; no transcript wording is canonical."
+    },
+    {
+      "kind": "research-transcript",
+      "title": "Component Categories",
+      "pathwayOrder": 20,
+      "sourceLine": 33150,
+      "usage": "Coverage research only; no transcript wording is canonical."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "React Learn",
+      "url": "https://react.dev/learn",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "React Managing State",
+      "url": "https://react.dev/learn/managing-state",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "React Escape Hatches",
+      "url": "https://react.dev/learn/escape-hatches",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "React API Reference",
+      "url": "https://react.dev/reference/react",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "Redux Essentials",
+      "url": "https://redux.js.org/tutorials/essentials/part-1-overview-concepts",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "TanStack Query Overview",
+      "url": "https://tanstack.com/query/latest/docs/framework/react/overview",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "Supabase Documentation",
+      "url": "https://supabase.com/docs",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "Tailwind CSS Documentation",
+      "url": "https://tailwindcss.com/docs",
+      "usage": "Technical verification and freshness review."
+    }
+  ],
+  "contentAuthority": {
+    "canonical": "New JS2Next Release 1 curriculum and independently authored content.",
+    "legacyProjectContent": "Supplementary internal reference only; excluded from runtime unless explicitly re-authored and approved.",
+    "courseTranscripts": "Coverage and sequencing research only; never learner-facing authority.",
+    "officialDocumentation": "Technical verification source."
+  },
+  "version": 1,
+  "status": "draft",
+  "reviewStatus": "pending-human-review",
+  "publicationStatus": "unpublished",
+  "createdAt": "2026-07-17",
+  "updatedAt": "2026-07-17"
+}

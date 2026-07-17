@@ -1,0 +1,28 @@
+{
+  "schemaVersion": "1.0",
+  "id": "JS-M09-REVIEW",
+  "kind": "module-review",
+  "trackId": "javascript",
+  "moduleId": "JS-M09",
+  "title": "Asynchronous JavaScript — Module Review",
+  "questionIds": [
+    "JS-23-Q04",
+    "JS-24-Q04",
+    "JS-25-Q04",
+    "JS-23-Q05",
+    "JS-24-Q05",
+    "JS-25-Q05",
+    "JS-23-Q06",
+    "JS-24-Q06",
+    "JS-25-Q06",
+    "JS-23-Q07"
+  ],
+  "masteryThresholdPercent": 80,
+  "attemptPolicy": "unlimited",
+  "failurePolicy": "Show explanations, identify missed objectives, recommend targeted topic review, and allow retry.",
+  "randomizeQuestionOrder": true,
+  "randomizeChoiceOrder": false,
+  "version": 1,
+  "status": "draft",
+  "reviewStatus": "pending-human-review"
+}

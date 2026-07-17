@@ -1,0 +1,26 @@
+{
+  "schemaVersion": "1.0",
+  "id": "JS-M08-REVIEW",
+  "kind": "module-review",
+  "trackId": "javascript",
+  "moduleId": "JS-M08",
+  "title": "Project Planning: Mapty — Module Review",
+  "questionIds": [
+    "JS-22-Q04",
+    "JS-22-Q05",
+    "JS-22-Q06",
+    "JS-22-Q07",
+    "JS-22-Q08",
+    "JS-22-Q01",
+    "JS-22-Q02",
+    "JS-22-Q03"
+  ],
+  "masteryThresholdPercent": 80,
+  "attemptPolicy": "unlimited",
+  "failurePolicy": "Show explanations, identify missed objectives, recommend targeted topic review, and allow retry.",
+  "randomizeQuestionOrder": true,
+  "randomizeChoiceOrder": false,
+  "version": 1,
+  "status": "draft",
+  "reviewStatus": "pending-human-review"
+}

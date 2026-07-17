@@ -1,0 +1,592 @@
+{
+  "schemaVersion": "1.0",
+  "id": "N-01",
+  "slug": "server-side-rendering-and-hydration",
+  "trackId": "nextjs",
+  "moduleId": "N-M01",
+  "order": 1,
+  "title": "Server-Side Rendering and Hydration",
+  "required": true,
+  "optional": false,
+  "advanced": false,
+  "contentType": "core",
+  "difficulty": 2,
+  "estimatedMinutes": 20,
+  "requiredPrerequisiteTopicIds": [],
+  "recommendedPrerequisiteTopicIds": [
+    "R-12",
+    "R-13",
+    "R-18",
+    "R-24"
+  ],
+  "learningObjectives": [
+    {
+      "id": "N-01-LO1",
+      "text": "Compare client-side versus server-side rendering using a new example and justify the result.",
+      "subtopic": "Client-side versus server-side rendering",
+      "cognitiveLevel": "understand"
+    },
+    {
+      "id": "N-01-LO2",
+      "text": "Trace and explain ssr request flow using a new example and justify the result.",
+      "subtopic": "SSR request flow",
+      "cognitiveLevel": "apply"
+    },
+    {
+      "id": "N-01-LO3",
+      "text": "Explain hydration and interactivity using a new example and justify the result.",
+      "subtopic": "Hydration and interactivity",
+      "cognitiveLevel": "analyze"
+    }
+  ],
+  "whyThisMatters": "Server-Side Rendering and Hydration is part of the mental model learners need before making reliable implementation decisions. It belongs to the **Rendering Foundations** module.",
+  "mentalModel": "Draw a decision map: **Client-side versus server-side rendering** → **SSR request flow** → **Hydration and interactivity**. Add branches where the learner must choose an alternative and label the evidence for the choice.",
+  "sections": [
+    {
+      "id": "N-01-S1",
+      "type": "concept",
+      "title": "Client-side versus server-side rendering",
+      "body": "Client-side rendering creates much of the UI in the browser; server-side rendering creates HTML on a server or during prerendering. Modern applications often combine both.",
+      "objectiveIds": [
+        "N-01-LO1"
+      ],
+      "checkQuestionId": "N-01-Q01"
+    },
+    {
+      "id": "N-01-S2",
+      "type": "concept",
+      "title": "SSR request flow",
+      "body": "The server receives a request, resolves data, renders HTML, and returns it so content can appear before all client JavaScript is ready.",
+      "objectiveIds": [
+        "N-01-LO2"
+      ],
+      "checkQuestionId": "N-01-Q02"
+    },
+    {
+      "id": "N-01-S3",
+      "type": "concept",
+      "title": "Hydration and interactivity",
+      "body": "Hydration connects React behavior to matching server-rendered HTML. The first client render must agree with server output.",
+      "objectiveIds": [
+        "N-01-LO3"
+      ],
+      "checkQuestionId": "N-01-Q03"
+    },
+    {
+      "id": "N-01-EX1",
+      "type": "code-example",
+      "title": "Worked example",
+      "language": "jsx",
+      "source": "// Server output:\n<div id=\"root\"><button>Continue</button></div>\n\n// Client entry:\nhydrateRoot(document.getElementById('root'), <App />);",
+      "explanation": "HTML appears first and hydration attaches React behavior to the matching tree.",
+      "objectiveIds": [
+        "N-01-LO1",
+        "N-01-LO2",
+        "N-01-LO3"
+      ]
+    }
+  ],
+  "commonMistakes": [
+    "Marking a large route tree as client code when only a small interaction needs it.",
+    "Confusing React Server Components with server-side rendering.",
+    "Assuming cached data is fresh without an explicit policy and invalidation path.",
+    "Placing security-sensitive validation only in the client or middleware layer."
+  ],
+  "summary": [
+    "Server-Side Rendering and Hydration connects Client-side versus server-side rendering, SSR request flow, Hydration and interactivity.",
+    "Use the topic to make behavior and decisions explicit rather than memorizing isolated syntax.",
+    "Verify understanding by explaining a new example and answering the topic quiz without looking back."
+  ],
+  "inLessonQuestionIds": [
+    "N-01-Q01",
+    "N-01-Q02",
+    "N-01-Q03"
+  ],
+  "topicQuiz": {
+    "id": "N-01-QUIZ",
+    "questionIds": [
+      "N-01-Q04",
+      "N-01-Q05",
+      "N-01-Q06",
+      "N-01-Q07",
+      "N-01-Q08"
+    ],
+    "masteryThresholdPercent": 80,
+    "attemptPolicy": "unlimited",
+    "failurePolicy": "Show explanations, add missed objectives to local review, and allow immediate or later retry.",
+    "randomizeQuestionOrder": true,
+    "randomizeChoiceOrder": false
+  },
+  "questions": [
+    {
+      "id": "N-01-Q01",
+      "trackId": "nextjs",
+      "moduleId": "N-M01",
+      "topicId": "N-01",
+      "objectiveIds": [
+        "N-01-LO1"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which statement best explains “Client-side versus server-side rendering” in the context of Server-Side Rendering and Hydration?",
+      "choices": [
+        {
+          "id": "N-01-Q01-C1",
+          "label": "Client-side rendering creates much of the UI in the browser; server-side rendering creates HTML on a server or during prerendering. Modern applications often combine both.",
+          "feedback": "Client-side versus server-side rendering is best understood as follows: Client-side rendering creates much of the UI in the browser; server-side rendering creates HTML on a server or during prerendering. Modern applications often combine both."
+        },
+        {
+          "id": "N-01-Q01-C2",
+          "label": "Next.js can use RSC to assemble the tree and SSR to emit initial HTML, then hydrate client boundaries in the browser.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Client-side versus server-side rendering."
+        },
+        {
+          "id": "N-01-Q01-C3",
+          "label": "Next.js adds routing, server rendering, data conventions, asset optimization, build tooling, and deployment integration around React.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Client-side versus server-side rendering."
+        },
+        {
+          "id": "N-01-Q01-C4",
+          "label": "A Suspense boundary defines where fallback UI can appear while a child waits.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Client-side versus server-side rendering."
+        }
+      ],
+      "correctChoiceIds": [
+        "N-01-Q01-C1"
+      ],
+      "explanation": "Client-side versus server-side rendering is best understood as follows: Client-side rendering creates much of the UI in the browser; server-side rendering creates HTML on a server or during prerendering. Modern applications often combine both.",
+      "hint": "Focus on what the concept changes, enables, or constrains—not only on its syntax.",
+      "difficulty": 1,
+      "cognitiveLevel": "recognize",
+      "estimatedSeconds": 75,
+      "tags": [
+        "client-side-versus-server-side-rendering",
+        "server-side-rendering-and-hydration"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "N-01-Q02",
+      "trackId": "nextjs",
+      "moduleId": "N-M01",
+      "topicId": "N-01",
+      "objectiveIds": [
+        "N-01-LO2"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which statement best explains “SSR request flow” in the context of Server-Side Rendering and Hydration?",
+      "choices": [
+        {
+          "id": "N-01-Q02-C1",
+          "label": "A Suspense boundary defines where fallback UI can appear while a child waits.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of SSR request flow."
+        },
+        {
+          "id": "N-01-Q02-C2",
+          "label": "Next.js adds routing, server rendering, data conventions, asset optimization, build tooling, and deployment integration around React.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of SSR request flow."
+        },
+        {
+          "id": "N-01-Q02-C3",
+          "label": "Next.js can use RSC to assemble the tree and SSR to emit initial HTML, then hydrate client boundaries in the browser.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of SSR request flow."
+        },
+        {
+          "id": "N-01-Q02-C4",
+          "label": "The server receives a request, resolves data, renders HTML, and returns it so content can appear before all client JavaScript is ready.",
+          "feedback": "SSR request flow is best understood as follows: The server receives a request, resolves data, renders HTML, and returns it so content can appear before all client JavaScript is ready."
+        }
+      ],
+      "correctChoiceIds": [
+        "N-01-Q02-C4"
+      ],
+      "explanation": "SSR request flow is best understood as follows: The server receives a request, resolves data, renders HTML, and returns it so content can appear before all client JavaScript is ready.",
+      "hint": "Focus on what the concept changes, enables, or constrains—not only on its syntax.",
+      "difficulty": 1,
+      "cognitiveLevel": "explain",
+      "estimatedSeconds": 75,
+      "tags": [
+        "ssr-request-flow",
+        "server-side-rendering-and-hydration"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "N-01-Q03",
+      "trackId": "nextjs",
+      "moduleId": "N-M01",
+      "topicId": "N-01",
+      "objectiveIds": [
+        "N-01-LO3"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which statement best explains “Hydration and interactivity” in the context of Server-Side Rendering and Hydration?",
+      "choices": [
+        {
+          "id": "N-01-Q03-C1",
+          "label": "Next.js can use RSC to assemble the tree and SSR to emit initial HTML, then hydrate client boundaries in the browser.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Hydration and interactivity."
+        },
+        {
+          "id": "N-01-Q03-C2",
+          "label": "Hydration connects React behavior to matching server-rendered HTML. The first client render must agree with server output.",
+          "feedback": "Hydration and interactivity is best understood as follows: Hydration connects React behavior to matching server-rendered HTML. The first client render must agree with server output."
+        },
+        {
+          "id": "N-01-Q03-C3",
+          "label": "A Suspense boundary defines where fallback UI can appear while a child waits.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Hydration and interactivity."
+        },
+        {
+          "id": "N-01-Q03-C4",
+          "label": "Next.js adds routing, server rendering, data conventions, asset optimization, build tooling, and deployment integration around React.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Hydration and interactivity."
+        }
+      ],
+      "correctChoiceIds": [
+        "N-01-Q03-C2"
+      ],
+      "explanation": "Hydration and interactivity is best understood as follows: Hydration connects React behavior to matching server-rendered HTML. The first client render must agree with server output.",
+      "hint": "Focus on what the concept changes, enables, or constrains—not only on its syntax.",
+      "difficulty": 1,
+      "cognitiveLevel": "predict",
+      "estimatedSeconds": 120,
+      "tags": [
+        "hydration-and-interactivity",
+        "server-side-rendering-and-hydration"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "N-01-Q04",
+      "trackId": "nextjs",
+      "moduleId": "N-M01",
+      "topicId": "N-01",
+      "objectiveIds": [
+        "N-01-LO1",
+        "N-01-LO2"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "A learner must use Server-Side Rendering and Hydration in a new situation. Which approach best demonstrates transferable understanding?",
+      "choices": [
+        {
+          "id": "N-01-Q04-C1",
+          "label": "Treat the concept as isolated trivia and avoid connecting it to earlier prerequisites.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Server-Side Rendering and Hydration."
+        },
+        {
+          "id": "N-01-Q04-C2",
+          "label": "Add more state and abstraction immediately, before identifying the smallest requirement.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Server-Side Rendering and Hydration."
+        },
+        {
+          "id": "N-01-Q04-C3",
+          "label": "Apply Client-side versus server-side rendering deliberately, make the relevant inputs and assumptions explicit, and verify the observable result before adding more complexity.",
+          "feedback": "Transfer comes from using the concept with explicit assumptions and checking the resulting behavior, not from reproducing a memorized example."
+        },
+        {
+          "id": "N-01-Q04-C4",
+          "label": "Skip the underlying model and rely on memorized syntax, even when the result is unclear.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Server-Side Rendering and Hydration."
+        }
+      ],
+      "correctChoiceIds": [
+        "N-01-Q04-C3"
+      ],
+      "explanation": "Transfer comes from using the concept with explicit assumptions and checking the resulting behavior, not from reproducing a memorized example.",
+      "hint": "Choose the option that would still work when the surrounding example changes.",
+      "difficulty": 2,
+      "cognitiveLevel": "apply",
+      "estimatedSeconds": 120,
+      "tags": [
+        "server-side-rendering-and-hydration",
+        "client-side-versus-server-side-rendering"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "N-01-Q05",
+      "trackId": "nextjs",
+      "moduleId": "N-M01",
+      "topicId": "N-01",
+      "objectiveIds": [
+        "N-01-LO1",
+        "N-01-LO2",
+        "N-01-LO3"
+      ],
+      "kind": "single-choice",
+      "presentation": "code",
+      "prompt": "What is the most accurate explanation of the following Server-Side Rendering and Hydration example?",
+      "choices": [
+        {
+          "id": "N-01-Q05-C1",
+          "label": "The snippet removes the need to understand the data flowing through the program.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Server-Side Rendering and Hydration."
+        },
+        {
+          "id": "N-01-Q05-C2",
+          "label": "HTML appears first and hydration attaches React behavior to the matching tree.",
+          "feedback": "The correct choice connects the example to the underlying model rather than treating the syntax as isolated trivia."
+        },
+        {
+          "id": "N-01-Q05-C3",
+          "label": "The snippet guarantees that all values are immutable and all operations are asynchronous.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Server-Side Rendering and Hydration."
+        },
+        {
+          "id": "N-01-Q05-C4",
+          "label": "The snippet is valid only because JavaScript ignores variable scope and evaluation order.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Server-Side Rendering and Hydration."
+        }
+      ],
+      "correctChoiceIds": [
+        "N-01-Q05-C2"
+      ],
+      "explanation": "The correct choice connects the example to the underlying model rather than treating the syntax as isolated trivia.",
+      "hint": "Trace data, control flow, ownership, or rendering step by step.",
+      "difficulty": 2,
+      "cognitiveLevel": "predict",
+      "estimatedSeconds": 120,
+      "tags": [
+        "server-side-rendering-and-hydration",
+        "client-side-versus-server-side-rendering",
+        "ssr-request-flow"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review",
+      "code": {
+        "language": "jsx",
+        "source": "// Server output:\n<div id=\"root\"><button>Continue</button></div>\n\n// Client entry:\nhydrateRoot(document.getElementById('root'), <App />);"
+      }
+    },
+    {
+      "id": "N-01-Q06",
+      "trackId": "nextjs",
+      "moduleId": "N-M01",
+      "topicId": "N-01",
+      "objectiveIds": [
+        "N-01-LO1",
+        "N-01-LO2",
+        "N-01-LO3"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which response best addresses this common mistake: “Marking a large route tree as client code when only a small interaction needs it.”?",
+      "choices": [
+        {
+          "id": "N-01-Q06-C1",
+          "label": "The statement is always correct, so no further reasoning about Server-Side Rendering and Hydration is needed.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Server-Side Rendering and Hydration."
+        },
+        {
+          "id": "N-01-Q06-C2",
+          "label": "The statement is a misconception. A better approach is to reason from the concept's inputs, rules, and observable outcome, then verify the result.",
+          "feedback": "Good feedback names the misconception and replaces it with a usable reasoning process."
+        },
+        {
+          "id": "N-01-Q06-C3",
+          "label": "The statement is correct only when variable names are short.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Server-Side Rendering and Hydration."
+        },
+        {
+          "id": "N-01-Q06-C4",
+          "label": "The statement is unrelated to program behavior and cannot cause defects.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Server-Side Rendering and Hydration."
+        }
+      ],
+      "correctChoiceIds": [
+        "N-01-Q06-C2"
+      ],
+      "explanation": "Good feedback names the misconception and replaces it with a usable reasoning process.",
+      "hint": "Look for the option that corrects both the belief and the learner's next action.",
+      "difficulty": 2,
+      "cognitiveLevel": "debug",
+      "estimatedSeconds": 120,
+      "tags": [
+        "server-side-rendering-and-hydration",
+        "common-mistakes"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "N-01-Q07",
+      "trackId": "nextjs",
+      "moduleId": "N-M01",
+      "topicId": "N-01",
+      "objectiveIds": [
+        "N-01-LO1",
+        "N-01-LO2",
+        "N-01-LO3"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which sequence is most reliable when solving a problem involving Server-Side Rendering and Hydration?",
+      "choices": [
+        {
+          "id": "N-01-Q07-C1",
+          "label": "Optimize first, then decide what the code is supposed to do.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Server-Side Rendering and Hydration."
+        },
+        {
+          "id": "N-01-Q07-C2",
+          "label": "First identify the requirement, then apply the relevant rule from Client-side versus server-side rendering, inspect the result, and only then refactor or optimize.",
+          "feedback": "The reliable sequence starts from the requirement, applies a known rule, observes behavior, and improves the solution afterward."
+        },
+        {
+          "id": "N-01-Q07-C3",
+          "label": "Copy an unrelated implementation, hide the assumptions, and test only the happy path.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Server-Side Rendering and Hydration."
+        },
+        {
+          "id": "N-01-Q07-C4",
+          "label": "Start with a framework abstraction and avoid checking the underlying language behavior.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Server-Side Rendering and Hydration."
+        }
+      ],
+      "correctChoiceIds": [
+        "N-01-Q07-C2"
+      ],
+      "explanation": "The reliable sequence starts from the requirement, applies a known rule, observes behavior, and improves the solution afterward.",
+      "hint": "Prefer a sequence that makes failures visible early.",
+      "difficulty": 2,
+      "cognitiveLevel": "explain",
+      "estimatedSeconds": 75,
+      "tags": [
+        "server-side-rendering-and-hydration",
+        "problem-solving"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "N-01-Q08",
+      "trackId": "nextjs",
+      "moduleId": "N-M01",
+      "topicId": "N-01",
+      "objectiveIds": [
+        "N-01-LO1",
+        "N-01-LO2",
+        "N-01-LO3"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which guideline shows the best judgment about when to use Server-Side Rendering and Hydration?",
+      "choices": [
+        {
+          "id": "N-01-Q08-C1",
+          "label": "Use Server-Side Rendering and Hydration in every file because more abstraction is always better.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Server-Side Rendering and Hydration."
+        },
+        {
+          "id": "N-01-Q08-C2",
+          "label": "Use Server-Side Rendering and Hydration when it makes intent, ownership, or data flow clearer; avoid adding it mechanically when a simpler, equally explicit solution is sufficient.",
+          "feedback": "Engineering judgment balances clarity and cost. The concept should serve the requirement rather than become an end in itself."
+        },
+        {
+          "id": "N-01-Q08-C3",
+          "label": "Avoid Server-Side Rendering and Hydration completely because all abstractions reduce maintainability.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Server-Side Rendering and Hydration."
+        },
+        {
+          "id": "N-01-Q08-C4",
+          "label": "Choose based only on line count, without considering readability, correctness, or future change.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Server-Side Rendering and Hydration."
+        }
+      ],
+      "correctChoiceIds": [
+        "N-01-Q08-C2"
+      ],
+      "explanation": "Engineering judgment balances clarity and cost. The concept should serve the requirement rather than become an end in itself.",
+      "hint": "Choose the option that acknowledges both benefits and trade-offs.",
+      "difficulty": 3,
+      "cognitiveLevel": "tradeoff",
+      "estimatedSeconds": 120,
+      "tags": [
+        "server-side-rendering-and-hydration",
+        "tradeoffs"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    }
+  ],
+  "researchSources": [
+    {
+      "kind": "research-transcript",
+      "title": "An Overview of Server-Side Rendering (SSR)",
+      "pathwayOrder": 66,
+      "sourceLine": 140937,
+      "usage": "Coverage research only; no transcript wording is canonical."
+    },
+    {
+      "kind": "research-transcript",
+      "title": "The Missing Piece: Hydration",
+      "pathwayOrder": 67,
+      "sourceLine": 142531,
+      "usage": "Coverage research only; no transcript wording is canonical."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "Next.js App Router",
+      "url": "https://nextjs.org/docs/app",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "Next.js Server and Client Components",
+      "url": "https://nextjs.org/docs/app/getting-started/server-and-client-components",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "Next.js Fetching Data",
+      "url": "https://nextjs.org/docs/app/getting-started/fetching-data",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "Next.js Caching and Revalidating",
+      "url": "https://nextjs.org/docs/app/getting-started/caching-and-revalidating",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "Next.js Server Actions and Mutations",
+      "url": "https://nextjs.org/docs/app/getting-started/updating-data",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "Next.js loading.js and Streaming",
+      "url": "https://nextjs.org/docs/app/api-reference/file-conventions/loading",
+      "usage": "Technical verification and freshness review."
+    }
+  ],
+  "contentAuthority": {
+    "canonical": "New JS2Next Release 1 curriculum and independently authored content.",
+    "legacyProjectContent": "Supplementary internal reference only; excluded from runtime unless explicitly re-authored and approved.",
+    "courseTranscripts": "Coverage and sequencing research only; never learner-facing authority.",
+    "officialDocumentation": "Technical verification source."
+  },
+  "version": 1,
+  "status": "draft",
+  "reviewStatus": "pending-human-review",
+  "publicationStatus": "unpublished",
+  "createdAt": "2026-07-17",
+  "updatedAt": "2026-07-17"
+}

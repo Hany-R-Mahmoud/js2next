@@ -1,0 +1,193 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://js2next.local/schemas/topic-packet.schema.json",
+  "title": "JS2Next Topic Packet",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "id",
+    "slug",
+    "trackId",
+    "moduleId",
+    "order",
+    "title",
+    "learningObjectives",
+    "sections",
+    "questions",
+    "topicQuiz",
+    "version",
+    "status",
+    "reviewStatus",
+    "publicationStatus"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "1.0"
+    },
+    "id": {
+      "type": "string"
+    },
+    "slug": {
+      "type": "string"
+    },
+    "trackId": {
+      "enum": [
+        "javascript",
+        "react",
+        "nextjs"
+      ]
+    },
+    "moduleId": {
+      "type": "string"
+    },
+    "order": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "required": {
+      "type": "boolean"
+    },
+    "optional": {
+      "type": "boolean"
+    },
+    "advanced": {
+      "type": "boolean"
+    },
+    "contentType": {
+      "type": "string"
+    },
+    "difficulty": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 5
+    },
+    "estimatedMinutes": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "requiredPrerequisiteTopicIds": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "recommendedPrerequisiteTopicIds": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "learningObjectives": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object"
+      }
+    },
+    "whyThisMatters": {
+      "type": "string",
+      "minLength": 10
+    },
+    "mentalModel": {
+      "type": "string",
+      "minLength": 10
+    },
+    "sections": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object"
+      }
+    },
+    "commonMistakes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "summary": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string"
+      }
+    },
+    "inLessonQuestionIds": {
+      "type": "array",
+      "minItems": 3,
+      "items": {
+        "type": "string"
+      }
+    },
+    "topicQuiz": {
+      "type": "object",
+      "required": [
+        "id",
+        "questionIds",
+        "masteryThresholdPercent",
+        "attemptPolicy"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "questionIds": {
+          "type": "array",
+          "minItems": 5,
+          "items": {
+            "type": "string"
+          }
+        },
+        "masteryThresholdPercent": {
+          "const": 80
+        },
+        "attemptPolicy": {
+          "const": "unlimited"
+        }
+      }
+    },
+    "questions": {
+      "type": "array",
+      "minItems": 8,
+      "items": {
+        "$ref": "question.schema.json"
+      }
+    },
+    "researchSources": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "version": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "status": {
+      "enum": [
+        "draft",
+        "reviewed",
+        "published",
+        "archived"
+      ]
+    },
+    "reviewStatus": {
+      "enum": [
+        "pending-human-review",
+        "approved",
+        "needs-revision"
+      ]
+    },
+    "publicationStatus": {
+      "enum": [
+        "unpublished",
+        "published"
+      ]
+    }
+  },
+  "additionalProperties": true
+}

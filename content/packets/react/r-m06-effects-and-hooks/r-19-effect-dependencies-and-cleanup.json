@@ -1,0 +1,632 @@
+{
+  "schemaVersion": "1.0",
+  "id": "R-19",
+  "slug": "effect-dependencies-and-cleanup",
+  "trackId": "react",
+  "moduleId": "R-M06",
+  "order": 2,
+  "title": "Effect Dependencies and Cleanup",
+  "required": true,
+  "optional": false,
+  "advanced": false,
+  "contentType": "core",
+  "difficulty": 3,
+  "estimatedMinutes": 15,
+  "requiredPrerequisiteTopicIds": [
+    "R-18"
+  ],
+  "recommendedPrerequisiteTopicIds": [],
+  "learningObjectives": [
+    {
+      "id": "R-19-LO1",
+      "text": "Explain dependency arrays using a new example and justify the result.",
+      "subtopic": "Dependency arrays",
+      "cognitiveLevel": "understand"
+    },
+    {
+      "id": "R-19-LO2",
+      "text": "Explain stale dependencies using a new example and justify the result.",
+      "subtopic": "Stale dependencies",
+      "cognitiveLevel": "apply"
+    },
+    {
+      "id": "R-19-LO3",
+      "text": "Explain cleanup functions using a new example and justify the result.",
+      "subtopic": "Cleanup functions",
+      "cognitiveLevel": "analyze"
+    },
+    {
+      "id": "R-19-LO4",
+      "text": "Explain avoiding leaks and races using a new example and justify the result.",
+      "subtopic": "Avoiding leaks and races",
+      "cognitiveLevel": "analyze"
+    }
+  ],
+  "whyThisMatters": "This topic turns effect dependencies and cleanup from isolated terminology into a practical tool for reading, writing, and reviewing code. It belongs to the **Effects and Hooks** module.",
+  "mentalModel": "Draw a decision map: **Dependency arrays** → **Stale dependencies** → **Cleanup functions** → **Avoiding leaks and races**. Add branches where the learner must choose an alternative and label the evidence for the choice.",
+  "sections": [
+    {
+      "id": "R-19-S1",
+      "type": "concept",
+      "title": "Dependency arrays",
+      "body": "An Effect's dependency list includes every reactive value used by its code. React reruns the Effect when a dependency changes.",
+      "objectiveIds": [
+        "R-19-LO1"
+      ],
+      "checkQuestionId": "R-19-Q01"
+    },
+    {
+      "id": "R-19-S2",
+      "type": "concept",
+      "title": "Stale dependencies",
+      "body": "Omitting a reactive dependency can make an Effect read values captured by an older render.",
+      "objectiveIds": [
+        "R-19-LO2"
+      ],
+      "checkQuestionId": "R-19-Q02"
+    },
+    {
+      "id": "R-19-S3",
+      "type": "concept",
+      "title": "Cleanup functions",
+      "body": "Cleanup reverses setup by unsubscribing, removing listeners, aborting work, or clearing timers before rerun and on unmount.",
+      "objectiveIds": [
+        "R-19-LO3"
+      ],
+      "checkQuestionId": "R-19-Q03"
+    },
+    {
+      "id": "R-19-S4",
+      "type": "concept",
+      "title": "Avoiding leaks and races",
+      "body": "Long-lived subscriptions and overlapping async work require cleanup or cancellation so stale work does not update current state.",
+      "objectiveIds": [
+        "R-19-LO4"
+      ],
+      "checkQuestionId": "R-19-Q03"
+    },
+    {
+      "id": "R-19-EX1",
+      "type": "code-example",
+      "title": "Worked example",
+      "language": "jsx",
+      "source": "function Search({ query }) {\n  useEffect(() => {\n    const controller = new AbortController();\n    loadResults(query, controller.signal);\n    return () => controller.abort();\n  }, [query]);\n  return null;\n}",
+      "explanation": "Complete dependencies and abort cleanup prevent stale overlapping work.",
+      "objectiveIds": [
+        "R-19-LO1",
+        "R-19-LO2",
+        "R-19-LO3",
+        "R-19-LO4"
+      ]
+    }
+  ],
+  "commonMistakes": [
+    "Suppressing the dependency linter instead of fixing the data flow.",
+    "Using an Effect for render-time derivation.",
+    "Mutating props or state instead of producing the next value.",
+    "Adding state or an Effect for a value that can be derived during render."
+  ],
+  "summary": [
+    "Effect Dependencies and Cleanup connects Dependency arrays, Stale dependencies, Cleanup functions.",
+    "Use the topic to make behavior and decisions explicit rather than memorizing isolated syntax.",
+    "Verify understanding by explaining a new example and answering the topic quiz without looking back."
+  ],
+  "inLessonQuestionIds": [
+    "R-19-Q01",
+    "R-19-Q02",
+    "R-19-Q03"
+  ],
+  "topicQuiz": {
+    "id": "R-19-QUIZ",
+    "questionIds": [
+      "R-19-Q04",
+      "R-19-Q05",
+      "R-19-Q06",
+      "R-19-Q07",
+      "R-19-Q08"
+    ],
+    "masteryThresholdPercent": 80,
+    "attemptPolicy": "unlimited",
+    "failurePolicy": "Show explanations, add missed objectives to local review, and allow immediate or later retry.",
+    "randomizeQuestionOrder": true,
+    "randomizeChoiceOrder": false
+  },
+  "questions": [
+    {
+      "id": "R-19-Q01",
+      "trackId": "react",
+      "moduleId": "R-M06",
+      "topicId": "R-19",
+      "objectiveIds": [
+        "R-19-LO1"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which statement best explains “Dependency arrays” in the context of Effect Dependencies and Cleanup?",
+      "choices": [
+        {
+          "id": "R-19-Q01-C1",
+          "label": "A component treats props as immutable snapshots for a render. Mutating them creates hidden coupling with the owner.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Dependency arrays."
+        },
+        {
+          "id": "R-19-Q01-C2",
+          "label": "An Effect's dependency list includes every reactive value used by its code. React reruns the Effect when a dependency changes.",
+          "feedback": "Dependency arrays is best understood as follows: An Effect's dependency list includes every reactive value used by its code. React reruns the Effect when a dependency changes."
+        },
+        {
+          "id": "R-19-Q01-C3",
+          "label": "Class components use instance state, this, and lifecycle methods. They matter for legacy code but are not the preferred model for new teaching.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Dependency arrays."
+        },
+        {
+          "id": "R-19-Q01-C4",
+          "label": "A Redux store holds the application state tree and coordinates dispatch, reducers, subscriptions, and middleware.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Dependency arrays."
+        }
+      ],
+      "correctChoiceIds": [
+        "R-19-Q01-C2"
+      ],
+      "explanation": "Dependency arrays is best understood as follows: An Effect's dependency list includes every reactive value used by its code. React reruns the Effect when a dependency changes.",
+      "hint": "Focus on what the concept changes, enables, or constrains—not only on its syntax.",
+      "difficulty": 2,
+      "cognitiveLevel": "recognize",
+      "estimatedSeconds": 75,
+      "tags": [
+        "dependency-arrays",
+        "effect-dependencies-and-cleanup"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "R-19-Q02",
+      "trackId": "react",
+      "moduleId": "R-M06",
+      "topicId": "R-19",
+      "objectiveIds": [
+        "R-19-LO2"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which statement best explains “Stale dependencies” in the context of Effect Dependencies and Cleanup?",
+      "choices": [
+        {
+          "id": "R-19-Q02-C1",
+          "label": "A Redux store holds the application state tree and coordinates dispatch, reducers, subscriptions, and middleware.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Stale dependencies."
+        },
+        {
+          "id": "R-19-Q02-C2",
+          "label": "Class components use instance state, this, and lifecycle methods. They matter for legacy code but are not the preferred model for new teaching.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Stale dependencies."
+        },
+        {
+          "id": "R-19-Q02-C3",
+          "label": "A component treats props as immutable snapshots for a render. Mutating them creates hidden coupling with the owner.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Stale dependencies."
+        },
+        {
+          "id": "R-19-Q02-C4",
+          "label": "Omitting a reactive dependency can make an Effect read values captured by an older render.",
+          "feedback": "Stale dependencies is best understood as follows: Omitting a reactive dependency can make an Effect read values captured by an older render."
+        }
+      ],
+      "correctChoiceIds": [
+        "R-19-Q02-C4"
+      ],
+      "explanation": "Stale dependencies is best understood as follows: Omitting a reactive dependency can make an Effect read values captured by an older render.",
+      "hint": "Focus on what the concept changes, enables, or constrains—not only on its syntax.",
+      "difficulty": 2,
+      "cognitiveLevel": "explain",
+      "estimatedSeconds": 75,
+      "tags": [
+        "stale-dependencies",
+        "effect-dependencies-and-cleanup"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "R-19-Q03",
+      "trackId": "react",
+      "moduleId": "R-M06",
+      "topicId": "R-19",
+      "objectiveIds": [
+        "R-19-LO3"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which statement best explains “Cleanup functions” in the context of Effect Dependencies and Cleanup?",
+      "choices": [
+        {
+          "id": "R-19-Q03-C1",
+          "label": "A Redux store holds the application state tree and coordinates dispatch, reducers, subscriptions, and middleware.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Cleanup functions."
+        },
+        {
+          "id": "R-19-Q03-C2",
+          "label": "Cleanup reverses setup by unsubscribing, removing listeners, aborting work, or clearing timers before rerun and on unmount.",
+          "feedback": "Cleanup functions is best understood as follows: Cleanup reverses setup by unsubscribing, removing listeners, aborting work, or clearing timers before rerun and on unmount."
+        },
+        {
+          "id": "R-19-Q03-C3",
+          "label": "A component treats props as immutable snapshots for a render. Mutating them creates hidden coupling with the owner.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Cleanup functions."
+        },
+        {
+          "id": "R-19-Q03-C4",
+          "label": "Class components use instance state, this, and lifecycle methods. They matter for legacy code but are not the preferred model for new teaching.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Cleanup functions."
+        }
+      ],
+      "correctChoiceIds": [
+        "R-19-Q03-C2"
+      ],
+      "explanation": "Cleanup functions is best understood as follows: Cleanup reverses setup by unsubscribing, removing listeners, aborting work, or clearing timers before rerun and on unmount.",
+      "hint": "Focus on what the concept changes, enables, or constrains—not only on its syntax.",
+      "difficulty": 2,
+      "cognitiveLevel": "predict",
+      "estimatedSeconds": 120,
+      "tags": [
+        "cleanup-functions",
+        "effect-dependencies-and-cleanup"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "R-19-Q04",
+      "trackId": "react",
+      "moduleId": "R-M06",
+      "topicId": "R-19",
+      "objectiveIds": [
+        "R-19-LO1",
+        "R-19-LO2"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "A learner must use Effect Dependencies and Cleanup in a new situation. Which approach best demonstrates transferable understanding?",
+      "choices": [
+        {
+          "id": "R-19-Q04-C1",
+          "label": "Skip the underlying model and rely on memorized syntax, even when the result is unclear.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Effect Dependencies and Cleanup."
+        },
+        {
+          "id": "R-19-Q04-C2",
+          "label": "Add more state and abstraction immediately, before identifying the smallest requirement.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Effect Dependencies and Cleanup."
+        },
+        {
+          "id": "R-19-Q04-C3",
+          "label": "Treat the concept as isolated trivia and avoid connecting it to earlier prerequisites.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Effect Dependencies and Cleanup."
+        },
+        {
+          "id": "R-19-Q04-C4",
+          "label": "Apply Dependency arrays deliberately, make the relevant inputs and assumptions explicit, and verify the observable result before adding more complexity.",
+          "feedback": "Transfer comes from using the concept with explicit assumptions and checking the resulting behavior, not from reproducing a memorized example."
+        }
+      ],
+      "correctChoiceIds": [
+        "R-19-Q04-C4"
+      ],
+      "explanation": "Transfer comes from using the concept with explicit assumptions and checking the resulting behavior, not from reproducing a memorized example.",
+      "hint": "Choose the option that would still work when the surrounding example changes.",
+      "difficulty": 3,
+      "cognitiveLevel": "apply",
+      "estimatedSeconds": 120,
+      "tags": [
+        "effect-dependencies-and-cleanup",
+        "dependency-arrays"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "R-19-Q05",
+      "trackId": "react",
+      "moduleId": "R-M06",
+      "topicId": "R-19",
+      "objectiveIds": [
+        "R-19-LO1",
+        "R-19-LO2",
+        "R-19-LO3",
+        "R-19-LO4"
+      ],
+      "kind": "single-choice",
+      "presentation": "code",
+      "prompt": "What is the most accurate explanation of the following Effect Dependencies and Cleanup example?",
+      "choices": [
+        {
+          "id": "R-19-Q05-C1",
+          "label": "The snippet is valid only because JavaScript ignores variable scope and evaluation order.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Effect Dependencies and Cleanup."
+        },
+        {
+          "id": "R-19-Q05-C2",
+          "label": "The snippet removes the need to understand the data flowing through the program.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Effect Dependencies and Cleanup."
+        },
+        {
+          "id": "R-19-Q05-C3",
+          "label": "Complete dependencies and abort cleanup prevent stale overlapping work.",
+          "feedback": "The correct choice connects the example to the underlying model rather than treating the syntax as isolated trivia."
+        },
+        {
+          "id": "R-19-Q05-C4",
+          "label": "The snippet guarantees that all values are immutable and all operations are asynchronous.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Effect Dependencies and Cleanup."
+        }
+      ],
+      "correctChoiceIds": [
+        "R-19-Q05-C3"
+      ],
+      "explanation": "The correct choice connects the example to the underlying model rather than treating the syntax as isolated trivia.",
+      "hint": "Trace data, control flow, ownership, or rendering step by step.",
+      "difficulty": 3,
+      "cognitiveLevel": "predict",
+      "estimatedSeconds": 120,
+      "tags": [
+        "effect-dependencies-and-cleanup",
+        "dependency-arrays",
+        "stale-dependencies"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review",
+      "code": {
+        "language": "jsx",
+        "source": "function Search({ query }) {\n  useEffect(() => {\n    const controller = new AbortController();\n    loadResults(query, controller.signal);\n    return () => controller.abort();\n  }, [query]);\n  return null;\n}"
+      }
+    },
+    {
+      "id": "R-19-Q06",
+      "trackId": "react",
+      "moduleId": "R-M06",
+      "topicId": "R-19",
+      "objectiveIds": [
+        "R-19-LO1",
+        "R-19-LO2",
+        "R-19-LO3",
+        "R-19-LO4"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which response best addresses this common mistake: “Suppressing the dependency linter instead of fixing the data flow.”?",
+      "choices": [
+        {
+          "id": "R-19-Q06-C1",
+          "label": "The statement is always correct, so no further reasoning about Effect Dependencies and Cleanup is needed.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Effect Dependencies and Cleanup."
+        },
+        {
+          "id": "R-19-Q06-C2",
+          "label": "The statement is a misconception. A better approach is to reason from the concept's inputs, rules, and observable outcome, then verify the result.",
+          "feedback": "Good feedback names the misconception and replaces it with a usable reasoning process."
+        },
+        {
+          "id": "R-19-Q06-C3",
+          "label": "The statement is unrelated to program behavior and cannot cause defects.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Effect Dependencies and Cleanup."
+        },
+        {
+          "id": "R-19-Q06-C4",
+          "label": "The statement is correct only when variable names are short.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Effect Dependencies and Cleanup."
+        }
+      ],
+      "correctChoiceIds": [
+        "R-19-Q06-C2"
+      ],
+      "explanation": "Good feedback names the misconception and replaces it with a usable reasoning process.",
+      "hint": "Look for the option that corrects both the belief and the learner's next action.",
+      "difficulty": 3,
+      "cognitiveLevel": "debug",
+      "estimatedSeconds": 120,
+      "tags": [
+        "effect-dependencies-and-cleanup",
+        "common-mistakes"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "R-19-Q07",
+      "trackId": "react",
+      "moduleId": "R-M06",
+      "topicId": "R-19",
+      "objectiveIds": [
+        "R-19-LO1",
+        "R-19-LO2",
+        "R-19-LO3",
+        "R-19-LO4"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which sequence is most reliable when solving a problem involving Effect Dependencies and Cleanup?",
+      "choices": [
+        {
+          "id": "R-19-Q07-C1",
+          "label": "First identify the requirement, then apply the relevant rule from Dependency arrays, inspect the result, and only then refactor or optimize.",
+          "feedback": "The reliable sequence starts from the requirement, applies a known rule, observes behavior, and improves the solution afterward."
+        },
+        {
+          "id": "R-19-Q07-C2",
+          "label": "Start with a framework abstraction and avoid checking the underlying language behavior.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Effect Dependencies and Cleanup."
+        },
+        {
+          "id": "R-19-Q07-C3",
+          "label": "Optimize first, then decide what the code is supposed to do.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Effect Dependencies and Cleanup."
+        },
+        {
+          "id": "R-19-Q07-C4",
+          "label": "Copy an unrelated implementation, hide the assumptions, and test only the happy path.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Effect Dependencies and Cleanup."
+        }
+      ],
+      "correctChoiceIds": [
+        "R-19-Q07-C1"
+      ],
+      "explanation": "The reliable sequence starts from the requirement, applies a known rule, observes behavior, and improves the solution afterward.",
+      "hint": "Prefer a sequence that makes failures visible early.",
+      "difficulty": 3,
+      "cognitiveLevel": "explain",
+      "estimatedSeconds": 75,
+      "tags": [
+        "effect-dependencies-and-cleanup",
+        "problem-solving"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "R-19-Q08",
+      "trackId": "react",
+      "moduleId": "R-M06",
+      "topicId": "R-19",
+      "objectiveIds": [
+        "R-19-LO1",
+        "R-19-LO2",
+        "R-19-LO3",
+        "R-19-LO4"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which guideline shows the best judgment about when to use Effect Dependencies and Cleanup?",
+      "choices": [
+        {
+          "id": "R-19-Q08-C1",
+          "label": "Use Effect Dependencies and Cleanup when it makes intent, ownership, or data flow clearer; avoid adding it mechanically when a simpler, equally explicit solution is sufficient.",
+          "feedback": "Engineering judgment balances clarity and cost. The concept should serve the requirement rather than become an end in itself."
+        },
+        {
+          "id": "R-19-Q08-C2",
+          "label": "Choose based only on line count, without considering readability, correctness, or future change.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Effect Dependencies and Cleanup."
+        },
+        {
+          "id": "R-19-Q08-C3",
+          "label": "Use Effect Dependencies and Cleanup in every file because more abstraction is always better.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Effect Dependencies and Cleanup."
+        },
+        {
+          "id": "R-19-Q08-C4",
+          "label": "Avoid Effect Dependencies and Cleanup completely because all abstractions reduce maintainability.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Effect Dependencies and Cleanup."
+        }
+      ],
+      "correctChoiceIds": [
+        "R-19-Q08-C1"
+      ],
+      "explanation": "Engineering judgment balances clarity and cost. The concept should serve the requirement rather than become an end in itself.",
+      "hint": "Choose the option that acknowledges both benefits and trade-offs.",
+      "difficulty": 4,
+      "cognitiveLevel": "tradeoff",
+      "estimatedSeconds": 120,
+      "tags": [
+        "effect-dependencies-and-cleanup",
+        "tradeoffs"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    }
+  ],
+  "researchSources": [
+    {
+      "kind": "research-transcript",
+      "title": "The useEffect Dependency Array",
+      "pathwayOrder": 36,
+      "sourceLine": 45154,
+      "usage": "Coverage research only; no transcript wording is canonical."
+    },
+    {
+      "kind": "research-transcript",
+      "title": "The useEffect Cleanup Function",
+      "pathwayOrder": 37,
+      "sourceLine": 48434,
+      "usage": "Coverage research only; no transcript wording is canonical."
+    },
+    {
+      "kind": "supporting-research",
+      "title": "Cleaning Up Data Fetching",
+      "usage": "Optional coverage reference; learner-facing wording must be original."
+    },
+    {
+      "kind": "supporting-research",
+      "title": "One More Effect: Listening to a Keypress",
+      "usage": "Optional coverage reference; learner-facing wording must be original."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "React Learn",
+      "url": "https://react.dev/learn",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "React Managing State",
+      "url": "https://react.dev/learn/managing-state",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "React Escape Hatches",
+      "url": "https://react.dev/learn/escape-hatches",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "React API Reference",
+      "url": "https://react.dev/reference/react",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "Redux Essentials",
+      "url": "https://redux.js.org/tutorials/essentials/part-1-overview-concepts",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "TanStack Query Overview",
+      "url": "https://tanstack.com/query/latest/docs/framework/react/overview",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "Supabase Documentation",
+      "url": "https://supabase.com/docs",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "Tailwind CSS Documentation",
+      "url": "https://tailwindcss.com/docs",
+      "usage": "Technical verification and freshness review."
+    }
+  ],
+  "contentAuthority": {
+    "canonical": "New JS2Next Release 1 curriculum and independently authored content.",
+    "legacyProjectContent": "Supplementary internal reference only; excluded from runtime unless explicitly re-authored and approved.",
+    "courseTranscripts": "Coverage and sequencing research only; never learner-facing authority.",
+    "officialDocumentation": "Technical verification source."
+  },
+  "version": 1,
+  "status": "draft",
+  "reviewStatus": "pending-human-review",
+  "publicationStatus": "unpublished",
+  "createdAt": "2026-07-17",
+  "updatedAt": "2026-07-17"
+}

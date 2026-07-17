@@ -1,0 +1,611 @@
+{
+  "schemaVersion": "1.0",
+  "id": "R-14",
+  "slug": "diffing-keys-and-state-preservation",
+  "trackId": "react",
+  "moduleId": "R-M05",
+  "order": 3,
+  "title": "Diffing, Keys, and State Preservation",
+  "required": true,
+  "optional": false,
+  "advanced": false,
+  "contentType": "core",
+  "difficulty": 3,
+  "estimatedMinutes": 15,
+  "requiredPrerequisiteTopicIds": [
+    "R-13"
+  ],
+  "recommendedPrerequisiteTopicIds": [],
+  "learningObjectives": [
+    {
+      "id": "R-14-LO1",
+      "text": "Explain diffing rules using a new example and justify the result.",
+      "subtopic": "Diffing rules",
+      "cognitiveLevel": "understand"
+    },
+    {
+      "id": "R-14-LO2",
+      "text": "Explain the `key` prop using a new example and justify the result.",
+      "subtopic": "The `key` prop",
+      "cognitiveLevel": "apply"
+    },
+    {
+      "id": "R-14-LO3",
+      "text": "Explain preserving and resetting state using a new example and justify the result.",
+      "subtopic": "Preserving and resetting state",
+      "cognitiveLevel": "analyze"
+    }
+  ],
+  "whyThisMatters": "Diffing, Keys, and State Preservation is part of the mental model learners need before making reliable implementation decisions. It belongs to the **How React Renders** module.",
+  "mentalModel": "Draw a decision map: **Diffing rules** → **The `key` prop** → **Preserving and resetting state**. Add branches where the learner must choose an alternative and label the evidence for the choice.",
+  "sections": [
+    {
+      "id": "R-14-S1",
+      "type": "concept",
+      "title": "Diffing rules",
+      "body": "Different element types replace a subtree; matching types are updated. Position and keys determine identity and state preservation.",
+      "objectiveIds": [
+        "R-14-LO1"
+      ],
+      "checkQuestionId": "R-14-Q01"
+    },
+    {
+      "id": "R-14-S2",
+      "type": "concept",
+      "title": "The `key` prop",
+      "body": "Keys give siblings stable identity across insertion, removal, and reordering. Use data identifiers rather than indexes for changing lists.",
+      "objectiveIds": [
+        "R-14-LO2"
+      ],
+      "checkQuestionId": "R-14-Q02"
+    },
+    {
+      "id": "R-14-S3",
+      "type": "concept",
+      "title": "Preserving and resetting state",
+      "body": "State is preserved when the same type remains at the same logical position. A changed key or type creates a new instance and resets local state.",
+      "objectiveIds": [
+        "R-14-LO3"
+      ],
+      "checkQuestionId": "R-14-Q03"
+    },
+    {
+      "id": "R-14-EX1",
+      "type": "code-example",
+      "title": "Worked example",
+      "language": "jsx",
+      "source": "function TopicTabs({ topics }) {\n  return topics.map(topic => <TopicTab key={topic.id} topic={topic} />);\n}",
+      "explanation": "Stable keys preserve the correct instance when order changes.",
+      "objectiveIds": [
+        "R-14-LO1",
+        "R-14-LO2",
+        "R-14-LO3"
+      ]
+    }
+  ],
+  "commonMistakes": [
+    "Using array indexes as keys for a reorderable list.",
+    "Expecting `key` to arrive as an ordinary prop.",
+    "Mutating props or state instead of producing the next value.",
+    "Adding state or an Effect for a value that can be derived during render."
+  ],
+  "summary": [
+    "Diffing, Keys, and State Preservation connects Diffing rules, The `key` prop, Preserving and resetting state.",
+    "Use the topic to make behavior and decisions explicit rather than memorizing isolated syntax.",
+    "Verify understanding by explaining a new example and answering the topic quiz without looking back."
+  ],
+  "inLessonQuestionIds": [
+    "R-14-Q01",
+    "R-14-Q02",
+    "R-14-Q03"
+  ],
+  "topicQuiz": {
+    "id": "R-14-QUIZ",
+    "questionIds": [
+      "R-14-Q04",
+      "R-14-Q05",
+      "R-14-Q06",
+      "R-14-Q07",
+      "R-14-Q08"
+    ],
+    "masteryThresholdPercent": 80,
+    "attemptPolicy": "unlimited",
+    "failurePolicy": "Show explanations, add missed objectives to local review, and allow immediate or later retry.",
+    "randomizeQuestionOrder": true,
+    "randomizeChoiceOrder": false
+  },
+  "questions": [
+    {
+      "id": "R-14-Q01",
+      "trackId": "react",
+      "moduleId": "R-M05",
+      "topicId": "R-14",
+      "objectiveIds": [
+        "R-14-LO1"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which statement best explains “Diffing rules” in the context of Diffing, Keys, and State Preservation?",
+      "choices": [
+        {
+          "id": "R-14-Q01-C1",
+          "label": "Place state in the lowest component that owns all consumers and updates. Move it upward or into a shared mechanism only when ownership demands it.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Diffing rules."
+        },
+        {
+          "id": "R-14-Q01-C2",
+          "label": "React assumes comfort with JavaScript values, functions, arrays, objects, modules, and asynchronous code. Missing prerequisites are review signals, not barriers; revisit the smallest required concept and return.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Diffing rules."
+        },
+        {
+          "id": "R-14-Q01-C3",
+          "label": "useState is simplest for independent values; useReducer helps when transitions are related, numerous, or benefit from centralized testing.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Diffing rules."
+        },
+        {
+          "id": "R-14-Q01-C4",
+          "label": "Different element types replace a subtree; matching types are updated. Position and keys determine identity and state preservation.",
+          "feedback": "Diffing rules is best understood as follows: Different element types replace a subtree; matching types are updated. Position and keys determine identity and state preservation."
+        }
+      ],
+      "correctChoiceIds": [
+        "R-14-Q01-C4"
+      ],
+      "explanation": "Diffing rules is best understood as follows: Different element types replace a subtree; matching types are updated. Position and keys determine identity and state preservation.",
+      "hint": "Focus on what the concept changes, enables, or constrains—not only on its syntax.",
+      "difficulty": 2,
+      "cognitiveLevel": "recognize",
+      "estimatedSeconds": 75,
+      "tags": [
+        "diffing-rules",
+        "diffing-keys-and-state-preservation"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "R-14-Q02",
+      "trackId": "react",
+      "moduleId": "R-M05",
+      "topicId": "R-14",
+      "objectiveIds": [
+        "R-14-LO2"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which statement best explains “The `key` prop” in the context of Diffing, Keys, and State Preservation?",
+      "choices": [
+        {
+          "id": "R-14-Q02-C1",
+          "label": "useState is simplest for independent values; useReducer helps when transitions are related, numerous, or benefit from centralized testing.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of The `key` prop."
+        },
+        {
+          "id": "R-14-Q02-C2",
+          "label": "React assumes comfort with JavaScript values, functions, arrays, objects, modules, and asynchronous code. Missing prerequisites are review signals, not barriers; revisit the smallest required concept and return.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of The `key` prop."
+        },
+        {
+          "id": "R-14-Q02-C3",
+          "label": "Keys give siblings stable identity across insertion, removal, and reordering. Use data identifiers rather than indexes for changing lists.",
+          "feedback": "The `key` prop is best understood as follows: Keys give siblings stable identity across insertion, removal, and reordering. Use data identifiers rather than indexes for changing lists."
+        },
+        {
+          "id": "R-14-Q02-C4",
+          "label": "Place state in the lowest component that owns all consumers and updates. Move it upward or into a shared mechanism only when ownership demands it.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of The `key` prop."
+        }
+      ],
+      "correctChoiceIds": [
+        "R-14-Q02-C3"
+      ],
+      "explanation": "The `key` prop is best understood as follows: Keys give siblings stable identity across insertion, removal, and reordering. Use data identifiers rather than indexes for changing lists.",
+      "hint": "Focus on what the concept changes, enables, or constrains—not only on its syntax.",
+      "difficulty": 2,
+      "cognitiveLevel": "explain",
+      "estimatedSeconds": 75,
+      "tags": [
+        "the-key-prop",
+        "diffing-keys-and-state-preservation"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "R-14-Q03",
+      "trackId": "react",
+      "moduleId": "R-M05",
+      "topicId": "R-14",
+      "objectiveIds": [
+        "R-14-LO3"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which statement best explains “Preserving and resetting state” in the context of Diffing, Keys, and State Preservation?",
+      "choices": [
+        {
+          "id": "R-14-Q03-C1",
+          "label": "useState is simplest for independent values; useReducer helps when transitions are related, numerous, or benefit from centralized testing.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Preserving and resetting state."
+        },
+        {
+          "id": "R-14-Q03-C2",
+          "label": "Place state in the lowest component that owns all consumers and updates. Move it upward or into a shared mechanism only when ownership demands it.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Preserving and resetting state."
+        },
+        {
+          "id": "R-14-Q03-C3",
+          "label": "State is preserved when the same type remains at the same logical position. A changed key or type creates a new instance and resets local state.",
+          "feedback": "Preserving and resetting state is best understood as follows: State is preserved when the same type remains at the same logical position. A changed key or type creates a new instance and resets local state."
+        },
+        {
+          "id": "R-14-Q03-C4",
+          "label": "React assumes comfort with JavaScript values, functions, arrays, objects, modules, and asynchronous code. Missing prerequisites are review signals, not barriers; revisit the smallest required concept and return.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Preserving and resetting state."
+        }
+      ],
+      "correctChoiceIds": [
+        "R-14-Q03-C3"
+      ],
+      "explanation": "Preserving and resetting state is best understood as follows: State is preserved when the same type remains at the same logical position. A changed key or type creates a new instance and resets local state.",
+      "hint": "Focus on what the concept changes, enables, or constrains—not only on its syntax.",
+      "difficulty": 2,
+      "cognitiveLevel": "predict",
+      "estimatedSeconds": 120,
+      "tags": [
+        "preserving-and-resetting-state",
+        "diffing-keys-and-state-preservation"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "R-14-Q04",
+      "trackId": "react",
+      "moduleId": "R-M05",
+      "topicId": "R-14",
+      "objectiveIds": [
+        "R-14-LO1",
+        "R-14-LO2"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "A learner must use Diffing, Keys, and State Preservation in a new situation. Which approach best demonstrates transferable understanding?",
+      "choices": [
+        {
+          "id": "R-14-Q04-C1",
+          "label": "Apply Diffing rules deliberately, make the relevant inputs and assumptions explicit, and verify the observable result before adding more complexity.",
+          "feedback": "Transfer comes from using the concept with explicit assumptions and checking the resulting behavior, not from reproducing a memorized example."
+        },
+        {
+          "id": "R-14-Q04-C2",
+          "label": "Skip the underlying model and rely on memorized syntax, even when the result is unclear.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Diffing, Keys, and State Preservation."
+        },
+        {
+          "id": "R-14-Q04-C3",
+          "label": "Add more state and abstraction immediately, before identifying the smallest requirement.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Diffing, Keys, and State Preservation."
+        },
+        {
+          "id": "R-14-Q04-C4",
+          "label": "Treat the concept as isolated trivia and avoid connecting it to earlier prerequisites.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Diffing, Keys, and State Preservation."
+        }
+      ],
+      "correctChoiceIds": [
+        "R-14-Q04-C1"
+      ],
+      "explanation": "Transfer comes from using the concept with explicit assumptions and checking the resulting behavior, not from reproducing a memorized example.",
+      "hint": "Choose the option that would still work when the surrounding example changes.",
+      "difficulty": 3,
+      "cognitiveLevel": "apply",
+      "estimatedSeconds": 120,
+      "tags": [
+        "diffing-keys-and-state-preservation",
+        "diffing-rules"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "R-14-Q05",
+      "trackId": "react",
+      "moduleId": "R-M05",
+      "topicId": "R-14",
+      "objectiveIds": [
+        "R-14-LO1",
+        "R-14-LO2",
+        "R-14-LO3"
+      ],
+      "kind": "single-choice",
+      "presentation": "code",
+      "prompt": "What is the most accurate explanation of the following Diffing, Keys, and State Preservation example?",
+      "choices": [
+        {
+          "id": "R-14-Q05-C1",
+          "label": "Stable keys preserve the correct instance when order changes.",
+          "feedback": "The correct choice connects the example to the underlying model rather than treating the syntax as isolated trivia."
+        },
+        {
+          "id": "R-14-Q05-C2",
+          "label": "The snippet is valid only because JavaScript ignores variable scope and evaluation order.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Diffing, Keys, and State Preservation."
+        },
+        {
+          "id": "R-14-Q05-C3",
+          "label": "The snippet removes the need to understand the data flowing through the program.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Diffing, Keys, and State Preservation."
+        },
+        {
+          "id": "R-14-Q05-C4",
+          "label": "The snippet guarantees that all values are immutable and all operations are asynchronous.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Diffing, Keys, and State Preservation."
+        }
+      ],
+      "correctChoiceIds": [
+        "R-14-Q05-C1"
+      ],
+      "explanation": "The correct choice connects the example to the underlying model rather than treating the syntax as isolated trivia.",
+      "hint": "Trace data, control flow, ownership, or rendering step by step.",
+      "difficulty": 3,
+      "cognitiveLevel": "predict",
+      "estimatedSeconds": 120,
+      "tags": [
+        "diffing-keys-and-state-preservation",
+        "diffing-rules",
+        "the-key-prop"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review",
+      "code": {
+        "language": "jsx",
+        "source": "function TopicTabs({ topics }) {\n  return topics.map(topic => <TopicTab key={topic.id} topic={topic} />);\n}"
+      }
+    },
+    {
+      "id": "R-14-Q06",
+      "trackId": "react",
+      "moduleId": "R-M05",
+      "topicId": "R-14",
+      "objectiveIds": [
+        "R-14-LO1",
+        "R-14-LO2",
+        "R-14-LO3"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which response best addresses this common mistake: “Using array indexes as keys for a reorderable list.”?",
+      "choices": [
+        {
+          "id": "R-14-Q06-C1",
+          "label": "The statement is a misconception. A better approach is to reason from the concept's inputs, rules, and observable outcome, then verify the result.",
+          "feedback": "Good feedback names the misconception and replaces it with a usable reasoning process."
+        },
+        {
+          "id": "R-14-Q06-C2",
+          "label": "The statement is correct only when variable names are short.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Diffing, Keys, and State Preservation."
+        },
+        {
+          "id": "R-14-Q06-C3",
+          "label": "The statement is unrelated to program behavior and cannot cause defects.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Diffing, Keys, and State Preservation."
+        },
+        {
+          "id": "R-14-Q06-C4",
+          "label": "The statement is always correct, so no further reasoning about Diffing, Keys, and State Preservation is needed.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Diffing, Keys, and State Preservation."
+        }
+      ],
+      "correctChoiceIds": [
+        "R-14-Q06-C1"
+      ],
+      "explanation": "Good feedback names the misconception and replaces it with a usable reasoning process.",
+      "hint": "Look for the option that corrects both the belief and the learner's next action.",
+      "difficulty": 3,
+      "cognitiveLevel": "debug",
+      "estimatedSeconds": 120,
+      "tags": [
+        "diffing-keys-and-state-preservation",
+        "common-mistakes"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "R-14-Q07",
+      "trackId": "react",
+      "moduleId": "R-M05",
+      "topicId": "R-14",
+      "objectiveIds": [
+        "R-14-LO1",
+        "R-14-LO2",
+        "R-14-LO3"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which sequence is most reliable when solving a problem involving Diffing, Keys, and State Preservation?",
+      "choices": [
+        {
+          "id": "R-14-Q07-C1",
+          "label": "Copy an unrelated implementation, hide the assumptions, and test only the happy path.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Diffing, Keys, and State Preservation."
+        },
+        {
+          "id": "R-14-Q07-C2",
+          "label": "Optimize first, then decide what the code is supposed to do.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Diffing, Keys, and State Preservation."
+        },
+        {
+          "id": "R-14-Q07-C3",
+          "label": "Start with a framework abstraction and avoid checking the underlying language behavior.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Diffing, Keys, and State Preservation."
+        },
+        {
+          "id": "R-14-Q07-C4",
+          "label": "First identify the requirement, then apply the relevant rule from Diffing rules, inspect the result, and only then refactor or optimize.",
+          "feedback": "The reliable sequence starts from the requirement, applies a known rule, observes behavior, and improves the solution afterward."
+        }
+      ],
+      "correctChoiceIds": [
+        "R-14-Q07-C4"
+      ],
+      "explanation": "The reliable sequence starts from the requirement, applies a known rule, observes behavior, and improves the solution afterward.",
+      "hint": "Prefer a sequence that makes failures visible early.",
+      "difficulty": 3,
+      "cognitiveLevel": "explain",
+      "estimatedSeconds": 75,
+      "tags": [
+        "diffing-keys-and-state-preservation",
+        "problem-solving"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "R-14-Q08",
+      "trackId": "react",
+      "moduleId": "R-M05",
+      "topicId": "R-14",
+      "objectiveIds": [
+        "R-14-LO1",
+        "R-14-LO2",
+        "R-14-LO3"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which guideline shows the best judgment about when to use Diffing, Keys, and State Preservation?",
+      "choices": [
+        {
+          "id": "R-14-Q08-C1",
+          "label": "Use Diffing, Keys, and State Preservation when it makes intent, ownership, or data flow clearer; avoid adding it mechanically when a simpler, equally explicit solution is sufficient.",
+          "feedback": "Engineering judgment balances clarity and cost. The concept should serve the requirement rather than become an end in itself."
+        },
+        {
+          "id": "R-14-Q08-C2",
+          "label": "Choose based only on line count, without considering readability, correctness, or future change.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Diffing, Keys, and State Preservation."
+        },
+        {
+          "id": "R-14-Q08-C3",
+          "label": "Use Diffing, Keys, and State Preservation in every file because more abstraction is always better.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Diffing, Keys, and State Preservation."
+        },
+        {
+          "id": "R-14-Q08-C4",
+          "label": "Avoid Diffing, Keys, and State Preservation completely because all abstractions reduce maintainability.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Diffing, Keys, and State Preservation."
+        }
+      ],
+      "correctChoiceIds": [
+        "R-14-Q08-C1"
+      ],
+      "explanation": "Engineering judgment balances clarity and cost. The concept should serve the requirement rather than become an end in itself.",
+      "hint": "Choose the option that acknowledges both benefits and trade-offs.",
+      "difficulty": 4,
+      "cognitiveLevel": "tradeoff",
+      "estimatedSeconds": 120,
+      "tags": [
+        "diffing-keys-and-state-preservation",
+        "tradeoffs"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    }
+  ],
+  "researchSources": [
+    {
+      "kind": "research-transcript",
+      "title": "How Diffing Works",
+      "pathwayOrder": 27,
+      "sourceLine": 39767,
+      "usage": "Coverage research only; no transcript wording is canonical."
+    },
+    {
+      "kind": "research-transcript",
+      "title": "The Key Prop",
+      "pathwayOrder": 28,
+      "sourceLine": 40193,
+      "usage": "Coverage research only; no transcript wording is canonical."
+    },
+    {
+      "kind": "supporting-research",
+      "title": "Diffing Rules in Practice",
+      "usage": "Optional coverage reference; learner-facing wording must be original."
+    },
+    {
+      "kind": "supporting-research",
+      "title": "Resetting State With the Key Prop",
+      "usage": "Optional coverage reference; learner-facing wording must be original."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "React Learn",
+      "url": "https://react.dev/learn",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "React Managing State",
+      "url": "https://react.dev/learn/managing-state",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "React Escape Hatches",
+      "url": "https://react.dev/learn/escape-hatches",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "React API Reference",
+      "url": "https://react.dev/reference/react",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "Redux Essentials",
+      "url": "https://redux.js.org/tutorials/essentials/part-1-overview-concepts",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "TanStack Query Overview",
+      "url": "https://tanstack.com/query/latest/docs/framework/react/overview",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "Supabase Documentation",
+      "url": "https://supabase.com/docs",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "Tailwind CSS Documentation",
+      "url": "https://tailwindcss.com/docs",
+      "usage": "Technical verification and freshness review."
+    }
+  ],
+  "contentAuthority": {
+    "canonical": "New JS2Next Release 1 curriculum and independently authored content.",
+    "legacyProjectContent": "Supplementary internal reference only; excluded from runtime unless explicitly re-authored and approved.",
+    "courseTranscripts": "Coverage and sequencing research only; never learner-facing authority.",
+    "officialDocumentation": "Technical verification source."
+  },
+  "version": 1,
+  "status": "draft",
+  "reviewStatus": "pending-human-review",
+  "publicationStatus": "unpublished",
+  "createdAt": "2026-07-17",
+  "updatedAt": "2026-07-17"
+}

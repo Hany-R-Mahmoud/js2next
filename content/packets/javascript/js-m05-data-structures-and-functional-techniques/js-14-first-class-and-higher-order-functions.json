@@ -1,0 +1,580 @@
+{
+  "schemaVersion": "1.0",
+  "id": "JS-14",
+  "slug": "first-class-and-higher-order-functions",
+  "trackId": "javascript",
+  "moduleId": "JS-M05",
+  "order": 2,
+  "title": "First-Class and Higher-Order Functions",
+  "required": true,
+  "optional": false,
+  "advanced": false,
+  "contentType": "core",
+  "difficulty": 2,
+  "estimatedMinutes": 15,
+  "requiredPrerequisiteTopicIds": [
+    "JS-13"
+  ],
+  "recommendedPrerequisiteTopicIds": [],
+  "learningObjectives": [
+    {
+      "id": "JS-14-LO1",
+      "text": "Explain functions as values using a new example and justify the result.",
+      "subtopic": "Functions as values",
+      "cognitiveLevel": "understand"
+    },
+    {
+      "id": "JS-14-LO2",
+      "text": "Explain callbacks using a new example and justify the result.",
+      "subtopic": "Callbacks",
+      "cognitiveLevel": "apply"
+    },
+    {
+      "id": "JS-14-LO3",
+      "text": "Explain functions returning functions using a new example and justify the result.",
+      "subtopic": "Functions returning functions",
+      "cognitiveLevel": "analyze"
+    }
+  ],
+  "whyThisMatters": "The ideas in first-class and higher-order functions recur throughout later JavaScript work, reducing memorization and debugging later. It belongs to the **Data Structures and Functional Techniques** module.",
+  "mentalModel": "Draw a decision map: **Functions as values** → **Callbacks** → **Functions returning functions**. Add branches where the learner must choose an alternative and label the evidence for the choice.",
+  "sections": [
+    {
+      "id": "JS-14-S1",
+      "type": "concept",
+      "title": "Functions as values",
+      "body": "Functions are first-class values: they can be stored, passed, and returned. Referring to a function is different from invoking it.",
+      "objectiveIds": [
+        "JS-14-LO1"
+      ],
+      "checkQuestionId": "JS-14-Q01"
+    },
+    {
+      "id": "JS-14-S2",
+      "type": "concept",
+      "title": "Callbacks",
+      "body": "A callback is a function supplied so another function can invoke it at the appropriate time or for each value. Understand whether it runs now or later.",
+      "objectiveIds": [
+        "JS-14-LO2"
+      ],
+      "checkQuestionId": "JS-14-Q02"
+    },
+    {
+      "id": "JS-14-S3",
+      "type": "concept",
+      "title": "Functions returning functions",
+      "body": "A function can return a configured function that remembers creation-time context. This supports factories and reusable behavior.",
+      "objectiveIds": [
+        "JS-14-LO3"
+      ],
+      "checkQuestionId": "JS-14-Q03"
+    },
+    {
+      "id": "JS-14-EX1",
+      "type": "code-example",
+      "title": "Worked example",
+      "language": "js",
+      "source": "function createChecker(minimum) {\n  return score => score >= minimum;\n}\nconst hasMastered = createChecker(80);\nconsole.log([65, 82, 91].filter(hasMastered));",
+      "explanation": "A function returns a configured callback that is then passed to `filter`.",
+      "objectiveIds": [
+        "JS-14-LO1",
+        "JS-14-LO2",
+        "JS-14-LO3"
+      ]
+    }
+  ],
+  "commonMistakes": [
+    "Memorizing syntax without predicting the underlying value or execution order.",
+    "Mutating shared data when the task expects a new value or explicit ownership.",
+    "Treating browser APIs and language features as the same layer.",
+    "Choosing an abstraction from habit rather than required operations."
+  ],
+  "summary": [
+    "First-Class and Higher-Order Functions connects Functions as values, Callbacks, Functions returning functions.",
+    "Use the topic to make behavior and decisions explicit rather than memorizing isolated syntax.",
+    "Verify understanding by explaining a new example and answering the topic quiz without looking back."
+  ],
+  "inLessonQuestionIds": [
+    "JS-14-Q01",
+    "JS-14-Q02",
+    "JS-14-Q03"
+  ],
+  "topicQuiz": {
+    "id": "JS-14-QUIZ",
+    "questionIds": [
+      "JS-14-Q04",
+      "JS-14-Q05",
+      "JS-14-Q06",
+      "JS-14-Q07",
+      "JS-14-Q08"
+    ],
+    "masteryThresholdPercent": 80,
+    "attemptPolicy": "unlimited",
+    "failurePolicy": "Show explanations, add missed objectives to local review, and allow immediate or later retry.",
+    "randomizeQuestionOrder": true,
+    "randomizeChoiceOrder": false
+  },
+  "questions": [
+    {
+      "id": "JS-14-Q01",
+      "trackId": "javascript",
+      "moduleId": "JS-M05",
+      "topicId": "JS-14",
+      "objectiveIds": [
+        "JS-14-LO1"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which statement best explains “Functions as values” in the context of First-Class and Higher-Order Functions?",
+      "choices": [
+        {
+          "id": "JS-14-Q01-C1",
+          "label": "A deferred external script downloads in parallel, executes after parsing, and preserves document order among deferred scripts.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Functions as values."
+        },
+        {
+          "id": "JS-14-Q01-C2",
+          "label": "Functions are first-class values: they can be stored, passed, and returned. Referring to a function is different from invoking it.",
+          "feedback": "Functions as values is best understood as follows: Functions are first-class values: they can be stored, passed, and returned. Referring to a function is different from invoking it."
+        },
+        {
+          "id": "JS-14-Q01-C3",
+          "label": "A classic script without async or defer blocks HTML parsing while it is fetched and executed.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Functions as values."
+        },
+        {
+          "id": "JS-14-Q01-C4",
+          "label": "Property lookup checks the object, then follows the prototype chain until a match is found or the chain ends.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Functions as values."
+        }
+      ],
+      "correctChoiceIds": [
+        "JS-14-Q01-C2"
+      ],
+      "explanation": "Functions as values is best understood as follows: Functions are first-class values: they can be stored, passed, and returned. Referring to a function is different from invoking it.",
+      "hint": "Focus on what the concept changes, enables, or constrains—not only on its syntax.",
+      "difficulty": 1,
+      "cognitiveLevel": "recognize",
+      "estimatedSeconds": 75,
+      "tags": [
+        "functions-as-values",
+        "first-class-and-higher-order-functions"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JS-14-Q02",
+      "trackId": "javascript",
+      "moduleId": "JS-M05",
+      "topicId": "JS-14",
+      "objectiveIds": [
+        "JS-14-LO2"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which statement best explains “Callbacks” in the context of First-Class and Higher-Order Functions?",
+      "choices": [
+        {
+          "id": "JS-14-Q02-C1",
+          "label": "A classic script without async or defer blocks HTML parsing while it is fetched and executed.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Callbacks."
+        },
+        {
+          "id": "JS-14-Q02-C2",
+          "label": "A deferred external script downloads in parallel, executes after parsing, and preserves document order among deferred scripts.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Callbacks."
+        },
+        {
+          "id": "JS-14-Q02-C3",
+          "label": "Property lookup checks the object, then follows the prototype chain until a match is found or the chain ends.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Callbacks."
+        },
+        {
+          "id": "JS-14-Q02-C4",
+          "label": "A callback is a function supplied so another function can invoke it at the appropriate time or for each value. Understand whether it runs now or later.",
+          "feedback": "Callbacks is best understood as follows: A callback is a function supplied so another function can invoke it at the appropriate time or for each value. Understand whether it runs now or later."
+        }
+      ],
+      "correctChoiceIds": [
+        "JS-14-Q02-C4"
+      ],
+      "explanation": "Callbacks is best understood as follows: A callback is a function supplied so another function can invoke it at the appropriate time or for each value. Understand whether it runs now or later.",
+      "hint": "Focus on what the concept changes, enables, or constrains—not only on its syntax.",
+      "difficulty": 1,
+      "cognitiveLevel": "explain",
+      "estimatedSeconds": 75,
+      "tags": [
+        "callbacks",
+        "first-class-and-higher-order-functions"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JS-14-Q03",
+      "trackId": "javascript",
+      "moduleId": "JS-M05",
+      "topicId": "JS-14",
+      "objectiveIds": [
+        "JS-14-LO3"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which statement best explains “Functions returning functions” in the context of First-Class and Higher-Order Functions?",
+      "choices": [
+        {
+          "id": "JS-14-Q03-C1",
+          "label": "A deferred external script downloads in parallel, executes after parsing, and preserves document order among deferred scripts.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Functions returning functions."
+        },
+        {
+          "id": "JS-14-Q03-C2",
+          "label": "A classic script without async or defer blocks HTML parsing while it is fetched and executed.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Functions returning functions."
+        },
+        {
+          "id": "JS-14-Q03-C3",
+          "label": "Property lookup checks the object, then follows the prototype chain until a match is found or the chain ends.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Functions returning functions."
+        },
+        {
+          "id": "JS-14-Q03-C4",
+          "label": "A function can return a configured function that remembers creation-time context. This supports factories and reusable behavior.",
+          "feedback": "Functions returning functions is best understood as follows: A function can return a configured function that remembers creation-time context. This supports factories and reusable behavior."
+        }
+      ],
+      "correctChoiceIds": [
+        "JS-14-Q03-C4"
+      ],
+      "explanation": "Functions returning functions is best understood as follows: A function can return a configured function that remembers creation-time context. This supports factories and reusable behavior.",
+      "hint": "Focus on what the concept changes, enables, or constrains—not only on its syntax.",
+      "difficulty": 1,
+      "cognitiveLevel": "predict",
+      "estimatedSeconds": 120,
+      "tags": [
+        "functions-returning-functions",
+        "first-class-and-higher-order-functions"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JS-14-Q04",
+      "trackId": "javascript",
+      "moduleId": "JS-M05",
+      "topicId": "JS-14",
+      "objectiveIds": [
+        "JS-14-LO1",
+        "JS-14-LO2"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "A learner must use First-Class and Higher-Order Functions in a new situation. Which approach best demonstrates transferable understanding?",
+      "choices": [
+        {
+          "id": "JS-14-Q04-C1",
+          "label": "Apply Functions as values deliberately, make the relevant inputs and assumptions explicit, and verify the observable result before adding more complexity.",
+          "feedback": "Transfer comes from using the concept with explicit assumptions and checking the resulting behavior, not from reproducing a memorized example."
+        },
+        {
+          "id": "JS-14-Q04-C2",
+          "label": "Treat the concept as isolated trivia and avoid connecting it to earlier prerequisites.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of First-Class and Higher-Order Functions."
+        },
+        {
+          "id": "JS-14-Q04-C3",
+          "label": "Add more state and abstraction immediately, before identifying the smallest requirement.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of First-Class and Higher-Order Functions."
+        },
+        {
+          "id": "JS-14-Q04-C4",
+          "label": "Skip the underlying model and rely on memorized syntax, even when the result is unclear.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of First-Class and Higher-Order Functions."
+        }
+      ],
+      "correctChoiceIds": [
+        "JS-14-Q04-C1"
+      ],
+      "explanation": "Transfer comes from using the concept with explicit assumptions and checking the resulting behavior, not from reproducing a memorized example.",
+      "hint": "Choose the option that would still work when the surrounding example changes.",
+      "difficulty": 2,
+      "cognitiveLevel": "apply",
+      "estimatedSeconds": 120,
+      "tags": [
+        "first-class-and-higher-order-functions",
+        "functions-as-values"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JS-14-Q05",
+      "trackId": "javascript",
+      "moduleId": "JS-M05",
+      "topicId": "JS-14",
+      "objectiveIds": [
+        "JS-14-LO1",
+        "JS-14-LO2",
+        "JS-14-LO3"
+      ],
+      "kind": "single-choice",
+      "presentation": "code",
+      "prompt": "What is the most accurate explanation of the following First-Class and Higher-Order Functions example?",
+      "choices": [
+        {
+          "id": "JS-14-Q05-C1",
+          "label": "The snippet guarantees that all values are immutable and all operations are asynchronous.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of First-Class and Higher-Order Functions."
+        },
+        {
+          "id": "JS-14-Q05-C2",
+          "label": "The snippet removes the need to understand the data flowing through the program.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of First-Class and Higher-Order Functions."
+        },
+        {
+          "id": "JS-14-Q05-C3",
+          "label": "A function returns a configured callback that is then passed to `filter`.",
+          "feedback": "The correct choice connects the example to the underlying model rather than treating the syntax as isolated trivia."
+        },
+        {
+          "id": "JS-14-Q05-C4",
+          "label": "The snippet is valid only because JavaScript ignores variable scope and evaluation order.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of First-Class and Higher-Order Functions."
+        }
+      ],
+      "correctChoiceIds": [
+        "JS-14-Q05-C3"
+      ],
+      "explanation": "The correct choice connects the example to the underlying model rather than treating the syntax as isolated trivia.",
+      "hint": "Trace data, control flow, ownership, or rendering step by step.",
+      "difficulty": 2,
+      "cognitiveLevel": "predict",
+      "estimatedSeconds": 120,
+      "tags": [
+        "first-class-and-higher-order-functions",
+        "functions-as-values",
+        "callbacks"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review",
+      "code": {
+        "language": "js",
+        "source": "function createChecker(minimum) {\n  return score => score >= minimum;\n}\nconst hasMastered = createChecker(80);\nconsole.log([65, 82, 91].filter(hasMastered));"
+      }
+    },
+    {
+      "id": "JS-14-Q06",
+      "trackId": "javascript",
+      "moduleId": "JS-M05",
+      "topicId": "JS-14",
+      "objectiveIds": [
+        "JS-14-LO1",
+        "JS-14-LO2",
+        "JS-14-LO3"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which response best addresses this common mistake: “Memorizing syntax without predicting the underlying value or execution order.”?",
+      "choices": [
+        {
+          "id": "JS-14-Q06-C1",
+          "label": "The statement is unrelated to program behavior and cannot cause defects.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of First-Class and Higher-Order Functions."
+        },
+        {
+          "id": "JS-14-Q06-C2",
+          "label": "The statement is always correct, so no further reasoning about First-Class and Higher-Order Functions is needed.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of First-Class and Higher-Order Functions."
+        },
+        {
+          "id": "JS-14-Q06-C3",
+          "label": "The statement is correct only when variable names are short.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of First-Class and Higher-Order Functions."
+        },
+        {
+          "id": "JS-14-Q06-C4",
+          "label": "The statement is a misconception. A better approach is to reason from the concept's inputs, rules, and observable outcome, then verify the result.",
+          "feedback": "Good feedback names the misconception and replaces it with a usable reasoning process."
+        }
+      ],
+      "correctChoiceIds": [
+        "JS-14-Q06-C4"
+      ],
+      "explanation": "Good feedback names the misconception and replaces it with a usable reasoning process.",
+      "hint": "Look for the option that corrects both the belief and the learner's next action.",
+      "difficulty": 2,
+      "cognitiveLevel": "debug",
+      "estimatedSeconds": 120,
+      "tags": [
+        "first-class-and-higher-order-functions",
+        "common-mistakes"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JS-14-Q07",
+      "trackId": "javascript",
+      "moduleId": "JS-M05",
+      "topicId": "JS-14",
+      "objectiveIds": [
+        "JS-14-LO1",
+        "JS-14-LO2",
+        "JS-14-LO3"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which sequence is most reliable when solving a problem involving First-Class and Higher-Order Functions?",
+      "choices": [
+        {
+          "id": "JS-14-Q07-C1",
+          "label": "Copy an unrelated implementation, hide the assumptions, and test only the happy path.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of First-Class and Higher-Order Functions."
+        },
+        {
+          "id": "JS-14-Q07-C2",
+          "label": "Start with a framework abstraction and avoid checking the underlying language behavior.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of First-Class and Higher-Order Functions."
+        },
+        {
+          "id": "JS-14-Q07-C3",
+          "label": "First identify the requirement, then apply the relevant rule from Functions as values, inspect the result, and only then refactor or optimize.",
+          "feedback": "The reliable sequence starts from the requirement, applies a known rule, observes behavior, and improves the solution afterward."
+        },
+        {
+          "id": "JS-14-Q07-C4",
+          "label": "Optimize first, then decide what the code is supposed to do.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of First-Class and Higher-Order Functions."
+        }
+      ],
+      "correctChoiceIds": [
+        "JS-14-Q07-C3"
+      ],
+      "explanation": "The reliable sequence starts from the requirement, applies a known rule, observes behavior, and improves the solution afterward.",
+      "hint": "Prefer a sequence that makes failures visible early.",
+      "difficulty": 2,
+      "cognitiveLevel": "explain",
+      "estimatedSeconds": 75,
+      "tags": [
+        "first-class-and-higher-order-functions",
+        "problem-solving"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JS-14-Q08",
+      "trackId": "javascript",
+      "moduleId": "JS-M05",
+      "topicId": "JS-14",
+      "objectiveIds": [
+        "JS-14-LO1",
+        "JS-14-LO2",
+        "JS-14-LO3"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which guideline shows the best judgment about when to use First-Class and Higher-Order Functions?",
+      "choices": [
+        {
+          "id": "JS-14-Q08-C1",
+          "label": "Avoid First-Class and Higher-Order Functions completely because all abstractions reduce maintainability.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of First-Class and Higher-Order Functions."
+        },
+        {
+          "id": "JS-14-Q08-C2",
+          "label": "Choose based only on line count, without considering readability, correctness, or future change.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of First-Class and Higher-Order Functions."
+        },
+        {
+          "id": "JS-14-Q08-C3",
+          "label": "Use First-Class and Higher-Order Functions when it makes intent, ownership, or data flow clearer; avoid adding it mechanically when a simpler, equally explicit solution is sufficient.",
+          "feedback": "Engineering judgment balances clarity and cost. The concept should serve the requirement rather than become an end in itself."
+        },
+        {
+          "id": "JS-14-Q08-C4",
+          "label": "Use First-Class and Higher-Order Functions in every file because more abstraction is always better.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of First-Class and Higher-Order Functions."
+        }
+      ],
+      "correctChoiceIds": [
+        "JS-14-Q08-C3"
+      ],
+      "explanation": "Engineering judgment balances clarity and cost. The concept should serve the requirement rather than become an end in itself.",
+      "hint": "Choose the option that acknowledges both benefits and trade-offs.",
+      "difficulty": 3,
+      "cognitiveLevel": "tradeoff",
+      "estimatedSeconds": 120,
+      "tags": [
+        "first-class-and-higher-order-functions",
+        "tradeoffs"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    }
+  ],
+  "researchSources": [
+    {
+      "kind": "research-transcript",
+      "title": "First-Class and Higher-Order Functions",
+      "pathwayOrder": 22,
+      "sourceLine": 57633,
+      "usage": "Coverage research only; no transcript wording is canonical."
+    },
+    {
+      "kind": "supporting-research",
+      "title": "Functions Accepting Callback Functions",
+      "usage": "Optional coverage reference; learner-facing wording must be original."
+    },
+    {
+      "kind": "supporting-research",
+      "title": "Functions Returning Functions",
+      "usage": "Optional coverage reference; learner-facing wording must be original."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "MDN JavaScript Guide",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "MDN DOM",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "MDN Using promises",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "MDN JavaScript modules",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules",
+      "usage": "Technical verification and freshness review."
+    }
+  ],
+  "contentAuthority": {
+    "canonical": "New JS2Next Release 1 curriculum and independently authored content.",
+    "legacyProjectContent": "Supplementary internal reference only; excluded from runtime unless explicitly re-authored and approved.",
+    "courseTranscripts": "Coverage and sequencing research only; never learner-facing authority.",
+    "officialDocumentation": "Technical verification source."
+  },
+  "version": 1,
+  "status": "draft",
+  "reviewStatus": "pending-human-review",
+  "publicationStatus": "unpublished",
+  "createdAt": "2026-07-17",
+  "updatedAt": "2026-07-17"
+}

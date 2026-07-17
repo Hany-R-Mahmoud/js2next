@@ -1,0 +1,594 @@
+{
+  "schemaVersion": "1.0",
+  "id": "R-16",
+  "slug": "how-events-work-in-react",
+  "trackId": "react",
+  "moduleId": "R-M05",
+  "order": 5,
+  "title": "How Events Work in React",
+  "required": true,
+  "optional": false,
+  "advanced": false,
+  "contentType": "core",
+  "difficulty": 3,
+  "estimatedMinutes": 15,
+  "requiredPrerequisiteTopicIds": [
+    "R-15"
+  ],
+  "recommendedPrerequisiteTopicIds": [],
+  "learningObjectives": [
+    {
+      "id": "R-16-LO1",
+      "text": "Explain react event system using a new example and justify the result.",
+      "subtopic": "React event system",
+      "cognitiveLevel": "understand"
+    },
+    {
+      "id": "R-16-LO2",
+      "text": "Explain event handlers using a new example and justify the result.",
+      "subtopic": "Event handlers",
+      "cognitiveLevel": "apply"
+    },
+    {
+      "id": "R-16-LO3",
+      "text": "Apply how events interact with state updates using a new example and justify the result.",
+      "subtopic": "How events interact with state updates",
+      "cognitiveLevel": "analyze"
+    }
+  ],
+  "whyThisMatters": "Learners frequently use how events work in react without a clear model of why it behaves as it does; this lesson makes that model explicit. It belongs to the **How React Renders** module.",
+  "mentalModel": "Draw a decision map: **React event system** → **Event handlers** → **How events interact with state updates**. Add branches where the learner must choose an alternative and label the evidence for the choice.",
+  "sections": [
+    {
+      "id": "R-16-S1",
+      "type": "concept",
+      "title": "React event system",
+      "body": "React event props register handlers with familiar propagation semantics. Handlers use camelCase names and receive an event object.",
+      "objectiveIds": [
+        "R-16-LO1"
+      ],
+      "checkQuestionId": "R-16-Q01"
+    },
+    {
+      "id": "R-16-S2",
+      "type": "concept",
+      "title": "Event handlers",
+      "body": "Event handlers contain logic caused by a specific user action. They read a render snapshot and enqueue future state changes.",
+      "objectiveIds": [
+        "R-16-LO2"
+      ],
+      "checkQuestionId": "R-16-Q02"
+    },
+    {
+      "id": "R-16-S3",
+      "type": "concept",
+      "title": "How events interact with state updates",
+      "body": "A handler sees state from the render that created it. Setters queue future values, and updates may be batched.",
+      "objectiveIds": [
+        "R-16-LO3"
+      ],
+      "checkQuestionId": "R-16-Q03"
+    },
+    {
+      "id": "R-16-EX1",
+      "type": "code-example",
+      "title": "Worked example",
+      "language": "jsx",
+      "source": "function SaveButton() {\n  const [saved, setSaved] = useState(false);\n  function handleSave(event) {\n    event.preventDefault();\n    setSaved(true);\n  }\n  return <button onClick={handleSave}>{saved ? 'Saved' : 'Save'}</button>;\n}",
+      "explanation": "The handler is passed to React and updates state in response to the event.",
+      "objectiveIds": [
+        "R-16-LO1",
+        "R-16-LO2",
+        "R-16-LO3"
+      ]
+    }
+  ],
+  "commonMistakes": [
+    "Mutating props or state instead of producing the next value.",
+    "Adding state or an Effect for a value that can be derived during render.",
+    "Using global state before identifying the real owner and consumers.",
+    "Optimizing renders without a measured user-facing problem."
+  ],
+  "summary": [
+    "How Events Work in React connects React event system, Event handlers, How events interact with state updates.",
+    "Use the topic to make behavior and decisions explicit rather than memorizing isolated syntax.",
+    "Verify understanding by explaining a new example and answering the topic quiz without looking back."
+  ],
+  "inLessonQuestionIds": [
+    "R-16-Q01",
+    "R-16-Q02",
+    "R-16-Q03"
+  ],
+  "topicQuiz": {
+    "id": "R-16-QUIZ",
+    "questionIds": [
+      "R-16-Q04",
+      "R-16-Q05",
+      "R-16-Q06",
+      "R-16-Q07",
+      "R-16-Q08"
+    ],
+    "masteryThresholdPercent": 80,
+    "attemptPolicy": "unlimited",
+    "failurePolicy": "Show explanations, add missed objectives to local review, and allow immediate or later retry.",
+    "randomizeQuestionOrder": true,
+    "randomizeChoiceOrder": false
+  },
+  "questions": [
+    {
+      "id": "R-16-Q01",
+      "trackId": "react",
+      "moduleId": "R-M05",
+      "topicId": "R-16",
+      "objectiveIds": [
+        "R-16-LO1"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which statement best explains “React event system” in the context of How Events Work in React?",
+      "choices": [
+        {
+          "id": "R-16-Q01-C1",
+          "label": "Lifting state moves shared state to the closest common parent, giving siblings one source of truth through props and callbacks.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of React event system."
+        },
+        {
+          "id": "R-16-Q01-C2",
+          "label": "Values calculable from props and state should usually be derived during render rather than stored separately. Duplicate state creates synchronization bugs.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of React event system."
+        },
+        {
+          "id": "R-16-Q01-C3",
+          "label": "A render is wasteful only when measured cost matters and it produces no useful change. Profile realistic interactions before optimizing.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of React event system."
+        },
+        {
+          "id": "R-16-Q01-C4",
+          "label": "React event props register handlers with familiar propagation semantics. Handlers use camelCase names and receive an event object.",
+          "feedback": "React event system is best understood as follows: React event props register handlers with familiar propagation semantics. Handlers use camelCase names and receive an event object."
+        }
+      ],
+      "correctChoiceIds": [
+        "R-16-Q01-C4"
+      ],
+      "explanation": "React event system is best understood as follows: React event props register handlers with familiar propagation semantics. Handlers use camelCase names and receive an event object.",
+      "hint": "Focus on what the concept changes, enables, or constrains—not only on its syntax.",
+      "difficulty": 2,
+      "cognitiveLevel": "recognize",
+      "estimatedSeconds": 75,
+      "tags": [
+        "react-event-system",
+        "how-events-work-in-react"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "R-16-Q02",
+      "trackId": "react",
+      "moduleId": "R-M05",
+      "topicId": "R-16",
+      "objectiveIds": [
+        "R-16-LO2"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which statement best explains “Event handlers” in the context of How Events Work in React?",
+      "choices": [
+        {
+          "id": "R-16-Q02-C1",
+          "label": "Lifting state moves shared state to the closest common parent, giving siblings one source of truth through props and callbacks.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Event handlers."
+        },
+        {
+          "id": "R-16-Q02-C2",
+          "label": "A render is wasteful only when measured cost matters and it produces no useful change. Profile realistic interactions before optimizing.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Event handlers."
+        },
+        {
+          "id": "R-16-Q02-C3",
+          "label": "Event handlers contain logic caused by a specific user action. They read a render snapshot and enqueue future state changes.",
+          "feedback": "Event handlers is best understood as follows: Event handlers contain logic caused by a specific user action. They read a render snapshot and enqueue future state changes."
+        },
+        {
+          "id": "R-16-Q02-C4",
+          "label": "Values calculable from props and state should usually be derived during render rather than stored separately. Duplicate state creates synchronization bugs.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Event handlers."
+        }
+      ],
+      "correctChoiceIds": [
+        "R-16-Q02-C3"
+      ],
+      "explanation": "Event handlers is best understood as follows: Event handlers contain logic caused by a specific user action. They read a render snapshot and enqueue future state changes.",
+      "hint": "Focus on what the concept changes, enables, or constrains—not only on its syntax.",
+      "difficulty": 2,
+      "cognitiveLevel": "explain",
+      "estimatedSeconds": 75,
+      "tags": [
+        "event-handlers",
+        "how-events-work-in-react"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "R-16-Q03",
+      "trackId": "react",
+      "moduleId": "R-M05",
+      "topicId": "R-16",
+      "objectiveIds": [
+        "R-16-LO3"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which statement best explains “How events interact with state updates” in the context of How Events Work in React?",
+      "choices": [
+        {
+          "id": "R-16-Q03-C1",
+          "label": "A render is wasteful only when measured cost matters and it produces no useful change. Profile realistic interactions before optimizing.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of How events interact with state updates."
+        },
+        {
+          "id": "R-16-Q03-C2",
+          "label": "Lifting state moves shared state to the closest common parent, giving siblings one source of truth through props and callbacks.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of How events interact with state updates."
+        },
+        {
+          "id": "R-16-Q03-C3",
+          "label": "A handler sees state from the render that created it. Setters queue future values, and updates may be batched.",
+          "feedback": "How events interact with state updates is best understood as follows: A handler sees state from the render that created it. Setters queue future values, and updates may be batched."
+        },
+        {
+          "id": "R-16-Q03-C4",
+          "label": "Values calculable from props and state should usually be derived during render rather than stored separately. Duplicate state creates synchronization bugs.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of How events interact with state updates."
+        }
+      ],
+      "correctChoiceIds": [
+        "R-16-Q03-C3"
+      ],
+      "explanation": "How events interact with state updates is best understood as follows: A handler sees state from the render that created it. Setters queue future values, and updates may be batched.",
+      "hint": "Focus on what the concept changes, enables, or constrains—not only on its syntax.",
+      "difficulty": 2,
+      "cognitiveLevel": "predict",
+      "estimatedSeconds": 120,
+      "tags": [
+        "how-events-interact-with-state-updates",
+        "how-events-work-in-react"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "R-16-Q04",
+      "trackId": "react",
+      "moduleId": "R-M05",
+      "topicId": "R-16",
+      "objectiveIds": [
+        "R-16-LO1",
+        "R-16-LO2"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "A learner must use How Events Work in React in a new situation. Which approach best demonstrates transferable understanding?",
+      "choices": [
+        {
+          "id": "R-16-Q04-C1",
+          "label": "Apply React event system deliberately, make the relevant inputs and assumptions explicit, and verify the observable result before adding more complexity.",
+          "feedback": "Transfer comes from using the concept with explicit assumptions and checking the resulting behavior, not from reproducing a memorized example."
+        },
+        {
+          "id": "R-16-Q04-C2",
+          "label": "Add more state and abstraction immediately, before identifying the smallest requirement.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of How Events Work in React."
+        },
+        {
+          "id": "R-16-Q04-C3",
+          "label": "Skip the underlying model and rely on memorized syntax, even when the result is unclear.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of How Events Work in React."
+        },
+        {
+          "id": "R-16-Q04-C4",
+          "label": "Treat the concept as isolated trivia and avoid connecting it to earlier prerequisites.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of How Events Work in React."
+        }
+      ],
+      "correctChoiceIds": [
+        "R-16-Q04-C1"
+      ],
+      "explanation": "Transfer comes from using the concept with explicit assumptions and checking the resulting behavior, not from reproducing a memorized example.",
+      "hint": "Choose the option that would still work when the surrounding example changes.",
+      "difficulty": 3,
+      "cognitiveLevel": "apply",
+      "estimatedSeconds": 120,
+      "tags": [
+        "how-events-work-in-react",
+        "react-event-system"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "R-16-Q05",
+      "trackId": "react",
+      "moduleId": "R-M05",
+      "topicId": "R-16",
+      "objectiveIds": [
+        "R-16-LO1",
+        "R-16-LO2",
+        "R-16-LO3"
+      ],
+      "kind": "single-choice",
+      "presentation": "code",
+      "prompt": "What is the most accurate explanation of the following How Events Work in React example?",
+      "choices": [
+        {
+          "id": "R-16-Q05-C1",
+          "label": "The snippet removes the need to understand the data flowing through the program.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of How Events Work in React."
+        },
+        {
+          "id": "R-16-Q05-C2",
+          "label": "The snippet guarantees that all values are immutable and all operations are asynchronous.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of How Events Work in React."
+        },
+        {
+          "id": "R-16-Q05-C3",
+          "label": "The snippet is valid only because JavaScript ignores variable scope and evaluation order.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of How Events Work in React."
+        },
+        {
+          "id": "R-16-Q05-C4",
+          "label": "The handler is passed to React and updates state in response to the event.",
+          "feedback": "The correct choice connects the example to the underlying model rather than treating the syntax as isolated trivia."
+        }
+      ],
+      "correctChoiceIds": [
+        "R-16-Q05-C4"
+      ],
+      "explanation": "The correct choice connects the example to the underlying model rather than treating the syntax as isolated trivia.",
+      "hint": "Trace data, control flow, ownership, or rendering step by step.",
+      "difficulty": 3,
+      "cognitiveLevel": "predict",
+      "estimatedSeconds": 120,
+      "tags": [
+        "how-events-work-in-react",
+        "react-event-system",
+        "event-handlers"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review",
+      "code": {
+        "language": "jsx",
+        "source": "function SaveButton() {\n  const [saved, setSaved] = useState(false);\n  function handleSave(event) {\n    event.preventDefault();\n    setSaved(true);\n  }\n  return <button onClick={handleSave}>{saved ? 'Saved' : 'Save'}</button>;\n}"
+      }
+    },
+    {
+      "id": "R-16-Q06",
+      "trackId": "react",
+      "moduleId": "R-M05",
+      "topicId": "R-16",
+      "objectiveIds": [
+        "R-16-LO1",
+        "R-16-LO2",
+        "R-16-LO3"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which response best addresses this common mistake: “Mutating props or state instead of producing the next value.”?",
+      "choices": [
+        {
+          "id": "R-16-Q06-C1",
+          "label": "The statement is a misconception. A better approach is to reason from the concept's inputs, rules, and observable outcome, then verify the result.",
+          "feedback": "Good feedback names the misconception and replaces it with a usable reasoning process."
+        },
+        {
+          "id": "R-16-Q06-C2",
+          "label": "The statement is unrelated to program behavior and cannot cause defects.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of How Events Work in React."
+        },
+        {
+          "id": "R-16-Q06-C3",
+          "label": "The statement is always correct, so no further reasoning about How Events Work in React is needed.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of How Events Work in React."
+        },
+        {
+          "id": "R-16-Q06-C4",
+          "label": "The statement is correct only when variable names are short.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of How Events Work in React."
+        }
+      ],
+      "correctChoiceIds": [
+        "R-16-Q06-C1"
+      ],
+      "explanation": "Good feedback names the misconception and replaces it with a usable reasoning process.",
+      "hint": "Look for the option that corrects both the belief and the learner's next action.",
+      "difficulty": 3,
+      "cognitiveLevel": "debug",
+      "estimatedSeconds": 120,
+      "tags": [
+        "how-events-work-in-react",
+        "common-mistakes"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "R-16-Q07",
+      "trackId": "react",
+      "moduleId": "R-M05",
+      "topicId": "R-16",
+      "objectiveIds": [
+        "R-16-LO1",
+        "R-16-LO2",
+        "R-16-LO3"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which sequence is most reliable when solving a problem involving How Events Work in React?",
+      "choices": [
+        {
+          "id": "R-16-Q07-C1",
+          "label": "Optimize first, then decide what the code is supposed to do.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of How Events Work in React."
+        },
+        {
+          "id": "R-16-Q07-C2",
+          "label": "Copy an unrelated implementation, hide the assumptions, and test only the happy path.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of How Events Work in React."
+        },
+        {
+          "id": "R-16-Q07-C3",
+          "label": "Start with a framework abstraction and avoid checking the underlying language behavior.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of How Events Work in React."
+        },
+        {
+          "id": "R-16-Q07-C4",
+          "label": "First identify the requirement, then apply the relevant rule from React event system, inspect the result, and only then refactor or optimize.",
+          "feedback": "The reliable sequence starts from the requirement, applies a known rule, observes behavior, and improves the solution afterward."
+        }
+      ],
+      "correctChoiceIds": [
+        "R-16-Q07-C4"
+      ],
+      "explanation": "The reliable sequence starts from the requirement, applies a known rule, observes behavior, and improves the solution afterward.",
+      "hint": "Prefer a sequence that makes failures visible early.",
+      "difficulty": 3,
+      "cognitiveLevel": "explain",
+      "estimatedSeconds": 75,
+      "tags": [
+        "how-events-work-in-react",
+        "problem-solving"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "R-16-Q08",
+      "trackId": "react",
+      "moduleId": "R-M05",
+      "topicId": "R-16",
+      "objectiveIds": [
+        "R-16-LO1",
+        "R-16-LO2",
+        "R-16-LO3"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which guideline shows the best judgment about when to use How Events Work in React?",
+      "choices": [
+        {
+          "id": "R-16-Q08-C1",
+          "label": "Avoid How Events Work in React completely because all abstractions reduce maintainability.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of How Events Work in React."
+        },
+        {
+          "id": "R-16-Q08-C2",
+          "label": "Use How Events Work in React in every file because more abstraction is always better.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of How Events Work in React."
+        },
+        {
+          "id": "R-16-Q08-C3",
+          "label": "Use How Events Work in React when it makes intent, ownership, or data flow clearer; avoid adding it mechanically when a simpler, equally explicit solution is sufficient.",
+          "feedback": "Engineering judgment balances clarity and cost. The concept should serve the requirement rather than become an end in itself."
+        },
+        {
+          "id": "R-16-Q08-C4",
+          "label": "Choose based only on line count, without considering readability, correctness, or future change.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of How Events Work in React."
+        }
+      ],
+      "correctChoiceIds": [
+        "R-16-Q08-C3"
+      ],
+      "explanation": "Engineering judgment balances clarity and cost. The concept should serve the requirement rather than become an end in itself.",
+      "hint": "Choose the option that acknowledges both benefits and trade-offs.",
+      "difficulty": 4,
+      "cognitiveLevel": "tradeoff",
+      "estimatedSeconds": 120,
+      "tags": [
+        "how-events-work-in-react",
+        "tradeoffs"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    }
+  ],
+  "researchSources": [
+    {
+      "kind": "research-transcript",
+      "title": "How Events Work in React",
+      "pathwayOrder": 31,
+      "sourceLine": 42036,
+      "usage": "Coverage research only; no transcript wording is canonical."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "React Learn",
+      "url": "https://react.dev/learn",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "React Managing State",
+      "url": "https://react.dev/learn/managing-state",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "React Escape Hatches",
+      "url": "https://react.dev/learn/escape-hatches",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "React API Reference",
+      "url": "https://react.dev/reference/react",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "Redux Essentials",
+      "url": "https://redux.js.org/tutorials/essentials/part-1-overview-concepts",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "TanStack Query Overview",
+      "url": "https://tanstack.com/query/latest/docs/framework/react/overview",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "Supabase Documentation",
+      "url": "https://supabase.com/docs",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "Tailwind CSS Documentation",
+      "url": "https://tailwindcss.com/docs",
+      "usage": "Technical verification and freshness review."
+    }
+  ],
+  "contentAuthority": {
+    "canonical": "New JS2Next Release 1 curriculum and independently authored content.",
+    "legacyProjectContent": "Supplementary internal reference only; excluded from runtime unless explicitly re-authored and approved.",
+    "courseTranscripts": "Coverage and sequencing research only; never learner-facing authority.",
+    "officialDocumentation": "Technical verification source."
+  },
+  "version": 1,
+  "status": "draft",
+  "reviewStatus": "pending-human-review",
+  "publicationStatus": "unpublished",
+  "createdAt": "2026-07-17",
+  "updatedAt": "2026-07-17"
+}

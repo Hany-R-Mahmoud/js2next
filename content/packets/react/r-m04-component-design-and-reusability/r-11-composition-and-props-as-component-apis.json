@@ -1,0 +1,611 @@
+{
+  "schemaVersion": "1.0",
+  "id": "R-11",
+  "slug": "composition-and-props-as-component-apis",
+  "trackId": "react",
+  "moduleId": "R-M04",
+  "order": 3,
+  "title": "Composition and Props as Component APIs",
+  "required": true,
+  "optional": false,
+  "advanced": false,
+  "contentType": "core",
+  "difficulty": 2,
+  "estimatedMinutes": 15,
+  "requiredPrerequisiteTopicIds": [
+    "R-10"
+  ],
+  "recommendedPrerequisiteTopicIds": [],
+  "learningObjectives": [
+    {
+      "id": "R-11-LO1",
+      "text": "Apply component composition using a new example and justify the result.",
+      "subtopic": "Component composition",
+      "cognitiveLevel": "understand"
+    },
+    {
+      "id": "R-11-LO2",
+      "text": "Apply avoiding prop drilling through composition using a new example and justify the result.",
+      "subtopic": "Avoiding prop drilling through composition",
+      "cognitiveLevel": "apply"
+    },
+    {
+      "id": "R-11-LO3",
+      "text": "Apply designing a clear component api using a new example and justify the result.",
+      "subtopic": "Designing a clear component API",
+      "cognitiveLevel": "analyze"
+    }
+  ],
+  "whyThisMatters": "This topic turns composition and props as component apis from isolated terminology into a practical tool for reading, writing, and reviewing code. It belongs to the **Component Design and Reusability** module.",
+  "mentalModel": "Draw a decision map: **Component composition** → **Avoiding prop drilling through composition** → **Designing a clear component API**. Add branches where the learner must choose an alternative and label the evidence for the choice.",
+  "sections": [
+    {
+      "id": "R-11-S1",
+      "type": "concept",
+      "title": "Component composition",
+      "body": "Composition builds behavior by nesting and combining components instead of relying on inheritance.",
+      "objectiveIds": [
+        "R-11-LO1"
+      ],
+      "checkQuestionId": "R-11-Q01"
+    },
+    {
+      "id": "R-11-S2",
+      "type": "concept",
+      "title": "Avoiding prop drilling through composition",
+      "body": "Before adding context, consider moving the consumer closer to the owner or passing a configured element through intermediate components.",
+      "objectiveIds": [
+        "R-11-LO2"
+      ],
+      "checkQuestionId": "R-11-Q02"
+    },
+    {
+      "id": "R-11-S3",
+      "type": "concept",
+      "title": "Designing a clear component API",
+      "body": "A clear component API uses intent-based names, sensible defaults, few contradictory options, and explicit composition points.",
+      "objectiveIds": [
+        "R-11-LO3"
+      ],
+      "checkQuestionId": "R-11-Q03"
+    },
+    {
+      "id": "R-11-EX1",
+      "type": "code-example",
+      "title": "Worked example",
+      "language": "jsx",
+      "source": "function Modal({ title, children, actions }) {\n  return (\n    <div role=\"dialog\" aria-label={title}>\n      <h2>{title}</h2>\n      {children}\n      <footer>{actions}</footer>\n    </div>\n  );\n}",
+      "explanation": "Named props and children form a clear component API.",
+      "objectiveIds": [
+        "R-11-LO1",
+        "R-11-LO2",
+        "R-11-LO3"
+      ]
+    }
+  ],
+  "commonMistakes": [
+    "Mutating props or state instead of producing the next value.",
+    "Adding state or an Effect for a value that can be derived during render.",
+    "Using global state before identifying the real owner and consumers.",
+    "Optimizing renders without a measured user-facing problem."
+  ],
+  "summary": [
+    "Composition and Props as Component APIs connects Component composition, Avoiding prop drilling through composition, Designing a clear component API.",
+    "Use the topic to make behavior and decisions explicit rather than memorizing isolated syntax.",
+    "Verify understanding by explaining a new example and answering the topic quiz without looking back."
+  ],
+  "inLessonQuestionIds": [
+    "R-11-Q01",
+    "R-11-Q02",
+    "R-11-Q03"
+  ],
+  "topicQuiz": {
+    "id": "R-11-QUIZ",
+    "questionIds": [
+      "R-11-Q04",
+      "R-11-Q05",
+      "R-11-Q06",
+      "R-11-Q07",
+      "R-11-Q08"
+    ],
+    "masteryThresholdPercent": 80,
+    "attemptPolicy": "unlimited",
+    "failurePolicy": "Show explanations, add missed objectives to local review, and allow immediate or later retry.",
+    "randomizeQuestionOrder": true,
+    "randomizeChoiceOrder": false
+  },
+  "questions": [
+    {
+      "id": "R-11-Q01",
+      "trackId": "react",
+      "moduleId": "R-M04",
+      "topicId": "R-11",
+      "objectiveIds": [
+        "R-11-LO1"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which statement best explains “Component composition” in the context of Composition and Props as Component APIs?",
+      "choices": [
+        {
+          "id": "R-11-Q01-C1",
+          "label": "A component definition is the function or class. Each rendered position represents an instance with its own state identity.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Component composition."
+        },
+        {
+          "id": "R-11-Q01-C2",
+          "label": "Composition builds behavior by nesting and combining components instead of relying on inheritance.",
+          "feedback": "Component composition is best understood as follows: Composition builds behavior by nesting and combining components instead of relying on inheritance."
+        },
+        {
+          "id": "R-11-Q01-C3",
+          "label": "Evaluate alternatives by complexity, clarity, testability, performance, team understanding, and likely change rather than searching for a universally perfect pattern.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Component composition."
+        },
+        {
+          "id": "R-11-Q01-C4",
+          "label": "Ref values persist for the component instance but changes are invisible to rendering.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Component composition."
+        }
+      ],
+      "correctChoiceIds": [
+        "R-11-Q01-C2"
+      ],
+      "explanation": "Component composition is best understood as follows: Composition builds behavior by nesting and combining components instead of relying on inheritance.",
+      "hint": "Focus on what the concept changes, enables, or constrains—not only on its syntax.",
+      "difficulty": 1,
+      "cognitiveLevel": "recognize",
+      "estimatedSeconds": 75,
+      "tags": [
+        "component-composition",
+        "composition-and-props-as-component-apis"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "R-11-Q02",
+      "trackId": "react",
+      "moduleId": "R-M04",
+      "topicId": "R-11",
+      "objectiveIds": [
+        "R-11-LO2"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which statement best explains “Avoiding prop drilling through composition” in the context of Composition and Props as Component APIs?",
+      "choices": [
+        {
+          "id": "R-11-Q02-C1",
+          "label": "Before adding context, consider moving the consumer closer to the owner or passing a configured element through intermediate components.",
+          "feedback": "Avoiding prop drilling through composition is best understood as follows: Before adding context, consider moving the consumer closer to the owner or passing a configured element through intermediate components."
+        },
+        {
+          "id": "R-11-Q02-C2",
+          "label": "A component definition is the function or class. Each rendered position represents an instance with its own state identity.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Avoiding prop drilling through composition."
+        },
+        {
+          "id": "R-11-Q02-C3",
+          "label": "Ref values persist for the component instance but changes are invisible to rendering.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Avoiding prop drilling through composition."
+        },
+        {
+          "id": "R-11-Q02-C4",
+          "label": "Evaluate alternatives by complexity, clarity, testability, performance, team understanding, and likely change rather than searching for a universally perfect pattern.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Avoiding prop drilling through composition."
+        }
+      ],
+      "correctChoiceIds": [
+        "R-11-Q02-C1"
+      ],
+      "explanation": "Avoiding prop drilling through composition is best understood as follows: Before adding context, consider moving the consumer closer to the owner or passing a configured element through intermediate components.",
+      "hint": "Focus on what the concept changes, enables, or constrains—not only on its syntax.",
+      "difficulty": 1,
+      "cognitiveLevel": "explain",
+      "estimatedSeconds": 75,
+      "tags": [
+        "avoiding-prop-drilling-through-composition",
+        "composition-and-props-as-component-apis"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "R-11-Q03",
+      "trackId": "react",
+      "moduleId": "R-M04",
+      "topicId": "R-11",
+      "objectiveIds": [
+        "R-11-LO3"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which statement best explains “Designing a clear component API” in the context of Composition and Props as Component APIs?",
+      "choices": [
+        {
+          "id": "R-11-Q03-C1",
+          "label": "A component definition is the function or class. Each rendered position represents an instance with its own state identity.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Designing a clear component API."
+        },
+        {
+          "id": "R-11-Q03-C2",
+          "label": "Ref values persist for the component instance but changes are invisible to rendering.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Designing a clear component API."
+        },
+        {
+          "id": "R-11-Q03-C3",
+          "label": "Evaluate alternatives by complexity, clarity, testability, performance, team understanding, and likely change rather than searching for a universally perfect pattern.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Designing a clear component API."
+        },
+        {
+          "id": "R-11-Q03-C4",
+          "label": "A clear component API uses intent-based names, sensible defaults, few contradictory options, and explicit composition points.",
+          "feedback": "Designing a clear component API is best understood as follows: A clear component API uses intent-based names, sensible defaults, few contradictory options, and explicit composition points."
+        }
+      ],
+      "correctChoiceIds": [
+        "R-11-Q03-C4"
+      ],
+      "explanation": "Designing a clear component API is best understood as follows: A clear component API uses intent-based names, sensible defaults, few contradictory options, and explicit composition points.",
+      "hint": "Focus on what the concept changes, enables, or constrains—not only on its syntax.",
+      "difficulty": 1,
+      "cognitiveLevel": "predict",
+      "estimatedSeconds": 120,
+      "tags": [
+        "designing-a-clear-component-api",
+        "composition-and-props-as-component-apis"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "R-11-Q04",
+      "trackId": "react",
+      "moduleId": "R-M04",
+      "topicId": "R-11",
+      "objectiveIds": [
+        "R-11-LO1",
+        "R-11-LO2"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "A learner must use Composition and Props as Component APIs in a new situation. Which approach best demonstrates transferable understanding?",
+      "choices": [
+        {
+          "id": "R-11-Q04-C1",
+          "label": "Apply Component composition deliberately, make the relevant inputs and assumptions explicit, and verify the observable result before adding more complexity.",
+          "feedback": "Transfer comes from using the concept with explicit assumptions and checking the resulting behavior, not from reproducing a memorized example."
+        },
+        {
+          "id": "R-11-Q04-C2",
+          "label": "Skip the underlying model and rely on memorized syntax, even when the result is unclear.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Composition and Props as Component APIs."
+        },
+        {
+          "id": "R-11-Q04-C3",
+          "label": "Add more state and abstraction immediately, before identifying the smallest requirement.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Composition and Props as Component APIs."
+        },
+        {
+          "id": "R-11-Q04-C4",
+          "label": "Treat the concept as isolated trivia and avoid connecting it to earlier prerequisites.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Composition and Props as Component APIs."
+        }
+      ],
+      "correctChoiceIds": [
+        "R-11-Q04-C1"
+      ],
+      "explanation": "Transfer comes from using the concept with explicit assumptions and checking the resulting behavior, not from reproducing a memorized example.",
+      "hint": "Choose the option that would still work when the surrounding example changes.",
+      "difficulty": 2,
+      "cognitiveLevel": "apply",
+      "estimatedSeconds": 120,
+      "tags": [
+        "composition-and-props-as-component-apis",
+        "component-composition"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "R-11-Q05",
+      "trackId": "react",
+      "moduleId": "R-M04",
+      "topicId": "R-11",
+      "objectiveIds": [
+        "R-11-LO1",
+        "R-11-LO2",
+        "R-11-LO3"
+      ],
+      "kind": "single-choice",
+      "presentation": "code",
+      "prompt": "What is the most accurate explanation of the following Composition and Props as Component APIs example?",
+      "choices": [
+        {
+          "id": "R-11-Q05-C1",
+          "label": "The snippet removes the need to understand the data flowing through the program.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Composition and Props as Component APIs."
+        },
+        {
+          "id": "R-11-Q05-C2",
+          "label": "The snippet guarantees that all values are immutable and all operations are asynchronous.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Composition and Props as Component APIs."
+        },
+        {
+          "id": "R-11-Q05-C3",
+          "label": "Named props and children form a clear component API.",
+          "feedback": "The correct choice connects the example to the underlying model rather than treating the syntax as isolated trivia."
+        },
+        {
+          "id": "R-11-Q05-C4",
+          "label": "The snippet is valid only because JavaScript ignores variable scope and evaluation order.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Composition and Props as Component APIs."
+        }
+      ],
+      "correctChoiceIds": [
+        "R-11-Q05-C3"
+      ],
+      "explanation": "The correct choice connects the example to the underlying model rather than treating the syntax as isolated trivia.",
+      "hint": "Trace data, control flow, ownership, or rendering step by step.",
+      "difficulty": 2,
+      "cognitiveLevel": "predict",
+      "estimatedSeconds": 120,
+      "tags": [
+        "composition-and-props-as-component-apis",
+        "component-composition",
+        "avoiding-prop-drilling-through-composition"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review",
+      "code": {
+        "language": "jsx",
+        "source": "function Modal({ title, children, actions }) {\n  return (\n    <div role=\"dialog\" aria-label={title}>\n      <h2>{title}</h2>\n      {children}\n      <footer>{actions}</footer>\n    </div>\n  );\n}"
+      }
+    },
+    {
+      "id": "R-11-Q06",
+      "trackId": "react",
+      "moduleId": "R-M04",
+      "topicId": "R-11",
+      "objectiveIds": [
+        "R-11-LO1",
+        "R-11-LO2",
+        "R-11-LO3"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which response best addresses this common mistake: “Mutating props or state instead of producing the next value.”?",
+      "choices": [
+        {
+          "id": "R-11-Q06-C1",
+          "label": "The statement is a misconception. A better approach is to reason from the concept's inputs, rules, and observable outcome, then verify the result.",
+          "feedback": "Good feedback names the misconception and replaces it with a usable reasoning process."
+        },
+        {
+          "id": "R-11-Q06-C2",
+          "label": "The statement is unrelated to program behavior and cannot cause defects.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Composition and Props as Component APIs."
+        },
+        {
+          "id": "R-11-Q06-C3",
+          "label": "The statement is correct only when variable names are short.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Composition and Props as Component APIs."
+        },
+        {
+          "id": "R-11-Q06-C4",
+          "label": "The statement is always correct, so no further reasoning about Composition and Props as Component APIs is needed.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Composition and Props as Component APIs."
+        }
+      ],
+      "correctChoiceIds": [
+        "R-11-Q06-C1"
+      ],
+      "explanation": "Good feedback names the misconception and replaces it with a usable reasoning process.",
+      "hint": "Look for the option that corrects both the belief and the learner's next action.",
+      "difficulty": 2,
+      "cognitiveLevel": "debug",
+      "estimatedSeconds": 120,
+      "tags": [
+        "composition-and-props-as-component-apis",
+        "common-mistakes"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "R-11-Q07",
+      "trackId": "react",
+      "moduleId": "R-M04",
+      "topicId": "R-11",
+      "objectiveIds": [
+        "R-11-LO1",
+        "R-11-LO2",
+        "R-11-LO3"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which sequence is most reliable when solving a problem involving Composition and Props as Component APIs?",
+      "choices": [
+        {
+          "id": "R-11-Q07-C1",
+          "label": "Copy an unrelated implementation, hide the assumptions, and test only the happy path.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Composition and Props as Component APIs."
+        },
+        {
+          "id": "R-11-Q07-C2",
+          "label": "Start with a framework abstraction and avoid checking the underlying language behavior.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Composition and Props as Component APIs."
+        },
+        {
+          "id": "R-11-Q07-C3",
+          "label": "Optimize first, then decide what the code is supposed to do.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Composition and Props as Component APIs."
+        },
+        {
+          "id": "R-11-Q07-C4",
+          "label": "First identify the requirement, then apply the relevant rule from Component composition, inspect the result, and only then refactor or optimize.",
+          "feedback": "The reliable sequence starts from the requirement, applies a known rule, observes behavior, and improves the solution afterward."
+        }
+      ],
+      "correctChoiceIds": [
+        "R-11-Q07-C4"
+      ],
+      "explanation": "The reliable sequence starts from the requirement, applies a known rule, observes behavior, and improves the solution afterward.",
+      "hint": "Prefer a sequence that makes failures visible early.",
+      "difficulty": 2,
+      "cognitiveLevel": "explain",
+      "estimatedSeconds": 75,
+      "tags": [
+        "composition-and-props-as-component-apis",
+        "problem-solving"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "R-11-Q08",
+      "trackId": "react",
+      "moduleId": "R-M04",
+      "topicId": "R-11",
+      "objectiveIds": [
+        "R-11-LO1",
+        "R-11-LO2",
+        "R-11-LO3"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which guideline shows the best judgment about when to use Composition and Props as Component APIs?",
+      "choices": [
+        {
+          "id": "R-11-Q08-C1",
+          "label": "Choose based only on line count, without considering readability, correctness, or future change.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Composition and Props as Component APIs."
+        },
+        {
+          "id": "R-11-Q08-C2",
+          "label": "Use Composition and Props as Component APIs in every file because more abstraction is always better.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Composition and Props as Component APIs."
+        },
+        {
+          "id": "R-11-Q08-C3",
+          "label": "Avoid Composition and Props as Component APIs completely because all abstractions reduce maintainability.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Composition and Props as Component APIs."
+        },
+        {
+          "id": "R-11-Q08-C4",
+          "label": "Use Composition and Props as Component APIs when it makes intent, ownership, or data flow clearer; avoid adding it mechanically when a simpler, equally explicit solution is sufficient.",
+          "feedback": "Engineering judgment balances clarity and cost. The concept should serve the requirement rather than become an end in itself."
+        }
+      ],
+      "correctChoiceIds": [
+        "R-11-Q08-C4"
+      ],
+      "explanation": "Engineering judgment balances clarity and cost. The concept should serve the requirement rather than become an end in itself.",
+      "hint": "Choose the option that acknowledges both benefits and trade-offs.",
+      "difficulty": 3,
+      "cognitiveLevel": "tradeoff",
+      "estimatedSeconds": 120,
+      "tags": [
+        "composition-and-props-as-component-apis",
+        "tradeoffs"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    }
+  ],
+  "researchSources": [
+    {
+      "kind": "research-transcript",
+      "title": "Component Composition",
+      "pathwayOrder": 21,
+      "sourceLine": 33554,
+      "usage": "Coverage research only; no transcript wording is canonical."
+    },
+    {
+      "kind": "research-transcript",
+      "title": "Props as a Component API",
+      "pathwayOrder": 22,
+      "sourceLine": 35633,
+      "usage": "Coverage research only; no transcript wording is canonical."
+    },
+    {
+      "kind": "supporting-research",
+      "title": "Fixing Prop Drilling With Composition (And Building a Layout)",
+      "usage": "Optional coverage reference; learner-facing wording must be original."
+    },
+    {
+      "kind": "supporting-research",
+      "title": "Using Composition to Make a Reusable Box",
+      "usage": "Optional coverage reference; learner-facing wording must be original."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "React Learn",
+      "url": "https://react.dev/learn",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "React Managing State",
+      "url": "https://react.dev/learn/managing-state",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "React Escape Hatches",
+      "url": "https://react.dev/learn/escape-hatches",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "React API Reference",
+      "url": "https://react.dev/reference/react",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "Redux Essentials",
+      "url": "https://redux.js.org/tutorials/essentials/part-1-overview-concepts",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "TanStack Query Overview",
+      "url": "https://tanstack.com/query/latest/docs/framework/react/overview",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "Supabase Documentation",
+      "url": "https://supabase.com/docs",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "Tailwind CSS Documentation",
+      "url": "https://tailwindcss.com/docs",
+      "usage": "Technical verification and freshness review."
+    }
+  ],
+  "contentAuthority": {
+    "canonical": "New JS2Next Release 1 curriculum and independently authored content.",
+    "legacyProjectContent": "Supplementary internal reference only; excluded from runtime unless explicitly re-authored and approved.",
+    "courseTranscripts": "Coverage and sequencing research only; never learner-facing authority.",
+    "officialDocumentation": "Technical verification source."
+  },
+  "version": 1,
+  "status": "draft",
+  "reviewStatus": "pending-human-review",
+  "publicationStatus": "unpublished",
+  "createdAt": "2026-07-17",
+  "updatedAt": "2026-07-17"
+}

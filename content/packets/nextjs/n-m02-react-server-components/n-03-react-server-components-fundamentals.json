@@ -1,0 +1,582 @@
+{
+  "schemaVersion": "1.0",
+  "id": "N-03",
+  "slug": "react-server-components-fundamentals",
+  "trackId": "nextjs",
+  "moduleId": "N-M02",
+  "order": 1,
+  "title": "React Server Components: Fundamentals",
+  "required": true,
+  "optional": false,
+  "advanced": false,
+  "contentType": "core",
+  "difficulty": 2,
+  "estimatedMinutes": 25,
+  "requiredPrerequisiteTopicIds": [
+    "N-02"
+  ],
+  "recommendedPrerequisiteTopicIds": [],
+  "learningObjectives": [
+    {
+      "id": "N-03-LO1",
+      "text": "Explain server and client components using a new example and justify the result.",
+      "subtopic": "Server and client components",
+      "cognitiveLevel": "understand"
+    },
+    {
+      "id": "N-03-LO2",
+      "text": "Explain capabilities and restrictions using a new example and justify the result.",
+      "subtopic": "Capabilities and restrictions",
+      "cognitiveLevel": "apply"
+    },
+    {
+      "id": "N-03-LO3",
+      "text": "Explain benefits of server execution using a new example and justify the result.",
+      "subtopic": "Benefits of server execution",
+      "cognitiveLevel": "analyze"
+    }
+  ],
+  "whyThisMatters": "Learners frequently use react server components: fundamentals without a clear model of why it behaves as it does; this lesson makes that model explicit. It belongs to the **React Server Components** module.",
+  "mentalModel": "Draw a decision map: **Server and client components** → **Capabilities and restrictions** → **Benefits of server execution**. Add branches where the learner must choose an alternative and label the evidence for the choice.",
+  "sections": [
+    {
+      "id": "N-03-S1",
+      "type": "concept",
+      "title": "Server and client components",
+      "body": "Server Components execute in the server environment; Client Components opt into state, effects, events, and browser APIs.",
+      "objectiveIds": [
+        "N-03-LO1"
+      ],
+      "checkQuestionId": "N-03-Q01"
+    },
+    {
+      "id": "N-03-S2",
+      "type": "concept",
+      "title": "Capabilities and restrictions",
+      "body": "Server Components can use server resources but not client state or browser APIs. Client Components can be interactive but add client JavaScript.",
+      "objectiveIds": [
+        "N-03-LO2"
+      ],
+      "checkQuestionId": "N-03-Q02"
+    },
+    {
+      "id": "N-03-S3",
+      "type": "concept",
+      "title": "Benefits of server execution",
+      "body": "Server execution can protect secrets, keep data access close to its source, reduce client JavaScript, and support streaming or caching.",
+      "objectiveIds": [
+        "N-03-LO3"
+      ],
+      "checkQuestionId": "N-03-Q03"
+    },
+    {
+      "id": "N-03-EX1",
+      "type": "code-example",
+      "title": "Worked example",
+      "language": "tsx",
+      "source": "export default async function TopicPage() {\n  const topic = await db.topic.findFirst();\n  return <TopicLesson topic={topic} />;\n}",
+      "explanation": "A Server Component accesses server data without shipping its implementation to the browser.",
+      "objectiveIds": [
+        "N-03-LO1",
+        "N-03-LO2",
+        "N-03-LO3"
+      ]
+    }
+  ],
+  "commonMistakes": [
+    "Marking a large route tree as client code when only a small interaction needs it.",
+    "Confusing React Server Components with server-side rendering.",
+    "Assuming cached data is fresh without an explicit policy and invalidation path.",
+    "Placing security-sensitive validation only in the client or middleware layer."
+  ],
+  "summary": [
+    "React Server Components: Fundamentals connects Server and client components, Capabilities and restrictions, Benefits of server execution.",
+    "Use the topic to make behavior and decisions explicit rather than memorizing isolated syntax.",
+    "Verify understanding by explaining a new example and answering the topic quiz without looking back."
+  ],
+  "inLessonQuestionIds": [
+    "N-03-Q01",
+    "N-03-Q02",
+    "N-03-Q03"
+  ],
+  "topicQuiz": {
+    "id": "N-03-QUIZ",
+    "questionIds": [
+      "N-03-Q04",
+      "N-03-Q05",
+      "N-03-Q06",
+      "N-03-Q07",
+      "N-03-Q08"
+    ],
+    "masteryThresholdPercent": 80,
+    "attemptPolicy": "unlimited",
+    "failurePolicy": "Show explanations, add missed objectives to local review, and allow immediate or later retry.",
+    "randomizeQuestionOrder": true,
+    "randomizeChoiceOrder": false
+  },
+  "questions": [
+    {
+      "id": "N-03-Q01",
+      "trackId": "nextjs",
+      "moduleId": "N-M02",
+      "topicId": "N-03",
+      "objectiveIds": [
+        "N-03-LO1"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which statement best explains “Server and client components” in the context of React Server Components: Fundamentals?",
+      "choices": [
+        {
+          "id": "N-03-Q01-C1",
+          "label": "Server Components execute in the server environment; Client Components opt into state, effects, events, and browser APIs.",
+          "feedback": "Server and client components is best understood as follows: Server Components execute in the server environment; Client Components opt into state, effects, events, and browser APIs."
+        },
+        {
+          "id": "N-03-Q01-C2",
+          "label": "Translate user-visible outcomes into routes, data needs, interactions, errors, and acceptance conditions before implementation.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Server and client components."
+        },
+        {
+          "id": "N-03-Q01-C3",
+          "label": "Static rendering produces reusable output ahead of requests and suits data that does not depend on request-specific information.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Server and client components."
+        },
+        {
+          "id": "N-03-Q01-C4",
+          "label": "Use props for server-to-client data, URLs for shareable navigation state, server mutations for persistence, and client state for interaction.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Server and client components."
+        }
+      ],
+      "correctChoiceIds": [
+        "N-03-Q01-C1"
+      ],
+      "explanation": "Server and client components is best understood as follows: Server Components execute in the server environment; Client Components opt into state, effects, events, and browser APIs.",
+      "hint": "Focus on what the concept changes, enables, or constrains—not only on its syntax.",
+      "difficulty": 1,
+      "cognitiveLevel": "recognize",
+      "estimatedSeconds": 75,
+      "tags": [
+        "server-and-client-components",
+        "react-server-components-fundamentals"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "N-03-Q02",
+      "trackId": "nextjs",
+      "moduleId": "N-M02",
+      "topicId": "N-03",
+      "objectiveIds": [
+        "N-03-LO2"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which statement best explains “Capabilities and restrictions” in the context of React Server Components: Fundamentals?",
+      "choices": [
+        {
+          "id": "N-03-Q02-C1",
+          "label": "Server Components can use server resources but not client state or browser APIs. Client Components can be interactive but add client JavaScript.",
+          "feedback": "Capabilities and restrictions is best understood as follows: Server Components can use server resources but not client state or browser APIs. Client Components can be interactive but add client JavaScript."
+        },
+        {
+          "id": "N-03-Q02-C2",
+          "label": "Static rendering produces reusable output ahead of requests and suits data that does not depend on request-specific information.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Capabilities and restrictions."
+        },
+        {
+          "id": "N-03-Q02-C3",
+          "label": "Use props for server-to-client data, URLs for shareable navigation state, server mutations for persistence, and client state for interaction.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Capabilities and restrictions."
+        },
+        {
+          "id": "N-03-Q02-C4",
+          "label": "Translate user-visible outcomes into routes, data needs, interactions, errors, and acceptance conditions before implementation.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Capabilities and restrictions."
+        }
+      ],
+      "correctChoiceIds": [
+        "N-03-Q02-C1"
+      ],
+      "explanation": "Capabilities and restrictions is best understood as follows: Server Components can use server resources but not client state or browser APIs. Client Components can be interactive but add client JavaScript.",
+      "hint": "Focus on what the concept changes, enables, or constrains—not only on its syntax.",
+      "difficulty": 1,
+      "cognitiveLevel": "explain",
+      "estimatedSeconds": 75,
+      "tags": [
+        "capabilities-and-restrictions",
+        "react-server-components-fundamentals"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "N-03-Q03",
+      "trackId": "nextjs",
+      "moduleId": "N-M02",
+      "topicId": "N-03",
+      "objectiveIds": [
+        "N-03-LO3"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which statement best explains “Benefits of server execution” in the context of React Server Components: Fundamentals?",
+      "choices": [
+        {
+          "id": "N-03-Q03-C1",
+          "label": "Translate user-visible outcomes into routes, data needs, interactions, errors, and acceptance conditions before implementation.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Benefits of server execution."
+        },
+        {
+          "id": "N-03-Q03-C2",
+          "label": "Use props for server-to-client data, URLs for shareable navigation state, server mutations for persistence, and client state for interaction.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Benefits of server execution."
+        },
+        {
+          "id": "N-03-Q03-C3",
+          "label": "Server execution can protect secrets, keep data access close to its source, reduce client JavaScript, and support streaming or caching.",
+          "feedback": "Benefits of server execution is best understood as follows: Server execution can protect secrets, keep data access close to its source, reduce client JavaScript, and support streaming or caching."
+        },
+        {
+          "id": "N-03-Q03-C4",
+          "label": "Static rendering produces reusable output ahead of requests and suits data that does not depend on request-specific information.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Benefits of server execution."
+        }
+      ],
+      "correctChoiceIds": [
+        "N-03-Q03-C3"
+      ],
+      "explanation": "Benefits of server execution is best understood as follows: Server execution can protect secrets, keep data access close to its source, reduce client JavaScript, and support streaming or caching.",
+      "hint": "Focus on what the concept changes, enables, or constrains—not only on its syntax.",
+      "difficulty": 1,
+      "cognitiveLevel": "predict",
+      "estimatedSeconds": 120,
+      "tags": [
+        "benefits-of-server-execution",
+        "react-server-components-fundamentals"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "N-03-Q04",
+      "trackId": "nextjs",
+      "moduleId": "N-M02",
+      "topicId": "N-03",
+      "objectiveIds": [
+        "N-03-LO1",
+        "N-03-LO2"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "A learner must use React Server Components: Fundamentals in a new situation. Which approach best demonstrates transferable understanding?",
+      "choices": [
+        {
+          "id": "N-03-Q04-C1",
+          "label": "Treat the concept as isolated trivia and avoid connecting it to earlier prerequisites.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of React Server Components: Fundamentals."
+        },
+        {
+          "id": "N-03-Q04-C2",
+          "label": "Apply Server and client components deliberately, make the relevant inputs and assumptions explicit, and verify the observable result before adding more complexity.",
+          "feedback": "Transfer comes from using the concept with explicit assumptions and checking the resulting behavior, not from reproducing a memorized example."
+        },
+        {
+          "id": "N-03-Q04-C3",
+          "label": "Skip the underlying model and rely on memorized syntax, even when the result is unclear.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of React Server Components: Fundamentals."
+        },
+        {
+          "id": "N-03-Q04-C4",
+          "label": "Add more state and abstraction immediately, before identifying the smallest requirement.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of React Server Components: Fundamentals."
+        }
+      ],
+      "correctChoiceIds": [
+        "N-03-Q04-C2"
+      ],
+      "explanation": "Transfer comes from using the concept with explicit assumptions and checking the resulting behavior, not from reproducing a memorized example.",
+      "hint": "Choose the option that would still work when the surrounding example changes.",
+      "difficulty": 2,
+      "cognitiveLevel": "apply",
+      "estimatedSeconds": 120,
+      "tags": [
+        "react-server-components-fundamentals",
+        "server-and-client-components"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "N-03-Q05",
+      "trackId": "nextjs",
+      "moduleId": "N-M02",
+      "topicId": "N-03",
+      "objectiveIds": [
+        "N-03-LO1",
+        "N-03-LO2",
+        "N-03-LO3"
+      ],
+      "kind": "single-choice",
+      "presentation": "code",
+      "prompt": "What is the most accurate explanation of the following React Server Components: Fundamentals example?",
+      "choices": [
+        {
+          "id": "N-03-Q05-C1",
+          "label": "The snippet removes the need to understand the data flowing through the program.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of React Server Components: Fundamentals."
+        },
+        {
+          "id": "N-03-Q05-C2",
+          "label": "The snippet guarantees that all values are immutable and all operations are asynchronous.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of React Server Components: Fundamentals."
+        },
+        {
+          "id": "N-03-Q05-C3",
+          "label": "A Server Component accesses server data without shipping its implementation to the browser.",
+          "feedback": "The correct choice connects the example to the underlying model rather than treating the syntax as isolated trivia."
+        },
+        {
+          "id": "N-03-Q05-C4",
+          "label": "The snippet is valid only because JavaScript ignores variable scope and evaluation order.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of React Server Components: Fundamentals."
+        }
+      ],
+      "correctChoiceIds": [
+        "N-03-Q05-C3"
+      ],
+      "explanation": "The correct choice connects the example to the underlying model rather than treating the syntax as isolated trivia.",
+      "hint": "Trace data, control flow, ownership, or rendering step by step.",
+      "difficulty": 2,
+      "cognitiveLevel": "predict",
+      "estimatedSeconds": 120,
+      "tags": [
+        "react-server-components-fundamentals",
+        "server-and-client-components",
+        "capabilities-and-restrictions"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review",
+      "code": {
+        "language": "tsx",
+        "source": "export default async function TopicPage() {\n  const topic = await db.topic.findFirst();\n  return <TopicLesson topic={topic} />;\n}"
+      }
+    },
+    {
+      "id": "N-03-Q06",
+      "trackId": "nextjs",
+      "moduleId": "N-M02",
+      "topicId": "N-03",
+      "objectiveIds": [
+        "N-03-LO1",
+        "N-03-LO2",
+        "N-03-LO3"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which response best addresses this common mistake: “Marking a large route tree as client code when only a small interaction needs it.”?",
+      "choices": [
+        {
+          "id": "N-03-Q06-C1",
+          "label": "The statement is unrelated to program behavior and cannot cause defects.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of React Server Components: Fundamentals."
+        },
+        {
+          "id": "N-03-Q06-C2",
+          "label": "The statement is always correct, so no further reasoning about React Server Components: Fundamentals is needed.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of React Server Components: Fundamentals."
+        },
+        {
+          "id": "N-03-Q06-C3",
+          "label": "The statement is a misconception. A better approach is to reason from the concept's inputs, rules, and observable outcome, then verify the result.",
+          "feedback": "Good feedback names the misconception and replaces it with a usable reasoning process."
+        },
+        {
+          "id": "N-03-Q06-C4",
+          "label": "The statement is correct only when variable names are short.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of React Server Components: Fundamentals."
+        }
+      ],
+      "correctChoiceIds": [
+        "N-03-Q06-C3"
+      ],
+      "explanation": "Good feedback names the misconception and replaces it with a usable reasoning process.",
+      "hint": "Look for the option that corrects both the belief and the learner's next action.",
+      "difficulty": 2,
+      "cognitiveLevel": "debug",
+      "estimatedSeconds": 120,
+      "tags": [
+        "react-server-components-fundamentals",
+        "common-mistakes"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "N-03-Q07",
+      "trackId": "nextjs",
+      "moduleId": "N-M02",
+      "topicId": "N-03",
+      "objectiveIds": [
+        "N-03-LO1",
+        "N-03-LO2",
+        "N-03-LO3"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which sequence is most reliable when solving a problem involving React Server Components: Fundamentals?",
+      "choices": [
+        {
+          "id": "N-03-Q07-C1",
+          "label": "Start with a framework abstraction and avoid checking the underlying language behavior.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of React Server Components: Fundamentals."
+        },
+        {
+          "id": "N-03-Q07-C2",
+          "label": "Optimize first, then decide what the code is supposed to do.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of React Server Components: Fundamentals."
+        },
+        {
+          "id": "N-03-Q07-C3",
+          "label": "First identify the requirement, then apply the relevant rule from Server and client components, inspect the result, and only then refactor or optimize.",
+          "feedback": "The reliable sequence starts from the requirement, applies a known rule, observes behavior, and improves the solution afterward."
+        },
+        {
+          "id": "N-03-Q07-C4",
+          "label": "Copy an unrelated implementation, hide the assumptions, and test only the happy path.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of React Server Components: Fundamentals."
+        }
+      ],
+      "correctChoiceIds": [
+        "N-03-Q07-C3"
+      ],
+      "explanation": "The reliable sequence starts from the requirement, applies a known rule, observes behavior, and improves the solution afterward.",
+      "hint": "Prefer a sequence that makes failures visible early.",
+      "difficulty": 2,
+      "cognitiveLevel": "explain",
+      "estimatedSeconds": 75,
+      "tags": [
+        "react-server-components-fundamentals",
+        "problem-solving"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "N-03-Q08",
+      "trackId": "nextjs",
+      "moduleId": "N-M02",
+      "topicId": "N-03",
+      "objectiveIds": [
+        "N-03-LO1",
+        "N-03-LO2",
+        "N-03-LO3"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which guideline shows the best judgment about when to use React Server Components: Fundamentals?",
+      "choices": [
+        {
+          "id": "N-03-Q08-C1",
+          "label": "Use React Server Components: Fundamentals when it makes intent, ownership, or data flow clearer; avoid adding it mechanically when a simpler, equally explicit solution is sufficient.",
+          "feedback": "Engineering judgment balances clarity and cost. The concept should serve the requirement rather than become an end in itself."
+        },
+        {
+          "id": "N-03-Q08-C2",
+          "label": "Choose based only on line count, without considering readability, correctness, or future change.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of React Server Components: Fundamentals."
+        },
+        {
+          "id": "N-03-Q08-C3",
+          "label": "Avoid React Server Components: Fundamentals completely because all abstractions reduce maintainability.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of React Server Components: Fundamentals."
+        },
+        {
+          "id": "N-03-Q08-C4",
+          "label": "Use React Server Components: Fundamentals in every file because more abstraction is always better.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of React Server Components: Fundamentals."
+        }
+      ],
+      "correctChoiceIds": [
+        "N-03-Q08-C1"
+      ],
+      "explanation": "Engineering judgment balances clarity and cost. The concept should serve the requirement rather than become an end in itself.",
+      "hint": "Choose the option that acknowledges both benefits and trade-offs.",
+      "difficulty": 3,
+      "cognitiveLevel": "tradeoff",
+      "estimatedSeconds": 120,
+      "tags": [
+        "react-server-components-fundamentals",
+        "tradeoffs"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    }
+  ],
+  "researchSources": [
+    {
+      "kind": "research-transcript",
+      "title": "What are React Server Components? (RSC – Part 1)",
+      "pathwayOrder": 69,
+      "sourceLine": 145232,
+      "usage": "Coverage research only; no transcript wording is canonical."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "Next.js App Router",
+      "url": "https://nextjs.org/docs/app",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "Next.js Server and Client Components",
+      "url": "https://nextjs.org/docs/app/getting-started/server-and-client-components",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "Next.js Fetching Data",
+      "url": "https://nextjs.org/docs/app/getting-started/fetching-data",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "Next.js Caching and Revalidating",
+      "url": "https://nextjs.org/docs/app/getting-started/caching-and-revalidating",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "Next.js Server Actions and Mutations",
+      "url": "https://nextjs.org/docs/app/getting-started/updating-data",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "Next.js loading.js and Streaming",
+      "url": "https://nextjs.org/docs/app/api-reference/file-conventions/loading",
+      "usage": "Technical verification and freshness review."
+    }
+  ],
+  "contentAuthority": {
+    "canonical": "New JS2Next Release 1 curriculum and independently authored content.",
+    "legacyProjectContent": "Supplementary internal reference only; excluded from runtime unless explicitly re-authored and approved.",
+    "courseTranscripts": "Coverage and sequencing research only; never learner-facing authority.",
+    "officialDocumentation": "Technical verification source."
+  },
+  "version": 1,
+  "status": "draft",
+  "reviewStatus": "pending-human-review",
+  "publicationStatus": "unpublished",
+  "createdAt": "2026-07-17",
+  "updatedAt": "2026-07-17"
+}

@@ -1,0 +1,594 @@
+{
+  "schemaVersion": "1.0",
+  "id": "R-29",
+  "slug": "useeffect-rules-and-best-practices",
+  "trackId": "react",
+  "moduleId": "R-M09",
+  "order": 3,
+  "title": "`useEffect` Rules and Best Practices",
+  "required": true,
+  "optional": false,
+  "advanced": false,
+  "contentType": "core",
+  "difficulty": 5,
+  "estimatedMinutes": 15,
+  "requiredPrerequisiteTopicIds": [
+    "R-28"
+  ],
+  "recommendedPrerequisiteTopicIds": [],
+  "learningObjectives": [
+    {
+      "id": "R-29-LO1",
+      "text": "Explain effect decision process using a new example and justify the result.",
+      "subtopic": "Effect decision process",
+      "cognitiveLevel": "understand"
+    },
+    {
+      "id": "R-29-LO2",
+      "text": "Explain dependency management using a new example and justify the result.",
+      "subtopic": "Dependency management",
+      "cognitiveLevel": "apply"
+    },
+    {
+      "id": "R-29-LO3",
+      "text": "Explain avoiding unnecessary effects using a new example and justify the result.",
+      "subtopic": "Avoiding unnecessary effects",
+      "cognitiveLevel": "analyze"
+    }
+  ],
+  "whyThisMatters": "Learners frequently use `useeffect` rules and best practices without a clear model of why it behaves as it does; this lesson makes that model explicit. It belongs to the **Performance and Advanced Effects** module.",
+  "mentalModel": "Draw a decision map: **Effect decision process** → **Dependency management** → **Avoiding unnecessary effects**. Add branches where the learner must choose an alternative and label the evidence for the choice.",
+  "sections": [
+    {
+      "id": "R-29-S1",
+      "type": "concept",
+      "title": "Effect decision process",
+      "body": "Ask whether logic is caused by an event, derivable during render, or synchronizing with an external system. Only the last generally needs an Effect.",
+      "objectiveIds": [
+        "R-29-LO1"
+      ],
+      "checkQuestionId": "R-29-Q01"
+    },
+    {
+      "id": "R-29-S2",
+      "type": "concept",
+      "title": "Dependency management",
+      "body": "Keep dependencies complete and stabilize values only where identity is genuinely required.",
+      "objectiveIds": [
+        "R-29-LO2"
+      ],
+      "checkQuestionId": "R-29-Q02"
+    },
+    {
+      "id": "R-29-S3",
+      "type": "concept",
+      "title": "Avoiding unnecessary effects",
+      "body": "Do not use Effects for render-time derivation, click logic, or duplicate-state synchronization.",
+      "objectiveIds": [
+        "R-29-LO3"
+      ],
+      "checkQuestionId": "R-29-Q03"
+    },
+    {
+      "id": "R-29-EX1",
+      "type": "code-example",
+      "title": "Worked example",
+      "language": "jsx",
+      "source": "function FilteredList({ items, query }) {\n  const visible = items.filter(item => item.title.includes(query));\n  return visible.map(item => <p key={item.id}>{item.title}</p>);\n}",
+      "explanation": "The list is derived during render; no Effect is needed.",
+      "objectiveIds": [
+        "R-29-LO1",
+        "R-29-LO2",
+        "R-29-LO3"
+      ]
+    }
+  ],
+  "commonMistakes": [
+    "Suppressing the dependency linter instead of fixing the data flow.",
+    "Using an Effect for render-time derivation.",
+    "Mutating props or state instead of producing the next value.",
+    "Adding state or an Effect for a value that can be derived during render."
+  ],
+  "summary": [
+    "`useEffect` Rules and Best Practices connects Effect decision process, Dependency management, Avoiding unnecessary effects.",
+    "Use the topic to make behavior and decisions explicit rather than memorizing isolated syntax.",
+    "Verify understanding by explaining a new example and answering the topic quiz without looking back."
+  ],
+  "inLessonQuestionIds": [
+    "R-29-Q01",
+    "R-29-Q02",
+    "R-29-Q03"
+  ],
+  "topicQuiz": {
+    "id": "R-29-QUIZ",
+    "questionIds": [
+      "R-29-Q04",
+      "R-29-Q05",
+      "R-29-Q06",
+      "R-29-Q07",
+      "R-29-Q08"
+    ],
+    "masteryThresholdPercent": 80,
+    "attemptPolicy": "unlimited",
+    "failurePolicy": "Show explanations, add missed objectives to local review, and allow immediate or later retry.",
+    "randomizeQuestionOrder": true,
+    "randomizeChoiceOrder": false
+  },
+  "questions": [
+    {
+      "id": "R-29-Q01",
+      "trackId": "react",
+      "moduleId": "R-M09",
+      "topicId": "R-29",
+      "objectiveIds": [
+        "R-29-LO1"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which statement best explains “Effect decision process” in the context of `useEffect` Rules and Best Practices?",
+      "choices": [
+        {
+          "id": "R-29-Q01-C1",
+          "label": "Start from the data model and static component tree, identify minimal state, choose its owner, and add upward communication through callbacks.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Effect decision process."
+        },
+        {
+          "id": "R-29-Q01-C2",
+          "label": "useCallback caches a function definition when function identity matters to a consumer or dependency.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Effect decision process."
+        },
+        {
+          "id": "R-29-Q01-C3",
+          "label": "Ask whether logic is caused by an event, derivable during render, or synchronizing with an external system. Only the last generally needs an Effect.",
+          "feedback": "Effect decision process is best understood as follows: Ask whether logic is caused by an event, derivable during render, or synchronizing with an external system. Only the last generally needs an Effect."
+        },
+        {
+          "id": "R-29-Q01-C4",
+          "label": "UI state describes current interaction. Remote state is server-owned and adds asynchronous freshness, caching, and synchronization concerns.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Effect decision process."
+        }
+      ],
+      "correctChoiceIds": [
+        "R-29-Q01-C3"
+      ],
+      "explanation": "Effect decision process is best understood as follows: Ask whether logic is caused by an event, derivable during render, or synchronizing with an external system. Only the last generally needs an Effect.",
+      "hint": "Focus on what the concept changes, enables, or constrains—not only on its syntax.",
+      "difficulty": 4,
+      "cognitiveLevel": "recognize",
+      "estimatedSeconds": 75,
+      "tags": [
+        "effect-decision-process",
+        "useeffect-rules-and-best-practices"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "R-29-Q02",
+      "trackId": "react",
+      "moduleId": "R-M09",
+      "topicId": "R-29",
+      "objectiveIds": [
+        "R-29-LO2"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which statement best explains “Dependency management” in the context of `useEffect` Rules and Best Practices?",
+      "choices": [
+        {
+          "id": "R-29-Q02-C1",
+          "label": "UI state describes current interaction. Remote state is server-owned and adds asynchronous freshness, caching, and synchronization concerns.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Dependency management."
+        },
+        {
+          "id": "R-29-Q02-C2",
+          "label": "Keep dependencies complete and stabilize values only where identity is genuinely required.",
+          "feedback": "Dependency management is best understood as follows: Keep dependencies complete and stabilize values only where identity is genuinely required."
+        },
+        {
+          "id": "R-29-Q02-C3",
+          "label": "useCallback caches a function definition when function identity matters to a consumer or dependency.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Dependency management."
+        },
+        {
+          "id": "R-29-Q02-C4",
+          "label": "Start from the data model and static component tree, identify minimal state, choose its owner, and add upward communication through callbacks.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Dependency management."
+        }
+      ],
+      "correctChoiceIds": [
+        "R-29-Q02-C2"
+      ],
+      "explanation": "Dependency management is best understood as follows: Keep dependencies complete and stabilize values only where identity is genuinely required.",
+      "hint": "Focus on what the concept changes, enables, or constrains—not only on its syntax.",
+      "difficulty": 4,
+      "cognitiveLevel": "explain",
+      "estimatedSeconds": 75,
+      "tags": [
+        "dependency-management",
+        "useeffect-rules-and-best-practices"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "R-29-Q03",
+      "trackId": "react",
+      "moduleId": "R-M09",
+      "topicId": "R-29",
+      "objectiveIds": [
+        "R-29-LO3"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which statement best explains “Avoiding unnecessary effects” in the context of `useEffect` Rules and Best Practices?",
+      "choices": [
+        {
+          "id": "R-29-Q03-C1",
+          "label": "Start from the data model and static component tree, identify minimal state, choose its owner, and add upward communication through callbacks.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Avoiding unnecessary effects."
+        },
+        {
+          "id": "R-29-Q03-C2",
+          "label": "useCallback caches a function definition when function identity matters to a consumer or dependency.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Avoiding unnecessary effects."
+        },
+        {
+          "id": "R-29-Q03-C3",
+          "label": "UI state describes current interaction. Remote state is server-owned and adds asynchronous freshness, caching, and synchronization concerns.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Avoiding unnecessary effects."
+        },
+        {
+          "id": "R-29-Q03-C4",
+          "label": "Do not use Effects for render-time derivation, click logic, or duplicate-state synchronization.",
+          "feedback": "Avoiding unnecessary effects is best understood as follows: Do not use Effects for render-time derivation, click logic, or duplicate-state synchronization."
+        }
+      ],
+      "correctChoiceIds": [
+        "R-29-Q03-C4"
+      ],
+      "explanation": "Avoiding unnecessary effects is best understood as follows: Do not use Effects for render-time derivation, click logic, or duplicate-state synchronization.",
+      "hint": "Focus on what the concept changes, enables, or constrains—not only on its syntax.",
+      "difficulty": 4,
+      "cognitiveLevel": "predict",
+      "estimatedSeconds": 120,
+      "tags": [
+        "avoiding-unnecessary-effects",
+        "useeffect-rules-and-best-practices"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "R-29-Q04",
+      "trackId": "react",
+      "moduleId": "R-M09",
+      "topicId": "R-29",
+      "objectiveIds": [
+        "R-29-LO1",
+        "R-29-LO2"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "A learner must use `useEffect` Rules and Best Practices in a new situation. Which approach best demonstrates transferable understanding?",
+      "choices": [
+        {
+          "id": "R-29-Q04-C1",
+          "label": "Treat the concept as isolated trivia and avoid connecting it to earlier prerequisites.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of `useEffect` Rules and Best Practices."
+        },
+        {
+          "id": "R-29-Q04-C2",
+          "label": "Apply Effect decision process deliberately, make the relevant inputs and assumptions explicit, and verify the observable result before adding more complexity.",
+          "feedback": "Transfer comes from using the concept with explicit assumptions and checking the resulting behavior, not from reproducing a memorized example."
+        },
+        {
+          "id": "R-29-Q04-C3",
+          "label": "Skip the underlying model and rely on memorized syntax, even when the result is unclear.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of `useEffect` Rules and Best Practices."
+        },
+        {
+          "id": "R-29-Q04-C4",
+          "label": "Add more state and abstraction immediately, before identifying the smallest requirement.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of `useEffect` Rules and Best Practices."
+        }
+      ],
+      "correctChoiceIds": [
+        "R-29-Q04-C2"
+      ],
+      "explanation": "Transfer comes from using the concept with explicit assumptions and checking the resulting behavior, not from reproducing a memorized example.",
+      "hint": "Choose the option that would still work when the surrounding example changes.",
+      "difficulty": 5,
+      "cognitiveLevel": "apply",
+      "estimatedSeconds": 120,
+      "tags": [
+        "useeffect-rules-and-best-practices",
+        "effect-decision-process"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "R-29-Q05",
+      "trackId": "react",
+      "moduleId": "R-M09",
+      "topicId": "R-29",
+      "objectiveIds": [
+        "R-29-LO1",
+        "R-29-LO2",
+        "R-29-LO3"
+      ],
+      "kind": "single-choice",
+      "presentation": "code",
+      "prompt": "What is the most accurate explanation of the following `useEffect` Rules and Best Practices example?",
+      "choices": [
+        {
+          "id": "R-29-Q05-C1",
+          "label": "The snippet removes the need to understand the data flowing through the program.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of `useEffect` Rules and Best Practices."
+        },
+        {
+          "id": "R-29-Q05-C2",
+          "label": "The snippet is valid only because JavaScript ignores variable scope and evaluation order.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of `useEffect` Rules and Best Practices."
+        },
+        {
+          "id": "R-29-Q05-C3",
+          "label": "The list is derived during render; no Effect is needed.",
+          "feedback": "The correct choice connects the example to the underlying model rather than treating the syntax as isolated trivia."
+        },
+        {
+          "id": "R-29-Q05-C4",
+          "label": "The snippet guarantees that all values are immutable and all operations are asynchronous.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of `useEffect` Rules and Best Practices."
+        }
+      ],
+      "correctChoiceIds": [
+        "R-29-Q05-C3"
+      ],
+      "explanation": "The correct choice connects the example to the underlying model rather than treating the syntax as isolated trivia.",
+      "hint": "Trace data, control flow, ownership, or rendering step by step.",
+      "difficulty": 5,
+      "cognitiveLevel": "predict",
+      "estimatedSeconds": 120,
+      "tags": [
+        "useeffect-rules-and-best-practices",
+        "effect-decision-process",
+        "dependency-management"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review",
+      "code": {
+        "language": "jsx",
+        "source": "function FilteredList({ items, query }) {\n  const visible = items.filter(item => item.title.includes(query));\n  return visible.map(item => <p key={item.id}>{item.title}</p>);\n}"
+      }
+    },
+    {
+      "id": "R-29-Q06",
+      "trackId": "react",
+      "moduleId": "R-M09",
+      "topicId": "R-29",
+      "objectiveIds": [
+        "R-29-LO1",
+        "R-29-LO2",
+        "R-29-LO3"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which response best addresses this common mistake: “Suppressing the dependency linter instead of fixing the data flow.”?",
+      "choices": [
+        {
+          "id": "R-29-Q06-C1",
+          "label": "The statement is a misconception. A better approach is to reason from the concept's inputs, rules, and observable outcome, then verify the result.",
+          "feedback": "Good feedback names the misconception and replaces it with a usable reasoning process."
+        },
+        {
+          "id": "R-29-Q06-C2",
+          "label": "The statement is correct only when variable names are short.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of `useEffect` Rules and Best Practices."
+        },
+        {
+          "id": "R-29-Q06-C3",
+          "label": "The statement is always correct, so no further reasoning about `useEffect` Rules and Best Practices is needed.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of `useEffect` Rules and Best Practices."
+        },
+        {
+          "id": "R-29-Q06-C4",
+          "label": "The statement is unrelated to program behavior and cannot cause defects.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of `useEffect` Rules and Best Practices."
+        }
+      ],
+      "correctChoiceIds": [
+        "R-29-Q06-C1"
+      ],
+      "explanation": "Good feedback names the misconception and replaces it with a usable reasoning process.",
+      "hint": "Look for the option that corrects both the belief and the learner's next action.",
+      "difficulty": 5,
+      "cognitiveLevel": "debug",
+      "estimatedSeconds": 120,
+      "tags": [
+        "useeffect-rules-and-best-practices",
+        "common-mistakes"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "R-29-Q07",
+      "trackId": "react",
+      "moduleId": "R-M09",
+      "topicId": "R-29",
+      "objectiveIds": [
+        "R-29-LO1",
+        "R-29-LO2",
+        "R-29-LO3"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which sequence is most reliable when solving a problem involving `useEffect` Rules and Best Practices?",
+      "choices": [
+        {
+          "id": "R-29-Q07-C1",
+          "label": "Copy an unrelated implementation, hide the assumptions, and test only the happy path.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of `useEffect` Rules and Best Practices."
+        },
+        {
+          "id": "R-29-Q07-C2",
+          "label": "First identify the requirement, then apply the relevant rule from Effect decision process, inspect the result, and only then refactor or optimize.",
+          "feedback": "The reliable sequence starts from the requirement, applies a known rule, observes behavior, and improves the solution afterward."
+        },
+        {
+          "id": "R-29-Q07-C3",
+          "label": "Optimize first, then decide what the code is supposed to do.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of `useEffect` Rules and Best Practices."
+        },
+        {
+          "id": "R-29-Q07-C4",
+          "label": "Start with a framework abstraction and avoid checking the underlying language behavior.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of `useEffect` Rules and Best Practices."
+        }
+      ],
+      "correctChoiceIds": [
+        "R-29-Q07-C2"
+      ],
+      "explanation": "The reliable sequence starts from the requirement, applies a known rule, observes behavior, and improves the solution afterward.",
+      "hint": "Prefer a sequence that makes failures visible early.",
+      "difficulty": 5,
+      "cognitiveLevel": "explain",
+      "estimatedSeconds": 75,
+      "tags": [
+        "useeffect-rules-and-best-practices",
+        "problem-solving"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "R-29-Q08",
+      "trackId": "react",
+      "moduleId": "R-M09",
+      "topicId": "R-29",
+      "objectiveIds": [
+        "R-29-LO1",
+        "R-29-LO2",
+        "R-29-LO3"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which guideline shows the best judgment about when to use `useEffect` Rules and Best Practices?",
+      "choices": [
+        {
+          "id": "R-29-Q08-C1",
+          "label": "Avoid `useEffect` Rules and Best Practices completely because all abstractions reduce maintainability.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of `useEffect` Rules and Best Practices."
+        },
+        {
+          "id": "R-29-Q08-C2",
+          "label": "Choose based only on line count, without considering readability, correctness, or future change.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of `useEffect` Rules and Best Practices."
+        },
+        {
+          "id": "R-29-Q08-C3",
+          "label": "Use `useEffect` Rules and Best Practices in every file because more abstraction is always better.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of `useEffect` Rules and Best Practices."
+        },
+        {
+          "id": "R-29-Q08-C4",
+          "label": "Use `useEffect` Rules and Best Practices when it makes intent, ownership, or data flow clearer; avoid adding it mechanically when a simpler, equally explicit solution is sufficient.",
+          "feedback": "Engineering judgment balances clarity and cost. The concept should serve the requirement rather than become an end in itself."
+        }
+      ],
+      "correctChoiceIds": [
+        "R-29-Q08-C4"
+      ],
+      "explanation": "Engineering judgment balances clarity and cost. The concept should serve the requirement rather than become an end in itself.",
+      "hint": "Choose the option that acknowledges both benefits and trade-offs.",
+      "difficulty": 5,
+      "cognitiveLevel": "tradeoff",
+      "estimatedSeconds": 120,
+      "tags": [
+        "useeffect-rules-and-best-practices",
+        "tradeoffs"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    }
+  ],
+  "researchSources": [
+    {
+      "kind": "research-transcript",
+      "title": "useEffect Rules and Best Practices",
+      "pathwayOrder": 54,
+      "sourceLine": 83516,
+      "usage": "Coverage research only; no transcript wording is canonical."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "React Learn",
+      "url": "https://react.dev/learn",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "React Managing State",
+      "url": "https://react.dev/learn/managing-state",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "React Escape Hatches",
+      "url": "https://react.dev/learn/escape-hatches",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "React API Reference",
+      "url": "https://react.dev/reference/react",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "Redux Essentials",
+      "url": "https://redux.js.org/tutorials/essentials/part-1-overview-concepts",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "TanStack Query Overview",
+      "url": "https://tanstack.com/query/latest/docs/framework/react/overview",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "Supabase Documentation",
+      "url": "https://supabase.com/docs",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "Tailwind CSS Documentation",
+      "url": "https://tailwindcss.com/docs",
+      "usage": "Technical verification and freshness review."
+    }
+  ],
+  "contentAuthority": {
+    "canonical": "New JS2Next Release 1 curriculum and independently authored content.",
+    "legacyProjectContent": "Supplementary internal reference only; excluded from runtime unless explicitly re-authored and approved.",
+    "courseTranscripts": "Coverage and sequencing research only; never learner-facing authority.",
+    "officialDocumentation": "Technical verification source."
+  },
+  "version": 1,
+  "status": "draft",
+  "reviewStatus": "pending-human-review",
+  "publicationStatus": "unpublished",
+  "createdAt": "2026-07-17",
+  "updatedAt": "2026-07-17"
+}

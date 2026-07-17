@@ -1,0 +1,26 @@
+{
+  "schemaVersion": "1.0",
+  "id": "JS-M03-REVIEW",
+  "kind": "module-review",
+  "trackId": "javascript",
+  "moduleId": "JS-M03",
+  "title": "Browser and DOM Foundations — Module Review",
+  "questionIds": [
+    "JS-08-Q04",
+    "JS-08-Q05",
+    "JS-08-Q06",
+    "JS-08-Q07",
+    "JS-08-Q08",
+    "JS-08-Q01",
+    "JS-08-Q02",
+    "JS-08-Q03"
+  ],
+  "masteryThresholdPercent": 80,
+  "attemptPolicy": "unlimited",
+  "failurePolicy": "Show explanations, identify missed objectives, recommend targeted topic review, and allow retry.",
+  "randomizeQuestionOrder": true,
+  "randomizeChoiceOrder": false,
+  "version": 1,
+  "status": "draft",
+  "reviewStatus": "pending-human-review"
+}

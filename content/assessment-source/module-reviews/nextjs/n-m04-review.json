@@ -1,0 +1,28 @@
+{
+  "schemaVersion": "1.0",
+  "id": "N-M04-REVIEW",
+  "kind": "module-review",
+  "trackId": "nextjs",
+  "moduleId": "N-M04",
+  "title": "Streaming, Rendering Strategies, and Caching — Module Review",
+  "questionIds": [
+    "N-06-Q04",
+    "N-07-Q04",
+    "N-08-Q04",
+    "N-06-Q05",
+    "N-07-Q05",
+    "N-08-Q05",
+    "N-06-Q06",
+    "N-07-Q06",
+    "N-08-Q06",
+    "N-06-Q07"
+  ],
+  "masteryThresholdPercent": 80,
+  "attemptPolicy": "unlimited",
+  "failurePolicy": "Show explanations, identify missed objectives, recommend targeted topic review, and allow retry.",
+  "randomizeQuestionOrder": true,
+  "randomizeChoiceOrder": false,
+  "version": 1,
+  "status": "draft",
+  "reviewStatus": "pending-human-review"
+}

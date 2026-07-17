@@ -1,0 +1,553 @@
+{
+  "schemaVersion": "1.0",
+  "id": "JS-28",
+  "slug": "forkify-application-planning",
+  "trackId": "javascript",
+  "moduleId": "JS-M11",
+  "order": 1,
+  "title": "Forkify Application Planning",
+  "required": true,
+  "optional": false,
+  "advanced": false,
+  "contentType": "case_study",
+  "difficulty": 4,
+  "estimatedMinutes": 15,
+  "requiredPrerequisiteTopicIds": [
+    "JS-27"
+  ],
+  "recommendedPrerequisiteTopicIds": [],
+  "learningObjectives": [
+    {
+      "id": "JS-28-LO1",
+      "text": "Apply feature decomposition using a new example and justify the result.",
+      "subtopic": "Feature decomposition",
+      "cognitiveLevel": "understand"
+    },
+    {
+      "id": "JS-28-LO2",
+      "text": "Explain project architecture planning using a new example and justify the result.",
+      "subtopic": "Project architecture planning",
+      "cognitiveLevel": "apply"
+    },
+    {
+      "id": "JS-28-LO3",
+      "text": "Trace and explain data and ui flow using a new example and justify the result.",
+      "subtopic": "Data and UI flow",
+      "cognitiveLevel": "analyze"
+    }
+  ],
+  "whyThisMatters": "Forkify Application Planning is part of the mental model learners need before making reliable implementation decisions. It belongs to the **Application Architecture: Forkify** module.",
+  "mentalModel": "Draw a decision map: **Feature decomposition** → **Project architecture planning** → **Data and UI flow**. Add branches where the learner must choose an alternative and label the evidence for the choice.",
+  "sections": [
+    {
+      "id": "JS-28-S1",
+      "type": "concept",
+      "title": "Feature decomposition",
+      "body": "Start with user-visible outcomes and convert them into explicit behavior, inputs, edge cases, and acceptance conditions. Break large capabilities into end-to-end slices that can be implemented and verified independently.",
+      "objectiveIds": [
+        "JS-28-LO1"
+      ],
+      "checkQuestionId": "JS-28-Q01"
+    },
+    {
+      "id": "JS-28-S2",
+      "type": "concept",
+      "title": "Project architecture planning",
+      "body": "Architecture planning identifies data, responsibilities, boundaries, and communication paths. The goal is to reduce costly ambiguity about ownership and change, not predict every future file.",
+      "objectiveIds": [
+        "JS-28-LO2"
+      ],
+      "checkQuestionId": "JS-28-Q02"
+    },
+    {
+      "id": "JS-28-S3",
+      "type": "concept",
+      "title": "Data and UI flow",
+      "body": "Describe where data originates, who owns it, how it changes, and how the UI observes those changes. Explicit flow prevents hidden state and scattered updates.",
+      "objectiveIds": [
+        "JS-28-LO3"
+      ],
+      "checkQuestionId": "JS-28-Q03"
+    }
+  ],
+  "commonMistakes": [
+    "Memorizing syntax without predicting the underlying value or execution order.",
+    "Mutating shared data when the task expects a new value or explicit ownership.",
+    "Treating browser APIs and language features as the same layer.",
+    "Choosing an abstraction from habit rather than required operations."
+  ],
+  "summary": [
+    "Forkify Application Planning connects Feature decomposition, Project architecture planning, Data and UI flow.",
+    "Use the topic to make behavior and decisions explicit rather than memorizing isolated syntax.",
+    "Verify understanding by explaining a new example and answering the topic quiz without looking back."
+  ],
+  "inLessonQuestionIds": [
+    "JS-28-Q01",
+    "JS-28-Q02",
+    "JS-28-Q03"
+  ],
+  "topicQuiz": {
+    "id": "JS-28-QUIZ",
+    "questionIds": [
+      "JS-28-Q04",
+      "JS-28-Q05",
+      "JS-28-Q06",
+      "JS-28-Q07",
+      "JS-28-Q08"
+    ],
+    "masteryThresholdPercent": 80,
+    "attemptPolicy": "unlimited",
+    "failurePolicy": "Show explanations, add missed objectives to local review, and allow immediate or later retry.",
+    "randomizeQuestionOrder": true,
+    "randomizeChoiceOrder": false
+  },
+  "questions": [
+    {
+      "id": "JS-28-Q01",
+      "trackId": "javascript",
+      "moduleId": "JS-M11",
+      "topicId": "JS-28",
+      "objectiveIds": [
+        "JS-28-LO1"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which statement best explains “Feature decomposition” in the context of Forkify Application Planning?",
+      "choices": [
+        {
+          "id": "JS-28-Q01-C1",
+          "label": "In object.method(), the object before the dot provides this for that call. Detaching the method changes the call form and may lose the intended receiver.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Feature decomposition."
+        },
+        {
+          "id": "JS-28-Q01-C2",
+          "label": "Start with user-visible outcomes and convert them into explicit behavior, inputs, edge cases, and acceptance conditions. Break large capabilities into end-to-end slices that can be implemented and verified independently.",
+          "feedback": "Feature decomposition is best understood as follows: Start with user-visible outcomes and convert them into explicit behavior, inputs, edge cases, and acceptance conditions. Break large capabilities into end-to-end slices that can be implemented and verified independently."
+        },
+        {
+          "id": "JS-28-Q01-C3",
+          "label": "The browser parses a document into a tree of node objects. Elements, text, and other nodes have parent-child relationships that scripts can query and change.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Feature decomposition."
+        },
+        {
+          "id": "JS-28-Q01-C4",
+          "label": "A retrospective compares outcomes with goals, identifies successful decisions and accidental complexity, and records lessons that should influence the next project.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Feature decomposition."
+        }
+      ],
+      "correctChoiceIds": [
+        "JS-28-Q01-C2"
+      ],
+      "explanation": "Feature decomposition is best understood as follows: Start with user-visible outcomes and convert them into explicit behavior, inputs, edge cases, and acceptance conditions. Break large capabilities into end-to-end slices that can be implemented and verified independently.",
+      "hint": "Focus on what the concept changes, enables, or constrains—not only on its syntax.",
+      "difficulty": 3,
+      "cognitiveLevel": "recognize",
+      "estimatedSeconds": 75,
+      "tags": [
+        "feature-decomposition",
+        "forkify-application-planning"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JS-28-Q02",
+      "trackId": "javascript",
+      "moduleId": "JS-M11",
+      "topicId": "JS-28",
+      "objectiveIds": [
+        "JS-28-LO2"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which statement best explains “Project architecture planning” in the context of Forkify Application Planning?",
+      "choices": [
+        {
+          "id": "JS-28-Q02-C1",
+          "label": "Architecture planning identifies data, responsibilities, boundaries, and communication paths. The goal is to reduce costly ambiguity about ownership and change, not predict every future file.",
+          "feedback": "Project architecture planning is best understood as follows: Architecture planning identifies data, responsibilities, boundaries, and communication paths. The goal is to reduce costly ambiguity about ownership and change, not predict every future file."
+        },
+        {
+          "id": "JS-28-Q02-C2",
+          "label": "A retrospective compares outcomes with goals, identifies successful decisions and accidental complexity, and records lessons that should influence the next project.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Project architecture planning."
+        },
+        {
+          "id": "JS-28-Q02-C3",
+          "label": "In object.method(), the object before the dot provides this for that call. Detaching the method changes the call form and may lose the intended receiver.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Project architecture planning."
+        },
+        {
+          "id": "JS-28-Q02-C4",
+          "label": "The browser parses a document into a tree of node objects. Elements, text, and other nodes have parent-child relationships that scripts can query and change.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Project architecture planning."
+        }
+      ],
+      "correctChoiceIds": [
+        "JS-28-Q02-C1"
+      ],
+      "explanation": "Project architecture planning is best understood as follows: Architecture planning identifies data, responsibilities, boundaries, and communication paths. The goal is to reduce costly ambiguity about ownership and change, not predict every future file.",
+      "hint": "Focus on what the concept changes, enables, or constrains—not only on its syntax.",
+      "difficulty": 3,
+      "cognitiveLevel": "explain",
+      "estimatedSeconds": 75,
+      "tags": [
+        "project-architecture-planning",
+        "forkify-application-planning"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JS-28-Q03",
+      "trackId": "javascript",
+      "moduleId": "JS-M11",
+      "topicId": "JS-28",
+      "objectiveIds": [
+        "JS-28-LO3"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which statement best explains “Data and UI flow” in the context of Forkify Application Planning?",
+      "choices": [
+        {
+          "id": "JS-28-Q03-C1",
+          "label": "A retrospective compares outcomes with goals, identifies successful decisions and accidental complexity, and records lessons that should influence the next project.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Data and UI flow."
+        },
+        {
+          "id": "JS-28-Q03-C2",
+          "label": "The browser parses a document into a tree of node objects. Elements, text, and other nodes have parent-child relationships that scripts can query and change.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Data and UI flow."
+        },
+        {
+          "id": "JS-28-Q03-C3",
+          "label": "In object.method(), the object before the dot provides this for that call. Detaching the method changes the call form and may lose the intended receiver.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Data and UI flow."
+        },
+        {
+          "id": "JS-28-Q03-C4",
+          "label": "Describe where data originates, who owns it, how it changes, and how the UI observes those changes. Explicit flow prevents hidden state and scattered updates.",
+          "feedback": "Data and UI flow is best understood as follows: Describe where data originates, who owns it, how it changes, and how the UI observes those changes. Explicit flow prevents hidden state and scattered updates."
+        }
+      ],
+      "correctChoiceIds": [
+        "JS-28-Q03-C4"
+      ],
+      "explanation": "Data and UI flow is best understood as follows: Describe where data originates, who owns it, how it changes, and how the UI observes those changes. Explicit flow prevents hidden state and scattered updates.",
+      "hint": "Focus on what the concept changes, enables, or constrains—not only on its syntax.",
+      "difficulty": 3,
+      "cognitiveLevel": "predict",
+      "estimatedSeconds": 120,
+      "tags": [
+        "data-and-ui-flow",
+        "forkify-application-planning"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JS-28-Q04",
+      "trackId": "javascript",
+      "moduleId": "JS-M11",
+      "topicId": "JS-28",
+      "objectiveIds": [
+        "JS-28-LO1",
+        "JS-28-LO2"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "A learner must use Forkify Application Planning in a new situation. Which approach best demonstrates transferable understanding?",
+      "choices": [
+        {
+          "id": "JS-28-Q04-C1",
+          "label": "Add more state and abstraction immediately, before identifying the smallest requirement.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Forkify Application Planning."
+        },
+        {
+          "id": "JS-28-Q04-C2",
+          "label": "Skip the underlying model and rely on memorized syntax, even when the result is unclear.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Forkify Application Planning."
+        },
+        {
+          "id": "JS-28-Q04-C3",
+          "label": "Apply Feature decomposition deliberately, make the relevant inputs and assumptions explicit, and verify the observable result before adding more complexity.",
+          "feedback": "Transfer comes from using the concept with explicit assumptions and checking the resulting behavior, not from reproducing a memorized example."
+        },
+        {
+          "id": "JS-28-Q04-C4",
+          "label": "Treat the concept as isolated trivia and avoid connecting it to earlier prerequisites.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Forkify Application Planning."
+        }
+      ],
+      "correctChoiceIds": [
+        "JS-28-Q04-C3"
+      ],
+      "explanation": "Transfer comes from using the concept with explicit assumptions and checking the resulting behavior, not from reproducing a memorized example.",
+      "hint": "Choose the option that would still work when the surrounding example changes.",
+      "difficulty": 4,
+      "cognitiveLevel": "apply",
+      "estimatedSeconds": 120,
+      "tags": [
+        "forkify-application-planning",
+        "feature-decomposition"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JS-28-Q05",
+      "trackId": "javascript",
+      "moduleId": "JS-M11",
+      "topicId": "JS-28",
+      "objectiveIds": [
+        "JS-28-LO1",
+        "JS-28-LO2",
+        "JS-28-LO3"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which mental model is most useful when reasoning about Forkify Application Planning?",
+      "choices": [
+        {
+          "id": "JS-28-Q05-C1",
+          "label": "The topic eliminates the need to model state, data flow, or dependencies.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Forkify Application Planning."
+        },
+        {
+          "id": "JS-28-Q05-C2",
+          "label": "The topic matters only for naming style and does not affect behavior.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Forkify Application Planning."
+        },
+        {
+          "id": "JS-28-Q05-C3",
+          "label": "The topic is best learned as a list of unrelated syntax rules.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Forkify Application Planning."
+        },
+        {
+          "id": "JS-28-Q05-C4",
+          "label": "Draw a decision map: **Feature decomposition** → **Project architecture planning** → **Data and UI flow**. Add branches where the learner must choose an alternative and label the evidence for the choice.",
+          "feedback": "The correct choice connects the example to the underlying model rather than treating the syntax as isolated trivia."
+        }
+      ],
+      "correctChoiceIds": [
+        "JS-28-Q05-C4"
+      ],
+      "explanation": "The correct choice connects the example to the underlying model rather than treating the syntax as isolated trivia.",
+      "hint": "Trace data, control flow, ownership, or rendering step by step.",
+      "difficulty": 4,
+      "cognitiveLevel": "predict",
+      "estimatedSeconds": 120,
+      "tags": [
+        "forkify-application-planning",
+        "feature-decomposition",
+        "project-architecture-planning"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JS-28-Q06",
+      "trackId": "javascript",
+      "moduleId": "JS-M11",
+      "topicId": "JS-28",
+      "objectiveIds": [
+        "JS-28-LO1",
+        "JS-28-LO2",
+        "JS-28-LO3"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which response best addresses this common mistake: “Memorizing syntax without predicting the underlying value or execution order.”?",
+      "choices": [
+        {
+          "id": "JS-28-Q06-C1",
+          "label": "The statement is always correct, so no further reasoning about Forkify Application Planning is needed.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Forkify Application Planning."
+        },
+        {
+          "id": "JS-28-Q06-C2",
+          "label": "The statement is correct only when variable names are short.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Forkify Application Planning."
+        },
+        {
+          "id": "JS-28-Q06-C3",
+          "label": "The statement is a misconception. A better approach is to reason from the concept's inputs, rules, and observable outcome, then verify the result.",
+          "feedback": "Good feedback names the misconception and replaces it with a usable reasoning process."
+        },
+        {
+          "id": "JS-28-Q06-C4",
+          "label": "The statement is unrelated to program behavior and cannot cause defects.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Forkify Application Planning."
+        }
+      ],
+      "correctChoiceIds": [
+        "JS-28-Q06-C3"
+      ],
+      "explanation": "Good feedback names the misconception and replaces it with a usable reasoning process.",
+      "hint": "Look for the option that corrects both the belief and the learner's next action.",
+      "difficulty": 4,
+      "cognitiveLevel": "debug",
+      "estimatedSeconds": 120,
+      "tags": [
+        "forkify-application-planning",
+        "common-mistakes"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JS-28-Q07",
+      "trackId": "javascript",
+      "moduleId": "JS-M11",
+      "topicId": "JS-28",
+      "objectiveIds": [
+        "JS-28-LO1",
+        "JS-28-LO2",
+        "JS-28-LO3"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which sequence is most reliable when solving a problem involving Forkify Application Planning?",
+      "choices": [
+        {
+          "id": "JS-28-Q07-C1",
+          "label": "Optimize first, then decide what the code is supposed to do.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Forkify Application Planning."
+        },
+        {
+          "id": "JS-28-Q07-C2",
+          "label": "First identify the requirement, then apply the relevant rule from Feature decomposition, inspect the result, and only then refactor or optimize.",
+          "feedback": "The reliable sequence starts from the requirement, applies a known rule, observes behavior, and improves the solution afterward."
+        },
+        {
+          "id": "JS-28-Q07-C3",
+          "label": "Copy an unrelated implementation, hide the assumptions, and test only the happy path.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Forkify Application Planning."
+        },
+        {
+          "id": "JS-28-Q07-C4",
+          "label": "Start with a framework abstraction and avoid checking the underlying language behavior.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Forkify Application Planning."
+        }
+      ],
+      "correctChoiceIds": [
+        "JS-28-Q07-C2"
+      ],
+      "explanation": "The reliable sequence starts from the requirement, applies a known rule, observes behavior, and improves the solution afterward.",
+      "hint": "Prefer a sequence that makes failures visible early.",
+      "difficulty": 4,
+      "cognitiveLevel": "explain",
+      "estimatedSeconds": 75,
+      "tags": [
+        "forkify-application-planning",
+        "problem-solving"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JS-28-Q08",
+      "trackId": "javascript",
+      "moduleId": "JS-M11",
+      "topicId": "JS-28",
+      "objectiveIds": [
+        "JS-28-LO1",
+        "JS-28-LO2",
+        "JS-28-LO3"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which guideline shows the best judgment about when to use Forkify Application Planning?",
+      "choices": [
+        {
+          "id": "JS-28-Q08-C1",
+          "label": "Choose based only on line count, without considering readability, correctness, or future change.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Forkify Application Planning."
+        },
+        {
+          "id": "JS-28-Q08-C2",
+          "label": "Use Forkify Application Planning when it makes intent, ownership, or data flow clearer; avoid adding it mechanically when a simpler, equally explicit solution is sufficient.",
+          "feedback": "Engineering judgment balances clarity and cost. The concept should serve the requirement rather than become an end in itself."
+        },
+        {
+          "id": "JS-28-Q08-C3",
+          "label": "Avoid Forkify Application Planning completely because all abstractions reduce maintainability.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Forkify Application Planning."
+        },
+        {
+          "id": "JS-28-Q08-C4",
+          "label": "Use Forkify Application Planning in every file because more abstraction is always better.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Forkify Application Planning."
+        }
+      ],
+      "correctChoiceIds": [
+        "JS-28-Q08-C2"
+      ],
+      "explanation": "Engineering judgment balances clarity and cost. The concept should serve the requirement rather than become an end in itself.",
+      "hint": "Choose the option that acknowledges both benefits and trade-offs.",
+      "difficulty": 5,
+      "cognitiveLevel": "tradeoff",
+      "estimatedSeconds": 120,
+      "tags": [
+        "forkify-application-planning",
+        "tradeoffs"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    }
+  ],
+  "researchSources": [
+    {
+      "kind": "research-transcript",
+      "title": "Project Overview and Planning (I)",
+      "pathwayOrder": 45,
+      "sourceLine": 132721,
+      "usage": "Coverage research only; no transcript wording is canonical."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "MDN JavaScript Guide",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "MDN DOM",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "MDN Using promises",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "MDN JavaScript modules",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules",
+      "usage": "Technical verification and freshness review."
+    }
+  ],
+  "contentAuthority": {
+    "canonical": "New JS2Next Release 1 curriculum and independently authored content.",
+    "legacyProjectContent": "Supplementary internal reference only; excluded from runtime unless explicitly re-authored and approved.",
+    "courseTranscripts": "Coverage and sequencing research only; never learner-facing authority.",
+    "officialDocumentation": "Technical verification source."
+  },
+  "version": 1,
+  "status": "draft",
+  "reviewStatus": "pending-human-review",
+  "publicationStatus": "unpublished",
+  "createdAt": "2026-07-17",
+  "updatedAt": "2026-07-17"
+}
