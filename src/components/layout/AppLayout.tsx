@@ -57,7 +57,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
         >
           <div className="p-6 border-b border-slate-secondary">
             <Link href="/home" className="text-xl font-bold text-white" style={{ fontFamily: 'var(--font-display)' }}>
-              Learn React &amp; Next.js
+              JS2Next
             </Link>
             {canonicalProfile.diagnosticDone && (
               <p className="text-sm text-ash mt-1">

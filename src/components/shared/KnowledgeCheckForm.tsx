@@ -45,7 +45,7 @@ export default function KnowledgeCheckForm({ question, savedAnswer, savedCorrect
         {question.options?.map((option) => (
           <label
             key={option}
-            className={`flex min-h-11 cursor-pointer items-start gap-3 rounded-lg border p-3 text-sm transition-colors ${
+            className={`high-contrast-option ${answer === option ? 'high-contrast-option-selected' : ''} flex min-h-11 cursor-pointer items-start gap-3 rounded-lg border p-3 text-sm transition-colors ${
               answer === option ? 'border-teal bg-teal/10' : 'border-paper-warm bg-slate hover:border-teal/50'
             }`}
           >

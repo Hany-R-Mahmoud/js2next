@@ -76,7 +76,7 @@ export default function ChallengeAnswerForm({ challenge, lessonSectionId, savedA
           {challenge.options?.map((option, index) => (
             <label
               key={option}
-              className={`flex min-h-11 cursor-pointer items-start gap-3 rounded-[10px] border p-3 text-sm transition-colors ${selectedIndex === index ? 'border-teal bg-teal/10' : 'border-paper-warm bg-slate hover:border-teal/50'}`}
+              className={`high-contrast-option ${selectedIndex === index ? 'high-contrast-option-selected' : ''} flex min-h-11 cursor-pointer items-start gap-3 rounded-[10px] border p-3 text-sm transition-colors ${selectedIndex === index ? 'border-teal bg-teal/10' : 'border-paper-warm bg-slate hover:border-teal/50'}`}
             >
               <input
                 type="radio"
@@ -98,7 +98,7 @@ export default function ChallengeAnswerForm({ challenge, lessonSectionId, savedA
         <fieldset className="space-y-2">
           <legend className="sr-only">Select all correct answers</legend>
           {challenge.options?.map((option, index) => (
-            <label key={option} className={`flex gap-3 items-start min-h-11 rounded-[10px] border p-3 text-sm cursor-pointer transition-colors ${selectedIndexes.includes(index) ? 'border-teal bg-teal/10' : 'border-paper-warm bg-slate hover:border-teal/50'}`}>
+            <label key={option} className={`high-contrast-option ${selectedIndexes.includes(index) ? 'high-contrast-option-selected' : ''} flex gap-3 items-start min-h-11 rounded-[10px] border p-3 text-sm cursor-pointer transition-colors ${selectedIndexes.includes(index) ? 'border-teal bg-teal/10' : 'border-paper-warm bg-slate hover:border-teal/50'}`}>
               <input
                 type="checkbox"
                 checked={selectedIndexes.includes(index)}

@@ -306,7 +306,8 @@ function isTopicProgress(value: unknown, expectedId?: string): value is TopicPro
     && isStringArray(value.confirmedQaIds)
     && typeof value.manualReview === 'boolean'
     && typeof value.lastVisited === 'string'
-    && (value.lastReviewCompletedAt === undefined || typeof value.lastReviewCompletedAt === 'string');
+    && (value.lastReviewCompletedAt === undefined || typeof value.lastReviewCompletedAt === 'string')
+    && (value.reflectStarted === undefined || typeof value.reflectStarted === 'boolean');
 }
 
 function isChunkProgress(value: unknown): boolean {

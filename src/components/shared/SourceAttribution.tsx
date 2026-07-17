@@ -16,7 +16,9 @@ export default function SourceAttribution({ kind, slug }: { readonly kind: Conte
   } as const;
   const sources = record.sourceMetadata.map((source) => {
     const url = new URL(source.sourceUrl);
-    return { ...source, location: `${url.hostname.replace(/^www\./, '')}${url.pathname !== '/' ? url.pathname : ''}` };
+    const pathSegments = url.pathname.split('/').filter(Boolean);
+    const shortPath = pathSegments.length > 0 ? `/${pathSegments[pathSegments.length - 1]}` : '';
+    return { ...source, location: `${url.hostname.replace(/^www\./, '')}${shortPath}` };
   });
 
   return (
@@ -33,7 +35,7 @@ export default function SourceAttribution({ kind, slug }: { readonly kind: Conte
               href={source.sourceUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex max-w-full items-baseline gap-1 break-words text-teal hover:underline"
+              className="inline-flex min-h-11 max-w-full items-center gap-1 break-words py-2 text-teal hover:underline"
             >
               <span className="shrink-0">{sourceLabels[source.sourceType]}:</span>
               <span className="shrink-0" aria-hidden="true">·</span>

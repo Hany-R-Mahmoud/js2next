@@ -153,6 +153,8 @@ export interface QAItem {
   category: 'react' | 'nextjs' | 'debugging' | 'architecture' | 'performance' | 'testing' | 'accessibility';
   level: Level;
   tags: string[];
+  reviewKind?: 'predict' | 'debug' | 'tradeoff';
+  reviewScenario?: string;
   sourceLink?: string;
   sourceLinks?: string[];
 }

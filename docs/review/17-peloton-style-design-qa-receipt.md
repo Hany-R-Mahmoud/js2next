@@ -41,7 +41,7 @@ Interaction evidence:
 
 ## Changed surface
 
-`DESIGN.md`, `tailwind.config.ts`, `src/app/globals.css`, `src/components/layout/AppLayout.tsx`, `src/lib/navigation.ts`, `src/lib/navigation.test.ts`, shared learning primitives, route surfaces, and curriculum icon labels.
+`../DESIGN.md`, `tailwind.config.ts`, `src/app/globals.css`, `src/components/layout/AppLayout.tsx`, `src/lib/navigation.ts`, `src/lib/navigation.test.ts`, shared learning primitives, route surfaces, and curriculum icon labels.
 
 ## Deferred
 

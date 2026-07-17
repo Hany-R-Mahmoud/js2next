@@ -70,7 +70,7 @@ export default function LessonExtras({ chunks, diagram, miniProject, progress, o
                 <fieldset className="space-y-2">
                   <legend className="text-sm font-medium text-ink">{chunk.prediction.prompt}</legend>
                   {chunk.prediction.options.map((option) => (
-                    <label key={option} className={`flex gap-3 items-start rounded-lg border p-3 text-sm cursor-pointer transition-colors ${
+                    <label key={option} className={`high-contrast-option ${selectedAnswers[chunk.id] === option ? 'high-contrast-option-selected' : ''} flex gap-3 items-start rounded-lg border p-3 text-sm cursor-pointer transition-colors ${
                       selectedAnswers[chunk.id] === option ? 'border-teal bg-teal/10' : 'border-paper-warm bg-slate hover:border-teal/50'
                     }`}>
                       <input
@@ -113,7 +113,7 @@ export default function LessonExtras({ chunks, diagram, miniProject, progress, o
             {miniProject.acceptance.map((criterion) => <li key={criterion}>{criterion}</li>)}
           </ul>
           {miniProject.rubric && miniProject.rubric.length > 0 && (
-            <div className="rounded-lg border border-paper-warm bg-paper-dark/40 p-4 space-y-2">
+            <div className="high-contrast-surface rounded-lg border border-paper-warm bg-paper-dark/40 p-4 space-y-2">
               <h3 className="text-sm font-semibold text-ink">Review rubric</h3>
               <ul className="space-y-2 text-sm text-ink-light">
                 {miniProject.rubric.map((item) => (
@@ -149,7 +149,7 @@ function LessonDiagramView({ diagram, titleId }: { readonly diagram: LessonDiagr
       <div className="space-y-3" role="list" aria-label={`${diagram.kind} learning model`}>
         {diagram.nodes.map((node, index) => (
           <div key={node.id}>
-            <div role="listitem" className="rounded-lg border border-teal/30 bg-teal/5 p-3">
+            <div role="listitem" className="high-contrast-surface rounded-lg border border-teal/30 bg-teal/5 p-3">
               <p className="font-medium text-ink">{node.label}</p>
               {node.role && <p className="text-xs text-ink-muted mt-1">{node.role}</p>}
             </div>

@@ -3,11 +3,11 @@ import AppLayout from '@/components/layout/AppLayout';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'Learn React & Next.js',
-  description: 'Interactive lessons, challenges, and best practices for mastering React and Next.js. Built for frontend developers who want durable understanding.',
+  title: 'JS2Next',
+  description: 'A connected learning path from JavaScript to React to Next.js, built for durable frontend understanding.',
   openGraph: {
-    title: 'Learn React & Next.js',
-    description: 'Interactive lessons, challenges, and best practices for mastering React and Next.js.',
+    title: 'JS2Next',
+    description: 'A connected learning path from JavaScript to React to Next.js.',
     type: 'website',
   },
 };

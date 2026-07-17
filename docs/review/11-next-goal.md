@@ -63,7 +63,7 @@
 
 ### 4. Whole-app design-system rollout
 
-- Make `DESIGN.md` executable through a small primitive showcase route before another major shell redesign.
+- Make `../DESIGN.md` executable through a small primitive showcase route before another major shell redesign.
 - Audit and normalize dashboard, curriculum, lesson reader, challenge workspace, Q&A, practices, progress, and settings against the same tokens and component states.
 - Verify mobile and desktop behavior at 320, 375, 768, 1024, and 1280px.
 - Preserve the warm light default, readable code, visible focus, keyboard flows, reduced motion, drawer focus behavior, source attribution, loading, empty, error, locked, completed, and saved states.

@@ -23,9 +23,9 @@ export default function ProgressBar({ value, max = 100, label, size = 'md', colo
           <span className="text-sm font-medium text-ink">{percent}%</span>
         </div>
       )}
-      <div className={`w-full bg-slate-secondary rounded-full overflow-hidden ${heights[size]}`}>
+      <div className={`high-contrast-progress-track w-full bg-slate-secondary rounded-full overflow-hidden ${heights[size]}`}>
         <div
-          className={`${heights[size]} ${colors[color]} rounded-full transition-all duration-200 ease-out`}
+          className={`high-contrast-progress ${heights[size]} ${colors[color]} rounded-full transition-all duration-200 ease-out`}
           style={{ width: `${percent}%` }}
         />
       </div>

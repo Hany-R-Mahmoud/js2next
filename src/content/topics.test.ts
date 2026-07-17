@@ -51,6 +51,13 @@ describe('canonical topic bundles', () => {
     expect(conceptualChallenges.every((challenge) => ['choice', 'multi-choice'].includes(challenge.checkType ?? '') && challenge.options?.length === 4)).toBe(true);
   });
 
+  it('gives review checks distinct situations instead of repeating the lesson prompt', () => {
+    expect(topicBundles.every((bundle) => {
+      const scenarios = bundle.qa.map((item) => item.reviewScenario);
+      return new Set(scenarios).size === scenarios.length && bundle.qa.every((item) => item.reviewKind !== undefined);
+    })).toBe(true);
+  });
+
   it('keeps sparse-topic drafts explicit and source-linked', () => {
     expect(supplementalChallenges.every((challenge) => challenge.slug.startsWith('loop-') && challenge.sourceLink?.startsWith('http'))).toBe(true);
     expect(supplementalQaItems.every((item) => item.id.startsWith('loop-qa-') && item.sourceLink?.startsWith('http'))).toBe(true);

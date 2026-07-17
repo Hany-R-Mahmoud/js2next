@@ -11,7 +11,7 @@ The canonical app currently exposes 31 lessons, 31 challenges, 44 Q&A items, and
 The source register in [`source-manifest.md`](../curriculum/source-manifest.md) contains:
 
 - `../js.md` and `../react.md`: extracted course transcripts, useful for discovery and source selection only;
-- `p1.md`–`p6.md`: tutor, product, learning-design, and course-architecture prompts, useful for pedagogy but not technical provenance;
+- `../p1.md`–`../p6.md`: tutor, product, learning-design, and course-architecture prompts, useful for pedagogy but not technical provenance;
 - `../learn-react/src/content/`: structured sibling content already bridged into nine deep-dive lessons and ten challenges.
 
 The manifest's P0/P1 intake records are shipped: forms, browser failure debugging, URL state, client/server state, performance diagnosis, authorization, TypeScript boundaries, testing, production readiness, and ecosystem ownership. New work must therefore be a focused delta, challenge variant, or operational transfer task.

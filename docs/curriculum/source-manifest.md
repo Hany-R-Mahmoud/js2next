@@ -8,12 +8,12 @@ Inventory owner: `source-intake` (team member A)
 | --- | --- | --- | --- |
 | `transcript-js` | `../js.md` | Course transcript, extracted 2026-07-15 | Browser/runtime foundations, async, DOM, debugging, modules. Secondary evidence only. |
 | `transcript-react` | `../react.md` | Course transcript, extracted 2026-07-15 | React ecosystem, forms, React Query, auth, performance, Next.js project patterns. Secondary evidence only. |
-| `prompt-ranedeer` | `p1.md` | Tutor prompt | Personalization/lesson-loop inspiration; no technical claims. |
-| `prompt-mentor` | `p2.md` | Tutor prompt | Active/Socratic continuity; no technical claims. |
-| `prompt-learnos` | `p3.md` | Product prompt | Adaptive/multimedia ideation; no technical claims. |
-| `prompt-socratic` | `p4.md` | Teaching protocol | Clarify/probe/hypothetical/synthesis loop. |
-| `prompt-adaptive` | `p5.md` | Learning-design prompt | Mastery, retrieval, confidence, privacy, and intervention design. |
-| `prompt-codebase-course` | `p6.md` | Course-architecture prompt | Codebase-first module and quiz structure. |
+| `prompt-ranedeer` | `../p1.md` | Tutor prompt | Personalization/lesson-loop inspiration; no technical claims. |
+| `prompt-mentor` | `../p2.md` | Tutor prompt | Active/Socratic continuity; no technical claims. |
+| `prompt-learnos` | `../p3.md` | Product prompt | Adaptive/multimedia ideation; no technical claims. |
+| `prompt-socratic` | `../p4.md` | Teaching protocol | Clarify/probe/hypothetical/synthesis loop. |
+| `prompt-adaptive` | `../p5.md` | Learning-design prompt | Mastery, retrieval, confidence, privacy, and intervention design. |
+| `prompt-codebase-course` | `../p6.md` | Course-architecture prompt | Codebase-first module and quiz structure. |
 | `learn-react-content` | `../learn-react/src/content/` | Existing structured source | Nine topic modules, ten challenges, QA/practice records already bridged into learn-next. |
 | `react-course-study-pack` | `/Users/hanyramadan/new era/projects/react_course_study_pack(1).zip` | Secondary study pack | 40-section / 471-lecture React course inventory, concept index, recall cards, transcript gaps, and version-freshness notes used for collision review and gap selection; never technical authority. |
 

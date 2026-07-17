@@ -7,6 +7,7 @@ import { toLearnerProfile } from '@/lib/learning/migration';
 import { ProgressBackup } from '@/components/shared/ProgressBackup';
 import { useSettingsStore } from '@/stores/settings';
 import { Level } from '@/types';
+import SurfaceHeader from '@/components/shared/SurfaceHeader';
 
 export default function SettingsPage() {
   const router = useRouter();
@@ -43,12 +44,7 @@ export default function SettingsPage() {
 
   return (
     <div className="max-w-2xl mx-auto space-y-8">
-      <div>
-        <h1 className="text-3xl font-bold text-ink" style={{ fontFamily: 'var(--font-display)' }}>
-          Settings
-        </h1>
-        <p className="text-ink-light mt-1">Customize your learning experience.</p>
-      </div>
+      <SurfaceHeader eyebrow="Workspace" title="Settings" description="Customize your learning experience." />
 
       <div className="card p-6 space-y-6">
         <h2 className="text-lg font-semibold text-ink">Learner Profile</h2>
@@ -122,29 +118,31 @@ export default function SettingsPage() {
       <div className="card p-6 space-y-4">
         <h2 className="text-lg font-semibold text-ink">Accessibility</h2>
 
-        <label className="flex items-center justify-between cursor-pointer">
-          <span className="text-ink">Reduced Motion</span>
+        <div className="flex items-center justify-between">
+          <span id="reduced-motion-label" className="text-ink">Reduced Motion</span>
           <button
             onClick={toggleReducedMotion}
             role="switch"
             aria-checked={reducedMotion}
+            aria-labelledby="reduced-motion-label"
             className={`relative w-11 min-h-11 rounded-full transition-colors ${reducedMotion ? 'bg-teal' : 'bg-paper-warm'}`}
           >
             <span className={`absolute top-0.5 left-0.5 w-5 h-5 rounded-full bg-white shadow transition-transform ${reducedMotion ? 'translate-x-5' : ''}`} />
           </button>
-        </label>
+        </div>
 
-        <label className="flex items-center justify-between cursor-pointer">
-          <span className="text-ink">High Contrast</span>
+        <div className="flex items-center justify-between">
+          <span id="high-contrast-label" className="text-ink">High Contrast</span>
           <button
             onClick={toggleHighContrast}
             role="switch"
             aria-checked={highContrast}
+            aria-labelledby="high-contrast-label"
             className={`relative w-11 min-h-11 rounded-full transition-colors ${highContrast ? 'bg-teal' : 'bg-paper-warm'}`}
           >
             <span className={`absolute top-0.5 left-0.5 w-5 h-5 rounded-full bg-white shadow transition-transform ${highContrast ? 'translate-x-5' : ''}`} />
           </button>
-        </label>
+        </div>
 
         <div>
           <label htmlFor="font-size-select" className="block text-sm font-medium text-ink mb-1">Font Size</label>

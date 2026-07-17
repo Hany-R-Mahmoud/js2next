@@ -2,7 +2,7 @@
 
 ## Scope
 
-Inventory covers the assigned source set: `../js.md`, `../react.md`, `p1.md`–`p6.md`, and the sibling `../learn-react` content. Runtime code was not changed.
+Inventory covers the assigned source set: `../js.md`, `../react.md`, `../p1.md`–`../p6.md`, and the sibling `../learn-react` content. Runtime code was not changed.
 
 `js.md` and `react.md` are course transcripts extracted on 2026-07-15. They are useful secondary source material, not publication-grade provenance. Volatile framework claims need direct official sources, version notes, and verification dates before entering the catalog.
 

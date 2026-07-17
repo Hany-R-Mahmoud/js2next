@@ -51,7 +51,7 @@ Fallback: `-apple-system`, `BlinkMacSystemFont`, `Segoe UI`, `Roboto`, `Helvetic
 - Breakpoints: mobile `<640px`, tablet `768px`, desktop `1024px`, wide `1280px`.
 - Content width: `1024px` max; gutters `16px` mobile, `24px` tablet, `32px` desktop.
 - Mobile shell reserves bottom-tab space and respects `env(safe-area-inset-bottom)`.
-- Desktop shell keeps persistent navigation; mobile primary navigation is a fixed three-item tab bar: Home, Progress, Settings.
+- Desktop shell keeps persistent navigation; mobile primary navigation is a fixed four-item tab bar: Home, Review, Progress, Settings. The active item stays visible on focused learning and review surfaces so the current destination remains clear.
 - Topic and review flows are entered from Home; focused review intentionally uses a distraction-free full-screen shell.
 
 ## 5. Components
@@ -79,6 +79,14 @@ Code blocks use near-black surfaces, readable mono text, labelled language/path 
 ### Multiple-choice checks
 
 Conceptual questions use a labelled choice group with four 44px-minimum choice cards, a visible selected state, keyboard-operable native controls, and correct/incorrect live feedback. Free-text fields are reserved for executable code or applied project work.
+
+### Learning stage tabs
+
+Topic journeys use a responsive stage rail with five named states: Overview, Learn, Apply, Review, and Reflect. The active state uses blue, locked states remain visible but disabled, and each tab includes a short description so the control is understandable without relying on color. The rail uses one column on mobile, two on tablet, and five on wide screens, while keeping 44px keyboard/touch targets.
+
+### Surface headers
+
+Home, Progress, Settings, and focused learning surfaces use one header anatomy: optional eyebrow, balanced title, supporting description, and an optional action. This keeps the landing page's hierarchy while leaving dense lesson content quiet.
 
 ## 6. Motion & Interaction
 

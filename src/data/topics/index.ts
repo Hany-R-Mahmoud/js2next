@@ -37,10 +37,11 @@ const authoredTopicModules = [topic_1, topic_2, topic_3, topic_4, topic_5, topic
 
 const allQa = authoredTopicModules.flatMap((topic) => topic.qa);
 const allChallenges = authoredTopicModules.flatMap((topic) => topic.challenges);
+const reviewKinds = ['predict', 'debug', 'tradeoff'] as const;
 
 export const topicModules: readonly TopicModule[] = authoredTopicModules.map((topic) => ({
   ...topic,
-  qa: topic.qa.map((item) => {
+  qa: topic.qa.map((item, index) => {
     const options = choiceOptions(
       item.answer,
       allQa
@@ -48,7 +49,13 @@ export const topicModules: readonly TopicModule[] = authoredTopicModules.map((to
         .map((candidate) => candidate.answer),
       item.id,
     );
-    return { ...item, options, correctIndex: options.indexOf(item.answer) };
+    return {
+      ...item,
+      options,
+      correctIndex: options.indexOf(item.answer),
+      reviewKind: reviewKinds[index % reviewKinds.length],
+      reviewScenario: reviewScenario(topic, index),
+    };
   }),
   challenges: topic.challenges.map((challenge) => {
     if (challenge.checkType === 'choice' || challenge.checkType === 'multi-choice' || challenge.checkType === 'code-contains') return challenge;
@@ -73,6 +80,21 @@ export const topicModules: readonly TopicModule[] = authoredTopicModules.map((to
     };
   }),
 }));
+
+function reviewScenario(topic: TopicModule, index: number): string {
+  const section = topic.lesson.sections[index % topic.lesson.sections.length];
+  const sectionTitle = section?.title ?? topic.lesson.title;
+  switch (reviewKinds[index % reviewKinds.length]) {
+    case 'predict':
+      return `Before changing ${sectionTitle}, predict how the current model behaves and explain what evidence you would look for.`;
+    case 'debug':
+      return `A teammate reports a bug around ${sectionTitle}. Choose the explanation that best guides the first debugging step.`;
+    case 'tradeoff':
+      return `You are reviewing a feature decision involving ${sectionTitle}. Choose the approach that keeps ownership and behavior explicit.`;
+    default:
+      return topic.lesson.title;
+  }
+}
 
 function choiceOptions(correct: string, candidates: readonly string[], key: string): string[] {
   const distractors = Array.from(new Set(candidates.filter((candidate) => candidate !== correct))).slice(0, 3);

@@ -9,6 +9,7 @@ import SearchBar from '@/components/shared/SearchBar';
 import { CapabilityCard } from '@/components/shared/CapabilityCard';
 import { capabilityDefinitions, getCapabilityProgress } from '@/lib/learning/capabilities';
 import { useMemo, useState } from 'react';
+import SurfaceHeader from '@/components/shared/SurfaceHeader';
 
 export default function ProgressPage() {
   const { canonicalProfile } = useLearnerStore();
@@ -35,10 +36,11 @@ export default function ProgressPage() {
 
   return (
     <div className="space-y-8">
-      <header>
-        <h1 className="mt-2 text-3xl font-bold text-ink" style={{ fontFamily: 'var(--font-display)' }}>See what is sticking</h1>
-        <p className="mt-1 text-ink-light">Mastery is evidence from completed topic loops, not time spent in the app.</p>
-      </header>
+      <SurfaceHeader
+        eyebrow="Progress"
+        title="See what is sticking"
+        description="Mastery is evidence from completed topic loops, not time spent in the app."
+      />
 
       <section className="space-y-4" aria-labelledby="mastery-map-title">
         <div className="flex items-end justify-between gap-3">
@@ -54,7 +56,7 @@ export default function ProgressPage() {
         <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
           {mapTopics.length > 0 ? mapTopics.map((bundle) => {
             const value = mastery[bundle.id]?.mastery ?? 0;
-            return <Link key={bundle.id} href={`/topic/${bundle.id}`} className="rounded-lg border border-paper-warm p-4 hover:border-teal/40"><div className="flex items-center justify-between gap-2"><span className="text-sm font-medium text-ink">{bundle.lesson.title}</span><span className="text-sm font-semibold text-teal">{Math.round(value * 100)}%</span></div><div className="mt-2 h-1.5 overflow-hidden rounded-full bg-paper-warm"><div className="h-full rounded-full bg-teal" style={{ width: `${Math.round(value * 100)}%` }} /></div><p className="mt-2 text-xs text-ink-muted">{topicFamilyMeta[bundle.meta.topicFamily].name}</p></Link>;
+            return <Link key={bundle.id} href={`/topic/${bundle.id}`} className="high-contrast-surface rounded-lg border border-paper-warm p-4 hover:border-teal/40"><div className="flex items-center justify-between gap-2"><span className="text-sm font-medium text-ink">{bundle.lesson.title}</span><span className="text-sm font-semibold text-teal">{Math.round(value * 100)}%</span></div><div className="high-contrast-progress-track mt-2 h-1.5 overflow-hidden rounded-full bg-paper-warm"><div className="high-contrast-progress h-full rounded-full bg-teal" style={{ width: `${Math.round(value * 100)}%` }} /></div><p className="mt-2 text-xs text-ink-muted">{topicFamilyMeta[bundle.meta.topicFamily].name}</p></Link>;
           }) : <p className="rounded-lg border border-paper-warm p-5 text-sm text-ink-muted">No topics started yet. Use Home to begin the recommended topic, or search to find a topic.</p>}
         </div>
       </section>

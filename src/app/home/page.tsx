@@ -8,6 +8,7 @@ import { contentCatalog } from '@/lib/content/catalog';
 import { recommendNextContent } from '@/lib/learning/recommendations';
 import { useLearnerStore } from '@/stores/learner';
 import SearchBar from '@/components/shared/SearchBar';
+import SurfaceHeader from '@/components/shared/SurfaceHeader';
 import type { TopicFamily } from '@/types';
 import { ProgressBackup } from '@/components/shared/ProgressBackup';
 
@@ -47,24 +48,18 @@ export default function HomePage() {
 
   return (
     <div className="space-y-8">
-      <header className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
-        <div>
-          <h1 className="mt-1 text-3xl font-bold text-ink" style={{ fontFamily: 'var(--font-display)' }}>
-            Welcome back, {canonicalProfile.name || 'Developer'}
-          </h1>
-          <Link href="/settings" className="mt-1 inline-block text-ink-light hover:text-teal">
-            {(hydrated ? canonicalProfile.level : 'beginner').charAt(0).toUpperCase() + (hydrated ? canonicalProfile.level : 'beginner').slice(1)} path
-            {hydrated && canonicalProfile.streakDays > 0 ? ` · ${canonicalProfile.streakDays} day streak` : ''}
-          </Link>
-        </div>
-        <p className="text-sm text-ink-muted">{mastered} of {topicBundles.length} topics mastered</p>
-      </header>
+      <SurfaceHeader
+        eyebrow="Your learning studio"
+        title={`Welcome back, ${canonicalProfile.name || 'Developer'}`}
+        description={`${(hydrated ? canonicalProfile.level : 'beginner').charAt(0).toUpperCase() + (hydrated ? canonicalProfile.level : 'beginner').slice(1)} path${hydrated && canonicalProfile.streakDays > 0 ? ` · ${canonicalProfile.streakDays} day streak` : ''}`}
+        action={<p className="text-sm text-ink-muted">{mastered} of {topicBundles.length} topics mastered</p>}
+      />
 
       {hydrated && !canonicalProfile.diagnosticDone && (
         <section className="card border-teal/30 bg-teal/5 p-6" aria-labelledby="onboarding-title">
-          <h2 id="onboarding-title" className="text-lg font-semibold text-ink">Set your learning path</h2>
-          <p className="mt-1 text-sm text-ink-light">Answer four short questions so the home map can prioritize the right topics.</p>
-          <Link href="/onboarding" className="btn-primary mt-4 inline-block text-sm">Start onboarding</Link>
+          <h2 id="onboarding-title" className="text-lg font-semibold text-ink">Choose your first direction</h2>
+          <p className="mt-1 text-sm text-ink-light">Pick the layer you want to understand first. You can browse the full JavaScript to React to Next.js path at any time.</p>
+          <Link href="/onboarding" className="btn-primary mt-4 inline-block text-sm">Choose a starting point</Link>
         </section>
       )}
 
@@ -123,15 +118,15 @@ export default function HomePage() {
                     <p className="text-xs font-semibold uppercase tracking-[0.16em] text-ink-muted">{topicFamilyMeta[bundle.meta.topicFamily].name}</p>
                     <h3 className="mt-2 font-semibold text-ink">{bundle.lesson.title}</h3>
                   </div>
-                  <span className="text-sm font-semibold text-teal">{Math.round(mastery * 100)}%</span>
+                  <span className="text-sm font-semibold text-teal-dark">{Math.round(mastery * 100)}%</span>
                 </div>
                 <p className="mt-2 line-clamp-2 text-sm text-ink-light">{bundle.lesson.whyMatters}</p>
                 <div className="mt-4 flex items-center justify-between text-xs text-ink-muted">
                   <span>{stage === 'complete' ? 'Complete' : stage === 'learn' ? 'Ready to learn' : `In ${stage}`}</span>
                   <span>{bundle.lesson.estimatedMinutes} min</span>
                 </div>
-                <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-paper-warm" aria-hidden="true">
-                  <div className="h-full rounded-full bg-teal" style={{ width: `${Math.round(mastery * 100)}%` }} />
+                <div className="high-contrast-progress-track mt-2 h-1.5 overflow-hidden rounded-full bg-paper-warm" aria-hidden="true">
+                  <div className="high-contrast-progress h-full rounded-full bg-teal" style={{ width: `${Math.round(mastery * 100)}%` }} />
                 </div>
               </Link>
             );

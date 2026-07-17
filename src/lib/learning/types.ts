@@ -64,6 +64,7 @@ export interface TopicProgress {
   readonly manualReview: boolean;
   readonly lastVisited: string;
   readonly lastReviewCompletedAt?: string;
+  readonly reflectStarted?: boolean;
 }
 
 export type LearningEvent =
