@@ -8,6 +8,10 @@ export const lessonSlugs = new Set(lessons.map((lesson) => lesson.slug));
 export const challengeSlugs = new Set(challenges.map((challenge) => challenge.slug));
 
 export function middleware(request: NextRequest) {
+  if (request.nextUrl.pathname === '/') {
+    return NextResponse.redirect(new URL('/tracks', request.url));
+  }
+
   const topicSlug = request.nextUrl.pathname.match(/^\/topic\/([^/]+)$/)?.[1];
   const knownTopic = topicSlug && topicSlugs.has(topicSlug);
 
@@ -18,5 +22,5 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/topic/:slug'],
+  matcher: ['/', '/topic/:slug'],
 };

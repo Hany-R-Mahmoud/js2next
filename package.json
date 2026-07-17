@@ -10,6 +10,7 @@
     "test": "vitest run",
     "audit:content": "node scripts/content-audit-report.mjs",
     "validate:release-1": "node --experimental-strip-types scripts/validate-release-1.ts",
+    "e2e:release-1": "node scripts/release-1-smoke.mjs",
     "verify:sources": "LIVE_SOURCE_CHECK=1 vitest run src/lib/content/source-links.live.test.ts",
     "test:watch": "vitest",
     "typecheck": "next typegen && tsc --noEmit"

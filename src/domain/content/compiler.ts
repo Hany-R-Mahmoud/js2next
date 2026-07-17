@@ -82,10 +82,10 @@ function validateReferences(packets: readonly JsonObject[], curriculum: unknown,
   let moduleCount = 0;
   for (const track of tracks) {
     if (!isRecord(track)) continue;
-    for (const module of Array.isArray(track.modules) ? track.modules : []) {
-      if (!isRecord(module)) continue;
+    for (const moduleRecord of Array.isArray(track.modules) ? track.modules : []) {
+      if (!isRecord(moduleRecord)) continue;
       moduleCount += 1;
-      for (const topic of Array.isArray(module.topics) ? module.topics : []) if (isRecord(topic) && typeof topic.id === 'string') curriculumTopicIds.add(topic.id);
+      for (const topic of Array.isArray(moduleRecord.topics) ? moduleRecord.topics : []) if (isRecord(topic) && typeof topic.id === 'string') curriculumTopicIds.add(topic.id);
     }
   }
   if (moduleCount !== 27) issues.push({ path: 'curriculum.runtime.json.tracks', message: 'must contain exactly 27 modules' });
