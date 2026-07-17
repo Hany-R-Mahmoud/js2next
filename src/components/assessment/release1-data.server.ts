@@ -1,11 +1,11 @@
 import { readdirSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
-import { parseAssessmentSet, parseQuestion } from '@/domain/assessment';
+import { parseAssessmentSet, parseQuestionBank } from '@/domain/assessment';
 import type { AssessmentSet, Question, TrackId } from '@/domain/assessment';
 import type { AssessmentPageData } from './types';
 
 type JsonRecord = { readonly [key: string]: unknown };
-type TopicPacket = JsonRecord & { readonly id: string; readonly title: string; readonly trackId: TrackId; readonly moduleId: string; readonly status: string; readonly reviewStatus: string; readonly version: number; readonly topicQuiz: JsonRecord; readonly questions: readonly unknown[] };
+type TopicPacket = JsonRecord & { readonly id: string; readonly title: string; readonly trackId: TrackId; readonly moduleId: string; readonly status: string; readonly reviewStatus: string; readonly version: number; readonly topicQuiz: JsonRecord; readonly assessmentProfile: JsonRecord; readonly questions: readonly unknown[] };
 
 const contentRoot = join(process.cwd(), 'content');
 const tracks: readonly TrackId[] = ['javascript', 'react', 'nextjs'];
@@ -21,9 +21,9 @@ const filesIn = (root: string): readonly string[] => readdirSync(root, { withFil
 });
 
 const topicPackets = tracks.flatMap((track) => filesIn(join(contentRoot, 'normalized', track)).map((path) => readJson(path)))
-  .filter((value): value is TopicPacket => isRecord(value) && typeof value.id === 'string' && typeof value.title === 'string' && isTrack(value.trackId) && typeof value.moduleId === 'string' && typeof value.status === 'string' && typeof value.reviewStatus === 'string' && typeof value.version === 'number' && isRecord(value.topicQuiz) && Array.isArray(value.questions));
+  .filter((value): value is TopicPacket => isRecord(value) && typeof value.id === 'string' && typeof value.title === 'string' && isTrack(value.trackId) && typeof value.moduleId === 'string' && typeof value.status === 'string' && typeof value.reviewStatus === 'string' && value.version === 2 && isRecord(value.topicQuiz) && isRecord(value.assessmentProfile) && Array.isArray(value.questions));
 
-const questionBank = new Map<string, Question>(topicPackets.flatMap((packet) => packet.questions.map((value) => parseQuestion(value))).map((question) => [question.id, question]));
+const questionBank = new Map<string, Question>(parseQuestionBank(readJson(join(contentRoot, 'assessment-source', 'question-bank.json'))).map((question) => [question.id, question]));
 
 const sourceSets = filesIn(join(contentRoot, 'assessment-source'))
   .filter((path) => !path.endsWith('question-bank.json'))
@@ -44,7 +44,7 @@ const questionsFor = (assessment: AssessmentSet): readonly Question[] => assessm
 export function getTopicQuiz(topicId: string): AssessmentPageData | null {
   const packet = topicPackets.find((candidate) => candidate.id === topicId);
   if (packet === undefined) return null;
-  const topicQuiz = parseAssessmentSet({ kind: 'topic-quiz', ...packet.topicQuiz, trackId: packet.trackId, moduleId: packet.moduleId, title: `${packet.title} quiz`, status: packet.status, reviewStatus: packet.reviewStatus, version: packet.version, schemaVersion: '1.0' });
+  const topicQuiz = parseAssessmentSet({ kind: 'topic-quiz', ...packet.topicQuiz, assessmentProfile: packet.assessmentProfile, trackId: packet.trackId, moduleId: packet.moduleId, title: `${packet.title} quiz`, status: packet.status, reviewStatus: packet.reviewStatus, version: packet.version, schemaVersion: '2.0', assessmentPolicyVersion: '2.0' });
   return { assessment: topicQuiz, questions: questionsFor(topicQuiz) };
 }
 

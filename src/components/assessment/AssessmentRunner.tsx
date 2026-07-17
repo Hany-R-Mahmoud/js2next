@@ -3,6 +3,8 @@
 import Link from 'next/link';
 import { useState } from 'react';
 import { evaluateAssessment } from '@/domain/assessment';
+import { assessmentProfileLabel } from '@/domain/assessment';
+import CodeBlock from '@/components/shared/CodeBlock';
 import type { AssessmentPageData } from './types';
 import type { AssessmentAttempt as ProgressAttempt, AssessmentAnswer, ProgressState } from '@/domain/progression/types';
 import { addObjectiveReview, createInitialProgress, createTopicProgress, recordReviewAttempt, recordTopicQuiz } from '@/domain/progression/core';
@@ -59,9 +61,9 @@ export function AssessmentRunner({ data, backHref }: { readonly data: Assessment
   }
 
   return <main className="mx-auto w-full max-w-3xl space-y-6 px-4 py-8 sm:px-6 lg:px-8" aria-labelledby="assessment-title">
-    <header><p className="surface-eyebrow">{data.assessment.kind.replace('-', ' ')}</p><h1 id="assessment-title" className="surface-title">{data.assessment.title}</h1><p className="surface-description">Five or more questions. Choices stay in source order; question order is stable for review.</p></header>
+    <header><p className="surface-eyebrow">{data.assessment.kind === 'topic-quiz' && data.assessment.assessmentProfile ? assessmentProfileLabel(data.assessment.assessmentProfile.type) : data.assessment.kind.replace('-', ' ')}</p><h1 id="assessment-title" className="surface-title">{data.assessment.title}</h1><p className="surface-description">Five or more questions. Choices stay in source order; question order is stable for review.</p></header>
     <form className="space-y-5" onSubmit={(event) => { event.preventDefault(); submit(); }}>
-      {data.questions.map((question, index) => <fieldset className="card space-y-4 p-5 sm:p-6" key={question.id}><legend className="w-full font-semibold leading-6 text-ink">{index + 1}. {question.prompt}</legend>{question.code && <pre className="overflow-x-auto rounded-lg bg-code-bg p-4 font-mono text-sm text-code-text" aria-label={`${question.code.language} example`}><code>{question.code.source}</code></pre>}<div className="space-y-2" role="radiogroup" aria-label={`Answers for question ${index + 1}`}>{question.choices.map((choice) => <label className={`flex min-h-11 cursor-pointer items-start gap-3 rounded-lg border p-3 transition-colors ${answers[question.id] === choice.id ? 'border-teal bg-teal/10' : 'border-slate-secondary hover:border-teal/60'}`} key={choice.id}><input className="mt-1 h-4 w-4 accent-teal" type="radio" name={question.id} value={choice.id} checked={answers[question.id] === choice.id} onChange={() => setAnswers((current) => ({ ...current, [question.id]: choice.id }))} required /><span className="text-sm leading-5 text-ink-light">{choice.label}</span></label>)}</div></fieldset>)}
+      {data.questions.map((question, index) => <fieldset className="card space-y-4 p-5 sm:p-6" key={question.id}><legend className="w-full font-semibold leading-6 text-ink">{index + 1}. {question.prompt}</legend>{question.code && <CodeBlock code={question.code.source} language={question.code.language} ariaLabel={`${question.code.language} assessment example`} />}<div className="space-y-2" role="radiogroup" aria-label={`Answers for question ${index + 1}`}>{question.choices.map((choice) => <label className={`flex min-h-11 cursor-pointer items-start gap-3 rounded-lg border p-3 transition-colors ${answers[question.id] === choice.id ? 'border-teal bg-teal/10' : 'border-slate-secondary hover:border-teal/60'}`} key={choice.id}><input className="mt-1 h-4 w-4 accent-teal" type="radio" name={question.id} value={choice.id} checked={answers[question.id] === choice.id} onChange={() => setAnswers((current) => ({ ...current, [question.id]: choice.id }))} required /><span className="break-words text-sm leading-5 text-ink-light">{choice.label}</span></label>)}</div></fieldset>)}
       <button className="btn-primary w-full sm:w-auto" type="submit">Submit answers</button>
     </form>
   </main>;

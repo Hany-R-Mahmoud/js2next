@@ -5,6 +5,7 @@
   "type": "object",
   "required": [
     "schemaVersion",
+    "assessmentPolicyVersion",
     "id",
     "kind",
     "trackId",
@@ -18,7 +19,10 @@
   ],
   "properties": {
     "schemaVersion": {
-      "const": "1.0"
+      "const": "2.0"
+    },
+    "assessmentPolicyVersion": {
+      "const": "2.0"
     },
     "id": {
       "type": "string"
@@ -58,8 +62,7 @@
       "const": "unlimited"
     },
     "version": {
-      "type": "integer",
-      "minimum": 1
+      "const": 2
     },
     "status": {
       "enum": [

@@ -18,16 +18,17 @@ const question = parseQuestion({
     { id: 'a', label: 'First choice', feedback: 'The first choice is incorrect.' },
     { id: 'b', label: 'Second choice', feedback: 'The second choice is correct.' },
     { id: 'c', label: 'Third choice', feedback: 'The third choice is incorrect.' },
+    { id: 'd', label: 'Fourth choice', feedback: 'The fourth choice is incorrect.' },
   ],
   correctChoiceIds: ['b'], explanation: 'The second choice is correct because it matches the rule.',
-  hint: 'Check the stated rule.', difficulty: 1, cognitiveLevel: 'recognize', version: 3,
-  status: 'draft', reviewStatus: 'pending-human-review',
+  hint: 'Check the stated rule.', difficulty: 1, cognitiveLevel: 'recognize', version: 2,
+  status: 'draft', reviewStatus: 'pending-human-review', assessmentMode: 'code-reading', practical: true, assessmentPolicyVersion: '2.0',
 });
 
 const set = parseAssessmentSet({
-  schemaVersion: '1.0', id: 'JS-01-QUIZ', kind: 'topic-quiz', trackId: 'javascript',
+  schemaVersion: '2.0', assessmentPolicyVersion: '2.0', id: 'JS-01-QUIZ', kind: 'topic-quiz', trackId: 'javascript',
   moduleId: 'JS-M01', title: 'Topic quiz', questionIds: ['JS-01-Q01', 'JS-01-Q02', 'JS-01-Q03', 'JS-01-Q04', 'JS-01-Q05'],
-  masteryThresholdPercent: 80, attemptPolicy: 'unlimited', version: 4,
+  masteryThresholdPercent: 80, attemptPolicy: 'unlimited', version: 2,
   status: 'draft', reviewStatus: 'pending-human-review',
 });
 const questions = [question, ...['02', '03', '04', '05'].map((suffix) => ({ ...question, id: `JS-01-Q${suffix}` }))];
@@ -70,8 +71,8 @@ describe('assessment domain', () => {
       attemptId: 'attempt-2', assessment: set, result: evaluate('b'),
       submittedAt: '2026-07-17T00:01:00.000Z',
     });
-    expect(failed).toMatchObject({ assessmentVersion: 4, mastered: false, scorePercent: 0 });
-    expect(passed).toMatchObject({ assessmentVersion: 4, mastered: true, scorePercent: 100 });
+    expect(failed).toMatchObject({ assessmentVersion: 2, mastered: false, scorePercent: 0 });
+    expect(passed).toMatchObject({ assessmentVersion: 2, mastered: true, scorePercent: 100 });
     expect(failed.submissions).not.toBe(passed.submissions);
     const history = appendAttempt(appendAttempt([], failed), passed);
     expect(history).toEqual([failed, passed]);

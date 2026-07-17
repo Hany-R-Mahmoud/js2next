@@ -1,6 +1,8 @@
 import Link from 'next/link';
 import type { FormEvent } from 'react';
 import type { AssessmentResult, Question } from '@/domain/assessment';
+import { assessmentProfileLabel } from '@/domain/assessment';
+import CodeBlock from '@/components/shared/CodeBlock';
 import type { AssessmentPageData } from './types';
 
 type AssessmentViewProps = {
@@ -22,7 +24,7 @@ export function AssessmentView({ data, questions, answers, submitted, attempts, 
 
   return <main className="mx-auto w-full max-w-3xl space-y-6 py-8" aria-labelledby="assessment-title">
     <header>
-      <p className="surface-eyebrow">{assessmentLabel(data.assessment.kind)}</p>
+      <p className="surface-eyebrow">{assessmentLabel(data.assessment)}</p>
       <h1 id="assessment-title" className="surface-title">{data.assessment.title}</h1>
       <p className="surface-description">Choose one answer for each question. Your choices stay in source order, and feedback appears after submission.</p>
     </header>
@@ -37,14 +39,15 @@ function QuestionCard({ question, index, answer, onAnswer }: { readonly question
   const groupId = `question-${question.id}`;
   return <fieldset className="card space-y-4 p-5 sm:p-6">
     <legend className="w-full font-semibold leading-6 text-ink">{index + 1}. {question.prompt}</legend>
-    {question.code && <pre className="overflow-x-auto rounded-lg bg-code-bg p-4 font-mono text-sm leading-6 text-code-text" tabIndex={0} aria-label={`${question.code.language} example`}><code>{question.code.source}</code></pre>}
+    {question.assessmentMode && <p className="text-xs font-semibold uppercase tracking-[0.12em] text-teal">{question.assessmentMode.replaceAll('-', ' ')}</p>}
+    {question.code && <CodeBlock code={question.code.source} language={question.code.language} ariaLabel={`${question.code.language} assessment example`} />}
     <div className="space-y-2">
       {question.choices.map((choice) => {
         const inputId = `${groupId}-${choice.id}`;
         const selected = answer === choice.id;
         return <label className={`flex min-h-11 cursor-pointer items-start gap-3 rounded-lg border p-3 transition-colors ${selected ? 'border-teal bg-teal/10' : 'border-slate-secondary hover:border-teal/60'}`} htmlFor={inputId} key={choice.id}>
           <input id={inputId} className="mt-1 h-4 w-4 accent-teal" type="radio" name={groupId} value={choice.id} checked={selected} onChange={() => onAnswer(question.id, choice.id)} required />
-          <span className="text-sm leading-5 text-ink-light">{choice.label}</span>
+          <span className="break-words text-sm leading-5 text-ink-light">{choice.label}</span>
         </label>;
       })}
     </div>
@@ -72,6 +75,7 @@ function FeedbackCard({ question, index, result }: { readonly question: Question
   const correct = result?.correct === true;
   return <article className="card space-y-3 p-5" aria-labelledby={`feedback-${question.id}`}>
     <h2 id={`feedback-${question.id}`} className="font-semibold leading-6 text-ink">{index + 1}. {question.prompt}</h2>
+    {question.code && <CodeBlock code={question.code.source} language={question.code.language} ariaLabel={`${question.code.language} assessment example`} />}
     <p className={correct ? 'font-semibold text-success' : 'font-semibold text-coral'}>{correct ? 'Correct' : 'Needs another look'}</p>
     <p className="text-sm leading-6 text-ink-light">{selectedChoice ? `Your choice: ${selectedChoice.label}` : 'No answer submitted.'}</p>
     {result?.choiceFeedback && <p className="text-sm leading-6 text-ink-light">{result.choiceFeedback}</p>}
@@ -81,11 +85,11 @@ function FeedbackCard({ question, index, result }: { readonly question: Question
   </article>;
 }
 
-function assessmentLabel(kind: AssessmentPageData['assessment']['kind']): string {
-  switch (kind) {
+function assessmentLabel(assessment: AssessmentPageData['assessment']): string {
+  if (assessment.kind === 'topic-quiz' && assessment.assessmentProfile !== undefined) return assessmentProfileLabel(assessment.assessmentProfile.type);
+  switch (assessment.kind) {
     case 'topic-quiz': return 'Topic quiz';
     case 'module-review': return 'Module review';
     case 'cumulative-review': return 'Cumulative review';
-    default: return kind;
   }
 }

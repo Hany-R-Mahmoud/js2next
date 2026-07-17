@@ -1,0 +1,619 @@
+{
+  "files": [
+    {
+      "path": "PROMPT_TO_PASTE_IN_CODEX.txt",
+      "bytes": 928,
+      "sha256": "0be4667a24d52f44371ef55425178c044ed083ae9544f907b6390d89e83564fd"
+    },
+    {
+      "path": "README.md",
+      "bytes": 1289,
+      "sha256": "e2a2e3d2c7f54d6bb02b184921715ec74b1317f4cf5efd080f3bba77727223e3"
+    },
+    {
+      "path": "assessments/cumulative/javascript-cumulative-review.json",
+      "bytes": 1306,
+      "sha256": "ed8acbccdad29841a4661a3ade8dab482b89da52965aa619aef4a3179d40293b"
+    },
+    {
+      "path": "assessments/cumulative/nextjs-cumulative-review.json",
+      "bytes": 1268,
+      "sha256": "139b4ffd419cb4eeb0d04338a14ab2ae8509e36d0effbfb713ce494d244fa573"
+    },
+    {
+      "path": "assessments/cumulative/react-cumulative-review.json",
+      "bytes": 1264,
+      "sha256": "e04a049b2ed2e9b361dc67e369cff91af0c096e85aa7d9dfee7df9730f7f8a52"
+    },
+    {
+      "path": "assessments/module-reviews/javascript/js-m01-review.json",
+      "bytes": 1031,
+      "sha256": "1c8cb3fea72cfa96ee95a4454a4e4276460d74cc474eeda5d3a491425d36a250"
+    },
+    {
+      "path": "assessments/module-reviews/javascript/js-m02-review.json",
+      "bytes": 910,
+      "sha256": "d3daeb6a916208c6dea0079f18fcbf8d651187e9aa5e0bcfb02f8acc29f78460"
+    },
+    {
+      "path": "assessments/module-reviews/javascript/js-m03-review.json",
+      "bytes": 965,
+      "sha256": "fb888fab0e4f62e23babaa2e5dabad59a02f235fb1640eed5e32b5931f53b350"
+    },
+    {
+      "path": "assessments/module-reviews/javascript/js-m04-review.json",
+      "bytes": 945,
+      "sha256": "0a4837bc768cf9519aa5489e5ddf1e58b5bc97ae0faf2808bc611fe04fa90730"
+    },
+    {
+      "path": "assessments/module-reviews/javascript/js-m05-review.json",
+      "bytes": 966,
+      "sha256": "037917e3572eef1b9c933d68da38a9be92413fc51d734f35e8b91d0dffe3c498"
+    },
+    {
+      "path": "assessments/module-reviews/javascript/js-m06-review.json",
+      "bytes": 1032,
+      "sha256": "afe15869f7d58568ef5d3b553cefba3f409986ec0f5083192d4e73a3698331b4"
+    },
+    {
+      "path": "assessments/module-reviews/javascript/js-m07-review.json",
+      "bytes": 949,
+      "sha256": "7f1347add0ecd1f4a1b884d47054d1b7c758f3585dcab4603b7e8d7dbc1b5416"
+    },
+    {
+      "path": "assessments/module-reviews/javascript/js-m08-review.json",
+      "bytes": 929,
+      "sha256": "d74fc057356fc53720e8c0ecce60503169652f3f7e64fb802f192c176eac4297"
+    },
+    {
+      "path": "assessments/module-reviews/javascript/js-m09-review.json",
+      "bytes": 946,
+      "sha256": "a31160536dbafbfdcb8d66fd8696983eafcace892738129f1f79a104ffa618bb"
+    },
+    {
+      "path": "assessments/module-reviews/javascript/js-m10-review.json",
+      "bytes": 978,
+      "sha256": "134888e04aeb6085901e008425fc4c5a89b0421d44c4e47cdf0c220ff0180fee"
+    },
+    {
+      "path": "assessments/module-reviews/javascript/js-m11-review.json",
+      "bytes": 1099,
+      "sha256": "10ff3dedfd363685d94c8375ca2510a38878babcdc0bc1056a1497ae2564bff7"
+    },
+    {
+      "path": "assessments/module-reviews/nextjs/n-m01-review.json",
+      "bytes": 920,
+      "sha256": "60f1969b05a05a6f7bc39a8277584c2e0a674f3f7cb60a3f93e5fc5423f3be82"
+    },
+    {
+      "path": "assessments/module-reviews/nextjs/n-m02-review.json",
+      "bytes": 1075,
+      "sha256": "c3f6c372bb715831ec6ee2a2a172c72c353a7d0bde6b6e926ed90116450da973"
+    },
+    {
+      "path": "assessments/module-reviews/nextjs/n-m03-review.json",
+      "bytes": 890,
+      "sha256": "d46278379cebdb8622427a143aeca8e9dbe7d16ba72b72d0240d7549a0f0b410"
+    },
+    {
+      "path": "assessments/module-reviews/nextjs/n-m04-review.json",
+      "bytes": 1001,
+      "sha256": "d7d2fa631eafe7b6a277591bca8b0c809b7b8c25b57e78d5e9f2cdcdff342ada"
+    },
+    {
+      "path": "assessments/module-reviews/nextjs/n-m05-review.json",
+      "bytes": 913,
+      "sha256": "ec1e318e927fb577ab16dda0437a46b95dcaef596739cb3fb80e2d8cb14682ad"
+    },
+    {
+      "path": "assessments/module-reviews/react/r-m01-review.json",
+      "bytes": 985,
+      "sha256": "ed312b15d51ac38c1dfcbc861f61c9784bc45b89c3c6288faf2c5202fe20b792"
+    },
+    {
+      "path": "assessments/module-reviews/react/r-m02-review.json",
+      "bytes": 953,
+      "sha256": "fd67733f281a6f6bc24bea25e2b0b6bba3889cca6868e6b4f684057b248b4d31"
+    },
+    {
+      "path": "assessments/module-reviews/react/r-m03-review.json",
+      "bytes": 1010,
+      "sha256": "d562cbde76a2b4a5cbb6c49d50fc90fc6aa23cb6dfd991ad6530b196918c3370"
+    },
+    {
+      "path": "assessments/module-reviews/react/r-m04-review.json",
+      "bytes": 984,
+      "sha256": "5a28f7b08609af38bc6e526b1dcad65ca170d59c9243533a4bacc897f769c54f"
+    },
+    {
+      "path": "assessments/module-reviews/react/r-m05-review.json",
+      "bytes": 954,
+      "sha256": "ad59928a4c50d19b87e885d98248d6adc05f798dde341959773ab94ef2839e4f"
+    },
+    {
+      "path": "assessments/module-reviews/react/r-m06-review.json",
+      "bytes": 923,
+      "sha256": "4666a77d6e4a0b833c664ed729865662b743de6fdebae9528cecc75305b5451d"
+    },
+    {
+      "path": "assessments/module-reviews/react/r-m07-review.json",
+      "bytes": 1011,
+      "sha256": "c277b8ccaaa2c2ea8fab95a3aa4c925be3529f9f45aef881dc7af7bc8770636f"
+    },
+    {
+      "path": "assessments/module-reviews/react/r-m08-review.json",
+      "bytes": 965,
+      "sha256": "355030d5592e8edf1520bf332906d633ba8271eebf522c6fa57fbcf4958b60f2"
+    },
+    {
+      "path": "assessments/module-reviews/react/r-m09-review.json",
+      "bytes": 938,
+      "sha256": "52eb462293f1ec8c0c791b6e4a033edf4cf6a2a45a97312e320ebaa47a8659f7"
+    },
+    {
+      "path": "assessments/module-reviews/react/r-m10-review.json",
+      "bytes": 957,
+      "sha256": "a19e8eafd98efe22d43de098aec33bdb6b6d2991effd30b2634af0a1da4d213b"
+    },
+    {
+      "path": "assessments/module-reviews/react/r-m11-review.json",
+      "bytes": 1031,
+      "sha256": "02d08903eae4fdfae0c150ffbbca21410e2958246b45f491039f39e8f893312c"
+    },
+    {
+      "path": "assessments/question-bank.v2.json",
+      "bytes": 1609058,
+      "sha256": "86f44e6723fd2caf6c808cfb3e5a2d4e9581f587c808c13e2e7990601ce50a5c"
+    },
+    {
+      "path": "audit/topic-assessment-profiles.csv",
+      "bytes": 29899,
+      "sha256": "809391eefb16531fd6ea657ffd60563ff2da6b544746d503ec613074ec2e801b"
+    },
+    {
+      "path": "audit/topic-assessment-profiles.json",
+      "bytes": 54144,
+      "sha256": "7365ccc48b97df66e62f953a4406ec38d6c4d6bc6afd20d56f942afe0f4d5c1c"
+    },
+    {
+      "path": "codex/EXECUTION_PLAN.md",
+      "bytes": 1675,
+      "sha256": "75e8de2038937c9dc592002fce9dc7205785b822b31e76e0cf1531919af615ef"
+    },
+    {
+      "path": "codex/MASTER_CODEX_ASSESSMENT_UPGRADE_PROMPT.md",
+      "bytes": 2886,
+      "sha256": "1b89272b3751d4044f7feceda2277285d64db20c7c297d97e520bcf191841f34"
+    },
+    {
+      "path": "migration/assessment-replacement-manifest.json",
+      "bytes": 10978,
+      "sha256": "3586e237fc0d723f84769d8644e98838bde83b97596e7f16f49e82dbe3d7a43a"
+    },
+    {
+      "path": "patched-topic-packets/content/javascript/js-m01-orientation-and-foundations/js-01-course-orientation.json",
+      "bytes": 26041,
+      "sha256": "2210c4d5ced1f2468de3e220ae04a759ebf487abd7f07bff173abe42d9f40bab"
+    },
+    {
+      "path": "patched-topic-packets/content/javascript/js-m01-orientation-and-foundations/js-02-introduction-to-javascript.json",
+      "bytes": 27321,
+      "sha256": "97bf9a0ec2c9b8e7661ac27e16ca9037762fbfeb528fb2b2d7e6c38be5752253"
+    },
+    {
+      "path": "patched-topic-packets/content/javascript/js-m01-orientation-and-foundations/js-03-values-data-types-and-boolean-logic.json",
+      "bytes": 29483,
+      "sha256": "f19eb474ababf35b66f47d4c314decac4b924659205a9324f7f870c0dba09b08"
+    },
+    {
+      "path": "patched-topic-packets/content/javascript/js-m01-orientation-and-foundations/js-04-javascript-evolution-es5-es6-and-esnext.json",
+      "bytes": 27208,
+      "sha256": "a093bfb403356f82965797eaa598b48dc6b4dac2f1dbb671c188b81497649042"
+    },
+    {
+      "path": "patched-topic-packets/content/javascript/js-m01-orientation-and-foundations/js-05-functions-working-together.json",
+      "bytes": 28564,
+      "sha256": "aafdb53eae52b456ef41af20e99f9e26b00ca8aec1d300263a7902f0107db671"
+    },
+    {
+      "path": "patched-topic-packets/content/javascript/js-m02-developer-skills/js-06-learning-to-code-and-think-like-a-developer.json",
+      "bytes": 28307,
+      "sha256": "0bfd18a179c8e2562a0f29aa46b557cdf46367c9d6462291565beda8da9da4f8"
+    },
+    {
+      "path": "patched-topic-packets/content/javascript/js-m02-developer-skills/js-07-debugging-and-ai-assisted-development.json",
+      "bytes": 28179,
+      "sha256": "c4a8e4933921e3b317af9746c95b2399dcfe91102684f7aa5a36ff5e8081dedf"
+    },
+    {
+      "path": "patched-topic-packets/content/javascript/js-m03-browser-and-dom-foundations/js-08-the-dom-and-dom-manipulation.json",
+      "bytes": 28324,
+      "sha256": "71a66d089409b233d1a9afbc2f1b1b89e22bf8191b01c44778646784b316714a"
+    },
+    {
+      "path": "patched-topic-packets/content/javascript/js-m04-how-javascript-works/js-09-runtime-and-execution-model.json",
+      "bytes": 28525,
+      "sha256": "050eaaeee6df10aef778846e5e1a2b157c13d12a12f0f4560970af513cb4752d"
+    },
+    {
+      "path": "patched-topic-packets/content/javascript/js-m04-how-javascript-works/js-10-scope-scope-chain-hoisting-and-the-tdz.json",
+      "bytes": 29912,
+      "sha256": "551f08d00cfd3d3bfe84ab3968be0cdf8339048dab5e220ddff218153acd68d7"
+    },
+    {
+      "path": "patched-topic-packets/content/javascript/js-m04-how-javascript-works/js-11-the-this-keyword.json",
+      "bytes": 26836,
+      "sha256": "e97a8258f5c0a990e561a8a6f7af3401a1cea31c06a65b9e4293b2d4d9a09884"
+    },
+    {
+      "path": "patched-topic-packets/content/javascript/js-m04-how-javascript-works/js-12-memory-management-and-references.json",
+      "bytes": 28621,
+      "sha256": "70569e3afd64781245b0b45002939c22b1c86948740b6a0a73c5f7a4eb24a69f"
+    },
+    {
+      "path": "patched-topic-packets/content/javascript/js-m05-data-structures-and-functional-techniques/js-13-choosing-the-right-data-structure.json",
+      "bytes": 28715,
+      "sha256": "63c65de8223ef9ec480636384a6e197c2db2a20009951ede61a13d4c07f353e3"
+    },
+    {
+      "path": "patched-topic-packets/content/javascript/js-m05-data-structures-and-functional-techniques/js-14-first-class-and-higher-order-functions.json",
+      "bytes": 27806,
+      "sha256": "85391bcb90eea2d03940046260051542cce52bc0aab97ccf02a09654b40417b1"
+    },
+    {
+      "path": "patched-topic-packets/content/javascript/js-m05-data-structures-and-functional-techniques/js-15-closures.json",
+      "bytes": 26252,
+      "sha256": "e2a1d5a41bb202d4404e53995e0e453b4269fbc1159830b1b9f5ce1cf852be60"
+    },
+    {
+      "path": "patched-topic-packets/content/javascript/js-m05-data-structures-and-functional-techniques/js-16-array-transformations-and-method-selection.json",
+      "bytes": 30121,
+      "sha256": "7e44517f94872cf1454420b3f560bae59d9aae419633753486c84e80cadabf80"
+    },
+    {
+      "path": "patched-topic-packets/content/javascript/js-m06-dom-internals-and-script-loading/js-17-dom-internals-and-event-propagation.json",
+      "bytes": 29422,
+      "sha256": "c0a5eb609183d662debf1ab1e99c2ff6888c6677967051f169f76db97ffd3eb3"
+    },
+    {
+      "path": "patched-topic-packets/content/javascript/js-m06-dom-internals-and-script-loading/js-18-efficient-script-loading.json",
+      "bytes": 27214,
+      "sha256": "48231ce601d5bf7c72481668f0e094d196749589346ce3c8c75a7f131ecdb7a0"
+    },
+    {
+      "path": "patched-topic-packets/content/javascript/js-m07-object-oriented-javascript/js-19-oop-foundations-and-javascript-s-object-model.json",
+      "bytes": 29150,
+      "sha256": "45213a971b9181c88881e6895c05a4a0d839499c9b152e05905734ba801373a7"
+    },
+    {
+      "path": "patched-topic-packets/content/javascript/js-m07-object-oriented-javascript/js-20-prototypes-the-prototype-chain-and-object-create.json",
+      "bytes": 28678,
+      "sha256": "76a59ac27abf27a6be2ea0223a20352fe4496c8df29fb43315b1317ff8b1f0f6"
+    },
+    {
+      "path": "patched-topic-packets/content/javascript/js-m07-object-oriented-javascript/js-21-inheritance-patterns-and-es6-classes.json",
+      "bytes": 28339,
+      "sha256": "f8896740113c58bdb6b8e4575827a28af3cbee75d5669044d3c5c8f1ea738d18"
+    },
+    {
+      "path": "patched-topic-packets/content/javascript/js-m08-project-planning-mapty/js-22-planning-a-web-project-mapty-case-study.json",
+      "bytes": 28534,
+      "sha256": "eabaa6a811233d86defbacd387d10f5cf4efff911d271589566ffb16141fb26a"
+    },
+    {
+      "path": "patched-topic-packets/content/javascript/js-m09-asynchronous-javascript/js-23-asynchronous-javascript-and-the-web-request-model.json",
+      "bytes": 28354,
+      "sha256": "f8f88cdefb761566da446f25fc5ee708d65a4c2aee10defa326ae082f9ec0182"
+    },
+    {
+      "path": "patched-topic-packets/content/javascript/js-m09-asynchronous-javascript/js-24-promises-and-the-fetch-api.json",
+      "bytes": 27879,
+      "sha256": "7d50ec6b609b7fb2ff78f719bc53a0a84124c3ed7a05564bd1c9239660bae7a0"
+    },
+    {
+      "path": "patched-topic-packets/content/javascript/js-m09-asynchronous-javascript/js-25-the-event-loop-and-async-execution.json",
+      "bytes": 28107,
+      "sha256": "aa1768a7b33d66ee254ebde094d7591b907fe821eaf79d9bf4c036080952ed8e"
+    },
+    {
+      "path": "patched-topic-packets/content/javascript/js-m10-modern-javascript-development/js-26-modern-development-workflow-and-modules.json",
+      "bytes": 29170,
+      "sha256": "d48f4edf8a07649a95bf4d5b8cc9fdd311280e1d9ad334755afffc2571ee01fe"
+    },
+    {
+      "path": "patched-topic-packets/content/javascript/js-m10-modern-javascript-development/js-27-clean-modern-and-declarative-javascript.json",
+      "bytes": 28701,
+      "sha256": "ab8caaf6c0952af93bdce6ac196bfd189716a60b5bcf7e36ac3a7656f6b8cfc3"
+    },
+    {
+      "path": "patched-topic-packets/content/javascript/js-m11-application-architecture-forkify/js-28-forkify-application-planning.json",
+      "bytes": 26523,
+      "sha256": "cfb8df9b3249cb3da6a3bfda0b19dfb73a95bd9aedb8201b6dc02e56ea46fb23"
+    },
+    {
+      "path": "patched-topic-packets/content/javascript/js-m11-application-architecture-forkify/js-29-mvc-and-publisher-subscriber-architecture.json",
+      "bytes": 28593,
+      "sha256": "6bcbd569a4e0a9ba1d5f509e870844bf9e0b94cfaac2277daccf3172774ed77f"
+    },
+    {
+      "path": "patched-topic-packets/content/javascript/js-m11-application-architecture-forkify/js-30-forkify-capstone-retrospective.json",
+      "bytes": 26173,
+      "sha256": "f67937f33f0bb686240c589a8807f5f150dae771d06b0791f7c594f9f3833ee4"
+    },
+    {
+      "path": "patched-topic-packets/content/nextjs/n-m01-rendering-foundations/n-01-server-side-rendering-and-hydration.json",
+      "bytes": 27567,
+      "sha256": "c70cb0f117b7be981f320e781c413561db06b57a1e698642a729ce9ce8fc9d5d"
+    },
+    {
+      "path": "patched-topic-packets/content/nextjs/n-m01-rendering-foundations/n-02-what-next-js-is-and-why-it-exists.json",
+      "bytes": 27788,
+      "sha256": "5ee455131f9245ebad29a4369cecfc3c547e674323ca55854cb16a98a1996b10"
+    },
+    {
+      "path": "patched-topic-packets/content/nextjs/n-m02-react-server-components/n-03-react-server-components-fundamentals.json",
+      "bytes": 28219,
+      "sha256": "faeeb2f4fc83eb47782539800e91b095c4bad3ea5e698a9ceabaf3a172e22f8f"
+    },
+    {
+      "path": "patched-topic-packets/content/nextjs/n-m02-react-server-components/n-04-rsc-internals-and-relationship-to-ssr.json",
+      "bytes": 27609,
+      "sha256": "24f55c69fe7c59357710f719c676b84b9c436b6a6aeb071110064f281d1ecebb"
+    },
+    {
+      "path": "patched-topic-packets/content/nextjs/n-m03-project-planning/n-05-wild-oasis-website-planning.json",
+      "bytes": 27290,
+      "sha256": "27a53ad1b1539f08b9e42b576f9d9d2b9fe02b7e0840be58279cb8dd58ff8264"
+    },
+    {
+      "path": "patched-topic-packets/content/nextjs/n-m04-streaming-rendering-strategies-and-caching/n-06-react-suspense-and-streaming.json",
+      "bytes": 27222,
+      "sha256": "9a988cdde6c13682bea4e26bb7d4dadeb4ac70d712298213d7af6a7030b38f91"
+    },
+    {
+      "path": "patched-topic-packets/content/nextjs/n-m04-streaming-rendering-strategies-and-caching/n-07-static-dynamic-and-partial-pre-rendering.json",
+      "bytes": 29021,
+      "sha256": "a3937ea3e5369bf36551f5e4e3c6da06d29b4aff3d4189629b3b0a5f0b69f39a"
+    },
+    {
+      "path": "patched-topic-packets/content/nextjs/n-m04-streaming-rendering-strategies-and-caching/n-08-how-next-js-caches-data.json",
+      "bytes": 27119,
+      "sha256": "a7c08ef3f55c5d2bc5e7fd01da0de8ebe2f0bbb193690efd1933d6f052c0bd39"
+    },
+    {
+      "path": "patched-topic-packets/content/nextjs/n-m05-server-and-client-architecture/n-09-server-and-client-boundaries.json",
+      "bytes": 28607,
+      "sha256": "9b643c9420ddfcf91317b25413a406c9f0e98412e5fd890000bd8926de169858"
+    },
+    {
+      "path": "patched-topic-packets/content/nextjs/n-m05-server-and-client-architecture/n-10-middleware-in-next-js.json",
+      "bytes": 27527,
+      "sha256": "b9ee12d2fea112bc43c874743c6ca76a679ebc7c8640d3e20fbe2fd60e3aa629"
+    },
+    {
+      "path": "patched-topic-packets/content/nextjs/n-m05-server-and-client-architecture/n-11-server-actions.json",
+      "bytes": 28285,
+      "sha256": "f1e3655c3cf24dc452b3c8eebc4223a632d1477854def06e2950650aecd173f5"
+    },
+    {
+      "path": "patched-topic-packets/content/react/r-m01-react-orientation/r-01-course-orientation.json",
+      "bytes": 26174,
+      "sha256": "9c21bdd633a93dd157661dc991d6ff9a93b85def5490ffdf0a644c1c10b9d232"
+    },
+    {
+      "path": "patched-topic-packets/content/react/r-m01-react-orientation/r-02-why-front-end-frameworks-and-react-exist.json",
+      "bytes": 28374,
+      "sha256": "dfe54ff8db8f4788cf253b82476898cfcbb023da8537831b5d373667e62a8611"
+    },
+    {
+      "path": "patched-topic-packets/content/react/r-m01-react-orientation/r-03-setting-up-a-react-project.json",
+      "bytes": 26832,
+      "sha256": "327c90c1b4d7db83dab8233bf182e6171f38ad1322fb354459035b9c015aad42"
+    },
+    {
+      "path": "patched-topic-packets/content/react/r-m02-components-jsx-and-props/r-04-components-jsx-and-separation-of-concerns.json",
+      "bytes": 29518,
+      "sha256": "6af99fb3240259e3ce14e1ffd9ee4db4f8cbb3a373ab19e9e7c279b7227e4b6f"
+    },
+    {
+      "path": "patched-topic-packets/content/react/r-m02-components-jsx-and-props/r-05-props-immutability-and-one-way-data-flow.json",
+      "bytes": 28333,
+      "sha256": "a98a59b6c0f0486361ab2bfc85c288a824a5b9484b5376b7db6e3d86e94032da"
+    },
+    {
+      "path": "patched-topic-packets/content/react/r-m02-components-jsx-and-props/r-06-jsx-rules-and-fundamentals-recap.json",
+      "bytes": 27915,
+      "sha256": "2d80a666b3bb1a8693d7726a707705dc18745ca644c3ac29070c922c66fc00cf"
+    },
+    {
+      "path": "patched-topic-packets/content/react/r-m03-state-and-thinking-in-react/r-07-state-fundamentals.json",
+      "bytes": 29443,
+      "sha256": "2d11391a0386a53b96932c13345e12c728b3f561a72193fe6378584fc4170d40"
+    },
+    {
+      "path": "patched-topic-packets/content/react/r-m03-state-and-thinking-in-react/r-08-thinking-in-react-state-management-and-derived-state.json",
+      "bytes": 30468,
+      "sha256": "1df8496f5f94f422b23d160d5906c23618e17a81b90a9d474f7128f9db2029b9"
+    },
+    {
+      "path": "patched-topic-packets/content/react/r-m04-component-design-and-reusability/r-09-reusability-with-the-children-prop.json",
+      "bytes": 27752,
+      "sha256": "eb1898ac8eee025e86aabf6537fd34177d8629bc075f0222193eb36d773f4daa"
+    },
+    {
+      "path": "patched-topic-packets/content/react/r-m04-component-design-and-reusability/r-10-designing-component-trees.json",
+      "bytes": 27107,
+      "sha256": "ce81189def988edbd82de8688f634cd6ed7236eb97988101a08d010bc333d5ab"
+    },
+    {
+      "path": "patched-topic-packets/content/react/r-m04-component-design-and-reusability/r-11-composition-and-props-as-component-apis.json",
+      "bytes": 28782,
+      "sha256": "271aa2b870144cd31ed96ce50e08d4dda9f5c79c689512c6d65bbb91688b0fee"
+    },
+    {
+      "path": "patched-topic-packets/content/react/r-m05-how-react-renders/r-12-components-instances-elements-and-rendering-overview.json",
+      "bytes": 28300,
+      "sha256": "f21e3adbcb841f1fc1799143eb168762a2e62d18ae2b39bb31b1dceae257355f"
+    },
+    {
+      "path": "patched-topic-packets/content/react/r-m05-how-react-renders/r-13-render-and-commit-phases.json",
+      "bytes": 27286,
+      "sha256": "f508a190a0e64a3136851682bd97ffb6fa3ff990ad28ec68651134039022f5af"
+    },
+    {
+      "path": "patched-topic-packets/content/react/r-m05-how-react-renders/r-14-diffing-keys-and-state-preservation.json",
+      "bytes": 27853,
+      "sha256": "6a11b5a709549c6f4edeac64ad153bb07db2d81b305815b5d54812d02d0914fb"
+    },
+    {
+      "path": "patched-topic-packets/content/react/r-m05-how-react-renders/r-15-pure-render-logic-and-state-batching.json",
+      "bytes": 28338,
+      "sha256": "d5f5203dab5bd46df7ac3110980e51d01bd01e4c21439c35276be2ab07f13414"
+    },
+    {
+      "path": "patched-topic-packets/content/react/r-m05-how-react-renders/r-16-how-events-work-in-react.json",
+      "bytes": 27364,
+      "sha256": "f0579f182a56bf843b017558af765b7f74394f23624002fb90fe0626bcccae0b"
+    },
+    {
+      "path": "patched-topic-packets/content/react/r-m05-how-react-renders/r-17-react-ecosystem-overview.json",
+      "bytes": 26635,
+      "sha256": "cbab47217961dce9f752f205c18fb733abd9971250bb0f6e72d1571f7bed1d3c"
+    },
+    {
+      "path": "patched-topic-packets/content/react/r-m06-effects-and-hooks/r-18-component-lifecycle-and-effects.json",
+      "bytes": 28198,
+      "sha256": "0a21f047621a114741a1ddb8ed5d313dd37607830eebea5d86e5811f998c8556"
+    },
+    {
+      "path": "patched-topic-packets/content/react/r-m06-effects-and-hooks/r-19-effect-dependencies-and-cleanup.json",
+      "bytes": 28883,
+      "sha256": "fd65d8bd03255e9d4d73d6241d8b925e886b944ef87cc371400559e256162432"
+    },
+    {
+      "path": "patched-topic-packets/content/react/r-m06-effects-and-hooks/r-20-rules-of-hooks-and-usestate-recap.json",
+      "bytes": 28175,
+      "sha256": "3d92f4fce5d062097ee1ea7e59da4e4a18c2d976239e9e7e3aabd751ce602869"
+    },
+    {
+      "path": "patched-topic-packets/content/react/r-m06-effects-and-hooks/r-21-refs-and-custom-hooks.json",
+      "bytes": 28342,
+      "sha256": "0bb9065988162af480d1afbf9bd836c8bb03a37173fb120d1bdf568fe2bc63fa"
+    },
+    {
+      "path": "patched-topic-packets/content/react/r-m06-effects-and-hooks/r-22-class-components-vs-function-components.json",
+      "bytes": 27520,
+      "sha256": "c3e4a85e153c28743d3e57765d06605881ab292b29c380a139e28e396f9ca62c"
+    },
+    {
+      "path": "patched-topic-packets/content/react/r-m07-complex-state-routing-and-styling/r-23-usereducer-and-choosing-state-tools.json",
+      "bytes": 28886,
+      "sha256": "ca9a2646026dd6c12f016fa764f708390ff8d3f6b243616c889cfd13a9d065f2"
+    },
+    {
+      "path": "patched-topic-packets/content/react/r-m07-complex-state-routing-and-styling/r-24-routing-and-single-page-applications.json",
+      "bytes": 28379,
+      "sha256": "ec20a73f69dc29f12a244c80f570cfa27a731e475b8a2cebfce0288a555d2ee0"
+    },
+    {
+      "path": "patched-topic-packets/content/react/r-m07-complex-state-routing-and-styling/r-25-styling-options-for-react-applications.json",
+      "bytes": 27491,
+      "sha256": "b2ab79f66685e401c65243ac074d662d5a182deeb80d06d6f262162bee68b63f"
+    },
+    {
+      "path": "patched-topic-packets/content/react/r-m08-context-and-advanced-state-management/r-26-context-api-and-advanced-state-management.json",
+      "bytes": 30158,
+      "sha256": "eb9819dfde5aa06846fe2aaa4c38c8f7a87a80e0e9cd870894e181205c70132e"
+    },
+    {
+      "path": "patched-topic-packets/content/react/r-m09-performance-and-advanced-effects/r-27-wasted-renders-and-memoization.json",
+      "bytes": 29862,
+      "sha256": "358c551ab76580b53a80d8dfcef0a392a42d3c38b33942cbbeba8ff0ff528513"
+    },
+    {
+      "path": "patched-topic-packets/content/react/r-m09-performance-and-advanced-effects/r-28-code-splitting-and-pragmatic-optimization.json",
+      "bytes": 28720,
+      "sha256": "4d5f6f0d74d569aef64c24bea9a2e1ace05890d81582b39dcace5ebcbe4f7d4f"
+    },
+    {
+      "path": "patched-topic-packets/content/react/r-m09-performance-and-advanced-effects/r-29-useeffect-rules-and-best-practices.json",
+      "bytes": 27713,
+      "sha256": "20de9dd810cfc573510a278187e9c937169f74d41a54e9656c0d6a84d96386d2"
+    },
+    {
+      "path": "patched-topic-packets/content/react/r-m10-redux/r-30-redux-fundamentals.json",
+      "bytes": 27490,
+      "sha256": "8b3a281d3e6ca6bce06776dd2630e1157fc75f23985a4ed774933cbb2f1543dd"
+    },
+    {
+      "path": "patched-topic-packets/content/react/r-m10-redux/r-31-middleware-thunks-and-redux-toolkit.json",
+      "bytes": 28787,
+      "sha256": "72cb5f151021d7b1943cc9d3156cdac11a36f96c0c566a161f61d856954f1fc1"
+    },
+    {
+      "path": "patched-topic-packets/content/react/r-m10-redux/r-32-redux-vs-context-api.json",
+      "bytes": 26126,
+      "sha256": "db202f9eb689525b605a5122d2c857c43bd286afcf2230da63984c607325fc48"
+    },
+    {
+      "path": "patched-topic-packets/content/react/r-m11-professional-react-workflows-and-ecosystem/r-33-fast-react-pizza-application-planning.json",
+      "bytes": 28245,
+      "sha256": "3ed112eed344ebaebec867bcc622f0487aef8e05c6daf5f11ef3b839b93c5d2d"
+    },
+    {
+      "path": "patched-topic-packets/content/react/r-m11-professional-react-workflows-and-ecosystem/r-34-tailwind-css-overview.json",
+      "bytes": 26664,
+      "sha256": "e07618fd9f88a8c5b4494db26d56527a6ea7a7586574cff410be04dcdb84658f"
+    },
+    {
+      "path": "patched-topic-packets/content/react/r-m11-professional-react-workflows-and-ecosystem/r-35-wild-oasis-application-planning.json",
+      "bytes": 27168,
+      "sha256": "e94dc2c41e4b5adb466b9f10dda19e8727073d0a179c9df4ba377ffac743d496"
+    },
+    {
+      "path": "patched-topic-packets/content/react/r-m11-professional-react-workflows-and-ecosystem/r-36-supabase-overview.json",
+      "bytes": 25842,
+      "sha256": "2c725daedf1fbe73b0da86f92cde6007f2c395335c348f93a737d7738815dfec"
+    },
+    {
+      "path": "patched-topic-packets/content/react/r-m11-professional-react-workflows-and-ecosystem/r-37-modeling-application-state-and-react-query.json",
+      "bytes": 30054,
+      "sha256": "6bcb6fdb3a50ee53746724fabf5fe4ac662c44e6f18b60d9f9d9109347328406"
+    },
+    {
+      "path": "patched-topic-packets/content/react/r-m11-professional-react-workflows-and-ecosystem/r-38-reusability-and-advanced-react-patterns.json",
+      "bytes": 29112,
+      "sha256": "bb33dd1d91c2f06f6c305872be0760703c076ea0778c0db047b67bb8b467ca13"
+    },
+    {
+      "path": "schemas/question.schema.v2.json",
+      "bytes": 3689,
+      "sha256": "3e1825363d0712650033f5c0a73821e7ba941b86107f0836f7902d6a1bf146d0"
+    },
+    {
+      "path": "specs/ACCEPTANCE_CRITERIA.md",
+      "bytes": 1199,
+      "sha256": "e4159f8b8f4feb8e15592f9d809e98bab88e98627489a398b81b8630733d5bce"
+    },
+    {
+      "path": "specs/ASSESSMENT_EXPERIENCE_V2.md",
+      "bytes": 1171,
+      "sha256": "8961c12f4fc75f026846c2159eef4c95f1601ff15d030e7d7c9a78632621ad6d"
+    },
+    {
+      "path": "specs/ASSESSMENT_POLICY_V2.md",
+      "bytes": 2478,
+      "sha256": "131d72a4f41df25a0946714016398ffaff6a3d8dd5d903b7069b0a9966d714b1"
+    },
+    {
+      "path": "validation/VALIDATION_REPORT.md",
+      "bytes": 882,
+      "sha256": "19a6ee2d956d3db1e09d473911e8ea590970741406d60b0f37a07a390fabad06"
+    },
+    {
+      "path": "validation/inventory.json",
+      "bytes": 830,
+      "sha256": "9192dc7e466431887aa5c1159c07c184a2c5bbd182ef70638ed49683559b0679"
+    }
+  ]
+}

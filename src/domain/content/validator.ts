@@ -4,6 +4,8 @@ const TRACKS = new Set(['javascript', 'react', 'nextjs']);
 const STATUSES = new Set(['draft', 'reviewed', 'published', 'retired', 'archived']);
 const REVIEW_STATUSES = new Set(['pending-human-review', 'approved', 'needs-revision']);
 const COGNITIVE_LEVELS = new Set(['recognize', 'explain', 'predict', 'apply', 'debug', 'tradeoff', 'synthesize', 'transfer']);
+const ASSESSMENT_PROFILES = new Set(['conceptual', 'workflow', 'hybrid', 'coding']);
+const SCENARIO_MODES = new Set(['scenario-reasoning', 'workflow-artifact', 'workflow-scenario', 'workflow-judgment']);
 
 export function isRecord(value: JsonValue | unknown): value is JsonObject {
   return typeof value === 'object' && value !== null && !Array.isArray(value);
@@ -44,7 +46,7 @@ function validateQuestion(question: JsonObject, path: string, objectives: Readon
     if (typeof objective !== 'string' || !objectives.has(objective)) add(issues, `${path}.objectiveIds`, `unknown objective reference ${String(objective)}`);
   }
   const choices = arrayAt(question, 'choices') ?? [];
-  if (choices.length < 3 || choices.length > 6) add(issues, `${path}.choices`, 'must contain 3 to 6 choices');
+  if (choices.length !== 4) add(issues, `${path}.choices`, 'must contain exactly 4 choices');
   const choiceIds = new Set<string>();
   for (const [index, choice] of choices.entries()) {
     if (!isRecord(choice)) { add(issues, `${path}.choices[${index}]`, 'must be an object'); continue; }
@@ -58,7 +60,14 @@ function validateQuestion(question: JsonObject, path: string, objectives: Readon
   const correct = arrayAt(question, 'correctChoiceIds') ?? [];
   if (correct.length !== 1 || typeof correct[0] !== 'string' || !choiceIds.has(correct[0])) add(issues, `${path}.correctChoiceIds`, 'must contain exactly one existing choice id');
   if ((stringAt(question, 'explanation') ?? '').trim().length < 10) add(issues, `${path}.explanation`, 'must contain corrective explanation');
-  if (numberAt(question, 'version') === undefined || (numberAt(question, 'version') ?? 0) < 1) add(issues, `${path}.version`, 'must be a positive integer');
+  if (numberAt(question, 'version') !== 2) add(issues, `${path}.version`, 'must be v2');
+  if (stringAt(question, 'presentation') !== 'text' && stringAt(question, 'presentation') !== 'code') add(issues, `${path}.presentation`, 'must be text or code');
+  if (stringAt(question, 'assessmentMode') === undefined) add(issues, `${path}.assessmentMode`, 'is required for v2 questions');
+  if (typeof question.practical !== 'boolean') add(issues, `${path}.practical`, 'must be boolean');
+  if (stringAt(question, 'assessmentPolicyVersion') !== '2.0') add(issues, `${path}.assessmentPolicyVersion`, 'must be 2.0');
+  if (stringAt(question, 'status') !== 'draft') add(issues, `${path}.status`, 'v2 questions must remain draft');
+  if (stringAt(question, 'reviewStatus') !== 'pending-human-review') add(issues, `${path}.reviewStatus`, 'v2 questions must remain pending human review');
+  if (stringAt(question, 'presentation') === 'code' && !isRecord(question.code)) add(issues, `${path}.code`, 'is required for code presentation');
   if (!COGNITIVE_LEVELS.has(stringAt(question, 'cognitiveLevel') ?? '')) add(issues, `${path}.cognitiveLevel`, 'must be a supported cognitive level');
 }
 
@@ -98,6 +107,19 @@ export function validatePacket(value: unknown, sourcePath: string, seenQuestionI
   const quizIds = quiz === undefined ? [] : arrayAt(quiz, 'questionIds') ?? [];
   if (quizIds.length !== 5) add(issues, `${topicPath}.topicQuiz.questionIds`, 'must contain exactly 5 questions');
   for (const ref of [...inLesson, ...quizIds]) if (typeof ref !== 'string' || !localIds.has(ref)) add(issues, `${topicPath}.assessment`, `unresolved question reference ${String(ref)}`);
+  const profile = isRecord(value.assessmentProfile) ? value.assessmentProfile : undefined;
+  const profileType = profile === undefined ? undefined : stringAt(profile, 'type');
+  if (profile === undefined || !ASSESSMENT_PROFILES.has(profileType ?? '')) add(issues, `${topicPath}.assessmentProfile`, 'must contain a supported v2 profile');
+  if (profile !== undefined && stringAt(profile, 'version') !== '2.0') add(issues, `${topicPath}.assessmentProfile.version`, 'must be 2.0');
+  const localQuestions = new Map(questions.filter(isRecord).map((question) => [stringAt(question, 'id') ?? '', question]));
+  const quizQuestions = quizIds.map((id) => localQuestions.get(typeof id === 'string' ? id : '')).filter((question): question is JsonObject => question !== undefined);
+  const codeCount = quizQuestions.filter((question) => stringAt(question, 'presentation') === 'code').length;
+  const workflowCount = quizQuestions.filter((question) => SCENARIO_MODES.has(stringAt(question, 'assessmentMode') ?? '')).length;
+  const codeOrArtifactCount = quizQuestions.filter((question) => stringAt(question, 'presentation') === 'code' || question.practical === true).length;
+  if (profileType === 'conceptual' && codeCount !== 0) add(issues, `${topicPath}.topicQuiz`, 'conceptual profiles must not force code questions');
+  if (profileType === 'workflow' && (workflowCount < 4 || codeOrArtifactCount < 1)) add(issues, `${topicPath}.topicQuiz`, 'workflow profiles require four workflow scenarios and one code or artifact question');
+  if (profileType === 'hybrid' && codeCount < 3) add(issues, `${topicPath}.topicQuiz`, 'hybrid profiles require at least three code questions');
+  if (profileType === 'coding' && codeCount < 4) add(issues, `${topicPath}.topicQuiz`, 'coding profiles require at least four code questions');
   const sections = arrayAt(value, 'sections') ?? [];
   for (const [index, section] of sections.entries()) {
     if (!isRecord(section)) continue;

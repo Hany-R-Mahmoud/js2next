@@ -38,7 +38,8 @@ function packetPairDiagnostics(markdownPath: string, jsonPath: string, packet: J
     for (const field of IDENTITY_FIELDS) {
       const frontmatter = markdown.frontmatter[field];
       const json = packet[field];
-      if (frontmatter === undefined || json === undefined || !valueMatches(frontmatter, json)) diagnostics.push({ path: `${relative(process.cwd(), markdownPath)}.frontmatter.${field}`, message: `does not match ${relative(process.cwd(), jsonPath)}` });
+      const assessmentVersionBump = field === 'version' && frontmatter === 1 && json === 2;
+      if (frontmatter === undefined || json === undefined || (!valueMatches(frontmatter, json) && !assessmentVersionBump)) diagnostics.push({ path: `${relative(process.cwd(), markdownPath)}.frontmatter.${field}`, message: `does not match ${relative(process.cwd(), jsonPath)}` });
     }
     const body = markdown.body;
     const requiredMarkers = [String(packet.id ?? ''), String(packet.title ?? '')];

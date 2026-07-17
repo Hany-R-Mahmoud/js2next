@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { createInitialProgress } from '@/domain/progression/core';
 import { createLocalProgressAdapter, loadProgress } from './adapter';
 import { exportProgress, parseProgress } from './validation';
-import { resetForNewCurriculum } from './migration';
+import { migrateAssessmentProgressV2, resetForNewCurriculum, rollbackAssessmentProgressV2 } from './migration';
 
 describe('local progress boundary', () => {
   it('round-trips the schema-versioned empty state', () => {
@@ -35,5 +35,17 @@ describe('local progress boundary', () => {
     const adapter = createLocalProgressAdapter(storage);
     adapter.save('value');
     expect(adapter.load()).toBe('value');
+  });
+
+  it('archives v1 assessment state while preserving lesson progress and supports rollback', () => {
+    const topic = { ...createInitialProgress('p1', 'release-1-draft', 'now').topicProgress, 'JS-01': { topicId: 'JS-01', contentVersion: 1, lessonCompleted: true, requiredCheckIds: ['JS-01-Q01'], attemptedCheckIds: ['JS-01-Q01'], checkResponses: {}, quizAttempts: ['old-attempt'], quizPercent: 100, masteryPercent: 100, status: 'mastered' as const, missedObjectiveIds: ['JS-01-LO1'], confidence: 80, lastActivity: 'old' } };
+    const state = { ...createInitialProgress('p1', 'release-1-draft', 'now'), topicProgress: topic, assessmentBankVersion: 1 as const, assessmentAttempts: [{ attemptId: 'old-attempt', assessmentId: 'JS-01-QUIZ', kind: 'topic-quiz' as const, ownerId: 'JS-01', contentVersion: 1, startedAt: 'old', completedAt: 'old', scorePercent: 100, passed: true, answers: [] }] };
+    const migrated = migrateAssessmentProgressV2(state, 'new');
+    expect(migrated.topicProgress['JS-01']).toMatchObject({ lessonCompleted: true, attemptedCheckIds: [], checkResponses: {}, contentVersion: 2, quizAttempts: [], masteryPercent: 0, status: 'in-progress' });
+    expect(migrated.assessmentAttempts).toEqual([]);
+    expect(migrated.reviewQueue).toEqual([]);
+    expect(migrated.assessmentV1Archive).toMatchObject({ namespace: 'assessment-v1', archivedAt: 'new', attempts: state.assessmentAttempts });
+    expect(rollbackAssessmentProgressV2(migrated).topicProgress['JS-01']).toMatchObject({ contentVersion: 1, quizAttempts: ['old-attempt'], masteryPercent: 100 });
+    expect(rollbackAssessmentProgressV2(migrated).assessmentAttempts).toEqual(state.assessmentAttempts);
   });
 });

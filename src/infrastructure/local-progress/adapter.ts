@@ -1,4 +1,5 @@
 import type { ProgressState } from '@/domain/progression/types';
+import { migrateAssessmentProgressV2 } from './migration';
 import { exportProgress, parseProgress } from './validation';
 
 export interface ProgressStorage { readonly load: () => string | null; readonly save: (value: string) => void; }
@@ -12,7 +13,10 @@ export function loadProgress(storage: ProgressStorage, fallback: ProgressState):
   const raw = storage.load();
   if (raw === null) return fallback;
   const result = parseProgress(raw);
-  return result.ok ? result.state : fallback;
+  if (!result.ok) return fallback;
+  const migrated = migrateAssessmentProgressV2(result.state, new Date().toISOString());
+  if (migrated !== result.state) saveProgress(storage, migrated);
+  return migrated;
 }
 
 export function saveProgress(storage: ProgressStorage, state: ProgressState): void { storage.save(exportProgress(state)); }

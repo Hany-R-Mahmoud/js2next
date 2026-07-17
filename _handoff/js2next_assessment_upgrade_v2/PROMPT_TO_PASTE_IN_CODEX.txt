@@ -1,0 +1,9 @@
+You are working in the current canonical `js2next` repository. I have attached `js2next_assessment_upgrade_v2.zip`.
+
+This is a focused assessment-data upgrade, not permission to regenerate the entire application.
+
+Extract the package without changing its structure, read `README.md`, then execute `codex/MASTER_CODEX_ASSESSMENT_UPGRADE_PROMPT.md` and `codex/EXECUTION_PLAN.md` exactly.
+
+Replace the active assessment bank and topic assessment metadata with the supplied v2 records. Preserve lesson content, curriculum structure, unrelated application work, and stable question IDs. Apply the reversible progress migration. Add the profile-specific assessment labels and code rendering required by the package.
+
+Do not add code execution, authentication, a database, a CMS, or analytics. Do not auto-publish any content. Ask only if there is a genuine repository mismatch, destructive ambiguity, or unexplained baseline failure.

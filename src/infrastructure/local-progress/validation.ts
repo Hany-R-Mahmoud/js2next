@@ -15,7 +15,12 @@ export function exportProgress(state: ProgressState): string { return JSON.strin
 
 function isProgressState(value: unknown): value is ProgressState {
   if (!isRecord(value)) return false;
-  return typeof value.profileId === 'string' && typeof value.curriculumVersion === 'string' && isRecord(value.topicProgress) && Object.entries(value.topicProgress).every(([id, topic]) => isTopic(topic, id)) && Array.isArray(value.assessmentAttempts) && value.assessmentAttempts.every(isAttempt) && Array.isArray(value.reviewQueue) && value.reviewQueue.every(isReview) && isLegacy(value.legacyProgress) && typeof value.updatedAt === 'string' && (value.moduleProgress === undefined || isRecord(value.moduleProgress)) && (value.trackProgress === undefined || isRecord(value.trackProgress));
+  return typeof value.profileId === 'string' && typeof value.curriculumVersion === 'string' && isRecord(value.topicProgress) && Object.entries(value.topicProgress).every(([id, topic]) => isTopic(topic, id)) && Array.isArray(value.assessmentAttempts) && value.assessmentAttempts.every(isAttempt) && Array.isArray(value.reviewQueue) && value.reviewQueue.every(isReview) && isLegacy(value.legacyProgress) && typeof value.updatedAt === 'string' && (value.moduleProgress === undefined || isRecord(value.moduleProgress)) && (value.trackProgress === undefined || isRecord(value.trackProgress)) && (value.assessmentBankVersion === undefined || value.assessmentBankVersion === 1 || value.assessmentBankVersion === 2) && (value.assessmentV1Archive === undefined || isArchive(value.assessmentV1Archive));
+}
+
+function isArchive(value: unknown): boolean {
+  if (!isRecord(value) || value.namespace !== 'assessment-v1' || typeof value.archivedAt !== 'string' || !Array.isArray(value.attempts) || !value.attempts.every(isAttempt) || !isRecord(value.topicProgress) || !Object.entries(value.topicProgress).every(([id, topic]) => isTopic(topic, id)) || !Array.isArray(value.reviewQueue) || !value.reviewQueue.every(isReview)) return false;
+  return (value.moduleProgress === undefined || isRecord(value.moduleProgress)) && (value.trackProgress === undefined || isRecord(value.trackProgress));
 }
 
 function isTopic(value: unknown, id: string): value is TopicProgress {

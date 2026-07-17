@@ -6,9 +6,10 @@ interface CodeBlockProps {
   code: string;
   language?: string;
   filePath?: string;
+  ariaLabel?: string;
 }
 
-export default function CodeBlock({ code, language = 'typescript', filePath }: CodeBlockProps) {
+export default function CodeBlock({ code, language = 'typescript', filePath, ariaLabel }: CodeBlockProps) {
   const [copied, setCopied] = useState(false);
   const [copyError, setCopyError] = useState(false);
 
@@ -40,7 +41,7 @@ export default function CodeBlock({ code, language = 'typescript', filePath }: C
           {copyError ? 'Copy failed' : copied ? 'Copied!' : 'Copy'}
         </button>
         {copyError && <p role="status" className="mb-2 text-xs text-coral">Copy failed. Select the code and copy it manually.</p>}
-        <pre className="overflow-x-auto pr-4 text-sm leading-relaxed lg:pr-28">
+        <pre className="overflow-x-auto pr-4 text-sm leading-relaxed lg:pr-28" aria-label={ariaLabel ?? `${language} code example`}>
           <code className="text-code-text font-mono">{code}</code>
         </pre>
       </div>

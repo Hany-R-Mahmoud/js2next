@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "2.0",
+  "topics": 79,
+  "questions": 632,
+  "profileCounts": {
+    "conceptual": 12,
+    "coding": 33,
+    "workflow": 16,
+    "hybrid": 18
+  },
+  "trackCounts": {
+    "javascript": 30,
+    "react": 38,
+    "nextjs": 11
+  },
+  "presentationCounts": {
+    "text": 355,
+    "code": 277
+  },
+  "assessmentModeCounts": {
+    "conceptual-review": 186,
+    "scenario-reasoning": 17,
+    "conceptual-comparison": 17,
+    "workflow-scenario": 67,
+    "conceptual-judgment": 12,
+    "code-reading": 102,
+    "code-verification": 51,
+    "debugging": 33,
+    "implementation-choice": 51,
+    "engineering-judgment": 33,
+    "workflow-artifact": 11,
+    "workflow-judgment": 16,
+    "code-analysis": 18,
+    "architecture-tradeoff": 18
+  },
+  "assessmentSetReferencesChecked": 342,
+  "structuralValidationErrors": []
+}

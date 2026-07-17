@@ -1,5 +1,6 @@
 export const PROGRESS_SCHEMA_VERSION = '1.0' as const;
 export type ProgressSchemaVersion = typeof PROGRESS_SCHEMA_VERSION;
+export type AssessmentBankVersion = 1 | 2;
 export type ProgressStatus = 'not-started' | 'in-progress' | 'review-needed' | 'mastered';
 export type AssessmentKind = 'topic-quiz' | 'module-review' | 'cumulative-review';
 
@@ -78,6 +79,16 @@ export interface LegacyProgressRecord {
   readonly exportReference: string | null;
 }
 
+export interface AssessmentV1Archive {
+  readonly namespace: 'assessment-v1';
+  readonly archivedAt: string;
+  readonly attempts: readonly AssessmentAttempt[];
+  readonly topicProgress: Readonly<Record<string, TopicProgress>>;
+  readonly moduleProgress?: Readonly<Record<string, ModuleProgress>>;
+  readonly trackProgress?: Readonly<Record<string, TrackProgress>>;
+  readonly reviewQueue: readonly ReviewItem[];
+}
+
 export interface ProgressState {
   readonly schemaVersion: ProgressSchemaVersion;
   readonly profileId: string;
@@ -88,6 +99,8 @@ export interface ProgressState {
   readonly assessmentAttempts: readonly AssessmentAttempt[];
   readonly reviewQueue: readonly ReviewItem[];
   readonly legacyProgress: LegacyProgressRecord;
+  readonly assessmentBankVersion?: AssessmentBankVersion;
+  readonly assessmentV1Archive?: AssessmentV1Archive;
   readonly updatedAt: string;
 }
 

@@ -150,11 +150,32 @@
         }
       }
     },
+    "assessmentProfile": {
+      "type": "object",
+      "required": [
+        "version",
+        "type",
+        "label",
+        "rationale",
+        "topicQuizMix",
+        "inLessonPolicy",
+        "topicQuizPolicy"
+      ],
+      "properties": {
+        "version": { "const": "2.0" },
+        "type": { "enum": ["conceptual", "workflow", "hybrid", "coding"] },
+        "label": { "type": "string", "minLength": 1 },
+        "rationale": { "type": "string", "minLength": 1 },
+        "topicQuizMix": { "type": "object" },
+        "inLessonPolicy": { "type": "string", "minLength": 1 },
+        "topicQuizPolicy": { "type": "string", "minLength": 1 }
+      }
+    },
     "questions": {
       "type": "array",
       "minItems": 8,
       "items": {
-        "$ref": "question.schema.json"
+        "$ref": "question.schema.v2.json"
       }
     },
     "researchSources": {
@@ -164,8 +185,7 @@
       }
     },
     "version": {
-      "type": "integer",
-      "minimum": 1
+      "const": 2
     },
     "status": {
       "enum": [
