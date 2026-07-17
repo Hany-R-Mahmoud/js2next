@@ -1,0 +1,577 @@
+{
+  "schemaVersion": "1.0",
+  "id": "R-33",
+  "slug": "fast-react-pizza-application-planning",
+  "trackId": "react",
+  "moduleId": "R-M11",
+  "order": 1,
+  "title": "Fast React Pizza Application Planning",
+  "required": true,
+  "optional": false,
+  "advanced": false,
+  "contentType": "case_study",
+  "difficulty": 5,
+  "estimatedMinutes": 15,
+  "requiredPrerequisiteTopicIds": [
+    "R-32"
+  ],
+  "recommendedPrerequisiteTopicIds": [],
+  "learningObjectives": [
+    {
+      "id": "R-33-LO1",
+      "text": "Explain requirements using a new example and justify the result.",
+      "subtopic": "Requirements",
+      "cognitiveLevel": "understand"
+    },
+    {
+      "id": "R-33-LO2",
+      "text": "Explain feature breakdown using a new example and justify the result.",
+      "subtopic": "Feature breakdown",
+      "cognitiveLevel": "apply"
+    },
+    {
+      "id": "R-33-LO3",
+      "text": "Apply routing and state decisions using a new example and justify the result.",
+      "subtopic": "Routing and state decisions",
+      "cognitiveLevel": "analyze"
+    }
+  ],
+  "whyThisMatters": "This topic turns fast react pizza application planning from isolated terminology into a practical tool for reading, writing, and reviewing code. It belongs to the **Professional React Workflows and Ecosystem** module.",
+  "mentalModel": "Draw a decision map: **Requirements** → **Feature breakdown** → **Routing and state decisions**. Add branches where the learner must choose an alternative and label the evidence for the choice.",
+  "sections": [
+    {
+      "id": "R-33-S1",
+      "type": "concept",
+      "title": "Requirements",
+      "body": "Start with user-visible outcomes and convert them into explicit behavior, inputs, edge cases, and acceptance conditions. Break large capabilities into end-to-end slices that can be implemented and verified independently.",
+      "objectiveIds": [
+        "R-33-LO1"
+      ],
+      "checkQuestionId": "R-33-Q01"
+    },
+    {
+      "id": "R-33-S2",
+      "type": "concept",
+      "title": "Feature breakdown",
+      "body": "Start with user-visible outcomes and convert them into explicit behavior, inputs, edge cases, and acceptance conditions. Break large capabilities into end-to-end slices that can be implemented and verified independently.",
+      "objectiveIds": [
+        "R-33-LO2"
+      ],
+      "checkQuestionId": "R-33-Q02"
+    },
+    {
+      "id": "R-33-S3",
+      "type": "concept",
+      "title": "Routing and state decisions",
+      "body": "**Routing and state decisions** is a core part of Fast React Pizza Application Planning. Define it by the responsibility it owns, the inputs it receives, and the observable result it produces. In React, use the concept deliberately rather than as a memorized label. Compare nearby alternatives, identify the boundary where it applies, and verify the model with a small example.",
+      "objectiveIds": [
+        "R-33-LO3"
+      ],
+      "checkQuestionId": "R-33-Q03"
+    }
+  ],
+  "commonMistakes": [
+    "Mutating props or state instead of producing the next value.",
+    "Adding state or an Effect for a value that can be derived during render.",
+    "Using global state before identifying the real owner and consumers.",
+    "Optimizing renders without a measured user-facing problem."
+  ],
+  "summary": [
+    "Fast React Pizza Application Planning connects Requirements, Feature breakdown, Routing and state decisions.",
+    "Use the topic to make behavior and decisions explicit rather than memorizing isolated syntax.",
+    "Verify understanding by explaining a new example and answering the topic quiz without looking back."
+  ],
+  "inLessonQuestionIds": [
+    "R-33-Q01",
+    "R-33-Q02",
+    "R-33-Q03"
+  ],
+  "topicQuiz": {
+    "id": "R-33-QUIZ",
+    "questionIds": [
+      "R-33-Q04",
+      "R-33-Q05",
+      "R-33-Q06",
+      "R-33-Q07",
+      "R-33-Q08"
+    ],
+    "masteryThresholdPercent": 80,
+    "attemptPolicy": "unlimited",
+    "failurePolicy": "Show explanations, add missed objectives to local review, and allow immediate or later retry.",
+    "randomizeQuestionOrder": true,
+    "randomizeChoiceOrder": false
+  },
+  "questions": [
+    {
+      "id": "R-33-Q01",
+      "trackId": "react",
+      "moduleId": "R-M11",
+      "topicId": "R-33",
+      "objectiveIds": [
+        "R-33-LO1"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which statement best explains “Requirements” in the context of Fast React Pizza Application Planning?",
+      "choices": [
+        {
+          "id": "R-33-Q01-C1",
+          "label": "Use lazy initialization for expensive initial state and updater functions for transitions based on previous state.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Requirements."
+        },
+        {
+          "id": "R-33-Q01-C2",
+          "label": "Start with user-visible outcomes and convert them into explicit behavior, inputs, edge cases, and acceptance conditions. Break large capabilities into end-to-end slices that can be implemented and verified independently.",
+          "feedback": "Requirements is best understood as follows: Start with user-visible outcomes and convert them into explicit behavior, inputs, edge cases, and acceptance conditions. Break large capabilities into end-to-end slices that can be implemented and verified independently."
+        },
+        {
+          "id": "R-33-Q01-C3",
+          "label": "Network requests, subscriptions, timers, DOM mutations, and external writes do not belong in render because render may be repeated or abandoned.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Requirements."
+        },
+        {
+          "id": "R-33-Q01-C4",
+          "label": "A library provides focused capabilities while an application chooses broader structure; a framework supplies more conventions and lifecycle.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Requirements."
+        }
+      ],
+      "correctChoiceIds": [
+        "R-33-Q01-C2"
+      ],
+      "explanation": "Requirements is best understood as follows: Start with user-visible outcomes and convert them into explicit behavior, inputs, edge cases, and acceptance conditions. Break large capabilities into end-to-end slices that can be implemented and verified independently.",
+      "hint": "Focus on what the concept changes, enables, or constrains—not only on its syntax.",
+      "difficulty": 4,
+      "cognitiveLevel": "recognize",
+      "estimatedSeconds": 75,
+      "tags": [
+        "requirements",
+        "fast-react-pizza-application-planning"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "R-33-Q02",
+      "trackId": "react",
+      "moduleId": "R-M11",
+      "topicId": "R-33",
+      "objectiveIds": [
+        "R-33-LO2"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which statement best explains “Feature breakdown” in the context of Fast React Pizza Application Planning?",
+      "choices": [
+        {
+          "id": "R-33-Q02-C1",
+          "label": "Start with user-visible outcomes and convert them into explicit behavior, inputs, edge cases, and acceptance conditions. Break large capabilities into end-to-end slices that can be implemented and verified independently.",
+          "feedback": "Feature breakdown is best understood as follows: Start with user-visible outcomes and convert them into explicit behavior, inputs, edge cases, and acceptance conditions. Break large capabilities into end-to-end slices that can be implemented and verified independently."
+        },
+        {
+          "id": "R-33-Q02-C2",
+          "label": "Network requests, subscriptions, timers, DOM mutations, and external writes do not belong in render because render may be repeated or abandoned.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Feature breakdown."
+        },
+        {
+          "id": "R-33-Q02-C3",
+          "label": "A library provides focused capabilities while an application chooses broader structure; a framework supplies more conventions and lifecycle.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Feature breakdown."
+        },
+        {
+          "id": "R-33-Q02-C4",
+          "label": "Use lazy initialization for expensive initial state and updater functions for transitions based on previous state.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Feature breakdown."
+        }
+      ],
+      "correctChoiceIds": [
+        "R-33-Q02-C1"
+      ],
+      "explanation": "Feature breakdown is best understood as follows: Start with user-visible outcomes and convert them into explicit behavior, inputs, edge cases, and acceptance conditions. Break large capabilities into end-to-end slices that can be implemented and verified independently.",
+      "hint": "Focus on what the concept changes, enables, or constrains—not only on its syntax.",
+      "difficulty": 4,
+      "cognitiveLevel": "explain",
+      "estimatedSeconds": 75,
+      "tags": [
+        "feature-breakdown",
+        "fast-react-pizza-application-planning"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "R-33-Q03",
+      "trackId": "react",
+      "moduleId": "R-M11",
+      "topicId": "R-33",
+      "objectiveIds": [
+        "R-33-LO3"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which statement best explains “Routing and state decisions” in the context of Fast React Pizza Application Planning?",
+      "choices": [
+        {
+          "id": "R-33-Q03-C1",
+          "label": "Routing and state decisions is a core part of Fast React Pizza Application Planning. Define it by the responsibility it owns, the inputs it receives, and the observable result it produces. In React, use the concept…",
+          "feedback": "Routing and state decisions is best understood as follows: Routing and state decisions is a core part of Fast React Pizza Application Planning. Define it by the responsibility it owns, the inputs it receives, and the observable result it produces. In React, use the concept…"
+        },
+        {
+          "id": "R-33-Q03-C2",
+          "label": "Use lazy initialization for expensive initial state and updater functions for transitions based on previous state.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Routing and state decisions."
+        },
+        {
+          "id": "R-33-Q03-C3",
+          "label": "A library provides focused capabilities while an application chooses broader structure; a framework supplies more conventions and lifecycle.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Routing and state decisions."
+        },
+        {
+          "id": "R-33-Q03-C4",
+          "label": "Start with user-visible outcomes and convert them into explicit behavior, inputs, edge cases, and acceptance conditions. Break large capabilities into end-to-end slices that can be implemented and verified independently.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Routing and state decisions."
+        }
+      ],
+      "correctChoiceIds": [
+        "R-33-Q03-C1"
+      ],
+      "explanation": "Routing and state decisions is best understood as follows: Routing and state decisions is a core part of Fast React Pizza Application Planning. Define it by the responsibility it owns, the inputs it receives, and the observable result it produces. In React, use the concept…",
+      "hint": "Focus on what the concept changes, enables, or constrains—not only on its syntax.",
+      "difficulty": 4,
+      "cognitiveLevel": "predict",
+      "estimatedSeconds": 120,
+      "tags": [
+        "routing-and-state-decisions",
+        "fast-react-pizza-application-planning"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "R-33-Q04",
+      "trackId": "react",
+      "moduleId": "R-M11",
+      "topicId": "R-33",
+      "objectiveIds": [
+        "R-33-LO1",
+        "R-33-LO2"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "A learner must use Fast React Pizza Application Planning in a new situation. Which approach best demonstrates transferable understanding?",
+      "choices": [
+        {
+          "id": "R-33-Q04-C1",
+          "label": "Treat the concept as isolated trivia and avoid connecting it to earlier prerequisites.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Fast React Pizza Application Planning."
+        },
+        {
+          "id": "R-33-Q04-C2",
+          "label": "Add more state and abstraction immediately, before identifying the smallest requirement.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Fast React Pizza Application Planning."
+        },
+        {
+          "id": "R-33-Q04-C3",
+          "label": "Skip the underlying model and rely on memorized syntax, even when the result is unclear.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Fast React Pizza Application Planning."
+        },
+        {
+          "id": "R-33-Q04-C4",
+          "label": "Apply Requirements deliberately, make the relevant inputs and assumptions explicit, and verify the observable result before adding more complexity.",
+          "feedback": "Transfer comes from using the concept with explicit assumptions and checking the resulting behavior, not from reproducing a memorized example."
+        }
+      ],
+      "correctChoiceIds": [
+        "R-33-Q04-C4"
+      ],
+      "explanation": "Transfer comes from using the concept with explicit assumptions and checking the resulting behavior, not from reproducing a memorized example.",
+      "hint": "Choose the option that would still work when the surrounding example changes.",
+      "difficulty": 5,
+      "cognitiveLevel": "apply",
+      "estimatedSeconds": 120,
+      "tags": [
+        "fast-react-pizza-application-planning",
+        "requirements"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "R-33-Q05",
+      "trackId": "react",
+      "moduleId": "R-M11",
+      "topicId": "R-33",
+      "objectiveIds": [
+        "R-33-LO1",
+        "R-33-LO2",
+        "R-33-LO3"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which mental model is most useful when reasoning about Fast React Pizza Application Planning?",
+      "choices": [
+        {
+          "id": "R-33-Q05-C1",
+          "label": "The topic matters only for naming style and does not affect behavior.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Fast React Pizza Application Planning."
+        },
+        {
+          "id": "R-33-Q05-C2",
+          "label": "The topic is best learned as a list of unrelated syntax rules.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Fast React Pizza Application Planning."
+        },
+        {
+          "id": "R-33-Q05-C3",
+          "label": "The topic eliminates the need to model state, data flow, or dependencies.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Fast React Pizza Application Planning."
+        },
+        {
+          "id": "R-33-Q05-C4",
+          "label": "Draw a decision map: **Requirements** → **Feature breakdown** → **Routing and state decisions**. Add branches where the learner must choose an alternative and label the evidence for the choice.",
+          "feedback": "The correct choice connects the example to the underlying model rather than treating the syntax as isolated trivia."
+        }
+      ],
+      "correctChoiceIds": [
+        "R-33-Q05-C4"
+      ],
+      "explanation": "The correct choice connects the example to the underlying model rather than treating the syntax as isolated trivia.",
+      "hint": "Trace data, control flow, ownership, or rendering step by step.",
+      "difficulty": 5,
+      "cognitiveLevel": "predict",
+      "estimatedSeconds": 120,
+      "tags": [
+        "fast-react-pizza-application-planning",
+        "requirements",
+        "feature-breakdown"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "R-33-Q06",
+      "trackId": "react",
+      "moduleId": "R-M11",
+      "topicId": "R-33",
+      "objectiveIds": [
+        "R-33-LO1",
+        "R-33-LO2",
+        "R-33-LO3"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which response best addresses this common mistake: “Mutating props or state instead of producing the next value.”?",
+      "choices": [
+        {
+          "id": "R-33-Q06-C1",
+          "label": "The statement is correct only when variable names are short.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Fast React Pizza Application Planning."
+        },
+        {
+          "id": "R-33-Q06-C2",
+          "label": "The statement is unrelated to program behavior and cannot cause defects.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Fast React Pizza Application Planning."
+        },
+        {
+          "id": "R-33-Q06-C3",
+          "label": "The statement is always correct, so no further reasoning about Fast React Pizza Application Planning is needed.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Fast React Pizza Application Planning."
+        },
+        {
+          "id": "R-33-Q06-C4",
+          "label": "The statement is a misconception. A better approach is to reason from the concept's inputs, rules, and observable outcome, then verify the result.",
+          "feedback": "Good feedback names the misconception and replaces it with a usable reasoning process."
+        }
+      ],
+      "correctChoiceIds": [
+        "R-33-Q06-C4"
+      ],
+      "explanation": "Good feedback names the misconception and replaces it with a usable reasoning process.",
+      "hint": "Look for the option that corrects both the belief and the learner's next action.",
+      "difficulty": 5,
+      "cognitiveLevel": "debug",
+      "estimatedSeconds": 120,
+      "tags": [
+        "fast-react-pizza-application-planning",
+        "common-mistakes"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "R-33-Q07",
+      "trackId": "react",
+      "moduleId": "R-M11",
+      "topicId": "R-33",
+      "objectiveIds": [
+        "R-33-LO1",
+        "R-33-LO2",
+        "R-33-LO3"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which sequence is most reliable when solving a problem involving Fast React Pizza Application Planning?",
+      "choices": [
+        {
+          "id": "R-33-Q07-C1",
+          "label": "Optimize first, then decide what the code is supposed to do.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Fast React Pizza Application Planning."
+        },
+        {
+          "id": "R-33-Q07-C2",
+          "label": "Start with a framework abstraction and avoid checking the underlying language behavior.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Fast React Pizza Application Planning."
+        },
+        {
+          "id": "R-33-Q07-C3",
+          "label": "Copy an unrelated implementation, hide the assumptions, and test only the happy path.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Fast React Pizza Application Planning."
+        },
+        {
+          "id": "R-33-Q07-C4",
+          "label": "First identify the requirement, then apply the relevant rule from Requirements, inspect the result, and only then refactor or optimize.",
+          "feedback": "The reliable sequence starts from the requirement, applies a known rule, observes behavior, and improves the solution afterward."
+        }
+      ],
+      "correctChoiceIds": [
+        "R-33-Q07-C4"
+      ],
+      "explanation": "The reliable sequence starts from the requirement, applies a known rule, observes behavior, and improves the solution afterward.",
+      "hint": "Prefer a sequence that makes failures visible early.",
+      "difficulty": 5,
+      "cognitiveLevel": "explain",
+      "estimatedSeconds": 75,
+      "tags": [
+        "fast-react-pizza-application-planning",
+        "problem-solving"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "R-33-Q08",
+      "trackId": "react",
+      "moduleId": "R-M11",
+      "topicId": "R-33",
+      "objectiveIds": [
+        "R-33-LO1",
+        "R-33-LO2",
+        "R-33-LO3"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which guideline shows the best judgment about when to use Fast React Pizza Application Planning?",
+      "choices": [
+        {
+          "id": "R-33-Q08-C1",
+          "label": "Use Fast React Pizza Application Planning in every file because more abstraction is always better.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Fast React Pizza Application Planning."
+        },
+        {
+          "id": "R-33-Q08-C2",
+          "label": "Use Fast React Pizza Application Planning when it makes intent, ownership, or data flow clearer; avoid adding it mechanically when a simpler, equally explicit solution is sufficient.",
+          "feedback": "Engineering judgment balances clarity and cost. The concept should serve the requirement rather than become an end in itself."
+        },
+        {
+          "id": "R-33-Q08-C3",
+          "label": "Choose based only on line count, without considering readability, correctness, or future change.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Fast React Pizza Application Planning."
+        },
+        {
+          "id": "R-33-Q08-C4",
+          "label": "Avoid Fast React Pizza Application Planning completely because all abstractions reduce maintainability.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Fast React Pizza Application Planning."
+        }
+      ],
+      "correctChoiceIds": [
+        "R-33-Q08-C2"
+      ],
+      "explanation": "Engineering judgment balances clarity and cost. The concept should serve the requirement rather than become an end in itself.",
+      "hint": "Choose the option that acknowledges both benefits and trade-offs.",
+      "difficulty": 5,
+      "cognitiveLevel": "tradeoff",
+      "estimatedSeconds": 120,
+      "tags": [
+        "fast-react-pizza-application-planning",
+        "tradeoffs"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    }
+  ],
+  "researchSources": [
+    {
+      "kind": "research-transcript",
+      "title": "Application Planning",
+      "pathwayOrder": 59,
+      "sourceLine": 107423,
+      "usage": "Coverage research only; no transcript wording is canonical."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "React Learn",
+      "url": "https://react.dev/learn",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "React Managing State",
+      "url": "https://react.dev/learn/managing-state",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "React Escape Hatches",
+      "url": "https://react.dev/learn/escape-hatches",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "React API Reference",
+      "url": "https://react.dev/reference/react",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "Redux Essentials",
+      "url": "https://redux.js.org/tutorials/essentials/part-1-overview-concepts",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "TanStack Query Overview",
+      "url": "https://tanstack.com/query/latest/docs/framework/react/overview",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "Supabase Documentation",
+      "url": "https://supabase.com/docs",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "Tailwind CSS Documentation",
+      "url": "https://tailwindcss.com/docs",
+      "usage": "Technical verification and freshness review."
+    }
+  ],
+  "contentAuthority": {
+    "canonical": "New JS2Next Release 1 curriculum and independently authored content.",
+    "legacyProjectContent": "Supplementary internal reference only; excluded from runtime unless explicitly re-authored and approved.",
+    "courseTranscripts": "Coverage and sequencing research only; never learner-facing authority.",
+    "officialDocumentation": "Technical verification source."
+  },
+  "version": 1,
+  "status": "draft",
+  "reviewStatus": "pending-human-review",
+  "publicationStatus": "unpublished",
+  "createdAt": "2026-07-17",
+  "updatedAt": "2026-07-17"
+}

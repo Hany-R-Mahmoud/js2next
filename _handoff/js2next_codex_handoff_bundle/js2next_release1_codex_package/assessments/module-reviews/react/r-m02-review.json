@@ -1,0 +1,28 @@
+{
+  "schemaVersion": "1.0",
+  "id": "R-M02-REVIEW",
+  "kind": "module-review",
+  "trackId": "react",
+  "moduleId": "R-M02",
+  "title": "Components, JSX, and Props — Module Review",
+  "questionIds": [
+    "R-04-Q04",
+    "R-05-Q04",
+    "R-04-Q05",
+    "R-05-Q05",
+    "R-04-Q06",
+    "R-05-Q06",
+    "R-04-Q07",
+    "R-05-Q07",
+    "R-04-Q08",
+    "R-05-Q08"
+  ],
+  "masteryThresholdPercent": 80,
+  "attemptPolicy": "unlimited",
+  "failurePolicy": "Show explanations, identify missed objectives, recommend targeted topic review, and allow retry.",
+  "randomizeQuestionOrder": true,
+  "randomizeChoiceOrder": false,
+  "version": 1,
+  "status": "draft",
+  "reviewStatus": "pending-human-review"
+}

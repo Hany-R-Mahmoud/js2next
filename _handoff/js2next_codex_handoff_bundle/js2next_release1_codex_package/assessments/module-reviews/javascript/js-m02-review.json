@@ -1,0 +1,28 @@
+{
+  "schemaVersion": "1.0",
+  "id": "JS-M02-REVIEW",
+  "kind": "module-review",
+  "trackId": "javascript",
+  "moduleId": "JS-M02",
+  "title": "Developer Skills — Module Review",
+  "questionIds": [
+    "JS-06-Q04",
+    "JS-07-Q04",
+    "JS-06-Q05",
+    "JS-07-Q05",
+    "JS-06-Q06",
+    "JS-07-Q06",
+    "JS-06-Q07",
+    "JS-07-Q07",
+    "JS-06-Q08",
+    "JS-07-Q08"
+  ],
+  "masteryThresholdPercent": 80,
+  "attemptPolicy": "unlimited",
+  "failurePolicy": "Show explanations, identify missed objectives, recommend targeted topic review, and allow retry.",
+  "randomizeQuestionOrder": true,
+  "randomizeChoiceOrder": false,
+  "version": 1,
+  "status": "draft",
+  "reviewStatus": "pending-human-review"
+}

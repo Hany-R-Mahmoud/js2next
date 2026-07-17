@@ -1,0 +1,591 @@
+{
+  "schemaVersion": "1.0",
+  "id": "JS-25",
+  "slug": "the-event-loop-and-async-execution",
+  "trackId": "javascript",
+  "moduleId": "JS-M09",
+  "order": 3,
+  "title": "The Event Loop and Async Execution",
+  "required": true,
+  "optional": false,
+  "advanced": false,
+  "contentType": "core",
+  "difficulty": 3,
+  "estimatedMinutes": 15,
+  "requiredPrerequisiteTopicIds": [
+    "JS-24"
+  ],
+  "recommendedPrerequisiteTopicIds": [],
+  "learningObjectives": [
+    {
+      "id": "JS-25-LO1",
+      "text": "Explain call stack using a new example and justify the result.",
+      "subtopic": "Call stack",
+      "cognitiveLevel": "understand"
+    },
+    {
+      "id": "JS-25-LO2",
+      "text": "Apply web apis using a new example and justify the result.",
+      "subtopic": "Web APIs",
+      "cognitiveLevel": "apply"
+    },
+    {
+      "id": "JS-25-LO3",
+      "text": "Explain callback and microtask queues using a new example and justify the result.",
+      "subtopic": "Callback and microtask queues",
+      "cognitiveLevel": "analyze"
+    },
+    {
+      "id": "JS-25-LO4",
+      "text": "Trace and explain event-loop scheduling using a new example and justify the result.",
+      "subtopic": "Event-loop scheduling",
+      "cognitiveLevel": "analyze"
+    }
+  ],
+  "whyThisMatters": "This topic turns the event loop and async execution from isolated terminology into a practical tool for reading, writing, and reviewing code. It belongs to the **Asynchronous JavaScript** module.",
+  "mentalModel": "Draw a decision map: **Call stack** → **Web APIs** → **Callback and microtask queues** → **Event-loop scheduling**. Add branches where the learner must choose an alternative and label the evidence for the choice.",
+  "sections": [
+    {
+      "id": "JS-25-S1",
+      "type": "concept",
+      "title": "Call stack",
+      "body": "The call stack records active execution contexts. Calls push frames and returns pop them. Long synchronous work blocks later JavaScript and delays queued work.",
+      "objectiveIds": [
+        "JS-25-LO1"
+      ],
+      "checkQuestionId": "JS-25-Q01"
+    },
+    {
+      "id": "JS-25-S2",
+      "type": "concept",
+      "title": "Web APIs",
+      "body": "Browser APIs perform work outside the JavaScript call stack and queue callbacks or promise reactions when results are ready.",
+      "objectiveIds": [
+        "JS-25-LO2"
+      ],
+      "checkQuestionId": "JS-25-Q02"
+    },
+    {
+      "id": "JS-25-S3",
+      "type": "concept",
+      "title": "Callback and microtask queues",
+      "body": "Promise reactions use the microtask queue; timers and many events use task queues. Microtasks run after the stack clears and before the next task.",
+      "objectiveIds": [
+        "JS-25-LO3"
+      ],
+      "checkQuestionId": "JS-25-Q03"
+    },
+    {
+      "id": "JS-25-S4",
+      "type": "concept",
+      "title": "Event-loop scheduling",
+      "body": "The event loop waits for the stack to clear, drains microtasks, then advances to another task. A zero-delay timer means no earlier than a future task.",
+      "objectiveIds": [
+        "JS-25-LO4"
+      ],
+      "checkQuestionId": "JS-25-Q03"
+    },
+    {
+      "id": "JS-25-EX1",
+      "type": "code-example",
+      "title": "Worked example",
+      "language": "js",
+      "source": "console.log('A');\nsetTimeout(() => console.log('B'), 0);\nPromise.resolve().then(() => console.log('C'));\nconsole.log('D');",
+      "explanation": "Synchronous logs run first, the microtask follows, and the timer runs in a later task.",
+      "objectiveIds": [
+        "JS-25-LO1",
+        "JS-25-LO2",
+        "JS-25-LO3",
+        "JS-25-LO4"
+      ]
+    }
+  ],
+  "commonMistakes": [
+    "Memorizing syntax without predicting the underlying value or execution order.",
+    "Mutating shared data when the task expects a new value or explicit ownership.",
+    "Treating browser APIs and language features as the same layer.",
+    "Choosing an abstraction from habit rather than required operations."
+  ],
+  "summary": [
+    "The Event Loop and Async Execution connects Call stack, Web APIs, Callback and microtask queues.",
+    "Use the topic to make behavior and decisions explicit rather than memorizing isolated syntax.",
+    "Verify understanding by explaining a new example and answering the topic quiz without looking back."
+  ],
+  "inLessonQuestionIds": [
+    "JS-25-Q01",
+    "JS-25-Q02",
+    "JS-25-Q03"
+  ],
+  "topicQuiz": {
+    "id": "JS-25-QUIZ",
+    "questionIds": [
+      "JS-25-Q04",
+      "JS-25-Q05",
+      "JS-25-Q06",
+      "JS-25-Q07",
+      "JS-25-Q08"
+    ],
+    "masteryThresholdPercent": 80,
+    "attemptPolicy": "unlimited",
+    "failurePolicy": "Show explanations, add missed objectives to local review, and allow immediate or later retry.",
+    "randomizeQuestionOrder": true,
+    "randomizeChoiceOrder": false
+  },
+  "questions": [
+    {
+      "id": "JS-25-Q01",
+      "trackId": "javascript",
+      "moduleId": "JS-M09",
+      "topicId": "JS-25",
+      "objectiveIds": [
+        "JS-25-LO1"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which statement best explains “Call stack” in the context of The Event Loop and Async Execution?",
+      "choices": [
+        {
+          "id": "JS-25-Q01-C1",
+          "label": "The call stack records active execution contexts. Calls push frames and returns pop them. Long synchronous work blocks later JavaScript and delays queued work.",
+          "feedback": "Call stack is best understood as follows: The call stack records active execution contexts. Calls push frames and returns pop them. Long synchronous work blocks later JavaScript and delays queued work."
+        },
+        {
+          "id": "JS-25-Q01-C2",
+          "label": "Requests contain a method, URL, headers, and optional body; responses contain status, headers, and body. Network success and application success differ.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Call stack."
+        },
+        {
+          "id": "JS-25-Q01-C3",
+          "label": "During bubbling, an event travels from its target toward ancestors. Ancestors can observe descendant events, enabling delegation.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Call stack."
+        },
+        {
+          "id": "JS-25-Q01-C4",
+          "label": "JavaScript strongly prioritizes backward compatibility. Old code should continue to run, while new syntax or APIs may still require modern engines, transpilation, or feature checks.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Call stack."
+        }
+      ],
+      "correctChoiceIds": [
+        "JS-25-Q01-C1"
+      ],
+      "explanation": "Call stack is best understood as follows: The call stack records active execution contexts. Calls push frames and returns pop them. Long synchronous work blocks later JavaScript and delays queued work.",
+      "hint": "Focus on what the concept changes, enables, or constrains—not only on its syntax.",
+      "difficulty": 2,
+      "cognitiveLevel": "recognize",
+      "estimatedSeconds": 75,
+      "tags": [
+        "call-stack",
+        "the-event-loop-and-async-execution"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JS-25-Q02",
+      "trackId": "javascript",
+      "moduleId": "JS-M09",
+      "topicId": "JS-25",
+      "objectiveIds": [
+        "JS-25-LO2"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which statement best explains “Web APIs” in the context of The Event Loop and Async Execution?",
+      "choices": [
+        {
+          "id": "JS-25-Q02-C1",
+          "label": "Browser APIs perform work outside the JavaScript call stack and queue callbacks or promise reactions when results are ready.",
+          "feedback": "Web APIs is best understood as follows: Browser APIs perform work outside the JavaScript call stack and queue callbacks or promise reactions when results are ready."
+        },
+        {
+          "id": "JS-25-Q02-C2",
+          "label": "During bubbling, an event travels from its target toward ancestors. Ancestors can observe descendant events, enabling delegation.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Web APIs."
+        },
+        {
+          "id": "JS-25-Q02-C3",
+          "label": "Requests contain a method, URL, headers, and optional body; responses contain status, headers, and body. Network success and application success differ.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Web APIs."
+        },
+        {
+          "id": "JS-25-Q02-C4",
+          "label": "JavaScript strongly prioritizes backward compatibility. Old code should continue to run, while new syntax or APIs may still require modern engines, transpilation, or feature checks.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Web APIs."
+        }
+      ],
+      "correctChoiceIds": [
+        "JS-25-Q02-C1"
+      ],
+      "explanation": "Web APIs is best understood as follows: Browser APIs perform work outside the JavaScript call stack and queue callbacks or promise reactions when results are ready.",
+      "hint": "Focus on what the concept changes, enables, or constrains—not only on its syntax.",
+      "difficulty": 2,
+      "cognitiveLevel": "explain",
+      "estimatedSeconds": 75,
+      "tags": [
+        "web-apis",
+        "the-event-loop-and-async-execution"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JS-25-Q03",
+      "trackId": "javascript",
+      "moduleId": "JS-M09",
+      "topicId": "JS-25",
+      "objectiveIds": [
+        "JS-25-LO3"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which statement best explains “Callback and microtask queues” in the context of The Event Loop and Async Execution?",
+      "choices": [
+        {
+          "id": "JS-25-Q03-C1",
+          "label": "During bubbling, an event travels from its target toward ancestors. Ancestors can observe descendant events, enabling delegation.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Callback and microtask queues."
+        },
+        {
+          "id": "JS-25-Q03-C2",
+          "label": "Promise reactions use the microtask queue; timers and many events use task queues. Microtasks run after the stack clears and before the next task.",
+          "feedback": "Callback and microtask queues is best understood as follows: Promise reactions use the microtask queue; timers and many events use task queues. Microtasks run after the stack clears and before the next task."
+        },
+        {
+          "id": "JS-25-Q03-C3",
+          "label": "Requests contain a method, URL, headers, and optional body; responses contain status, headers, and body. Network success and application success differ.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Callback and microtask queues."
+        },
+        {
+          "id": "JS-25-Q03-C4",
+          "label": "JavaScript strongly prioritizes backward compatibility. Old code should continue to run, while new syntax or APIs may still require modern engines, transpilation, or feature checks.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Callback and microtask queues."
+        }
+      ],
+      "correctChoiceIds": [
+        "JS-25-Q03-C2"
+      ],
+      "explanation": "Callback and microtask queues is best understood as follows: Promise reactions use the microtask queue; timers and many events use task queues. Microtasks run after the stack clears and before the next task.",
+      "hint": "Focus on what the concept changes, enables, or constrains—not only on its syntax.",
+      "difficulty": 2,
+      "cognitiveLevel": "predict",
+      "estimatedSeconds": 120,
+      "tags": [
+        "callback-and-microtask-queues",
+        "the-event-loop-and-async-execution"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JS-25-Q04",
+      "trackId": "javascript",
+      "moduleId": "JS-M09",
+      "topicId": "JS-25",
+      "objectiveIds": [
+        "JS-25-LO1",
+        "JS-25-LO2"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "A learner must use The Event Loop and Async Execution in a new situation. Which approach best demonstrates transferable understanding?",
+      "choices": [
+        {
+          "id": "JS-25-Q04-C1",
+          "label": "Skip the underlying model and rely on memorized syntax, even when the result is unclear.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of The Event Loop and Async Execution."
+        },
+        {
+          "id": "JS-25-Q04-C2",
+          "label": "Apply Call stack deliberately, make the relevant inputs and assumptions explicit, and verify the observable result before adding more complexity.",
+          "feedback": "Transfer comes from using the concept with explicit assumptions and checking the resulting behavior, not from reproducing a memorized example."
+        },
+        {
+          "id": "JS-25-Q04-C3",
+          "label": "Treat the concept as isolated trivia and avoid connecting it to earlier prerequisites.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of The Event Loop and Async Execution."
+        },
+        {
+          "id": "JS-25-Q04-C4",
+          "label": "Add more state and abstraction immediately, before identifying the smallest requirement.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of The Event Loop and Async Execution."
+        }
+      ],
+      "correctChoiceIds": [
+        "JS-25-Q04-C2"
+      ],
+      "explanation": "Transfer comes from using the concept with explicit assumptions and checking the resulting behavior, not from reproducing a memorized example.",
+      "hint": "Choose the option that would still work when the surrounding example changes.",
+      "difficulty": 3,
+      "cognitiveLevel": "apply",
+      "estimatedSeconds": 120,
+      "tags": [
+        "the-event-loop-and-async-execution",
+        "call-stack"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JS-25-Q05",
+      "trackId": "javascript",
+      "moduleId": "JS-M09",
+      "topicId": "JS-25",
+      "objectiveIds": [
+        "JS-25-LO1",
+        "JS-25-LO2",
+        "JS-25-LO3",
+        "JS-25-LO4"
+      ],
+      "kind": "single-choice",
+      "presentation": "code",
+      "prompt": "What is the most accurate explanation of the following The Event Loop and Async Execution example?",
+      "choices": [
+        {
+          "id": "JS-25-Q05-C1",
+          "label": "The snippet guarantees that all values are immutable and all operations are asynchronous.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of The Event Loop and Async Execution."
+        },
+        {
+          "id": "JS-25-Q05-C2",
+          "label": "The snippet is valid only because JavaScript ignores variable scope and evaluation order.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of The Event Loop and Async Execution."
+        },
+        {
+          "id": "JS-25-Q05-C3",
+          "label": "Synchronous logs run first, the microtask follows, and the timer runs in a later task.",
+          "feedback": "The correct choice connects the example to the underlying model rather than treating the syntax as isolated trivia."
+        },
+        {
+          "id": "JS-25-Q05-C4",
+          "label": "The snippet removes the need to understand the data flowing through the program.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of The Event Loop and Async Execution."
+        }
+      ],
+      "correctChoiceIds": [
+        "JS-25-Q05-C3"
+      ],
+      "explanation": "The correct choice connects the example to the underlying model rather than treating the syntax as isolated trivia.",
+      "hint": "Trace data, control flow, ownership, or rendering step by step.",
+      "difficulty": 3,
+      "cognitiveLevel": "predict",
+      "estimatedSeconds": 120,
+      "tags": [
+        "the-event-loop-and-async-execution",
+        "call-stack",
+        "web-apis"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review",
+      "code": {
+        "language": "js",
+        "source": "console.log('A');\nsetTimeout(() => console.log('B'), 0);\nPromise.resolve().then(() => console.log('C'));\nconsole.log('D');"
+      }
+    },
+    {
+      "id": "JS-25-Q06",
+      "trackId": "javascript",
+      "moduleId": "JS-M09",
+      "topicId": "JS-25",
+      "objectiveIds": [
+        "JS-25-LO1",
+        "JS-25-LO2",
+        "JS-25-LO3",
+        "JS-25-LO4"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which response best addresses this common mistake: “Memorizing syntax without predicting the underlying value or execution order.”?",
+      "choices": [
+        {
+          "id": "JS-25-Q06-C1",
+          "label": "The statement is correct only when variable names are short.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of The Event Loop and Async Execution."
+        },
+        {
+          "id": "JS-25-Q06-C2",
+          "label": "The statement is unrelated to program behavior and cannot cause defects.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of The Event Loop and Async Execution."
+        },
+        {
+          "id": "JS-25-Q06-C3",
+          "label": "The statement is a misconception. A better approach is to reason from the concept's inputs, rules, and observable outcome, then verify the result.",
+          "feedback": "Good feedback names the misconception and replaces it with a usable reasoning process."
+        },
+        {
+          "id": "JS-25-Q06-C4",
+          "label": "The statement is always correct, so no further reasoning about The Event Loop and Async Execution is needed.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of The Event Loop and Async Execution."
+        }
+      ],
+      "correctChoiceIds": [
+        "JS-25-Q06-C3"
+      ],
+      "explanation": "Good feedback names the misconception and replaces it with a usable reasoning process.",
+      "hint": "Look for the option that corrects both the belief and the learner's next action.",
+      "difficulty": 3,
+      "cognitiveLevel": "debug",
+      "estimatedSeconds": 120,
+      "tags": [
+        "the-event-loop-and-async-execution",
+        "common-mistakes"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JS-25-Q07",
+      "trackId": "javascript",
+      "moduleId": "JS-M09",
+      "topicId": "JS-25",
+      "objectiveIds": [
+        "JS-25-LO1",
+        "JS-25-LO2",
+        "JS-25-LO3",
+        "JS-25-LO4"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which sequence is most reliable when solving a problem involving The Event Loop and Async Execution?",
+      "choices": [
+        {
+          "id": "JS-25-Q07-C1",
+          "label": "First identify the requirement, then apply the relevant rule from Call stack, inspect the result, and only then refactor or optimize.",
+          "feedback": "The reliable sequence starts from the requirement, applies a known rule, observes behavior, and improves the solution afterward."
+        },
+        {
+          "id": "JS-25-Q07-C2",
+          "label": "Copy an unrelated implementation, hide the assumptions, and test only the happy path.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of The Event Loop and Async Execution."
+        },
+        {
+          "id": "JS-25-Q07-C3",
+          "label": "Optimize first, then decide what the code is supposed to do.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of The Event Loop and Async Execution."
+        },
+        {
+          "id": "JS-25-Q07-C4",
+          "label": "Start with a framework abstraction and avoid checking the underlying language behavior.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of The Event Loop and Async Execution."
+        }
+      ],
+      "correctChoiceIds": [
+        "JS-25-Q07-C1"
+      ],
+      "explanation": "The reliable sequence starts from the requirement, applies a known rule, observes behavior, and improves the solution afterward.",
+      "hint": "Prefer a sequence that makes failures visible early.",
+      "difficulty": 3,
+      "cognitiveLevel": "explain",
+      "estimatedSeconds": 75,
+      "tags": [
+        "the-event-loop-and-async-execution",
+        "problem-solving"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JS-25-Q08",
+      "trackId": "javascript",
+      "moduleId": "JS-M09",
+      "topicId": "JS-25",
+      "objectiveIds": [
+        "JS-25-LO1",
+        "JS-25-LO2",
+        "JS-25-LO3",
+        "JS-25-LO4"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which guideline shows the best judgment about when to use The Event Loop and Async Execution?",
+      "choices": [
+        {
+          "id": "JS-25-Q08-C1",
+          "label": "Use The Event Loop and Async Execution when it makes intent, ownership, or data flow clearer; avoid adding it mechanically when a simpler, equally explicit solution is sufficient.",
+          "feedback": "Engineering judgment balances clarity and cost. The concept should serve the requirement rather than become an end in itself."
+        },
+        {
+          "id": "JS-25-Q08-C2",
+          "label": "Use The Event Loop and Async Execution in every file because more abstraction is always better.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of The Event Loop and Async Execution."
+        },
+        {
+          "id": "JS-25-Q08-C3",
+          "label": "Choose based only on line count, without considering readability, correctness, or future change.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of The Event Loop and Async Execution."
+        },
+        {
+          "id": "JS-25-Q08-C4",
+          "label": "Avoid The Event Loop and Async Execution completely because all abstractions reduce maintainability.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of The Event Loop and Async Execution."
+        }
+      ],
+      "correctChoiceIds": [
+        "JS-25-Q08-C1"
+      ],
+      "explanation": "Engineering judgment balances clarity and cost. The concept should serve the requirement rather than become an end in itself.",
+      "hint": "Choose the option that acknowledges both benefits and trade-offs.",
+      "difficulty": 4,
+      "cognitiveLevel": "tradeoff",
+      "estimatedSeconds": 120,
+      "tags": [
+        "the-event-loop-and-async-execution",
+        "tradeoffs"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    }
+  ],
+  "researchSources": [
+    {
+      "kind": "research-transcript",
+      "title": "Asynchronous Behind the Scenes: The Event Loop",
+      "pathwayOrder": 41,
+      "sourceLine": 118333,
+      "usage": "Coverage research only; no transcript wording is canonical."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "MDN JavaScript Guide",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "MDN DOM",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "MDN Using promises",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "MDN JavaScript modules",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules",
+      "usage": "Technical verification and freshness review."
+    }
+  ],
+  "contentAuthority": {
+    "canonical": "New JS2Next Release 1 curriculum and independently authored content.",
+    "legacyProjectContent": "Supplementary internal reference only; excluded from runtime unless explicitly re-authored and approved.",
+    "courseTranscripts": "Coverage and sequencing research only; never learner-facing authority.",
+    "officialDocumentation": "Technical verification source."
+  },
+  "version": 1,
+  "status": "draft",
+  "reviewStatus": "pending-human-review",
+  "publicationStatus": "unpublished",
+  "createdAt": "2026-07-17",
+  "updatedAt": "2026-07-17"
+}

@@ -1,0 +1,622 @@
+{
+  "schemaVersion": "1.0",
+  "id": "R-13",
+  "slug": "render-and-commit-phases",
+  "trackId": "react",
+  "moduleId": "R-M05",
+  "order": 2,
+  "title": "Render and Commit Phases",
+  "required": true,
+  "optional": false,
+  "advanced": false,
+  "contentType": "core",
+  "difficulty": 3,
+  "estimatedMinutes": 25,
+  "requiredPrerequisiteTopicIds": [
+    "R-12"
+  ],
+  "recommendedPrerequisiteTopicIds": [],
+  "learningObjectives": [
+    {
+      "id": "R-13-LO1",
+      "text": "Trace and explain render phase using a new example and justify the result.",
+      "subtopic": "Render phase",
+      "cognitiveLevel": "understand"
+    },
+    {
+      "id": "R-13-LO2",
+      "text": "Explain reconciliation work using a new example and justify the result.",
+      "subtopic": "Reconciliation work",
+      "cognitiveLevel": "apply"
+    },
+    {
+      "id": "R-13-LO3",
+      "text": "Trace and explain commit phase using a new example and justify the result.",
+      "subtopic": "Commit phase",
+      "cognitiveLevel": "analyze"
+    },
+    {
+      "id": "R-13-LO4",
+      "text": "Apply dom updates using a new example and justify the result.",
+      "subtopic": "DOM updates",
+      "cognitiveLevel": "analyze"
+    }
+  ],
+  "whyThisMatters": "The ideas in render and commit phases recur throughout later React work, reducing memorization and debugging later. It belongs to the **How React Renders** module.",
+  "mentalModel": "Draw a decision map: **Render phase** → **Reconciliation work** → **Commit phase** → **DOM updates**. Add branches where the learner must choose an alternative and label the evidence for the choice.",
+  "sections": [
+    {
+      "id": "R-13-S1",
+      "type": "concept",
+      "title": "Render phase",
+      "body": "During render, React calls components to calculate the next UI. Render must remain pure because React may repeat, pause, or discard the work.",
+      "objectiveIds": [
+        "R-13-LO1"
+      ],
+      "checkQuestionId": "R-13-Q01"
+    },
+    {
+      "id": "R-13-S2",
+      "type": "concept",
+      "title": "Reconciliation work",
+      "body": "Reconciliation compares previous and next element trees using type, position, and keys to decide which instances are preserved or replaced.",
+      "objectiveIds": [
+        "R-13-LO2"
+      ],
+      "checkQuestionId": "R-13-Q02"
+    },
+    {
+      "id": "R-13-S3",
+      "type": "concept",
+      "title": "Commit phase",
+      "body": "During commit, React applies calculated DOM changes and updates refs. Commit is the point where host mutations become observable.",
+      "objectiveIds": [
+        "R-13-LO3"
+      ],
+      "checkQuestionId": "R-13-Q03"
+    },
+    {
+      "id": "R-13-S4",
+      "type": "concept",
+      "title": "DOM updates",
+      "body": "React updates host nodes according to reconciliation. A component render does not imply every descendant DOM node is replaced.",
+      "objectiveIds": [
+        "R-13-LO4"
+      ],
+      "checkQuestionId": "R-13-Q03"
+    },
+    {
+      "id": "R-13-EX1",
+      "type": "code-example",
+      "title": "Worked example",
+      "language": "jsx",
+      "source": "function Score({ value }) {\n  const label = value >= 80 ? 'Mastered' : 'Developing';\n  return <p>{label}</p>;\n}",
+      "explanation": "The component calculates output during render; React applies changes during commit.",
+      "objectiveIds": [
+        "R-13-LO1",
+        "R-13-LO2",
+        "R-13-LO3",
+        "R-13-LO4"
+      ]
+    }
+  ],
+  "commonMistakes": [
+    "Mutating props or state instead of producing the next value.",
+    "Adding state or an Effect for a value that can be derived during render.",
+    "Using global state before identifying the real owner and consumers.",
+    "Optimizing renders without a measured user-facing problem."
+  ],
+  "summary": [
+    "Render and Commit Phases connects Render phase, Reconciliation work, Commit phase.",
+    "Use the topic to make behavior and decisions explicit rather than memorizing isolated syntax.",
+    "Verify understanding by explaining a new example and answering the topic quiz without looking back."
+  ],
+  "inLessonQuestionIds": [
+    "R-13-Q01",
+    "R-13-Q02",
+    "R-13-Q03"
+  ],
+  "topicQuiz": {
+    "id": "R-13-QUIZ",
+    "questionIds": [
+      "R-13-Q04",
+      "R-13-Q05",
+      "R-13-Q06",
+      "R-13-Q07",
+      "R-13-Q08"
+    ],
+    "masteryThresholdPercent": 80,
+    "attemptPolicy": "unlimited",
+    "failurePolicy": "Show explanations, add missed objectives to local review, and allow immediate or later retry.",
+    "randomizeQuestionOrder": true,
+    "randomizeChoiceOrder": false
+  },
+  "questions": [
+    {
+      "id": "R-13-Q01",
+      "trackId": "react",
+      "moduleId": "R-M05",
+      "topicId": "R-13",
+      "objectiveIds": [
+        "R-13-LO1"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which statement best explains “Render phase” in the context of Render and Commit Phases?",
+      "choices": [
+        {
+          "id": "R-13-Q01-C1",
+          "label": "React often colocates JSX with the state and behavior that determine it. Concerns are separated by component responsibility rather than file type alone.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Render phase."
+        },
+        {
+          "id": "R-13-Q01-C2",
+          "label": "Reuse may come from functions, custom Hooks, composition, configurable components, or domain abstractions.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Render phase."
+        },
+        {
+          "id": "R-13-Q01-C3",
+          "label": "During render, React calls components to calculate the next UI. Render must remain pure because React may repeat, pause, or discard the work.",
+          "feedback": "Render phase is best understood as follows: During render, React calls components to calculate the next UI. Render must remain pure because React may repeat, pause, or discard the work."
+        },
+        {
+          "id": "R-13-Q01-C4",
+          "label": "A component boundary defines ownership of markup, behavior, and dependencies. Good boundaries minimize reasons to change.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Render phase."
+        }
+      ],
+      "correctChoiceIds": [
+        "R-13-Q01-C3"
+      ],
+      "explanation": "Render phase is best understood as follows: During render, React calls components to calculate the next UI. Render must remain pure because React may repeat, pause, or discard the work.",
+      "hint": "Focus on what the concept changes, enables, or constrains—not only on its syntax.",
+      "difficulty": 2,
+      "cognitiveLevel": "recognize",
+      "estimatedSeconds": 75,
+      "tags": [
+        "render-phase",
+        "render-and-commit-phases"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "R-13-Q02",
+      "trackId": "react",
+      "moduleId": "R-M05",
+      "topicId": "R-13",
+      "objectiveIds": [
+        "R-13-LO2"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which statement best explains “Reconciliation work” in the context of Render and Commit Phases?",
+      "choices": [
+        {
+          "id": "R-13-Q02-C1",
+          "label": "Reuse may come from functions, custom Hooks, composition, configurable components, or domain abstractions.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Reconciliation work."
+        },
+        {
+          "id": "R-13-Q02-C2",
+          "label": "A component boundary defines ownership of markup, behavior, and dependencies. Good boundaries minimize reasons to change.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Reconciliation work."
+        },
+        {
+          "id": "R-13-Q02-C3",
+          "label": "Reconciliation compares previous and next element trees using type, position, and keys to decide which instances are preserved or replaced.",
+          "feedback": "Reconciliation work is best understood as follows: Reconciliation compares previous and next element trees using type, position, and keys to decide which instances are preserved or replaced."
+        },
+        {
+          "id": "R-13-Q02-C4",
+          "label": "React often colocates JSX with the state and behavior that determine it. Concerns are separated by component responsibility rather than file type alone.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Reconciliation work."
+        }
+      ],
+      "correctChoiceIds": [
+        "R-13-Q02-C3"
+      ],
+      "explanation": "Reconciliation work is best understood as follows: Reconciliation compares previous and next element trees using type, position, and keys to decide which instances are preserved or replaced.",
+      "hint": "Focus on what the concept changes, enables, or constrains—not only on its syntax.",
+      "difficulty": 2,
+      "cognitiveLevel": "explain",
+      "estimatedSeconds": 75,
+      "tags": [
+        "reconciliation-work",
+        "render-and-commit-phases"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "R-13-Q03",
+      "trackId": "react",
+      "moduleId": "R-M05",
+      "topicId": "R-13",
+      "objectiveIds": [
+        "R-13-LO3"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which statement best explains “Commit phase” in the context of Render and Commit Phases?",
+      "choices": [
+        {
+          "id": "R-13-Q03-C1",
+          "label": "Reuse may come from functions, custom Hooks, composition, configurable components, or domain abstractions.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Commit phase."
+        },
+        {
+          "id": "R-13-Q03-C2",
+          "label": "During commit, React applies calculated DOM changes and updates refs. Commit is the point where host mutations become observable.",
+          "feedback": "Commit phase is best understood as follows: During commit, React applies calculated DOM changes and updates refs. Commit is the point where host mutations become observable."
+        },
+        {
+          "id": "R-13-Q03-C3",
+          "label": "React often colocates JSX with the state and behavior that determine it. Concerns are separated by component responsibility rather than file type alone.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Commit phase."
+        },
+        {
+          "id": "R-13-Q03-C4",
+          "label": "A component boundary defines ownership of markup, behavior, and dependencies. Good boundaries minimize reasons to change.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Commit phase."
+        }
+      ],
+      "correctChoiceIds": [
+        "R-13-Q03-C2"
+      ],
+      "explanation": "Commit phase is best understood as follows: During commit, React applies calculated DOM changes and updates refs. Commit is the point where host mutations become observable.",
+      "hint": "Focus on what the concept changes, enables, or constrains—not only on its syntax.",
+      "difficulty": 2,
+      "cognitiveLevel": "predict",
+      "estimatedSeconds": 120,
+      "tags": [
+        "commit-phase",
+        "render-and-commit-phases"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "R-13-Q04",
+      "trackId": "react",
+      "moduleId": "R-M05",
+      "topicId": "R-13",
+      "objectiveIds": [
+        "R-13-LO1",
+        "R-13-LO2"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "A learner must use Render and Commit Phases in a new situation. Which approach best demonstrates transferable understanding?",
+      "choices": [
+        {
+          "id": "R-13-Q04-C1",
+          "label": "Treat the concept as isolated trivia and avoid connecting it to earlier prerequisites.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Render and Commit Phases."
+        },
+        {
+          "id": "R-13-Q04-C2",
+          "label": "Skip the underlying model and rely on memorized syntax, even when the result is unclear.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Render and Commit Phases."
+        },
+        {
+          "id": "R-13-Q04-C3",
+          "label": "Apply Render phase deliberately, make the relevant inputs and assumptions explicit, and verify the observable result before adding more complexity.",
+          "feedback": "Transfer comes from using the concept with explicit assumptions and checking the resulting behavior, not from reproducing a memorized example."
+        },
+        {
+          "id": "R-13-Q04-C4",
+          "label": "Add more state and abstraction immediately, before identifying the smallest requirement.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Render and Commit Phases."
+        }
+      ],
+      "correctChoiceIds": [
+        "R-13-Q04-C3"
+      ],
+      "explanation": "Transfer comes from using the concept with explicit assumptions and checking the resulting behavior, not from reproducing a memorized example.",
+      "hint": "Choose the option that would still work when the surrounding example changes.",
+      "difficulty": 3,
+      "cognitiveLevel": "apply",
+      "estimatedSeconds": 120,
+      "tags": [
+        "render-and-commit-phases",
+        "render-phase"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "R-13-Q05",
+      "trackId": "react",
+      "moduleId": "R-M05",
+      "topicId": "R-13",
+      "objectiveIds": [
+        "R-13-LO1",
+        "R-13-LO2",
+        "R-13-LO3",
+        "R-13-LO4"
+      ],
+      "kind": "single-choice",
+      "presentation": "code",
+      "prompt": "What is the most accurate explanation of the following Render and Commit Phases example?",
+      "choices": [
+        {
+          "id": "R-13-Q05-C1",
+          "label": "The snippet guarantees that all values are immutable and all operations are asynchronous.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Render and Commit Phases."
+        },
+        {
+          "id": "R-13-Q05-C2",
+          "label": "The component calculates output during render; React applies changes during commit.",
+          "feedback": "The correct choice connects the example to the underlying model rather than treating the syntax as isolated trivia."
+        },
+        {
+          "id": "R-13-Q05-C3",
+          "label": "The snippet removes the need to understand the data flowing through the program.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Render and Commit Phases."
+        },
+        {
+          "id": "R-13-Q05-C4",
+          "label": "The snippet is valid only because JavaScript ignores variable scope and evaluation order.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Render and Commit Phases."
+        }
+      ],
+      "correctChoiceIds": [
+        "R-13-Q05-C2"
+      ],
+      "explanation": "The correct choice connects the example to the underlying model rather than treating the syntax as isolated trivia.",
+      "hint": "Trace data, control flow, ownership, or rendering step by step.",
+      "difficulty": 3,
+      "cognitiveLevel": "predict",
+      "estimatedSeconds": 120,
+      "tags": [
+        "render-and-commit-phases",
+        "render-phase",
+        "reconciliation-work"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review",
+      "code": {
+        "language": "jsx",
+        "source": "function Score({ value }) {\n  const label = value >= 80 ? 'Mastered' : 'Developing';\n  return <p>{label}</p>;\n}"
+      }
+    },
+    {
+      "id": "R-13-Q06",
+      "trackId": "react",
+      "moduleId": "R-M05",
+      "topicId": "R-13",
+      "objectiveIds": [
+        "R-13-LO1",
+        "R-13-LO2",
+        "R-13-LO3",
+        "R-13-LO4"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which response best addresses this common mistake: “Mutating props or state instead of producing the next value.”?",
+      "choices": [
+        {
+          "id": "R-13-Q06-C1",
+          "label": "The statement is a misconception. A better approach is to reason from the concept's inputs, rules, and observable outcome, then verify the result.",
+          "feedback": "Good feedback names the misconception and replaces it with a usable reasoning process."
+        },
+        {
+          "id": "R-13-Q06-C2",
+          "label": "The statement is unrelated to program behavior and cannot cause defects.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Render and Commit Phases."
+        },
+        {
+          "id": "R-13-Q06-C3",
+          "label": "The statement is correct only when variable names are short.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Render and Commit Phases."
+        },
+        {
+          "id": "R-13-Q06-C4",
+          "label": "The statement is always correct, so no further reasoning about Render and Commit Phases is needed.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Render and Commit Phases."
+        }
+      ],
+      "correctChoiceIds": [
+        "R-13-Q06-C1"
+      ],
+      "explanation": "Good feedback names the misconception and replaces it with a usable reasoning process.",
+      "hint": "Look for the option that corrects both the belief and the learner's next action.",
+      "difficulty": 3,
+      "cognitiveLevel": "debug",
+      "estimatedSeconds": 120,
+      "tags": [
+        "render-and-commit-phases",
+        "common-mistakes"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "R-13-Q07",
+      "trackId": "react",
+      "moduleId": "R-M05",
+      "topicId": "R-13",
+      "objectiveIds": [
+        "R-13-LO1",
+        "R-13-LO2",
+        "R-13-LO3",
+        "R-13-LO4"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which sequence is most reliable when solving a problem involving Render and Commit Phases?",
+      "choices": [
+        {
+          "id": "R-13-Q07-C1",
+          "label": "First identify the requirement, then apply the relevant rule from Render phase, inspect the result, and only then refactor or optimize.",
+          "feedback": "The reliable sequence starts from the requirement, applies a known rule, observes behavior, and improves the solution afterward."
+        },
+        {
+          "id": "R-13-Q07-C2",
+          "label": "Optimize first, then decide what the code is supposed to do.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Render and Commit Phases."
+        },
+        {
+          "id": "R-13-Q07-C3",
+          "label": "Copy an unrelated implementation, hide the assumptions, and test only the happy path.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Render and Commit Phases."
+        },
+        {
+          "id": "R-13-Q07-C4",
+          "label": "Start with a framework abstraction and avoid checking the underlying language behavior.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Render and Commit Phases."
+        }
+      ],
+      "correctChoiceIds": [
+        "R-13-Q07-C1"
+      ],
+      "explanation": "The reliable sequence starts from the requirement, applies a known rule, observes behavior, and improves the solution afterward.",
+      "hint": "Prefer a sequence that makes failures visible early.",
+      "difficulty": 3,
+      "cognitiveLevel": "explain",
+      "estimatedSeconds": 75,
+      "tags": [
+        "render-and-commit-phases",
+        "problem-solving"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "R-13-Q08",
+      "trackId": "react",
+      "moduleId": "R-M05",
+      "topicId": "R-13",
+      "objectiveIds": [
+        "R-13-LO1",
+        "R-13-LO2",
+        "R-13-LO3",
+        "R-13-LO4"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which guideline shows the best judgment about when to use Render and Commit Phases?",
+      "choices": [
+        {
+          "id": "R-13-Q08-C1",
+          "label": "Use Render and Commit Phases in every file because more abstraction is always better.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Render and Commit Phases."
+        },
+        {
+          "id": "R-13-Q08-C2",
+          "label": "Choose based only on line count, without considering readability, correctness, or future change.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Render and Commit Phases."
+        },
+        {
+          "id": "R-13-Q08-C3",
+          "label": "Use Render and Commit Phases when it makes intent, ownership, or data flow clearer; avoid adding it mechanically when a simpler, equally explicit solution is sufficient.",
+          "feedback": "Engineering judgment balances clarity and cost. The concept should serve the requirement rather than become an end in itself."
+        },
+        {
+          "id": "R-13-Q08-C4",
+          "label": "Avoid Render and Commit Phases completely because all abstractions reduce maintainability.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Render and Commit Phases."
+        }
+      ],
+      "correctChoiceIds": [
+        "R-13-Q08-C3"
+      ],
+      "explanation": "Engineering judgment balances clarity and cost. The concept should serve the requirement rather than become an end in itself.",
+      "hint": "Choose the option that acknowledges both benefits and trade-offs.",
+      "difficulty": 4,
+      "cognitiveLevel": "tradeoff",
+      "estimatedSeconds": 120,
+      "tags": [
+        "render-and-commit-phases",
+        "tradeoffs"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    }
+  ],
+  "researchSources": [
+    {
+      "kind": "research-transcript",
+      "title": "How Rendering Works: The Render Phase",
+      "pathwayOrder": 25,
+      "sourceLine": 38699,
+      "usage": "Coverage research only; no transcript wording is canonical."
+    },
+    {
+      "kind": "research-transcript",
+      "title": "How Rendering Works: The Commit Phase",
+      "pathwayOrder": 26,
+      "sourceLine": 39334,
+      "usage": "Coverage research only; no transcript wording is canonical."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "React Learn",
+      "url": "https://react.dev/learn",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "React Managing State",
+      "url": "https://react.dev/learn/managing-state",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "React Escape Hatches",
+      "url": "https://react.dev/learn/escape-hatches",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "React API Reference",
+      "url": "https://react.dev/reference/react",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "Redux Essentials",
+      "url": "https://redux.js.org/tutorials/essentials/part-1-overview-concepts",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "TanStack Query Overview",
+      "url": "https://tanstack.com/query/latest/docs/framework/react/overview",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "Supabase Documentation",
+      "url": "https://supabase.com/docs",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "Tailwind CSS Documentation",
+      "url": "https://tailwindcss.com/docs",
+      "usage": "Technical verification and freshness review."
+    }
+  ],
+  "contentAuthority": {
+    "canonical": "New JS2Next Release 1 curriculum and independently authored content.",
+    "legacyProjectContent": "Supplementary internal reference only; excluded from runtime unless explicitly re-authored and approved.",
+    "courseTranscripts": "Coverage and sequencing research only; never learner-facing authority.",
+    "officialDocumentation": "Technical verification source."
+  },
+  "version": 1,
+  "status": "draft",
+  "reviewStatus": "pending-human-review",
+  "publicationStatus": "unpublished",
+  "createdAt": "2026-07-17",
+  "updatedAt": "2026-07-17"
+}

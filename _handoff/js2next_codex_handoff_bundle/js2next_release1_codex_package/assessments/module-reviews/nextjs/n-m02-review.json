@@ -1,0 +1,28 @@
+{
+  "schemaVersion": "1.0",
+  "id": "N-M02-REVIEW",
+  "kind": "module-review",
+  "trackId": "nextjs",
+  "moduleId": "N-M02",
+  "title": "React Server Components — Module Review",
+  "questionIds": [
+    "N-03-Q04",
+    "N-04-Q04",
+    "N-03-Q05",
+    "N-04-Q05",
+    "N-03-Q06",
+    "N-04-Q06",
+    "N-03-Q07",
+    "N-04-Q07",
+    "N-03-Q08",
+    "N-04-Q08"
+  ],
+  "masteryThresholdPercent": 80,
+  "attemptPolicy": "unlimited",
+  "failurePolicy": "Show explanations, identify missed objectives, recommend targeted topic review, and allow retry.",
+  "randomizeQuestionOrder": true,
+  "randomizeChoiceOrder": false,
+  "version": 1,
+  "status": "draft",
+  "reviewStatus": "pending-human-review"
+}

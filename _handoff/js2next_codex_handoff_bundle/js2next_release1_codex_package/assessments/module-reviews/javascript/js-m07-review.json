@@ -1,0 +1,28 @@
+{
+  "schemaVersion": "1.0",
+  "id": "JS-M07-REVIEW",
+  "kind": "module-review",
+  "trackId": "javascript",
+  "moduleId": "JS-M07",
+  "title": "Object-Oriented JavaScript — Module Review",
+  "questionIds": [
+    "JS-19-Q04",
+    "JS-20-Q04",
+    "JS-21-Q04",
+    "JS-19-Q05",
+    "JS-20-Q05",
+    "JS-21-Q05",
+    "JS-19-Q06",
+    "JS-20-Q06",
+    "JS-21-Q06",
+    "JS-19-Q07"
+  ],
+  "masteryThresholdPercent": 80,
+  "attemptPolicy": "unlimited",
+  "failurePolicy": "Show explanations, identify missed objectives, recommend targeted topic review, and allow retry.",
+  "randomizeQuestionOrder": true,
+  "randomizeChoiceOrder": false,
+  "version": 1,
+  "status": "draft",
+  "reviewStatus": "pending-human-review"
+}

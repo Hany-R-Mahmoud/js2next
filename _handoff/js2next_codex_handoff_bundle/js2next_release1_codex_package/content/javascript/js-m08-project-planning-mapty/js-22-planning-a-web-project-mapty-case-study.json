@@ -1,0 +1,580 @@
+{
+  "schemaVersion": "1.0",
+  "id": "JS-22",
+  "slug": "planning-a-web-project-mapty-case-study",
+  "trackId": "javascript",
+  "moduleId": "JS-M08",
+  "order": 1,
+  "title": "Planning a Web Project — Mapty Case Study",
+  "required": true,
+  "optional": false,
+  "advanced": false,
+  "contentType": "core_with_case_study",
+  "difficulty": 3,
+  "estimatedMinutes": 25,
+  "requiredPrerequisiteTopicIds": [
+    "JS-21"
+  ],
+  "recommendedPrerequisiteTopicIds": [],
+  "learningObjectives": [
+    {
+      "id": "JS-22-LO1",
+      "text": "Explain requirements and feature planning using a new example and justify the result.",
+      "subtopic": "Requirements and feature planning",
+      "cognitiveLevel": "understand"
+    },
+    {
+      "id": "JS-22-LO2",
+      "text": "Trace and explain user stories and flowcharts using a new example and justify the result.",
+      "subtopic": "User stories and flowcharts",
+      "cognitiveLevel": "apply"
+    },
+    {
+      "id": "JS-22-LO3",
+      "text": "Explain architecture planning using a new example and justify the result.",
+      "subtopic": "Architecture planning",
+      "cognitiveLevel": "analyze"
+    },
+    {
+      "id": "JS-22-LO4",
+      "text": "Explain project retrospective using a new example and justify the result.",
+      "subtopic": "Project retrospective",
+      "cognitiveLevel": "analyze"
+    }
+  ],
+  "whyThisMatters": "Learners frequently use planning a web project — mapty case study without a clear model of why it behaves as it does; this lesson makes that model explicit. It belongs to the **Project Planning: Mapty** module.",
+  "mentalModel": "Draw a decision map: **Requirements and feature planning** → **User stories and flowcharts** → **Architecture planning** → **Project retrospective**. Add branches where the learner must choose an alternative and label the evidence for the choice.",
+  "sections": [
+    {
+      "id": "JS-22-S1",
+      "type": "concept",
+      "title": "Requirements and feature planning",
+      "body": "Start with user-visible outcomes and convert them into explicit behavior, inputs, edge cases, and acceptance conditions. Break large capabilities into end-to-end slices that can be implemented and verified independently.",
+      "objectiveIds": [
+        "JS-22-LO1"
+      ],
+      "checkQuestionId": "JS-22-Q01"
+    },
+    {
+      "id": "JS-22-S2",
+      "type": "concept",
+      "title": "User stories and flowcharts",
+      "body": "User stories capture who needs a capability and why; flowcharts expose sequence and decisions. Together they reveal missing states before code is written.",
+      "objectiveIds": [
+        "JS-22-LO2"
+      ],
+      "checkQuestionId": "JS-22-Q02"
+    },
+    {
+      "id": "JS-22-S3",
+      "type": "concept",
+      "title": "Architecture planning",
+      "body": "Architecture planning identifies data, responsibilities, boundaries, and communication paths. The goal is to reduce costly ambiguity about ownership and change, not predict every future file.",
+      "objectiveIds": [
+        "JS-22-LO3"
+      ],
+      "checkQuestionId": "JS-22-Q03"
+    },
+    {
+      "id": "JS-22-S4",
+      "type": "concept",
+      "title": "Project retrospective",
+      "body": "A retrospective compares outcomes with goals, identifies successful decisions and accidental complexity, and records lessons that should influence the next project.",
+      "objectiveIds": [
+        "JS-22-LO4"
+      ],
+      "checkQuestionId": "JS-22-Q03"
+    }
+  ],
+  "commonMistakes": [
+    "Memorizing syntax without predicting the underlying value or execution order.",
+    "Mutating shared data when the task expects a new value or explicit ownership.",
+    "Treating browser APIs and language features as the same layer.",
+    "Choosing an abstraction from habit rather than required operations."
+  ],
+  "summary": [
+    "Planning a Web Project — Mapty Case Study connects Requirements and feature planning, User stories and flowcharts, Architecture planning.",
+    "Use the topic to make behavior and decisions explicit rather than memorizing isolated syntax.",
+    "Verify understanding by explaining a new example and answering the topic quiz without looking back."
+  ],
+  "inLessonQuestionIds": [
+    "JS-22-Q01",
+    "JS-22-Q02",
+    "JS-22-Q03"
+  ],
+  "topicQuiz": {
+    "id": "JS-22-QUIZ",
+    "questionIds": [
+      "JS-22-Q04",
+      "JS-22-Q05",
+      "JS-22-Q06",
+      "JS-22-Q07",
+      "JS-22-Q08"
+    ],
+    "masteryThresholdPercent": 80,
+    "attemptPolicy": "unlimited",
+    "failurePolicy": "Show explanations, add missed objectives to local review, and allow immediate or later retry.",
+    "randomizeQuestionOrder": true,
+    "randomizeChoiceOrder": false
+  },
+  "questions": [
+    {
+      "id": "JS-22-Q01",
+      "trackId": "javascript",
+      "moduleId": "JS-M08",
+      "topicId": "JS-22",
+      "objectiveIds": [
+        "JS-22-LO1"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which statement best explains “Requirements and feature planning” in the context of Planning a Web Project — Mapty Case Study?",
+      "choices": [
+        {
+          "id": "JS-22-Q01-C1",
+          "label": "Evaluate alternatives by complexity, clarity, testability, performance, team understanding, and likely change rather than searching for a universally perfect pattern.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Requirements and feature planning."
+        },
+        {
+          "id": "JS-22-Q01-C2",
+          "label": "Start with user-visible outcomes and convert them into explicit behavior, inputs, edge cases, and acceptance conditions. Break large capabilities into end-to-end slices that can be implemented and verified independently.",
+          "feedback": "Requirements and feature planning is best understood as follows: Start with user-visible outcomes and convert them into explicit behavior, inputs, edge cases, and acceptance conditions. Break large capabilities into end-to-end slices that can be implemented and verified independently."
+        },
+        {
+          "id": "JS-22-Q01-C3",
+          "label": "HTML describes structure, CSS describes presentation, and JavaScript expresses behavior and application logic. It responds to events, changes the document, communicates with servers, and coordinates state.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Requirements and feature planning."
+        },
+        {
+          "id": "JS-22-Q01-C4",
+          "label": "Chaining passes one method's result to the next to form a transformation pipeline. Name intermediate values when the chain becomes hard to inspect.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Requirements and feature planning."
+        }
+      ],
+      "correctChoiceIds": [
+        "JS-22-Q01-C2"
+      ],
+      "explanation": "Requirements and feature planning is best understood as follows: Start with user-visible outcomes and convert them into explicit behavior, inputs, edge cases, and acceptance conditions. Break large capabilities into end-to-end slices that can be implemented and verified independently.",
+      "hint": "Focus on what the concept changes, enables, or constrains—not only on its syntax.",
+      "difficulty": 2,
+      "cognitiveLevel": "recognize",
+      "estimatedSeconds": 75,
+      "tags": [
+        "requirements-and-feature-planning",
+        "planning-a-web-project-mapty-case-study"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JS-22-Q02",
+      "trackId": "javascript",
+      "moduleId": "JS-M08",
+      "topicId": "JS-22",
+      "objectiveIds": [
+        "JS-22-LO2"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which statement best explains “User stories and flowcharts” in the context of Planning a Web Project — Mapty Case Study?",
+      "choices": [
+        {
+          "id": "JS-22-Q02-C1",
+          "label": "Evaluate alternatives by complexity, clarity, testability, performance, team understanding, and likely change rather than searching for a universally perfect pattern.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of User stories and flowcharts."
+        },
+        {
+          "id": "JS-22-Q02-C2",
+          "label": "HTML describes structure, CSS describes presentation, and JavaScript expresses behavior and application logic. It responds to events, changes the document, communicates with servers, and coordinates state.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of User stories and flowcharts."
+        },
+        {
+          "id": "JS-22-Q02-C3",
+          "label": "Chaining passes one method's result to the next to form a transformation pipeline. Name intermediate values when the chain becomes hard to inspect.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of User stories and flowcharts."
+        },
+        {
+          "id": "JS-22-Q02-C4",
+          "label": "User stories capture who needs a capability and why; flowcharts expose sequence and decisions. Together they reveal missing states before code is written.",
+          "feedback": "User stories and flowcharts is best understood as follows: User stories capture who needs a capability and why; flowcharts expose sequence and decisions. Together they reveal missing states before code is written."
+        }
+      ],
+      "correctChoiceIds": [
+        "JS-22-Q02-C4"
+      ],
+      "explanation": "User stories and flowcharts is best understood as follows: User stories capture who needs a capability and why; flowcharts expose sequence and decisions. Together they reveal missing states before code is written.",
+      "hint": "Focus on what the concept changes, enables, or constrains—not only on its syntax.",
+      "difficulty": 2,
+      "cognitiveLevel": "explain",
+      "estimatedSeconds": 75,
+      "tags": [
+        "user-stories-and-flowcharts",
+        "planning-a-web-project-mapty-case-study"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JS-22-Q03",
+      "trackId": "javascript",
+      "moduleId": "JS-M08",
+      "topicId": "JS-22",
+      "objectiveIds": [
+        "JS-22-LO3"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which statement best explains “Architecture planning” in the context of Planning a Web Project — Mapty Case Study?",
+      "choices": [
+        {
+          "id": "JS-22-Q03-C1",
+          "label": "Architecture planning identifies data, responsibilities, boundaries, and communication paths. The goal is to reduce costly ambiguity about ownership and change, not predict every future file.",
+          "feedback": "Architecture planning is best understood as follows: Architecture planning identifies data, responsibilities, boundaries, and communication paths. The goal is to reduce costly ambiguity about ownership and change, not predict every future file."
+        },
+        {
+          "id": "JS-22-Q03-C2",
+          "label": "Evaluate alternatives by complexity, clarity, testability, performance, team understanding, and likely change rather than searching for a universally perfect pattern.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Architecture planning."
+        },
+        {
+          "id": "JS-22-Q03-C3",
+          "label": "HTML describes structure, CSS describes presentation, and JavaScript expresses behavior and application logic. It responds to events, changes the document, communicates with servers, and coordinates state.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Architecture planning."
+        },
+        {
+          "id": "JS-22-Q03-C4",
+          "label": "Chaining passes one method's result to the next to form a transformation pipeline. Name intermediate values when the chain becomes hard to inspect.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Architecture planning."
+        }
+      ],
+      "correctChoiceIds": [
+        "JS-22-Q03-C1"
+      ],
+      "explanation": "Architecture planning is best understood as follows: Architecture planning identifies data, responsibilities, boundaries, and communication paths. The goal is to reduce costly ambiguity about ownership and change, not predict every future file.",
+      "hint": "Focus on what the concept changes, enables, or constrains—not only on its syntax.",
+      "difficulty": 2,
+      "cognitiveLevel": "predict",
+      "estimatedSeconds": 120,
+      "tags": [
+        "architecture-planning",
+        "planning-a-web-project-mapty-case-study"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JS-22-Q04",
+      "trackId": "javascript",
+      "moduleId": "JS-M08",
+      "topicId": "JS-22",
+      "objectiveIds": [
+        "JS-22-LO1",
+        "JS-22-LO2"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "A learner must use Planning a Web Project — Mapty Case Study in a new situation. Which approach best demonstrates transferable understanding?",
+      "choices": [
+        {
+          "id": "JS-22-Q04-C1",
+          "label": "Treat the concept as isolated trivia and avoid connecting it to earlier prerequisites.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Planning a Web Project — Mapty Case Study."
+        },
+        {
+          "id": "JS-22-Q04-C2",
+          "label": "Add more state and abstraction immediately, before identifying the smallest requirement.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Planning a Web Project — Mapty Case Study."
+        },
+        {
+          "id": "JS-22-Q04-C3",
+          "label": "Apply Requirements and feature planning deliberately, make the relevant inputs and assumptions explicit, and verify the observable result before adding more complexity.",
+          "feedback": "Transfer comes from using the concept with explicit assumptions and checking the resulting behavior, not from reproducing a memorized example."
+        },
+        {
+          "id": "JS-22-Q04-C4",
+          "label": "Skip the underlying model and rely on memorized syntax, even when the result is unclear.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Planning a Web Project — Mapty Case Study."
+        }
+      ],
+      "correctChoiceIds": [
+        "JS-22-Q04-C3"
+      ],
+      "explanation": "Transfer comes from using the concept with explicit assumptions and checking the resulting behavior, not from reproducing a memorized example.",
+      "hint": "Choose the option that would still work when the surrounding example changes.",
+      "difficulty": 3,
+      "cognitiveLevel": "apply",
+      "estimatedSeconds": 120,
+      "tags": [
+        "planning-a-web-project-mapty-case-study",
+        "requirements-and-feature-planning"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JS-22-Q05",
+      "trackId": "javascript",
+      "moduleId": "JS-M08",
+      "topicId": "JS-22",
+      "objectiveIds": [
+        "JS-22-LO1",
+        "JS-22-LO2",
+        "JS-22-LO3",
+        "JS-22-LO4"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which mental model is most useful when reasoning about Planning a Web Project — Mapty Case Study?",
+      "choices": [
+        {
+          "id": "JS-22-Q05-C1",
+          "label": "Draw a decision map: **Requirements and feature planning** → **User stories and flowcharts** → **Architecture planning** → **Project retrospective**. Add branches where the learner must choose an alternative and label the evidence for the choice.",
+          "feedback": "The correct choice connects the example to the underlying model rather than treating the syntax as isolated trivia."
+        },
+        {
+          "id": "JS-22-Q05-C2",
+          "label": "The topic eliminates the need to model state, data flow, or dependencies.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Planning a Web Project — Mapty Case Study."
+        },
+        {
+          "id": "JS-22-Q05-C3",
+          "label": "The topic matters only for naming style and does not affect behavior.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Planning a Web Project — Mapty Case Study."
+        },
+        {
+          "id": "JS-22-Q05-C4",
+          "label": "The topic is best learned as a list of unrelated syntax rules.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Planning a Web Project — Mapty Case Study."
+        }
+      ],
+      "correctChoiceIds": [
+        "JS-22-Q05-C1"
+      ],
+      "explanation": "The correct choice connects the example to the underlying model rather than treating the syntax as isolated trivia.",
+      "hint": "Trace data, control flow, ownership, or rendering step by step.",
+      "difficulty": 3,
+      "cognitiveLevel": "predict",
+      "estimatedSeconds": 120,
+      "tags": [
+        "planning-a-web-project-mapty-case-study",
+        "requirements-and-feature-planning",
+        "user-stories-and-flowcharts"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JS-22-Q06",
+      "trackId": "javascript",
+      "moduleId": "JS-M08",
+      "topicId": "JS-22",
+      "objectiveIds": [
+        "JS-22-LO1",
+        "JS-22-LO2",
+        "JS-22-LO3",
+        "JS-22-LO4"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which response best addresses this common mistake: “Memorizing syntax without predicting the underlying value or execution order.”?",
+      "choices": [
+        {
+          "id": "JS-22-Q06-C1",
+          "label": "The statement is always correct, so no further reasoning about Planning a Web Project — Mapty Case Study is needed.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Planning a Web Project — Mapty Case Study."
+        },
+        {
+          "id": "JS-22-Q06-C2",
+          "label": "The statement is correct only when variable names are short.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Planning a Web Project — Mapty Case Study."
+        },
+        {
+          "id": "JS-22-Q06-C3",
+          "label": "The statement is unrelated to program behavior and cannot cause defects.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Planning a Web Project — Mapty Case Study."
+        },
+        {
+          "id": "JS-22-Q06-C4",
+          "label": "The statement is a misconception. A better approach is to reason from the concept's inputs, rules, and observable outcome, then verify the result.",
+          "feedback": "Good feedback names the misconception and replaces it with a usable reasoning process."
+        }
+      ],
+      "correctChoiceIds": [
+        "JS-22-Q06-C4"
+      ],
+      "explanation": "Good feedback names the misconception and replaces it with a usable reasoning process.",
+      "hint": "Look for the option that corrects both the belief and the learner's next action.",
+      "difficulty": 3,
+      "cognitiveLevel": "debug",
+      "estimatedSeconds": 120,
+      "tags": [
+        "planning-a-web-project-mapty-case-study",
+        "common-mistakes"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JS-22-Q07",
+      "trackId": "javascript",
+      "moduleId": "JS-M08",
+      "topicId": "JS-22",
+      "objectiveIds": [
+        "JS-22-LO1",
+        "JS-22-LO2",
+        "JS-22-LO3",
+        "JS-22-LO4"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which sequence is most reliable when solving a problem involving Planning a Web Project — Mapty Case Study?",
+      "choices": [
+        {
+          "id": "JS-22-Q07-C1",
+          "label": "Start with a framework abstraction and avoid checking the underlying language behavior.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Planning a Web Project — Mapty Case Study."
+        },
+        {
+          "id": "JS-22-Q07-C2",
+          "label": "Optimize first, then decide what the code is supposed to do.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Planning a Web Project — Mapty Case Study."
+        },
+        {
+          "id": "JS-22-Q07-C3",
+          "label": "Copy an unrelated implementation, hide the assumptions, and test only the happy path.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Planning a Web Project — Mapty Case Study."
+        },
+        {
+          "id": "JS-22-Q07-C4",
+          "label": "First identify the requirement, then apply the relevant rule from Requirements and feature planning, inspect the result, and only then refactor or optimize.",
+          "feedback": "The reliable sequence starts from the requirement, applies a known rule, observes behavior, and improves the solution afterward."
+        }
+      ],
+      "correctChoiceIds": [
+        "JS-22-Q07-C4"
+      ],
+      "explanation": "The reliable sequence starts from the requirement, applies a known rule, observes behavior, and improves the solution afterward.",
+      "hint": "Prefer a sequence that makes failures visible early.",
+      "difficulty": 3,
+      "cognitiveLevel": "explain",
+      "estimatedSeconds": 75,
+      "tags": [
+        "planning-a-web-project-mapty-case-study",
+        "problem-solving"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JS-22-Q08",
+      "trackId": "javascript",
+      "moduleId": "JS-M08",
+      "topicId": "JS-22",
+      "objectiveIds": [
+        "JS-22-LO1",
+        "JS-22-LO2",
+        "JS-22-LO3",
+        "JS-22-LO4"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which guideline shows the best judgment about when to use Planning a Web Project — Mapty Case Study?",
+      "choices": [
+        {
+          "id": "JS-22-Q08-C1",
+          "label": "Avoid Planning a Web Project — Mapty Case Study completely because all abstractions reduce maintainability.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Planning a Web Project — Mapty Case Study."
+        },
+        {
+          "id": "JS-22-Q08-C2",
+          "label": "Choose based only on line count, without considering readability, correctness, or future change.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Planning a Web Project — Mapty Case Study."
+        },
+        {
+          "id": "JS-22-Q08-C3",
+          "label": "Use Planning a Web Project — Mapty Case Study when it makes intent, ownership, or data flow clearer; avoid adding it mechanically when a simpler, equally explicit solution is sufficient.",
+          "feedback": "Engineering judgment balances clarity and cost. The concept should serve the requirement rather than become an end in itself."
+        },
+        {
+          "id": "JS-22-Q08-C4",
+          "label": "Use Planning a Web Project — Mapty Case Study in every file because more abstraction is always better.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Planning a Web Project — Mapty Case Study."
+        }
+      ],
+      "correctChoiceIds": [
+        "JS-22-Q08-C3"
+      ],
+      "explanation": "Engineering judgment balances clarity and cost. The concept should serve the requirement rather than become an end in itself.",
+      "hint": "Choose the option that acknowledges both benefits and trade-offs.",
+      "difficulty": 4,
+      "cognitiveLevel": "tradeoff",
+      "estimatedSeconds": 120,
+      "tags": [
+        "planning-a-web-project-mapty-case-study",
+        "tradeoffs"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    }
+  ],
+  "researchSources": [
+    {
+      "kind": "research-transcript",
+      "title": "How to Plan a Web Project",
+      "pathwayOrder": 36,
+      "sourceLine": 104337,
+      "usage": "Coverage research only; no transcript wording is canonical."
+    },
+    {
+      "kind": "research-transcript",
+      "title": "Final Considerations",
+      "pathwayOrder": 37,
+      "sourceLine": 112688,
+      "usage": "Coverage research only; no transcript wording is canonical."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "MDN JavaScript Guide",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "MDN DOM",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "MDN Using promises",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "MDN JavaScript modules",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules",
+      "usage": "Technical verification and freshness review."
+    }
+  ],
+  "contentAuthority": {
+    "canonical": "New JS2Next Release 1 curriculum and independently authored content.",
+    "legacyProjectContent": "Supplementary internal reference only; excluded from runtime unless explicitly re-authored and approved.",
+    "courseTranscripts": "Coverage and sequencing research only; never learner-facing authority.",
+    "officialDocumentation": "Technical verification source."
+  },
+  "version": 1,
+  "status": "draft",
+  "reviewStatus": "pending-human-review",
+  "publicationStatus": "unpublished",
+  "createdAt": "2026-07-17",
+  "updatedAt": "2026-07-17"
+}

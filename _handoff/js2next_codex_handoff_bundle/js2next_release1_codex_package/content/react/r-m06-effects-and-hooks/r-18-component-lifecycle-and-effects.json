@@ -1,0 +1,611 @@
+{
+  "schemaVersion": "1.0",
+  "id": "R-18",
+  "slug": "component-lifecycle-and-effects",
+  "trackId": "react",
+  "moduleId": "R-M06",
+  "order": 1,
+  "title": "Component Lifecycle and Effects",
+  "required": true,
+  "optional": false,
+  "advanced": false,
+  "contentType": "core",
+  "difficulty": 3,
+  "estimatedMinutes": 15,
+  "requiredPrerequisiteTopicIds": [
+    "R-17"
+  ],
+  "recommendedPrerequisiteTopicIds": [],
+  "learningObjectives": [
+    {
+      "id": "R-18-LO1",
+      "text": "Explain mount, update, and unmount using a new example and justify the result.",
+      "subtopic": "Mount, update, and unmount",
+      "cognitiveLevel": "understand"
+    },
+    {
+      "id": "R-18-LO2",
+      "text": "Explain effects as synchronization using a new example and justify the result.",
+      "subtopic": "Effects as synchronization",
+      "cognitiveLevel": "apply"
+    },
+    {
+      "id": "R-18-LO3",
+      "text": "Choose and justify when an effect is appropriate using a new example and justify the result.",
+      "subtopic": "When an effect is appropriate",
+      "cognitiveLevel": "analyze"
+    }
+  ],
+  "whyThisMatters": "Component Lifecycle and Effects is part of the mental model learners need before making reliable implementation decisions. It belongs to the **Effects and Hooks** module.",
+  "mentalModel": "Draw a decision map: **Mount, update, and unmount** → **Effects as synchronization** → **When an effect is appropriate**. Add branches where the learner must choose an alternative and label the evidence for the choice.",
+  "sections": [
+    {
+      "id": "R-18-S1",
+      "type": "concept",
+      "title": "Mount, update, and unmount",
+      "body": "A component mounts when added, updates after later renders and commits, and unmounts when removed.",
+      "objectiveIds": [
+        "R-18-LO1"
+      ],
+      "checkQuestionId": "R-18-Q01"
+    },
+    {
+      "id": "R-18-S2",
+      "type": "concept",
+      "title": "Effects as synchronization",
+      "body": "An Effect synchronizes React values with an external system such as a subscription, browser API, or network connection.",
+      "objectiveIds": [
+        "R-18-LO2"
+      ],
+      "checkQuestionId": "R-18-Q02"
+    },
+    {
+      "id": "R-18-S3",
+      "type": "concept",
+      "title": "When an effect is appropriate",
+      "body": "Use an Effect for synchronization caused by rendering. Derived calculations belong in render and action-specific logic belongs in event handlers.",
+      "objectiveIds": [
+        "R-18-LO3"
+      ],
+      "checkQuestionId": "R-18-Q03"
+    },
+    {
+      "id": "R-18-EX1",
+      "type": "code-example",
+      "title": "Worked example",
+      "language": "jsx",
+      "source": "function ConnectionStatus({ roomId }) {\n  useEffect(() => {\n    const connection = connectToRoom(roomId);\n    return () => connection.disconnect();\n  }, [roomId]);\n  return null;\n}",
+      "explanation": "The Effect synchronizes an external connection and cleanup reverses setup.",
+      "objectiveIds": [
+        "R-18-LO1",
+        "R-18-LO2",
+        "R-18-LO3"
+      ]
+    }
+  ],
+  "commonMistakes": [
+    "Suppressing the dependency linter instead of fixing the data flow.",
+    "Using an Effect for render-time derivation.",
+    "Mutating props or state instead of producing the next value.",
+    "Adding state or an Effect for a value that can be derived during render."
+  ],
+  "summary": [
+    "Component Lifecycle and Effects connects Mount, update, and unmount, Effects as synchronization, When an effect is appropriate.",
+    "Use the topic to make behavior and decisions explicit rather than memorizing isolated syntax.",
+    "Verify understanding by explaining a new example and answering the topic quiz without looking back."
+  ],
+  "inLessonQuestionIds": [
+    "R-18-Q01",
+    "R-18-Q02",
+    "R-18-Q03"
+  ],
+  "topicQuiz": {
+    "id": "R-18-QUIZ",
+    "questionIds": [
+      "R-18-Q04",
+      "R-18-Q05",
+      "R-18-Q06",
+      "R-18-Q07",
+      "R-18-Q08"
+    ],
+    "masteryThresholdPercent": 80,
+    "attemptPolicy": "unlimited",
+    "failurePolicy": "Show explanations, add missed objectives to local review, and allow immediate or later retry.",
+    "randomizeQuestionOrder": true,
+    "randomizeChoiceOrder": false
+  },
+  "questions": [
+    {
+      "id": "R-18-Q01",
+      "trackId": "react",
+      "moduleId": "R-M06",
+      "topicId": "R-18",
+      "objectiveIds": [
+        "R-18-LO1"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which statement best explains “Mount, update, and unmount” in the context of Component Lifecycle and Effects?",
+      "choices": [
+        {
+          "id": "R-18-Q01-C1",
+          "label": "Ask whether logic is caused by an event, derivable during render, or synchronizing with an external system. Only the last generally needs an Effect.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Mount, update, and unmount."
+        },
+        {
+          "id": "R-18-Q01-C2",
+          "label": "A component mounts when added, updates after later renders and commits, and unmounts when removed.",
+          "feedback": "Mount, update, and unmount is best understood as follows: A component mounts when added, updates after later renders and commits, and unmounts when removed."
+        },
+        {
+          "id": "R-18-Q01-C3",
+          "label": "Choose by ownership, consumers, update frequency, persistence, and source of truth. Context, Redux, and server-state libraries solve different problems.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Mount, update, and unmount."
+        },
+        {
+          "id": "R-18-Q01-C4",
+          "label": "A trigger causes render, React computes an element tree, reconciles it with the previous tree, and commits necessary host changes.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Mount, update, and unmount."
+        }
+      ],
+      "correctChoiceIds": [
+        "R-18-Q01-C2"
+      ],
+      "explanation": "Mount, update, and unmount is best understood as follows: A component mounts when added, updates after later renders and commits, and unmounts when removed.",
+      "hint": "Focus on what the concept changes, enables, or constrains—not only on its syntax.",
+      "difficulty": 2,
+      "cognitiveLevel": "recognize",
+      "estimatedSeconds": 75,
+      "tags": [
+        "mount-update-and-unmount",
+        "component-lifecycle-and-effects"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "R-18-Q02",
+      "trackId": "react",
+      "moduleId": "R-M06",
+      "topicId": "R-18",
+      "objectiveIds": [
+        "R-18-LO2"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which statement best explains “Effects as synchronization” in the context of Component Lifecycle and Effects?",
+      "choices": [
+        {
+          "id": "R-18-Q02-C1",
+          "label": "Choose by ownership, consumers, update frequency, persistence, and source of truth. Context, Redux, and server-state libraries solve different problems.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Effects as synchronization."
+        },
+        {
+          "id": "R-18-Q02-C2",
+          "label": "Ask whether logic is caused by an event, derivable during render, or synchronizing with an external system. Only the last generally needs an Effect.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Effects as synchronization."
+        },
+        {
+          "id": "R-18-Q02-C3",
+          "label": "A trigger causes render, React computes an element tree, reconciles it with the previous tree, and commits necessary host changes.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Effects as synchronization."
+        },
+        {
+          "id": "R-18-Q02-C4",
+          "label": "An Effect synchronizes React values with an external system such as a subscription, browser API, or network connection.",
+          "feedback": "Effects as synchronization is best understood as follows: An Effect synchronizes React values with an external system such as a subscription, browser API, or network connection."
+        }
+      ],
+      "correctChoiceIds": [
+        "R-18-Q02-C4"
+      ],
+      "explanation": "Effects as synchronization is best understood as follows: An Effect synchronizes React values with an external system such as a subscription, browser API, or network connection.",
+      "hint": "Focus on what the concept changes, enables, or constrains—not only on its syntax.",
+      "difficulty": 2,
+      "cognitiveLevel": "explain",
+      "estimatedSeconds": 75,
+      "tags": [
+        "effects-as-synchronization",
+        "component-lifecycle-and-effects"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "R-18-Q03",
+      "trackId": "react",
+      "moduleId": "R-M06",
+      "topicId": "R-18",
+      "objectiveIds": [
+        "R-18-LO3"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which statement best explains “When an effect is appropriate” in the context of Component Lifecycle and Effects?",
+      "choices": [
+        {
+          "id": "R-18-Q03-C1",
+          "label": "Choose by ownership, consumers, update frequency, persistence, and source of truth. Context, Redux, and server-state libraries solve different problems.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of When an effect is appropriate."
+        },
+        {
+          "id": "R-18-Q03-C2",
+          "label": "A trigger causes render, React computes an element tree, reconciles it with the previous tree, and commits necessary host changes.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of When an effect is appropriate."
+        },
+        {
+          "id": "R-18-Q03-C3",
+          "label": "Ask whether logic is caused by an event, derivable during render, or synchronizing with an external system. Only the last generally needs an Effect.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of When an effect is appropriate."
+        },
+        {
+          "id": "R-18-Q03-C4",
+          "label": "Use an Effect for synchronization caused by rendering. Derived calculations belong in render and action-specific logic belongs in event handlers.",
+          "feedback": "When an effect is appropriate is best understood as follows: Use an Effect for synchronization caused by rendering. Derived calculations belong in render and action-specific logic belongs in event handlers."
+        }
+      ],
+      "correctChoiceIds": [
+        "R-18-Q03-C4"
+      ],
+      "explanation": "When an effect is appropriate is best understood as follows: Use an Effect for synchronization caused by rendering. Derived calculations belong in render and action-specific logic belongs in event handlers.",
+      "hint": "Focus on what the concept changes, enables, or constrains—not only on its syntax.",
+      "difficulty": 2,
+      "cognitiveLevel": "predict",
+      "estimatedSeconds": 120,
+      "tags": [
+        "when-an-effect-is-appropriate",
+        "component-lifecycle-and-effects"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "R-18-Q04",
+      "trackId": "react",
+      "moduleId": "R-M06",
+      "topicId": "R-18",
+      "objectiveIds": [
+        "R-18-LO1",
+        "R-18-LO2"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "A learner must use Component Lifecycle and Effects in a new situation. Which approach best demonstrates transferable understanding?",
+      "choices": [
+        {
+          "id": "R-18-Q04-C1",
+          "label": "Skip the underlying model and rely on memorized syntax, even when the result is unclear.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Component Lifecycle and Effects."
+        },
+        {
+          "id": "R-18-Q04-C2",
+          "label": "Apply Mount, update, and unmount deliberately, make the relevant inputs and assumptions explicit, and verify the observable result before adding more complexity.",
+          "feedback": "Transfer comes from using the concept with explicit assumptions and checking the resulting behavior, not from reproducing a memorized example."
+        },
+        {
+          "id": "R-18-Q04-C3",
+          "label": "Treat the concept as isolated trivia and avoid connecting it to earlier prerequisites.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Component Lifecycle and Effects."
+        },
+        {
+          "id": "R-18-Q04-C4",
+          "label": "Add more state and abstraction immediately, before identifying the smallest requirement.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Component Lifecycle and Effects."
+        }
+      ],
+      "correctChoiceIds": [
+        "R-18-Q04-C2"
+      ],
+      "explanation": "Transfer comes from using the concept with explicit assumptions and checking the resulting behavior, not from reproducing a memorized example.",
+      "hint": "Choose the option that would still work when the surrounding example changes.",
+      "difficulty": 3,
+      "cognitiveLevel": "apply",
+      "estimatedSeconds": 120,
+      "tags": [
+        "component-lifecycle-and-effects",
+        "mount-update-and-unmount"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "R-18-Q05",
+      "trackId": "react",
+      "moduleId": "R-M06",
+      "topicId": "R-18",
+      "objectiveIds": [
+        "R-18-LO1",
+        "R-18-LO2",
+        "R-18-LO3"
+      ],
+      "kind": "single-choice",
+      "presentation": "code",
+      "prompt": "What is the most accurate explanation of the following Component Lifecycle and Effects example?",
+      "choices": [
+        {
+          "id": "R-18-Q05-C1",
+          "label": "The snippet is valid only because JavaScript ignores variable scope and evaluation order.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Component Lifecycle and Effects."
+        },
+        {
+          "id": "R-18-Q05-C2",
+          "label": "The snippet guarantees that all values are immutable and all operations are asynchronous.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Component Lifecycle and Effects."
+        },
+        {
+          "id": "R-18-Q05-C3",
+          "label": "The snippet removes the need to understand the data flowing through the program.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Component Lifecycle and Effects."
+        },
+        {
+          "id": "R-18-Q05-C4",
+          "label": "The Effect synchronizes an external connection and cleanup reverses setup.",
+          "feedback": "The correct choice connects the example to the underlying model rather than treating the syntax as isolated trivia."
+        }
+      ],
+      "correctChoiceIds": [
+        "R-18-Q05-C4"
+      ],
+      "explanation": "The correct choice connects the example to the underlying model rather than treating the syntax as isolated trivia.",
+      "hint": "Trace data, control flow, ownership, or rendering step by step.",
+      "difficulty": 3,
+      "cognitiveLevel": "predict",
+      "estimatedSeconds": 120,
+      "tags": [
+        "component-lifecycle-and-effects",
+        "mount-update-and-unmount",
+        "effects-as-synchronization"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review",
+      "code": {
+        "language": "jsx",
+        "source": "function ConnectionStatus({ roomId }) {\n  useEffect(() => {\n    const connection = connectToRoom(roomId);\n    return () => connection.disconnect();\n  }, [roomId]);\n  return null;\n}"
+      }
+    },
+    {
+      "id": "R-18-Q06",
+      "trackId": "react",
+      "moduleId": "R-M06",
+      "topicId": "R-18",
+      "objectiveIds": [
+        "R-18-LO1",
+        "R-18-LO2",
+        "R-18-LO3"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which response best addresses this common mistake: “Suppressing the dependency linter instead of fixing the data flow.”?",
+      "choices": [
+        {
+          "id": "R-18-Q06-C1",
+          "label": "The statement is correct only when variable names are short.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Component Lifecycle and Effects."
+        },
+        {
+          "id": "R-18-Q06-C2",
+          "label": "The statement is a misconception. A better approach is to reason from the concept's inputs, rules, and observable outcome, then verify the result.",
+          "feedback": "Good feedback names the misconception and replaces it with a usable reasoning process."
+        },
+        {
+          "id": "R-18-Q06-C3",
+          "label": "The statement is always correct, so no further reasoning about Component Lifecycle and Effects is needed.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Component Lifecycle and Effects."
+        },
+        {
+          "id": "R-18-Q06-C4",
+          "label": "The statement is unrelated to program behavior and cannot cause defects.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Component Lifecycle and Effects."
+        }
+      ],
+      "correctChoiceIds": [
+        "R-18-Q06-C2"
+      ],
+      "explanation": "Good feedback names the misconception and replaces it with a usable reasoning process.",
+      "hint": "Look for the option that corrects both the belief and the learner's next action.",
+      "difficulty": 3,
+      "cognitiveLevel": "debug",
+      "estimatedSeconds": 120,
+      "tags": [
+        "component-lifecycle-and-effects",
+        "common-mistakes"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "R-18-Q07",
+      "trackId": "react",
+      "moduleId": "R-M06",
+      "topicId": "R-18",
+      "objectiveIds": [
+        "R-18-LO1",
+        "R-18-LO2",
+        "R-18-LO3"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which sequence is most reliable when solving a problem involving Component Lifecycle and Effects?",
+      "choices": [
+        {
+          "id": "R-18-Q07-C1",
+          "label": "First identify the requirement, then apply the relevant rule from Mount, update, and unmount, inspect the result, and only then refactor or optimize.",
+          "feedback": "The reliable sequence starts from the requirement, applies a known rule, observes behavior, and improves the solution afterward."
+        },
+        {
+          "id": "R-18-Q07-C2",
+          "label": "Copy an unrelated implementation, hide the assumptions, and test only the happy path.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Component Lifecycle and Effects."
+        },
+        {
+          "id": "R-18-Q07-C3",
+          "label": "Start with a framework abstraction and avoid checking the underlying language behavior.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Component Lifecycle and Effects."
+        },
+        {
+          "id": "R-18-Q07-C4",
+          "label": "Optimize first, then decide what the code is supposed to do.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Component Lifecycle and Effects."
+        }
+      ],
+      "correctChoiceIds": [
+        "R-18-Q07-C1"
+      ],
+      "explanation": "The reliable sequence starts from the requirement, applies a known rule, observes behavior, and improves the solution afterward.",
+      "hint": "Prefer a sequence that makes failures visible early.",
+      "difficulty": 3,
+      "cognitiveLevel": "explain",
+      "estimatedSeconds": 75,
+      "tags": [
+        "component-lifecycle-and-effects",
+        "problem-solving"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "R-18-Q08",
+      "trackId": "react",
+      "moduleId": "R-M06",
+      "topicId": "R-18",
+      "objectiveIds": [
+        "R-18-LO1",
+        "R-18-LO2",
+        "R-18-LO3"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which guideline shows the best judgment about when to use Component Lifecycle and Effects?",
+      "choices": [
+        {
+          "id": "R-18-Q08-C1",
+          "label": "Avoid Component Lifecycle and Effects completely because all abstractions reduce maintainability.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Component Lifecycle and Effects."
+        },
+        {
+          "id": "R-18-Q08-C2",
+          "label": "Choose based only on line count, without considering readability, correctness, or future change.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Component Lifecycle and Effects."
+        },
+        {
+          "id": "R-18-Q08-C3",
+          "label": "Use Component Lifecycle and Effects in every file because more abstraction is always better.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Component Lifecycle and Effects."
+        },
+        {
+          "id": "R-18-Q08-C4",
+          "label": "Use Component Lifecycle and Effects when it makes intent, ownership, or data flow clearer; avoid adding it mechanically when a simpler, equally explicit solution is sufficient.",
+          "feedback": "Engineering judgment balances clarity and cost. The concept should serve the requirement rather than become an end in itself."
+        }
+      ],
+      "correctChoiceIds": [
+        "R-18-Q08-C4"
+      ],
+      "explanation": "Engineering judgment balances clarity and cost. The concept should serve the requirement rather than become an end in itself.",
+      "hint": "Choose the option that acknowledges both benefits and trade-offs.",
+      "difficulty": 4,
+      "cognitiveLevel": "tradeoff",
+      "estimatedSeconds": 120,
+      "tags": [
+        "component-lifecycle-and-effects",
+        "tradeoffs"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    }
+  ],
+  "researchSources": [
+    {
+      "kind": "research-transcript",
+      "title": "The Component Lifecycle",
+      "pathwayOrder": 34,
+      "sourceLine": 43399,
+      "usage": "Coverage research only; no transcript wording is canonical."
+    },
+    {
+      "kind": "research-transcript",
+      "title": "A First Look at Effects",
+      "pathwayOrder": 35,
+      "sourceLine": 44116,
+      "usage": "Coverage research only; no transcript wording is canonical."
+    },
+    {
+      "kind": "supporting-research",
+      "title": "useEffect to the Rescue",
+      "usage": "Optional coverage reference; learner-facing wording must be original."
+    },
+    {
+      "kind": "supporting-research",
+      "title": "A First Look at Effects",
+      "usage": "Optional coverage reference; learner-facing wording must be original."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "React Learn",
+      "url": "https://react.dev/learn",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "React Managing State",
+      "url": "https://react.dev/learn/managing-state",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "React Escape Hatches",
+      "url": "https://react.dev/learn/escape-hatches",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "React API Reference",
+      "url": "https://react.dev/reference/react",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "Redux Essentials",
+      "url": "https://redux.js.org/tutorials/essentials/part-1-overview-concepts",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "TanStack Query Overview",
+      "url": "https://tanstack.com/query/latest/docs/framework/react/overview",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "Supabase Documentation",
+      "url": "https://supabase.com/docs",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "Tailwind CSS Documentation",
+      "url": "https://tailwindcss.com/docs",
+      "usage": "Technical verification and freshness review."
+    }
+  ],
+  "contentAuthority": {
+    "canonical": "New JS2Next Release 1 curriculum and independently authored content.",
+    "legacyProjectContent": "Supplementary internal reference only; excluded from runtime unless explicitly re-authored and approved.",
+    "courseTranscripts": "Coverage and sequencing research only; never learner-facing authority.",
+    "officialDocumentation": "Technical verification source."
+  },
+  "version": 1,
+  "status": "draft",
+  "reviewStatus": "pending-human-review",
+  "publicationStatus": "unpublished",
+  "createdAt": "2026-07-17",
+  "updatedAt": "2026-07-17"
+}

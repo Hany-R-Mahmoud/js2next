@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "1.0",
+  "id": "R-M06-REVIEW",
+  "kind": "module-review",
+  "trackId": "react",
+  "moduleId": "R-M06",
+  "title": "Effects and Hooks — Module Review",
+  "questionIds": [
+    "R-18-Q04",
+    "R-19-Q04",
+    "R-20-Q04",
+    "R-21-Q04",
+    "R-18-Q05",
+    "R-19-Q05",
+    "R-20-Q05",
+    "R-21-Q05",
+    "R-18-Q06",
+    "R-19-Q06",
+    "R-20-Q06",
+    "R-21-Q06"
+  ],
+  "masteryThresholdPercent": 80,
+  "attemptPolicy": "unlimited",
+  "failurePolicy": "Show explanations, identify missed objectives, recommend targeted topic review, and allow retry.",
+  "randomizeQuestionOrder": true,
+  "randomizeChoiceOrder": false,
+  "version": 1,
+  "status": "draft",
+  "reviewStatus": "pending-human-review"
+}

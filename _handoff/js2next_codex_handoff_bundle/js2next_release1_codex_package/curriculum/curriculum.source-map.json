@@ -1,0 +1,4383 @@
+{
+  "generated_on": "2026-07-17",
+  "status": "phase_5_finalized_for_pilot",
+  "inventory": {
+    "source_transcripts": [
+      "js(1).md",
+      "react(1).md"
+    ],
+    "duplicate_uploads_identical": true,
+    "pathway_images": 3,
+    "selected_source_counts": {
+      "javascript": 48,
+      "react": 65,
+      "nextjs": 14,
+      "total": 127
+    },
+    "proposed_platform_unit_counts": {
+      "javascript": 30,
+      "react": 38,
+      "nextjs": 11,
+      "total": 79
+    },
+    "title_matches": {
+      "direct_or_normalized": 113,
+      "manual_label_normalizations": 14
+    }
+  },
+  "principles": [
+    "Preserve course learning order at module and topic level.",
+    "Merge closely related lectures when they form one mental model.",
+    "Keep large or independently searchable concepts visible.",
+    "Integrate summaries and recaps into parent topics.",
+    "Separate reusable concepts from project-specific implementation.",
+    "Use supporting transcript lectures when a selected summary or overview is not self-contained."
+  ],
+  "tracks": {
+    "javascript": {
+      "source_items": {
+        "1": {
+          "pathway_title": "Watch before you start!",
+          "transcript_title": "Watch Before You Start!",
+          "transcript_line": 514,
+          "raw_word_count_approx": 953
+        },
+        "2": {
+          "pathway_title": "A Brief Introduction to JavaScript",
+          "transcript_title": "A Brief Introduction to JavaScript",
+          "transcript_line": 1382,
+          "raw_word_count_approx": 1958
+        },
+        "3": {
+          "pathway_title": "Data Types",
+          "transcript_title": "Data Types",
+          "transcript_line": 3091,
+          "raw_word_count_approx": 3081
+        },
+        "4": {
+          "pathway_title": "Boolean Logic",
+          "transcript_title": "Boolean Logic",
+          "transcript_line": 8538,
+          "raw_word_count_approx": 1511
+        },
+        "5": {
+          "pathway_title": "JavaScript Releases: ES5, ES6+ and ESNext",
+          "transcript_title": "JavaScript Releases: ES5, ES6+ and ESNext",
+          "transcript_line": 10415,
+          "raw_word_count_approx": 2474
+        },
+        "6": {
+          "pathway_title": "Functions Calling Other Functions",
+          "transcript_title": "Functions Calling Other Functions",
+          "transcript_line": 12952,
+          "raw_word_count_approx": 1614
+        },
+        "7": {
+          "pathway_title": "Reviewing Functions",
+          "transcript_title": "Reviewing Functions",
+          "transcript_line": 13351,
+          "raw_word_count_approx": 2599
+        },
+        "8": {
+          "pathway_title": "Learning How to Code",
+          "transcript_title": "Learning How to Code",
+          "transcript_line": 22256,
+          "raw_word_count_approx": 3133
+        },
+        "9": {
+          "pathway_title": "How to Think Like a Developer",
+          "transcript_title": "How to Think Like a Developer: Become a Problem Solver!",
+          "transcript_line": 22987,
+          "raw_word_count_approx": 1856
+        },
+        "10": {
+          "pathway_title": "Debugging (Fixing Errors)",
+          "transcript_title": "Debugging (Fixing Errors)",
+          "transcript_line": 24337,
+          "raw_word_count_approx": 845
+        },
+        "11": {
+          "pathway_title": "The Rise of AI Tools (ChatGPT, Copilot, Cursor AI)",
+          "transcript_title": "The Rise of AI Tools (ChatGPT, Copilot, Cursor AI, etc.)",
+          "transcript_line": 25257,
+          "raw_word_count_approx": 3069
+        },
+        "12": {
+          "pathway_title": "What's the DOM and DOM Manipulation",
+          "transcript_title": "What's the DOM and DOM Manipulation",
+          "transcript_line": 29282,
+          "raw_word_count_approx": 1094
+        },
+        "13": {
+          "pathway_title": "An high-level Overview of JavaScript",
+          "transcript_title": "An High-Level Overview of JavaScript",
+          "transcript_line": 37552,
+          "raw_word_count_approx": 1869
+        },
+        "14": {
+          "pathway_title": "The JavaScript Engine and Runtime",
+          "transcript_title": "The JavaScript Engine and Runtime",
+          "transcript_line": 38025,
+          "raw_word_count_approx": 2170
+        },
+        "15": {
+          "pathway_title": "Execution Contexts and The Call Stack",
+          "transcript_title": "Execution Contexts and The Call Stack",
+          "transcript_line": 38556,
+          "raw_word_count_approx": 2811
+        },
+        "16": {
+          "pathway_title": "Scope and The Scope Chain",
+          "transcript_title": "Scope and The Scope Chain",
+          "transcript_line": 39263,
+          "raw_word_count_approx": 4059
+        },
+        "17": {
+          "pathway_title": "Variable environment: Hoisting and The TDZ",
+          "transcript_title": "Variable Environment: Hoisting and The TDZ",
+          "transcript_line": 41229,
+          "raw_word_count_approx": 1749
+        },
+        "18": {
+          "pathway_title": "The this Keyword",
+          "transcript_title": "The this Keyword",
+          "transcript_line": 42281,
+          "raw_word_count_approx": 1086
+        },
+        "19": {
+          "pathway_title": "Memory Management: Primitives vs. Objects",
+          "transcript_title": "Memory Management: Primitives vs. Objects",
+          "transcript_line": 43778,
+          "raw_word_count_approx": 2221
+        },
+        "20": {
+          "pathway_title": "Memory Management: Garbage Collection",
+          "transcript_title": "Memory Management: Garbage Collection",
+          "transcript_line": 45096,
+          "raw_word_count_approx": 2489
+        },
+        "21": {
+          "pathway_title": "Summary: Which Data Structure to Use?",
+          "transcript_title": "Summary: Which Data Structure to Use?",
+          "transcript_line": 53698,
+          "raw_word_count_approx": 1577
+        },
+        "22": {
+          "pathway_title": "First-Class and Higher-Order Functions",
+          "transcript_title": "First-Class and Higher-Order Functions",
+          "transcript_line": 57633,
+          "raw_word_count_approx": 894
+        },
+        "23": {
+          "pathway_title": "Closures",
+          "transcript_title": "Closures",
+          "transcript_line": 60523,
+          "raw_word_count_approx": 3458
+        },
+        "24": {
+          "pathway_title": "Data Transformations: map, filter, reduce",
+          "transcript_title": "Data Transformations: map, filter, reduce",
+          "transcript_line": 64589,
+          "raw_word_count_approx": 767
+        },
+        "25": {
+          "pathway_title": "Summary: Which Array Method to Use?",
+          "transcript_title": "Summary: Which Array Method to Use?",
+          "transcript_line": 73274,
+          "raw_word_count_approx": 1876
+        },
+        "26": {
+          "pathway_title": "How the DOM Really Works",
+          "transcript_title": "How the DOM Really Works",
+          "transcript_line": 84210,
+          "raw_word_count_approx": 1599
+        },
+        "27": {
+          "pathway_title": "Event Propagation: Bubbling and Capturing",
+          "transcript_title": "Event Propagation: Bubbling and Capturing",
+          "transcript_line": 86907,
+          "raw_word_count_approx": 786
+        },
+        "28": {
+          "pathway_title": "Efficient Script Loading: defer and async",
+          "transcript_title": "Efficient Script Loading: defer and async",
+          "transcript_line": 94975,
+          "raw_word_count_approx": 2180
+        },
+        "29": {
+          "pathway_title": "What is Object-Oriented Programming?",
+          "transcript_title": "What is Object-Oriented Programming?",
+          "transcript_line": 95490,
+          "raw_word_count_approx": 3301
+        },
+        "30": {
+          "pathway_title": "OOP in JavaScript",
+          "transcript_title": "OOP in JavaScript",
+          "transcript_line": 96419,
+          "raw_word_count_approx": 1486
+        },
+        "31": {
+          "pathway_title": "Prototypal Inheritance and The Prototype Chain",
+          "transcript_title": "Prototypal Inheritance and The Prototype Chain",
+          "transcript_line": 97948,
+          "raw_word_count_approx": 1649
+        },
+        "32": {
+          "pathway_title": "Object.create",
+          "transcript_title": "Object.create",
+          "transcript_line": 100103,
+          "raw_word_count_approx": 1591
+        },
+        "33": {
+          "pathway_title": "Inheritance Between \"Classes\": Constructor Functions",
+          "transcript_title": "Inheritance Between \"Classes\": Constructor Functions",
+          "transcript_line": 100518,
+          "raw_word_count_approx": 3130
+        },
+        "34": {
+          "pathway_title": "Inheritance Between \"Classes\": Object.create",
+          "transcript_title": "Inheritance Between \"Classes\": Object.create",
+          "transcript_line": 101712,
+          "raw_word_count_approx": 1255
+        },
+        "35": {
+          "pathway_title": "ES6 Classes summary",
+          "transcript_title": "ES6 Classes Summary",
+          "transcript_line": 103504,
+          "raw_word_count_approx": 1166
+        },
+        "36": {
+          "pathway_title": "Mapty Project: How to Plan a Web Project",
+          "transcript_title": "How to Plan a Web Project",
+          "transcript_line": 104337,
+          "raw_word_count_approx": 3123
+        },
+        "37": {
+          "pathway_title": "Mapty Project: Final Considerations",
+          "transcript_title": "Final Considerations",
+          "transcript_line": 112688,
+          "raw_word_count_approx": 1019
+        },
+        "38": {
+          "pathway_title": "Asynchronous JavaScript, AJAX and APIs",
+          "transcript_title": "Asynchronous JavaScript, AJAX and APIs",
+          "transcript_line": 112935,
+          "raw_word_count_approx": 2872
+        },
+        "39": {
+          "pathway_title": "How the Web Works: Requests and Responses",
+          "transcript_title": "[OPTIONAL] How the Web Works: Requests and Responses",
+          "transcript_line": 114425,
+          "raw_word_count_approx": 2175
+        },
+        "40": {
+          "pathway_title": "Promises and the Fetch API",
+          "transcript_title": "Promises and the Fetch API",
+          "transcript_line": 115433,
+          "raw_word_count_approx": 1526
+        },
+        "41": {
+          "pathway_title": "Asynchronous Behind the Scenes: The Event Loop",
+          "transcript_title": "Asynchronous Behind the Scenes: The Event Loop",
+          "transcript_line": 118333,
+          "raw_word_count_approx": 2841
+        },
+        "42": {
+          "pathway_title": "An Overview of Modern JavaScript Development",
+          "transcript_title": "An Overview of Modern JavaScript Development",
+          "transcript_line": 124030,
+          "raw_word_count_approx": 1050
+        },
+        "43": {
+          "pathway_title": "An Overview of Modules in JavaScript",
+          "transcript_title": "An Overview of Modules in JavaScript",
+          "transcript_line": 124289,
+          "raw_word_count_approx": 2365
+        },
+        "44": {
+          "pathway_title": "Modern, Clean and Declarative JavaScript Programming",
+          "transcript_title": "Review: Writing Clean and Modern JavaScript",
+          "transcript_line": 129550,
+          "raw_word_count_approx": 1713
+        },
+        "45": {
+          "pathway_title": "Forkify Project Overview and Planning",
+          "transcript_title": "Project Overview and Planning (I)",
+          "transcript_line": 132721,
+          "raw_word_count_approx": 2404
+        },
+        "46": {
+          "pathway_title": "The MVC Architecture",
+          "transcript_title": "The MVC Architecture",
+          "transcript_line": 135581,
+          "raw_word_count_approx": 2474
+        },
+        "47": {
+          "pathway_title": "Event Handlers in MVC: Publisher-Subscriber Pattern",
+          "transcript_title": "Event Handlers in MVC: Publisher-Subscriber Pattern",
+          "transcript_line": 138432,
+          "raw_word_count_approx": 2253
+        },
+        "48": {
+          "pathway_title": "Forkify Project: Final Considerations",
+          "transcript_title": "Wrapping Up: Final Considerations",
+          "transcript_line": 150246,
+          "raw_word_count_approx": 2364
+        }
+      },
+      "modules": [
+        {
+          "id": "JS-M01",
+          "title": "Orientation and Foundations",
+          "topics": [
+            {
+              "id": "JS-01",
+              "title": "Course Orientation",
+              "source_orders": [
+                1
+              ],
+              "type": "orientation",
+              "subtopics": [
+                "How to use the pathway",
+                "Expectations and study approach"
+              ],
+              "source_lectures": [
+                {
+                  "order": 1,
+                  "pathway_title": "Watch before you start!",
+                  "transcript_title": "Watch Before You Start!",
+                  "transcript_line": 514,
+                  "raw_word_count_approx": 953
+                }
+              ],
+              "raw_source_words_approx": 953,
+              "learning_role": "onboarding",
+              "required_for_track_completion": false,
+              "assessment_profile": "onboarding",
+              "supporting_lectures": [],
+              "content_rule": "Use selected lecture(s) as the spine; add only supporting material needed for a standalone lesson."
+            },
+            {
+              "id": "JS-02",
+              "title": "Introduction to JavaScript",
+              "source_orders": [
+                2
+              ],
+              "type": "core",
+              "subtopics": [
+                "What JavaScript is",
+                "JavaScript's role in the web",
+                "Where JavaScript runs"
+              ],
+              "source_lectures": [
+                {
+                  "order": 2,
+                  "pathway_title": "A Brief Introduction to JavaScript",
+                  "transcript_title": "A Brief Introduction to JavaScript",
+                  "transcript_line": 1382,
+                  "raw_word_count_approx": 1958
+                }
+              ],
+              "raw_source_words_approx": 1958,
+              "learning_role": "core",
+              "required_for_track_completion": true,
+              "assessment_profile": "core",
+              "supporting_lectures": [],
+              "content_rule": "Use selected lecture(s) as the spine; add only supporting material needed for a standalone lesson."
+            },
+            {
+              "id": "JS-03",
+              "title": "Values, Data Types, and Boolean Logic",
+              "source_orders": [
+                3,
+                4
+              ],
+              "type": "core",
+              "subtopics": [
+                "Primitive data types",
+                "Dynamic typing",
+                "Boolean values and logical reasoning"
+              ],
+              "source_lectures": [
+                {
+                  "order": 3,
+                  "pathway_title": "Data Types",
+                  "transcript_title": "Data Types",
+                  "transcript_line": 3091,
+                  "raw_word_count_approx": 3081
+                },
+                {
+                  "order": 4,
+                  "pathway_title": "Boolean Logic",
+                  "transcript_title": "Boolean Logic",
+                  "transcript_line": 8538,
+                  "raw_word_count_approx": 1511
+                }
+              ],
+              "raw_source_words_approx": 4592,
+              "learning_role": "core",
+              "required_for_track_completion": true,
+              "assessment_profile": "core",
+              "supporting_lectures": [
+                "Values and Variables",
+                "let, const and var",
+                "Basic Operators",
+                "Type Conversion and Coercion",
+                "Truthy and Falsy Values",
+                "Logical Operators"
+              ],
+              "content_rule": "Use selected lecture(s) as the spine; add only supporting material needed for a standalone lesson."
+            },
+            {
+              "id": "JS-04",
+              "title": "JavaScript Evolution: ES5, ES6+, and ESNext",
+              "source_orders": [
+                5
+              ],
+              "type": "core",
+              "subtopics": [
+                "ECMAScript versions",
+                "Backward compatibility",
+                "Modern JavaScript evolution"
+              ],
+              "source_lectures": [
+                {
+                  "order": 5,
+                  "pathway_title": "JavaScript Releases: ES5, ES6+ and ESNext",
+                  "transcript_title": "JavaScript Releases: ES5, ES6+ and ESNext",
+                  "transcript_line": 10415,
+                  "raw_word_count_approx": 2474
+                }
+              ],
+              "raw_source_words_approx": 2474,
+              "learning_role": "core",
+              "required_for_track_completion": true,
+              "assessment_profile": "core",
+              "supporting_lectures": [],
+              "content_rule": "Use selected lecture(s) as the spine; add only supporting material needed for a standalone lesson."
+            },
+            {
+              "id": "JS-05",
+              "title": "Functions Working Together",
+              "source_orders": [
+                6,
+                7
+              ],
+              "type": "core",
+              "subtopics": [
+                "Functions calling functions",
+                "Function inputs and outputs",
+                "Function review and composition"
+              ],
+              "source_lectures": [
+                {
+                  "order": 6,
+                  "pathway_title": "Functions Calling Other Functions",
+                  "transcript_title": "Functions Calling Other Functions",
+                  "transcript_line": 12952,
+                  "raw_word_count_approx": 1614
+                },
+                {
+                  "order": 7,
+                  "pathway_title": "Reviewing Functions",
+                  "transcript_title": "Reviewing Functions",
+                  "transcript_line": 13351,
+                  "raw_word_count_approx": 2599
+                }
+              ],
+              "raw_source_words_approx": 4213,
+              "learning_role": "core",
+              "required_for_track_completion": true,
+              "assessment_profile": "core",
+              "supporting_lectures": [
+                "Functions",
+                "Function Declarations vs. Expressions",
+                "Arrow Functions"
+              ],
+              "content_rule": "Use selected lecture(s) as the spine; add only supporting material needed for a standalone lesson."
+            }
+          ],
+          "sequence": 1,
+          "assessment": {
+            "review_id": "JS-M01-REVIEW",
+            "review_profile": "module_review",
+            "question_count_target": 12,
+            "applied_challenge_count": 1,
+            "mastery_threshold_percent": 80,
+            "retry_policy": "Unlimited attempts; missed objectives enter spaced review."
+          },
+          "required_topic_ids": [
+            "JS-02",
+            "JS-03",
+            "JS-04",
+            "JS-05"
+          ],
+          "optional_or_nonlesson_ids": [
+            "JS-01"
+          ]
+        },
+        {
+          "id": "JS-M02",
+          "title": "Developer Skills",
+          "topics": [
+            {
+              "id": "JS-06",
+              "title": "Learning to Code and Think Like a Developer",
+              "source_orders": [
+                8,
+                9
+              ],
+              "type": "core",
+              "subtopics": [
+                "Breaking problems into steps",
+                "Research and experimentation",
+                "Developing problem-solving habits"
+              ],
+              "source_lectures": [
+                {
+                  "order": 8,
+                  "pathway_title": "Learning How to Code",
+                  "transcript_title": "Learning How to Code",
+                  "transcript_line": 22256,
+                  "raw_word_count_approx": 3133
+                },
+                {
+                  "order": 9,
+                  "pathway_title": "How to Think Like a Developer",
+                  "transcript_title": "How to Think Like a Developer: Become a Problem Solver!",
+                  "transcript_line": 22987,
+                  "raw_word_count_approx": 1856
+                }
+              ],
+              "raw_source_words_approx": 4989,
+              "learning_role": "core",
+              "required_for_track_completion": true,
+              "assessment_profile": "core",
+              "supporting_lectures": [],
+              "content_rule": "Use selected lecture(s) as the spine; add only supporting material needed for a standalone lesson."
+            },
+            {
+              "id": "JS-07",
+              "title": "Debugging and AI-Assisted Development",
+              "source_orders": [
+                10,
+                11
+              ],
+              "type": "core",
+              "subtopics": [
+                "A repeatable debugging process",
+                "Finding and isolating errors",
+                "Using AI tools without outsourcing understanding"
+              ],
+              "source_lectures": [
+                {
+                  "order": 10,
+                  "pathway_title": "Debugging (Fixing Errors)",
+                  "transcript_title": "Debugging (Fixing Errors)",
+                  "transcript_line": 24337,
+                  "raw_word_count_approx": 845
+                },
+                {
+                  "order": 11,
+                  "pathway_title": "The Rise of AI Tools (ChatGPT, Copilot, Cursor AI)",
+                  "transcript_title": "The Rise of AI Tools (ChatGPT, Copilot, Cursor AI, etc.)",
+                  "transcript_line": 25257,
+                  "raw_word_count_approx": 3069
+                }
+              ],
+              "raw_source_words_approx": 3914,
+              "learning_role": "core",
+              "required_for_track_completion": true,
+              "assessment_profile": "core",
+              "supporting_lectures": [],
+              "content_rule": "Use selected lecture(s) as the spine; add only supporting material needed for a standalone lesson."
+            }
+          ],
+          "sequence": 2,
+          "assessment": {
+            "review_id": "JS-M02-REVIEW",
+            "review_profile": "module_review",
+            "question_count_target": 10,
+            "applied_challenge_count": 1,
+            "mastery_threshold_percent": 80,
+            "retry_policy": "Unlimited attempts; missed objectives enter spaced review."
+          },
+          "required_topic_ids": [
+            "JS-06",
+            "JS-07"
+          ],
+          "optional_or_nonlesson_ids": []
+        },
+        {
+          "id": "JS-M03",
+          "title": "Browser and DOM Foundations",
+          "topics": [
+            {
+              "id": "JS-08",
+              "title": "The DOM and DOM Manipulation",
+              "source_orders": [
+                12
+              ],
+              "type": "core",
+              "subtopics": [
+                "DOM tree",
+                "Selecting and changing elements",
+                "JavaScript-browser interaction"
+              ],
+              "source_lectures": [
+                {
+                  "order": 12,
+                  "pathway_title": "What's the DOM and DOM Manipulation",
+                  "transcript_title": "What's the DOM and DOM Manipulation",
+                  "transcript_line": 29282,
+                  "raw_word_count_approx": 1094
+                }
+              ],
+              "raw_source_words_approx": 1094,
+              "learning_role": "core",
+              "required_for_track_completion": true,
+              "assessment_profile": "core",
+              "supporting_lectures": [
+                "Selecting and Manipulating Elements",
+                "Handling Click Events",
+                "Manipulating CSS Styles"
+              ],
+              "content_rule": "Use selected lecture(s) as the spine; add only supporting material needed for a standalone lesson."
+            }
+          ],
+          "sequence": 3,
+          "assessment": {
+            "review_id": "JS-M03-REVIEW",
+            "review_profile": "module_review",
+            "question_count_target": 10,
+            "applied_challenge_count": 1,
+            "mastery_threshold_percent": 80,
+            "retry_policy": "Unlimited attempts; missed objectives enter spaced review."
+          },
+          "required_topic_ids": [
+            "JS-08"
+          ],
+          "optional_or_nonlesson_ids": []
+        },
+        {
+          "id": "JS-M04",
+          "title": "How JavaScript Works",
+          "topics": [
+            {
+              "id": "JS-09",
+              "title": "Runtime and Execution Model",
+              "source_orders": [
+                13,
+                14,
+                15
+              ],
+              "type": "core",
+              "subtopics": [
+                "High-level JavaScript model",
+                "Engine and runtime",
+                "Execution contexts",
+                "Call stack"
+              ],
+              "source_lectures": [
+                {
+                  "order": 13,
+                  "pathway_title": "An high-level Overview of JavaScript",
+                  "transcript_title": "An High-Level Overview of JavaScript",
+                  "transcript_line": 37552,
+                  "raw_word_count_approx": 1869
+                },
+                {
+                  "order": 14,
+                  "pathway_title": "The JavaScript Engine and Runtime",
+                  "transcript_title": "The JavaScript Engine and Runtime",
+                  "transcript_line": 38025,
+                  "raw_word_count_approx": 2170
+                },
+                {
+                  "order": 15,
+                  "pathway_title": "Execution Contexts and The Call Stack",
+                  "transcript_title": "Execution Contexts and The Call Stack",
+                  "transcript_line": 38556,
+                  "raw_word_count_approx": 2811
+                }
+              ],
+              "raw_source_words_approx": 6850,
+              "learning_role": "core",
+              "required_for_track_completion": true,
+              "assessment_profile": "core",
+              "supporting_lectures": [],
+              "content_rule": "Use selected lecture(s) as the spine; add only supporting material needed for a standalone lesson."
+            },
+            {
+              "id": "JS-10",
+              "title": "Scope, Scope Chain, Hoisting, and the TDZ",
+              "source_orders": [
+                16,
+                17
+              ],
+              "type": "core",
+              "subtopics": [
+                "Lexical scope",
+                "Scope chain",
+                "Variable environment",
+                "Hoisting",
+                "Temporal Dead Zone"
+              ],
+              "source_lectures": [
+                {
+                  "order": 16,
+                  "pathway_title": "Scope and The Scope Chain",
+                  "transcript_title": "Scope and The Scope Chain",
+                  "transcript_line": 39263,
+                  "raw_word_count_approx": 4059
+                },
+                {
+                  "order": 17,
+                  "pathway_title": "Variable environment: Hoisting and The TDZ",
+                  "transcript_title": "Variable Environment: Hoisting and The TDZ",
+                  "transcript_line": 41229,
+                  "raw_word_count_approx": 1749
+                }
+              ],
+              "raw_source_words_approx": 5808,
+              "learning_role": "core",
+              "required_for_track_completion": true,
+              "assessment_profile": "core",
+              "supporting_lectures": [],
+              "content_rule": "Use selected lecture(s) as the spine; add only supporting material needed for a standalone lesson."
+            },
+            {
+              "id": "JS-11",
+              "title": "The `this` Keyword",
+              "source_orders": [
+                18
+              ],
+              "type": "core",
+              "subtopics": [
+                "How `this` is assigned",
+                "Method calls",
+                "Common `this` pitfalls"
+              ],
+              "source_lectures": [
+                {
+                  "order": 18,
+                  "pathway_title": "The this Keyword",
+                  "transcript_title": "The this Keyword",
+                  "transcript_line": 42281,
+                  "raw_word_count_approx": 1086
+                }
+              ],
+              "raw_source_words_approx": 1086,
+              "learning_role": "core",
+              "required_for_track_completion": true,
+              "assessment_profile": "core",
+              "supporting_lectures": [],
+              "content_rule": "Use selected lecture(s) as the spine; add only supporting material needed for a standalone lesson."
+            },
+            {
+              "id": "JS-12",
+              "title": "Memory Management and References",
+              "source_orders": [
+                19,
+                20
+              ],
+              "type": "core",
+              "subtopics": [
+                "Primitives versus objects",
+                "Stack and heap mental model",
+                "References",
+                "Garbage collection"
+              ],
+              "source_lectures": [
+                {
+                  "order": 19,
+                  "pathway_title": "Memory Management: Primitives vs. Objects",
+                  "transcript_title": "Memory Management: Primitives vs. Objects",
+                  "transcript_line": 43778,
+                  "raw_word_count_approx": 2221
+                },
+                {
+                  "order": 20,
+                  "pathway_title": "Memory Management: Garbage Collection",
+                  "transcript_title": "Memory Management: Garbage Collection",
+                  "transcript_line": 45096,
+                  "raw_word_count_approx": 2489
+                }
+              ],
+              "raw_source_words_approx": 4710,
+              "learning_role": "core",
+              "required_for_track_completion": true,
+              "assessment_profile": "core",
+              "supporting_lectures": [],
+              "content_rule": "Use selected lecture(s) as the spine; add only supporting material needed for a standalone lesson."
+            }
+          ],
+          "sequence": 4,
+          "assessment": {
+            "review_id": "JS-M04-REVIEW",
+            "review_profile": "module_review",
+            "question_count_target": 12,
+            "applied_challenge_count": 1,
+            "mastery_threshold_percent": 80,
+            "retry_policy": "Unlimited attempts; missed objectives enter spaced review."
+          },
+          "required_topic_ids": [
+            "JS-09",
+            "JS-10",
+            "JS-11",
+            "JS-12"
+          ],
+          "optional_or_nonlesson_ids": []
+        },
+        {
+          "id": "JS-M05",
+          "title": "Data Structures and Functional Techniques",
+          "topics": [
+            {
+              "id": "JS-13",
+              "title": "Choosing the Right Data Structure",
+              "source_orders": [
+                21
+              ],
+              "type": "core",
+              "subtopics": [
+                "Arrays and objects",
+                "Sets and maps",
+                "Selection criteria and trade-offs"
+              ],
+              "source_lectures": [
+                {
+                  "order": 21,
+                  "pathway_title": "Summary: Which Data Structure to Use?",
+                  "transcript_title": "Summary: Which Data Structure to Use?",
+                  "transcript_line": 53698,
+                  "raw_word_count_approx": 1577
+                }
+              ],
+              "raw_source_words_approx": 1577,
+              "learning_role": "core",
+              "required_for_track_completion": true,
+              "assessment_profile": "core",
+              "supporting_lectures": [
+                "Introduction to Arrays",
+                "Introduction to Objects",
+                "Sets",
+                "Maps: Fundamentals",
+                "Maps: Iteration"
+              ],
+              "content_rule": "Use selected lecture(s) as the spine; add only supporting material needed for a standalone lesson."
+            },
+            {
+              "id": "JS-14",
+              "title": "First-Class and Higher-Order Functions",
+              "source_orders": [
+                22
+              ],
+              "type": "core",
+              "subtopics": [
+                "Functions as values",
+                "Callbacks",
+                "Functions returning functions"
+              ],
+              "source_lectures": [
+                {
+                  "order": 22,
+                  "pathway_title": "First-Class and Higher-Order Functions",
+                  "transcript_title": "First-Class and Higher-Order Functions",
+                  "transcript_line": 57633,
+                  "raw_word_count_approx": 894
+                }
+              ],
+              "raw_source_words_approx": 894,
+              "learning_role": "core",
+              "required_for_track_completion": true,
+              "assessment_profile": "core",
+              "supporting_lectures": [
+                "Functions Accepting Callback Functions",
+                "Functions Returning Functions"
+              ],
+              "content_rule": "Use selected lecture(s) as the spine; add only supporting material needed for a standalone lesson."
+            },
+            {
+              "id": "JS-15",
+              "title": "Closures",
+              "source_orders": [
+                23
+              ],
+              "type": "core",
+              "subtopics": [
+                "Lexical environment",
+                "Retained variables",
+                "Practical closure patterns"
+              ],
+              "source_lectures": [
+                {
+                  "order": 23,
+                  "pathway_title": "Closures",
+                  "transcript_title": "Closures",
+                  "transcript_line": 60523,
+                  "raw_word_count_approx": 3458
+                }
+              ],
+              "raw_source_words_approx": 3458,
+              "learning_role": "core",
+              "required_for_track_completion": true,
+              "assessment_profile": "core",
+              "supporting_lectures": [
+                "More Closure Examples"
+              ],
+              "content_rule": "Use selected lecture(s) as the spine; add only supporting material needed for a standalone lesson."
+            },
+            {
+              "id": "JS-16",
+              "title": "Array Transformations and Method Selection",
+              "source_orders": [
+                24,
+                25
+              ],
+              "type": "core",
+              "subtopics": [
+                "`map`",
+                "`filter`",
+                "`reduce`",
+                "Method chaining",
+                "Choosing an array method"
+              ],
+              "source_lectures": [
+                {
+                  "order": 24,
+                  "pathway_title": "Data Transformations: map, filter, reduce",
+                  "transcript_title": "Data Transformations: map, filter, reduce",
+                  "transcript_line": 64589,
+                  "raw_word_count_approx": 767
+                },
+                {
+                  "order": 25,
+                  "pathway_title": "Summary: Which Array Method to Use?",
+                  "transcript_title": "Summary: Which Array Method to Use?",
+                  "transcript_line": 73274,
+                  "raw_word_count_approx": 1876
+                }
+              ],
+              "raw_source_words_approx": 2643,
+              "learning_role": "core",
+              "required_for_track_completion": true,
+              "assessment_profile": "core",
+              "supporting_lectures": [
+                "The map Method",
+                "The filter Method",
+                "The reduce Method",
+                "The Magic of Chaining Methods"
+              ],
+              "content_rule": "Use selected lecture(s) as the spine; add only supporting material needed for a standalone lesson."
+            }
+          ],
+          "sequence": 5,
+          "assessment": {
+            "review_id": "JS-M05-REVIEW",
+            "review_profile": "module_review",
+            "question_count_target": 12,
+            "applied_challenge_count": 1,
+            "mastery_threshold_percent": 80,
+            "retry_policy": "Unlimited attempts; missed objectives enter spaced review."
+          },
+          "required_topic_ids": [
+            "JS-13",
+            "JS-14",
+            "JS-15",
+            "JS-16"
+          ],
+          "optional_or_nonlesson_ids": []
+        },
+        {
+          "id": "JS-M06",
+          "title": "DOM Internals and Script Loading",
+          "topics": [
+            {
+              "id": "JS-17",
+              "title": "DOM Internals and Event Propagation",
+              "source_orders": [
+                26,
+                27
+              ],
+              "type": "core",
+              "subtopics": [
+                "How the DOM is represented",
+                "Event bubbling",
+                "Event capturing",
+                "Event delegation implications"
+              ],
+              "source_lectures": [
+                {
+                  "order": 26,
+                  "pathway_title": "How the DOM Really Works",
+                  "transcript_title": "How the DOM Really Works",
+                  "transcript_line": 84210,
+                  "raw_word_count_approx": 1599
+                },
+                {
+                  "order": 27,
+                  "pathway_title": "Event Propagation: Bubbling and Capturing",
+                  "transcript_title": "Event Propagation: Bubbling and Capturing",
+                  "transcript_line": 86907,
+                  "raw_word_count_approx": 786
+                }
+              ],
+              "raw_source_words_approx": 2385,
+              "learning_role": "core",
+              "required_for_track_completion": true,
+              "assessment_profile": "core",
+              "supporting_lectures": [
+                "Event Propagation in Practice",
+                "Event Delegation: Implementing Page Navigation"
+              ],
+              "content_rule": "Use selected lecture(s) as the spine; add only supporting material needed for a standalone lesson."
+            },
+            {
+              "id": "JS-18",
+              "title": "Efficient Script Loading",
+              "source_orders": [
+                28
+              ],
+              "type": "core",
+              "subtopics": [
+                "Normal scripts",
+                "`defer`",
+                "`async`",
+                "Execution-order trade-offs"
+              ],
+              "source_lectures": [
+                {
+                  "order": 28,
+                  "pathway_title": "Efficient Script Loading: defer and async",
+                  "transcript_title": "Efficient Script Loading: defer and async",
+                  "transcript_line": 94975,
+                  "raw_word_count_approx": 2180
+                }
+              ],
+              "raw_source_words_approx": 2180,
+              "learning_role": "core",
+              "required_for_track_completion": true,
+              "assessment_profile": "core",
+              "supporting_lectures": [],
+              "content_rule": "Use selected lecture(s) as the spine; add only supporting material needed for a standalone lesson."
+            }
+          ],
+          "sequence": 6,
+          "assessment": {
+            "review_id": "JS-M06-REVIEW",
+            "review_profile": "module_review",
+            "question_count_target": 10,
+            "applied_challenge_count": 1,
+            "mastery_threshold_percent": 80,
+            "retry_policy": "Unlimited attempts; missed objectives enter spaced review."
+          },
+          "required_topic_ids": [
+            "JS-17",
+            "JS-18"
+          ],
+          "optional_or_nonlesson_ids": []
+        },
+        {
+          "id": "JS-M07",
+          "title": "Object-Oriented JavaScript",
+          "topics": [
+            {
+              "id": "JS-19",
+              "title": "OOP Foundations and JavaScript's Object Model",
+              "source_orders": [
+                29,
+                30
+              ],
+              "type": "core",
+              "subtopics": [
+                "OOP principles",
+                "Objects and classes as mental models",
+                "JavaScript OOP approaches"
+              ],
+              "source_lectures": [
+                {
+                  "order": 29,
+                  "pathway_title": "What is Object-Oriented Programming?",
+                  "transcript_title": "What is Object-Oriented Programming?",
+                  "transcript_line": 95490,
+                  "raw_word_count_approx": 3301
+                },
+                {
+                  "order": 30,
+                  "pathway_title": "OOP in JavaScript",
+                  "transcript_title": "OOP in JavaScript",
+                  "transcript_line": 96419,
+                  "raw_word_count_approx": 1486
+                }
+              ],
+              "raw_source_words_approx": 4787,
+              "learning_role": "core",
+              "required_for_track_completion": true,
+              "assessment_profile": "core",
+              "supporting_lectures": [
+                "Constructor Functions and the new Operator",
+                "Prototypes",
+                "ES6 Classes"
+              ],
+              "content_rule": "Use selected lecture(s) as the spine; add only supporting material needed for a standalone lesson."
+            },
+            {
+              "id": "JS-20",
+              "title": "Prototypes, the Prototype Chain, and `Object.create`",
+              "source_orders": [
+                31,
+                32
+              ],
+              "type": "core",
+              "subtopics": [
+                "Prototypal inheritance",
+                "Prototype lookup",
+                "Delegation with `Object.create`"
+              ],
+              "source_lectures": [
+                {
+                  "order": 31,
+                  "pathway_title": "Prototypal Inheritance and The Prototype Chain",
+                  "transcript_title": "Prototypal Inheritance and The Prototype Chain",
+                  "transcript_line": 97948,
+                  "raw_word_count_approx": 1649
+                },
+                {
+                  "order": 32,
+                  "pathway_title": "Object.create",
+                  "transcript_title": "Object.create",
+                  "transcript_line": 100103,
+                  "raw_word_count_approx": 1591
+                }
+              ],
+              "raw_source_words_approx": 3240,
+              "learning_role": "core",
+              "required_for_track_completion": true,
+              "assessment_profile": "core",
+              "supporting_lectures": [
+                "Prototypes",
+                "Prototypal Inheritance on Built-In Objects"
+              ],
+              "content_rule": "Use selected lecture(s) as the spine; add only supporting material needed for a standalone lesson."
+            },
+            {
+              "id": "JS-21",
+              "title": "Inheritance Patterns and ES6 Classes",
+              "source_orders": [
+                33,
+                34,
+                35
+              ],
+              "type": "core",
+              "subtopics": [
+                "Constructor-function inheritance",
+                "`Object.create` inheritance",
+                "ES6 class syntax and comparison"
+              ],
+              "source_lectures": [
+                {
+                  "order": 33,
+                  "pathway_title": "Inheritance Between \"Classes\": Constructor Functions",
+                  "transcript_title": "Inheritance Between \"Classes\": Constructor Functions",
+                  "transcript_line": 100518,
+                  "raw_word_count_approx": 3130
+                },
+                {
+                  "order": 34,
+                  "pathway_title": "Inheritance Between \"Classes\": Object.create",
+                  "transcript_title": "Inheritance Between \"Classes\": Object.create",
+                  "transcript_line": 101712,
+                  "raw_word_count_approx": 1255
+                },
+                {
+                  "order": 35,
+                  "pathway_title": "ES6 Classes summary",
+                  "transcript_title": "ES6 Classes Summary",
+                  "transcript_line": 103504,
+                  "raw_word_count_approx": 1166
+                }
+              ],
+              "raw_source_words_approx": 5551,
+              "learning_role": "core",
+              "required_for_track_completion": true,
+              "assessment_profile": "core",
+              "supporting_lectures": [
+                "Inheritance Between \"Classes\": ES6 Classes",
+                "Encapsulation: Private Class Fields and Methods"
+              ],
+              "content_rule": "Use selected lecture(s) as the spine; add only supporting material needed for a standalone lesson."
+            }
+          ],
+          "sequence": 7,
+          "assessment": {
+            "review_id": "JS-M07-REVIEW",
+            "review_profile": "module_review",
+            "question_count_target": 10,
+            "applied_challenge_count": 1,
+            "mastery_threshold_percent": 80,
+            "retry_policy": "Unlimited attempts; missed objectives enter spaced review."
+          },
+          "required_topic_ids": [
+            "JS-19",
+            "JS-20",
+            "JS-21"
+          ],
+          "optional_or_nonlesson_ids": []
+        },
+        {
+          "id": "JS-M08",
+          "title": "Project Planning: Mapty",
+          "topics": [
+            {
+              "id": "JS-22",
+              "title": "Planning a Web Project — Mapty Case Study",
+              "source_orders": [
+                36,
+                37
+              ],
+              "type": "core_with_case_study",
+              "subtopics": [
+                "Requirements and feature planning",
+                "User stories and flowcharts",
+                "Architecture planning",
+                "Project retrospective"
+              ],
+              "source_lectures": [
+                {
+                  "order": 36,
+                  "pathway_title": "Mapty Project: How to Plan a Web Project",
+                  "transcript_title": "How to Plan a Web Project",
+                  "transcript_line": 104337,
+                  "raw_word_count_approx": 3123
+                },
+                {
+                  "order": 37,
+                  "pathway_title": "Mapty Project: Final Considerations",
+                  "transcript_title": "Final Considerations",
+                  "transcript_line": 112688,
+                  "raw_word_count_approx": 1019
+                }
+              ],
+              "raw_source_words_approx": 4142,
+              "learning_role": "applied_case_study",
+              "required_for_track_completion": true,
+              "assessment_profile": "applied_case_study",
+              "supporting_lectures": [],
+              "content_rule": "Use selected lecture(s) as the spine; add only supporting material needed for a standalone lesson."
+            }
+          ],
+          "sequence": 8,
+          "assessment": {
+            "review_id": "JS-M08-REVIEW",
+            "review_profile": "module_review",
+            "question_count_target": 10,
+            "applied_challenge_count": 1,
+            "mastery_threshold_percent": 80,
+            "retry_policy": "Unlimited attempts; missed objectives enter spaced review."
+          },
+          "required_topic_ids": [
+            "JS-22"
+          ],
+          "optional_or_nonlesson_ids": []
+        },
+        {
+          "id": "JS-M09",
+          "title": "Asynchronous JavaScript",
+          "topics": [
+            {
+              "id": "JS-23",
+              "title": "Asynchronous JavaScript and the Web Request Model",
+              "source_orders": [
+                38,
+                39
+              ],
+              "type": "core",
+              "subtopics": [
+                "Synchronous versus asynchronous work",
+                "AJAX and APIs",
+                "HTTP requests and responses"
+              ],
+              "source_lectures": [
+                {
+                  "order": 38,
+                  "pathway_title": "Asynchronous JavaScript, AJAX and APIs",
+                  "transcript_title": "Asynchronous JavaScript, AJAX and APIs",
+                  "transcript_line": 112935,
+                  "raw_word_count_approx": 2872
+                },
+                {
+                  "order": 39,
+                  "pathway_title": "How the Web Works: Requests and Responses",
+                  "transcript_title": "[OPTIONAL] How the Web Works: Requests and Responses",
+                  "transcript_line": 114425,
+                  "raw_word_count_approx": 2175
+                }
+              ],
+              "raw_source_words_approx": 5047,
+              "learning_role": "core",
+              "required_for_track_completion": true,
+              "assessment_profile": "core",
+              "supporting_lectures": [],
+              "content_rule": "Use selected lecture(s) as the spine; add only supporting material needed for a standalone lesson."
+            },
+            {
+              "id": "JS-24",
+              "title": "Promises and the Fetch API",
+              "source_orders": [
+                40
+              ],
+              "type": "core",
+              "subtopics": [
+                "Promise states",
+                "Fetching data",
+                "Success and failure paths"
+              ],
+              "source_lectures": [
+                {
+                  "order": 40,
+                  "pathway_title": "Promises and the Fetch API",
+                  "transcript_title": "Promises and the Fetch API",
+                  "transcript_line": 115433,
+                  "raw_word_count_approx": 1526
+                }
+              ],
+              "raw_source_words_approx": 1526,
+              "learning_role": "core",
+              "required_for_track_completion": true,
+              "assessment_profile": "core",
+              "supporting_lectures": [
+                "Consuming Promises",
+                "Chaining Promises",
+                "Handling Rejected Promises",
+                "Consuming Promises with Async/Await",
+                "Error Handling With try...catch"
+              ],
+              "content_rule": "Use selected lecture(s) as the spine; add only supporting material needed for a standalone lesson."
+            },
+            {
+              "id": "JS-25",
+              "title": "The Event Loop and Async Execution",
+              "source_orders": [
+                41
+              ],
+              "type": "core",
+              "subtopics": [
+                "Call stack",
+                "Web APIs",
+                "Callback and microtask queues",
+                "Event-loop scheduling"
+              ],
+              "source_lectures": [
+                {
+                  "order": 41,
+                  "pathway_title": "Asynchronous Behind the Scenes: The Event Loop",
+                  "transcript_title": "Asynchronous Behind the Scenes: The Event Loop",
+                  "transcript_line": 118333,
+                  "raw_word_count_approx": 2841
+                }
+              ],
+              "raw_source_words_approx": 2841,
+              "learning_role": "core",
+              "required_for_track_completion": true,
+              "assessment_profile": "core",
+              "supporting_lectures": [],
+              "content_rule": "Use selected lecture(s) as the spine; add only supporting material needed for a standalone lesson."
+            }
+          ],
+          "sequence": 9,
+          "assessment": {
+            "review_id": "JS-M09-REVIEW",
+            "review_profile": "module_review",
+            "question_count_target": 10,
+            "applied_challenge_count": 1,
+            "mastery_threshold_percent": 80,
+            "retry_policy": "Unlimited attempts; missed objectives enter spaced review."
+          },
+          "required_topic_ids": [
+            "JS-23",
+            "JS-24",
+            "JS-25"
+          ],
+          "optional_or_nonlesson_ids": []
+        },
+        {
+          "id": "JS-M10",
+          "title": "Modern JavaScript Development",
+          "topics": [
+            {
+              "id": "JS-26",
+              "title": "Modern Development Workflow and Modules",
+              "source_orders": [
+                42,
+                43
+              ],
+              "type": "core",
+              "subtopics": [
+                "Packages and tooling",
+                "Bundling and transpilation",
+                "Modules",
+                "Imports, exports, and dependencies"
+              ],
+              "source_lectures": [
+                {
+                  "order": 42,
+                  "pathway_title": "An Overview of Modern JavaScript Development",
+                  "transcript_title": "An Overview of Modern JavaScript Development",
+                  "transcript_line": 124030,
+                  "raw_word_count_approx": 1050
+                },
+                {
+                  "order": 43,
+                  "pathway_title": "An Overview of Modules in JavaScript",
+                  "transcript_title": "An Overview of Modules in JavaScript",
+                  "transcript_line": 124289,
+                  "raw_word_count_approx": 2365
+                }
+              ],
+              "raw_source_words_approx": 3415,
+              "learning_role": "core",
+              "required_for_track_completion": true,
+              "assessment_profile": "core",
+              "supporting_lectures": [
+                "Exporting and Importing in ES6 Modules",
+                "Introduction to NPM",
+                "Bundling With Parcel and NPM Scripts",
+                "Configuring Babel and Polyfilling"
+              ],
+              "content_rule": "Use selected lecture(s) as the spine; add only supporting material needed for a standalone lesson."
+            },
+            {
+              "id": "JS-27",
+              "title": "Clean, Modern, and Declarative JavaScript",
+              "source_orders": [
+                44
+              ],
+              "type": "core",
+              "subtopics": [
+                "Readable code",
+                "Declarative versus imperative style",
+                "Functional principles",
+                "Refactoring practices"
+              ],
+              "source_lectures": [
+                {
+                  "order": 44,
+                  "pathway_title": "Modern, Clean and Declarative JavaScript Programming",
+                  "transcript_title": "Review: Writing Clean and Modern JavaScript",
+                  "transcript_line": 129550,
+                  "raw_word_count_approx": 1713
+                }
+              ],
+              "raw_source_words_approx": 1713,
+              "learning_role": "core",
+              "required_for_track_completion": true,
+              "assessment_profile": "core",
+              "supporting_lectures": [
+                "Review: Writing Clean and Modern JavaScript",
+                "Declarative and Functional JavaScript Principles"
+              ],
+              "content_rule": "Use selected lecture(s) as the spine; add only supporting material needed for a standalone lesson."
+            }
+          ],
+          "sequence": 10,
+          "assessment": {
+            "review_id": "JS-M10-REVIEW",
+            "review_profile": "module_review",
+            "question_count_target": 10,
+            "applied_challenge_count": 1,
+            "mastery_threshold_percent": 80,
+            "retry_policy": "Unlimited attempts; missed objectives enter spaced review."
+          },
+          "required_topic_ids": [
+            "JS-26",
+            "JS-27"
+          ],
+          "optional_or_nonlesson_ids": []
+        },
+        {
+          "id": "JS-M11",
+          "title": "Application Architecture: Forkify",
+          "topics": [
+            {
+              "id": "JS-28",
+              "title": "Forkify Application Planning",
+              "source_orders": [
+                45
+              ],
+              "type": "case_study",
+              "subtopics": [
+                "Feature decomposition",
+                "Project architecture planning",
+                "Data and UI flow"
+              ],
+              "source_lectures": [
+                {
+                  "order": 45,
+                  "pathway_title": "Forkify Project Overview and Planning",
+                  "transcript_title": "Project Overview and Planning (I)",
+                  "transcript_line": 132721,
+                  "raw_word_count_approx": 2404
+                }
+              ],
+              "raw_source_words_approx": 2404,
+              "learning_role": "applied_case_study",
+              "required_for_track_completion": true,
+              "assessment_profile": "applied_case_study",
+              "supporting_lectures": [],
+              "content_rule": "Use selected lecture(s) as the spine; add only supporting material needed for a standalone lesson."
+            },
+            {
+              "id": "JS-29",
+              "title": "MVC and Publisher–Subscriber Architecture",
+              "source_orders": [
+                46,
+                47
+              ],
+              "type": "core",
+              "subtopics": [
+                "Model, view, and controller responsibilities",
+                "Separation of concerns",
+                "Publisher–subscriber event flow"
+              ],
+              "source_lectures": [
+                {
+                  "order": 46,
+                  "pathway_title": "The MVC Architecture",
+                  "transcript_title": "The MVC Architecture",
+                  "transcript_line": 135581,
+                  "raw_word_count_approx": 2474
+                },
+                {
+                  "order": 47,
+                  "pathway_title": "Event Handlers in MVC: Publisher-Subscriber Pattern",
+                  "transcript_title": "Event Handlers in MVC: Publisher-Subscriber Pattern",
+                  "transcript_line": 138432,
+                  "raw_word_count_approx": 2253
+                }
+              ],
+              "raw_source_words_approx": 4727,
+              "learning_role": "core",
+              "required_for_track_completion": true,
+              "assessment_profile": "core",
+              "supporting_lectures": [],
+              "content_rule": "Use selected lecture(s) as the spine; add only supporting material needed for a standalone lesson."
+            },
+            {
+              "id": "JS-30",
+              "title": "Forkify Capstone Retrospective",
+              "source_orders": [
+                48
+              ],
+              "type": "recap",
+              "subtopics": [
+                "Architecture review",
+                "Trade-offs",
+                "What to carry into future projects"
+              ],
+              "source_lectures": [
+                {
+                  "order": 48,
+                  "pathway_title": "Forkify Project: Final Considerations",
+                  "transcript_title": "Wrapping Up: Final Considerations",
+                  "transcript_line": 150246,
+                  "raw_word_count_approx": 2364
+                }
+              ],
+              "raw_source_words_approx": 2364,
+              "learning_role": "module_review",
+              "required_for_track_completion": false,
+              "assessment_profile": "module_review",
+              "supporting_lectures": [],
+              "content_rule": "Use selected lecture(s) as the spine; add only supporting material needed for a standalone lesson.",
+              "merged_into": [
+                "JS-M11-REVIEW"
+              ]
+            }
+          ],
+          "sequence": 11,
+          "assessment": {
+            "review_id": "JS-M11-REVIEW",
+            "review_profile": "module_review",
+            "question_count_target": 10,
+            "applied_challenge_count": 1,
+            "mastery_threshold_percent": 80,
+            "retry_policy": "Unlimited attempts; missed objectives enter spaced review."
+          },
+          "required_topic_ids": [
+            "JS-28",
+            "JS-29"
+          ],
+          "optional_or_nonlesson_ids": [
+            "JS-30"
+          ]
+        }
+      ]
+    },
+    "react": {
+      "source_items": {
+        "1": {
+          "pathway_title": "Watch Before You Start!",
+          "transcript_title": "Watch Before You Start!",
+          "transcript_line": 1387,
+          "raw_word_count_approx": 824
+        },
+        "2": {
+          "pathway_title": "Why Do front-end Frameworks exist?",
+          "transcript_title": "Why Do Front-End Frameworks Exist?",
+          "transcript_line": 1809,
+          "raw_word_count_approx": 1712
+        },
+        "3": {
+          "pathway_title": "What is React?",
+          "transcript_title": "What is React?",
+          "transcript_line": 2511,
+          "raw_word_count_approx": 1477
+        },
+        "4": {
+          "pathway_title": "Setting Up a New React Project: The Two Options",
+          "transcript_title": "Setting Up a New React Project: The Options",
+          "transcript_line": 3927,
+          "raw_word_count_approx": 1107
+        },
+        "5": {
+          "pathway_title": "Components as Building Blocks",
+          "transcript_title": "Components as Building Blocks",
+          "transcript_line": 9711,
+          "raw_word_count_approx": 733
+        },
+        "6": {
+          "pathway_title": "What is JSX?",
+          "transcript_title": "What is JSX?",
+          "transcript_line": 10259,
+          "raw_word_count_approx": 959
+        },
+        "7": {
+          "pathway_title": "Separation of Concerns",
+          "transcript_title": "Separation of Concerns",
+          "transcript_line": 10940,
+          "raw_word_count_approx": 927
+        },
+        "8": {
+          "pathway_title": "Props, Immutability, and One-Way Data Flow",
+          "transcript_title": "Props, Immutability, and One-Way Data Flow",
+          "transcript_line": 11933,
+          "raw_word_count_approx": 1110
+        },
+        "9": {
+          "pathway_title": "The Rules of JSX",
+          "transcript_title": "The Rules of JSX",
+          "transcript_line": 12815,
+          "raw_word_count_approx": 558
+        },
+        "10": {
+          "pathway_title": "Section Summary",
+          "transcript_title": "Section Summary",
+          "transcript_line": 14976,
+          "raw_word_count_approx": 890
+        },
+        "11": {
+          "pathway_title": "What is State in React?",
+          "transcript_title": "What is State in React?",
+          "transcript_line": 16292,
+          "raw_word_count_approx": 986
+        },
+        "12": {
+          "pathway_title": "The Mechanics of State",
+          "transcript_title": "The Mechanics of State",
+          "transcript_line": 17085,
+          "raw_word_count_approx": 763
+        },
+        "13": {
+          "pathway_title": "More Thoughts About State + State Guidelines",
+          "transcript_title": "More Thoughts About State + State Guidelines",
+          "transcript_line": 18073,
+          "raw_word_count_approx": 1066
+        },
+        "14": {
+          "pathway_title": "State vs. Props",
+          "transcript_title": "State vs. Props",
+          "transcript_line": 21139,
+          "raw_word_count_approx": 558
+        },
+        "15": {
+          "pathway_title": "What is \"Thinking in React\"?",
+          "transcript_title": "What is \"Thinking in React\"?",
+          "transcript_line": 22206,
+          "raw_word_count_approx": 796
+        },
+        "16": {
+          "pathway_title": "Fundamentals of State Management",
+          "transcript_title": "Fundamentals of State Management",
+          "transcript_line": 22407,
+          "raw_word_count_approx": 1577
+        },
+        "17": {
+          "pathway_title": "Derived State",
+          "transcript_title": "Derived State",
+          "transcript_line": 24336,
+          "raw_word_count_approx": 476
+        },
+        "18": {
+          "pathway_title": "The children Prop: Making a Reusable Button",
+          "transcript_title": "The \"children\" Prop: Making a Reusable Button",
+          "transcript_line": 26330,
+          "raw_word_count_approx": 2513
+        },
+        "19": {
+          "pathway_title": "How to Split a UI Into Components",
+          "transcript_title": "How to Split a UI Into Components",
+          "transcript_line": 31754,
+          "raw_word_count_approx": 1993
+        },
+        "20": {
+          "pathway_title": "Component Categories",
+          "transcript_title": "Component Categories",
+          "transcript_line": 33150,
+          "raw_word_count_approx": 380
+        },
+        "21": {
+          "pathway_title": "Component Composition",
+          "transcript_title": "Component Composition",
+          "transcript_line": 33554,
+          "raw_word_count_approx": 729
+        },
+        "22": {
+          "pathway_title": "Props as a Component API",
+          "transcript_title": "Props as a Component API",
+          "transcript_line": 35633,
+          "raw_word_count_approx": 702
+        },
+        "23": {
+          "pathway_title": "Components, Instances, and Elements",
+          "transcript_title": "Components, Instances, and Elements",
+          "transcript_line": 37940,
+          "raw_word_count_approx": 774
+        },
+        "24": {
+          "pathway_title": "How Rendering Works: Overview",
+          "transcript_title": "How Rendering Works: Overview",
+          "transcript_line": 38392,
+          "raw_word_count_approx": 1103
+        },
+        "25": {
+          "pathway_title": "How Rendering Works: The Render Phase",
+          "transcript_title": "How Rendering Works: The Render Phase",
+          "transcript_line": 38699,
+          "raw_word_count_approx": 2816
+        },
+        "26": {
+          "pathway_title": "How Rendering Works: The Commit Phase",
+          "transcript_title": "How Rendering Works: The Commit Phase",
+          "transcript_line": 39334,
+          "raw_word_count_approx": 1833
+        },
+        "27": {
+          "pathway_title": "How Diffing Works",
+          "transcript_title": "How Diffing Works",
+          "transcript_line": 39767,
+          "raw_word_count_approx": 909
+        },
+        "28": {
+          "pathway_title": "The Key Prop",
+          "transcript_title": "The Key Prop",
+          "transcript_line": 40193,
+          "raw_word_count_approx": 1282
+        },
+        "29": {
+          "pathway_title": "Rules for Render Logic: Pure components",
+          "transcript_title": "Rules for Render Logic: Pure Components",
+          "transcript_line": 40801,
+          "raw_word_count_approx": 1439
+        },
+        "30": {
+          "pathway_title": "State Update Batching",
+          "transcript_title": "State Update Batching",
+          "transcript_line": 41136,
+          "raw_word_count_approx": 1439
+        },
+        "31": {
+          "pathway_title": "How Events Work in React",
+          "transcript_title": "How Events Work in React",
+          "transcript_line": 42036,
+          "raw_word_count_approx": 2188
+        },
+        "32": {
+          "pathway_title": "Libraries vs. Frameworks & The React Ecosystem",
+          "transcript_title": "Libraries vs. Frameworks & The React Ecosystem",
+          "transcript_line": 42549,
+          "raw_word_count_approx": 1563
+        },
+        "33": {
+          "pathway_title": "Section Summary: Practical Takeaways",
+          "transcript_title": "Section Summary: Practical Takeaways",
+          "transcript_line": 42942,
+          "raw_word_count_approx": 1595
+        },
+        "34": {
+          "pathway_title": "The Component Lifecycle",
+          "transcript_title": "The Component Lifecycle",
+          "transcript_line": 43399,
+          "raw_word_count_approx": 668
+        },
+        "35": {
+          "pathway_title": "A First Look at Effects",
+          "transcript_title": "A First Look at Effects",
+          "transcript_line": 44116,
+          "raw_word_count_approx": 988
+        },
+        "36": {
+          "pathway_title": "The useEffect Dependency Array",
+          "transcript_title": "The useEffect Dependency Array",
+          "transcript_line": 45154,
+          "raw_word_count_approx": 1921
+        },
+        "37": {
+          "pathway_title": "The useEffect Cleanup Function",
+          "transcript_title": "The useEffect Cleanup Function",
+          "transcript_line": 48434,
+          "raw_word_count_approx": 662
+        },
+        "38": {
+          "pathway_title": "React Hooks and Their Rules",
+          "transcript_title": "React Hooks and Their Rules",
+          "transcript_line": 50371,
+          "raw_word_count_approx": 1727
+        },
+        "39": {
+          "pathway_title": "useState Summary",
+          "transcript_title": "useState Summary",
+          "transcript_line": 51919,
+          "raw_word_count_approx": 482
+        },
+        "40": {
+          "pathway_title": "Introducing Another Hook: useRef",
+          "transcript_title": "Introducing Another Hook: useRef",
+          "transcript_line": 52169,
+          "raw_word_count_approx": 853
+        },
+        "41": {
+          "pathway_title": "What are Custom Hooks? When to Create One?",
+          "transcript_title": "What are Custom Hooks? When to Create One?",
+          "transcript_line": 53158,
+          "raw_word_count_approx": 668
+        },
+        "42": {
+          "pathway_title": "Class Components vs. Function Components",
+          "transcript_title": "Class Components vs. Function Components",
+          "transcript_line": 55472,
+          "raw_word_count_approx": 825
+        },
+        "43": {
+          "pathway_title": "Managing State With useReducer",
+          "transcript_title": "Managing State With useReducer",
+          "transcript_line": 58860,
+          "raw_word_count_approx": 2223
+        },
+        "44": {
+          "pathway_title": "Section Summary: useState vs. useReducer",
+          "transcript_title": "Section Summary: useState vs. useReducer",
+          "transcript_line": 63686,
+          "raw_word_count_approx": 953
+        },
+        "45": {
+          "pathway_title": "Routing and Single-Page Applications (SPAs)",
+          "transcript_title": "Routing and Single-Page Applications (SPAs)",
+          "transcript_line": 65277,
+          "raw_word_count_approx": 1008
+        },
+        "46": {
+          "pathway_title": "Styling Options For React Applications",
+          "transcript_title": "Styling Options For React Applications",
+          "transcript_line": 66308,
+          "raw_word_count_approx": 897
+        },
+        "47": {
+          "pathway_title": "What is the Context API?",
+          "transcript_title": "What is the Context API?",
+          "transcript_line": 70824,
+          "raw_word_count_approx": 796
+        },
+        "48": {
+          "pathway_title": "Thinking In React: Advanced State Management",
+          "transcript_title": "Thinking In React: Advanced State Management",
+          "transcript_line": 72338,
+          "raw_word_count_approx": 1826
+        },
+        "49": {
+          "pathway_title": "Performance Optimization and Wasted Renders",
+          "transcript_title": "Performance Optimization and Wasted Renders",
+          "transcript_line": 79264,
+          "raw_word_count_approx": 963
+        },
+        "50": {
+          "pathway_title": "Understanding memo",
+          "transcript_title": "Understanding memo",
+          "transcript_line": 80263,
+          "raw_word_count_approx": 866
+        },
+        "51": {
+          "pathway_title": "Understanding useMemo and useCallback",
+          "transcript_title": "Understanding useMemo and useCallback",
+          "transcript_line": 80943,
+          "raw_word_count_approx": 1025
+        },
+        "52": {
+          "pathway_title": "Optimizing Bundle Size With Code Splitting",
+          "transcript_title": "Optimizing Bundle Size With Code Splitting",
+          "transcript_line": 82844,
+          "raw_word_count_approx": 2378
+        },
+        "53": {
+          "pathway_title": "Don't Optimize Prematurely!",
+          "transcript_title": "Don't Optimize Prematurely!",
+          "transcript_line": 83407,
+          "raw_word_count_approx": 422
+        },
+        "54": {
+          "pathway_title": "useEffect Rules and Best Practices",
+          "transcript_title": "useEffect Rules and Best Practices",
+          "transcript_line": 83516,
+          "raw_word_count_approx": 1559
+        },
+        "55": {
+          "pathway_title": "Introduction to Redux",
+          "transcript_title": "Introduction to Redux",
+          "transcript_line": 85639,
+          "raw_word_count_approx": 1884
+        },
+        "56": {
+          "pathway_title": "Redux Middleware and thunks",
+          "transcript_title": "Redux Middleware and Thunks",
+          "transcript_line": 88820,
+          "raw_word_count_approx": 651
+        },
+        "57": {
+          "pathway_title": "What is Redux Toolkit (RTK)?",
+          "transcript_title": "What is Redux Toolkit (RTK)?",
+          "transcript_line": 89981,
+          "raw_word_count_approx": 528
+        },
+        "58": {
+          "pathway_title": "Redux vs. Context API",
+          "transcript_title": "Redux vs. Context API",
+          "transcript_line": 91484,
+          "raw_word_count_approx": 1175
+        },
+        "59": {
+          "pathway_title": "Application Planning (“Fast React Pizza Co.”)",
+          "transcript_title": "Application Planning",
+          "transcript_line": 107423,
+          "raw_word_count_approx": 2944
+        },
+        "60": {
+          "pathway_title": "What is Tailwind CSS?",
+          "transcript_title": "What is Tailwind CSS?",
+          "transcript_line": 94730,
+          "raw_word_count_approx": 1224
+        },
+        "61": {
+          "pathway_title": "Application Planning (“The Wild Oasis”)",
+          "transcript_title": "Application Planning",
+          "transcript_line": 107423,
+          "raw_word_count_approx": 2944
+        },
+        "62": {
+          "pathway_title": "What is Supabase?",
+          "transcript_title": "What is Supabase?",
+          "transcript_line": 111048,
+          "raw_word_count_approx": 342
+        },
+        "63": {
+          "pathway_title": "Modeling Application State",
+          "transcript_title": "Modeling Application State",
+          "transcript_line": 111348,
+          "raw_word_count_approx": 884
+        },
+        "64": {
+          "pathway_title": "What is React Query?",
+          "transcript_title": "What is React Query?",
+          "transcript_line": 112878,
+          "raw_word_count_approx": 943
+        },
+        "65": {
+          "pathway_title": "An Overview of Reusability in React",
+          "transcript_title": "An Overview of Reusability in React",
+          "transcript_line": 119498,
+          "raw_word_count_approx": 870
+        }
+      },
+      "modules": [
+        {
+          "id": "R-M01",
+          "title": "React Orientation",
+          "topics": [
+            {
+              "id": "R-01",
+              "title": "Course Orientation",
+              "source_orders": [
+                1
+              ],
+              "type": "orientation",
+              "subtopics": [
+                "How to use the React pathway",
+                "Expected prerequisites"
+              ],
+              "source_lectures": [
+                {
+                  "order": 1,
+                  "pathway_title": "Watch Before You Start!",
+                  "transcript_title": "Watch Before You Start!",
+                  "transcript_line": 1387,
+                  "raw_word_count_approx": 824
+                }
+              ],
+              "raw_source_words_approx": 824,
+              "learning_role": "onboarding",
+              "required_for_track_completion": false,
+              "assessment_profile": "onboarding",
+              "supporting_lectures": [],
+              "content_rule": "Use selected lecture(s) as the spine; add only supporting material needed for a standalone lesson."
+            },
+            {
+              "id": "R-02",
+              "title": "Why Front-End Frameworks and React Exist",
+              "source_orders": [
+                2,
+                3
+              ],
+              "type": "core",
+              "subtopics": [
+                "Limits of manual DOM programming",
+                "Declarative UI",
+                "React's component model"
+              ],
+              "source_lectures": [
+                {
+                  "order": 2,
+                  "pathway_title": "Why Do front-end Frameworks exist?",
+                  "transcript_title": "Why Do Front-End Frameworks Exist?",
+                  "transcript_line": 1809,
+                  "raw_word_count_approx": 1712
+                },
+                {
+                  "order": 3,
+                  "pathway_title": "What is React?",
+                  "transcript_title": "What is React?",
+                  "transcript_line": 2511,
+                  "raw_word_count_approx": 1477
+                }
+              ],
+              "raw_source_words_approx": 3189,
+              "learning_role": "core",
+              "required_for_track_completion": true,
+              "assessment_profile": "core",
+              "supporting_lectures": [],
+              "content_rule": "Use selected lecture(s) as the spine; add only supporting material needed for a standalone lesson."
+            },
+            {
+              "id": "R-03",
+              "title": "Setting Up a React Project",
+              "source_orders": [
+                4
+              ],
+              "type": "core",
+              "subtopics": [
+                "Project setup options",
+                "Development environment choices"
+              ],
+              "source_lectures": [
+                {
+                  "order": 4,
+                  "pathway_title": "Setting Up a New React Project: The Two Options",
+                  "transcript_title": "Setting Up a New React Project: The Options",
+                  "transcript_line": 3927,
+                  "raw_word_count_approx": 1107
+                }
+              ],
+              "raw_source_words_approx": 1107,
+              "learning_role": "core",
+              "required_for_track_completion": true,
+              "assessment_profile": "core",
+              "supporting_lectures": [
+                "Setting Up a Project With Create-React-App",
+                "Creating Our First App With Vite: \"WorldWise\""
+              ],
+              "content_rule": "Use selected lecture(s) as the spine; add only supporting material needed for a standalone lesson."
+            }
+          ],
+          "sequence": 1,
+          "assessment": {
+            "review_id": "R-M01-REVIEW",
+            "review_profile": "module_review",
+            "question_count_target": 10,
+            "applied_challenge_count": 1,
+            "mastery_threshold_percent": 80,
+            "retry_policy": "Unlimited attempts; missed objectives enter spaced review."
+          },
+          "required_topic_ids": [
+            "R-02",
+            "R-03"
+          ],
+          "optional_or_nonlesson_ids": [
+            "R-01"
+          ]
+        },
+        {
+          "id": "R-M02",
+          "title": "Components, JSX, and Props",
+          "topics": [
+            {
+              "id": "R-04",
+              "title": "Components, JSX, and Separation of Concerns",
+              "source_orders": [
+                5,
+                6,
+                7
+              ],
+              "type": "core",
+              "subtopics": [
+                "Components as building blocks",
+                "JSX syntax and purpose",
+                "React's separation-of-concerns model"
+              ],
+              "source_lectures": [
+                {
+                  "order": 5,
+                  "pathway_title": "Components as Building Blocks",
+                  "transcript_title": "Components as Building Blocks",
+                  "transcript_line": 9711,
+                  "raw_word_count_approx": 733
+                },
+                {
+                  "order": 6,
+                  "pathway_title": "What is JSX?",
+                  "transcript_title": "What is JSX?",
+                  "transcript_line": 10259,
+                  "raw_word_count_approx": 959
+                },
+                {
+                  "order": 7,
+                  "pathway_title": "Separation of Concerns",
+                  "transcript_title": "Separation of Concerns",
+                  "transcript_line": 10940,
+                  "raw_word_count_approx": 927
+                }
+              ],
+              "raw_source_words_approx": 2619,
+              "learning_role": "core",
+              "required_for_track_completion": true,
+              "assessment_profile": "core",
+              "supporting_lectures": [
+                "Creating And Reusing a Component",
+                "The Rules of JSX",
+                "Rendering Lists",
+                "Conditional Rendering With &&",
+                "Conditional Rendering With Ternaries"
+              ],
+              "content_rule": "Use selected lecture(s) as the spine; add only supporting material needed for a standalone lesson."
+            },
+            {
+              "id": "R-05",
+              "title": "Props, Immutability, and One-Way Data Flow",
+              "source_orders": [
+                8
+              ],
+              "type": "core",
+              "subtopics": [
+                "Passing data with props",
+                "Read-only props",
+                "Parent-to-child data flow"
+              ],
+              "source_lectures": [
+                {
+                  "order": 8,
+                  "pathway_title": "Props, Immutability, and One-Way Data Flow",
+                  "transcript_title": "Props, Immutability, and One-Way Data Flow",
+                  "transcript_line": 11933,
+                  "raw_word_count_approx": 1110
+                }
+              ],
+              "raw_source_words_approx": 1110,
+              "learning_role": "core",
+              "required_for_track_completion": true,
+              "assessment_profile": "core",
+              "supporting_lectures": [
+                "Passing and Receiving Props",
+                "Destructuring Props"
+              ],
+              "content_rule": "Use selected lecture(s) as the spine; add only supporting material needed for a standalone lesson."
+            },
+            {
+              "id": "R-06",
+              "title": "JSX Rules and Fundamentals Recap",
+              "source_orders": [
+                9,
+                10
+              ],
+              "type": "synthesis",
+              "subtopics": [
+                "JSX rules",
+                "Common JSX mistakes",
+                "Module recap"
+              ],
+              "source_lectures": [
+                {
+                  "order": 9,
+                  "pathway_title": "The Rules of JSX",
+                  "transcript_title": "The Rules of JSX",
+                  "transcript_line": 12815,
+                  "raw_word_count_approx": 558
+                },
+                {
+                  "order": 10,
+                  "pathway_title": "Section Summary",
+                  "transcript_title": "Section Summary",
+                  "transcript_line": 14976,
+                  "raw_word_count_approx": 890
+                }
+              ],
+              "raw_source_words_approx": 1448,
+              "learning_role": "merged_review_content",
+              "required_for_track_completion": false,
+              "assessment_profile": "optional_supplement",
+              "supporting_lectures": [],
+              "content_rule": "Use selected lecture(s) as the spine; add only supporting material needed for a standalone lesson.",
+              "merged_into": [
+                "R-04",
+                "R-M02-REVIEW"
+              ]
+            }
+          ],
+          "sequence": 2,
+          "assessment": {
+            "review_id": "R-M02-REVIEW",
+            "review_profile": "module_review",
+            "question_count_target": 10,
+            "applied_challenge_count": 1,
+            "mastery_threshold_percent": 80,
+            "retry_policy": "Unlimited attempts; missed objectives enter spaced review."
+          },
+          "required_topic_ids": [
+            "R-04",
+            "R-05"
+          ],
+          "optional_or_nonlesson_ids": [
+            "R-06"
+          ]
+        },
+        {
+          "id": "R-M03",
+          "title": "State and Thinking in React",
+          "topics": [
+            {
+              "id": "R-07",
+              "title": "State Fundamentals",
+              "source_orders": [
+                11,
+                12,
+                13,
+                14
+              ],
+              "type": "core",
+              "subtopics": [
+                "What state is",
+                "How state updates work",
+                "State guidelines",
+                "State versus props"
+              ],
+              "source_lectures": [
+                {
+                  "order": 11,
+                  "pathway_title": "What is State in React?",
+                  "transcript_title": "What is State in React?",
+                  "transcript_line": 16292,
+                  "raw_word_count_approx": 986
+                },
+                {
+                  "order": 12,
+                  "pathway_title": "The Mechanics of State",
+                  "transcript_title": "The Mechanics of State",
+                  "transcript_line": 17085,
+                  "raw_word_count_approx": 763
+                },
+                {
+                  "order": 13,
+                  "pathway_title": "More Thoughts About State + State Guidelines",
+                  "transcript_title": "More Thoughts About State + State Guidelines",
+                  "transcript_line": 18073,
+                  "raw_word_count_approx": 1066
+                },
+                {
+                  "order": 14,
+                  "pathway_title": "State vs. Props",
+                  "transcript_title": "State vs. Props",
+                  "transcript_line": 21139,
+                  "raw_word_count_approx": 558
+                }
+              ],
+              "raw_source_words_approx": 3373,
+              "learning_role": "core",
+              "required_for_track_completion": true,
+              "assessment_profile": "core",
+              "supporting_lectures": [
+                "Creating a State Variable With useState",
+                "Updating State Based on Current State",
+                "Controlled Elements",
+                "Building a Form and Handling Submissions"
+              ],
+              "content_rule": "Use selected lecture(s) as the spine; add only supporting material needed for a standalone lesson."
+            },
+            {
+              "id": "R-08",
+              "title": "Thinking in React, State Management, and Derived State",
+              "source_orders": [
+                15,
+                16,
+                17
+              ],
+              "type": "core",
+              "subtopics": [
+                "Thinking in React workflow",
+                "Placing state",
+                "Lifting state",
+                "Derived state"
+              ],
+              "source_lectures": [
+                {
+                  "order": 15,
+                  "pathway_title": "What is \"Thinking in React\"?",
+                  "transcript_title": "What is \"Thinking in React\"?",
+                  "transcript_line": 22206,
+                  "raw_word_count_approx": 796
+                },
+                {
+                  "order": 16,
+                  "pathway_title": "Fundamentals of State Management",
+                  "transcript_title": "Fundamentals of State Management",
+                  "transcript_line": 22407,
+                  "raw_word_count_approx": 1577
+                },
+                {
+                  "order": 17,
+                  "pathway_title": "Derived State",
+                  "transcript_title": "Derived State",
+                  "transcript_line": 24336,
+                  "raw_word_count_approx": 476
+                }
+              ],
+              "raw_source_words_approx": 2849,
+              "learning_role": "core",
+              "required_for_track_completion": true,
+              "assessment_profile": "core",
+              "supporting_lectures": [
+                "Thinking About State and Lifting State Up",
+                "Calculating Statistics as Derived State"
+              ],
+              "content_rule": "Use selected lecture(s) as the spine; add only supporting material needed for a standalone lesson."
+            }
+          ],
+          "sequence": 3,
+          "assessment": {
+            "review_id": "R-M03-REVIEW",
+            "review_profile": "module_review",
+            "question_count_target": 10,
+            "applied_challenge_count": 1,
+            "mastery_threshold_percent": 80,
+            "retry_policy": "Unlimited attempts; missed objectives enter spaced review."
+          },
+          "required_topic_ids": [
+            "R-07",
+            "R-08"
+          ],
+          "optional_or_nonlesson_ids": []
+        },
+        {
+          "id": "R-M04",
+          "title": "Component Design and Reusability",
+          "topics": [
+            {
+              "id": "R-09",
+              "title": "Reusability with the `children` Prop",
+              "source_orders": [
+                18
+              ],
+              "type": "core",
+              "subtopics": [
+                "Composition slots",
+                "Reusable wrappers",
+                "Flexible component content"
+              ],
+              "source_lectures": [
+                {
+                  "order": 18,
+                  "pathway_title": "The children Prop: Making a Reusable Button",
+                  "transcript_title": "The \"children\" Prop: Making a Reusable Button",
+                  "transcript_line": 26330,
+                  "raw_word_count_approx": 2513
+                }
+              ],
+              "raw_source_words_approx": 2513,
+              "learning_role": "core",
+              "required_for_track_completion": true,
+              "assessment_profile": "core",
+              "supporting_lectures": [],
+              "content_rule": "Use selected lecture(s) as the spine; add only supporting material needed for a standalone lesson."
+            },
+            {
+              "id": "R-10",
+              "title": "Designing Component Trees",
+              "source_orders": [
+                19,
+                20
+              ],
+              "type": "core",
+              "subtopics": [
+                "Splitting a UI into components",
+                "Component boundaries",
+                "Component categories"
+              ],
+              "source_lectures": [
+                {
+                  "order": 19,
+                  "pathway_title": "How to Split a UI Into Components",
+                  "transcript_title": "How to Split a UI Into Components",
+                  "transcript_line": 31754,
+                  "raw_word_count_approx": 1993
+                },
+                {
+                  "order": 20,
+                  "pathway_title": "Component Categories",
+                  "transcript_title": "Component Categories",
+                  "transcript_line": 33150,
+                  "raw_word_count_approx": 380
+                }
+              ],
+              "raw_source_words_approx": 2373,
+              "learning_role": "core",
+              "required_for_track_completion": true,
+              "assessment_profile": "core",
+              "supporting_lectures": [],
+              "content_rule": "Use selected lecture(s) as the spine; add only supporting material needed for a standalone lesson."
+            },
+            {
+              "id": "R-11",
+              "title": "Composition and Props as Component APIs",
+              "source_orders": [
+                21,
+                22
+              ],
+              "type": "core",
+              "subtopics": [
+                "Component composition",
+                "Avoiding prop drilling through composition",
+                "Designing a clear component API"
+              ],
+              "source_lectures": [
+                {
+                  "order": 21,
+                  "pathway_title": "Component Composition",
+                  "transcript_title": "Component Composition",
+                  "transcript_line": 33554,
+                  "raw_word_count_approx": 729
+                },
+                {
+                  "order": 22,
+                  "pathway_title": "Props as a Component API",
+                  "transcript_title": "Props as a Component API",
+                  "transcript_line": 35633,
+                  "raw_word_count_approx": 702
+                }
+              ],
+              "raw_source_words_approx": 1431,
+              "learning_role": "core",
+              "required_for_track_completion": true,
+              "assessment_profile": "core",
+              "supporting_lectures": [
+                "Fixing Prop Drilling With Composition (And Building a Layout)",
+                "Using Composition to Make a Reusable Box"
+              ],
+              "content_rule": "Use selected lecture(s) as the spine; add only supporting material needed for a standalone lesson."
+            }
+          ],
+          "sequence": 4,
+          "assessment": {
+            "review_id": "R-M04-REVIEW",
+            "review_profile": "module_review",
+            "question_count_target": 10,
+            "applied_challenge_count": 1,
+            "mastery_threshold_percent": 80,
+            "retry_policy": "Unlimited attempts; missed objectives enter spaced review."
+          },
+          "required_topic_ids": [
+            "R-09",
+            "R-10",
+            "R-11"
+          ],
+          "optional_or_nonlesson_ids": []
+        },
+        {
+          "id": "R-M05",
+          "title": "How React Renders",
+          "topics": [
+            {
+              "id": "R-12",
+              "title": "Components, Instances, Elements, and Rendering Overview",
+              "source_orders": [
+                23,
+                24
+              ],
+              "type": "core",
+              "subtopics": [
+                "Component definitions and instances",
+                "React elements",
+                "Rendering pipeline overview"
+              ],
+              "source_lectures": [
+                {
+                  "order": 23,
+                  "pathway_title": "Components, Instances, and Elements",
+                  "transcript_title": "Components, Instances, and Elements",
+                  "transcript_line": 37940,
+                  "raw_word_count_approx": 774
+                },
+                {
+                  "order": 24,
+                  "pathway_title": "How Rendering Works: Overview",
+                  "transcript_title": "How Rendering Works: Overview",
+                  "transcript_line": 38392,
+                  "raw_word_count_approx": 1103
+                }
+              ],
+              "raw_source_words_approx": 1877,
+              "learning_role": "core",
+              "required_for_track_completion": true,
+              "assessment_profile": "core",
+              "supporting_lectures": [],
+              "content_rule": "Use selected lecture(s) as the spine; add only supporting material needed for a standalone lesson."
+            },
+            {
+              "id": "R-13",
+              "title": "Render and Commit Phases",
+              "source_orders": [
+                25,
+                26
+              ],
+              "type": "core",
+              "subtopics": [
+                "Render phase",
+                "Reconciliation work",
+                "Commit phase",
+                "DOM updates"
+              ],
+              "source_lectures": [
+                {
+                  "order": 25,
+                  "pathway_title": "How Rendering Works: The Render Phase",
+                  "transcript_title": "How Rendering Works: The Render Phase",
+                  "transcript_line": 38699,
+                  "raw_word_count_approx": 2816
+                },
+                {
+                  "order": 26,
+                  "pathway_title": "How Rendering Works: The Commit Phase",
+                  "transcript_title": "How Rendering Works: The Commit Phase",
+                  "transcript_line": 39334,
+                  "raw_word_count_approx": 1833
+                }
+              ],
+              "raw_source_words_approx": 4649,
+              "learning_role": "core",
+              "required_for_track_completion": true,
+              "assessment_profile": "core",
+              "supporting_lectures": [],
+              "content_rule": "Use selected lecture(s) as the spine; add only supporting material needed for a standalone lesson."
+            },
+            {
+              "id": "R-14",
+              "title": "Diffing, Keys, and State Preservation",
+              "source_orders": [
+                27,
+                28
+              ],
+              "type": "core",
+              "subtopics": [
+                "Diffing rules",
+                "The `key` prop",
+                "Preserving and resetting state"
+              ],
+              "source_lectures": [
+                {
+                  "order": 27,
+                  "pathway_title": "How Diffing Works",
+                  "transcript_title": "How Diffing Works",
+                  "transcript_line": 39767,
+                  "raw_word_count_approx": 909
+                },
+                {
+                  "order": 28,
+                  "pathway_title": "The Key Prop",
+                  "transcript_title": "The Key Prop",
+                  "transcript_line": 40193,
+                  "raw_word_count_approx": 1282
+                }
+              ],
+              "raw_source_words_approx": 2191,
+              "learning_role": "core",
+              "required_for_track_completion": true,
+              "assessment_profile": "core",
+              "supporting_lectures": [
+                "Diffing Rules in Practice",
+                "Resetting State With the Key Prop"
+              ],
+              "content_rule": "Use selected lecture(s) as the spine; add only supporting material needed for a standalone lesson."
+            },
+            {
+              "id": "R-15",
+              "title": "Pure Render Logic and State Batching",
+              "source_orders": [
+                29,
+                30
+              ],
+              "type": "core",
+              "subtopics": [
+                "Pure components",
+                "Render-time side effects to avoid",
+                "Batched state updates"
+              ],
+              "source_lectures": [
+                {
+                  "order": 29,
+                  "pathway_title": "Rules for Render Logic: Pure components",
+                  "transcript_title": "Rules for Render Logic: Pure Components",
+                  "transcript_line": 40801,
+                  "raw_word_count_approx": 1439
+                },
+                {
+                  "order": 30,
+                  "pathway_title": "State Update Batching",
+                  "transcript_title": "State Update Batching",
+                  "transcript_line": 41136,
+                  "raw_word_count_approx": 1439
+                }
+              ],
+              "raw_source_words_approx": 2878,
+              "learning_role": "core",
+              "required_for_track_completion": true,
+              "assessment_profile": "core",
+              "supporting_lectures": [],
+              "content_rule": "Use selected lecture(s) as the spine; add only supporting material needed for a standalone lesson."
+            },
+            {
+              "id": "R-16",
+              "title": "How Events Work in React",
+              "source_orders": [
+                31
+              ],
+              "type": "core",
+              "subtopics": [
+                "React event system",
+                "Event handlers",
+                "How events interact with state updates"
+              ],
+              "source_lectures": [
+                {
+                  "order": 31,
+                  "pathway_title": "How Events Work in React",
+                  "transcript_title": "How Events Work in React",
+                  "transcript_line": 42036,
+                  "raw_word_count_approx": 2188
+                }
+              ],
+              "raw_source_words_approx": 2188,
+              "learning_role": "core",
+              "required_for_track_completion": true,
+              "assessment_profile": "core",
+              "supporting_lectures": [],
+              "content_rule": "Use selected lecture(s) as the spine; add only supporting material needed for a standalone lesson."
+            },
+            {
+              "id": "R-17",
+              "title": "React Ecosystem Overview",
+              "source_orders": [
+                32,
+                33
+              ],
+              "type": "synthesis",
+              "subtopics": [
+                "Libraries versus frameworks",
+                "Common React ecosystem categories",
+                "How to evaluate third-party tools"
+              ],
+              "source_lectures": [
+                {
+                  "order": 32,
+                  "pathway_title": "Libraries vs. Frameworks & The React Ecosystem",
+                  "transcript_title": "Libraries vs. Frameworks & The React Ecosystem",
+                  "transcript_line": 42549,
+                  "raw_word_count_approx": 1563
+                },
+                {
+                  "order": 33,
+                  "pathway_title": "Section Summary: Practical Takeaways",
+                  "transcript_title": "Section Summary: Practical Takeaways",
+                  "transcript_line": 42942,
+                  "raw_word_count_approx": 1595
+                }
+              ],
+              "raw_source_words_approx": 3158,
+              "learning_role": "core",
+              "required_for_track_completion": true,
+              "assessment_profile": "core",
+              "supporting_lectures": [],
+              "content_rule": "Use selected lecture(s) as the spine; add only supporting material needed for a standalone lesson."
+            }
+          ],
+          "sequence": 5,
+          "assessment": {
+            "review_id": "R-M05-REVIEW",
+            "review_profile": "module_review",
+            "question_count_target": 12,
+            "applied_challenge_count": 1,
+            "mastery_threshold_percent": 80,
+            "retry_policy": "Unlimited attempts; missed objectives enter spaced review."
+          },
+          "required_topic_ids": [
+            "R-12",
+            "R-13",
+            "R-14",
+            "R-15",
+            "R-16",
+            "R-17"
+          ],
+          "optional_or_nonlesson_ids": []
+        },
+        {
+          "id": "R-M06",
+          "title": "Effects and Hooks",
+          "topics": [
+            {
+              "id": "R-18",
+              "title": "Component Lifecycle and Effects",
+              "source_orders": [
+                34,
+                35
+              ],
+              "type": "core",
+              "subtopics": [
+                "Mount, update, and unmount",
+                "Effects as synchronization",
+                "When an effect is appropriate"
+              ],
+              "source_lectures": [
+                {
+                  "order": 34,
+                  "pathway_title": "The Component Lifecycle",
+                  "transcript_title": "The Component Lifecycle",
+                  "transcript_line": 43399,
+                  "raw_word_count_approx": 668
+                },
+                {
+                  "order": 35,
+                  "pathway_title": "A First Look at Effects",
+                  "transcript_title": "A First Look at Effects",
+                  "transcript_line": 44116,
+                  "raw_word_count_approx": 988
+                }
+              ],
+              "raw_source_words_approx": 1656,
+              "learning_role": "core",
+              "required_for_track_completion": true,
+              "assessment_profile": "core",
+              "supporting_lectures": [
+                "useEffect to the Rescue",
+                "A First Look at Effects"
+              ],
+              "content_rule": "Use selected lecture(s) as the spine; add only supporting material needed for a standalone lesson."
+            },
+            {
+              "id": "R-19",
+              "title": "Effect Dependencies and Cleanup",
+              "source_orders": [
+                36,
+                37
+              ],
+              "type": "core",
+              "subtopics": [
+                "Dependency arrays",
+                "Stale dependencies",
+                "Cleanup functions",
+                "Avoiding leaks and races"
+              ],
+              "source_lectures": [
+                {
+                  "order": 36,
+                  "pathway_title": "The useEffect Dependency Array",
+                  "transcript_title": "The useEffect Dependency Array",
+                  "transcript_line": 45154,
+                  "raw_word_count_approx": 1921
+                },
+                {
+                  "order": 37,
+                  "pathway_title": "The useEffect Cleanup Function",
+                  "transcript_title": "The useEffect Cleanup Function",
+                  "transcript_line": 48434,
+                  "raw_word_count_approx": 662
+                }
+              ],
+              "raw_source_words_approx": 2583,
+              "learning_role": "core",
+              "required_for_track_completion": true,
+              "assessment_profile": "core",
+              "supporting_lectures": [
+                "Cleaning Up Data Fetching",
+                "One More Effect: Listening to a Keypress"
+              ],
+              "content_rule": "Use selected lecture(s) as the spine; add only supporting material needed for a standalone lesson."
+            },
+            {
+              "id": "R-20",
+              "title": "Rules of Hooks and `useState` Recap",
+              "source_orders": [
+                38,
+                39
+              ],
+              "type": "core",
+              "subtopics": [
+                "Rules of Hooks",
+                "State initialization and updates",
+                "When to use state"
+              ],
+              "source_lectures": [
+                {
+                  "order": 38,
+                  "pathway_title": "React Hooks and Their Rules",
+                  "transcript_title": "React Hooks and Their Rules",
+                  "transcript_line": 50371,
+                  "raw_word_count_approx": 1727
+                },
+                {
+                  "order": 39,
+                  "pathway_title": "useState Summary",
+                  "transcript_title": "useState Summary",
+                  "transcript_line": 51919,
+                  "raw_word_count_approx": 482
+                }
+              ],
+              "raw_source_words_approx": 2209,
+              "learning_role": "core",
+              "required_for_track_completion": true,
+              "assessment_profile": "core",
+              "supporting_lectures": [],
+              "content_rule": "Use selected lecture(s) as the spine; add only supporting material needed for a standalone lesson."
+            },
+            {
+              "id": "R-21",
+              "title": "Refs and Custom Hooks",
+              "source_orders": [
+                40,
+                41
+              ],
+              "type": "core",
+              "subtopics": [
+                "Mutable refs",
+                "DOM refs",
+                "Persisting values",
+                "Extracting reusable hook logic"
+              ],
+              "source_lectures": [
+                {
+                  "order": 40,
+                  "pathway_title": "Introducing Another Hook: useRef",
+                  "transcript_title": "Introducing Another Hook: useRef",
+                  "transcript_line": 52169,
+                  "raw_word_count_approx": 853
+                },
+                {
+                  "order": 41,
+                  "pathway_title": "What are Custom Hooks? When to Create One?",
+                  "transcript_title": "What are Custom Hooks? When to Create One?",
+                  "transcript_line": 53158,
+                  "raw_word_count_approx": 668
+                }
+              ],
+              "raw_source_words_approx": 1521,
+              "learning_role": "core",
+              "required_for_track_completion": true,
+              "assessment_profile": "core",
+              "supporting_lectures": [
+                "Refs to Select DOM Elements",
+                "Refs to Persist Data Between Renders",
+                "Creating our First Custom Hook: useMovies"
+              ],
+              "content_rule": "Use selected lecture(s) as the spine; add only supporting material needed for a standalone lesson."
+            },
+            {
+              "id": "R-22",
+              "title": "Class Components vs. Function Components",
+              "source_orders": [
+                42
+              ],
+              "type": "optional_legacy",
+              "subtopics": [
+                "Historical class-component model",
+                "Lifecycle methods",
+                "Why function components are preferred"
+              ],
+              "source_lectures": [
+                {
+                  "order": 42,
+                  "pathway_title": "Class Components vs. Function Components",
+                  "transcript_title": "Class Components vs. Function Components",
+                  "transcript_line": 55472,
+                  "raw_word_count_approx": 825
+                }
+              ],
+              "raw_source_words_approx": 825,
+              "learning_role": "optional_legacy",
+              "required_for_track_completion": false,
+              "assessment_profile": "optional_legacy",
+              "supporting_lectures": [],
+              "content_rule": "Use selected lecture(s) as the spine; add only supporting material needed for a standalone lesson."
+            }
+          ],
+          "sequence": 6,
+          "assessment": {
+            "review_id": "R-M06-REVIEW",
+            "review_profile": "module_review",
+            "question_count_target": 12,
+            "applied_challenge_count": 1,
+            "mastery_threshold_percent": 80,
+            "retry_policy": "Unlimited attempts; missed objectives enter spaced review."
+          },
+          "required_topic_ids": [
+            "R-18",
+            "R-19",
+            "R-20",
+            "R-21"
+          ],
+          "optional_or_nonlesson_ids": [
+            "R-22"
+          ]
+        },
+        {
+          "id": "R-M07",
+          "title": "Complex State, Routing, and Styling",
+          "topics": [
+            {
+              "id": "R-23",
+              "title": "`useReducer` and Choosing State Tools",
+              "source_orders": [
+                43,
+                44
+              ],
+              "type": "core",
+              "subtopics": [
+                "Reducer pattern",
+                "Actions and transitions",
+                "`useState` versus `useReducer`"
+              ],
+              "source_lectures": [
+                {
+                  "order": 43,
+                  "pathway_title": "Managing State With useReducer",
+                  "transcript_title": "Managing State With useReducer",
+                  "transcript_line": 58860,
+                  "raw_word_count_approx": 2223
+                },
+                {
+                  "order": 44,
+                  "pathway_title": "Section Summary: useState vs. useReducer",
+                  "transcript_title": "Section Summary: useState vs. useReducer",
+                  "transcript_line": 63686,
+                  "raw_word_count_approx": 953
+                }
+              ],
+              "raw_source_words_approx": 3176,
+              "learning_role": "core",
+              "required_for_track_completion": true,
+              "assessment_profile": "core",
+              "supporting_lectures": [
+                "Managing Related Pieces of State",
+                "Managing State With useReducer"
+              ],
+              "content_rule": "Use selected lecture(s) as the spine; add only supporting material needed for a standalone lesson."
+            },
+            {
+              "id": "R-24",
+              "title": "Routing and Single-Page Applications",
+              "source_orders": [
+                45
+              ],
+              "type": "core",
+              "subtopics": [
+                "Client-side routing",
+                "Routes and navigation",
+                "SPA mental model"
+              ],
+              "source_lectures": [
+                {
+                  "order": 45,
+                  "pathway_title": "Routing and Single-Page Applications (SPAs)",
+                  "transcript_title": "Routing and Single-Page Applications (SPAs)",
+                  "transcript_line": 65277,
+                  "raw_word_count_approx": 1008
+                }
+              ],
+              "raw_source_words_approx": 1008,
+              "learning_role": "core",
+              "required_for_track_completion": true,
+              "assessment_profile": "core",
+              "supporting_lectures": [
+                "Implementing Main Pages and Routes",
+                "Linking Between Routes With <Link /> and <NavLink />",
+                "Nested Routes and Index Route",
+                "Dynamic Routes With URL Parameters",
+                "Programmatic Navigation with useNavigate"
+              ],
+              "content_rule": "Use selected lecture(s) as the spine; add only supporting material needed for a standalone lesson."
+            },
+            {
+              "id": "R-25",
+              "title": "Styling Options for React Applications",
+              "source_orders": [
+                46
+              ],
+              "type": "core",
+              "subtopics": [
+                "Global CSS",
+                "CSS Modules",
+                "CSS-in-JS",
+                "Utility-first CSS"
+              ],
+              "source_lectures": [
+                {
+                  "order": 46,
+                  "pathway_title": "Styling Options For React Applications",
+                  "transcript_title": "Styling Options For React Applications",
+                  "transcript_line": 66308,
+                  "raw_word_count_approx": 897
+                }
+              ],
+              "raw_source_words_approx": 897,
+              "learning_role": "core",
+              "required_for_track_completion": true,
+              "assessment_profile": "core",
+              "supporting_lectures": [],
+              "content_rule": "Use selected lecture(s) as the spine; add only supporting material needed for a standalone lesson."
+            }
+          ],
+          "sequence": 7,
+          "assessment": {
+            "review_id": "R-M07-REVIEW",
+            "review_profile": "module_review",
+            "question_count_target": 10,
+            "applied_challenge_count": 1,
+            "mastery_threshold_percent": 80,
+            "retry_policy": "Unlimited attempts; missed objectives enter spaced review."
+          },
+          "required_topic_ids": [
+            "R-23",
+            "R-24",
+            "R-25"
+          ],
+          "optional_or_nonlesson_ids": []
+        },
+        {
+          "id": "R-M08",
+          "title": "Context and Advanced State Management",
+          "topics": [
+            {
+              "id": "R-26",
+              "title": "Context API and Advanced State Management",
+              "source_orders": [
+                47,
+                48
+              ],
+              "type": "core",
+              "subtopics": [
+                "Providing and consuming context",
+                "Local versus global state",
+                "UI versus remote state",
+                "Choosing state placement"
+              ],
+              "source_lectures": [
+                {
+                  "order": 47,
+                  "pathway_title": "What is the Context API?",
+                  "transcript_title": "What is the Context API?",
+                  "transcript_line": 70824,
+                  "raw_word_count_approx": 796
+                },
+                {
+                  "order": 48,
+                  "pathway_title": "Thinking In React: Advanced State Management",
+                  "transcript_title": "Thinking In React: Advanced State Management",
+                  "transcript_line": 72338,
+                  "raw_word_count_approx": 1826
+                }
+              ],
+              "raw_source_words_approx": 2622,
+              "learning_role": "core",
+              "required_for_track_completion": true,
+              "assessment_profile": "core",
+              "supporting_lectures": [
+                "Creating and Providing a Context",
+                "Consuming the Context",
+                "Advanced Pattern: A Custom Provider and Hook"
+              ],
+              "content_rule": "Use selected lecture(s) as the spine; add only supporting material needed for a standalone lesson."
+            }
+          ],
+          "sequence": 8,
+          "assessment": {
+            "review_id": "R-M08-REVIEW",
+            "review_profile": "module_review",
+            "question_count_target": 10,
+            "applied_challenge_count": 1,
+            "mastery_threshold_percent": 80,
+            "retry_policy": "Unlimited attempts; missed objectives enter spaced review."
+          },
+          "required_topic_ids": [
+            "R-26"
+          ],
+          "optional_or_nonlesson_ids": []
+        },
+        {
+          "id": "R-M09",
+          "title": "Performance and Advanced Effects",
+          "topics": [
+            {
+              "id": "R-27",
+              "title": "Wasted Renders and Memoization",
+              "source_orders": [
+                49,
+                50,
+                51
+              ],
+              "type": "core",
+              "subtopics": [
+                "Identifying wasted renders",
+                "`memo`",
+                "`useMemo`",
+                "`useCallback`"
+              ],
+              "source_lectures": [
+                {
+                  "order": 49,
+                  "pathway_title": "Performance Optimization and Wasted Renders",
+                  "transcript_title": "Performance Optimization and Wasted Renders",
+                  "transcript_line": 79264,
+                  "raw_word_count_approx": 963
+                },
+                {
+                  "order": 50,
+                  "pathway_title": "Understanding memo",
+                  "transcript_title": "Understanding memo",
+                  "transcript_line": 80263,
+                  "raw_word_count_approx": 866
+                },
+                {
+                  "order": 51,
+                  "pathway_title": "Understanding useMemo and useCallback",
+                  "transcript_title": "Understanding useMemo and useCallback",
+                  "transcript_line": 80943,
+                  "raw_word_count_approx": 1025
+                }
+              ],
+              "raw_source_words_approx": 2854,
+              "learning_role": "core",
+              "required_for_track_completion": true,
+              "assessment_profile": "core",
+              "supporting_lectures": [
+                "The Profiler Developer Tool",
+                "memo in Practice",
+                "useMemo in Practice",
+                "useCallback in Practice"
+              ],
+              "content_rule": "Use selected lecture(s) as the spine; add only supporting material needed for a standalone lesson."
+            },
+            {
+              "id": "R-28",
+              "title": "Code Splitting and Pragmatic Optimization",
+              "source_orders": [
+                52,
+                53
+              ],
+              "type": "core",
+              "subtopics": [
+                "Lazy loading",
+                "Code splitting",
+                "Bundle size",
+                "Avoiding premature optimization"
+              ],
+              "source_lectures": [
+                {
+                  "order": 52,
+                  "pathway_title": "Optimizing Bundle Size With Code Splitting",
+                  "transcript_title": "Optimizing Bundle Size With Code Splitting",
+                  "transcript_line": 82844,
+                  "raw_word_count_approx": 2378
+                },
+                {
+                  "order": 53,
+                  "pathway_title": "Don't Optimize Prematurely!",
+                  "transcript_title": "Don't Optimize Prematurely!",
+                  "transcript_line": 83407,
+                  "raw_word_count_approx": 422
+                }
+              ],
+              "raw_source_words_approx": 2800,
+              "learning_role": "core",
+              "required_for_track_completion": true,
+              "assessment_profile": "core",
+              "supporting_lectures": [],
+              "content_rule": "Use selected lecture(s) as the spine; add only supporting material needed for a standalone lesson."
+            },
+            {
+              "id": "R-29",
+              "title": "`useEffect` Rules and Best Practices",
+              "source_orders": [
+                54
+              ],
+              "type": "core",
+              "subtopics": [
+                "Effect decision process",
+                "Dependency management",
+                "Avoiding unnecessary effects"
+              ],
+              "source_lectures": [
+                {
+                  "order": 54,
+                  "pathway_title": "useEffect Rules and Best Practices",
+                  "transcript_title": "useEffect Rules and Best Practices",
+                  "transcript_line": 83516,
+                  "raw_word_count_approx": 1559
+                }
+              ],
+              "raw_source_words_approx": 1559,
+              "learning_role": "core",
+              "required_for_track_completion": true,
+              "assessment_profile": "core",
+              "supporting_lectures": [],
+              "content_rule": "Use selected lecture(s) as the spine; add only supporting material needed for a standalone lesson."
+            }
+          ],
+          "sequence": 9,
+          "assessment": {
+            "review_id": "R-M09-REVIEW",
+            "review_profile": "module_review",
+            "question_count_target": 10,
+            "applied_challenge_count": 1,
+            "mastery_threshold_percent": 80,
+            "retry_policy": "Unlimited attempts; missed objectives enter spaced review."
+          },
+          "required_topic_ids": [
+            "R-27",
+            "R-28",
+            "R-29"
+          ],
+          "optional_or_nonlesson_ids": []
+        },
+        {
+          "id": "R-M10",
+          "title": "Redux",
+          "topics": [
+            {
+              "id": "R-30",
+              "title": "Redux Fundamentals",
+              "source_orders": [
+                55
+              ],
+              "type": "core",
+              "subtopics": [
+                "Store",
+                "Reducers",
+                "Actions",
+                "Unidirectional state flow"
+              ],
+              "source_lectures": [
+                {
+                  "order": 55,
+                  "pathway_title": "Introduction to Redux",
+                  "transcript_title": "Introduction to Redux",
+                  "transcript_line": 85639,
+                  "raw_word_count_approx": 1884
+                }
+              ],
+              "raw_source_words_approx": 1884,
+              "learning_role": "core",
+              "required_for_track_completion": true,
+              "assessment_profile": "core",
+              "supporting_lectures": [],
+              "content_rule": "Use selected lecture(s) as the spine; add only supporting material needed for a standalone lesson."
+            },
+            {
+              "id": "R-31",
+              "title": "Middleware, Thunks, and Redux Toolkit",
+              "source_orders": [
+                56,
+                57
+              ],
+              "type": "core",
+              "subtopics": [
+                "Redux middleware",
+                "Async logic with thunks",
+                "Redux Toolkit conventions"
+              ],
+              "source_lectures": [
+                {
+                  "order": 56,
+                  "pathway_title": "Redux Middleware and thunks",
+                  "transcript_title": "Redux Middleware and Thunks",
+                  "transcript_line": 88820,
+                  "raw_word_count_approx": 651
+                },
+                {
+                  "order": 57,
+                  "pathway_title": "What is Redux Toolkit (RTK)?",
+                  "transcript_title": "What is Redux Toolkit (RTK)?",
+                  "transcript_line": 89981,
+                  "raw_word_count_approx": 528
+                }
+              ],
+              "raw_source_words_approx": 1179,
+              "learning_role": "core",
+              "required_for_track_completion": true,
+              "assessment_profile": "core",
+              "supporting_lectures": [
+                "Creating a Redux Store",
+                "Professional Redux File Structure: State Slices",
+                "Back to React! Connecting our Redux App With React",
+                "Redux Thunks With createAsyncThunk"
+              ],
+              "content_rule": "Use selected lecture(s) as the spine; add only supporting material needed for a standalone lesson."
+            },
+            {
+              "id": "R-32",
+              "title": "Redux vs. Context API",
+              "source_orders": [
+                58
+              ],
+              "type": "core",
+              "subtopics": [
+                "Use cases",
+                "Trade-offs",
+                "Selection criteria"
+              ],
+              "source_lectures": [
+                {
+                  "order": 58,
+                  "pathway_title": "Redux vs. Context API",
+                  "transcript_title": "Redux vs. Context API",
+                  "transcript_line": 91484,
+                  "raw_word_count_approx": 1175
+                }
+              ],
+              "raw_source_words_approx": 1175,
+              "learning_role": "core",
+              "required_for_track_completion": true,
+              "assessment_profile": "core",
+              "supporting_lectures": [],
+              "content_rule": "Use selected lecture(s) as the spine; add only supporting material needed for a standalone lesson."
+            }
+          ],
+          "sequence": 10,
+          "assessment": {
+            "review_id": "R-M10-REVIEW",
+            "review_profile": "module_review",
+            "question_count_target": 10,
+            "applied_challenge_count": 1,
+            "mastery_threshold_percent": 80,
+            "retry_policy": "Unlimited attempts; missed objectives enter spaced review."
+          },
+          "required_topic_ids": [
+            "R-30",
+            "R-31",
+            "R-32"
+          ],
+          "optional_or_nonlesson_ids": []
+        },
+        {
+          "id": "R-M11",
+          "title": "Professional React Workflows and Ecosystem",
+          "topics": [
+            {
+              "id": "R-33",
+              "title": "Fast React Pizza Application Planning",
+              "source_orders": [
+                59
+              ],
+              "type": "case_study",
+              "subtopics": [
+                "Requirements",
+                "Feature breakdown",
+                "Routing and state decisions"
+              ],
+              "source_lectures": [
+                {
+                  "order": 59,
+                  "pathway_title": "Application Planning (“Fast React Pizza Co.”)",
+                  "transcript_title": "Application Planning",
+                  "transcript_line": 107423,
+                  "raw_word_count_approx": 2944
+                }
+              ],
+              "raw_source_words_approx": 2944,
+              "learning_role": "applied_case_study",
+              "required_for_track_completion": true,
+              "assessment_profile": "applied_case_study",
+              "supporting_lectures": [],
+              "content_rule": "Use selected lecture(s) as the spine; add only supporting material needed for a standalone lesson."
+            },
+            {
+              "id": "R-34",
+              "title": "Tailwind CSS Overview",
+              "source_orders": [
+                60
+              ],
+              "type": "supplement",
+              "subtopics": [
+                "Utility-first styling",
+                "When Tailwind fits",
+                "Trade-offs"
+              ],
+              "source_lectures": [
+                {
+                  "order": 60,
+                  "pathway_title": "What is Tailwind CSS?",
+                  "transcript_title": "What is Tailwind CSS?",
+                  "transcript_line": 94730,
+                  "raw_word_count_approx": 1224
+                }
+              ],
+              "raw_source_words_approx": 1224,
+              "learning_role": "optional_supplement",
+              "required_for_track_completion": false,
+              "assessment_profile": "optional_supplement",
+              "supporting_lectures": [],
+              "content_rule": "Use selected lecture(s) as the spine; add only supporting material needed for a standalone lesson."
+            },
+            {
+              "id": "R-35",
+              "title": "Wild Oasis Application Planning",
+              "source_orders": [
+                61
+              ],
+              "type": "case_study",
+              "subtopics": [
+                "Architecture planning",
+                "Feature decomposition",
+                "Technology choices"
+              ],
+              "source_lectures": [
+                {
+                  "order": 61,
+                  "pathway_title": "Application Planning (“The Wild Oasis”)",
+                  "transcript_title": "Application Planning",
+                  "transcript_line": 107423,
+                  "raw_word_count_approx": 2944
+                }
+              ],
+              "raw_source_words_approx": 2944,
+              "learning_role": "applied_case_study",
+              "required_for_track_completion": true,
+              "assessment_profile": "applied_case_study",
+              "supporting_lectures": [],
+              "content_rule": "Use selected lecture(s) as the spine; add only supporting material needed for a standalone lesson."
+            },
+            {
+              "id": "R-36",
+              "title": "Supabase Overview",
+              "source_orders": [
+                62
+              ],
+              "type": "supplement",
+              "subtopics": [
+                "Backend-as-a-service",
+                "Database, authentication, and storage roles"
+              ],
+              "source_lectures": [
+                {
+                  "order": 62,
+                  "pathway_title": "What is Supabase?",
+                  "transcript_title": "What is Supabase?",
+                  "transcript_line": 111048,
+                  "raw_word_count_approx": 342
+                }
+              ],
+              "raw_source_words_approx": 342,
+              "learning_role": "optional_supplement",
+              "required_for_track_completion": false,
+              "assessment_profile": "optional_supplement",
+              "supporting_lectures": [],
+              "content_rule": "Use selected lecture(s) as the spine; add only supporting material needed for a standalone lesson."
+            },
+            {
+              "id": "R-37",
+              "title": "Modeling Application State and React Query",
+              "source_orders": [
+                63,
+                64
+              ],
+              "type": "core",
+              "subtopics": [
+                "UI versus remote state",
+                "Server-state lifecycle",
+                "Caching and synchronization with React Query"
+              ],
+              "source_lectures": [
+                {
+                  "order": 63,
+                  "pathway_title": "Modeling Application State",
+                  "transcript_title": "Modeling Application State",
+                  "transcript_line": 111348,
+                  "raw_word_count_approx": 884
+                },
+                {
+                  "order": 64,
+                  "pathway_title": "What is React Query?",
+                  "transcript_title": "What is React Query?",
+                  "transcript_line": 112878,
+                  "raw_word_count_approx": 943
+                }
+              ],
+              "raw_source_words_approx": 1827,
+              "learning_role": "core",
+              "required_for_track_completion": true,
+              "assessment_profile": "core",
+              "supporting_lectures": [
+                "Setting Up React Query",
+                "Fetching Cabin Data",
+                "Mutations: Deleting a Cabin",
+                "Abstracting React Query Into Custom Hooks"
+              ],
+              "content_rule": "Use selected lecture(s) as the spine; add only supporting material needed for a standalone lesson."
+            },
+            {
+              "id": "R-38",
+              "title": "Reusability and Advanced React Patterns",
+              "source_orders": [
+                65
+              ],
+              "type": "core",
+              "subtopics": [
+                "Reusability strategies",
+                "Composition patterns",
+                "Candidates for render props, HOCs, and compound components"
+              ],
+              "source_lectures": [
+                {
+                  "order": 65,
+                  "pathway_title": "An Overview of Reusability in React",
+                  "transcript_title": "An Overview of Reusability in React",
+                  "transcript_line": 119498,
+                  "raw_word_count_approx": 870
+                }
+              ],
+              "raw_source_words_approx": 870,
+              "learning_role": "core",
+              "required_for_track_completion": true,
+              "assessment_profile": "core",
+              "supporting_lectures": [
+                "The Render Props Pattern",
+                "A Look at Higher-Order Components (HOC)",
+                "The Compound Component Pattern"
+              ],
+              "content_rule": "Use selected lecture(s) as the spine; add only supporting material needed for a standalone lesson."
+            }
+          ],
+          "sequence": 11,
+          "assessment": {
+            "review_id": "R-M11-REVIEW",
+            "review_profile": "module_review",
+            "question_count_target": 12,
+            "applied_challenge_count": 1,
+            "mastery_threshold_percent": 80,
+            "retry_policy": "Unlimited attempts; missed objectives enter spaced review."
+          },
+          "required_topic_ids": [
+            "R-33",
+            "R-35",
+            "R-37",
+            "R-38"
+          ],
+          "optional_or_nonlesson_ids": [
+            "R-34",
+            "R-36"
+          ]
+        }
+      ]
+    },
+    "nextjs": {
+      "source_items": {
+        "66": {
+          "pathway_title": "An Overview of Server-Side Rendering (SSR)",
+          "transcript_title": "An Overview of Server-Side Rendering (SSR)",
+          "transcript_line": 140937,
+          "raw_word_count_approx": 2331
+        },
+        "67": {
+          "pathway_title": "The Missing Piece: Hydration",
+          "transcript_title": "The Missing Piece: Hydration",
+          "transcript_line": 142531,
+          "raw_word_count_approx": 937
+        },
+        "68": {
+          "pathway_title": "What is Next.js?",
+          "transcript_title": "What is Next.js?",
+          "transcript_line": 143281,
+          "raw_word_count_approx": 1757
+        },
+        "69": {
+          "pathway_title": "What are React Server Components? (RSC Part 1)",
+          "transcript_title": "What are React Server Components? (RSC – Part 1)",
+          "transcript_line": 145232,
+          "raw_word_count_approx": 4882
+        },
+        "70": {
+          "pathway_title": "How RSC Works Behind the Scenes (RSC Part 2)",
+          "transcript_title": "How RSC Works Behind the Scenes (RSC – Part 2)",
+          "transcript_line": 147206,
+          "raw_word_count_approx": 2817
+        },
+        "71": {
+          "pathway_title": "RSC vs. SSR: How are They Related? (RSC Part 3)",
+          "transcript_title": "RSC vs. SSR: How are They Related? (RSC – Part 3)",
+          "transcript_line": 147885,
+          "raw_word_count_approx": 1850
+        },
+        "72": {
+          "pathway_title": "Project Planning: \"The Wild Oasis\" Website",
+          "transcript_title": "Project Planning: \"The Wild Oasis\" Customer Website",
+          "transcript_line": 148344,
+          "raw_word_count_approx": 2212
+        },
+        "73": {
+          "pathway_title": "What is React Suspense?",
+          "transcript_title": "What is React Suspense?",
+          "transcript_line": 153542,
+          "raw_word_count_approx": 1905
+        },
+        "74": {
+          "pathway_title": "Types of SSR: Static vs. Dynamic Rendering",
+          "transcript_title": "Different Types of SSR: Static vs. Dynamic Rendering",
+          "transcript_line": 155488,
+          "raw_word_count_approx": 2240
+        },
+        "75": {
+          "pathway_title": "Partial Pre-Rendering",
+          "transcript_title": "Partial Pre-Rendering",
+          "transcript_line": 156868,
+          "raw_word_count_approx": 1081
+        },
+        "76": {
+          "pathway_title": "How Next.js Caches Data",
+          "transcript_title": "How Next.js Caches Data",
+          "transcript_line": 157137,
+          "raw_word_count_approx": 2964
+        },
+        "77": {
+          "pathway_title": "Blurring the Boundary Between Server and Client",
+          "transcript_title": "Blurring the Boundary Between Server and Client (RSC – Part 4)",
+          "transcript_line": 158790,
+          "raw_word_count_approx": 2326
+        },
+        "78": {
+          "pathway_title": "What is Middleware in Next.js?",
+          "transcript_title": "What is Middleware in Next.js?",
+          "transcript_line": 165184,
+          "raw_word_count_approx": 634
+        },
+        "79": {
+          "pathway_title": "What are Server Actions?",
+          "transcript_title": "What are Server Actions?",
+          "transcript_line": 166875,
+          "raw_word_count_approx": 1884
+        }
+      },
+      "modules": [
+        {
+          "id": "N-M01",
+          "title": "Rendering Foundations",
+          "topics": [
+            {
+              "id": "N-01",
+              "title": "Server-Side Rendering and Hydration",
+              "source_orders": [
+                66,
+                67
+              ],
+              "type": "core",
+              "subtopics": [
+                "Client-side versus server-side rendering",
+                "SSR request flow",
+                "Hydration and interactivity"
+              ],
+              "source_lectures": [
+                {
+                  "order": 66,
+                  "pathway_title": "An Overview of Server-Side Rendering (SSR)",
+                  "transcript_title": "An Overview of Server-Side Rendering (SSR)",
+                  "transcript_line": 140937,
+                  "raw_word_count_approx": 2331
+                },
+                {
+                  "order": 67,
+                  "pathway_title": "The Missing Piece: Hydration",
+                  "transcript_title": "The Missing Piece: Hydration",
+                  "transcript_line": 142531,
+                  "raw_word_count_approx": 937
+                }
+              ],
+              "raw_source_words_approx": 3268,
+              "learning_role": "core",
+              "required_for_track_completion": true,
+              "assessment_profile": "core",
+              "supporting_lectures": [],
+              "content_rule": "Use selected lecture(s) as the spine; add only supporting material needed for a standalone lesson."
+            },
+            {
+              "id": "N-02",
+              "title": "What Next.js Is and Why It Exists",
+              "source_orders": [
+                68
+              ],
+              "type": "core",
+              "subtopics": [
+                "Full-stack React framework",
+                "App Router mental model",
+                "Framework responsibilities"
+              ],
+              "source_lectures": [
+                {
+                  "order": 68,
+                  "pathway_title": "What is Next.js?",
+                  "transcript_title": "What is Next.js?",
+                  "transcript_line": 143281,
+                  "raw_word_count_approx": 1757
+                }
+              ],
+              "raw_source_words_approx": 1757,
+              "learning_role": "core",
+              "required_for_track_completion": true,
+              "assessment_profile": "core",
+              "supporting_lectures": [
+                "Project Organization",
+                "Adding Nested Routes and Pages",
+                "Adding a Nested Layout",
+                "Adding Page Metadata and Favicon"
+              ],
+              "content_rule": "Use selected lecture(s) as the spine; add only supporting material needed for a standalone lesson."
+            }
+          ],
+          "sequence": 1,
+          "assessment": {
+            "review_id": "N-M01-REVIEW",
+            "review_profile": "module_review",
+            "question_count_target": 10,
+            "applied_challenge_count": 1,
+            "mastery_threshold_percent": 80,
+            "retry_policy": "Unlimited attempts; missed objectives enter spaced review."
+          },
+          "required_topic_ids": [
+            "N-01",
+            "N-02"
+          ],
+          "optional_or_nonlesson_ids": []
+        },
+        {
+          "id": "N-M02",
+          "title": "React Server Components",
+          "topics": [
+            {
+              "id": "N-03",
+              "title": "React Server Components: Fundamentals",
+              "source_orders": [
+                69
+              ],
+              "type": "core",
+              "subtopics": [
+                "Server and client components",
+                "Capabilities and restrictions",
+                "Benefits of server execution"
+              ],
+              "source_lectures": [
+                {
+                  "order": 69,
+                  "pathway_title": "What are React Server Components? (RSC Part 1)",
+                  "transcript_title": "What are React Server Components? (RSC – Part 1)",
+                  "transcript_line": 145232,
+                  "raw_word_count_approx": 4882
+                }
+              ],
+              "raw_source_words_approx": 4882,
+              "learning_role": "core",
+              "required_for_track_completion": true,
+              "assessment_profile": "core",
+              "supporting_lectures": [],
+              "content_rule": "Use selected lecture(s) as the spine; add only supporting material needed for a standalone lesson."
+            },
+            {
+              "id": "N-04",
+              "title": "RSC Internals and Relationship to SSR",
+              "source_orders": [
+                70,
+                71
+              ],
+              "type": "core",
+              "subtopics": [
+                "RSC rendering protocol",
+                "RSC payload",
+                "How RSC and SSR differ",
+                "How they work together"
+              ],
+              "source_lectures": [
+                {
+                  "order": 70,
+                  "pathway_title": "How RSC Works Behind the Scenes (RSC Part 2)",
+                  "transcript_title": "How RSC Works Behind the Scenes (RSC – Part 2)",
+                  "transcript_line": 147206,
+                  "raw_word_count_approx": 2817
+                },
+                {
+                  "order": 71,
+                  "pathway_title": "RSC vs. SSR: How are They Related? (RSC Part 3)",
+                  "transcript_title": "RSC vs. SSR: How are They Related? (RSC – Part 3)",
+                  "transcript_line": 147885,
+                  "raw_word_count_approx": 1850
+                }
+              ],
+              "raw_source_words_approx": 4667,
+              "learning_role": "core",
+              "required_for_track_completion": true,
+              "assessment_profile": "core",
+              "supporting_lectures": [],
+              "content_rule": "Use selected lecture(s) as the spine; add only supporting material needed for a standalone lesson."
+            }
+          ],
+          "sequence": 2,
+          "assessment": {
+            "review_id": "N-M02-REVIEW",
+            "review_profile": "module_review",
+            "question_count_target": 10,
+            "applied_challenge_count": 1,
+            "mastery_threshold_percent": 80,
+            "retry_policy": "Unlimited attempts; missed objectives enter spaced review."
+          },
+          "required_topic_ids": [
+            "N-03",
+            "N-04"
+          ],
+          "optional_or_nonlesson_ids": []
+        },
+        {
+          "id": "N-M03",
+          "title": "Project Planning",
+          "topics": [
+            {
+              "id": "N-05",
+              "title": "Wild Oasis Website Planning",
+              "source_orders": [
+                72
+              ],
+              "type": "case_study",
+              "subtopics": [
+                "Routes and layouts",
+                "Feature planning",
+                "Server/client responsibility planning"
+              ],
+              "source_lectures": [
+                {
+                  "order": 72,
+                  "pathway_title": "Project Planning: \"The Wild Oasis\" Website",
+                  "transcript_title": "Project Planning: \"The Wild Oasis\" Customer Website",
+                  "transcript_line": 148344,
+                  "raw_word_count_approx": 2212
+                }
+              ],
+              "raw_source_words_approx": 2212,
+              "learning_role": "applied_case_study",
+              "required_for_track_completion": true,
+              "assessment_profile": "applied_case_study",
+              "supporting_lectures": [
+                "Project Organization",
+                "Styling With Tailwind CSS",
+                "Building the Home Page"
+              ],
+              "content_rule": "Use selected lecture(s) as the spine; add only supporting material needed for a standalone lesson."
+            }
+          ],
+          "sequence": 3,
+          "assessment": {
+            "review_id": "N-M03-REVIEW",
+            "review_profile": "module_review",
+            "question_count_target": 10,
+            "applied_challenge_count": 1,
+            "mastery_threshold_percent": 80,
+            "retry_policy": "Unlimited attempts; missed objectives enter spaced review."
+          },
+          "required_topic_ids": [
+            "N-05"
+          ],
+          "optional_or_nonlesson_ids": []
+        },
+        {
+          "id": "N-M04",
+          "title": "Streaming, Rendering Strategies, and Caching",
+          "topics": [
+            {
+              "id": "N-06",
+              "title": "React Suspense and Streaming",
+              "source_orders": [
+                73
+              ],
+              "type": "core",
+              "subtopics": [
+                "Suspense boundaries",
+                "Streaming UI",
+                "Loading states"
+              ],
+              "source_lectures": [
+                {
+                  "order": 73,
+                  "pathway_title": "What is React Suspense?",
+                  "transcript_title": "What is React Suspense?",
+                  "transcript_line": 153542,
+                  "raw_word_count_approx": 1905
+                }
+              ],
+              "raw_source_words_approx": 1905,
+              "learning_role": "core",
+              "required_for_track_completion": true,
+              "assessment_profile": "core",
+              "supporting_lectures": [
+                "Streaming Route Segments With loading.js File",
+                "Streaming UI With Suspense: Cabin List"
+              ],
+              "content_rule": "Use selected lecture(s) as the spine; add only supporting material needed for a standalone lesson."
+            },
+            {
+              "id": "N-07",
+              "title": "Static, Dynamic, and Partial Pre-Rendering",
+              "source_orders": [
+                74,
+                75
+              ],
+              "type": "core",
+              "subtopics": [
+                "Static rendering",
+                "Dynamic rendering",
+                "Partial pre-rendering",
+                "Choosing a strategy"
+              ],
+              "source_lectures": [
+                {
+                  "order": 74,
+                  "pathway_title": "Types of SSR: Static vs. Dynamic Rendering",
+                  "transcript_title": "Different Types of SSR: Static vs. Dynamic Rendering",
+                  "transcript_line": 155488,
+                  "raw_word_count_approx": 2240
+                },
+                {
+                  "order": 75,
+                  "pathway_title": "Partial Pre-Rendering",
+                  "transcript_title": "Partial Pre-Rendering",
+                  "transcript_line": 156868,
+                  "raw_word_count_approx": 1081
+                }
+              ],
+              "raw_source_words_approx": 3321,
+              "learning_role": "core",
+              "required_for_track_completion": true,
+              "assessment_profile": "core",
+              "supporting_lectures": [
+                "Analyzing Rendering in Our App",
+                "Making Dynamic Pages Static With generateStaticParams",
+                "Static Site Generation (SSG)"
+              ],
+              "content_rule": "Use selected lecture(s) as the spine; add only supporting material needed for a standalone lesson."
+            },
+            {
+              "id": "N-08",
+              "title": "How Next.js Caches Data",
+              "source_orders": [
+                76
+              ],
+              "type": "core",
+              "subtopics": [
+                "Request memoization",
+                "Data cache",
+                "Route cache",
+                "Revalidation considerations"
+              ],
+              "source_lectures": [
+                {
+                  "order": 76,
+                  "pathway_title": "How Next.js Caches Data",
+                  "transcript_title": "How Next.js Caches Data",
+                  "transcript_line": 157137,
+                  "raw_word_count_approx": 2964
+                }
+              ],
+              "raw_source_words_approx": 2964,
+              "learning_role": "core",
+              "required_for_track_completion": true,
+              "assessment_profile": "core",
+              "supporting_lectures": [
+                "Experimenting With Caching and ISR"
+              ],
+              "content_rule": "Use selected lecture(s) as the spine; add only supporting material needed for a standalone lesson."
+            }
+          ],
+          "sequence": 4,
+          "assessment": {
+            "review_id": "N-M04-REVIEW",
+            "review_profile": "module_review",
+            "question_count_target": 10,
+            "applied_challenge_count": 1,
+            "mastery_threshold_percent": 80,
+            "retry_policy": "Unlimited attempts; missed objectives enter spaced review."
+          },
+          "required_topic_ids": [
+            "N-06",
+            "N-07",
+            "N-08"
+          ],
+          "optional_or_nonlesson_ids": []
+        },
+        {
+          "id": "N-M05",
+          "title": "Server and Client Architecture",
+          "topics": [
+            {
+              "id": "N-09",
+              "title": "Server and Client Boundaries",
+              "source_orders": [
+                77
+              ],
+              "type": "core",
+              "subtopics": [
+                "The `use client` boundary",
+                "Composition across boundaries",
+                "Sharing data and state"
+              ],
+              "source_lectures": [
+                {
+                  "order": 77,
+                  "pathway_title": "Blurring the Boundary Between Server and Client",
+                  "transcript_title": "Blurring the Boundary Between Server and Client (RSC – Part 4)",
+                  "transcript_line": 158790,
+                  "raw_word_count_approx": 2326
+                }
+              ],
+              "raw_source_words_approx": 2326,
+              "learning_role": "core",
+              "required_for_track_completion": true,
+              "assessment_profile": "core",
+              "supporting_lectures": [
+                "Client Components in Server Components",
+                "Sharing State Between Client and Server: The URL",
+                "Advanced: Server Components in Client Components"
+              ],
+              "content_rule": "Use selected lecture(s) as the spine; add only supporting material needed for a standalone lesson."
+            },
+            {
+              "id": "N-10",
+              "title": "Middleware in Next.js",
+              "source_orders": [
+                78
+              ],
+              "type": "core",
+              "subtopics": [
+                "Request interception",
+                "Redirects and rewrites",
+                "Common middleware use cases"
+              ],
+              "source_lectures": [
+                {
+                  "order": 78,
+                  "pathway_title": "What is Middleware in Next.js?",
+                  "transcript_title": "What is Middleware in Next.js?",
+                  "transcript_line": 165184,
+                  "raw_word_count_approx": 634
+                }
+              ],
+              "raw_source_words_approx": 634,
+              "learning_role": "core",
+              "required_for_track_completion": true,
+              "assessment_profile": "core",
+              "supporting_lectures": [
+                "Creating an API Endpoint With Route Handlers"
+              ],
+              "content_rule": "Use selected lecture(s) as the spine; add only supporting material needed for a standalone lesson."
+            },
+            {
+              "id": "N-11",
+              "title": "Server Actions",
+              "source_orders": [
+                79
+              ],
+              "type": "core",
+              "subtopics": [
+                "Server-only mutations",
+                "`use server`",
+                "Forms and mutations",
+                "Interaction with client components"
+              ],
+              "source_lectures": [
+                {
+                  "order": 79,
+                  "pathway_title": "What are Server Actions?",
+                  "transcript_title": "What are Server Actions?",
+                  "transcript_line": 166875,
+                  "raw_word_count_approx": 1884
+                }
+              ],
+              "raw_source_words_approx": 1884,
+              "learning_role": "core",
+              "required_for_track_completion": true,
+              "assessment_profile": "core",
+              "supporting_lectures": [
+                "Authentication With NextAuth (Auth.js)",
+                "Setting Up NextAuth",
+                "Mutations With Server Actions + Modern React Hooks"
+              ],
+              "content_rule": "Use selected lecture(s) as the spine; add only supporting material needed for a standalone lesson."
+            }
+          ],
+          "sequence": 5,
+          "assessment": {
+            "review_id": "N-M05-REVIEW",
+            "review_profile": "module_review",
+            "question_count_target": 10,
+            "applied_challenge_count": 1,
+            "mastery_threshold_percent": 80,
+            "retry_policy": "Unlimited attempts; missed objectives enter spaced review."
+          },
+          "required_topic_ids": [
+            "N-09",
+            "N-10",
+            "N-11"
+          ],
+          "optional_or_nonlesson_ids": []
+        }
+      ]
+    }
+  },
+  "project_separation": [
+    {
+      "source": "Mapty planning and final considerations",
+      "treatment": "core_with_case_study"
+    },
+    {
+      "source": "Forkify overview and planning",
+      "treatment": "case_study"
+    },
+    {
+      "source": "Forkify MVC and publisher-subscriber",
+      "treatment": "core"
+    },
+    {
+      "source": "Forkify final considerations",
+      "treatment": "recap"
+    },
+    {
+      "source": "Fast React Pizza application planning",
+      "treatment": "case_study"
+    },
+    {
+      "source": "Wild Oasis React application planning",
+      "treatment": "case_study"
+    },
+    {
+      "source": "Wild Oasis Next.js website planning",
+      "treatment": "case_study"
+    }
+  ],
+  "supporting_material_candidates": {
+    "javascript": [
+      "Introduction to Arrays",
+      "Introduction to Objects",
+      "Sets",
+      "Maps: Fundamentals",
+      "Maps: Iteration",
+      "Functions Accepting Callback Functions",
+      "Functions Returning Functions",
+      "The map Method",
+      "The filter Method",
+      "The reduce Method",
+      "The Magic of Chaining Methods",
+      "Constructor Functions and the new Operator",
+      "Prototypes",
+      "ES6 Classes",
+      "Inheritance Between \"Classes\": ES6 Classes",
+      "Consuming Promises",
+      "Chaining Promises",
+      "Handling Rejected Promises",
+      "Consuming Promises with Async/Await",
+      "Error Handling With try...catch",
+      "Exporting and Importing in ES6 Modules",
+      "Declarative and Functional JavaScript Principles"
+    ],
+    "react": [
+      "Creating a State Variable With useState",
+      "Updating State Based on Current State",
+      "Handling Events the React Way",
+      "Controlled Elements",
+      "Creating and Providing a Context",
+      "Consuming the Context",
+      "Advanced Pattern: A Custom Provider and Hook",
+      "Implementing Main Pages and Routes",
+      "Linking Between Routes With <Link /> and <NavLink />",
+      "Creating a Redux Store",
+      "Back to React! Connecting our Redux App With React",
+      "Creating the Store With RTK",
+      "Creating the Account Slice",
+      "Setting Up React Query",
+      "Fetching Cabin Data",
+      "Mutations: Deleting a Cabin",
+      "The Render Props Pattern",
+      "A Look at Higher-Order Components (HOC)",
+      "The Compound Component Pattern"
+    ],
+    "nextjs": [
+      "Project Organization",
+      "Adding Nested Routes and Pages",
+      "Adding a Nested Layout",
+      "Fetching and Displaying Cabin List",
+      "Creating an API Endpoint With Route Handlers",
+      "Setting Up NextAuth",
+      "Deployment With Vercel"
+    ]
+  },
+  "version": "2.0",
+  "phase_5_decisions": [
+    {
+      "id": "D01",
+      "decision": "Keep exactly three primary tracks: JavaScript, React, and Next.js.",
+      "reason": "This matches the product navigation and the intended prerequisite flow."
+    },
+    {
+      "id": "D02",
+      "decision": "Orientation content remains visible but is not scored and does not count toward mastery.",
+      "reason": "It supports onboarding without distorting learning progress."
+    },
+    {
+      "id": "D03",
+      "decision": "Summary and recap lectures are absorbed into module reviews instead of appearing as duplicate lessons.",
+      "reason": "The platform should use summaries for retrieval practice and consolidation."
+    },
+    {
+      "id": "D04",
+      "decision": "Projects are treated as applied case studies or milestone challenges; transferable concepts stay in core lessons.",
+      "reason": "Learners should understand the concept independently of a course-specific project."
+    },
+    {
+      "id": "D05",
+      "decision": "Tailwind CSS and Supabase stay inside the React track as optional ecosystem supplements.",
+      "reason": "They are relevant to the source course but are not React language fundamentals."
+    },
+    {
+      "id": "D06",
+      "decision": "Class components remain optional legacy context.",
+      "reason": "They are useful for reading older code but are not part of the default modern path."
+    },
+    {
+      "id": "D07",
+      "decision": "Supporting implementation lectures may enrich an approved topic without becoming extra top-level topics.",
+      "reason": "This preserves a clean curriculum while making each lesson standalone and practical."
+    },
+    {
+      "id": "D08",
+      "decision": "Assessments are designed now at the objective and format level; full question writing happens alongside lesson production.",
+      "reason": "Assessment must shape instruction, but exact questions must match the final explanations and examples."
+    }
+  ],
+  "assessment_profiles": {
+    "onboarding": {
+      "scored": false,
+      "in_lesson_checks": 0,
+      "practice_challenges": 0,
+      "notes": "Optional readiness reflection only."
+    },
+    "core": {
+      "scored": true,
+      "in_lesson_checks_range": [
+        2,
+        4
+      ],
+      "practice_challenges_range": [
+        1,
+        2
+      ],
+      "module_review_coverage": true,
+      "mastery_evidence": [
+        "concept check",
+        "code reasoning or application"
+      ]
+    },
+    "applied_case_study": {
+      "scored": true,
+      "in_lesson_checks_range": [
+        1,
+        3
+      ],
+      "practice_challenges_range": [
+        1,
+        1
+      ],
+      "module_review_coverage": true,
+      "mastery_evidence": [
+        "design decision",
+        "applied deliverable or reflection"
+      ]
+    },
+    "optional_supplement": {
+      "scored": false,
+      "in_lesson_checks_range": [
+        0,
+        2
+      ],
+      "practice_challenges_range": [
+        0,
+        1
+      ],
+      "module_review_coverage": false
+    },
+    "optional_legacy": {
+      "scored": false,
+      "in_lesson_checks_range": [
+        0,
+        2
+      ],
+      "practice_challenges_range": [
+        0,
+        1
+      ],
+      "module_review_coverage": false
+    },
+    "module_review": {
+      "scored": true,
+      "question_count_range": [
+        8,
+        15
+      ],
+      "applied_challenges": 1,
+      "recommended_mastery_threshold_percent": 80
+    }
+  },
+  "pilot": {
+    "module_id": "JS-M05",
+    "title": "Data Structures and Functional Techniques",
+    "reason": "It contains conceptual explanation, code reasoning, API selection, closures, and practical data transformation, making it a representative test of the platform format.",
+    "production_scope": [
+      "JS-13",
+      "JS-14",
+      "JS-15",
+      "JS-16",
+      "JS-M05-REVIEW",
+      "JS-M05-CHALLENGE"
+    ]
+  }
+}

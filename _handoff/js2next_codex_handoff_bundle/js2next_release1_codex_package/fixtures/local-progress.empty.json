@@ -1,0 +1,14 @@
+{
+  "schemaVersion": "1.0",
+  "profileId": "local-default",
+  "curriculumVersion": "release-1-draft",
+  "topicProgress": {},
+  "assessmentAttempts": [],
+  "reviewQueue": [],
+  "legacyProgress": {
+    "imported": false,
+    "countsTowardNewMastery": false,
+    "exportReference": null
+  },
+  "updatedAt": "2026-07-17"
+}

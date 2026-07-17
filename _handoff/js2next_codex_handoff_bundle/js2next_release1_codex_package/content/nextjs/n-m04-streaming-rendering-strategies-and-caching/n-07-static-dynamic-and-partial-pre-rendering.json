@@ -1,0 +1,625 @@
+{
+  "schemaVersion": "1.0",
+  "id": "N-07",
+  "slug": "static-dynamic-and-partial-pre-rendering",
+  "trackId": "nextjs",
+  "moduleId": "N-M04",
+  "order": 2,
+  "title": "Static, Dynamic, and Partial Pre-Rendering",
+  "required": true,
+  "optional": false,
+  "advanced": false,
+  "contentType": "core",
+  "difficulty": 3,
+  "estimatedMinutes": 20,
+  "requiredPrerequisiteTopicIds": [
+    "N-06"
+  ],
+  "recommendedPrerequisiteTopicIds": [],
+  "learningObjectives": [
+    {
+      "id": "N-07-LO1",
+      "text": "Explain static rendering using a new example and justify the result.",
+      "subtopic": "Static rendering",
+      "cognitiveLevel": "understand"
+    },
+    {
+      "id": "N-07-LO2",
+      "text": "Explain dynamic rendering using a new example and justify the result.",
+      "subtopic": "Dynamic rendering",
+      "cognitiveLevel": "apply"
+    },
+    {
+      "id": "N-07-LO3",
+      "text": "Explain partial pre-rendering using a new example and justify the result.",
+      "subtopic": "Partial pre-rendering",
+      "cognitiveLevel": "analyze"
+    },
+    {
+      "id": "N-07-LO4",
+      "text": "Explain choosing a strategy using a new example and justify the result.",
+      "subtopic": "Choosing a strategy",
+      "cognitiveLevel": "analyze"
+    }
+  ],
+  "whyThisMatters": "Learners frequently use static, dynamic, and partial pre-rendering without a clear model of why it behaves as it does; this lesson makes that model explicit. It belongs to the **Streaming, Rendering Strategies, and Caching** module.",
+  "mentalModel": "Draw a decision map: **Static rendering** → **Dynamic rendering** → **Partial pre-rendering** → **Choosing a strategy**. Add branches where the learner must choose an alternative and label the evidence for the choice.",
+  "sections": [
+    {
+      "id": "N-07-S1",
+      "type": "concept",
+      "title": "Static rendering",
+      "body": "Static rendering produces reusable output ahead of requests and suits data that does not depend on request-specific information.",
+      "objectiveIds": [
+        "N-07-LO1"
+      ],
+      "checkQuestionId": "N-07-Q01"
+    },
+    {
+      "id": "N-07-S2",
+      "type": "concept",
+      "title": "Dynamic rendering",
+      "body": "Dynamic rendering produces output at request time for request-specific, personalized, or uncached data.",
+      "objectiveIds": [
+        "N-07-LO2"
+      ],
+      "checkQuestionId": "N-07-Q02"
+    },
+    {
+      "id": "N-07-S3",
+      "type": "concept",
+      "title": "Partial pre-rendering",
+      "body": "Partial prerendering combines a static shell with dynamic regions behind Suspense boundaries. APIs must be version-pinned because the model evolves.",
+      "objectiveIds": [
+        "N-07-LO3"
+      ],
+      "checkQuestionId": "N-07-Q03"
+    },
+    {
+      "id": "N-07-S4",
+      "type": "concept",
+      "title": "Choosing a strategy",
+      "body": "Choose rendering per region based on freshness, personalization, latency, cacheability, and cost.",
+      "objectiveIds": [
+        "N-07-LO4"
+      ],
+      "checkQuestionId": "N-07-Q03"
+    },
+    {
+      "id": "N-07-EX1",
+      "type": "code-example",
+      "title": "Worked example",
+      "language": "tsx",
+      "source": "export default async function Page() {\n  return (\n    <>\n      <StaticCourseIntro />\n      <Suspense fallback={<p>Loading your progress…</p>}>\n        <PersonalProgress />\n      </Suspense>\n    </>\n  );\n}",
+      "explanation": "Static and request-time regions can coexist behind a boundary.",
+      "objectiveIds": [
+        "N-07-LO1",
+        "N-07-LO2",
+        "N-07-LO3",
+        "N-07-LO4"
+      ]
+    }
+  ],
+  "commonMistakes": [
+    "Marking a large route tree as client code when only a small interaction needs it.",
+    "Confusing React Server Components with server-side rendering.",
+    "Assuming cached data is fresh without an explicit policy and invalidation path.",
+    "Placing security-sensitive validation only in the client or middleware layer."
+  ],
+  "summary": [
+    "Static, Dynamic, and Partial Pre-Rendering connects Static rendering, Dynamic rendering, Partial pre-rendering.",
+    "Use the topic to make behavior and decisions explicit rather than memorizing isolated syntax.",
+    "Verify understanding by explaining a new example and answering the topic quiz without looking back."
+  ],
+  "inLessonQuestionIds": [
+    "N-07-Q01",
+    "N-07-Q02",
+    "N-07-Q03"
+  ],
+  "topicQuiz": {
+    "id": "N-07-QUIZ",
+    "questionIds": [
+      "N-07-Q04",
+      "N-07-Q05",
+      "N-07-Q06",
+      "N-07-Q07",
+      "N-07-Q08"
+    ],
+    "masteryThresholdPercent": 80,
+    "attemptPolicy": "unlimited",
+    "failurePolicy": "Show explanations, add missed objectives to local review, and allow immediate or later retry.",
+    "randomizeQuestionOrder": true,
+    "randomizeChoiceOrder": false
+  },
+  "questions": [
+    {
+      "id": "N-07-Q01",
+      "trackId": "nextjs",
+      "moduleId": "N-M04",
+      "topicId": "N-07",
+      "objectiveIds": [
+        "N-07-LO1"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which statement best explains “Static rendering” in the context of Static, Dynamic, and Partial Pre-Rendering?",
+      "choices": [
+        {
+          "id": "N-07-Q01-C1",
+          "label": "Static rendering produces reusable output ahead of requests and suits data that does not depend on request-specific information.",
+          "feedback": "Static rendering is best understood as follows: Static rendering produces reusable output ahead of requests and suits data that does not depend on request-specific information."
+        },
+        {
+          "id": "N-07-Q01-C2",
+          "label": "A redirect changes the client's URL; a rewrite serves a different destination while preserving the visible URL.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Static rendering."
+        },
+        {
+          "id": "N-07-Q01-C3",
+          "label": "The RSC payload describes the rendered server tree and client boundaries; it is not ordinary HTML.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Static rendering."
+        },
+        {
+          "id": "N-07-Q01-C4",
+          "label": "Server Components can render Client Components and pass serializable data or server-rendered children across the boundary.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Static rendering."
+        }
+      ],
+      "correctChoiceIds": [
+        "N-07-Q01-C1"
+      ],
+      "explanation": "Static rendering is best understood as follows: Static rendering produces reusable output ahead of requests and suits data that does not depend on request-specific information.",
+      "hint": "Focus on what the concept changes, enables, or constrains—not only on its syntax.",
+      "difficulty": 2,
+      "cognitiveLevel": "recognize",
+      "estimatedSeconds": 75,
+      "tags": [
+        "static-rendering",
+        "static-dynamic-and-partial-pre-rendering"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "N-07-Q02",
+      "trackId": "nextjs",
+      "moduleId": "N-M04",
+      "topicId": "N-07",
+      "objectiveIds": [
+        "N-07-LO2"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which statement best explains “Dynamic rendering” in the context of Static, Dynamic, and Partial Pre-Rendering?",
+      "choices": [
+        {
+          "id": "N-07-Q02-C1",
+          "label": "A redirect changes the client's URL; a rewrite serves a different destination while preserving the visible URL.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Dynamic rendering."
+        },
+        {
+          "id": "N-07-Q02-C2",
+          "label": "Server Components can render Client Components and pass serializable data or server-rendered children across the boundary.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Dynamic rendering."
+        },
+        {
+          "id": "N-07-Q02-C3",
+          "label": "The RSC payload describes the rendered server tree and client boundaries; it is not ordinary HTML.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Dynamic rendering."
+        },
+        {
+          "id": "N-07-Q02-C4",
+          "label": "Dynamic rendering produces output at request time for request-specific, personalized, or uncached data.",
+          "feedback": "Dynamic rendering is best understood as follows: Dynamic rendering produces output at request time for request-specific, personalized, or uncached data."
+        }
+      ],
+      "correctChoiceIds": [
+        "N-07-Q02-C4"
+      ],
+      "explanation": "Dynamic rendering is best understood as follows: Dynamic rendering produces output at request time for request-specific, personalized, or uncached data.",
+      "hint": "Focus on what the concept changes, enables, or constrains—not only on its syntax.",
+      "difficulty": 2,
+      "cognitiveLevel": "explain",
+      "estimatedSeconds": 75,
+      "tags": [
+        "dynamic-rendering",
+        "static-dynamic-and-partial-pre-rendering"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "N-07-Q03",
+      "trackId": "nextjs",
+      "moduleId": "N-M04",
+      "topicId": "N-07",
+      "objectiveIds": [
+        "N-07-LO3"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which statement best explains “Partial pre-rendering” in the context of Static, Dynamic, and Partial Pre-Rendering?",
+      "choices": [
+        {
+          "id": "N-07-Q03-C1",
+          "label": "A redirect changes the client's URL; a rewrite serves a different destination while preserving the visible URL.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Partial pre-rendering."
+        },
+        {
+          "id": "N-07-Q03-C2",
+          "label": "Server Components can render Client Components and pass serializable data or server-rendered children across the boundary.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Partial pre-rendering."
+        },
+        {
+          "id": "N-07-Q03-C3",
+          "label": "Partial prerendering combines a static shell with dynamic regions behind Suspense boundaries. APIs must be version-pinned because the model evolves.",
+          "feedback": "Partial pre-rendering is best understood as follows: Partial prerendering combines a static shell with dynamic regions behind Suspense boundaries. APIs must be version-pinned because the model evolves."
+        },
+        {
+          "id": "N-07-Q03-C4",
+          "label": "The RSC payload describes the rendered server tree and client boundaries; it is not ordinary HTML.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Partial pre-rendering."
+        }
+      ],
+      "correctChoiceIds": [
+        "N-07-Q03-C3"
+      ],
+      "explanation": "Partial pre-rendering is best understood as follows: Partial prerendering combines a static shell with dynamic regions behind Suspense boundaries. APIs must be version-pinned because the model evolves.",
+      "hint": "Focus on what the concept changes, enables, or constrains—not only on its syntax.",
+      "difficulty": 2,
+      "cognitiveLevel": "predict",
+      "estimatedSeconds": 120,
+      "tags": [
+        "partial-pre-rendering",
+        "static-dynamic-and-partial-pre-rendering"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "N-07-Q04",
+      "trackId": "nextjs",
+      "moduleId": "N-M04",
+      "topicId": "N-07",
+      "objectiveIds": [
+        "N-07-LO1",
+        "N-07-LO2"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "A learner must use Static, Dynamic, and Partial Pre-Rendering in a new situation. Which approach best demonstrates transferable understanding?",
+      "choices": [
+        {
+          "id": "N-07-Q04-C1",
+          "label": "Treat the concept as isolated trivia and avoid connecting it to earlier prerequisites.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Static, Dynamic, and Partial Pre-Rendering."
+        },
+        {
+          "id": "N-07-Q04-C2",
+          "label": "Apply Static rendering deliberately, make the relevant inputs and assumptions explicit, and verify the observable result before adding more complexity.",
+          "feedback": "Transfer comes from using the concept with explicit assumptions and checking the resulting behavior, not from reproducing a memorized example."
+        },
+        {
+          "id": "N-07-Q04-C3",
+          "label": "Skip the underlying model and rely on memorized syntax, even when the result is unclear.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Static, Dynamic, and Partial Pre-Rendering."
+        },
+        {
+          "id": "N-07-Q04-C4",
+          "label": "Add more state and abstraction immediately, before identifying the smallest requirement.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Static, Dynamic, and Partial Pre-Rendering."
+        }
+      ],
+      "correctChoiceIds": [
+        "N-07-Q04-C2"
+      ],
+      "explanation": "Transfer comes from using the concept with explicit assumptions and checking the resulting behavior, not from reproducing a memorized example.",
+      "hint": "Choose the option that would still work when the surrounding example changes.",
+      "difficulty": 3,
+      "cognitiveLevel": "apply",
+      "estimatedSeconds": 120,
+      "tags": [
+        "static-dynamic-and-partial-pre-rendering",
+        "static-rendering"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "N-07-Q05",
+      "trackId": "nextjs",
+      "moduleId": "N-M04",
+      "topicId": "N-07",
+      "objectiveIds": [
+        "N-07-LO1",
+        "N-07-LO2",
+        "N-07-LO3",
+        "N-07-LO4"
+      ],
+      "kind": "single-choice",
+      "presentation": "code",
+      "prompt": "What is the most accurate explanation of the following Static, Dynamic, and Partial Pre-Rendering example?",
+      "choices": [
+        {
+          "id": "N-07-Q05-C1",
+          "label": "Static and request-time regions can coexist behind a boundary.",
+          "feedback": "The correct choice connects the example to the underlying model rather than treating the syntax as isolated trivia."
+        },
+        {
+          "id": "N-07-Q05-C2",
+          "label": "The snippet guarantees that all values are immutable and all operations are asynchronous.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Static, Dynamic, and Partial Pre-Rendering."
+        },
+        {
+          "id": "N-07-Q05-C3",
+          "label": "The snippet is valid only because JavaScript ignores variable scope and evaluation order.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Static, Dynamic, and Partial Pre-Rendering."
+        },
+        {
+          "id": "N-07-Q05-C4",
+          "label": "The snippet removes the need to understand the data flowing through the program.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Static, Dynamic, and Partial Pre-Rendering."
+        }
+      ],
+      "correctChoiceIds": [
+        "N-07-Q05-C1"
+      ],
+      "explanation": "The correct choice connects the example to the underlying model rather than treating the syntax as isolated trivia.",
+      "hint": "Trace data, control flow, ownership, or rendering step by step.",
+      "difficulty": 3,
+      "cognitiveLevel": "predict",
+      "estimatedSeconds": 120,
+      "tags": [
+        "static-dynamic-and-partial-pre-rendering",
+        "static-rendering",
+        "dynamic-rendering"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review",
+      "code": {
+        "language": "tsx",
+        "source": "export default async function Page() {\n  return (\n    <>\n      <StaticCourseIntro />\n      <Suspense fallback={<p>Loading your progress…</p>}>\n        <PersonalProgress />\n      </Suspense>\n    </>\n  );\n}"
+      }
+    },
+    {
+      "id": "N-07-Q06",
+      "trackId": "nextjs",
+      "moduleId": "N-M04",
+      "topicId": "N-07",
+      "objectiveIds": [
+        "N-07-LO1",
+        "N-07-LO2",
+        "N-07-LO3",
+        "N-07-LO4"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which response best addresses this common mistake: “Marking a large route tree as client code when only a small interaction needs it.”?",
+      "choices": [
+        {
+          "id": "N-07-Q06-C1",
+          "label": "The statement is unrelated to program behavior and cannot cause defects.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Static, Dynamic, and Partial Pre-Rendering."
+        },
+        {
+          "id": "N-07-Q06-C2",
+          "label": "The statement is a misconception. A better approach is to reason from the concept's inputs, rules, and observable outcome, then verify the result.",
+          "feedback": "Good feedback names the misconception and replaces it with a usable reasoning process."
+        },
+        {
+          "id": "N-07-Q06-C3",
+          "label": "The statement is correct only when variable names are short.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Static, Dynamic, and Partial Pre-Rendering."
+        },
+        {
+          "id": "N-07-Q06-C4",
+          "label": "The statement is always correct, so no further reasoning about Static, Dynamic, and Partial Pre-Rendering is needed.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Static, Dynamic, and Partial Pre-Rendering."
+        }
+      ],
+      "correctChoiceIds": [
+        "N-07-Q06-C2"
+      ],
+      "explanation": "Good feedback names the misconception and replaces it with a usable reasoning process.",
+      "hint": "Look for the option that corrects both the belief and the learner's next action.",
+      "difficulty": 3,
+      "cognitiveLevel": "debug",
+      "estimatedSeconds": 120,
+      "tags": [
+        "static-dynamic-and-partial-pre-rendering",
+        "common-mistakes"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "N-07-Q07",
+      "trackId": "nextjs",
+      "moduleId": "N-M04",
+      "topicId": "N-07",
+      "objectiveIds": [
+        "N-07-LO1",
+        "N-07-LO2",
+        "N-07-LO3",
+        "N-07-LO4"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which sequence is most reliable when solving a problem involving Static, Dynamic, and Partial Pre-Rendering?",
+      "choices": [
+        {
+          "id": "N-07-Q07-C1",
+          "label": "Start with a framework abstraction and avoid checking the underlying language behavior.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Static, Dynamic, and Partial Pre-Rendering."
+        },
+        {
+          "id": "N-07-Q07-C2",
+          "label": "Copy an unrelated implementation, hide the assumptions, and test only the happy path.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Static, Dynamic, and Partial Pre-Rendering."
+        },
+        {
+          "id": "N-07-Q07-C3",
+          "label": "Optimize first, then decide what the code is supposed to do.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Static, Dynamic, and Partial Pre-Rendering."
+        },
+        {
+          "id": "N-07-Q07-C4",
+          "label": "First identify the requirement, then apply the relevant rule from Static rendering, inspect the result, and only then refactor or optimize.",
+          "feedback": "The reliable sequence starts from the requirement, applies a known rule, observes behavior, and improves the solution afterward."
+        }
+      ],
+      "correctChoiceIds": [
+        "N-07-Q07-C4"
+      ],
+      "explanation": "The reliable sequence starts from the requirement, applies a known rule, observes behavior, and improves the solution afterward.",
+      "hint": "Prefer a sequence that makes failures visible early.",
+      "difficulty": 3,
+      "cognitiveLevel": "explain",
+      "estimatedSeconds": 75,
+      "tags": [
+        "static-dynamic-and-partial-pre-rendering",
+        "problem-solving"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "N-07-Q08",
+      "trackId": "nextjs",
+      "moduleId": "N-M04",
+      "topicId": "N-07",
+      "objectiveIds": [
+        "N-07-LO1",
+        "N-07-LO2",
+        "N-07-LO3",
+        "N-07-LO4"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which guideline shows the best judgment about when to use Static, Dynamic, and Partial Pre-Rendering?",
+      "choices": [
+        {
+          "id": "N-07-Q08-C1",
+          "label": "Use Static, Dynamic, and Partial Pre-Rendering when it makes intent, ownership, or data flow clearer; avoid adding it mechanically when a simpler, equally explicit solution is sufficient.",
+          "feedback": "Engineering judgment balances clarity and cost. The concept should serve the requirement rather than become an end in itself."
+        },
+        {
+          "id": "N-07-Q08-C2",
+          "label": "Use Static, Dynamic, and Partial Pre-Rendering in every file because more abstraction is always better.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Static, Dynamic, and Partial Pre-Rendering."
+        },
+        {
+          "id": "N-07-Q08-C3",
+          "label": "Avoid Static, Dynamic, and Partial Pre-Rendering completely because all abstractions reduce maintainability.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Static, Dynamic, and Partial Pre-Rendering."
+        },
+        {
+          "id": "N-07-Q08-C4",
+          "label": "Choose based only on line count, without considering readability, correctness, or future change.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Static, Dynamic, and Partial Pre-Rendering."
+        }
+      ],
+      "correctChoiceIds": [
+        "N-07-Q08-C1"
+      ],
+      "explanation": "Engineering judgment balances clarity and cost. The concept should serve the requirement rather than become an end in itself.",
+      "hint": "Choose the option that acknowledges both benefits and trade-offs.",
+      "difficulty": 4,
+      "cognitiveLevel": "tradeoff",
+      "estimatedSeconds": 120,
+      "tags": [
+        "static-dynamic-and-partial-pre-rendering",
+        "tradeoffs"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    }
+  ],
+  "researchSources": [
+    {
+      "kind": "research-transcript",
+      "title": "Different Types of SSR: Static vs. Dynamic Rendering",
+      "pathwayOrder": 74,
+      "sourceLine": 155488,
+      "usage": "Coverage research only; no transcript wording is canonical."
+    },
+    {
+      "kind": "research-transcript",
+      "title": "Partial Pre-Rendering",
+      "pathwayOrder": 75,
+      "sourceLine": 156868,
+      "usage": "Coverage research only; no transcript wording is canonical."
+    },
+    {
+      "kind": "supporting-research",
+      "title": "Analyzing Rendering in Our App",
+      "usage": "Optional coverage reference; learner-facing wording must be original."
+    },
+    {
+      "kind": "supporting-research",
+      "title": "Making Dynamic Pages Static With generateStaticParams",
+      "usage": "Optional coverage reference; learner-facing wording must be original."
+    },
+    {
+      "kind": "supporting-research",
+      "title": "Static Site Generation (SSG)",
+      "usage": "Optional coverage reference; learner-facing wording must be original."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "Next.js App Router",
+      "url": "https://nextjs.org/docs/app",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "Next.js Server and Client Components",
+      "url": "https://nextjs.org/docs/app/getting-started/server-and-client-components",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "Next.js Fetching Data",
+      "url": "https://nextjs.org/docs/app/getting-started/fetching-data",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "Next.js Caching and Revalidating",
+      "url": "https://nextjs.org/docs/app/getting-started/caching-and-revalidating",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "Next.js Server Actions and Mutations",
+      "url": "https://nextjs.org/docs/app/getting-started/updating-data",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "Next.js loading.js and Streaming",
+      "url": "https://nextjs.org/docs/app/api-reference/file-conventions/loading",
+      "usage": "Technical verification and freshness review."
+    }
+  ],
+  "contentAuthority": {
+    "canonical": "New JS2Next Release 1 curriculum and independently authored content.",
+    "legacyProjectContent": "Supplementary internal reference only; excluded from runtime unless explicitly re-authored and approved.",
+    "courseTranscripts": "Coverage and sequencing research only; never learner-facing authority.",
+    "officialDocumentation": "Technical verification source."
+  },
+  "version": 1,
+  "status": "draft",
+  "reviewStatus": "pending-human-review",
+  "publicationStatus": "unpublished",
+  "createdAt": "2026-07-17",
+  "updatedAt": "2026-07-17"
+}

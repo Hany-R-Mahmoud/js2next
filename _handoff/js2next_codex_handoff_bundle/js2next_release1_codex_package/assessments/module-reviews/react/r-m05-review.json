@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "1.0",
+  "id": "R-M05-REVIEW",
+  "kind": "module-review",
+  "trackId": "react",
+  "moduleId": "R-M05",
+  "title": "How React Renders — Module Review",
+  "questionIds": [
+    "R-12-Q04",
+    "R-13-Q04",
+    "R-14-Q04",
+    "R-15-Q04",
+    "R-16-Q04",
+    "R-17-Q04",
+    "R-12-Q05",
+    "R-13-Q05",
+    "R-14-Q05",
+    "R-15-Q05",
+    "R-16-Q05",
+    "R-17-Q05"
+  ],
+  "masteryThresholdPercent": 80,
+  "attemptPolicy": "unlimited",
+  "failurePolicy": "Show explanations, identify missed objectives, recommend targeted topic review, and allow retry.",
+  "randomizeQuestionOrder": true,
+  "randomizeChoiceOrder": false,
+  "version": 1,
+  "status": "draft",
+  "reviewStatus": "pending-human-review"
+}

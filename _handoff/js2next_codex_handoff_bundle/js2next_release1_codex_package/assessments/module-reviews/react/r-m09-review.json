@@ -1,0 +1,28 @@
+{
+  "schemaVersion": "1.0",
+  "id": "R-M09-REVIEW",
+  "kind": "module-review",
+  "trackId": "react",
+  "moduleId": "R-M09",
+  "title": "Performance and Advanced Effects — Module Review",
+  "questionIds": [
+    "R-27-Q04",
+    "R-28-Q04",
+    "R-29-Q04",
+    "R-27-Q05",
+    "R-28-Q05",
+    "R-29-Q05",
+    "R-27-Q06",
+    "R-28-Q06",
+    "R-29-Q06",
+    "R-27-Q07"
+  ],
+  "masteryThresholdPercent": 80,
+  "attemptPolicy": "unlimited",
+  "failurePolicy": "Show explanations, identify missed objectives, recommend targeted topic review, and allow retry.",
+  "randomizeQuestionOrder": true,
+  "randomizeChoiceOrder": false,
+  "version": 1,
+  "status": "draft",
+  "reviewStatus": "pending-human-review"
+}

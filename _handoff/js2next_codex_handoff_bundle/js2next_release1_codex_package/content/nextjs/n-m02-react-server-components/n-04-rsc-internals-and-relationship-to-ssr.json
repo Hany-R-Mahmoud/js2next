@@ -1,0 +1,610 @@
+{
+  "schemaVersion": "1.0",
+  "id": "N-04",
+  "slug": "rsc-internals-and-relationship-to-ssr",
+  "trackId": "nextjs",
+  "moduleId": "N-M02",
+  "order": 2,
+  "title": "RSC Internals and Relationship to SSR",
+  "required": true,
+  "optional": false,
+  "advanced": false,
+  "contentType": "core",
+  "difficulty": 2,
+  "estimatedMinutes": 25,
+  "requiredPrerequisiteTopicIds": [
+    "N-03"
+  ],
+  "recommendedPrerequisiteTopicIds": [],
+  "learningObjectives": [
+    {
+      "id": "N-04-LO1",
+      "text": "Explain rsc rendering protocol using a new example and justify the result.",
+      "subtopic": "RSC rendering protocol",
+      "cognitiveLevel": "understand"
+    },
+    {
+      "id": "N-04-LO2",
+      "text": "Explain rsc payload using a new example and justify the result.",
+      "subtopic": "RSC payload",
+      "cognitiveLevel": "apply"
+    },
+    {
+      "id": "N-04-LO3",
+      "text": "Explain how rsc and ssr differ using a new example and justify the result.",
+      "subtopic": "How RSC and SSR differ",
+      "cognitiveLevel": "analyze"
+    },
+    {
+      "id": "N-04-LO4",
+      "text": "Explain how they work together using a new example and justify the result.",
+      "subtopic": "How they work together",
+      "cognitiveLevel": "analyze"
+    }
+  ],
+  "whyThisMatters": "The ideas in rsc internals and relationship to ssr recur throughout later Next.js work, reducing memorization and debugging later. It belongs to the **React Server Components** module.",
+  "mentalModel": "Draw a decision map: **RSC rendering protocol** → **RSC payload** → **How RSC and SSR differ** → **How they work together**. Add branches where the learner must choose an alternative and label the evidence for the choice.",
+  "sections": [
+    {
+      "id": "N-04-S1",
+      "type": "concept",
+      "title": "RSC rendering protocol",
+      "body": "React Server Components serialize server-rendered results, client-component references, and props into an RSC payload.",
+      "objectiveIds": [
+        "N-04-LO1"
+      ],
+      "checkQuestionId": "N-04-Q01"
+    },
+    {
+      "id": "N-04-S2",
+      "type": "concept",
+      "title": "RSC payload",
+      "body": "The RSC payload describes the rendered server tree and client boundaries; it is not ordinary HTML.",
+      "objectiveIds": [
+        "N-04-LO2"
+      ],
+      "checkQuestionId": "N-04-Q02"
+    },
+    {
+      "id": "N-04-S3",
+      "type": "concept",
+      "title": "How RSC and SSR differ",
+      "body": "RSC chooses execution environments for component code; SSR is a technique that produces HTML on the server.",
+      "objectiveIds": [
+        "N-04-LO3"
+      ],
+      "checkQuestionId": "N-04-Q03"
+    },
+    {
+      "id": "N-04-S4",
+      "type": "concept",
+      "title": "How they work together",
+      "body": "Next.js can use RSC to assemble the tree and SSR to emit initial HTML, then hydrate client boundaries in the browser.",
+      "objectiveIds": [
+        "N-04-LO4"
+      ],
+      "checkQuestionId": "N-04-Q03"
+    },
+    {
+      "id": "N-04-EX1",
+      "type": "code-example",
+      "title": "Worked example",
+      "language": "tsx",
+      "source": "export default async function Page() {\n  const topic = await loadTopic();\n  return <QuizClient initialTopic={topic} />;\n}",
+      "explanation": "The server renders data and a reference to a Client Component in the RSC result.",
+      "objectiveIds": [
+        "N-04-LO1",
+        "N-04-LO2",
+        "N-04-LO3",
+        "N-04-LO4"
+      ]
+    }
+  ],
+  "commonMistakes": [
+    "Marking a large route tree as client code when only a small interaction needs it.",
+    "Confusing React Server Components with server-side rendering.",
+    "Assuming cached data is fresh without an explicit policy and invalidation path.",
+    "Placing security-sensitive validation only in the client or middleware layer."
+  ],
+  "summary": [
+    "RSC Internals and Relationship to SSR connects RSC rendering protocol, RSC payload, How RSC and SSR differ.",
+    "Use the topic to make behavior and decisions explicit rather than memorizing isolated syntax.",
+    "Verify understanding by explaining a new example and answering the topic quiz without looking back."
+  ],
+  "inLessonQuestionIds": [
+    "N-04-Q01",
+    "N-04-Q02",
+    "N-04-Q03"
+  ],
+  "topicQuiz": {
+    "id": "N-04-QUIZ",
+    "questionIds": [
+      "N-04-Q04",
+      "N-04-Q05",
+      "N-04-Q06",
+      "N-04-Q07",
+      "N-04-Q08"
+    ],
+    "masteryThresholdPercent": 80,
+    "attemptPolicy": "unlimited",
+    "failurePolicy": "Show explanations, add missed objectives to local review, and allow immediate or later retry.",
+    "randomizeQuestionOrder": true,
+    "randomizeChoiceOrder": false
+  },
+  "questions": [
+    {
+      "id": "N-04-Q01",
+      "trackId": "nextjs",
+      "moduleId": "N-M02",
+      "topicId": "N-04",
+      "objectiveIds": [
+        "N-04-LO1"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which statement best explains “RSC rendering protocol” in the context of RSC Internals and Relationship to SSR?",
+      "choices": [
+        {
+          "id": "N-04-Q01-C1",
+          "label": "A route cache stores rendered output or route artifacts so the framework can reuse them.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of RSC rendering protocol."
+        },
+        {
+          "id": "N-04-Q01-C2",
+          "label": "Revalidation balances reuse and freshness through time-based or event-driven invalidation.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of RSC rendering protocol."
+        },
+        {
+          "id": "N-04-Q01-C3",
+          "label": "React Server Components serialize server-rendered results, client-component references, and props into an RSC payload.",
+          "feedback": "RSC rendering protocol is best understood as follows: React Server Components serialize server-rendered results, client-component references, and props into an RSC payload."
+        },
+        {
+          "id": "N-04-Q01-C4",
+          "label": "Forms can invoke Server Actions while preserving progressive enhancement. Validate authorization and input on the server.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of RSC rendering protocol."
+        }
+      ],
+      "correctChoiceIds": [
+        "N-04-Q01-C3"
+      ],
+      "explanation": "RSC rendering protocol is best understood as follows: React Server Components serialize server-rendered results, client-component references, and props into an RSC payload.",
+      "hint": "Focus on what the concept changes, enables, or constrains—not only on its syntax.",
+      "difficulty": 1,
+      "cognitiveLevel": "recognize",
+      "estimatedSeconds": 75,
+      "tags": [
+        "rsc-rendering-protocol",
+        "rsc-internals-and-relationship-to-ssr"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "N-04-Q02",
+      "trackId": "nextjs",
+      "moduleId": "N-M02",
+      "topicId": "N-04",
+      "objectiveIds": [
+        "N-04-LO2"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which statement best explains “RSC payload” in the context of RSC Internals and Relationship to SSR?",
+      "choices": [
+        {
+          "id": "N-04-Q02-C1",
+          "label": "The RSC payload describes the rendered server tree and client boundaries; it is not ordinary HTML.",
+          "feedback": "RSC payload is best understood as follows: The RSC payload describes the rendered server tree and client boundaries; it is not ordinary HTML."
+        },
+        {
+          "id": "N-04-Q02-C2",
+          "label": "Forms can invoke Server Actions while preserving progressive enhancement. Validate authorization and input on the server.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of RSC payload."
+        },
+        {
+          "id": "N-04-Q02-C3",
+          "label": "A route cache stores rendered output or route artifacts so the framework can reuse them.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of RSC payload."
+        },
+        {
+          "id": "N-04-Q02-C4",
+          "label": "Revalidation balances reuse and freshness through time-based or event-driven invalidation.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of RSC payload."
+        }
+      ],
+      "correctChoiceIds": [
+        "N-04-Q02-C1"
+      ],
+      "explanation": "RSC payload is best understood as follows: The RSC payload describes the rendered server tree and client boundaries; it is not ordinary HTML.",
+      "hint": "Focus on what the concept changes, enables, or constrains—not only on its syntax.",
+      "difficulty": 1,
+      "cognitiveLevel": "explain",
+      "estimatedSeconds": 75,
+      "tags": [
+        "rsc-payload",
+        "rsc-internals-and-relationship-to-ssr"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "N-04-Q03",
+      "trackId": "nextjs",
+      "moduleId": "N-M02",
+      "topicId": "N-04",
+      "objectiveIds": [
+        "N-04-LO3"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which statement best explains “How RSC and SSR differ” in the context of RSC Internals and Relationship to SSR?",
+      "choices": [
+        {
+          "id": "N-04-Q03-C1",
+          "label": "A route cache stores rendered output or route artifacts so the framework can reuse them.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of How RSC and SSR differ."
+        },
+        {
+          "id": "N-04-Q03-C2",
+          "label": "RSC chooses execution environments for component code; SSR is a technique that produces HTML on the server.",
+          "feedback": "How RSC and SSR differ is best understood as follows: RSC chooses execution environments for component code; SSR is a technique that produces HTML on the server."
+        },
+        {
+          "id": "N-04-Q03-C3",
+          "label": "Forms can invoke Server Actions while preserving progressive enhancement. Validate authorization and input on the server.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of How RSC and SSR differ."
+        },
+        {
+          "id": "N-04-Q03-C4",
+          "label": "Revalidation balances reuse and freshness through time-based or event-driven invalidation.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of How RSC and SSR differ."
+        }
+      ],
+      "correctChoiceIds": [
+        "N-04-Q03-C2"
+      ],
+      "explanation": "How RSC and SSR differ is best understood as follows: RSC chooses execution environments for component code; SSR is a technique that produces HTML on the server.",
+      "hint": "Focus on what the concept changes, enables, or constrains—not only on its syntax.",
+      "difficulty": 1,
+      "cognitiveLevel": "predict",
+      "estimatedSeconds": 120,
+      "tags": [
+        "how-rsc-and-ssr-differ",
+        "rsc-internals-and-relationship-to-ssr"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "N-04-Q04",
+      "trackId": "nextjs",
+      "moduleId": "N-M02",
+      "topicId": "N-04",
+      "objectiveIds": [
+        "N-04-LO1",
+        "N-04-LO2"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "A learner must use RSC Internals and Relationship to SSR in a new situation. Which approach best demonstrates transferable understanding?",
+      "choices": [
+        {
+          "id": "N-04-Q04-C1",
+          "label": "Add more state and abstraction immediately, before identifying the smallest requirement.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of RSC Internals and Relationship to SSR."
+        },
+        {
+          "id": "N-04-Q04-C2",
+          "label": "Skip the underlying model and rely on memorized syntax, even when the result is unclear.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of RSC Internals and Relationship to SSR."
+        },
+        {
+          "id": "N-04-Q04-C3",
+          "label": "Apply RSC rendering protocol deliberately, make the relevant inputs and assumptions explicit, and verify the observable result before adding more complexity.",
+          "feedback": "Transfer comes from using the concept with explicit assumptions and checking the resulting behavior, not from reproducing a memorized example."
+        },
+        {
+          "id": "N-04-Q04-C4",
+          "label": "Treat the concept as isolated trivia and avoid connecting it to earlier prerequisites.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of RSC Internals and Relationship to SSR."
+        }
+      ],
+      "correctChoiceIds": [
+        "N-04-Q04-C3"
+      ],
+      "explanation": "Transfer comes from using the concept with explicit assumptions and checking the resulting behavior, not from reproducing a memorized example.",
+      "hint": "Choose the option that would still work when the surrounding example changes.",
+      "difficulty": 2,
+      "cognitiveLevel": "apply",
+      "estimatedSeconds": 120,
+      "tags": [
+        "rsc-internals-and-relationship-to-ssr",
+        "rsc-rendering-protocol"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "N-04-Q05",
+      "trackId": "nextjs",
+      "moduleId": "N-M02",
+      "topicId": "N-04",
+      "objectiveIds": [
+        "N-04-LO1",
+        "N-04-LO2",
+        "N-04-LO3",
+        "N-04-LO4"
+      ],
+      "kind": "single-choice",
+      "presentation": "code",
+      "prompt": "What is the most accurate explanation of the following RSC Internals and Relationship to SSR example?",
+      "choices": [
+        {
+          "id": "N-04-Q05-C1",
+          "label": "The snippet removes the need to understand the data flowing through the program.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of RSC Internals and Relationship to SSR."
+        },
+        {
+          "id": "N-04-Q05-C2",
+          "label": "The snippet is valid only because JavaScript ignores variable scope and evaluation order.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of RSC Internals and Relationship to SSR."
+        },
+        {
+          "id": "N-04-Q05-C3",
+          "label": "The snippet guarantees that all values are immutable and all operations are asynchronous.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of RSC Internals and Relationship to SSR."
+        },
+        {
+          "id": "N-04-Q05-C4",
+          "label": "The server renders data and a reference to a Client Component in the RSC result.",
+          "feedback": "The correct choice connects the example to the underlying model rather than treating the syntax as isolated trivia."
+        }
+      ],
+      "correctChoiceIds": [
+        "N-04-Q05-C4"
+      ],
+      "explanation": "The correct choice connects the example to the underlying model rather than treating the syntax as isolated trivia.",
+      "hint": "Trace data, control flow, ownership, or rendering step by step.",
+      "difficulty": 2,
+      "cognitiveLevel": "predict",
+      "estimatedSeconds": 120,
+      "tags": [
+        "rsc-internals-and-relationship-to-ssr",
+        "rsc-rendering-protocol",
+        "rsc-payload"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review",
+      "code": {
+        "language": "tsx",
+        "source": "export default async function Page() {\n  const topic = await loadTopic();\n  return <QuizClient initialTopic={topic} />;\n}"
+      }
+    },
+    {
+      "id": "N-04-Q06",
+      "trackId": "nextjs",
+      "moduleId": "N-M02",
+      "topicId": "N-04",
+      "objectiveIds": [
+        "N-04-LO1",
+        "N-04-LO2",
+        "N-04-LO3",
+        "N-04-LO4"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which response best addresses this common mistake: “Marking a large route tree as client code when only a small interaction needs it.”?",
+      "choices": [
+        {
+          "id": "N-04-Q06-C1",
+          "label": "The statement is always correct, so no further reasoning about RSC Internals and Relationship to SSR is needed.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of RSC Internals and Relationship to SSR."
+        },
+        {
+          "id": "N-04-Q06-C2",
+          "label": "The statement is correct only when variable names are short.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of RSC Internals and Relationship to SSR."
+        },
+        {
+          "id": "N-04-Q06-C3",
+          "label": "The statement is a misconception. A better approach is to reason from the concept's inputs, rules, and observable outcome, then verify the result.",
+          "feedback": "Good feedback names the misconception and replaces it with a usable reasoning process."
+        },
+        {
+          "id": "N-04-Q06-C4",
+          "label": "The statement is unrelated to program behavior and cannot cause defects.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of RSC Internals and Relationship to SSR."
+        }
+      ],
+      "correctChoiceIds": [
+        "N-04-Q06-C3"
+      ],
+      "explanation": "Good feedback names the misconception and replaces it with a usable reasoning process.",
+      "hint": "Look for the option that corrects both the belief and the learner's next action.",
+      "difficulty": 2,
+      "cognitiveLevel": "debug",
+      "estimatedSeconds": 120,
+      "tags": [
+        "rsc-internals-and-relationship-to-ssr",
+        "common-mistakes"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "N-04-Q07",
+      "trackId": "nextjs",
+      "moduleId": "N-M02",
+      "topicId": "N-04",
+      "objectiveIds": [
+        "N-04-LO1",
+        "N-04-LO2",
+        "N-04-LO3",
+        "N-04-LO4"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which sequence is most reliable when solving a problem involving RSC Internals and Relationship to SSR?",
+      "choices": [
+        {
+          "id": "N-04-Q07-C1",
+          "label": "Copy an unrelated implementation, hide the assumptions, and test only the happy path.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of RSC Internals and Relationship to SSR."
+        },
+        {
+          "id": "N-04-Q07-C2",
+          "label": "Optimize first, then decide what the code is supposed to do.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of RSC Internals and Relationship to SSR."
+        },
+        {
+          "id": "N-04-Q07-C3",
+          "label": "Start with a framework abstraction and avoid checking the underlying language behavior.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of RSC Internals and Relationship to SSR."
+        },
+        {
+          "id": "N-04-Q07-C4",
+          "label": "First identify the requirement, then apply the relevant rule from RSC rendering protocol, inspect the result, and only then refactor or optimize.",
+          "feedback": "The reliable sequence starts from the requirement, applies a known rule, observes behavior, and improves the solution afterward."
+        }
+      ],
+      "correctChoiceIds": [
+        "N-04-Q07-C4"
+      ],
+      "explanation": "The reliable sequence starts from the requirement, applies a known rule, observes behavior, and improves the solution afterward.",
+      "hint": "Prefer a sequence that makes failures visible early.",
+      "difficulty": 2,
+      "cognitiveLevel": "explain",
+      "estimatedSeconds": 75,
+      "tags": [
+        "rsc-internals-and-relationship-to-ssr",
+        "problem-solving"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "N-04-Q08",
+      "trackId": "nextjs",
+      "moduleId": "N-M02",
+      "topicId": "N-04",
+      "objectiveIds": [
+        "N-04-LO1",
+        "N-04-LO2",
+        "N-04-LO3",
+        "N-04-LO4"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which guideline shows the best judgment about when to use RSC Internals and Relationship to SSR?",
+      "choices": [
+        {
+          "id": "N-04-Q08-C1",
+          "label": "Use RSC Internals and Relationship to SSR when it makes intent, ownership, or data flow clearer; avoid adding it mechanically when a simpler, equally explicit solution is sufficient.",
+          "feedback": "Engineering judgment balances clarity and cost. The concept should serve the requirement rather than become an end in itself."
+        },
+        {
+          "id": "N-04-Q08-C2",
+          "label": "Avoid RSC Internals and Relationship to SSR completely because all abstractions reduce maintainability.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of RSC Internals and Relationship to SSR."
+        },
+        {
+          "id": "N-04-Q08-C3",
+          "label": "Choose based only on line count, without considering readability, correctness, or future change.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of RSC Internals and Relationship to SSR."
+        },
+        {
+          "id": "N-04-Q08-C4",
+          "label": "Use RSC Internals and Relationship to SSR in every file because more abstraction is always better.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of RSC Internals and Relationship to SSR."
+        }
+      ],
+      "correctChoiceIds": [
+        "N-04-Q08-C1"
+      ],
+      "explanation": "Engineering judgment balances clarity and cost. The concept should serve the requirement rather than become an end in itself.",
+      "hint": "Choose the option that acknowledges both benefits and trade-offs.",
+      "difficulty": 3,
+      "cognitiveLevel": "tradeoff",
+      "estimatedSeconds": 120,
+      "tags": [
+        "rsc-internals-and-relationship-to-ssr",
+        "tradeoffs"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    }
+  ],
+  "researchSources": [
+    {
+      "kind": "research-transcript",
+      "title": "How RSC Works Behind the Scenes (RSC – Part 2)",
+      "pathwayOrder": 70,
+      "sourceLine": 147206,
+      "usage": "Coverage research only; no transcript wording is canonical."
+    },
+    {
+      "kind": "research-transcript",
+      "title": "RSC vs. SSR: How are They Related? (RSC – Part 3)",
+      "pathwayOrder": 71,
+      "sourceLine": 147885,
+      "usage": "Coverage research only; no transcript wording is canonical."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "Next.js App Router",
+      "url": "https://nextjs.org/docs/app",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "Next.js Server and Client Components",
+      "url": "https://nextjs.org/docs/app/getting-started/server-and-client-components",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "Next.js Fetching Data",
+      "url": "https://nextjs.org/docs/app/getting-started/fetching-data",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "Next.js Caching and Revalidating",
+      "url": "https://nextjs.org/docs/app/getting-started/caching-and-revalidating",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "Next.js Server Actions and Mutations",
+      "url": "https://nextjs.org/docs/app/getting-started/updating-data",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "Next.js loading.js and Streaming",
+      "url": "https://nextjs.org/docs/app/api-reference/file-conventions/loading",
+      "usage": "Technical verification and freshness review."
+    }
+  ],
+  "contentAuthority": {
+    "canonical": "New JS2Next Release 1 curriculum and independently authored content.",
+    "legacyProjectContent": "Supplementary internal reference only; excluded from runtime unless explicitly re-authored and approved.",
+    "courseTranscripts": "Coverage and sequencing research only; never learner-facing authority.",
+    "officialDocumentation": "Technical verification source."
+  },
+  "version": 1,
+  "status": "draft",
+  "reviewStatus": "pending-human-review",
+  "publicationStatus": "unpublished",
+  "createdAt": "2026-07-17",
+  "updatedAt": "2026-07-17"
+}

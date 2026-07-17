@@ -1,0 +1,2603 @@
+{
+  "schemaVersion": "1.0",
+  "product": "JS2Next",
+  "release": "Release 1",
+  "authority": "New JS2Next curriculum and independently authored content",
+  "tracks": [
+    {
+      "id": "javascript",
+      "slug": "javascript",
+      "title": "JavaScript",
+      "order": 1,
+      "modules": [
+        {
+          "id": "JS-M01",
+          "slug": "orientation-and-foundations",
+          "title": "Orientation and Foundations",
+          "order": 1,
+          "topics": [
+            {
+              "id": "JS-01",
+              "slug": "course-orientation",
+              "title": "Course Orientation",
+              "order": 1,
+              "required": false,
+              "optional": true,
+              "advanced": false,
+              "contentType": "orientation",
+              "estimatedMinutes": 10,
+              "difficulty": 1,
+              "requiredPrerequisiteTopicIds": [],
+              "recommendedPrerequisiteTopicIds": [],
+              "packetPath": "content/javascript/js-m01-orientation-and-foundations/js-01-course-orientation.json",
+              "markdownPath": "content/javascript/js-m01-orientation-and-foundations/js-01-course-orientation.md",
+              "status": "draft",
+              "reviewStatus": "pending-human-review"
+            },
+            {
+              "id": "JS-02",
+              "slug": "introduction-to-javascript",
+              "title": "Introduction to JavaScript",
+              "order": 2,
+              "required": true,
+              "optional": false,
+              "advanced": false,
+              "contentType": "core",
+              "estimatedMinutes": 15,
+              "difficulty": 1,
+              "requiredPrerequisiteTopicIds": [],
+              "recommendedPrerequisiteTopicIds": [],
+              "packetPath": "content/javascript/js-m01-orientation-and-foundations/js-02-introduction-to-javascript.json",
+              "markdownPath": "content/javascript/js-m01-orientation-and-foundations/js-02-introduction-to-javascript.md",
+              "status": "draft",
+              "reviewStatus": "pending-human-review"
+            },
+            {
+              "id": "JS-03",
+              "slug": "values-data-types-and-boolean-logic",
+              "title": "Values, Data Types, and Boolean Logic",
+              "order": 3,
+              "required": true,
+              "optional": false,
+              "advanced": false,
+              "contentType": "core",
+              "estimatedMinutes": 25,
+              "difficulty": 1,
+              "requiredPrerequisiteTopicIds": [
+                "JS-02"
+              ],
+              "recommendedPrerequisiteTopicIds": [],
+              "packetPath": "content/javascript/js-m01-orientation-and-foundations/js-03-values-data-types-and-boolean-logic.json",
+              "markdownPath": "content/javascript/js-m01-orientation-and-foundations/js-03-values-data-types-and-boolean-logic.md",
+              "status": "draft",
+              "reviewStatus": "pending-human-review"
+            },
+            {
+              "id": "JS-04",
+              "slug": "javascript-evolution-es5-es6-and-esnext",
+              "title": "JavaScript Evolution: ES5, ES6+, and ESNext",
+              "order": 4,
+              "required": true,
+              "optional": false,
+              "advanced": false,
+              "contentType": "core",
+              "estimatedMinutes": 15,
+              "difficulty": 1,
+              "requiredPrerequisiteTopicIds": [
+                "JS-03"
+              ],
+              "recommendedPrerequisiteTopicIds": [],
+              "packetPath": "content/javascript/js-m01-orientation-and-foundations/js-04-javascript-evolution-es5-es6-and-esnext.json",
+              "markdownPath": "content/javascript/js-m01-orientation-and-foundations/js-04-javascript-evolution-es5-es6-and-esnext.md",
+              "status": "draft",
+              "reviewStatus": "pending-human-review"
+            },
+            {
+              "id": "JS-05",
+              "slug": "functions-working-together",
+              "title": "Functions Working Together",
+              "order": 5,
+              "required": true,
+              "optional": false,
+              "advanced": false,
+              "contentType": "core",
+              "estimatedMinutes": 25,
+              "difficulty": 1,
+              "requiredPrerequisiteTopicIds": [
+                "JS-04"
+              ],
+              "recommendedPrerequisiteTopicIds": [],
+              "packetPath": "content/javascript/js-m01-orientation-and-foundations/js-05-functions-working-together.json",
+              "markdownPath": "content/javascript/js-m01-orientation-and-foundations/js-05-functions-working-together.md",
+              "status": "draft",
+              "reviewStatus": "pending-human-review"
+            }
+          ],
+          "requiredTopicIds": [
+            "JS-02",
+            "JS-03",
+            "JS-04",
+            "JS-05"
+          ],
+          "optionalTopicIds": [
+            "JS-01"
+          ],
+          "assessmentId": "JS-M01-REVIEW",
+          "masteryThresholdPercent": 80
+        },
+        {
+          "id": "JS-M02",
+          "slug": "developer-skills",
+          "title": "Developer Skills",
+          "order": 2,
+          "topics": [
+            {
+              "id": "JS-06",
+              "slug": "learning-to-code-and-think-like-a-developer",
+              "title": "Learning to Code and Think Like a Developer",
+              "order": 1,
+              "required": true,
+              "optional": false,
+              "advanced": false,
+              "contentType": "core",
+              "estimatedMinutes": 30,
+              "difficulty": 1,
+              "requiredPrerequisiteTopicIds": [
+                "JS-05"
+              ],
+              "recommendedPrerequisiteTopicIds": [],
+              "packetPath": "content/javascript/js-m02-developer-skills/js-06-learning-to-code-and-think-like-a-developer.json",
+              "markdownPath": "content/javascript/js-m02-developer-skills/js-06-learning-to-code-and-think-like-a-developer.md",
+              "status": "draft",
+              "reviewStatus": "pending-human-review"
+            },
+            {
+              "id": "JS-07",
+              "slug": "debugging-and-ai-assisted-development",
+              "title": "Debugging and AI-Assisted Development",
+              "order": 2,
+              "required": true,
+              "optional": false,
+              "advanced": false,
+              "contentType": "core",
+              "estimatedMinutes": 20,
+              "difficulty": 1,
+              "requiredPrerequisiteTopicIds": [
+                "JS-06"
+              ],
+              "recommendedPrerequisiteTopicIds": [],
+              "packetPath": "content/javascript/js-m02-developer-skills/js-07-debugging-and-ai-assisted-development.json",
+              "markdownPath": "content/javascript/js-m02-developer-skills/js-07-debugging-and-ai-assisted-development.md",
+              "status": "draft",
+              "reviewStatus": "pending-human-review"
+            }
+          ],
+          "requiredTopicIds": [
+            "JS-06",
+            "JS-07"
+          ],
+          "optionalTopicIds": [],
+          "assessmentId": "JS-M02-REVIEW",
+          "masteryThresholdPercent": 80
+        },
+        {
+          "id": "JS-M03",
+          "slug": "browser-and-dom-foundations",
+          "title": "Browser and DOM Foundations",
+          "order": 3,
+          "topics": [
+            {
+              "id": "JS-08",
+              "slug": "the-dom-and-dom-manipulation",
+              "title": "The DOM and DOM Manipulation",
+              "order": 1,
+              "required": true,
+              "optional": false,
+              "advanced": false,
+              "contentType": "core",
+              "estimatedMinutes": 15,
+              "difficulty": 1,
+              "requiredPrerequisiteTopicIds": [
+                "JS-07"
+              ],
+              "recommendedPrerequisiteTopicIds": [],
+              "packetPath": "content/javascript/js-m03-browser-and-dom-foundations/js-08-the-dom-and-dom-manipulation.json",
+              "markdownPath": "content/javascript/js-m03-browser-and-dom-foundations/js-08-the-dom-and-dom-manipulation.md",
+              "status": "draft",
+              "reviewStatus": "pending-human-review"
+            }
+          ],
+          "requiredTopicIds": [
+            "JS-08"
+          ],
+          "optionalTopicIds": [],
+          "assessmentId": "JS-M03-REVIEW",
+          "masteryThresholdPercent": 80
+        },
+        {
+          "id": "JS-M04",
+          "slug": "how-javascript-works",
+          "title": "How JavaScript Works",
+          "order": 4,
+          "topics": [
+            {
+              "id": "JS-09",
+              "slug": "runtime-and-execution-model",
+              "title": "Runtime and Execution Model",
+              "order": 1,
+              "required": true,
+              "optional": false,
+              "advanced": false,
+              "contentType": "core",
+              "estimatedMinutes": 40,
+              "difficulty": 2,
+              "requiredPrerequisiteTopicIds": [
+                "JS-08"
+              ],
+              "recommendedPrerequisiteTopicIds": [],
+              "packetPath": "content/javascript/js-m04-how-javascript-works/js-09-runtime-and-execution-model.json",
+              "markdownPath": "content/javascript/js-m04-how-javascript-works/js-09-runtime-and-execution-model.md",
+              "status": "draft",
+              "reviewStatus": "pending-human-review"
+            },
+            {
+              "id": "JS-10",
+              "slug": "scope-scope-chain-hoisting-and-the-tdz",
+              "title": "Scope, Scope Chain, Hoisting, and the TDZ",
+              "order": 2,
+              "required": true,
+              "optional": false,
+              "advanced": false,
+              "contentType": "core",
+              "estimatedMinutes": 30,
+              "difficulty": 2,
+              "requiredPrerequisiteTopicIds": [
+                "JS-09"
+              ],
+              "recommendedPrerequisiteTopicIds": [],
+              "packetPath": "content/javascript/js-m04-how-javascript-works/js-10-scope-scope-chain-hoisting-and-the-tdz.json",
+              "markdownPath": "content/javascript/js-m04-how-javascript-works/js-10-scope-scope-chain-hoisting-and-the-tdz.md",
+              "status": "draft",
+              "reviewStatus": "pending-human-review"
+            },
+            {
+              "id": "JS-11",
+              "slug": "the-this-keyword",
+              "title": "The `this` Keyword",
+              "order": 3,
+              "required": true,
+              "optional": false,
+              "advanced": false,
+              "contentType": "core",
+              "estimatedMinutes": 15,
+              "difficulty": 2,
+              "requiredPrerequisiteTopicIds": [
+                "JS-10"
+              ],
+              "recommendedPrerequisiteTopicIds": [],
+              "packetPath": "content/javascript/js-m04-how-javascript-works/js-11-the-this-keyword.json",
+              "markdownPath": "content/javascript/js-m04-how-javascript-works/js-11-the-this-keyword.md",
+              "status": "draft",
+              "reviewStatus": "pending-human-review"
+            },
+            {
+              "id": "JS-12",
+              "slug": "memory-management-and-references",
+              "title": "Memory Management and References",
+              "order": 4,
+              "required": true,
+              "optional": false,
+              "advanced": false,
+              "contentType": "core",
+              "estimatedMinutes": 25,
+              "difficulty": 2,
+              "requiredPrerequisiteTopicIds": [
+                "JS-11"
+              ],
+              "recommendedPrerequisiteTopicIds": [],
+              "packetPath": "content/javascript/js-m04-how-javascript-works/js-12-memory-management-and-references.json",
+              "markdownPath": "content/javascript/js-m04-how-javascript-works/js-12-memory-management-and-references.md",
+              "status": "draft",
+              "reviewStatus": "pending-human-review"
+            }
+          ],
+          "requiredTopicIds": [
+            "JS-09",
+            "JS-10",
+            "JS-11",
+            "JS-12"
+          ],
+          "optionalTopicIds": [],
+          "assessmentId": "JS-M04-REVIEW",
+          "masteryThresholdPercent": 80
+        },
+        {
+          "id": "JS-M05",
+          "slug": "data-structures-and-functional-techniques",
+          "title": "Data Structures and Functional Techniques",
+          "order": 5,
+          "topics": [
+            {
+              "id": "JS-13",
+              "slug": "choosing-the-right-data-structure",
+              "title": "Choosing the Right Data Structure",
+              "order": 1,
+              "required": true,
+              "optional": false,
+              "advanced": false,
+              "contentType": "core",
+              "estimatedMinutes": 15,
+              "difficulty": 2,
+              "requiredPrerequisiteTopicIds": [
+                "JS-12"
+              ],
+              "recommendedPrerequisiteTopicIds": [],
+              "packetPath": "content/javascript/js-m05-data-structures-and-functional-techniques/js-13-choosing-the-right-data-structure.json",
+              "markdownPath": "content/javascript/js-m05-data-structures-and-functional-techniques/js-13-choosing-the-right-data-structure.md",
+              "status": "draft",
+              "reviewStatus": "pending-human-review"
+            },
+            {
+              "id": "JS-14",
+              "slug": "first-class-and-higher-order-functions",
+              "title": "First-Class and Higher-Order Functions",
+              "order": 2,
+              "required": true,
+              "optional": false,
+              "advanced": false,
+              "contentType": "core",
+              "estimatedMinutes": 15,
+              "difficulty": 2,
+              "requiredPrerequisiteTopicIds": [
+                "JS-13"
+              ],
+              "recommendedPrerequisiteTopicIds": [],
+              "packetPath": "content/javascript/js-m05-data-structures-and-functional-techniques/js-14-first-class-and-higher-order-functions.json",
+              "markdownPath": "content/javascript/js-m05-data-structures-and-functional-techniques/js-14-first-class-and-higher-order-functions.md",
+              "status": "draft",
+              "reviewStatus": "pending-human-review"
+            },
+            {
+              "id": "JS-15",
+              "slug": "closures",
+              "title": "Closures",
+              "order": 3,
+              "required": true,
+              "optional": false,
+              "advanced": false,
+              "contentType": "core",
+              "estimatedMinutes": 20,
+              "difficulty": 2,
+              "requiredPrerequisiteTopicIds": [
+                "JS-14"
+              ],
+              "recommendedPrerequisiteTopicIds": [],
+              "packetPath": "content/javascript/js-m05-data-structures-and-functional-techniques/js-15-closures.json",
+              "markdownPath": "content/javascript/js-m05-data-structures-and-functional-techniques/js-15-closures.md",
+              "status": "draft",
+              "reviewStatus": "pending-human-review"
+            },
+            {
+              "id": "JS-16",
+              "slug": "array-transformations-and-method-selection",
+              "title": "Array Transformations and Method Selection",
+              "order": 4,
+              "required": true,
+              "optional": false,
+              "advanced": false,
+              "contentType": "core",
+              "estimatedMinutes": 15,
+              "difficulty": 2,
+              "requiredPrerequisiteTopicIds": [
+                "JS-15"
+              ],
+              "recommendedPrerequisiteTopicIds": [],
+              "packetPath": "content/javascript/js-m05-data-structures-and-functional-techniques/js-16-array-transformations-and-method-selection.json",
+              "markdownPath": "content/javascript/js-m05-data-structures-and-functional-techniques/js-16-array-transformations-and-method-selection.md",
+              "status": "draft",
+              "reviewStatus": "pending-human-review"
+            }
+          ],
+          "requiredTopicIds": [
+            "JS-13",
+            "JS-14",
+            "JS-15",
+            "JS-16"
+          ],
+          "optionalTopicIds": [],
+          "assessmentId": "JS-M05-REVIEW",
+          "masteryThresholdPercent": 80
+        },
+        {
+          "id": "JS-M06",
+          "slug": "dom-internals-and-script-loading",
+          "title": "DOM Internals and Script Loading",
+          "order": 6,
+          "topics": [
+            {
+              "id": "JS-17",
+              "slug": "dom-internals-and-event-propagation",
+              "title": "DOM Internals and Event Propagation",
+              "order": 1,
+              "required": true,
+              "optional": false,
+              "advanced": false,
+              "contentType": "core",
+              "estimatedMinutes": 15,
+              "difficulty": 2,
+              "requiredPrerequisiteTopicIds": [
+                "JS-16"
+              ],
+              "recommendedPrerequisiteTopicIds": [],
+              "packetPath": "content/javascript/js-m06-dom-internals-and-script-loading/js-17-dom-internals-and-event-propagation.json",
+              "markdownPath": "content/javascript/js-m06-dom-internals-and-script-loading/js-17-dom-internals-and-event-propagation.md",
+              "status": "draft",
+              "reviewStatus": "pending-human-review"
+            },
+            {
+              "id": "JS-18",
+              "slug": "efficient-script-loading",
+              "title": "Efficient Script Loading",
+              "order": 2,
+              "required": true,
+              "optional": false,
+              "advanced": false,
+              "contentType": "core",
+              "estimatedMinutes": 15,
+              "difficulty": 2,
+              "requiredPrerequisiteTopicIds": [
+                "JS-17"
+              ],
+              "recommendedPrerequisiteTopicIds": [],
+              "packetPath": "content/javascript/js-m06-dom-internals-and-script-loading/js-18-efficient-script-loading.json",
+              "markdownPath": "content/javascript/js-m06-dom-internals-and-script-loading/js-18-efficient-script-loading.md",
+              "status": "draft",
+              "reviewStatus": "pending-human-review"
+            }
+          ],
+          "requiredTopicIds": [
+            "JS-17",
+            "JS-18"
+          ],
+          "optionalTopicIds": [],
+          "assessmentId": "JS-M06-REVIEW",
+          "masteryThresholdPercent": 80
+        },
+        {
+          "id": "JS-M07",
+          "slug": "object-oriented-javascript",
+          "title": "Object-Oriented JavaScript",
+          "order": 7,
+          "topics": [
+            {
+              "id": "JS-19",
+              "slug": "oop-foundations-and-javascript-s-object-model",
+              "title": "OOP Foundations and JavaScript's Object Model",
+              "order": 1,
+              "required": true,
+              "optional": false,
+              "advanced": false,
+              "contentType": "core",
+              "estimatedMinutes": 25,
+              "difficulty": 3,
+              "requiredPrerequisiteTopicIds": [
+                "JS-18"
+              ],
+              "recommendedPrerequisiteTopicIds": [],
+              "packetPath": "content/javascript/js-m07-object-oriented-javascript/js-19-oop-foundations-and-javascript-s-object-model.json",
+              "markdownPath": "content/javascript/js-m07-object-oriented-javascript/js-19-oop-foundations-and-javascript-s-object-model.md",
+              "status": "draft",
+              "reviewStatus": "pending-human-review"
+            },
+            {
+              "id": "JS-20",
+              "slug": "prototypes-the-prototype-chain-and-object-create",
+              "title": "Prototypes, the Prototype Chain, and `Object.create`",
+              "order": 2,
+              "required": true,
+              "optional": false,
+              "advanced": false,
+              "contentType": "core",
+              "estimatedMinutes": 20,
+              "difficulty": 3,
+              "requiredPrerequisiteTopicIds": [
+                "JS-19"
+              ],
+              "recommendedPrerequisiteTopicIds": [],
+              "packetPath": "content/javascript/js-m07-object-oriented-javascript/js-20-prototypes-the-prototype-chain-and-object-create.json",
+              "markdownPath": "content/javascript/js-m07-object-oriented-javascript/js-20-prototypes-the-prototype-chain-and-object-create.md",
+              "status": "draft",
+              "reviewStatus": "pending-human-review"
+            },
+            {
+              "id": "JS-21",
+              "slug": "inheritance-patterns-and-es6-classes",
+              "title": "Inheritance Patterns and ES6 Classes",
+              "order": 3,
+              "required": true,
+              "optional": false,
+              "advanced": false,
+              "contentType": "core",
+              "estimatedMinutes": 30,
+              "difficulty": 3,
+              "requiredPrerequisiteTopicIds": [
+                "JS-20"
+              ],
+              "recommendedPrerequisiteTopicIds": [],
+              "packetPath": "content/javascript/js-m07-object-oriented-javascript/js-21-inheritance-patterns-and-es6-classes.json",
+              "markdownPath": "content/javascript/js-m07-object-oriented-javascript/js-21-inheritance-patterns-and-es6-classes.md",
+              "status": "draft",
+              "reviewStatus": "pending-human-review"
+            }
+          ],
+          "requiredTopicIds": [
+            "JS-19",
+            "JS-20",
+            "JS-21"
+          ],
+          "optionalTopicIds": [],
+          "assessmentId": "JS-M07-REVIEW",
+          "masteryThresholdPercent": 80
+        },
+        {
+          "id": "JS-M08",
+          "slug": "project-planning-mapty",
+          "title": "Project Planning: Mapty",
+          "order": 8,
+          "topics": [
+            {
+              "id": "JS-22",
+              "slug": "planning-a-web-project-mapty-case-study",
+              "title": "Planning a Web Project — Mapty Case Study",
+              "order": 1,
+              "required": true,
+              "optional": false,
+              "advanced": false,
+              "contentType": "core_with_case_study",
+              "estimatedMinutes": 25,
+              "difficulty": 3,
+              "requiredPrerequisiteTopicIds": [
+                "JS-21"
+              ],
+              "recommendedPrerequisiteTopicIds": [],
+              "packetPath": "content/javascript/js-m08-project-planning-mapty/js-22-planning-a-web-project-mapty-case-study.json",
+              "markdownPath": "content/javascript/js-m08-project-planning-mapty/js-22-planning-a-web-project-mapty-case-study.md",
+              "status": "draft",
+              "reviewStatus": "pending-human-review"
+            }
+          ],
+          "requiredTopicIds": [
+            "JS-22"
+          ],
+          "optionalTopicIds": [],
+          "assessmentId": "JS-M08-REVIEW",
+          "masteryThresholdPercent": 80
+        },
+        {
+          "id": "JS-M09",
+          "slug": "asynchronous-javascript",
+          "title": "Asynchronous JavaScript",
+          "order": 9,
+          "topics": [
+            {
+              "id": "JS-23",
+              "slug": "asynchronous-javascript-and-the-web-request-model",
+              "title": "Asynchronous JavaScript and the Web Request Model",
+              "order": 1,
+              "required": true,
+              "optional": false,
+              "advanced": false,
+              "contentType": "core",
+              "estimatedMinutes": 30,
+              "difficulty": 3,
+              "requiredPrerequisiteTopicIds": [
+                "JS-22"
+              ],
+              "recommendedPrerequisiteTopicIds": [],
+              "packetPath": "content/javascript/js-m09-asynchronous-javascript/js-23-asynchronous-javascript-and-the-web-request-model.json",
+              "markdownPath": "content/javascript/js-m09-asynchronous-javascript/js-23-asynchronous-javascript-and-the-web-request-model.md",
+              "status": "draft",
+              "reviewStatus": "pending-human-review"
+            },
+            {
+              "id": "JS-24",
+              "slug": "promises-and-the-fetch-api",
+              "title": "Promises and the Fetch API",
+              "order": 2,
+              "required": true,
+              "optional": false,
+              "advanced": false,
+              "contentType": "core",
+              "estimatedMinutes": 15,
+              "difficulty": 3,
+              "requiredPrerequisiteTopicIds": [
+                "JS-23"
+              ],
+              "recommendedPrerequisiteTopicIds": [],
+              "packetPath": "content/javascript/js-m09-asynchronous-javascript/js-24-promises-and-the-fetch-api.json",
+              "markdownPath": "content/javascript/js-m09-asynchronous-javascript/js-24-promises-and-the-fetch-api.md",
+              "status": "draft",
+              "reviewStatus": "pending-human-review"
+            },
+            {
+              "id": "JS-25",
+              "slug": "the-event-loop-and-async-execution",
+              "title": "The Event Loop and Async Execution",
+              "order": 3,
+              "required": true,
+              "optional": false,
+              "advanced": false,
+              "contentType": "core",
+              "estimatedMinutes": 15,
+              "difficulty": 3,
+              "requiredPrerequisiteTopicIds": [
+                "JS-24"
+              ],
+              "recommendedPrerequisiteTopicIds": [],
+              "packetPath": "content/javascript/js-m09-asynchronous-javascript/js-25-the-event-loop-and-async-execution.json",
+              "markdownPath": "content/javascript/js-m09-asynchronous-javascript/js-25-the-event-loop-and-async-execution.md",
+              "status": "draft",
+              "reviewStatus": "pending-human-review"
+            }
+          ],
+          "requiredTopicIds": [
+            "JS-23",
+            "JS-24",
+            "JS-25"
+          ],
+          "optionalTopicIds": [],
+          "assessmentId": "JS-M09-REVIEW",
+          "masteryThresholdPercent": 80
+        },
+        {
+          "id": "JS-M10",
+          "slug": "modern-javascript-development",
+          "title": "Modern JavaScript Development",
+          "order": 10,
+          "topics": [
+            {
+              "id": "JS-26",
+              "slug": "modern-development-workflow-and-modules",
+              "title": "Modern Development Workflow and Modules",
+              "order": 1,
+              "required": true,
+              "optional": false,
+              "advanced": false,
+              "contentType": "core",
+              "estimatedMinutes": 20,
+              "difficulty": 4,
+              "requiredPrerequisiteTopicIds": [
+                "JS-25"
+              ],
+              "recommendedPrerequisiteTopicIds": [],
+              "packetPath": "content/javascript/js-m10-modern-javascript-development/js-26-modern-development-workflow-and-modules.json",
+              "markdownPath": "content/javascript/js-m10-modern-javascript-development/js-26-modern-development-workflow-and-modules.md",
+              "status": "draft",
+              "reviewStatus": "pending-human-review"
+            },
+            {
+              "id": "JS-27",
+              "slug": "clean-modern-and-declarative-javascript",
+              "title": "Clean, Modern, and Declarative JavaScript",
+              "order": 2,
+              "required": true,
+              "optional": false,
+              "advanced": false,
+              "contentType": "core",
+              "estimatedMinutes": 15,
+              "difficulty": 4,
+              "requiredPrerequisiteTopicIds": [
+                "JS-26"
+              ],
+              "recommendedPrerequisiteTopicIds": [],
+              "packetPath": "content/javascript/js-m10-modern-javascript-development/js-27-clean-modern-and-declarative-javascript.json",
+              "markdownPath": "content/javascript/js-m10-modern-javascript-development/js-27-clean-modern-and-declarative-javascript.md",
+              "status": "draft",
+              "reviewStatus": "pending-human-review"
+            }
+          ],
+          "requiredTopicIds": [
+            "JS-26",
+            "JS-27"
+          ],
+          "optionalTopicIds": [],
+          "assessmentId": "JS-M10-REVIEW",
+          "masteryThresholdPercent": 80
+        },
+        {
+          "id": "JS-M11",
+          "slug": "application-architecture-forkify",
+          "title": "Application Architecture: Forkify",
+          "order": 11,
+          "topics": [
+            {
+              "id": "JS-28",
+              "slug": "forkify-application-planning",
+              "title": "Forkify Application Planning",
+              "order": 1,
+              "required": true,
+              "optional": false,
+              "advanced": false,
+              "contentType": "case_study",
+              "estimatedMinutes": 15,
+              "difficulty": 4,
+              "requiredPrerequisiteTopicIds": [
+                "JS-27"
+              ],
+              "recommendedPrerequisiteTopicIds": [],
+              "packetPath": "content/javascript/js-m11-application-architecture-forkify/js-28-forkify-application-planning.json",
+              "markdownPath": "content/javascript/js-m11-application-architecture-forkify/js-28-forkify-application-planning.md",
+              "status": "draft",
+              "reviewStatus": "pending-human-review"
+            },
+            {
+              "id": "JS-29",
+              "slug": "mvc-and-publisher-subscriber-architecture",
+              "title": "MVC and Publisher–Subscriber Architecture",
+              "order": 2,
+              "required": true,
+              "optional": false,
+              "advanced": false,
+              "contentType": "core",
+              "estimatedMinutes": 25,
+              "difficulty": 4,
+              "requiredPrerequisiteTopicIds": [
+                "JS-28"
+              ],
+              "recommendedPrerequisiteTopicIds": [],
+              "packetPath": "content/javascript/js-m11-application-architecture-forkify/js-29-mvc-and-publisher-subscriber-architecture.json",
+              "markdownPath": "content/javascript/js-m11-application-architecture-forkify/js-29-mvc-and-publisher-subscriber-architecture.md",
+              "status": "draft",
+              "reviewStatus": "pending-human-review"
+            },
+            {
+              "id": "JS-30",
+              "slug": "forkify-capstone-retrospective",
+              "title": "Forkify Capstone Retrospective",
+              "order": 3,
+              "required": false,
+              "optional": true,
+              "advanced": false,
+              "contentType": "recap",
+              "estimatedMinutes": 15,
+              "difficulty": 4,
+              "requiredPrerequisiteTopicIds": [],
+              "recommendedPrerequisiteTopicIds": [],
+              "packetPath": "content/javascript/js-m11-application-architecture-forkify/js-30-forkify-capstone-retrospective.json",
+              "markdownPath": "content/javascript/js-m11-application-architecture-forkify/js-30-forkify-capstone-retrospective.md",
+              "status": "draft",
+              "reviewStatus": "pending-human-review"
+            }
+          ],
+          "requiredTopicIds": [
+            "JS-28",
+            "JS-29"
+          ],
+          "optionalTopicIds": [
+            "JS-30"
+          ],
+          "assessmentId": "JS-M11-REVIEW",
+          "masteryThresholdPercent": 80
+        }
+      ],
+      "completionRule": "All required modules and required topics must meet the mastery threshold.",
+      "masteryThresholdPercent": 80
+    },
+    {
+      "id": "react",
+      "slug": "react",
+      "title": "React",
+      "order": 2,
+      "modules": [
+        {
+          "id": "R-M01",
+          "slug": "react-orientation",
+          "title": "React Orientation",
+          "order": 1,
+          "topics": [
+            {
+              "id": "R-01",
+              "slug": "course-orientation",
+              "title": "Course Orientation",
+              "order": 1,
+              "required": false,
+              "optional": true,
+              "advanced": false,
+              "contentType": "orientation",
+              "estimatedMinutes": 10,
+              "difficulty": 1,
+              "requiredPrerequisiteTopicIds": [],
+              "recommendedPrerequisiteTopicIds": [],
+              "packetPath": "content/react/r-m01-react-orientation/r-01-course-orientation.json",
+              "markdownPath": "content/react/r-m01-react-orientation/r-01-course-orientation.md",
+              "status": "draft",
+              "reviewStatus": "pending-human-review"
+            },
+            {
+              "id": "R-02",
+              "slug": "why-front-end-frameworks-and-react-exist",
+              "title": "Why Front-End Frameworks and React Exist",
+              "order": 2,
+              "required": true,
+              "optional": false,
+              "advanced": false,
+              "contentType": "core",
+              "estimatedMinutes": 20,
+              "difficulty": 1,
+              "requiredPrerequisiteTopicIds": [],
+              "recommendedPrerequisiteTopicIds": [
+                "JS-05",
+                "JS-13",
+                "JS-14",
+                "JS-16",
+                "JS-24"
+              ],
+              "packetPath": "content/react/r-m01-react-orientation/r-02-why-front-end-frameworks-and-react-exist.json",
+              "markdownPath": "content/react/r-m01-react-orientation/r-02-why-front-end-frameworks-and-react-exist.md",
+              "status": "draft",
+              "reviewStatus": "pending-human-review"
+            },
+            {
+              "id": "R-03",
+              "slug": "setting-up-a-react-project",
+              "title": "Setting Up a React Project",
+              "order": 3,
+              "required": true,
+              "optional": false,
+              "advanced": false,
+              "contentType": "core",
+              "estimatedMinutes": 15,
+              "difficulty": 1,
+              "requiredPrerequisiteTopicIds": [
+                "R-02"
+              ],
+              "recommendedPrerequisiteTopicIds": [],
+              "packetPath": "content/react/r-m01-react-orientation/r-03-setting-up-a-react-project.json",
+              "markdownPath": "content/react/r-m01-react-orientation/r-03-setting-up-a-react-project.md",
+              "status": "draft",
+              "reviewStatus": "pending-human-review"
+            }
+          ],
+          "requiredTopicIds": [
+            "R-02",
+            "R-03"
+          ],
+          "optionalTopicIds": [
+            "R-01"
+          ],
+          "assessmentId": "R-M01-REVIEW",
+          "masteryThresholdPercent": 80
+        },
+        {
+          "id": "R-M02",
+          "slug": "components-jsx-and-props",
+          "title": "Components, JSX, and Props",
+          "order": 2,
+          "topics": [
+            {
+              "id": "R-04",
+              "slug": "components-jsx-and-separation-of-concerns",
+              "title": "Components, JSX, and Separation of Concerns",
+              "order": 1,
+              "required": true,
+              "optional": false,
+              "advanced": false,
+              "contentType": "core",
+              "estimatedMinutes": 15,
+              "difficulty": 1,
+              "requiredPrerequisiteTopicIds": [
+                "R-03"
+              ],
+              "recommendedPrerequisiteTopicIds": [],
+              "packetPath": "content/react/r-m02-components-jsx-and-props/r-04-components-jsx-and-separation-of-concerns.json",
+              "markdownPath": "content/react/r-m02-components-jsx-and-props/r-04-components-jsx-and-separation-of-concerns.md",
+              "status": "draft",
+              "reviewStatus": "pending-human-review"
+            },
+            {
+              "id": "R-05",
+              "slug": "props-immutability-and-one-way-data-flow",
+              "title": "Props, Immutability, and One-Way Data Flow",
+              "order": 2,
+              "required": true,
+              "optional": false,
+              "advanced": false,
+              "contentType": "core",
+              "estimatedMinutes": 15,
+              "difficulty": 1,
+              "requiredPrerequisiteTopicIds": [
+                "R-04"
+              ],
+              "recommendedPrerequisiteTopicIds": [],
+              "packetPath": "content/react/r-m02-components-jsx-and-props/r-05-props-immutability-and-one-way-data-flow.json",
+              "markdownPath": "content/react/r-m02-components-jsx-and-props/r-05-props-immutability-and-one-way-data-flow.md",
+              "status": "draft",
+              "reviewStatus": "pending-human-review"
+            },
+            {
+              "id": "R-06",
+              "slug": "jsx-rules-and-fundamentals-recap",
+              "title": "JSX Rules and Fundamentals Recap",
+              "order": 3,
+              "required": false,
+              "optional": true,
+              "advanced": false,
+              "contentType": "synthesis",
+              "estimatedMinutes": 15,
+              "difficulty": 1,
+              "requiredPrerequisiteTopicIds": [],
+              "recommendedPrerequisiteTopicIds": [],
+              "packetPath": "content/react/r-m02-components-jsx-and-props/r-06-jsx-rules-and-fundamentals-recap.json",
+              "markdownPath": "content/react/r-m02-components-jsx-and-props/r-06-jsx-rules-and-fundamentals-recap.md",
+              "status": "draft",
+              "reviewStatus": "pending-human-review"
+            }
+          ],
+          "requiredTopicIds": [
+            "R-04",
+            "R-05"
+          ],
+          "optionalTopicIds": [
+            "R-06"
+          ],
+          "assessmentId": "R-M02-REVIEW",
+          "masteryThresholdPercent": 80
+        },
+        {
+          "id": "R-M03",
+          "slug": "state-and-thinking-in-react",
+          "title": "State and Thinking in React",
+          "order": 3,
+          "topics": [
+            {
+              "id": "R-07",
+              "slug": "state-fundamentals",
+              "title": "State Fundamentals",
+              "order": 1,
+              "required": true,
+              "optional": false,
+              "advanced": false,
+              "contentType": "core",
+              "estimatedMinutes": 20,
+              "difficulty": 2,
+              "requiredPrerequisiteTopicIds": [
+                "R-05"
+              ],
+              "recommendedPrerequisiteTopicIds": [],
+              "packetPath": "content/react/r-m03-state-and-thinking-in-react/r-07-state-fundamentals.json",
+              "markdownPath": "content/react/r-m03-state-and-thinking-in-react/r-07-state-fundamentals.md",
+              "status": "draft",
+              "reviewStatus": "pending-human-review"
+            },
+            {
+              "id": "R-08",
+              "slug": "thinking-in-react-state-management-and-derived-state",
+              "title": "Thinking in React, State Management, and Derived State",
+              "order": 2,
+              "required": true,
+              "optional": false,
+              "advanced": false,
+              "contentType": "core",
+              "estimatedMinutes": 15,
+              "difficulty": 2,
+              "requiredPrerequisiteTopicIds": [
+                "R-07"
+              ],
+              "recommendedPrerequisiteTopicIds": [],
+              "packetPath": "content/react/r-m03-state-and-thinking-in-react/r-08-thinking-in-react-state-management-and-derived-state.json",
+              "markdownPath": "content/react/r-m03-state-and-thinking-in-react/r-08-thinking-in-react-state-management-and-derived-state.md",
+              "status": "draft",
+              "reviewStatus": "pending-human-review"
+            }
+          ],
+          "requiredTopicIds": [
+            "R-07",
+            "R-08"
+          ],
+          "optionalTopicIds": [],
+          "assessmentId": "R-M03-REVIEW",
+          "masteryThresholdPercent": 80
+        },
+        {
+          "id": "R-M04",
+          "slug": "component-design-and-reusability",
+          "title": "Component Design and Reusability",
+          "order": 4,
+          "topics": [
+            {
+              "id": "R-09",
+              "slug": "reusability-with-the-children-prop",
+              "title": "Reusability with the `children` Prop",
+              "order": 1,
+              "required": true,
+              "optional": false,
+              "advanced": false,
+              "contentType": "core",
+              "estimatedMinutes": 15,
+              "difficulty": 2,
+              "requiredPrerequisiteTopicIds": [
+                "R-08"
+              ],
+              "recommendedPrerequisiteTopicIds": [],
+              "packetPath": "content/react/r-m04-component-design-and-reusability/r-09-reusability-with-the-children-prop.json",
+              "markdownPath": "content/react/r-m04-component-design-and-reusability/r-09-reusability-with-the-children-prop.md",
+              "status": "draft",
+              "reviewStatus": "pending-human-review"
+            },
+            {
+              "id": "R-10",
+              "slug": "designing-component-trees",
+              "title": "Designing Component Trees",
+              "order": 2,
+              "required": true,
+              "optional": false,
+              "advanced": false,
+              "contentType": "core",
+              "estimatedMinutes": 15,
+              "difficulty": 2,
+              "requiredPrerequisiteTopicIds": [
+                "R-09"
+              ],
+              "recommendedPrerequisiteTopicIds": [],
+              "packetPath": "content/react/r-m04-component-design-and-reusability/r-10-designing-component-trees.json",
+              "markdownPath": "content/react/r-m04-component-design-and-reusability/r-10-designing-component-trees.md",
+              "status": "draft",
+              "reviewStatus": "pending-human-review"
+            },
+            {
+              "id": "R-11",
+              "slug": "composition-and-props-as-component-apis",
+              "title": "Composition and Props as Component APIs",
+              "order": 3,
+              "required": true,
+              "optional": false,
+              "advanced": false,
+              "contentType": "core",
+              "estimatedMinutes": 15,
+              "difficulty": 2,
+              "requiredPrerequisiteTopicIds": [
+                "R-10"
+              ],
+              "recommendedPrerequisiteTopicIds": [],
+              "packetPath": "content/react/r-m04-component-design-and-reusability/r-11-composition-and-props-as-component-apis.json",
+              "markdownPath": "content/react/r-m04-component-design-and-reusability/r-11-composition-and-props-as-component-apis.md",
+              "status": "draft",
+              "reviewStatus": "pending-human-review"
+            }
+          ],
+          "requiredTopicIds": [
+            "R-09",
+            "R-10",
+            "R-11"
+          ],
+          "optionalTopicIds": [],
+          "assessmentId": "R-M04-REVIEW",
+          "masteryThresholdPercent": 80
+        },
+        {
+          "id": "R-M05",
+          "slug": "how-react-renders",
+          "title": "How React Renders",
+          "order": 5,
+          "topics": [
+            {
+              "id": "R-12",
+              "slug": "components-instances-elements-and-rendering-overview",
+              "title": "Components, Instances, Elements, and Rendering Overview",
+              "order": 1,
+              "required": true,
+              "optional": false,
+              "advanced": false,
+              "contentType": "core",
+              "estimatedMinutes": 15,
+              "difficulty": 3,
+              "requiredPrerequisiteTopicIds": [
+                "R-11"
+              ],
+              "recommendedPrerequisiteTopicIds": [],
+              "packetPath": "content/react/r-m05-how-react-renders/r-12-components-instances-elements-and-rendering-overview.json",
+              "markdownPath": "content/react/r-m05-how-react-renders/r-12-components-instances-elements-and-rendering-overview.md",
+              "status": "draft",
+              "reviewStatus": "pending-human-review"
+            },
+            {
+              "id": "R-13",
+              "slug": "render-and-commit-phases",
+              "title": "Render and Commit Phases",
+              "order": 2,
+              "required": true,
+              "optional": false,
+              "advanced": false,
+              "contentType": "core",
+              "estimatedMinutes": 25,
+              "difficulty": 3,
+              "requiredPrerequisiteTopicIds": [
+                "R-12"
+              ],
+              "recommendedPrerequisiteTopicIds": [],
+              "packetPath": "content/react/r-m05-how-react-renders/r-13-render-and-commit-phases.json",
+              "markdownPath": "content/react/r-m05-how-react-renders/r-13-render-and-commit-phases.md",
+              "status": "draft",
+              "reviewStatus": "pending-human-review"
+            },
+            {
+              "id": "R-14",
+              "slug": "diffing-keys-and-state-preservation",
+              "title": "Diffing, Keys, and State Preservation",
+              "order": 3,
+              "required": true,
+              "optional": false,
+              "advanced": false,
+              "contentType": "core",
+              "estimatedMinutes": 15,
+              "difficulty": 3,
+              "requiredPrerequisiteTopicIds": [
+                "R-13"
+              ],
+              "recommendedPrerequisiteTopicIds": [],
+              "packetPath": "content/react/r-m05-how-react-renders/r-14-diffing-keys-and-state-preservation.json",
+              "markdownPath": "content/react/r-m05-how-react-renders/r-14-diffing-keys-and-state-preservation.md",
+              "status": "draft",
+              "reviewStatus": "pending-human-review"
+            },
+            {
+              "id": "R-15",
+              "slug": "pure-render-logic-and-state-batching",
+              "title": "Pure Render Logic and State Batching",
+              "order": 4,
+              "required": true,
+              "optional": false,
+              "advanced": false,
+              "contentType": "core",
+              "estimatedMinutes": 15,
+              "difficulty": 3,
+              "requiredPrerequisiteTopicIds": [
+                "R-14"
+              ],
+              "recommendedPrerequisiteTopicIds": [],
+              "packetPath": "content/react/r-m05-how-react-renders/r-15-pure-render-logic-and-state-batching.json",
+              "markdownPath": "content/react/r-m05-how-react-renders/r-15-pure-render-logic-and-state-batching.md",
+              "status": "draft",
+              "reviewStatus": "pending-human-review"
+            },
+            {
+              "id": "R-16",
+              "slug": "how-events-work-in-react",
+              "title": "How Events Work in React",
+              "order": 5,
+              "required": true,
+              "optional": false,
+              "advanced": false,
+              "contentType": "core",
+              "estimatedMinutes": 15,
+              "difficulty": 3,
+              "requiredPrerequisiteTopicIds": [
+                "R-15"
+              ],
+              "recommendedPrerequisiteTopicIds": [],
+              "packetPath": "content/react/r-m05-how-react-renders/r-16-how-events-work-in-react.json",
+              "markdownPath": "content/react/r-m05-how-react-renders/r-16-how-events-work-in-react.md",
+              "status": "draft",
+              "reviewStatus": "pending-human-review"
+            },
+            {
+              "id": "R-17",
+              "slug": "react-ecosystem-overview",
+              "title": "React Ecosystem Overview",
+              "order": 6,
+              "required": true,
+              "optional": false,
+              "advanced": false,
+              "contentType": "synthesis",
+              "estimatedMinutes": 20,
+              "difficulty": 3,
+              "requiredPrerequisiteTopicIds": [
+                "R-16"
+              ],
+              "recommendedPrerequisiteTopicIds": [],
+              "packetPath": "content/react/r-m05-how-react-renders/r-17-react-ecosystem-overview.json",
+              "markdownPath": "content/react/r-m05-how-react-renders/r-17-react-ecosystem-overview.md",
+              "status": "draft",
+              "reviewStatus": "pending-human-review"
+            }
+          ],
+          "requiredTopicIds": [
+            "R-12",
+            "R-13",
+            "R-14",
+            "R-15",
+            "R-16",
+            "R-17"
+          ],
+          "optionalTopicIds": [],
+          "assessmentId": "R-M05-REVIEW",
+          "masteryThresholdPercent": 80
+        },
+        {
+          "id": "R-M06",
+          "slug": "effects-and-hooks",
+          "title": "Effects and Hooks",
+          "order": 6,
+          "topics": [
+            {
+              "id": "R-18",
+              "slug": "component-lifecycle-and-effects",
+              "title": "Component Lifecycle and Effects",
+              "order": 1,
+              "required": true,
+              "optional": false,
+              "advanced": false,
+              "contentType": "core",
+              "estimatedMinutes": 15,
+              "difficulty": 3,
+              "requiredPrerequisiteTopicIds": [
+                "R-17"
+              ],
+              "recommendedPrerequisiteTopicIds": [],
+              "packetPath": "content/react/r-m06-effects-and-hooks/r-18-component-lifecycle-and-effects.json",
+              "markdownPath": "content/react/r-m06-effects-and-hooks/r-18-component-lifecycle-and-effects.md",
+              "status": "draft",
+              "reviewStatus": "pending-human-review"
+            },
+            {
+              "id": "R-19",
+              "slug": "effect-dependencies-and-cleanup",
+              "title": "Effect Dependencies and Cleanup",
+              "order": 2,
+              "required": true,
+              "optional": false,
+              "advanced": false,
+              "contentType": "core",
+              "estimatedMinutes": 15,
+              "difficulty": 3,
+              "requiredPrerequisiteTopicIds": [
+                "R-18"
+              ],
+              "recommendedPrerequisiteTopicIds": [],
+              "packetPath": "content/react/r-m06-effects-and-hooks/r-19-effect-dependencies-and-cleanup.json",
+              "markdownPath": "content/react/r-m06-effects-and-hooks/r-19-effect-dependencies-and-cleanup.md",
+              "status": "draft",
+              "reviewStatus": "pending-human-review"
+            },
+            {
+              "id": "R-20",
+              "slug": "rules-of-hooks-and-usestate-recap",
+              "title": "Rules of Hooks and `useState` Recap",
+              "order": 3,
+              "required": true,
+              "optional": false,
+              "advanced": false,
+              "contentType": "core",
+              "estimatedMinutes": 15,
+              "difficulty": 3,
+              "requiredPrerequisiteTopicIds": [
+                "R-19"
+              ],
+              "recommendedPrerequisiteTopicIds": [],
+              "packetPath": "content/react/r-m06-effects-and-hooks/r-20-rules-of-hooks-and-usestate-recap.json",
+              "markdownPath": "content/react/r-m06-effects-and-hooks/r-20-rules-of-hooks-and-usestate-recap.md",
+              "status": "draft",
+              "reviewStatus": "pending-human-review"
+            },
+            {
+              "id": "R-21",
+              "slug": "refs-and-custom-hooks",
+              "title": "Refs and Custom Hooks",
+              "order": 4,
+              "required": true,
+              "optional": false,
+              "advanced": false,
+              "contentType": "core",
+              "estimatedMinutes": 15,
+              "difficulty": 3,
+              "requiredPrerequisiteTopicIds": [
+                "R-20"
+              ],
+              "recommendedPrerequisiteTopicIds": [],
+              "packetPath": "content/react/r-m06-effects-and-hooks/r-21-refs-and-custom-hooks.json",
+              "markdownPath": "content/react/r-m06-effects-and-hooks/r-21-refs-and-custom-hooks.md",
+              "status": "draft",
+              "reviewStatus": "pending-human-review"
+            },
+            {
+              "id": "R-22",
+              "slug": "class-components-vs-function-components",
+              "title": "Class Components vs. Function Components",
+              "order": 5,
+              "required": false,
+              "optional": true,
+              "advanced": true,
+              "contentType": "optional_legacy",
+              "estimatedMinutes": 15,
+              "difficulty": 3,
+              "requiredPrerequisiteTopicIds": [],
+              "recommendedPrerequisiteTopicIds": [],
+              "packetPath": "content/react/r-m06-effects-and-hooks/r-22-class-components-vs-function-components.json",
+              "markdownPath": "content/react/r-m06-effects-and-hooks/r-22-class-components-vs-function-components.md",
+              "status": "draft",
+              "reviewStatus": "pending-human-review"
+            }
+          ],
+          "requiredTopicIds": [
+            "R-18",
+            "R-19",
+            "R-20",
+            "R-21"
+          ],
+          "optionalTopicIds": [
+            "R-22"
+          ],
+          "assessmentId": "R-M06-REVIEW",
+          "masteryThresholdPercent": 80
+        },
+        {
+          "id": "R-M07",
+          "slug": "complex-state-routing-and-styling",
+          "title": "Complex State, Routing, and Styling",
+          "order": 7,
+          "topics": [
+            {
+              "id": "R-23",
+              "slug": "usereducer-and-choosing-state-tools",
+              "title": "`useReducer` and Choosing State Tools",
+              "order": 1,
+              "required": true,
+              "optional": false,
+              "advanced": false,
+              "contentType": "core",
+              "estimatedMinutes": 20,
+              "difficulty": 4,
+              "requiredPrerequisiteTopicIds": [
+                "R-21"
+              ],
+              "recommendedPrerequisiteTopicIds": [],
+              "packetPath": "content/react/r-m07-complex-state-routing-and-styling/r-23-usereducer-and-choosing-state-tools.json",
+              "markdownPath": "content/react/r-m07-complex-state-routing-and-styling/r-23-usereducer-and-choosing-state-tools.md",
+              "status": "draft",
+              "reviewStatus": "pending-human-review"
+            },
+            {
+              "id": "R-24",
+              "slug": "routing-and-single-page-applications",
+              "title": "Routing and Single-Page Applications",
+              "order": 2,
+              "required": true,
+              "optional": false,
+              "advanced": false,
+              "contentType": "core",
+              "estimatedMinutes": 15,
+              "difficulty": 4,
+              "requiredPrerequisiteTopicIds": [
+                "R-23"
+              ],
+              "recommendedPrerequisiteTopicIds": [],
+              "packetPath": "content/react/r-m07-complex-state-routing-and-styling/r-24-routing-and-single-page-applications.json",
+              "markdownPath": "content/react/r-m07-complex-state-routing-and-styling/r-24-routing-and-single-page-applications.md",
+              "status": "draft",
+              "reviewStatus": "pending-human-review"
+            },
+            {
+              "id": "R-25",
+              "slug": "styling-options-for-react-applications",
+              "title": "Styling Options for React Applications",
+              "order": 3,
+              "required": true,
+              "optional": false,
+              "advanced": false,
+              "contentType": "core",
+              "estimatedMinutes": 15,
+              "difficulty": 4,
+              "requiredPrerequisiteTopicIds": [
+                "R-24"
+              ],
+              "recommendedPrerequisiteTopicIds": [],
+              "packetPath": "content/react/r-m07-complex-state-routing-and-styling/r-25-styling-options-for-react-applications.json",
+              "markdownPath": "content/react/r-m07-complex-state-routing-and-styling/r-25-styling-options-for-react-applications.md",
+              "status": "draft",
+              "reviewStatus": "pending-human-review"
+            }
+          ],
+          "requiredTopicIds": [
+            "R-23",
+            "R-24",
+            "R-25"
+          ],
+          "optionalTopicIds": [],
+          "assessmentId": "R-M07-REVIEW",
+          "masteryThresholdPercent": 80
+        },
+        {
+          "id": "R-M08",
+          "slug": "context-and-advanced-state-management",
+          "title": "Context and Advanced State Management",
+          "order": 8,
+          "topics": [
+            {
+              "id": "R-26",
+              "slug": "context-api-and-advanced-state-management",
+              "title": "Context API and Advanced State Management",
+              "order": 1,
+              "required": true,
+              "optional": false,
+              "advanced": false,
+              "contentType": "core",
+              "estimatedMinutes": 15,
+              "difficulty": 4,
+              "requiredPrerequisiteTopicIds": [
+                "R-25"
+              ],
+              "recommendedPrerequisiteTopicIds": [],
+              "packetPath": "content/react/r-m08-context-and-advanced-state-management/r-26-context-api-and-advanced-state-management.json",
+              "markdownPath": "content/react/r-m08-context-and-advanced-state-management/r-26-context-api-and-advanced-state-management.md",
+              "status": "draft",
+              "reviewStatus": "pending-human-review"
+            }
+          ],
+          "requiredTopicIds": [
+            "R-26"
+          ],
+          "optionalTopicIds": [],
+          "assessmentId": "R-M08-REVIEW",
+          "masteryThresholdPercent": 80
+        },
+        {
+          "id": "R-M09",
+          "slug": "performance-and-advanced-effects",
+          "title": "Performance and Advanced Effects",
+          "order": 9,
+          "topics": [
+            {
+              "id": "R-27",
+              "slug": "wasted-renders-and-memoization",
+              "title": "Wasted Renders and Memoization",
+              "order": 1,
+              "required": true,
+              "optional": false,
+              "advanced": false,
+              "contentType": "core",
+              "estimatedMinutes": 15,
+              "difficulty": 5,
+              "requiredPrerequisiteTopicIds": [
+                "R-26"
+              ],
+              "recommendedPrerequisiteTopicIds": [],
+              "packetPath": "content/react/r-m09-performance-and-advanced-effects/r-27-wasted-renders-and-memoization.json",
+              "markdownPath": "content/react/r-m09-performance-and-advanced-effects/r-27-wasted-renders-and-memoization.md",
+              "status": "draft",
+              "reviewStatus": "pending-human-review"
+            },
+            {
+              "id": "R-28",
+              "slug": "code-splitting-and-pragmatic-optimization",
+              "title": "Code Splitting and Pragmatic Optimization",
+              "order": 2,
+              "required": true,
+              "optional": false,
+              "advanced": false,
+              "contentType": "core",
+              "estimatedMinutes": 15,
+              "difficulty": 5,
+              "requiredPrerequisiteTopicIds": [
+                "R-27"
+              ],
+              "recommendedPrerequisiteTopicIds": [],
+              "packetPath": "content/react/r-m09-performance-and-advanced-effects/r-28-code-splitting-and-pragmatic-optimization.json",
+              "markdownPath": "content/react/r-m09-performance-and-advanced-effects/r-28-code-splitting-and-pragmatic-optimization.md",
+              "status": "draft",
+              "reviewStatus": "pending-human-review"
+            },
+            {
+              "id": "R-29",
+              "slug": "useeffect-rules-and-best-practices",
+              "title": "`useEffect` Rules and Best Practices",
+              "order": 3,
+              "required": true,
+              "optional": false,
+              "advanced": false,
+              "contentType": "core",
+              "estimatedMinutes": 15,
+              "difficulty": 5,
+              "requiredPrerequisiteTopicIds": [
+                "R-28"
+              ],
+              "recommendedPrerequisiteTopicIds": [],
+              "packetPath": "content/react/r-m09-performance-and-advanced-effects/r-29-useeffect-rules-and-best-practices.json",
+              "markdownPath": "content/react/r-m09-performance-and-advanced-effects/r-29-useeffect-rules-and-best-practices.md",
+              "status": "draft",
+              "reviewStatus": "pending-human-review"
+            }
+          ],
+          "requiredTopicIds": [
+            "R-27",
+            "R-28",
+            "R-29"
+          ],
+          "optionalTopicIds": [],
+          "assessmentId": "R-M09-REVIEW",
+          "masteryThresholdPercent": 80
+        },
+        {
+          "id": "R-M10",
+          "slug": "redux",
+          "title": "Redux",
+          "order": 10,
+          "topics": [
+            {
+              "id": "R-30",
+              "slug": "redux-fundamentals",
+              "title": "Redux Fundamentals",
+              "order": 1,
+              "required": true,
+              "optional": false,
+              "advanced": false,
+              "contentType": "core",
+              "estimatedMinutes": 15,
+              "difficulty": 5,
+              "requiredPrerequisiteTopicIds": [
+                "R-29"
+              ],
+              "recommendedPrerequisiteTopicIds": [],
+              "packetPath": "content/react/r-m10-redux/r-30-redux-fundamentals.json",
+              "markdownPath": "content/react/r-m10-redux/r-30-redux-fundamentals.md",
+              "status": "draft",
+              "reviewStatus": "pending-human-review"
+            },
+            {
+              "id": "R-31",
+              "slug": "middleware-thunks-and-redux-toolkit",
+              "title": "Middleware, Thunks, and Redux Toolkit",
+              "order": 2,
+              "required": true,
+              "optional": false,
+              "advanced": false,
+              "contentType": "core",
+              "estimatedMinutes": 15,
+              "difficulty": 5,
+              "requiredPrerequisiteTopicIds": [
+                "R-30"
+              ],
+              "recommendedPrerequisiteTopicIds": [],
+              "packetPath": "content/react/r-m10-redux/r-31-middleware-thunks-and-redux-toolkit.json",
+              "markdownPath": "content/react/r-m10-redux/r-31-middleware-thunks-and-redux-toolkit.md",
+              "status": "draft",
+              "reviewStatus": "pending-human-review"
+            },
+            {
+              "id": "R-32",
+              "slug": "redux-vs-context-api",
+              "title": "Redux vs. Context API",
+              "order": 3,
+              "required": true,
+              "optional": false,
+              "advanced": false,
+              "contentType": "core",
+              "estimatedMinutes": 15,
+              "difficulty": 5,
+              "requiredPrerequisiteTopicIds": [
+                "R-31"
+              ],
+              "recommendedPrerequisiteTopicIds": [],
+              "packetPath": "content/react/r-m10-redux/r-32-redux-vs-context-api.json",
+              "markdownPath": "content/react/r-m10-redux/r-32-redux-vs-context-api.md",
+              "status": "draft",
+              "reviewStatus": "pending-human-review"
+            }
+          ],
+          "requiredTopicIds": [
+            "R-30",
+            "R-31",
+            "R-32"
+          ],
+          "optionalTopicIds": [],
+          "assessmentId": "R-M10-REVIEW",
+          "masteryThresholdPercent": 80
+        },
+        {
+          "id": "R-M11",
+          "slug": "professional-react-workflows-and-ecosystem",
+          "title": "Professional React Workflows and Ecosystem",
+          "order": 11,
+          "topics": [
+            {
+              "id": "R-33",
+              "slug": "fast-react-pizza-application-planning",
+              "title": "Fast React Pizza Application Planning",
+              "order": 1,
+              "required": true,
+              "optional": false,
+              "advanced": false,
+              "contentType": "case_study",
+              "estimatedMinutes": 15,
+              "difficulty": 5,
+              "requiredPrerequisiteTopicIds": [
+                "R-32"
+              ],
+              "recommendedPrerequisiteTopicIds": [],
+              "packetPath": "content/react/r-m11-professional-react-workflows-and-ecosystem/r-33-fast-react-pizza-application-planning.json",
+              "markdownPath": "content/react/r-m11-professional-react-workflows-and-ecosystem/r-33-fast-react-pizza-application-planning.md",
+              "status": "draft",
+              "reviewStatus": "pending-human-review"
+            },
+            {
+              "id": "R-34",
+              "slug": "tailwind-css-overview",
+              "title": "Tailwind CSS Overview",
+              "order": 2,
+              "required": false,
+              "optional": true,
+              "advanced": false,
+              "contentType": "supplement",
+              "estimatedMinutes": 15,
+              "difficulty": 5,
+              "requiredPrerequisiteTopicIds": [],
+              "recommendedPrerequisiteTopicIds": [],
+              "packetPath": "content/react/r-m11-professional-react-workflows-and-ecosystem/r-34-tailwind-css-overview.json",
+              "markdownPath": "content/react/r-m11-professional-react-workflows-and-ecosystem/r-34-tailwind-css-overview.md",
+              "status": "draft",
+              "reviewStatus": "pending-human-review"
+            },
+            {
+              "id": "R-35",
+              "slug": "wild-oasis-application-planning",
+              "title": "Wild Oasis Application Planning",
+              "order": 3,
+              "required": true,
+              "optional": false,
+              "advanced": false,
+              "contentType": "case_study",
+              "estimatedMinutes": 15,
+              "difficulty": 5,
+              "requiredPrerequisiteTopicIds": [
+                "R-33"
+              ],
+              "recommendedPrerequisiteTopicIds": [],
+              "packetPath": "content/react/r-m11-professional-react-workflows-and-ecosystem/r-35-wild-oasis-application-planning.json",
+              "markdownPath": "content/react/r-m11-professional-react-workflows-and-ecosystem/r-35-wild-oasis-application-planning.md",
+              "status": "draft",
+              "reviewStatus": "pending-human-review"
+            },
+            {
+              "id": "R-36",
+              "slug": "supabase-overview",
+              "title": "Supabase Overview",
+              "order": 4,
+              "required": false,
+              "optional": true,
+              "advanced": false,
+              "contentType": "supplement",
+              "estimatedMinutes": 15,
+              "difficulty": 5,
+              "requiredPrerequisiteTopicIds": [],
+              "recommendedPrerequisiteTopicIds": [],
+              "packetPath": "content/react/r-m11-professional-react-workflows-and-ecosystem/r-36-supabase-overview.json",
+              "markdownPath": "content/react/r-m11-professional-react-workflows-and-ecosystem/r-36-supabase-overview.md",
+              "status": "draft",
+              "reviewStatus": "pending-human-review"
+            },
+            {
+              "id": "R-37",
+              "slug": "modeling-application-state-and-react-query",
+              "title": "Modeling Application State and React Query",
+              "order": 5,
+              "required": true,
+              "optional": false,
+              "advanced": false,
+              "contentType": "core",
+              "estimatedMinutes": 15,
+              "difficulty": 5,
+              "requiredPrerequisiteTopicIds": [
+                "R-35"
+              ],
+              "recommendedPrerequisiteTopicIds": [],
+              "packetPath": "content/react/r-m11-professional-react-workflows-and-ecosystem/r-37-modeling-application-state-and-react-query.json",
+              "markdownPath": "content/react/r-m11-professional-react-workflows-and-ecosystem/r-37-modeling-application-state-and-react-query.md",
+              "status": "draft",
+              "reviewStatus": "pending-human-review"
+            },
+            {
+              "id": "R-38",
+              "slug": "reusability-and-advanced-react-patterns",
+              "title": "Reusability and Advanced React Patterns",
+              "order": 6,
+              "required": true,
+              "optional": false,
+              "advanced": false,
+              "contentType": "core",
+              "estimatedMinutes": 15,
+              "difficulty": 5,
+              "requiredPrerequisiteTopicIds": [
+                "R-37"
+              ],
+              "recommendedPrerequisiteTopicIds": [],
+              "packetPath": "content/react/r-m11-professional-react-workflows-and-ecosystem/r-38-reusability-and-advanced-react-patterns.json",
+              "markdownPath": "content/react/r-m11-professional-react-workflows-and-ecosystem/r-38-reusability-and-advanced-react-patterns.md",
+              "status": "draft",
+              "reviewStatus": "pending-human-review"
+            }
+          ],
+          "requiredTopicIds": [
+            "R-33",
+            "R-35",
+            "R-37",
+            "R-38"
+          ],
+          "optionalTopicIds": [
+            "R-34",
+            "R-36"
+          ],
+          "assessmentId": "R-M11-REVIEW",
+          "masteryThresholdPercent": 80
+        }
+      ],
+      "completionRule": "All required modules and required topics must meet the mastery threshold.",
+      "masteryThresholdPercent": 80
+    },
+    {
+      "id": "nextjs",
+      "slug": "nextjs",
+      "title": "Next.js",
+      "order": 3,
+      "modules": [
+        {
+          "id": "N-M01",
+          "slug": "rendering-foundations",
+          "title": "Rendering Foundations",
+          "order": 1,
+          "topics": [
+            {
+              "id": "N-01",
+              "slug": "server-side-rendering-and-hydration",
+              "title": "Server-Side Rendering and Hydration",
+              "order": 1,
+              "required": true,
+              "optional": false,
+              "advanced": false,
+              "contentType": "core",
+              "estimatedMinutes": 20,
+              "difficulty": 2,
+              "requiredPrerequisiteTopicIds": [],
+              "recommendedPrerequisiteTopicIds": [
+                "R-12",
+                "R-13",
+                "R-18",
+                "R-24"
+              ],
+              "packetPath": "content/nextjs/n-m01-rendering-foundations/n-01-server-side-rendering-and-hydration.json",
+              "markdownPath": "content/nextjs/n-m01-rendering-foundations/n-01-server-side-rendering-and-hydration.md",
+              "status": "draft",
+              "reviewStatus": "pending-human-review"
+            },
+            {
+              "id": "N-02",
+              "slug": "what-next-js-is-and-why-it-exists",
+              "title": "What Next.js Is and Why It Exists",
+              "order": 2,
+              "required": true,
+              "optional": false,
+              "advanced": false,
+              "contentType": "core",
+              "estimatedMinutes": 15,
+              "difficulty": 2,
+              "requiredPrerequisiteTopicIds": [
+                "N-01"
+              ],
+              "recommendedPrerequisiteTopicIds": [],
+              "packetPath": "content/nextjs/n-m01-rendering-foundations/n-02-what-next-js-is-and-why-it-exists.json",
+              "markdownPath": "content/nextjs/n-m01-rendering-foundations/n-02-what-next-js-is-and-why-it-exists.md",
+              "status": "draft",
+              "reviewStatus": "pending-human-review"
+            }
+          ],
+          "requiredTopicIds": [
+            "N-01",
+            "N-02"
+          ],
+          "optionalTopicIds": [],
+          "assessmentId": "N-M01-REVIEW",
+          "masteryThresholdPercent": 80
+        },
+        {
+          "id": "N-M02",
+          "slug": "react-server-components",
+          "title": "React Server Components",
+          "order": 2,
+          "topics": [
+            {
+              "id": "N-03",
+              "slug": "react-server-components-fundamentals",
+              "title": "React Server Components: Fundamentals",
+              "order": 1,
+              "required": true,
+              "optional": false,
+              "advanced": false,
+              "contentType": "core",
+              "estimatedMinutes": 25,
+              "difficulty": 2,
+              "requiredPrerequisiteTopicIds": [
+                "N-02"
+              ],
+              "recommendedPrerequisiteTopicIds": [],
+              "packetPath": "content/nextjs/n-m02-react-server-components/n-03-react-server-components-fundamentals.json",
+              "markdownPath": "content/nextjs/n-m02-react-server-components/n-03-react-server-components-fundamentals.md",
+              "status": "draft",
+              "reviewStatus": "pending-human-review"
+            },
+            {
+              "id": "N-04",
+              "slug": "rsc-internals-and-relationship-to-ssr",
+              "title": "RSC Internals and Relationship to SSR",
+              "order": 2,
+              "required": true,
+              "optional": false,
+              "advanced": false,
+              "contentType": "core",
+              "estimatedMinutes": 25,
+              "difficulty": 2,
+              "requiredPrerequisiteTopicIds": [
+                "N-03"
+              ],
+              "recommendedPrerequisiteTopicIds": [],
+              "packetPath": "content/nextjs/n-m02-react-server-components/n-04-rsc-internals-and-relationship-to-ssr.json",
+              "markdownPath": "content/nextjs/n-m02-react-server-components/n-04-rsc-internals-and-relationship-to-ssr.md",
+              "status": "draft",
+              "reviewStatus": "pending-human-review"
+            }
+          ],
+          "requiredTopicIds": [
+            "N-03",
+            "N-04"
+          ],
+          "optionalTopicIds": [],
+          "assessmentId": "N-M02-REVIEW",
+          "masteryThresholdPercent": 80
+        },
+        {
+          "id": "N-M03",
+          "slug": "project-planning",
+          "title": "Project Planning",
+          "order": 3,
+          "topics": [
+            {
+              "id": "N-05",
+              "slug": "wild-oasis-website-planning",
+              "title": "Wild Oasis Website Planning",
+              "order": 1,
+              "required": true,
+              "optional": false,
+              "advanced": false,
+              "contentType": "case_study",
+              "estimatedMinutes": 15,
+              "difficulty": 3,
+              "requiredPrerequisiteTopicIds": [
+                "N-04"
+              ],
+              "recommendedPrerequisiteTopicIds": [],
+              "packetPath": "content/nextjs/n-m03-project-planning/n-05-wild-oasis-website-planning.json",
+              "markdownPath": "content/nextjs/n-m03-project-planning/n-05-wild-oasis-website-planning.md",
+              "status": "draft",
+              "reviewStatus": "pending-human-review"
+            }
+          ],
+          "requiredTopicIds": [
+            "N-05"
+          ],
+          "optionalTopicIds": [],
+          "assessmentId": "N-M03-REVIEW",
+          "masteryThresholdPercent": 80
+        },
+        {
+          "id": "N-M04",
+          "slug": "streaming-rendering-strategies-and-caching",
+          "title": "Streaming, Rendering Strategies, and Caching",
+          "order": 4,
+          "topics": [
+            {
+              "id": "N-06",
+              "slug": "react-suspense-and-streaming",
+              "title": "React Suspense and Streaming",
+              "order": 1,
+              "required": true,
+              "optional": false,
+              "advanced": false,
+              "contentType": "core",
+              "estimatedMinutes": 15,
+              "difficulty": 3,
+              "requiredPrerequisiteTopicIds": [
+                "N-05"
+              ],
+              "recommendedPrerequisiteTopicIds": [],
+              "packetPath": "content/nextjs/n-m04-streaming-rendering-strategies-and-caching/n-06-react-suspense-and-streaming.json",
+              "markdownPath": "content/nextjs/n-m04-streaming-rendering-strategies-and-caching/n-06-react-suspense-and-streaming.md",
+              "status": "draft",
+              "reviewStatus": "pending-human-review"
+            },
+            {
+              "id": "N-07",
+              "slug": "static-dynamic-and-partial-pre-rendering",
+              "title": "Static, Dynamic, and Partial Pre-Rendering",
+              "order": 2,
+              "required": true,
+              "optional": false,
+              "advanced": false,
+              "contentType": "core",
+              "estimatedMinutes": 20,
+              "difficulty": 3,
+              "requiredPrerequisiteTopicIds": [
+                "N-06"
+              ],
+              "recommendedPrerequisiteTopicIds": [],
+              "packetPath": "content/nextjs/n-m04-streaming-rendering-strategies-and-caching/n-07-static-dynamic-and-partial-pre-rendering.json",
+              "markdownPath": "content/nextjs/n-m04-streaming-rendering-strategies-and-caching/n-07-static-dynamic-and-partial-pre-rendering.md",
+              "status": "draft",
+              "reviewStatus": "pending-human-review"
+            },
+            {
+              "id": "N-08",
+              "slug": "how-next-js-caches-data",
+              "title": "How Next.js Caches Data",
+              "order": 3,
+              "required": true,
+              "optional": false,
+              "advanced": false,
+              "contentType": "core",
+              "estimatedMinutes": 15,
+              "difficulty": 3,
+              "requiredPrerequisiteTopicIds": [
+                "N-07"
+              ],
+              "recommendedPrerequisiteTopicIds": [],
+              "packetPath": "content/nextjs/n-m04-streaming-rendering-strategies-and-caching/n-08-how-next-js-caches-data.json",
+              "markdownPath": "content/nextjs/n-m04-streaming-rendering-strategies-and-caching/n-08-how-next-js-caches-data.md",
+              "status": "draft",
+              "reviewStatus": "pending-human-review"
+            }
+          ],
+          "requiredTopicIds": [
+            "N-06",
+            "N-07",
+            "N-08"
+          ],
+          "optionalTopicIds": [],
+          "assessmentId": "N-M04-REVIEW",
+          "masteryThresholdPercent": 80
+        },
+        {
+          "id": "N-M05",
+          "slug": "server-and-client-architecture",
+          "title": "Server and Client Architecture",
+          "order": 5,
+          "topics": [
+            {
+              "id": "N-09",
+              "slug": "server-and-client-boundaries",
+              "title": "Server and Client Boundaries",
+              "order": 1,
+              "required": true,
+              "optional": false,
+              "advanced": false,
+              "contentType": "core",
+              "estimatedMinutes": 15,
+              "difficulty": 4,
+              "requiredPrerequisiteTopicIds": [
+                "N-08"
+              ],
+              "recommendedPrerequisiteTopicIds": [],
+              "packetPath": "content/nextjs/n-m05-server-and-client-architecture/n-09-server-and-client-boundaries.json",
+              "markdownPath": "content/nextjs/n-m05-server-and-client-architecture/n-09-server-and-client-boundaries.md",
+              "status": "draft",
+              "reviewStatus": "pending-human-review"
+            },
+            {
+              "id": "N-10",
+              "slug": "middleware-in-next-js",
+              "title": "Middleware in Next.js",
+              "order": 2,
+              "required": true,
+              "optional": false,
+              "advanced": false,
+              "contentType": "core",
+              "estimatedMinutes": 15,
+              "difficulty": 4,
+              "requiredPrerequisiteTopicIds": [
+                "N-09"
+              ],
+              "recommendedPrerequisiteTopicIds": [],
+              "packetPath": "content/nextjs/n-m05-server-and-client-architecture/n-10-middleware-in-next-js.json",
+              "markdownPath": "content/nextjs/n-m05-server-and-client-architecture/n-10-middleware-in-next-js.md",
+              "status": "draft",
+              "reviewStatus": "pending-human-review"
+            },
+            {
+              "id": "N-11",
+              "slug": "server-actions",
+              "title": "Server Actions",
+              "order": 3,
+              "required": true,
+              "optional": false,
+              "advanced": false,
+              "contentType": "core",
+              "estimatedMinutes": 15,
+              "difficulty": 4,
+              "requiredPrerequisiteTopicIds": [
+                "N-10"
+              ],
+              "recommendedPrerequisiteTopicIds": [],
+              "packetPath": "content/nextjs/n-m05-server-and-client-architecture/n-11-server-actions.json",
+              "markdownPath": "content/nextjs/n-m05-server-and-client-architecture/n-11-server-actions.md",
+              "status": "draft",
+              "reviewStatus": "pending-human-review"
+            }
+          ],
+          "requiredTopicIds": [
+            "N-09",
+            "N-10",
+            "N-11"
+          ],
+          "optionalTopicIds": [],
+          "assessmentId": "N-M05-REVIEW",
+          "masteryThresholdPercent": 80
+        }
+      ],
+      "completionRule": "All required modules and required topics must meet the mastery threshold.",
+      "masteryThresholdPercent": 80
+    }
+  ],
+  "prerequisiteEdges": [
+    {
+      "fromTopicId": "JS-02",
+      "toTopicId": "JS-03",
+      "kind": "required",
+      "policy": "soft-gate",
+      "masteryThresholdPercent": 80
+    },
+    {
+      "fromTopicId": "JS-03",
+      "toTopicId": "JS-04",
+      "kind": "required",
+      "policy": "soft-gate",
+      "masteryThresholdPercent": 80
+    },
+    {
+      "fromTopicId": "JS-04",
+      "toTopicId": "JS-05",
+      "kind": "required",
+      "policy": "soft-gate",
+      "masteryThresholdPercent": 80
+    },
+    {
+      "fromTopicId": "JS-05",
+      "toTopicId": "JS-06",
+      "kind": "required",
+      "policy": "soft-gate",
+      "masteryThresholdPercent": 80
+    },
+    {
+      "fromTopicId": "JS-06",
+      "toTopicId": "JS-07",
+      "kind": "required",
+      "policy": "soft-gate",
+      "masteryThresholdPercent": 80
+    },
+    {
+      "fromTopicId": "JS-07",
+      "toTopicId": "JS-08",
+      "kind": "required",
+      "policy": "soft-gate",
+      "masteryThresholdPercent": 80
+    },
+    {
+      "fromTopicId": "JS-08",
+      "toTopicId": "JS-09",
+      "kind": "required",
+      "policy": "soft-gate",
+      "masteryThresholdPercent": 80
+    },
+    {
+      "fromTopicId": "JS-09",
+      "toTopicId": "JS-10",
+      "kind": "required",
+      "policy": "soft-gate",
+      "masteryThresholdPercent": 80
+    },
+    {
+      "fromTopicId": "JS-10",
+      "toTopicId": "JS-11",
+      "kind": "required",
+      "policy": "soft-gate",
+      "masteryThresholdPercent": 80
+    },
+    {
+      "fromTopicId": "JS-11",
+      "toTopicId": "JS-12",
+      "kind": "required",
+      "policy": "soft-gate",
+      "masteryThresholdPercent": 80
+    },
+    {
+      "fromTopicId": "JS-12",
+      "toTopicId": "JS-13",
+      "kind": "required",
+      "policy": "soft-gate",
+      "masteryThresholdPercent": 80
+    },
+    {
+      "fromTopicId": "JS-13",
+      "toTopicId": "JS-14",
+      "kind": "required",
+      "policy": "soft-gate",
+      "masteryThresholdPercent": 80
+    },
+    {
+      "fromTopicId": "JS-14",
+      "toTopicId": "JS-15",
+      "kind": "required",
+      "policy": "soft-gate",
+      "masteryThresholdPercent": 80
+    },
+    {
+      "fromTopicId": "JS-15",
+      "toTopicId": "JS-16",
+      "kind": "required",
+      "policy": "soft-gate",
+      "masteryThresholdPercent": 80
+    },
+    {
+      "fromTopicId": "JS-16",
+      "toTopicId": "JS-17",
+      "kind": "required",
+      "policy": "soft-gate",
+      "masteryThresholdPercent": 80
+    },
+    {
+      "fromTopicId": "JS-17",
+      "toTopicId": "JS-18",
+      "kind": "required",
+      "policy": "soft-gate",
+      "masteryThresholdPercent": 80
+    },
+    {
+      "fromTopicId": "JS-18",
+      "toTopicId": "JS-19",
+      "kind": "required",
+      "policy": "soft-gate",
+      "masteryThresholdPercent": 80
+    },
+    {
+      "fromTopicId": "JS-19",
+      "toTopicId": "JS-20",
+      "kind": "required",
+      "policy": "soft-gate",
+      "masteryThresholdPercent": 80
+    },
+    {
+      "fromTopicId": "JS-20",
+      "toTopicId": "JS-21",
+      "kind": "required",
+      "policy": "soft-gate",
+      "masteryThresholdPercent": 80
+    },
+    {
+      "fromTopicId": "JS-21",
+      "toTopicId": "JS-22",
+      "kind": "required",
+      "policy": "soft-gate",
+      "masteryThresholdPercent": 80
+    },
+    {
+      "fromTopicId": "JS-22",
+      "toTopicId": "JS-23",
+      "kind": "required",
+      "policy": "soft-gate",
+      "masteryThresholdPercent": 80
+    },
+    {
+      "fromTopicId": "JS-23",
+      "toTopicId": "JS-24",
+      "kind": "required",
+      "policy": "soft-gate",
+      "masteryThresholdPercent": 80
+    },
+    {
+      "fromTopicId": "JS-24",
+      "toTopicId": "JS-25",
+      "kind": "required",
+      "policy": "soft-gate",
+      "masteryThresholdPercent": 80
+    },
+    {
+      "fromTopicId": "JS-25",
+      "toTopicId": "JS-26",
+      "kind": "required",
+      "policy": "soft-gate",
+      "masteryThresholdPercent": 80
+    },
+    {
+      "fromTopicId": "JS-26",
+      "toTopicId": "JS-27",
+      "kind": "required",
+      "policy": "soft-gate",
+      "masteryThresholdPercent": 80
+    },
+    {
+      "fromTopicId": "JS-27",
+      "toTopicId": "JS-28",
+      "kind": "required",
+      "policy": "soft-gate",
+      "masteryThresholdPercent": 80
+    },
+    {
+      "fromTopicId": "JS-28",
+      "toTopicId": "JS-29",
+      "kind": "required",
+      "policy": "soft-gate",
+      "masteryThresholdPercent": 80
+    },
+    {
+      "fromTopicId": "R-02",
+      "toTopicId": "R-03",
+      "kind": "required",
+      "policy": "soft-gate",
+      "masteryThresholdPercent": 80
+    },
+    {
+      "fromTopicId": "R-03",
+      "toTopicId": "R-04",
+      "kind": "required",
+      "policy": "soft-gate",
+      "masteryThresholdPercent": 80
+    },
+    {
+      "fromTopicId": "R-04",
+      "toTopicId": "R-05",
+      "kind": "required",
+      "policy": "soft-gate",
+      "masteryThresholdPercent": 80
+    },
+    {
+      "fromTopicId": "R-05",
+      "toTopicId": "R-07",
+      "kind": "required",
+      "policy": "soft-gate",
+      "masteryThresholdPercent": 80
+    },
+    {
+      "fromTopicId": "R-07",
+      "toTopicId": "R-08",
+      "kind": "required",
+      "policy": "soft-gate",
+      "masteryThresholdPercent": 80
+    },
+    {
+      "fromTopicId": "R-08",
+      "toTopicId": "R-09",
+      "kind": "required",
+      "policy": "soft-gate",
+      "masteryThresholdPercent": 80
+    },
+    {
+      "fromTopicId": "R-09",
+      "toTopicId": "R-10",
+      "kind": "required",
+      "policy": "soft-gate",
+      "masteryThresholdPercent": 80
+    },
+    {
+      "fromTopicId": "R-10",
+      "toTopicId": "R-11",
+      "kind": "required",
+      "policy": "soft-gate",
+      "masteryThresholdPercent": 80
+    },
+    {
+      "fromTopicId": "R-11",
+      "toTopicId": "R-12",
+      "kind": "required",
+      "policy": "soft-gate",
+      "masteryThresholdPercent": 80
+    },
+    {
+      "fromTopicId": "R-12",
+      "toTopicId": "R-13",
+      "kind": "required",
+      "policy": "soft-gate",
+      "masteryThresholdPercent": 80
+    },
+    {
+      "fromTopicId": "R-13",
+      "toTopicId": "R-14",
+      "kind": "required",
+      "policy": "soft-gate",
+      "masteryThresholdPercent": 80
+    },
+    {
+      "fromTopicId": "R-14",
+      "toTopicId": "R-15",
+      "kind": "required",
+      "policy": "soft-gate",
+      "masteryThresholdPercent": 80
+    },
+    {
+      "fromTopicId": "R-15",
+      "toTopicId": "R-16",
+      "kind": "required",
+      "policy": "soft-gate",
+      "masteryThresholdPercent": 80
+    },
+    {
+      "fromTopicId": "R-16",
+      "toTopicId": "R-17",
+      "kind": "required",
+      "policy": "soft-gate",
+      "masteryThresholdPercent": 80
+    },
+    {
+      "fromTopicId": "R-17",
+      "toTopicId": "R-18",
+      "kind": "required",
+      "policy": "soft-gate",
+      "masteryThresholdPercent": 80
+    },
+    {
+      "fromTopicId": "R-18",
+      "toTopicId": "R-19",
+      "kind": "required",
+      "policy": "soft-gate",
+      "masteryThresholdPercent": 80
+    },
+    {
+      "fromTopicId": "R-19",
+      "toTopicId": "R-20",
+      "kind": "required",
+      "policy": "soft-gate",
+      "masteryThresholdPercent": 80
+    },
+    {
+      "fromTopicId": "R-20",
+      "toTopicId": "R-21",
+      "kind": "required",
+      "policy": "soft-gate",
+      "masteryThresholdPercent": 80
+    },
+    {
+      "fromTopicId": "R-21",
+      "toTopicId": "R-23",
+      "kind": "required",
+      "policy": "soft-gate",
+      "masteryThresholdPercent": 80
+    },
+    {
+      "fromTopicId": "R-23",
+      "toTopicId": "R-24",
+      "kind": "required",
+      "policy": "soft-gate",
+      "masteryThresholdPercent": 80
+    },
+    {
+      "fromTopicId": "R-24",
+      "toTopicId": "R-25",
+      "kind": "required",
+      "policy": "soft-gate",
+      "masteryThresholdPercent": 80
+    },
+    {
+      "fromTopicId": "R-25",
+      "toTopicId": "R-26",
+      "kind": "required",
+      "policy": "soft-gate",
+      "masteryThresholdPercent": 80
+    },
+    {
+      "fromTopicId": "R-26",
+      "toTopicId": "R-27",
+      "kind": "required",
+      "policy": "soft-gate",
+      "masteryThresholdPercent": 80
+    },
+    {
+      "fromTopicId": "R-27",
+      "toTopicId": "R-28",
+      "kind": "required",
+      "policy": "soft-gate",
+      "masteryThresholdPercent": 80
+    },
+    {
+      "fromTopicId": "R-28",
+      "toTopicId": "R-29",
+      "kind": "required",
+      "policy": "soft-gate",
+      "masteryThresholdPercent": 80
+    },
+    {
+      "fromTopicId": "R-29",
+      "toTopicId": "R-30",
+      "kind": "required",
+      "policy": "soft-gate",
+      "masteryThresholdPercent": 80
+    },
+    {
+      "fromTopicId": "R-30",
+      "toTopicId": "R-31",
+      "kind": "required",
+      "policy": "soft-gate",
+      "masteryThresholdPercent": 80
+    },
+    {
+      "fromTopicId": "R-31",
+      "toTopicId": "R-32",
+      "kind": "required",
+      "policy": "soft-gate",
+      "masteryThresholdPercent": 80
+    },
+    {
+      "fromTopicId": "R-32",
+      "toTopicId": "R-33",
+      "kind": "required",
+      "policy": "soft-gate",
+      "masteryThresholdPercent": 80
+    },
+    {
+      "fromTopicId": "R-33",
+      "toTopicId": "R-35",
+      "kind": "required",
+      "policy": "soft-gate",
+      "masteryThresholdPercent": 80
+    },
+    {
+      "fromTopicId": "R-35",
+      "toTopicId": "R-37",
+      "kind": "required",
+      "policy": "soft-gate",
+      "masteryThresholdPercent": 80
+    },
+    {
+      "fromTopicId": "R-37",
+      "toTopicId": "R-38",
+      "kind": "required",
+      "policy": "soft-gate",
+      "masteryThresholdPercent": 80
+    },
+    {
+      "fromTopicId": "N-01",
+      "toTopicId": "N-02",
+      "kind": "required",
+      "policy": "soft-gate",
+      "masteryThresholdPercent": 80
+    },
+    {
+      "fromTopicId": "N-02",
+      "toTopicId": "N-03",
+      "kind": "required",
+      "policy": "soft-gate",
+      "masteryThresholdPercent": 80
+    },
+    {
+      "fromTopicId": "N-03",
+      "toTopicId": "N-04",
+      "kind": "required",
+      "policy": "soft-gate",
+      "masteryThresholdPercent": 80
+    },
+    {
+      "fromTopicId": "N-04",
+      "toTopicId": "N-05",
+      "kind": "required",
+      "policy": "soft-gate",
+      "masteryThresholdPercent": 80
+    },
+    {
+      "fromTopicId": "N-05",
+      "toTopicId": "N-06",
+      "kind": "required",
+      "policy": "soft-gate",
+      "masteryThresholdPercent": 80
+    },
+    {
+      "fromTopicId": "N-06",
+      "toTopicId": "N-07",
+      "kind": "required",
+      "policy": "soft-gate",
+      "masteryThresholdPercent": 80
+    },
+    {
+      "fromTopicId": "N-07",
+      "toTopicId": "N-08",
+      "kind": "required",
+      "policy": "soft-gate",
+      "masteryThresholdPercent": 80
+    },
+    {
+      "fromTopicId": "N-08",
+      "toTopicId": "N-09",
+      "kind": "required",
+      "policy": "soft-gate",
+      "masteryThresholdPercent": 80
+    },
+    {
+      "fromTopicId": "N-09",
+      "toTopicId": "N-10",
+      "kind": "required",
+      "policy": "soft-gate",
+      "masteryThresholdPercent": 80
+    },
+    {
+      "fromTopicId": "N-10",
+      "toTopicId": "N-11",
+      "kind": "required",
+      "policy": "soft-gate",
+      "masteryThresholdPercent": 80
+    },
+    {
+      "fromTopicId": "JS-05",
+      "toTopicId": "R-02",
+      "kind": "recommended",
+      "policy": "review-suggestion",
+      "masteryThresholdPercent": 80
+    },
+    {
+      "fromTopicId": "JS-13",
+      "toTopicId": "R-02",
+      "kind": "recommended",
+      "policy": "review-suggestion",
+      "masteryThresholdPercent": 80
+    },
+    {
+      "fromTopicId": "JS-14",
+      "toTopicId": "R-02",
+      "kind": "recommended",
+      "policy": "review-suggestion",
+      "masteryThresholdPercent": 80
+    },
+    {
+      "fromTopicId": "JS-16",
+      "toTopicId": "R-02",
+      "kind": "recommended",
+      "policy": "review-suggestion",
+      "masteryThresholdPercent": 80
+    },
+    {
+      "fromTopicId": "JS-24",
+      "toTopicId": "R-02",
+      "kind": "recommended",
+      "policy": "review-suggestion",
+      "masteryThresholdPercent": 80
+    },
+    {
+      "fromTopicId": "R-12",
+      "toTopicId": "N-01",
+      "kind": "recommended",
+      "policy": "review-suggestion",
+      "masteryThresholdPercent": 80
+    },
+    {
+      "fromTopicId": "R-13",
+      "toTopicId": "N-01",
+      "kind": "recommended",
+      "policy": "review-suggestion",
+      "masteryThresholdPercent": 80
+    },
+    {
+      "fromTopicId": "R-18",
+      "toTopicId": "N-01",
+      "kind": "recommended",
+      "policy": "review-suggestion",
+      "masteryThresholdPercent": 80
+    },
+    {
+      "fromTopicId": "R-24",
+      "toTopicId": "N-01",
+      "kind": "recommended",
+      "policy": "review-suggestion",
+      "masteryThresholdPercent": 80
+    }
+  ],
+  "assessmentPolicy": {
+    "primaryType": "single-choice MCQ",
+    "codeExecution": false,
+    "masteryThresholdPercent": 80,
+    "attemptPolicy": "unlimited",
+    "failurePolicy": "targeted-review-without-permanent-lock"
+  },
+  "contentStatus": "draft",
+  "publicationPolicy": "Human approval is required before any content becomes published.",
+  "generatedAt": "2026-07-17"
+}

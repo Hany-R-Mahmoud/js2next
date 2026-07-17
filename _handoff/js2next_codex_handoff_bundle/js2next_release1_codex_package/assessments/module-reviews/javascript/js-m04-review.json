@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "1.0",
+  "id": "JS-M04-REVIEW",
+  "kind": "module-review",
+  "trackId": "javascript",
+  "moduleId": "JS-M04",
+  "title": "How JavaScript Works — Module Review",
+  "questionIds": [
+    "JS-09-Q04",
+    "JS-10-Q04",
+    "JS-11-Q04",
+    "JS-12-Q04",
+    "JS-09-Q05",
+    "JS-10-Q05",
+    "JS-11-Q05",
+    "JS-12-Q05",
+    "JS-09-Q06",
+    "JS-10-Q06",
+    "JS-11-Q06",
+    "JS-12-Q06"
+  ],
+  "masteryThresholdPercent": 80,
+  "attemptPolicy": "unlimited",
+  "failurePolicy": "Show explanations, identify missed objectives, recommend targeted topic review, and allow retry.",
+  "randomizeQuestionOrder": true,
+  "randomizeChoiceOrder": false,
+  "version": 1,
+  "status": "draft",
+  "reviewStatus": "pending-human-review"
+}

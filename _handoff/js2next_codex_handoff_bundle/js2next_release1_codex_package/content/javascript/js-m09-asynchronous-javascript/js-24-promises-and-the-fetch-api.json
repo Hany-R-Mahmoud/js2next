@@ -1,0 +1,595 @@
+{
+  "schemaVersion": "1.0",
+  "id": "JS-24",
+  "slug": "promises-and-the-fetch-api",
+  "trackId": "javascript",
+  "moduleId": "JS-M09",
+  "order": 2,
+  "title": "Promises and the Fetch API",
+  "required": true,
+  "optional": false,
+  "advanced": false,
+  "contentType": "core",
+  "difficulty": 3,
+  "estimatedMinutes": 15,
+  "requiredPrerequisiteTopicIds": [
+    "JS-23"
+  ],
+  "recommendedPrerequisiteTopicIds": [],
+  "learningObjectives": [
+    {
+      "id": "JS-24-LO1",
+      "text": "Explain promise states using a new example and justify the result.",
+      "subtopic": "Promise states",
+      "cognitiveLevel": "understand"
+    },
+    {
+      "id": "JS-24-LO2",
+      "text": "Apply fetching data using a new example and justify the result.",
+      "subtopic": "Fetching data",
+      "cognitiveLevel": "apply"
+    },
+    {
+      "id": "JS-24-LO3",
+      "text": "Explain success and failure paths using a new example and justify the result.",
+      "subtopic": "Success and failure paths",
+      "cognitiveLevel": "analyze"
+    }
+  ],
+  "whyThisMatters": "Promises and the Fetch API is part of the mental model learners need before making reliable implementation decisions. It belongs to the **Asynchronous JavaScript** module.",
+  "mentalModel": "Draw a decision map: **Promise states** → **Fetching data** → **Success and failure paths**. Add branches where the learner must choose an alternative and label the evidence for the choice.",
+  "sections": [
+    {
+      "id": "JS-24-S1",
+      "type": "concept",
+      "title": "Promise states",
+      "body": "A Promise begins pending and settles once as fulfilled or rejected. then, catch, and finally schedule reactions asynchronously.",
+      "objectiveIds": [
+        "JS-24-LO1"
+      ],
+      "checkQuestionId": "JS-24-Q01"
+    },
+    {
+      "id": "JS-24-S2",
+      "type": "concept",
+      "title": "Fetching data",
+      "body": "fetch returns a Promise for a Response. Check response status, parse the body, and model loading and error states explicitly.",
+      "objectiveIds": [
+        "JS-24-LO2"
+      ],
+      "checkQuestionId": "JS-24-Q02"
+    },
+    {
+      "id": "JS-24-S3",
+      "type": "concept",
+      "title": "Success and failure paths",
+      "body": "Design successful and failed outcomes deliberately. A resolved network request may still contain an HTTP error or invalid data.",
+      "objectiveIds": [
+        "JS-24-LO3"
+      ],
+      "checkQuestionId": "JS-24-Q03"
+    },
+    {
+      "id": "JS-24-EX1",
+      "type": "code-example",
+      "title": "Worked example",
+      "language": "js",
+      "source": "fetch('/api/progress')\n  .then(response => {\n    if (!response.ok) throw new Error('Unable to load progress');\n    return response.json();\n  })\n  .then(progress => console.log(progress))\n  .catch(error => console.error(error));",
+      "explanation": "Each handler returns the value for the next promise and one catch handles earlier rejection.",
+      "objectiveIds": [
+        "JS-24-LO1",
+        "JS-24-LO2",
+        "JS-24-LO3"
+      ]
+    }
+  ],
+  "commonMistakes": [
+    "Forgetting to return from a `then` handler.",
+    "Assuming `fetch` rejects for every HTTP error response.",
+    "Memorizing syntax without predicting the underlying value or execution order.",
+    "Mutating shared data when the task expects a new value or explicit ownership."
+  ],
+  "summary": [
+    "Promises and the Fetch API connects Promise states, Fetching data, Success and failure paths.",
+    "Use the topic to make behavior and decisions explicit rather than memorizing isolated syntax.",
+    "Verify understanding by explaining a new example and answering the topic quiz without looking back."
+  ],
+  "inLessonQuestionIds": [
+    "JS-24-Q01",
+    "JS-24-Q02",
+    "JS-24-Q03"
+  ],
+  "topicQuiz": {
+    "id": "JS-24-QUIZ",
+    "questionIds": [
+      "JS-24-Q04",
+      "JS-24-Q05",
+      "JS-24-Q06",
+      "JS-24-Q07",
+      "JS-24-Q08"
+    ],
+    "masteryThresholdPercent": 80,
+    "attemptPolicy": "unlimited",
+    "failurePolicy": "Show explanations, add missed objectives to local review, and allow immediate or later retry.",
+    "randomizeQuestionOrder": true,
+    "randomizeChoiceOrder": false
+  },
+  "questions": [
+    {
+      "id": "JS-24-Q01",
+      "trackId": "javascript",
+      "moduleId": "JS-M09",
+      "topicId": "JS-24",
+      "objectiveIds": [
+        "JS-24-LO1"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which statement best explains “Promise states” in the context of Promises and the Fetch API?",
+      "choices": [
+        {
+          "id": "JS-24-Q01-C1",
+          "label": "Promise reactions use the microtask queue; timers and many events use task queues. Microtasks run after the stack clears and before the next task.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Promise states."
+        },
+        {
+          "id": "JS-24-Q01-C2",
+          "label": "AI tools can accelerate explanation and review, but generated output is an untrusted proposal. Supply exact context, ask for assumptions, run the result, compare with documentation, and explain it independently.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Promise states."
+        },
+        {
+          "id": "JS-24-Q01-C3",
+          "label": "Browser APIs perform work outside the JavaScript call stack and queue callbacks or promise reactions when results are ready.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Promise states."
+        },
+        {
+          "id": "JS-24-Q01-C4",
+          "label": "A Promise begins pending and settles once as fulfilled or rejected. then, catch, and finally schedule reactions asynchronously.",
+          "feedback": "Promise states is best understood as follows: A Promise begins pending and settles once as fulfilled or rejected. then, catch, and finally schedule reactions asynchronously."
+        }
+      ],
+      "correctChoiceIds": [
+        "JS-24-Q01-C4"
+      ],
+      "explanation": "Promise states is best understood as follows: A Promise begins pending and settles once as fulfilled or rejected. then, catch, and finally schedule reactions asynchronously.",
+      "hint": "Focus on what the concept changes, enables, or constrains—not only on its syntax.",
+      "difficulty": 2,
+      "cognitiveLevel": "recognize",
+      "estimatedSeconds": 75,
+      "tags": [
+        "promise-states",
+        "promises-and-the-fetch-api"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JS-24-Q02",
+      "trackId": "javascript",
+      "moduleId": "JS-M09",
+      "topicId": "JS-24",
+      "objectiveIds": [
+        "JS-24-LO2"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which statement best explains “Fetching data” in the context of Promises and the Fetch API?",
+      "choices": [
+        {
+          "id": "JS-24-Q02-C1",
+          "label": "Promise reactions use the microtask queue; timers and many events use task queues. Microtasks run after the stack clears and before the next task.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Fetching data."
+        },
+        {
+          "id": "JS-24-Q02-C2",
+          "label": "AI tools can accelerate explanation and review, but generated output is an untrusted proposal. Supply exact context, ask for assumptions, run the result, compare with documentation, and explain it independently.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Fetching data."
+        },
+        {
+          "id": "JS-24-Q02-C3",
+          "label": "Browser APIs perform work outside the JavaScript call stack and queue callbacks or promise reactions when results are ready.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Fetching data."
+        },
+        {
+          "id": "JS-24-Q02-C4",
+          "label": "fetch returns a Promise for a Response. Check response status, parse the body, and model loading and error states explicitly.",
+          "feedback": "Fetching data is best understood as follows: fetch returns a Promise for a Response. Check response status, parse the body, and model loading and error states explicitly."
+        }
+      ],
+      "correctChoiceIds": [
+        "JS-24-Q02-C4"
+      ],
+      "explanation": "Fetching data is best understood as follows: fetch returns a Promise for a Response. Check response status, parse the body, and model loading and error states explicitly.",
+      "hint": "Focus on what the concept changes, enables, or constrains—not only on its syntax.",
+      "difficulty": 2,
+      "cognitiveLevel": "explain",
+      "estimatedSeconds": 75,
+      "tags": [
+        "fetching-data",
+        "promises-and-the-fetch-api"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JS-24-Q03",
+      "trackId": "javascript",
+      "moduleId": "JS-M09",
+      "topicId": "JS-24",
+      "objectiveIds": [
+        "JS-24-LO3"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which statement best explains “Success and failure paths” in the context of Promises and the Fetch API?",
+      "choices": [
+        {
+          "id": "JS-24-Q03-C1",
+          "label": "Design successful and failed outcomes deliberately. A resolved network request may still contain an HTTP error or invalid data.",
+          "feedback": "Success and failure paths is best understood as follows: Design successful and failed outcomes deliberately. A resolved network request may still contain an HTTP error or invalid data."
+        },
+        {
+          "id": "JS-24-Q03-C2",
+          "label": "Promise reactions use the microtask queue; timers and many events use task queues. Microtasks run after the stack clears and before the next task.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Success and failure paths."
+        },
+        {
+          "id": "JS-24-Q03-C3",
+          "label": "AI tools can accelerate explanation and review, but generated output is an untrusted proposal. Supply exact context, ask for assumptions, run the result, compare with documentation, and explain it independently.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Success and failure paths."
+        },
+        {
+          "id": "JS-24-Q03-C4",
+          "label": "Browser APIs perform work outside the JavaScript call stack and queue callbacks or promise reactions when results are ready.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Success and failure paths."
+        }
+      ],
+      "correctChoiceIds": [
+        "JS-24-Q03-C1"
+      ],
+      "explanation": "Success and failure paths is best understood as follows: Design successful and failed outcomes deliberately. A resolved network request may still contain an HTTP error or invalid data.",
+      "hint": "Focus on what the concept changes, enables, or constrains—not only on its syntax.",
+      "difficulty": 2,
+      "cognitiveLevel": "predict",
+      "estimatedSeconds": 120,
+      "tags": [
+        "success-and-failure-paths",
+        "promises-and-the-fetch-api"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JS-24-Q04",
+      "trackId": "javascript",
+      "moduleId": "JS-M09",
+      "topicId": "JS-24",
+      "objectiveIds": [
+        "JS-24-LO1",
+        "JS-24-LO2"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "A learner must use Promises and the Fetch API in a new situation. Which approach best demonstrates transferable understanding?",
+      "choices": [
+        {
+          "id": "JS-24-Q04-C1",
+          "label": "Apply Promise states deliberately, make the relevant inputs and assumptions explicit, and verify the observable result before adding more complexity.",
+          "feedback": "Transfer comes from using the concept with explicit assumptions and checking the resulting behavior, not from reproducing a memorized example."
+        },
+        {
+          "id": "JS-24-Q04-C2",
+          "label": "Skip the underlying model and rely on memorized syntax, even when the result is unclear.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Promises and the Fetch API."
+        },
+        {
+          "id": "JS-24-Q04-C3",
+          "label": "Add more state and abstraction immediately, before identifying the smallest requirement.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Promises and the Fetch API."
+        },
+        {
+          "id": "JS-24-Q04-C4",
+          "label": "Treat the concept as isolated trivia and avoid connecting it to earlier prerequisites.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Promises and the Fetch API."
+        }
+      ],
+      "correctChoiceIds": [
+        "JS-24-Q04-C1"
+      ],
+      "explanation": "Transfer comes from using the concept with explicit assumptions and checking the resulting behavior, not from reproducing a memorized example.",
+      "hint": "Choose the option that would still work when the surrounding example changes.",
+      "difficulty": 3,
+      "cognitiveLevel": "apply",
+      "estimatedSeconds": 120,
+      "tags": [
+        "promises-and-the-fetch-api",
+        "promise-states"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JS-24-Q05",
+      "trackId": "javascript",
+      "moduleId": "JS-M09",
+      "topicId": "JS-24",
+      "objectiveIds": [
+        "JS-24-LO1",
+        "JS-24-LO2",
+        "JS-24-LO3"
+      ],
+      "kind": "single-choice",
+      "presentation": "code",
+      "prompt": "What is the most accurate explanation of the following Promises and the Fetch API example?",
+      "choices": [
+        {
+          "id": "JS-24-Q05-C1",
+          "label": "The snippet removes the need to understand the data flowing through the program.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Promises and the Fetch API."
+        },
+        {
+          "id": "JS-24-Q05-C2",
+          "label": "Each handler returns the value for the next promise and one catch handles earlier rejection.",
+          "feedback": "The correct choice connects the example to the underlying model rather than treating the syntax as isolated trivia."
+        },
+        {
+          "id": "JS-24-Q05-C3",
+          "label": "The snippet is valid only because JavaScript ignores variable scope and evaluation order.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Promises and the Fetch API."
+        },
+        {
+          "id": "JS-24-Q05-C4",
+          "label": "The snippet guarantees that all values are immutable and all operations are asynchronous.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Promises and the Fetch API."
+        }
+      ],
+      "correctChoiceIds": [
+        "JS-24-Q05-C2"
+      ],
+      "explanation": "The correct choice connects the example to the underlying model rather than treating the syntax as isolated trivia.",
+      "hint": "Trace data, control flow, ownership, or rendering step by step.",
+      "difficulty": 3,
+      "cognitiveLevel": "predict",
+      "estimatedSeconds": 120,
+      "tags": [
+        "promises-and-the-fetch-api",
+        "promise-states",
+        "fetching-data"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review",
+      "code": {
+        "language": "js",
+        "source": "fetch('/api/progress')\n  .then(response => {\n    if (!response.ok) throw new Error('Unable to load progress');\n    return response.json();\n  })\n  .then(progress => console.log(progress))\n  .catch(error => console.error(error));"
+      }
+    },
+    {
+      "id": "JS-24-Q06",
+      "trackId": "javascript",
+      "moduleId": "JS-M09",
+      "topicId": "JS-24",
+      "objectiveIds": [
+        "JS-24-LO1",
+        "JS-24-LO2",
+        "JS-24-LO3"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which response best addresses this common mistake: “Forgetting to return from a `then` handler.”?",
+      "choices": [
+        {
+          "id": "JS-24-Q06-C1",
+          "label": "The statement is unrelated to program behavior and cannot cause defects.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Promises and the Fetch API."
+        },
+        {
+          "id": "JS-24-Q06-C2",
+          "label": "The statement is correct only when variable names are short.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Promises and the Fetch API."
+        },
+        {
+          "id": "JS-24-Q06-C3",
+          "label": "The statement is always correct, so no further reasoning about Promises and the Fetch API is needed.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Promises and the Fetch API."
+        },
+        {
+          "id": "JS-24-Q06-C4",
+          "label": "The statement is a misconception. A better approach is to reason from the concept's inputs, rules, and observable outcome, then verify the result.",
+          "feedback": "Good feedback names the misconception and replaces it with a usable reasoning process."
+        }
+      ],
+      "correctChoiceIds": [
+        "JS-24-Q06-C4"
+      ],
+      "explanation": "Good feedback names the misconception and replaces it with a usable reasoning process.",
+      "hint": "Look for the option that corrects both the belief and the learner's next action.",
+      "difficulty": 3,
+      "cognitiveLevel": "debug",
+      "estimatedSeconds": 120,
+      "tags": [
+        "promises-and-the-fetch-api",
+        "common-mistakes"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JS-24-Q07",
+      "trackId": "javascript",
+      "moduleId": "JS-M09",
+      "topicId": "JS-24",
+      "objectiveIds": [
+        "JS-24-LO1",
+        "JS-24-LO2",
+        "JS-24-LO3"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which sequence is most reliable when solving a problem involving Promises and the Fetch API?",
+      "choices": [
+        {
+          "id": "JS-24-Q07-C1",
+          "label": "Optimize first, then decide what the code is supposed to do.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Promises and the Fetch API."
+        },
+        {
+          "id": "JS-24-Q07-C2",
+          "label": "First identify the requirement, then apply the relevant rule from Promise states, inspect the result, and only then refactor or optimize.",
+          "feedback": "The reliable sequence starts from the requirement, applies a known rule, observes behavior, and improves the solution afterward."
+        },
+        {
+          "id": "JS-24-Q07-C3",
+          "label": "Start with a framework abstraction and avoid checking the underlying language behavior.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Promises and the Fetch API."
+        },
+        {
+          "id": "JS-24-Q07-C4",
+          "label": "Copy an unrelated implementation, hide the assumptions, and test only the happy path.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Promises and the Fetch API."
+        }
+      ],
+      "correctChoiceIds": [
+        "JS-24-Q07-C2"
+      ],
+      "explanation": "The reliable sequence starts from the requirement, applies a known rule, observes behavior, and improves the solution afterward.",
+      "hint": "Prefer a sequence that makes failures visible early.",
+      "difficulty": 3,
+      "cognitiveLevel": "explain",
+      "estimatedSeconds": 75,
+      "tags": [
+        "promises-and-the-fetch-api",
+        "problem-solving"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JS-24-Q08",
+      "trackId": "javascript",
+      "moduleId": "JS-M09",
+      "topicId": "JS-24",
+      "objectiveIds": [
+        "JS-24-LO1",
+        "JS-24-LO2",
+        "JS-24-LO3"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which guideline shows the best judgment about when to use Promises and the Fetch API?",
+      "choices": [
+        {
+          "id": "JS-24-Q08-C1",
+          "label": "Use Promises and the Fetch API in every file because more abstraction is always better.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Promises and the Fetch API."
+        },
+        {
+          "id": "JS-24-Q08-C2",
+          "label": "Use Promises and the Fetch API when it makes intent, ownership, or data flow clearer; avoid adding it mechanically when a simpler, equally explicit solution is sufficient.",
+          "feedback": "Engineering judgment balances clarity and cost. The concept should serve the requirement rather than become an end in itself."
+        },
+        {
+          "id": "JS-24-Q08-C3",
+          "label": "Choose based only on line count, without considering readability, correctness, or future change.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Promises and the Fetch API."
+        },
+        {
+          "id": "JS-24-Q08-C4",
+          "label": "Avoid Promises and the Fetch API completely because all abstractions reduce maintainability.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Promises and the Fetch API."
+        }
+      ],
+      "correctChoiceIds": [
+        "JS-24-Q08-C2"
+      ],
+      "explanation": "Engineering judgment balances clarity and cost. The concept should serve the requirement rather than become an end in itself.",
+      "hint": "Choose the option that acknowledges both benefits and trade-offs.",
+      "difficulty": 4,
+      "cognitiveLevel": "tradeoff",
+      "estimatedSeconds": 120,
+      "tags": [
+        "promises-and-the-fetch-api",
+        "tradeoffs"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    }
+  ],
+  "researchSources": [
+    {
+      "kind": "research-transcript",
+      "title": "Promises and the Fetch API",
+      "pathwayOrder": 40,
+      "sourceLine": 115433,
+      "usage": "Coverage research only; no transcript wording is canonical."
+    },
+    {
+      "kind": "supporting-research",
+      "title": "Consuming Promises",
+      "usage": "Optional coverage reference; learner-facing wording must be original."
+    },
+    {
+      "kind": "supporting-research",
+      "title": "Chaining Promises",
+      "usage": "Optional coverage reference; learner-facing wording must be original."
+    },
+    {
+      "kind": "supporting-research",
+      "title": "Handling Rejected Promises",
+      "usage": "Optional coverage reference; learner-facing wording must be original."
+    },
+    {
+      "kind": "supporting-research",
+      "title": "Consuming Promises with Async/Await",
+      "usage": "Optional coverage reference; learner-facing wording must be original."
+    },
+    {
+      "kind": "supporting-research",
+      "title": "Error Handling With try...catch",
+      "usage": "Optional coverage reference; learner-facing wording must be original."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "MDN JavaScript Guide",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "MDN DOM",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "MDN Using promises",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "MDN JavaScript modules",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules",
+      "usage": "Technical verification and freshness review."
+    }
+  ],
+  "contentAuthority": {
+    "canonical": "New JS2Next Release 1 curriculum and independently authored content.",
+    "legacyProjectContent": "Supplementary internal reference only; excluded from runtime unless explicitly re-authored and approved.",
+    "courseTranscripts": "Coverage and sequencing research only; never learner-facing authority.",
+    "officialDocumentation": "Technical verification source."
+  },
+  "version": 1,
+  "status": "draft",
+  "reviewStatus": "pending-human-review",
+  "publicationStatus": "unpublished",
+  "createdAt": "2026-07-17",
+  "updatedAt": "2026-07-17"
+}

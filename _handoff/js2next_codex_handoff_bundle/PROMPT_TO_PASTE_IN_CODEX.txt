@@ -1,0 +1,17 @@
+You are working in the canonical `js2next` repository.
+
+I have attached the complete authoritative Release 1 handoff bundle. Extract it without changing its structure and place it at:
+
+`_handoff/js2next_codex_handoff_bundle/`
+
+Begin by reading:
+
+`_handoff/js2next_codex_handoff_bundle/START_HERE.md`
+
+Then follow the exact reading order and execution instructions stated there.
+
+The bundle is the source of truth for the new learning domain. Existing repository learning content and its TopicFamily/TopicBundle organization are legacy supplementary material only and must not constrain the redesign.
+
+Implement Release 1 end to end, phase by phase. Preserve unrelated work, keep all changes reversible, run baseline checks before editing, checkpoint after each phase, and do not auto-publish any content.
+
+Proceed without asking for confirmation unless there is a genuine repository mismatch, destructive ambiguity, unexplained baseline failure, or another blocker that cannot be resolved from the attached documents and repository.

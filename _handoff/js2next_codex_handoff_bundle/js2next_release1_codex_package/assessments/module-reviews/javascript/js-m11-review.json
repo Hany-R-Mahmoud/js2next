@@ -1,0 +1,28 @@
+{
+  "schemaVersion": "1.0",
+  "id": "JS-M11-REVIEW",
+  "kind": "module-review",
+  "trackId": "javascript",
+  "moduleId": "JS-M11",
+  "title": "Application Architecture: Forkify — Module Review",
+  "questionIds": [
+    "JS-28-Q04",
+    "JS-29-Q04",
+    "JS-28-Q05",
+    "JS-29-Q05",
+    "JS-28-Q06",
+    "JS-29-Q06",
+    "JS-28-Q07",
+    "JS-29-Q07",
+    "JS-28-Q08",
+    "JS-29-Q08"
+  ],
+  "masteryThresholdPercent": 80,
+  "attemptPolicy": "unlimited",
+  "failurePolicy": "Show explanations, identify missed objectives, recommend targeted topic review, and allow retry.",
+  "randomizeQuestionOrder": true,
+  "randomizeChoiceOrder": false,
+  "version": 1,
+  "status": "draft",
+  "reviewStatus": "pending-human-review"
+}

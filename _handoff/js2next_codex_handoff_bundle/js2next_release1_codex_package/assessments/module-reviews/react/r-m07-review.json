@@ -1,0 +1,28 @@
+{
+  "schemaVersion": "1.0",
+  "id": "R-M07-REVIEW",
+  "kind": "module-review",
+  "trackId": "react",
+  "moduleId": "R-M07",
+  "title": "Complex State, Routing, and Styling — Module Review",
+  "questionIds": [
+    "R-23-Q04",
+    "R-24-Q04",
+    "R-25-Q04",
+    "R-23-Q05",
+    "R-24-Q05",
+    "R-25-Q05",
+    "R-23-Q06",
+    "R-24-Q06",
+    "R-25-Q06",
+    "R-23-Q07"
+  ],
+  "masteryThresholdPercent": 80,
+  "attemptPolicy": "unlimited",
+  "failurePolicy": "Show explanations, identify missed objectives, recommend targeted topic review, and allow retry.",
+  "randomizeQuestionOrder": true,
+  "randomizeChoiceOrder": false,
+  "version": 1,
+  "status": "draft",
+  "reviewStatus": "pending-human-review"
+}

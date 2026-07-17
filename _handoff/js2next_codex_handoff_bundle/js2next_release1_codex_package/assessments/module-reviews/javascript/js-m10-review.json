@@ -1,0 +1,28 @@
+{
+  "schemaVersion": "1.0",
+  "id": "JS-M10-REVIEW",
+  "kind": "module-review",
+  "trackId": "javascript",
+  "moduleId": "JS-M10",
+  "title": "Modern JavaScript Development — Module Review",
+  "questionIds": [
+    "JS-26-Q04",
+    "JS-27-Q04",
+    "JS-26-Q05",
+    "JS-27-Q05",
+    "JS-26-Q06",
+    "JS-27-Q06",
+    "JS-26-Q07",
+    "JS-27-Q07",
+    "JS-26-Q08",
+    "JS-27-Q08"
+  ],
+  "masteryThresholdPercent": 80,
+  "attemptPolicy": "unlimited",
+  "failurePolicy": "Show explanations, identify missed objectives, recommend targeted topic review, and allow retry.",
+  "randomizeQuestionOrder": true,
+  "randomizeChoiceOrder": false,
+  "version": 1,
+  "status": "draft",
+  "reviewStatus": "pending-human-review"
+}

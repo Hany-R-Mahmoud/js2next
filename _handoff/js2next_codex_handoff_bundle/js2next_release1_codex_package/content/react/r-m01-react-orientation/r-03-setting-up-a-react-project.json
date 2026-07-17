@@ -1,0 +1,583 @@
+{
+  "schemaVersion": "1.0",
+  "id": "R-03",
+  "slug": "setting-up-a-react-project",
+  "trackId": "react",
+  "moduleId": "R-M01",
+  "order": 3,
+  "title": "Setting Up a React Project",
+  "required": true,
+  "optional": false,
+  "advanced": false,
+  "contentType": "core",
+  "difficulty": 1,
+  "estimatedMinutes": 15,
+  "requiredPrerequisiteTopicIds": [
+    "R-02"
+  ],
+  "recommendedPrerequisiteTopicIds": [],
+  "learningObjectives": [
+    {
+      "id": "R-03-LO1",
+      "text": "Explain project setup options using a new example and justify the result.",
+      "subtopic": "Project setup options",
+      "cognitiveLevel": "understand"
+    },
+    {
+      "id": "R-03-LO2",
+      "text": "Explain development environment choices using a new example and justify the result.",
+      "subtopic": "Development environment choices",
+      "cognitiveLevel": "apply"
+    }
+  ],
+  "whyThisMatters": "Learners frequently use setting up a react project without a clear model of why it behaves as it does; this lesson makes that model explicit. It belongs to the **React Orientation** module.",
+  "mentalModel": "Draw a decision map: **Project setup options** → **Development environment choices**. Add branches where the learner must choose an alternative and label the evidence for the choice.",
+  "sections": [
+    {
+      "id": "R-03-S1",
+      "type": "concept",
+      "title": "Project setup options",
+      "body": "A React project may use a client build tool or a full-stack framework. The choice affects routing, data loading, server rendering, deployment, and conventions.",
+      "objectiveIds": [
+        "R-03-LO1"
+      ],
+      "checkQuestionId": "R-03-Q01"
+    },
+    {
+      "id": "R-03-S2",
+      "type": "concept",
+      "title": "Development environment choices",
+      "body": "Choose an environment that supports the required runtime, testing, linting, formatting, and deployment workflow. Prefer documented conventions the team can maintain.",
+      "objectiveIds": [
+        "R-03-LO2"
+      ],
+      "checkQuestionId": "R-03-Q02"
+    },
+    {
+      "id": "R-03-EX1",
+      "type": "code-example",
+      "title": "Worked example",
+      "language": "bash",
+      "source": "npm create vite@latest js2next-lab -- --template react-ts\ncd js2next-lab\nnpm install\nnpm run dev",
+      "explanation": "A focused client build tool suits a learning app; a full-stack product may use a framework.",
+      "objectiveIds": [
+        "R-03-LO1",
+        "R-03-LO2"
+      ]
+    }
+  ],
+  "commonMistakes": [
+    "Mutating props or state instead of producing the next value.",
+    "Adding state or an Effect for a value that can be derived during render.",
+    "Using global state before identifying the real owner and consumers.",
+    "Optimizing renders without a measured user-facing problem."
+  ],
+  "summary": [
+    "Setting Up a React Project connects Project setup options, Development environment choices.",
+    "Use the topic to make behavior and decisions explicit rather than memorizing isolated syntax.",
+    "Verify understanding by explaining a new example and answering the topic quiz without looking back."
+  ],
+  "inLessonQuestionIds": [
+    "R-03-Q01",
+    "R-03-Q02",
+    "R-03-Q03"
+  ],
+  "topicQuiz": {
+    "id": "R-03-QUIZ",
+    "questionIds": [
+      "R-03-Q04",
+      "R-03-Q05",
+      "R-03-Q06",
+      "R-03-Q07",
+      "R-03-Q08"
+    ],
+    "masteryThresholdPercent": 80,
+    "attemptPolicy": "unlimited",
+    "failurePolicy": "Show explanations, add missed objectives to local review, and allow immediate or later retry.",
+    "randomizeQuestionOrder": true,
+    "randomizeChoiceOrder": false
+  },
+  "questions": [
+    {
+      "id": "R-03-Q01",
+      "trackId": "react",
+      "moduleId": "R-M01",
+      "topicId": "R-03",
+      "objectiveIds": [
+        "R-03-LO1"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which statement best explains “Project setup options” in the context of Setting Up a React Project?",
+      "choices": [
+        {
+          "id": "R-03-Q01-C1",
+          "label": "Use children for the primary nested region and named element props when multiple distinct content regions need clear contracts.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Project setup options."
+        },
+        {
+          "id": "R-03-Q01-C2",
+          "label": "A React project may use a client build tool or a full-stack framework. The choice affects routing, data loading, server rendering, deployment, and conventions.",
+          "feedback": "Project setup options is best understood as follows: A React project may use a client build tool or a full-stack framework. The choice affects routing, data loading, server rendering, deployment, and conventions."
+        },
+        {
+          "id": "R-03-Q01-C3",
+          "label": "During render, React calls components to calculate the next UI. Render must remain pure because React may repeat, pause, or discard the work.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Project setup options."
+        },
+        {
+          "id": "R-03-Q01-C4",
+          "label": "Split where a region has a coherent responsibility, repeated pattern, independent state, or meaningful data boundary.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Project setup options."
+        }
+      ],
+      "correctChoiceIds": [
+        "R-03-Q01-C2"
+      ],
+      "explanation": "Project setup options is best understood as follows: A React project may use a client build tool or a full-stack framework. The choice affects routing, data loading, server rendering, deployment, and conventions.",
+      "hint": "Focus on what the concept changes, enables, or constrains—not only on its syntax.",
+      "difficulty": 1,
+      "cognitiveLevel": "recognize",
+      "estimatedSeconds": 75,
+      "tags": [
+        "project-setup-options",
+        "setting-up-a-react-project"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "R-03-Q02",
+      "trackId": "react",
+      "moduleId": "R-M01",
+      "topicId": "R-03",
+      "objectiveIds": [
+        "R-03-LO2"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which statement best explains “Development environment choices” in the context of Setting Up a React Project?",
+      "choices": [
+        {
+          "id": "R-03-Q02-C1",
+          "label": "Choose an environment that supports the required runtime, testing, linting, formatting, and deployment workflow. Prefer documented conventions the team can maintain.",
+          "feedback": "Development environment choices is best understood as follows: Choose an environment that supports the required runtime, testing, linting, formatting, and deployment workflow. Prefer documented conventions the team can maintain."
+        },
+        {
+          "id": "R-03-Q02-C2",
+          "label": "Use children for the primary nested region and named element props when multiple distinct content regions need clear contracts.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Development environment choices."
+        },
+        {
+          "id": "R-03-Q02-C3",
+          "label": "Split where a region has a coherent responsibility, repeated pattern, independent state, or meaningful data boundary.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Development environment choices."
+        },
+        {
+          "id": "R-03-Q02-C4",
+          "label": "During render, React calls components to calculate the next UI. Render must remain pure because React may repeat, pause, or discard the work.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Development environment choices."
+        }
+      ],
+      "correctChoiceIds": [
+        "R-03-Q02-C1"
+      ],
+      "explanation": "Development environment choices is best understood as follows: Choose an environment that supports the required runtime, testing, linting, formatting, and deployment workflow. Prefer documented conventions the team can maintain.",
+      "hint": "Focus on what the concept changes, enables, or constrains—not only on its syntax.",
+      "difficulty": 1,
+      "cognitiveLevel": "explain",
+      "estimatedSeconds": 75,
+      "tags": [
+        "development-environment-choices",
+        "setting-up-a-react-project"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "R-03-Q03",
+      "trackId": "react",
+      "moduleId": "R-M01",
+      "topicId": "R-03",
+      "objectiveIds": [
+        "R-03-LO1"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which statement best explains “Project setup options” in the context of Setting Up a React Project?",
+      "choices": [
+        {
+          "id": "R-03-Q03-C1",
+          "label": "Use children for the primary nested region and named element props when multiple distinct content regions need clear contracts.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Project setup options."
+        },
+        {
+          "id": "R-03-Q03-C2",
+          "label": "A React project may use a client build tool or a full-stack framework. The choice affects routing, data loading, server rendering, deployment, and conventions.",
+          "feedback": "Project setup options is best understood as follows: A React project may use a client build tool or a full-stack framework. The choice affects routing, data loading, server rendering, deployment, and conventions."
+        },
+        {
+          "id": "R-03-Q03-C3",
+          "label": "Split where a region has a coherent responsibility, repeated pattern, independent state, or meaningful data boundary.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Project setup options."
+        },
+        {
+          "id": "R-03-Q03-C4",
+          "label": "During render, React calls components to calculate the next UI. Render must remain pure because React may repeat, pause, or discard the work.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Project setup options."
+        }
+      ],
+      "correctChoiceIds": [
+        "R-03-Q03-C2"
+      ],
+      "explanation": "Project setup options is best understood as follows: A React project may use a client build tool or a full-stack framework. The choice affects routing, data loading, server rendering, deployment, and conventions.",
+      "hint": "Focus on what the concept changes, enables, or constrains—not only on its syntax.",
+      "difficulty": 1,
+      "cognitiveLevel": "predict",
+      "estimatedSeconds": 120,
+      "tags": [
+        "project-setup-options",
+        "setting-up-a-react-project"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "R-03-Q04",
+      "trackId": "react",
+      "moduleId": "R-M01",
+      "topicId": "R-03",
+      "objectiveIds": [
+        "R-03-LO1",
+        "R-03-LO2"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "A learner must use Setting Up a React Project in a new situation. Which approach best demonstrates transferable understanding?",
+      "choices": [
+        {
+          "id": "R-03-Q04-C1",
+          "label": "Treat the concept as isolated trivia and avoid connecting it to earlier prerequisites.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Setting Up a React Project."
+        },
+        {
+          "id": "R-03-Q04-C2",
+          "label": "Apply Project setup options deliberately, make the relevant inputs and assumptions explicit, and verify the observable result before adding more complexity.",
+          "feedback": "Transfer comes from using the concept with explicit assumptions and checking the resulting behavior, not from reproducing a memorized example."
+        },
+        {
+          "id": "R-03-Q04-C3",
+          "label": "Skip the underlying model and rely on memorized syntax, even when the result is unclear.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Setting Up a React Project."
+        },
+        {
+          "id": "R-03-Q04-C4",
+          "label": "Add more state and abstraction immediately, before identifying the smallest requirement.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Setting Up a React Project."
+        }
+      ],
+      "correctChoiceIds": [
+        "R-03-Q04-C2"
+      ],
+      "explanation": "Transfer comes from using the concept with explicit assumptions and checking the resulting behavior, not from reproducing a memorized example.",
+      "hint": "Choose the option that would still work when the surrounding example changes.",
+      "difficulty": 1,
+      "cognitiveLevel": "apply",
+      "estimatedSeconds": 120,
+      "tags": [
+        "setting-up-a-react-project",
+        "project-setup-options"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "R-03-Q05",
+      "trackId": "react",
+      "moduleId": "R-M01",
+      "topicId": "R-03",
+      "objectiveIds": [
+        "R-03-LO1",
+        "R-03-LO2"
+      ],
+      "kind": "single-choice",
+      "presentation": "code",
+      "prompt": "What is the most accurate explanation of the following Setting Up a React Project example?",
+      "choices": [
+        {
+          "id": "R-03-Q05-C1",
+          "label": "A focused client build tool suits a learning app; a full-stack product may use a framework.",
+          "feedback": "The correct choice connects the example to the underlying model rather than treating the syntax as isolated trivia."
+        },
+        {
+          "id": "R-03-Q05-C2",
+          "label": "The snippet guarantees that all values are immutable and all operations are asynchronous.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Setting Up a React Project."
+        },
+        {
+          "id": "R-03-Q05-C3",
+          "label": "The snippet removes the need to understand the data flowing through the program.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Setting Up a React Project."
+        },
+        {
+          "id": "R-03-Q05-C4",
+          "label": "The snippet is valid only because JavaScript ignores variable scope and evaluation order.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Setting Up a React Project."
+        }
+      ],
+      "correctChoiceIds": [
+        "R-03-Q05-C1"
+      ],
+      "explanation": "The correct choice connects the example to the underlying model rather than treating the syntax as isolated trivia.",
+      "hint": "Trace data, control flow, ownership, or rendering step by step.",
+      "difficulty": 1,
+      "cognitiveLevel": "predict",
+      "estimatedSeconds": 120,
+      "tags": [
+        "setting-up-a-react-project",
+        "project-setup-options",
+        "development-environment-choices"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review",
+      "code": {
+        "language": "bash",
+        "source": "npm create vite@latest js2next-lab -- --template react-ts\ncd js2next-lab\nnpm install\nnpm run dev"
+      }
+    },
+    {
+      "id": "R-03-Q06",
+      "trackId": "react",
+      "moduleId": "R-M01",
+      "topicId": "R-03",
+      "objectiveIds": [
+        "R-03-LO1",
+        "R-03-LO2"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which response best addresses this common mistake: “Mutating props or state instead of producing the next value.”?",
+      "choices": [
+        {
+          "id": "R-03-Q06-C1",
+          "label": "The statement is always correct, so no further reasoning about Setting Up a React Project is needed.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Setting Up a React Project."
+        },
+        {
+          "id": "R-03-Q06-C2",
+          "label": "The statement is a misconception. A better approach is to reason from the concept's inputs, rules, and observable outcome, then verify the result.",
+          "feedback": "Good feedback names the misconception and replaces it with a usable reasoning process."
+        },
+        {
+          "id": "R-03-Q06-C3",
+          "label": "The statement is unrelated to program behavior and cannot cause defects.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Setting Up a React Project."
+        },
+        {
+          "id": "R-03-Q06-C4",
+          "label": "The statement is correct only when variable names are short.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Setting Up a React Project."
+        }
+      ],
+      "correctChoiceIds": [
+        "R-03-Q06-C2"
+      ],
+      "explanation": "Good feedback names the misconception and replaces it with a usable reasoning process.",
+      "hint": "Look for the option that corrects both the belief and the learner's next action.",
+      "difficulty": 1,
+      "cognitiveLevel": "debug",
+      "estimatedSeconds": 120,
+      "tags": [
+        "setting-up-a-react-project",
+        "common-mistakes"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "R-03-Q07",
+      "trackId": "react",
+      "moduleId": "R-M01",
+      "topicId": "R-03",
+      "objectiveIds": [
+        "R-03-LO1",
+        "R-03-LO2"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which sequence is most reliable when solving a problem involving Setting Up a React Project?",
+      "choices": [
+        {
+          "id": "R-03-Q07-C1",
+          "label": "First identify the requirement, then apply the relevant rule from Project setup options, inspect the result, and only then refactor or optimize.",
+          "feedback": "The reliable sequence starts from the requirement, applies a known rule, observes behavior, and improves the solution afterward."
+        },
+        {
+          "id": "R-03-Q07-C2",
+          "label": "Optimize first, then decide what the code is supposed to do.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Setting Up a React Project."
+        },
+        {
+          "id": "R-03-Q07-C3",
+          "label": "Copy an unrelated implementation, hide the assumptions, and test only the happy path.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Setting Up a React Project."
+        },
+        {
+          "id": "R-03-Q07-C4",
+          "label": "Start with a framework abstraction and avoid checking the underlying language behavior.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Setting Up a React Project."
+        }
+      ],
+      "correctChoiceIds": [
+        "R-03-Q07-C1"
+      ],
+      "explanation": "The reliable sequence starts from the requirement, applies a known rule, observes behavior, and improves the solution afterward.",
+      "hint": "Prefer a sequence that makes failures visible early.",
+      "difficulty": 1,
+      "cognitiveLevel": "explain",
+      "estimatedSeconds": 75,
+      "tags": [
+        "setting-up-a-react-project",
+        "problem-solving"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "R-03-Q08",
+      "trackId": "react",
+      "moduleId": "R-M01",
+      "topicId": "R-03",
+      "objectiveIds": [
+        "R-03-LO1",
+        "R-03-LO2"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which guideline shows the best judgment about when to use Setting Up a React Project?",
+      "choices": [
+        {
+          "id": "R-03-Q08-C1",
+          "label": "Avoid Setting Up a React Project completely because all abstractions reduce maintainability.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Setting Up a React Project."
+        },
+        {
+          "id": "R-03-Q08-C2",
+          "label": "Use Setting Up a React Project in every file because more abstraction is always better.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Setting Up a React Project."
+        },
+        {
+          "id": "R-03-Q08-C3",
+          "label": "Choose based only on line count, without considering readability, correctness, or future change.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Setting Up a React Project."
+        },
+        {
+          "id": "R-03-Q08-C4",
+          "label": "Use Setting Up a React Project when it makes intent, ownership, or data flow clearer; avoid adding it mechanically when a simpler, equally explicit solution is sufficient.",
+          "feedback": "Engineering judgment balances clarity and cost. The concept should serve the requirement rather than become an end in itself."
+        }
+      ],
+      "correctChoiceIds": [
+        "R-03-Q08-C4"
+      ],
+      "explanation": "Engineering judgment balances clarity and cost. The concept should serve the requirement rather than become an end in itself.",
+      "hint": "Choose the option that acknowledges both benefits and trade-offs.",
+      "difficulty": 2,
+      "cognitiveLevel": "tradeoff",
+      "estimatedSeconds": 120,
+      "tags": [
+        "setting-up-a-react-project",
+        "tradeoffs"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    }
+  ],
+  "researchSources": [
+    {
+      "kind": "research-transcript",
+      "title": "Setting Up a New React Project: The Options",
+      "pathwayOrder": 4,
+      "sourceLine": 3927,
+      "usage": "Coverage research only; no transcript wording is canonical."
+    },
+    {
+      "kind": "supporting-research",
+      "title": "Setting Up a Project With Create-React-App",
+      "usage": "Optional coverage reference; learner-facing wording must be original."
+    },
+    {
+      "kind": "supporting-research",
+      "title": "Creating Our First App With Vite: \"WorldWise\"",
+      "usage": "Optional coverage reference; learner-facing wording must be original."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "React Learn",
+      "url": "https://react.dev/learn",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "React Managing State",
+      "url": "https://react.dev/learn/managing-state",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "React Escape Hatches",
+      "url": "https://react.dev/learn/escape-hatches",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "React API Reference",
+      "url": "https://react.dev/reference/react",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "Redux Essentials",
+      "url": "https://redux.js.org/tutorials/essentials/part-1-overview-concepts",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "TanStack Query Overview",
+      "url": "https://tanstack.com/query/latest/docs/framework/react/overview",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "Supabase Documentation",
+      "url": "https://supabase.com/docs",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "Tailwind CSS Documentation",
+      "url": "https://tailwindcss.com/docs",
+      "usage": "Technical verification and freshness review."
+    }
+  ],
+  "contentAuthority": {
+    "canonical": "New JS2Next Release 1 curriculum and independently authored content.",
+    "legacyProjectContent": "Supplementary internal reference only; excluded from runtime unless explicitly re-authored and approved.",
+    "courseTranscripts": "Coverage and sequencing research only; never learner-facing authority.",
+    "officialDocumentation": "Technical verification source."
+  },
+  "version": 1,
+  "status": "draft",
+  "reviewStatus": "pending-human-review",
+  "publicationStatus": "unpublished",
+  "createdAt": "2026-07-17",
+  "updatedAt": "2026-07-17"
+}

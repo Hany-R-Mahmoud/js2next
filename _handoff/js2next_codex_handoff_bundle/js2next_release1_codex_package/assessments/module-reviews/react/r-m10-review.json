@@ -1,0 +1,28 @@
+{
+  "schemaVersion": "1.0",
+  "id": "R-M10-REVIEW",
+  "kind": "module-review",
+  "trackId": "react",
+  "moduleId": "R-M10",
+  "title": "Redux — Module Review",
+  "questionIds": [
+    "R-30-Q04",
+    "R-31-Q04",
+    "R-32-Q04",
+    "R-30-Q05",
+    "R-31-Q05",
+    "R-32-Q05",
+    "R-30-Q06",
+    "R-31-Q06",
+    "R-32-Q06",
+    "R-30-Q07"
+  ],
+  "masteryThresholdPercent": 80,
+  "attemptPolicy": "unlimited",
+  "failurePolicy": "Show explanations, identify missed objectives, recommend targeted topic review, and allow retry.",
+  "randomizeQuestionOrder": true,
+  "randomizeChoiceOrder": false,
+  "version": 1,
+  "status": "draft",
+  "reviewStatus": "pending-human-review"
+}

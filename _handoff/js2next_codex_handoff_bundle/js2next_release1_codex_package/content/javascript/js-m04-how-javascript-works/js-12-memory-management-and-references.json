@@ -1,0 +1,598 @@
+{
+  "schemaVersion": "1.0",
+  "id": "JS-12",
+  "slug": "memory-management-and-references",
+  "trackId": "javascript",
+  "moduleId": "JS-M04",
+  "order": 4,
+  "title": "Memory Management and References",
+  "required": true,
+  "optional": false,
+  "advanced": false,
+  "contentType": "core",
+  "difficulty": 2,
+  "estimatedMinutes": 25,
+  "requiredPrerequisiteTopicIds": [
+    "JS-11"
+  ],
+  "recommendedPrerequisiteTopicIds": [],
+  "learningObjectives": [
+    {
+      "id": "JS-12-LO1",
+      "text": "Compare primitives versus objects using a new example and justify the result.",
+      "subtopic": "Primitives versus objects",
+      "cognitiveLevel": "understand"
+    },
+    {
+      "id": "JS-12-LO2",
+      "text": "Explain stack and heap mental model using a new example and justify the result.",
+      "subtopic": "Stack and heap mental model",
+      "cognitiveLevel": "apply"
+    },
+    {
+      "id": "JS-12-LO3",
+      "text": "Explain references using a new example and justify the result.",
+      "subtopic": "References",
+      "cognitiveLevel": "analyze"
+    },
+    {
+      "id": "JS-12-LO4",
+      "text": "Explain garbage collection using a new example and justify the result.",
+      "subtopic": "Garbage collection",
+      "cognitiveLevel": "analyze"
+    }
+  ],
+  "whyThisMatters": "This topic turns memory management and references from isolated terminology into a practical tool for reading, writing, and reviewing code. It belongs to the **How JavaScript Works** module.",
+  "mentalModel": "Draw a decision map: **Primitives versus objects** → **Stack and heap mental model** → **References** → **Garbage collection**. Add branches where the learner must choose an alternative and label the evidence for the choice.",
+  "sections": [
+    {
+      "id": "JS-12-S1",
+      "type": "concept",
+      "title": "Primitives versus objects",
+      "body": "Assigning a primitive copies its value. Assigning an object copies a reference to the same object, so mutations are visible through every reference.",
+      "objectiveIds": [
+        "JS-12-LO1"
+      ],
+      "checkQuestionId": "JS-12-Q01"
+    },
+    {
+      "id": "JS-12-S2",
+      "type": "concept",
+      "title": "Stack and heap mental model",
+      "body": "Stack versus heap is a teaching model, not a language guarantee. Use it to reason about execution lifetime and managed objects, but focus on references, reachability, and value semantics.",
+      "objectiveIds": [
+        "JS-12-LO2"
+      ],
+      "checkQuestionId": "JS-12-Q02"
+    },
+    {
+      "id": "JS-12-S3",
+      "type": "concept",
+      "title": "References",
+      "body": "Object variables hold references. Equality checks identity rather than structural similarity, and shallow copies may still share nested objects.",
+      "objectiveIds": [
+        "JS-12-LO3"
+      ],
+      "checkQuestionId": "JS-12-Q03"
+    },
+    {
+      "id": "JS-12-S4",
+      "type": "concept",
+      "title": "Garbage collection",
+      "body": "Garbage collection reclaims values that are no longer reachable. Event listeners, timers, caches, and closures can accidentally retain references and extend lifetimes.",
+      "objectiveIds": [
+        "JS-12-LO4"
+      ],
+      "checkQuestionId": "JS-12-Q03"
+    },
+    {
+      "id": "JS-12-EX1",
+      "type": "code-example",
+      "title": "Worked example",
+      "language": "js",
+      "source": "const original = { profile: { level: 1 } };\nconst shallow = { ...original };\nshallow.profile.level = 2;\n\nconsole.log(original.profile.level); // 2",
+      "explanation": "The outer object is copied but the nested reference is shared.",
+      "objectiveIds": [
+        "JS-12-LO1",
+        "JS-12-LO2",
+        "JS-12-LO3",
+        "JS-12-LO4"
+      ]
+    }
+  ],
+  "commonMistakes": [
+    "Memorizing syntax without predicting the underlying value or execution order.",
+    "Mutating shared data when the task expects a new value or explicit ownership.",
+    "Treating browser APIs and language features as the same layer.",
+    "Choosing an abstraction from habit rather than required operations."
+  ],
+  "summary": [
+    "Memory Management and References connects Primitives versus objects, Stack and heap mental model, References.",
+    "Use the topic to make behavior and decisions explicit rather than memorizing isolated syntax.",
+    "Verify understanding by explaining a new example and answering the topic quiz without looking back."
+  ],
+  "inLessonQuestionIds": [
+    "JS-12-Q01",
+    "JS-12-Q02",
+    "JS-12-Q03"
+  ],
+  "topicQuiz": {
+    "id": "JS-12-QUIZ",
+    "questionIds": [
+      "JS-12-Q04",
+      "JS-12-Q05",
+      "JS-12-Q06",
+      "JS-12-Q07",
+      "JS-12-Q08"
+    ],
+    "masteryThresholdPercent": 80,
+    "attemptPolicy": "unlimited",
+    "failurePolicy": "Show explanations, add missed objectives to local review, and allow immediate or later retry.",
+    "randomizeQuestionOrder": true,
+    "randomizeChoiceOrder": false
+  },
+  "questions": [
+    {
+      "id": "JS-12-Q01",
+      "trackId": "javascript",
+      "moduleId": "JS-M04",
+      "topicId": "JS-12",
+      "objectiveIds": [
+        "JS-12-LO1"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which statement best explains “Primitives versus objects” in the context of Memory Management and References?",
+      "choices": [
+        {
+          "id": "JS-12-Q01-C1",
+          "label": "An execution context contains the information required to run a unit of code, including bindings, scope relationships, and a this binding. Function calls create additional contexts.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Primitives versus objects."
+        },
+        {
+          "id": "JS-12-Q01-C2",
+          "label": "Functions are first-class values: they can be stored, passed, and returned. Referring to a function is different from invoking it.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Primitives versus objects."
+        },
+        {
+          "id": "JS-12-Q01-C3",
+          "label": "A function can return a configured function that remembers creation-time context. This supports factories and reusable behavior.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Primitives versus objects."
+        },
+        {
+          "id": "JS-12-Q01-C4",
+          "label": "Assigning a primitive copies its value. Assigning an object copies a reference to the same object, so mutations are visible through every reference.",
+          "feedback": "Primitives versus objects is best understood as follows: Assigning a primitive copies its value. Assigning an object copies a reference to the same object, so mutations are visible through every reference."
+        }
+      ],
+      "correctChoiceIds": [
+        "JS-12-Q01-C4"
+      ],
+      "explanation": "Primitives versus objects is best understood as follows: Assigning a primitive copies its value. Assigning an object copies a reference to the same object, so mutations are visible through every reference.",
+      "hint": "Focus on what the concept changes, enables, or constrains—not only on its syntax.",
+      "difficulty": 1,
+      "cognitiveLevel": "recognize",
+      "estimatedSeconds": 75,
+      "tags": [
+        "primitives-versus-objects",
+        "memory-management-and-references"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JS-12-Q02",
+      "trackId": "javascript",
+      "moduleId": "JS-M04",
+      "topicId": "JS-12",
+      "objectiveIds": [
+        "JS-12-LO2"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which statement best explains “Stack and heap mental model” in the context of Memory Management and References?",
+      "choices": [
+        {
+          "id": "JS-12-Q02-C1",
+          "label": "Functions are first-class values: they can be stored, passed, and returned. Referring to a function is different from invoking it.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Stack and heap mental model."
+        },
+        {
+          "id": "JS-12-Q02-C2",
+          "label": "Stack versus heap is a teaching model, not a language guarantee. Use it to reason about execution lifetime and managed objects, but focus on references, reachability, and value semantics.",
+          "feedback": "Stack and heap mental model is best understood as follows: Stack versus heap is a teaching model, not a language guarantee. Use it to reason about execution lifetime and managed objects, but focus on references, reachability, and value semantics."
+        },
+        {
+          "id": "JS-12-Q02-C3",
+          "label": "An execution context contains the information required to run a unit of code, including bindings, scope relationships, and a this binding. Function calls create additional contexts.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Stack and heap mental model."
+        },
+        {
+          "id": "JS-12-Q02-C4",
+          "label": "A function can return a configured function that remembers creation-time context. This supports factories and reusable behavior.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Stack and heap mental model."
+        }
+      ],
+      "correctChoiceIds": [
+        "JS-12-Q02-C2"
+      ],
+      "explanation": "Stack and heap mental model is best understood as follows: Stack versus heap is a teaching model, not a language guarantee. Use it to reason about execution lifetime and managed objects, but focus on references, reachability, and value semantics.",
+      "hint": "Focus on what the concept changes, enables, or constrains—not only on its syntax.",
+      "difficulty": 1,
+      "cognitiveLevel": "explain",
+      "estimatedSeconds": 75,
+      "tags": [
+        "stack-and-heap-mental-model",
+        "memory-management-and-references"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JS-12-Q03",
+      "trackId": "javascript",
+      "moduleId": "JS-M04",
+      "topicId": "JS-12",
+      "objectiveIds": [
+        "JS-12-LO3"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which statement best explains “References” in the context of Memory Management and References?",
+      "choices": [
+        {
+          "id": "JS-12-Q03-C1",
+          "label": "A function can return a configured function that remembers creation-time context. This supports factories and reusable behavior.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of References."
+        },
+        {
+          "id": "JS-12-Q03-C2",
+          "label": "Object variables hold references. Equality checks identity rather than structural similarity, and shallow copies may still share nested objects.",
+          "feedback": "References is best understood as follows: Object variables hold references. Equality checks identity rather than structural similarity, and shallow copies may still share nested objects."
+        },
+        {
+          "id": "JS-12-Q03-C3",
+          "label": "Functions are first-class values: they can be stored, passed, and returned. Referring to a function is different from invoking it.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of References."
+        },
+        {
+          "id": "JS-12-Q03-C4",
+          "label": "An execution context contains the information required to run a unit of code, including bindings, scope relationships, and a this binding. Function calls create additional contexts.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of References."
+        }
+      ],
+      "correctChoiceIds": [
+        "JS-12-Q03-C2"
+      ],
+      "explanation": "References is best understood as follows: Object variables hold references. Equality checks identity rather than structural similarity, and shallow copies may still share nested objects.",
+      "hint": "Focus on what the concept changes, enables, or constrains—not only on its syntax.",
+      "difficulty": 1,
+      "cognitiveLevel": "predict",
+      "estimatedSeconds": 120,
+      "tags": [
+        "references",
+        "memory-management-and-references"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JS-12-Q04",
+      "trackId": "javascript",
+      "moduleId": "JS-M04",
+      "topicId": "JS-12",
+      "objectiveIds": [
+        "JS-12-LO1",
+        "JS-12-LO2"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "A learner must use Memory Management and References in a new situation. Which approach best demonstrates transferable understanding?",
+      "choices": [
+        {
+          "id": "JS-12-Q04-C1",
+          "label": "Add more state and abstraction immediately, before identifying the smallest requirement.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Memory Management and References."
+        },
+        {
+          "id": "JS-12-Q04-C2",
+          "label": "Skip the underlying model and rely on memorized syntax, even when the result is unclear.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Memory Management and References."
+        },
+        {
+          "id": "JS-12-Q04-C3",
+          "label": "Treat the concept as isolated trivia and avoid connecting it to earlier prerequisites.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Memory Management and References."
+        },
+        {
+          "id": "JS-12-Q04-C4",
+          "label": "Apply Primitives versus objects deliberately, make the relevant inputs and assumptions explicit, and verify the observable result before adding more complexity.",
+          "feedback": "Transfer comes from using the concept with explicit assumptions and checking the resulting behavior, not from reproducing a memorized example."
+        }
+      ],
+      "correctChoiceIds": [
+        "JS-12-Q04-C4"
+      ],
+      "explanation": "Transfer comes from using the concept with explicit assumptions and checking the resulting behavior, not from reproducing a memorized example.",
+      "hint": "Choose the option that would still work when the surrounding example changes.",
+      "difficulty": 2,
+      "cognitiveLevel": "apply",
+      "estimatedSeconds": 120,
+      "tags": [
+        "memory-management-and-references",
+        "primitives-versus-objects"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JS-12-Q05",
+      "trackId": "javascript",
+      "moduleId": "JS-M04",
+      "topicId": "JS-12",
+      "objectiveIds": [
+        "JS-12-LO1",
+        "JS-12-LO2",
+        "JS-12-LO3",
+        "JS-12-LO4"
+      ],
+      "kind": "single-choice",
+      "presentation": "code",
+      "prompt": "What is the most accurate explanation of the following Memory Management and References example?",
+      "choices": [
+        {
+          "id": "JS-12-Q05-C1",
+          "label": "The snippet is valid only because JavaScript ignores variable scope and evaluation order.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Memory Management and References."
+        },
+        {
+          "id": "JS-12-Q05-C2",
+          "label": "The snippet guarantees that all values are immutable and all operations are asynchronous.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Memory Management and References."
+        },
+        {
+          "id": "JS-12-Q05-C3",
+          "label": "The snippet removes the need to understand the data flowing through the program.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Memory Management and References."
+        },
+        {
+          "id": "JS-12-Q05-C4",
+          "label": "The outer object is copied but the nested reference is shared.",
+          "feedback": "The correct choice connects the example to the underlying model rather than treating the syntax as isolated trivia."
+        }
+      ],
+      "correctChoiceIds": [
+        "JS-12-Q05-C4"
+      ],
+      "explanation": "The correct choice connects the example to the underlying model rather than treating the syntax as isolated trivia.",
+      "hint": "Trace data, control flow, ownership, or rendering step by step.",
+      "difficulty": 2,
+      "cognitiveLevel": "predict",
+      "estimatedSeconds": 120,
+      "tags": [
+        "memory-management-and-references",
+        "primitives-versus-objects",
+        "stack-and-heap-mental-model"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review",
+      "code": {
+        "language": "js",
+        "source": "const original = { profile: { level: 1 } };\nconst shallow = { ...original };\nshallow.profile.level = 2;\n\nconsole.log(original.profile.level); // 2"
+      }
+    },
+    {
+      "id": "JS-12-Q06",
+      "trackId": "javascript",
+      "moduleId": "JS-M04",
+      "topicId": "JS-12",
+      "objectiveIds": [
+        "JS-12-LO1",
+        "JS-12-LO2",
+        "JS-12-LO3",
+        "JS-12-LO4"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which response best addresses this common mistake: “Memorizing syntax without predicting the underlying value or execution order.”?",
+      "choices": [
+        {
+          "id": "JS-12-Q06-C1",
+          "label": "The statement is unrelated to program behavior and cannot cause defects.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Memory Management and References."
+        },
+        {
+          "id": "JS-12-Q06-C2",
+          "label": "The statement is correct only when variable names are short.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Memory Management and References."
+        },
+        {
+          "id": "JS-12-Q06-C3",
+          "label": "The statement is always correct, so no further reasoning about Memory Management and References is needed.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Memory Management and References."
+        },
+        {
+          "id": "JS-12-Q06-C4",
+          "label": "The statement is a misconception. A better approach is to reason from the concept's inputs, rules, and observable outcome, then verify the result.",
+          "feedback": "Good feedback names the misconception and replaces it with a usable reasoning process."
+        }
+      ],
+      "correctChoiceIds": [
+        "JS-12-Q06-C4"
+      ],
+      "explanation": "Good feedback names the misconception and replaces it with a usable reasoning process.",
+      "hint": "Look for the option that corrects both the belief and the learner's next action.",
+      "difficulty": 2,
+      "cognitiveLevel": "debug",
+      "estimatedSeconds": 120,
+      "tags": [
+        "memory-management-and-references",
+        "common-mistakes"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JS-12-Q07",
+      "trackId": "javascript",
+      "moduleId": "JS-M04",
+      "topicId": "JS-12",
+      "objectiveIds": [
+        "JS-12-LO1",
+        "JS-12-LO2",
+        "JS-12-LO3",
+        "JS-12-LO4"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which sequence is most reliable when solving a problem involving Memory Management and References?",
+      "choices": [
+        {
+          "id": "JS-12-Q07-C1",
+          "label": "Copy an unrelated implementation, hide the assumptions, and test only the happy path.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Memory Management and References."
+        },
+        {
+          "id": "JS-12-Q07-C2",
+          "label": "Optimize first, then decide what the code is supposed to do.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Memory Management and References."
+        },
+        {
+          "id": "JS-12-Q07-C3",
+          "label": "Start with a framework abstraction and avoid checking the underlying language behavior.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Memory Management and References."
+        },
+        {
+          "id": "JS-12-Q07-C4",
+          "label": "First identify the requirement, then apply the relevant rule from Primitives versus objects, inspect the result, and only then refactor or optimize.",
+          "feedback": "The reliable sequence starts from the requirement, applies a known rule, observes behavior, and improves the solution afterward."
+        }
+      ],
+      "correctChoiceIds": [
+        "JS-12-Q07-C4"
+      ],
+      "explanation": "The reliable sequence starts from the requirement, applies a known rule, observes behavior, and improves the solution afterward.",
+      "hint": "Prefer a sequence that makes failures visible early.",
+      "difficulty": 2,
+      "cognitiveLevel": "explain",
+      "estimatedSeconds": 75,
+      "tags": [
+        "memory-management-and-references",
+        "problem-solving"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JS-12-Q08",
+      "trackId": "javascript",
+      "moduleId": "JS-M04",
+      "topicId": "JS-12",
+      "objectiveIds": [
+        "JS-12-LO1",
+        "JS-12-LO2",
+        "JS-12-LO3",
+        "JS-12-LO4"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which guideline shows the best judgment about when to use Memory Management and References?",
+      "choices": [
+        {
+          "id": "JS-12-Q08-C1",
+          "label": "Choose based only on line count, without considering readability, correctness, or future change.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Memory Management and References."
+        },
+        {
+          "id": "JS-12-Q08-C2",
+          "label": "Use Memory Management and References in every file because more abstraction is always better.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Memory Management and References."
+        },
+        {
+          "id": "JS-12-Q08-C3",
+          "label": "Use Memory Management and References when it makes intent, ownership, or data flow clearer; avoid adding it mechanically when a simpler, equally explicit solution is sufficient.",
+          "feedback": "Engineering judgment balances clarity and cost. The concept should serve the requirement rather than become an end in itself."
+        },
+        {
+          "id": "JS-12-Q08-C4",
+          "label": "Avoid Memory Management and References completely because all abstractions reduce maintainability.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Memory Management and References."
+        }
+      ],
+      "correctChoiceIds": [
+        "JS-12-Q08-C3"
+      ],
+      "explanation": "Engineering judgment balances clarity and cost. The concept should serve the requirement rather than become an end in itself.",
+      "hint": "Choose the option that acknowledges both benefits and trade-offs.",
+      "difficulty": 3,
+      "cognitiveLevel": "tradeoff",
+      "estimatedSeconds": 120,
+      "tags": [
+        "memory-management-and-references",
+        "tradeoffs"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    }
+  ],
+  "researchSources": [
+    {
+      "kind": "research-transcript",
+      "title": "Memory Management: Primitives vs. Objects",
+      "pathwayOrder": 19,
+      "sourceLine": 43778,
+      "usage": "Coverage research only; no transcript wording is canonical."
+    },
+    {
+      "kind": "research-transcript",
+      "title": "Memory Management: Garbage Collection",
+      "pathwayOrder": 20,
+      "sourceLine": 45096,
+      "usage": "Coverage research only; no transcript wording is canonical."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "MDN JavaScript Guide",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "MDN DOM",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "MDN Using promises",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "MDN JavaScript modules",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules",
+      "usage": "Technical verification and freshness review."
+    }
+  ],
+  "contentAuthority": {
+    "canonical": "New JS2Next Release 1 curriculum and independently authored content.",
+    "legacyProjectContent": "Supplementary internal reference only; excluded from runtime unless explicitly re-authored and approved.",
+    "courseTranscripts": "Coverage and sequencing research only; never learner-facing authority.",
+    "officialDocumentation": "Technical verification source."
+  },
+  "version": 1,
+  "status": "draft",
+  "reviewStatus": "pending-human-review",
+  "publicationStatus": "unpublished",
+  "createdAt": "2026-07-17",
+  "updatedAt": "2026-07-17"
+}

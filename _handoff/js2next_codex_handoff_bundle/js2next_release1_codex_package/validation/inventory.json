@@ -1,0 +1,51 @@
+{
+  "generatedAt": "2026-07-17",
+  "package": "JS2Next Release 1 Codex Execution Package",
+  "status": "draft-pending-human-review",
+  "tracks": {
+    "javascript": {
+      "modules": 11,
+      "topics": 30,
+      "requiredTopics": 28
+    },
+    "react": {
+      "modules": 11,
+      "topics": 38,
+      "requiredTopics": 33
+    },
+    "nextjs": {
+      "modules": 5,
+      "topics": 11,
+      "requiredTopics": 11
+    }
+  },
+  "totals": {
+    "tracks": 3,
+    "modules": 27,
+    "topics": 79,
+    "topicMarkdownPackets": 79,
+    "topicJsonPackets": 79,
+    "questions": 632,
+    "codeSnippetQuestions": 70,
+    "moduleReviews": 27,
+    "cumulativeReviews": 3,
+    "schemas": 6,
+    "specifications": 11
+  },
+  "questionCognitiveLevels": {
+    "apply": 79,
+    "debug": 79,
+    "explain": 158,
+    "predict": 158,
+    "recognize": 79,
+    "tradeoff": 79
+  },
+  "masteryThresholdPercent": 80,
+  "attemptPolicy": "unlimited",
+  "codeExecution": false,
+  "authentication": false,
+  "database": false,
+  "humanApprovalRequired": true,
+  "structuralValidationErrors": [],
+  "warnings": []
+}

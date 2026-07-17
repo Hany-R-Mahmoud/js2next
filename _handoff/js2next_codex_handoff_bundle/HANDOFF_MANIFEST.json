@@ -1,0 +1,11 @@
+{
+  "attach_to_codex": [
+    "js2next_codex_handoff_bundle.zip"
+  ],
+  "also_required": [
+    "Codex access to the canonical js2next repository"
+  ],
+  "entrypoint": "START_HERE.md",
+  "prompt_file": "PROMPT_TO_PASTE_IN_CODEX.txt",
+  "implementation_package": "js2next_release1_codex_package/"
+}

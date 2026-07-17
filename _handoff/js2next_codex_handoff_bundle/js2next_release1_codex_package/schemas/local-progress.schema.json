@@ -1,0 +1,92 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://js2next.local/schemas/local-progress.schema.json",
+  "title": "JS2Next Release 1 Local Progress",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "profileId",
+    "curriculumVersion",
+    "topicProgress",
+    "assessmentAttempts",
+    "reviewQueue",
+    "updatedAt"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "1.0"
+    },
+    "profileId": {
+      "type": "string"
+    },
+    "curriculumVersion": {
+      "type": "string"
+    },
+    "topicProgress": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": [
+          "topicId",
+          "contentVersion",
+          "lessonCompleted",
+          "masteryPercent",
+          "status"
+        ],
+        "properties": {
+          "topicId": {
+            "type": "string"
+          },
+          "contentVersion": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "lessonCompleted": {
+            "type": "boolean"
+          },
+          "masteryPercent": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 100
+          },
+          "status": {
+            "enum": [
+              "not-started",
+              "in-progress",
+              "review-needed",
+              "mastered"
+            ]
+          }
+        }
+      }
+    },
+    "assessmentAttempts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "attemptId",
+          "assessmentId",
+          "startedAt",
+          "answers"
+        ]
+      }
+    },
+    "reviewQueue": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "topicId",
+          "objectiveId",
+          "dueAt",
+          "reason"
+        ]
+      }
+    },
+    "updatedAt": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": true
+}

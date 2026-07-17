@@ -1,0 +1,28 @@
+{
+  "schemaVersion": "1.0",
+  "id": "JS-M06-REVIEW",
+  "kind": "module-review",
+  "trackId": "javascript",
+  "moduleId": "JS-M06",
+  "title": "DOM Internals and Script Loading — Module Review",
+  "questionIds": [
+    "JS-17-Q04",
+    "JS-18-Q04",
+    "JS-17-Q05",
+    "JS-18-Q05",
+    "JS-17-Q06",
+    "JS-18-Q06",
+    "JS-17-Q07",
+    "JS-18-Q07",
+    "JS-17-Q08",
+    "JS-18-Q08"
+  ],
+  "masteryThresholdPercent": 80,
+  "attemptPolicy": "unlimited",
+  "failurePolicy": "Show explanations, identify missed objectives, recommend targeted topic review, and allow retry.",
+  "randomizeQuestionOrder": true,
+  "randomizeChoiceOrder": false,
+  "version": 1,
+  "status": "draft",
+  "reviewStatus": "pending-human-review"
+}

@@ -1,0 +1,81 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://js2next.local/schemas/assessment-set.schema.json",
+  "title": "JS2Next Assessment Set",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "id",
+    "kind",
+    "trackId",
+    "title",
+    "questionIds",
+    "masteryThresholdPercent",
+    "attemptPolicy",
+    "version",
+    "status",
+    "reviewStatus"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "1.0"
+    },
+    "id": {
+      "type": "string"
+    },
+    "kind": {
+      "enum": [
+        "topic-quiz",
+        "module-review",
+        "cumulative-review"
+      ]
+    },
+    "trackId": {
+      "enum": [
+        "javascript",
+        "react",
+        "nextjs"
+      ]
+    },
+    "moduleId": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "questionIds": {
+      "type": "array",
+      "minItems": 5,
+      "uniqueItems": true,
+      "items": {
+        "type": "string"
+      }
+    },
+    "masteryThresholdPercent": {
+      "const": 80
+    },
+    "attemptPolicy": {
+      "const": "unlimited"
+    },
+    "version": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "status": {
+      "enum": [
+        "draft",
+        "reviewed",
+        "published",
+        "retired"
+      ]
+    },
+    "reviewStatus": {
+      "enum": [
+        "pending-human-review",
+        "approved",
+        "needs-revision"
+      ]
+    }
+  },
+  "additionalProperties": true
+}

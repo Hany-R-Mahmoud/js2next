@@ -1,0 +1,594 @@
+{
+  "schemaVersion": "1.0",
+  "id": "JS-21",
+  "slug": "inheritance-patterns-and-es6-classes",
+  "trackId": "javascript",
+  "moduleId": "JS-M07",
+  "order": 3,
+  "title": "Inheritance Patterns and ES6 Classes",
+  "required": true,
+  "optional": false,
+  "advanced": false,
+  "contentType": "core",
+  "difficulty": 3,
+  "estimatedMinutes": 30,
+  "requiredPrerequisiteTopicIds": [
+    "JS-20"
+  ],
+  "recommendedPrerequisiteTopicIds": [],
+  "learningObjectives": [
+    {
+      "id": "JS-21-LO1",
+      "text": "Explain constructor-function inheritance using a new example and justify the result.",
+      "subtopic": "Constructor-function inheritance",
+      "cognitiveLevel": "understand"
+    },
+    {
+      "id": "JS-21-LO2",
+      "text": "Explain `object.create` inheritance using a new example and justify the result.",
+      "subtopic": "`Object.create` inheritance",
+      "cognitiveLevel": "apply"
+    },
+    {
+      "id": "JS-21-LO3",
+      "text": "Apply es6 class syntax and comparison using a new example and justify the result.",
+      "subtopic": "ES6 class syntax and comparison",
+      "cognitiveLevel": "analyze"
+    }
+  ],
+  "whyThisMatters": "This topic turns inheritance patterns and es6 classes from isolated terminology into a practical tool for reading, writing, and reviewing code. It belongs to the **Object-Oriented JavaScript** module.",
+  "mentalModel": "Draw a decision map: **Constructor-function inheritance** → **`Object.create` inheritance** → **ES6 class syntax and comparison**. Add branches where the learner must choose an alternative and label the evidence for the choice.",
+  "sections": [
+    {
+      "id": "JS-21-S1",
+      "type": "concept",
+      "title": "Constructor-function inheritance",
+      "body": "Constructor inheritance initializes parent-owned fields and links child and parent prototypes for shared methods.",
+      "objectiveIds": [
+        "JS-21-LO1"
+      ],
+      "checkQuestionId": "JS-21-Q01"
+    },
+    {
+      "id": "JS-21-S2",
+      "type": "concept",
+      "title": "`Object.create` inheritance",
+      "body": "Direct delegation builds one prototype object from another and creates instances that follow that chain.",
+      "objectiveIds": [
+        "JS-21-LO2"
+      ],
+      "checkQuestionId": "JS-21-Q02"
+    },
+    {
+      "id": "JS-21-S3",
+      "type": "concept",
+      "title": "ES6 class syntax and comparison",
+      "body": "Class syntax provides constructors, methods, static methods, extends, and super while still using prototype delegation underneath.",
+      "objectiveIds": [
+        "JS-21-LO3"
+      ],
+      "checkQuestionId": "JS-21-Q03"
+    },
+    {
+      "id": "JS-21-EX1",
+      "type": "code-example",
+      "title": "Worked example",
+      "language": "js",
+      "source": "class Assessment {\n  constructor(id) { this.id = id; }\n  describe() { return this.id; }\n}\nclass ModuleReview extends Assessment {\n  constructor(id, moduleId) {\n    super(id);\n    this.moduleId = moduleId;\n  }\n}",
+      "explanation": "`extends` links prototypes and `super` initializes parent-owned state.",
+      "objectiveIds": [
+        "JS-21-LO1",
+        "JS-21-LO2",
+        "JS-21-LO3"
+      ]
+    }
+  ],
+  "commonMistakes": [
+    "Memorizing syntax without predicting the underlying value or execution order.",
+    "Mutating shared data when the task expects a new value or explicit ownership.",
+    "Treating browser APIs and language features as the same layer.",
+    "Choosing an abstraction from habit rather than required operations."
+  ],
+  "summary": [
+    "Inheritance Patterns and ES6 Classes connects Constructor-function inheritance, `Object.create` inheritance, ES6 class syntax and comparison.",
+    "Use the topic to make behavior and decisions explicit rather than memorizing isolated syntax.",
+    "Verify understanding by explaining a new example and answering the topic quiz without looking back."
+  ],
+  "inLessonQuestionIds": [
+    "JS-21-Q01",
+    "JS-21-Q02",
+    "JS-21-Q03"
+  ],
+  "topicQuiz": {
+    "id": "JS-21-QUIZ",
+    "questionIds": [
+      "JS-21-Q04",
+      "JS-21-Q05",
+      "JS-21-Q06",
+      "JS-21-Q07",
+      "JS-21-Q08"
+    ],
+    "masteryThresholdPercent": 80,
+    "attemptPolicy": "unlimited",
+    "failurePolicy": "Show explanations, add missed objectives to local review, and allow immediate or later retry.",
+    "randomizeQuestionOrder": true,
+    "randomizeChoiceOrder": false
+  },
+  "questions": [
+    {
+      "id": "JS-21-Q01",
+      "trackId": "javascript",
+      "moduleId": "JS-M07",
+      "topicId": "JS-21",
+      "objectiveIds": [
+        "JS-21-LO1"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which statement best explains “Constructor-function inheritance” in the context of Inheritance Patterns and ES6 Classes?",
+      "choices": [
+        {
+          "id": "JS-21-Q01-C1",
+          "label": "An execution context contains the information required to run a unit of code, including bindings, scope relationships, and a this binding. Function calls create additional contexts.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Constructor-function inheritance."
+        },
+        {
+          "id": "JS-21-Q01-C2",
+          "label": "In object.method(), the object before the dot provides this for that call. Detaching the method changes the call form and may lose the intended receiver.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Constructor-function inheritance."
+        },
+        {
+          "id": "JS-21-Q01-C3",
+          "label": "Constructor inheritance initializes parent-owned fields and links child and parent prototypes for shared methods.",
+          "feedback": "Constructor-function inheritance is best understood as follows: Constructor inheritance initializes parent-owned fields and links child and parent prototypes for shared methods."
+        },
+        {
+          "id": "JS-21-Q01-C4",
+          "label": "Stack versus heap is a teaching model, not a language guarantee. Use it to reason about execution lifetime and managed objects, but focus on references, reachability, and value semantics.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Constructor-function inheritance."
+        }
+      ],
+      "correctChoiceIds": [
+        "JS-21-Q01-C3"
+      ],
+      "explanation": "Constructor-function inheritance is best understood as follows: Constructor inheritance initializes parent-owned fields and links child and parent prototypes for shared methods.",
+      "hint": "Focus on what the concept changes, enables, or constrains—not only on its syntax.",
+      "difficulty": 2,
+      "cognitiveLevel": "recognize",
+      "estimatedSeconds": 75,
+      "tags": [
+        "constructor-function-inheritance",
+        "inheritance-patterns-and-es6-classes"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JS-21-Q02",
+      "trackId": "javascript",
+      "moduleId": "JS-M07",
+      "topicId": "JS-21",
+      "objectiveIds": [
+        "JS-21-LO2"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which statement best explains “`Object.create` inheritance” in the context of Inheritance Patterns and ES6 Classes?",
+      "choices": [
+        {
+          "id": "JS-21-Q02-C1",
+          "label": "Direct delegation builds one prototype object from another and creates instances that follow that chain.",
+          "feedback": "`Object.create` inheritance is best understood as follows: Direct delegation builds one prototype object from another and creates instances that follow that chain."
+        },
+        {
+          "id": "JS-21-Q02-C2",
+          "label": "An execution context contains the information required to run a unit of code, including bindings, scope relationships, and a this binding. Function calls create additional contexts.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of `Object.create` inheritance."
+        },
+        {
+          "id": "JS-21-Q02-C3",
+          "label": "Stack versus heap is a teaching model, not a language guarantee. Use it to reason about execution lifetime and managed objects, but focus on references, reachability, and value semantics.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of `Object.create` inheritance."
+        },
+        {
+          "id": "JS-21-Q02-C4",
+          "label": "In object.method(), the object before the dot provides this for that call. Detaching the method changes the call form and may lose the intended receiver.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of `Object.create` inheritance."
+        }
+      ],
+      "correctChoiceIds": [
+        "JS-21-Q02-C1"
+      ],
+      "explanation": "`Object.create` inheritance is best understood as follows: Direct delegation builds one prototype object from another and creates instances that follow that chain.",
+      "hint": "Focus on what the concept changes, enables, or constrains—not only on its syntax.",
+      "difficulty": 2,
+      "cognitiveLevel": "explain",
+      "estimatedSeconds": 75,
+      "tags": [
+        "object-create-inheritance",
+        "inheritance-patterns-and-es6-classes"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JS-21-Q03",
+      "trackId": "javascript",
+      "moduleId": "JS-M07",
+      "topicId": "JS-21",
+      "objectiveIds": [
+        "JS-21-LO3"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which statement best explains “ES6 class syntax and comparison” in the context of Inheritance Patterns and ES6 Classes?",
+      "choices": [
+        {
+          "id": "JS-21-Q03-C1",
+          "label": "In object.method(), the object before the dot provides this for that call. Detaching the method changes the call form and may lose the intended receiver.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of ES6 class syntax and comparison."
+        },
+        {
+          "id": "JS-21-Q03-C2",
+          "label": "An execution context contains the information required to run a unit of code, including bindings, scope relationships, and a this binding. Function calls create additional contexts.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of ES6 class syntax and comparison."
+        },
+        {
+          "id": "JS-21-Q03-C3",
+          "label": "Stack versus heap is a teaching model, not a language guarantee. Use it to reason about execution lifetime and managed objects, but focus on references, reachability, and value semantics.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of ES6 class syntax and comparison."
+        },
+        {
+          "id": "JS-21-Q03-C4",
+          "label": "Class syntax provides constructors, methods, static methods, extends, and super while still using prototype delegation underneath.",
+          "feedback": "ES6 class syntax and comparison is best understood as follows: Class syntax provides constructors, methods, static methods, extends, and super while still using prototype delegation underneath."
+        }
+      ],
+      "correctChoiceIds": [
+        "JS-21-Q03-C4"
+      ],
+      "explanation": "ES6 class syntax and comparison is best understood as follows: Class syntax provides constructors, methods, static methods, extends, and super while still using prototype delegation underneath.",
+      "hint": "Focus on what the concept changes, enables, or constrains—not only on its syntax.",
+      "difficulty": 2,
+      "cognitiveLevel": "predict",
+      "estimatedSeconds": 120,
+      "tags": [
+        "es6-class-syntax-and-comparison",
+        "inheritance-patterns-and-es6-classes"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JS-21-Q04",
+      "trackId": "javascript",
+      "moduleId": "JS-M07",
+      "topicId": "JS-21",
+      "objectiveIds": [
+        "JS-21-LO1",
+        "JS-21-LO2"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "A learner must use Inheritance Patterns and ES6 Classes in a new situation. Which approach best demonstrates transferable understanding?",
+      "choices": [
+        {
+          "id": "JS-21-Q04-C1",
+          "label": "Treat the concept as isolated trivia and avoid connecting it to earlier prerequisites.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Inheritance Patterns and ES6 Classes."
+        },
+        {
+          "id": "JS-21-Q04-C2",
+          "label": "Apply Constructor-function inheritance deliberately, make the relevant inputs and assumptions explicit, and verify the observable result before adding more complexity.",
+          "feedback": "Transfer comes from using the concept with explicit assumptions and checking the resulting behavior, not from reproducing a memorized example."
+        },
+        {
+          "id": "JS-21-Q04-C3",
+          "label": "Add more state and abstraction immediately, before identifying the smallest requirement.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Inheritance Patterns and ES6 Classes."
+        },
+        {
+          "id": "JS-21-Q04-C4",
+          "label": "Skip the underlying model and rely on memorized syntax, even when the result is unclear.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Inheritance Patterns and ES6 Classes."
+        }
+      ],
+      "correctChoiceIds": [
+        "JS-21-Q04-C2"
+      ],
+      "explanation": "Transfer comes from using the concept with explicit assumptions and checking the resulting behavior, not from reproducing a memorized example.",
+      "hint": "Choose the option that would still work when the surrounding example changes.",
+      "difficulty": 3,
+      "cognitiveLevel": "apply",
+      "estimatedSeconds": 120,
+      "tags": [
+        "inheritance-patterns-and-es6-classes",
+        "constructor-function-inheritance"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JS-21-Q05",
+      "trackId": "javascript",
+      "moduleId": "JS-M07",
+      "topicId": "JS-21",
+      "objectiveIds": [
+        "JS-21-LO1",
+        "JS-21-LO2",
+        "JS-21-LO3"
+      ],
+      "kind": "single-choice",
+      "presentation": "code",
+      "prompt": "What is the most accurate explanation of the following Inheritance Patterns and ES6 Classes example?",
+      "choices": [
+        {
+          "id": "JS-21-Q05-C1",
+          "label": "The snippet removes the need to understand the data flowing through the program.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Inheritance Patterns and ES6 Classes."
+        },
+        {
+          "id": "JS-21-Q05-C2",
+          "label": "The snippet guarantees that all values are immutable and all operations are asynchronous.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Inheritance Patterns and ES6 Classes."
+        },
+        {
+          "id": "JS-21-Q05-C3",
+          "label": "The snippet is valid only because JavaScript ignores variable scope and evaluation order.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Inheritance Patterns and ES6 Classes."
+        },
+        {
+          "id": "JS-21-Q05-C4",
+          "label": "`extends` links prototypes and `super` initializes parent-owned state.",
+          "feedback": "The correct choice connects the example to the underlying model rather than treating the syntax as isolated trivia."
+        }
+      ],
+      "correctChoiceIds": [
+        "JS-21-Q05-C4"
+      ],
+      "explanation": "The correct choice connects the example to the underlying model rather than treating the syntax as isolated trivia.",
+      "hint": "Trace data, control flow, ownership, or rendering step by step.",
+      "difficulty": 3,
+      "cognitiveLevel": "predict",
+      "estimatedSeconds": 120,
+      "tags": [
+        "inheritance-patterns-and-es6-classes",
+        "constructor-function-inheritance",
+        "object-create-inheritance"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review",
+      "code": {
+        "language": "js",
+        "source": "class Assessment {\n  constructor(id) { this.id = id; }\n  describe() { return this.id; }\n}\nclass ModuleReview extends Assessment {\n  constructor(id, moduleId) {\n    super(id);\n    this.moduleId = moduleId;\n  }\n}"
+      }
+    },
+    {
+      "id": "JS-21-Q06",
+      "trackId": "javascript",
+      "moduleId": "JS-M07",
+      "topicId": "JS-21",
+      "objectiveIds": [
+        "JS-21-LO1",
+        "JS-21-LO2",
+        "JS-21-LO3"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which response best addresses this common mistake: “Memorizing syntax without predicting the underlying value or execution order.”?",
+      "choices": [
+        {
+          "id": "JS-21-Q06-C1",
+          "label": "The statement is unrelated to program behavior and cannot cause defects.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Inheritance Patterns and ES6 Classes."
+        },
+        {
+          "id": "JS-21-Q06-C2",
+          "label": "The statement is a misconception. A better approach is to reason from the concept's inputs, rules, and observable outcome, then verify the result.",
+          "feedback": "Good feedback names the misconception and replaces it with a usable reasoning process."
+        },
+        {
+          "id": "JS-21-Q06-C3",
+          "label": "The statement is always correct, so no further reasoning about Inheritance Patterns and ES6 Classes is needed.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Inheritance Patterns and ES6 Classes."
+        },
+        {
+          "id": "JS-21-Q06-C4",
+          "label": "The statement is correct only when variable names are short.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Inheritance Patterns and ES6 Classes."
+        }
+      ],
+      "correctChoiceIds": [
+        "JS-21-Q06-C2"
+      ],
+      "explanation": "Good feedback names the misconception and replaces it with a usable reasoning process.",
+      "hint": "Look for the option that corrects both the belief and the learner's next action.",
+      "difficulty": 3,
+      "cognitiveLevel": "debug",
+      "estimatedSeconds": 120,
+      "tags": [
+        "inheritance-patterns-and-es6-classes",
+        "common-mistakes"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JS-21-Q07",
+      "trackId": "javascript",
+      "moduleId": "JS-M07",
+      "topicId": "JS-21",
+      "objectiveIds": [
+        "JS-21-LO1",
+        "JS-21-LO2",
+        "JS-21-LO3"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which sequence is most reliable when solving a problem involving Inheritance Patterns and ES6 Classes?",
+      "choices": [
+        {
+          "id": "JS-21-Q07-C1",
+          "label": "Copy an unrelated implementation, hide the assumptions, and test only the happy path.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Inheritance Patterns and ES6 Classes."
+        },
+        {
+          "id": "JS-21-Q07-C2",
+          "label": "Optimize first, then decide what the code is supposed to do.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Inheritance Patterns and ES6 Classes."
+        },
+        {
+          "id": "JS-21-Q07-C3",
+          "label": "Start with a framework abstraction and avoid checking the underlying language behavior.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Inheritance Patterns and ES6 Classes."
+        },
+        {
+          "id": "JS-21-Q07-C4",
+          "label": "First identify the requirement, then apply the relevant rule from Constructor-function inheritance, inspect the result, and only then refactor or optimize.",
+          "feedback": "The reliable sequence starts from the requirement, applies a known rule, observes behavior, and improves the solution afterward."
+        }
+      ],
+      "correctChoiceIds": [
+        "JS-21-Q07-C4"
+      ],
+      "explanation": "The reliable sequence starts from the requirement, applies a known rule, observes behavior, and improves the solution afterward.",
+      "hint": "Prefer a sequence that makes failures visible early.",
+      "difficulty": 3,
+      "cognitiveLevel": "explain",
+      "estimatedSeconds": 75,
+      "tags": [
+        "inheritance-patterns-and-es6-classes",
+        "problem-solving"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JS-21-Q08",
+      "trackId": "javascript",
+      "moduleId": "JS-M07",
+      "topicId": "JS-21",
+      "objectiveIds": [
+        "JS-21-LO1",
+        "JS-21-LO2",
+        "JS-21-LO3"
+      ],
+      "kind": "single-choice",
+      "presentation": "text",
+      "prompt": "Which guideline shows the best judgment about when to use Inheritance Patterns and ES6 Classes?",
+      "choices": [
+        {
+          "id": "JS-21-Q08-C1",
+          "label": "Choose based only on line count, without considering readability, correctness, or future change.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Inheritance Patterns and ES6 Classes."
+        },
+        {
+          "id": "JS-21-Q08-C2",
+          "label": "Use Inheritance Patterns and ES6 Classes when it makes intent, ownership, or data flow clearer; avoid adding it mechanically when a simpler, equally explicit solution is sufficient.",
+          "feedback": "Engineering judgment balances clarity and cost. The concept should serve the requirement rather than become an end in itself."
+        },
+        {
+          "id": "JS-21-Q08-C3",
+          "label": "Use Inheritance Patterns and ES6 Classes in every file because more abstraction is always better.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Inheritance Patterns and ES6 Classes."
+        },
+        {
+          "id": "JS-21-Q08-C4",
+          "label": "Avoid Inheritance Patterns and ES6 Classes completely because all abstractions reduce maintainability.",
+          "feedback": "This does not match the lesson's model. Reconsider the role of Inheritance Patterns and ES6 Classes."
+        }
+      ],
+      "correctChoiceIds": [
+        "JS-21-Q08-C2"
+      ],
+      "explanation": "Engineering judgment balances clarity and cost. The concept should serve the requirement rather than become an end in itself.",
+      "hint": "Choose the option that acknowledges both benefits and trade-offs.",
+      "difficulty": 4,
+      "cognitiveLevel": "tradeoff",
+      "estimatedSeconds": 120,
+      "tags": [
+        "inheritance-patterns-and-es6-classes",
+        "tradeoffs"
+      ],
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    }
+  ],
+  "researchSources": [
+    {
+      "kind": "research-transcript",
+      "title": "Inheritance Between \"Classes\": Constructor Functions",
+      "pathwayOrder": 33,
+      "sourceLine": 100518,
+      "usage": "Coverage research only; no transcript wording is canonical."
+    },
+    {
+      "kind": "research-transcript",
+      "title": "Inheritance Between \"Classes\": Object.create",
+      "pathwayOrder": 34,
+      "sourceLine": 101712,
+      "usage": "Coverage research only; no transcript wording is canonical."
+    },
+    {
+      "kind": "research-transcript",
+      "title": "ES6 Classes Summary",
+      "pathwayOrder": 35,
+      "sourceLine": 103504,
+      "usage": "Coverage research only; no transcript wording is canonical."
+    },
+    {
+      "kind": "supporting-research",
+      "title": "Inheritance Between \"Classes\": ES6 Classes",
+      "usage": "Optional coverage reference; learner-facing wording must be original."
+    },
+    {
+      "kind": "supporting-research",
+      "title": "Encapsulation: Private Class Fields and Methods",
+      "usage": "Optional coverage reference; learner-facing wording must be original."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "MDN JavaScript Guide",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "MDN DOM",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "MDN Using promises",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises",
+      "usage": "Technical verification and freshness review."
+    },
+    {
+      "kind": "official-documentation",
+      "title": "MDN JavaScript modules",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules",
+      "usage": "Technical verification and freshness review."
+    }
+  ],
+  "contentAuthority": {
+    "canonical": "New JS2Next Release 1 curriculum and independently authored content.",
+    "legacyProjectContent": "Supplementary internal reference only; excluded from runtime unless explicitly re-authored and approved.",
+    "courseTranscripts": "Coverage and sequencing research only; never learner-facing authority.",
+    "officialDocumentation": "Technical verification source."
+  },
+  "version": 1,
+  "status": "draft",
+  "reviewStatus": "pending-human-review",
+  "publicationStatus": "unpublished",
+  "createdAt": "2026-07-17",
+  "updatedAt": "2026-07-17"
+}

@@ -1,0 +1,1105 @@
+{
+  "generatedAt": "2026-07-17",
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 1882,
+      "sha256": "f581e2af8775bcf3cf08dcc7aa7e4ae8bdad593d64167341e7e18dbb08918922"
+    },
+    {
+      "path": "assessments/cumulative/javascript-cumulative-review.json",
+      "bytes": 934,
+      "sha256": "5d525ea37ef7b670447cfd713b792055ae0db2f8794ba88bac009917250b06e4"
+    },
+    {
+      "path": "assessments/cumulative/nextjs-cumulative-review.json",
+      "bytes": 835,
+      "sha256": "73e6c081523c2ea8dfe727086822a3a5b4f8dc5576562738691f02335ab75ab4"
+    },
+    {
+      "path": "assessments/cumulative/react-cumulative-review.json",
+      "bytes": 895,
+      "sha256": "269c319d27f889e9847463a2c9bb7c497c31a95835b3962b527bbb06260906c0"
+    },
+    {
+      "path": "assessments/module-reviews/javascript/js-m01-review.json",
+      "bytes": 748,
+      "sha256": "ff9adc974e4b3ab18f853fcb2ec4d80583e4ffdc559714f0f54d12838a8f95b4"
+    },
+    {
+      "path": "assessments/module-reviews/javascript/js-m02-review.json",
+      "bytes": 703,
+      "sha256": "209cc4b94b17ca7ae2777006654c669114f820d88fa3153de71b18fa81d5575d"
+    },
+    {
+      "path": "assessments/module-reviews/javascript/js-m03-review.json",
+      "bytes": 680,
+      "sha256": "abf9535a0032d0078fd4bf47250dd1b5449565d8ecd3496633eb1c2cada194d4"
+    },
+    {
+      "path": "assessments/module-reviews/javascript/js-m04-review.json",
+      "bytes": 741,
+      "sha256": "dae23da7d57ac0884396871065b01d29453ce9346007392cdc2d5dd4492e78ed"
+    },
+    {
+      "path": "assessments/module-reviews/javascript/js-m05-review.json",
+      "bytes": 762,
+      "sha256": "f637d3afbcc83d99cc8bf023128cb94124ee34b155f48d72350ef37378294f29"
+    },
+    {
+      "path": "assessments/module-reviews/javascript/js-m06-review.json",
+      "bytes": 719,
+      "sha256": "8f0018ca0512b5f4a24bac23d904e2774b213177d458961ec9ffaefe350d614d"
+    },
+    {
+      "path": "assessments/module-reviews/javascript/js-m07-review.json",
+      "bytes": 713,
+      "sha256": "3aa831afd63b042d93125239d8a0bc2353b8a7e6c7fb28d5d07f87340f73fe84"
+    },
+    {
+      "path": "assessments/module-reviews/javascript/js-m08-review.json",
+      "bytes": 676,
+      "sha256": "d64247b26f8bf1f8360544cea55154216ae791c45ecb5ffe1c84a643854d2ffa"
+    },
+    {
+      "path": "assessments/module-reviews/javascript/js-m09-review.json",
+      "bytes": 710,
+      "sha256": "e113278426422b6156715eb11d9c238ad097a1efb755c5ec9edb10d420e7e850"
+    },
+    {
+      "path": "assessments/module-reviews/javascript/js-m10-review.json",
+      "bytes": 716,
+      "sha256": "65186f8232544f902d6a308b5efc8e706359714d19869dac804104e404ae8e08"
+    },
+    {
+      "path": "assessments/module-reviews/javascript/js-m11-review.json",
+      "bytes": 720,
+      "sha256": "41cc0bf72b7636fa92798485a0f0c01f8150e785e2390d3dac7c276beb8d5ea5"
+    },
+    {
+      "path": "assessments/module-reviews/nextjs/n-m01-review.json",
+      "bytes": 692,
+      "sha256": "78e6ac466765e468ebdba38b45faf1bf79e8646f1515208994844c7e9965ca07"
+    },
+    {
+      "path": "assessments/module-reviews/nextjs/n-m02-review.json",
+      "bytes": 694,
+      "sha256": "0809262439818326c9e6dbc0f2a473c322d70676cca1f48072ac6141d0125dcd"
+    },
+    {
+      "path": "assessments/module-reviews/nextjs/n-m03-review.json",
+      "bytes": 655,
+      "sha256": "cb6261344df1abbfe1d938c773abedc947291cb194832a63ef92520abf98ac41"
+    },
+    {
+      "path": "assessments/module-reviews/nextjs/n-m04-review.json",
+      "bytes": 715,
+      "sha256": "441ff4a81006da252ee091b873710827269cd461215fd53965ae695a59bffc4f"
+    },
+    {
+      "path": "assessments/module-reviews/nextjs/n-m05-review.json",
+      "bytes": 701,
+      "sha256": "6a66a87dbdf72dae6af956bfb37b65a8315a51ef46b3f3003ae079a165e3ce65"
+    },
+    {
+      "path": "assessments/module-reviews/react/r-m01-review.json",
+      "bytes": 687,
+      "sha256": "557ced7d5ca989a25372942c6bda661bc46f02ce673aff68e5fadff662b103c4"
+    },
+    {
+      "path": "assessments/module-reviews/react/r-m02-review.json",
+      "bytes": 696,
+      "sha256": "388e28e0cf107dde09dffedc45114153942071ae936468d5136f0ef5c6d3c5dd"
+    },
+    {
+      "path": "assessments/module-reviews/react/r-m03-review.json",
+      "bytes": 697,
+      "sha256": "dbed152f6aae2f274f6f3f8fcc67e78fda9bd30a5b20bccd633667fee01b6309"
+    },
+    {
+      "path": "assessments/module-reviews/react/r-m04-review.json",
+      "bytes": 702,
+      "sha256": "ffbddc019216077663b52fe060732c1084c49260d615edf0655f77ffa459a8f1"
+    },
+    {
+      "path": "assessments/module-reviews/react/r-m05-review.json",
+      "bytes": 719,
+      "sha256": "ac258fa8b0dfd6967bcd37d4e24741242fb4497226cb9835c3954f1c588bfb24"
+    },
+    {
+      "path": "assessments/module-reviews/react/r-m06-review.json",
+      "bytes": 719,
+      "sha256": "bdd3807f3e1dac258fc5cffe19e8b4a09c7fb4b58243188b3cc81ff4f2bda989"
+    },
+    {
+      "path": "assessments/module-reviews/react/r-m07-review.json",
+      "bytes": 705,
+      "sha256": "dafe05439d9ca19ed829767a90d0f8487ae0ff20c4143159fbddebe0b2116404"
+    },
+    {
+      "path": "assessments/module-reviews/react/r-m08-review.json",
+      "bytes": 675,
+      "sha256": "5733235c1bfb87c99008a1c6ed84808a45478c6dff5c1b4ccfb80b8eb7b591cc"
+    },
+    {
+      "path": "assessments/module-reviews/react/r-m09-review.json",
+      "bytes": 702,
+      "sha256": "003f6a774895efa5e7ea7e3de59aa732c43bfd75674a735ad15f0a847042860a"
+    },
+    {
+      "path": "assessments/module-reviews/react/r-m10-review.json",
+      "bytes": 675,
+      "sha256": "5a36ca99309a3555a30c72872c2b3689f876d3df102a37260a88c4b53af2ce6d"
+    },
+    {
+      "path": "assessments/module-reviews/react/r-m11-review.json",
+      "bytes": 744,
+      "sha256": "8561dfe099d3318417443434a8e53980fee376d48b353b2265c433e60ec3cbd7"
+    },
+    {
+      "path": "assessments/question-bank.json",
+      "bytes": 1475386,
+      "sha256": "54c3cf182189e970d16538d726c459d080ea772ec70df1d379cd29a8ce873884"
+    },
+    {
+      "path": "codex/EXECUTION_PLAN.md",
+      "bytes": 3589,
+      "sha256": "27e819aa2b4bfff213d56ce072b8d56de6a728f4c8755c385512c4f7e998c94d"
+    },
+    {
+      "path": "codex/MASTER_CODEX_PROMPT.md",
+      "bytes": 7808,
+      "sha256": "28d2690f16348b0866f9bdc94b2260628e0b715c6976fd50becc7fd8ef63bd68"
+    },
+    {
+      "path": "codex/PACKAGE_PLACEMENT_GUIDE.md",
+      "bytes": 1070,
+      "sha256": "08d062f044011d9c6359f6cf2cd3de9096da6e2464d950888e853ad293f0009c"
+    },
+    {
+      "path": "content/javascript/js-m01-orientation-and-foundations/js-01-course-orientation.json",
+      "bytes": 23819,
+      "sha256": "7e56d7e4306285d37c7d99bb5884e49e2fb5e75b4a157004dfed0a4ea1a94cca"
+    },
+    {
+      "path": "content/javascript/js-m01-orientation-and-foundations/js-01-course-orientation.md",
+      "bytes": 12061,
+      "sha256": "e1b84f6413d14bea2a02e1d386c92796eba8ac3d746f376b9e0b227743a320e7"
+    },
+    {
+      "path": "content/javascript/js-m01-orientation-and-foundations/js-02-introduction-to-javascript.json",
+      "bytes": 25422,
+      "sha256": "24c5be4becfe107c02f60b558146904b87451c6863f2f155ae7b6ecd30ee285c"
+    },
+    {
+      "path": "content/javascript/js-m01-orientation-and-foundations/js-02-introduction-to-javascript.md",
+      "bytes": 12805,
+      "sha256": "8ef7ba7b4076d17486c73ae5526900e22e9bb5ae57f530a79f12f63178ef8d5b"
+    },
+    {
+      "path": "content/javascript/js-m01-orientation-and-foundations/js-03-values-data-types-and-boolean-logic.json",
+      "bytes": 27199,
+      "sha256": "201132a0ad596bf3fab8e89a1faeae61ae018d0052c11ae0bde9b6c8b39fff1c"
+    },
+    {
+      "path": "content/javascript/js-m01-orientation-and-foundations/js-03-values-data-types-and-boolean-logic.md",
+      "bytes": 13749,
+      "sha256": "6601d69fd15aeb6e46ac74fe882f5a41256541632de1d4420ff8c039a224e070"
+    },
+    {
+      "path": "content/javascript/js-m01-orientation-and-foundations/js-04-javascript-evolution-es5-es6-and-esnext.json",
+      "bytes": 25608,
+      "sha256": "626d2fbd5c69d5cf7750f3f4848cf16a4f63586653db21577781363cc95269ed"
+    },
+    {
+      "path": "content/javascript/js-m01-orientation-and-foundations/js-04-javascript-evolution-es5-es6-and-esnext.md",
+      "bytes": 13069,
+      "sha256": "d0c70b4b0c535597a091d5405fdbfff582174a7972fe0685c9d0c7bdaeebf970"
+    },
+    {
+      "path": "content/javascript/js-m01-orientation-and-foundations/js-05-functions-working-together.json",
+      "bytes": 26639,
+      "sha256": "5c7491a07a6e5f672c1b33a28bddd7d0f46556fdb01c7ff0da80fec559fe7a2e"
+    },
+    {
+      "path": "content/javascript/js-m01-orientation-and-foundations/js-05-functions-working-together.md",
+      "bytes": 13507,
+      "sha256": "7f97172143cae59f711bf16325ab0d478d2d2ac43160211cf8405269d23d268e"
+    },
+    {
+      "path": "content/javascript/js-m02-developer-skills/js-06-learning-to-code-and-think-like-a-developer.json",
+      "bytes": 26549,
+      "sha256": "95580c2df26e73bfd9fc40a5a0d59b827b0cfb9b6ef0f235b87f66ed0156b75a"
+    },
+    {
+      "path": "content/javascript/js-m02-developer-skills/js-06-learning-to-code-and-think-like-a-developer.md",
+      "bytes": 13287,
+      "sha256": "2be823e0ecdf9df5266a3a45ca6139d5cfdf561f6014cf14a087a15c17243ef2"
+    },
+    {
+      "path": "content/javascript/js-m02-developer-skills/js-07-debugging-and-ai-assisted-development.json",
+      "bytes": 26672,
+      "sha256": "af32ec9dda1d45bf0053ff437b67f96c223a432e6e934ee2e5653f652228a79c"
+    },
+    {
+      "path": "content/javascript/js-m02-developer-skills/js-07-debugging-and-ai-assisted-development.md",
+      "bytes": 13422,
+      "sha256": "9d83b7033a2dfebb7b19ade0e97c35357980a1300c3fcfb5fa45297f042e312d"
+    },
+    {
+      "path": "content/javascript/js-m03-browser-and-dom-foundations/js-08-the-dom-and-dom-manipulation.json",
+      "bytes": 25993,
+      "sha256": "0a7a9fc0335b92bfa1cc3825159eeba1013a9eeedb6600f165284a62edfe0de6"
+    },
+    {
+      "path": "content/javascript/js-m03-browser-and-dom-foundations/js-08-the-dom-and-dom-manipulation.md",
+      "bytes": 13039,
+      "sha256": "315e77be44b276ba1deef8ccfdb1dc69ccb806e73c5c6dece7f8b7b12f591450"
+    },
+    {
+      "path": "content/javascript/js-m04-how-javascript-works/js-09-runtime-and-execution-model.json",
+      "bytes": 25948,
+      "sha256": "a820b4a57fd501ccb953f00ea7acd3ae76328ec31c6e7aa3e0aa3d41ca6cb39e"
+    },
+    {
+      "path": "content/javascript/js-m04-how-javascript-works/js-09-runtime-and-execution-model.md",
+      "bytes": 12687,
+      "sha256": "d0dd07f2c15514a67135acf2c898668820024f328c0f1fd0141936178fed4a62"
+    },
+    {
+      "path": "content/javascript/js-m04-how-javascript-works/js-10-scope-scope-chain-hoisting-and-the-tdz.json",
+      "bytes": 26903,
+      "sha256": "7ddb0ad33c2cc4cf23512b7d6d77aa5658bd2a516ca4abcf6bfaf8159b95a5d2"
+    },
+    {
+      "path": "content/javascript/js-m04-how-javascript-works/js-10-scope-scope-chain-hoisting-and-the-tdz.md",
+      "bytes": 13251,
+      "sha256": "8c821be533cdc248a1f91c4b5f1f0acfc349f4a408031abe78d64d8320106ee7"
+    },
+    {
+      "path": "content/javascript/js-m04-how-javascript-works/js-11-the-this-keyword.json",
+      "bytes": 24622,
+      "sha256": "4ad060e757c8631d7a2e0bf47122e74bc939b99d6c720a99e1014b4998da8e20"
+    },
+    {
+      "path": "content/javascript/js-m04-how-javascript-works/js-11-the-this-keyword.md",
+      "bytes": 12249,
+      "sha256": "32bcad942d23da78706f18a81042b1861963f2cca18d962bf0899e871f5e1440"
+    },
+    {
+      "path": "content/javascript/js-m04-how-javascript-works/js-12-memory-management-and-references.json",
+      "bytes": 25972,
+      "sha256": "e106d83a9d607b981c243f409a6f53b104d0170d0704724ca3e083c5b43ec592"
+    },
+    {
+      "path": "content/javascript/js-m04-how-javascript-works/js-12-memory-management-and-references.md",
+      "bytes": 12712,
+      "sha256": "2de529430db04de5197917e030a715d8a82f61ecba263115f83621babed7dacd"
+    },
+    {
+      "path": "content/javascript/js-m05-data-structures-and-functional-techniques/js-13-choosing-the-right-data-structure.json",
+      "bytes": 25787,
+      "sha256": "21eef7d345b9300c27e7e72668255fbb5da33d42d401e6f138c3a658e0850393"
+    },
+    {
+      "path": "content/javascript/js-m05-data-structures-and-functional-techniques/js-13-choosing-the-right-data-structure.md",
+      "bytes": 12629,
+      "sha256": "291e0bb956ba3ab9721e148a00f74b70ff2b2a95b17db95aa021626d24269f3b"
+    },
+    {
+      "path": "content/javascript/js-m05-data-structures-and-functional-techniques/js-14-first-class-and-higher-order-functions.json",
+      "bytes": 24973,
+      "sha256": "3ad1268c01d1546f68491dd311149254f0e78e15cea44f368b3a30b43e701c15"
+    },
+    {
+      "path": "content/javascript/js-m05-data-structures-and-functional-techniques/js-14-first-class-and-higher-order-functions.md",
+      "bytes": 11990,
+      "sha256": "e98cb3515693d8dabe5ca78d21d7f0d01c40598e063c2b97f3df20d71f4470df"
+    },
+    {
+      "path": "content/javascript/js-m05-data-structures-and-functional-techniques/js-15-closures.json",
+      "bytes": 24265,
+      "sha256": "0353806e3e4391149db568867babd2a06f225866316beaeef86f268a369d389f"
+    },
+    {
+      "path": "content/javascript/js-m05-data-structures-and-functional-techniques/js-15-closures.md",
+      "bytes": 11932,
+      "sha256": "4ab802ede5eaefde50c1ddcb000580220406419d6661a5c75eddd8a3e78a0f3a"
+    },
+    {
+      "path": "content/javascript/js-m05-data-structures-and-functional-techniques/js-16-array-transformations-and-method-selection.json",
+      "bytes": 27124,
+      "sha256": "acf1585fd327c704c22a537725ee7755bf1d1ee239e2bf00425a34cc99f92533"
+    },
+    {
+      "path": "content/javascript/js-m05-data-structures-and-functional-techniques/js-16-array-transformations-and-method-selection.md",
+      "bytes": 13248,
+      "sha256": "8aa34831ba401a5576045d573d3c6ae8507f0b1723315f36d24be3a67c267a84"
+    },
+    {
+      "path": "content/javascript/js-m06-dom-internals-and-script-loading/js-17-dom-internals-and-event-propagation.json",
+      "bytes": 26316,
+      "sha256": "69861d75512f6d05983c86739a5ee0a7b83774bf619cf5d8ac7034c18f3ecd85"
+    },
+    {
+      "path": "content/javascript/js-m06-dom-internals-and-script-loading/js-17-dom-internals-and-event-propagation.md",
+      "bytes": 12895,
+      "sha256": "a9d3cade91e017a4752992bbba20439570b1a86135878d20acfe65144c195c15"
+    },
+    {
+      "path": "content/javascript/js-m06-dom-internals-and-script-loading/js-18-efficient-script-loading.json",
+      "bytes": 24768,
+      "sha256": "bf36064f4882ff47a8a9d6bf18d8f48faf5c47291fa58e6b85dc2d59bef8402d"
+    },
+    {
+      "path": "content/javascript/js-m06-dom-internals-and-script-loading/js-18-efficient-script-loading.md",
+      "bytes": 12087,
+      "sha256": "a2fc5100aae3c94736b026f81bb746b7b64cc5342176d437c7c12473f1c87071"
+    },
+    {
+      "path": "content/javascript/js-m07-object-oriented-javascript/js-19-oop-foundations-and-javascript-s-object-model.json",
+      "bytes": 26543,
+      "sha256": "60ec6fcc7c60be8f5d121b14d1be94df9a9130a7475cd04c105c1625cb3b131a"
+    },
+    {
+      "path": "content/javascript/js-m07-object-oriented-javascript/js-19-oop-foundations-and-javascript-s-object-model.md",
+      "bytes": 13060,
+      "sha256": "ccbe0850cdefde69b8ad10dc3c784e3b1c88a7338234fb6409ed974f831ce884"
+    },
+    {
+      "path": "content/javascript/js-m07-object-oriented-javascript/js-20-prototypes-the-prototype-chain-and-object-create.json",
+      "bytes": 26291,
+      "sha256": "8d311e4e0c03176121ea2bd493e997601a0cd10cd72b71e871d91a14ce7ec530"
+    },
+    {
+      "path": "content/javascript/js-m07-object-oriented-javascript/js-20-prototypes-the-prototype-chain-and-object-create.md",
+      "bytes": 12812,
+      "sha256": "940d799dba0b1981c55c544afac33df2278d91d7666744cc8cfedb0ced27963a"
+    },
+    {
+      "path": "content/javascript/js-m07-object-oriented-javascript/js-21-inheritance-patterns-and-es6-classes.json",
+      "bytes": 26300,
+      "sha256": "1cb0e08891f3b6b0f3bdb91d28c5a1364a9b14ac9257f6fbfbd821fde7ece1c7"
+    },
+    {
+      "path": "content/javascript/js-m07-object-oriented-javascript/js-21-inheritance-patterns-and-es6-classes.md",
+      "bytes": 12861,
+      "sha256": "178677a1ff7eacddcb7729f80901420e35048039f32c503526caab499077cdfd"
+    },
+    {
+      "path": "content/javascript/js-m08-project-planning-mapty/js-22-planning-a-web-project-mapty-case-study.json",
+      "bytes": 26619,
+      "sha256": "37d45e4f0bbe0b3213cc1a11a976a6e23ceeb26a196562f1b2443fca7f35f75a"
+    },
+    {
+      "path": "content/javascript/js-m08-project-planning-mapty/js-22-planning-a-web-project-mapty-case-study.md",
+      "bytes": 13551,
+      "sha256": "292637f38f4b096e02afcf95a80cf35d70a2e6c8c34114502c1b16246503b95b"
+    },
+    {
+      "path": "content/javascript/js-m09-asynchronous-javascript/js-23-asynchronous-javascript-and-the-web-request-model.json",
+      "bytes": 26064,
+      "sha256": "80ef8079b5a4590065b099ca41603783d6b83439d75e46a841e6a5d08958443d"
+    },
+    {
+      "path": "content/javascript/js-m09-asynchronous-javascript/js-23-asynchronous-javascript-and-the-web-request-model.md",
+      "bytes": 12747,
+      "sha256": "e686b755491ef58169b764b4886718d58a201ad86bed53b096a00110a361112d"
+    },
+    {
+      "path": "content/javascript/js-m09-asynchronous-javascript/js-24-promises-and-the-fetch-api.json",
+      "bytes": 25389,
+      "sha256": "6ebbce050bc66cdd95d4abff95d427b1e97ee19f2e3f5cc0067db50219e429cf"
+    },
+    {
+      "path": "content/javascript/js-m09-asynchronous-javascript/js-24-promises-and-the-fetch-api.md",
+      "bytes": 12461,
+      "sha256": "b142e6ffdface62eee14d5fd754e0971201fcfc5194fc5df48fbbcfbb52783a3"
+    },
+    {
+      "path": "content/javascript/js-m09-asynchronous-javascript/js-25-the-event-loop-and-async-execution.json",
+      "bytes": 25432,
+      "sha256": "448d7e78d3073e1ada43a7ec54b2f2385aabe99e37a1fd7ca88d7a4ff03fd3dd"
+    },
+    {
+      "path": "content/javascript/js-m09-asynchronous-javascript/js-25-the-event-loop-and-async-execution.md",
+      "bytes": 12393,
+      "sha256": "7f0bb1d1c2fe6af8219d8e811866f34a5febf968bf71f68aa1edf894485c17d7"
+    },
+    {
+      "path": "content/javascript/js-m10-modern-javascript-development/js-26-modern-development-workflow-and-modules.json",
+      "bytes": 26406,
+      "sha256": "aa543268fa3de984e6ff671ed4917c7a109f51db98b4c84d70f3ac71d5ed64f6"
+    },
+    {
+      "path": "content/javascript/js-m10-modern-javascript-development/js-26-modern-development-workflow-and-modules.md",
+      "bytes": 12731,
+      "sha256": "a4fa64514963527a19eb11753d33164475cb917a0ab7aed05bf54bb1b493073a"
+    },
+    {
+      "path": "content/javascript/js-m10-modern-javascript-development/js-27-clean-modern-and-declarative-javascript.json",
+      "bytes": 26332,
+      "sha256": "9d6fec5282069ec825c093d14e1ab62dc31d8d02e77050bf610c01bcdbbcd0b3"
+    },
+    {
+      "path": "content/javascript/js-m10-modern-javascript-development/js-27-clean-modern-and-declarative-javascript.md",
+      "bytes": 12835,
+      "sha256": "62ec6b045ffe8262e047263baf3f3ef2f0f5f15886dffd0739fc9777706091f0"
+    },
+    {
+      "path": "content/javascript/js-m11-application-architecture-forkify/js-28-forkify-application-planning.json",
+      "bytes": 24766,
+      "sha256": "a27f4723086ce9123a82a77f669089cb7dfb146147af2d36313821b2a54b7db0"
+    },
+    {
+      "path": "content/javascript/js-m11-application-architecture-forkify/js-28-forkify-application-planning.md",
+      "bytes": 12509,
+      "sha256": "05074704a7f0799ba81fc3c673a86679beba3d7cd3fefc48bc8b7575f47dec8f"
+    },
+    {
+      "path": "content/javascript/js-m11-application-architecture-forkify/js-29-mvc-and-publisher-subscriber-architecture.json",
+      "bytes": 26203,
+      "sha256": "bdd19f04e2d77423fa37569fa48be7777b5860c96736955cfe1b871ba6915ac4"
+    },
+    {
+      "path": "content/javascript/js-m11-application-architecture-forkify/js-29-mvc-and-publisher-subscriber-architecture.md",
+      "bytes": 12890,
+      "sha256": "7879e558da682bf12b3eb1251006d12fa083f6d742ed94e48a12714c42a60788"
+    },
+    {
+      "path": "content/javascript/js-m11-application-architecture-forkify/js-30-forkify-capstone-retrospective.json",
+      "bytes": 24520,
+      "sha256": "b556ae63c2129666658796bca28b788fb8f7225392972ed482464768bfe66186"
+    },
+    {
+      "path": "content/javascript/js-m11-application-architecture-forkify/js-30-forkify-capstone-retrospective.md",
+      "bytes": 12265,
+      "sha256": "2a8712fcc41661d290b9dfada161d7cc7b269fb712c2f48928c93d6fb732e503"
+    },
+    {
+      "path": "content/nextjs/n-m01-rendering-foundations/n-01-server-side-rendering-and-hydration.json",
+      "bytes": 25541,
+      "sha256": "2a14f5b4c876e35aec4fe092ff6b0510ddb81b97c6229e1c08fd84e0946f3f1c"
+    },
+    {
+      "path": "content/nextjs/n-m01-rendering-foundations/n-01-server-side-rendering-and-hydration.md",
+      "bytes": 12398,
+      "sha256": "2ef9bf4baa05c116e06500ff01b84e446b2f6b07de329268c207e68e51ade56a"
+    },
+    {
+      "path": "content/nextjs/n-m01-rendering-foundations/n-02-what-next-js-is-and-why-it-exists.json",
+      "bytes": 25813,
+      "sha256": "ee9788cd28c48ee07584a38f464ad1617f54e369ab409db8e3dc0f4cedf4d18c"
+    },
+    {
+      "path": "content/nextjs/n-m01-rendering-foundations/n-02-what-next-js-is-and-why-it-exists.md",
+      "bytes": 12583,
+      "sha256": "9bc1dadb7183aee8075f73f2537255af6cb03398197262191f29edb5575972f3"
+    },
+    {
+      "path": "content/nextjs/n-m02-react-server-components/n-03-react-server-components-fundamentals.json",
+      "bytes": 25456,
+      "sha256": "7c7172b25cccbf2ed2406fce0346487a8e26c5fc9599b27922b2740b8d7124b5"
+    },
+    {
+      "path": "content/nextjs/n-m02-react-server-components/n-03-react-server-components-fundamentals.md",
+      "bytes": 12423,
+      "sha256": "037ad6b891ddb6e133ad6995c3065e9ff6460dc75003d5825c41f0db29bf069c"
+    },
+    {
+      "path": "content/nextjs/n-m02-react-server-components/n-04-rsc-internals-and-relationship-to-ssr.json",
+      "bytes": 25316,
+      "sha256": "fc4e63a86931deaae5c4512cfe93620f03ed92b4448dcc971ccbd44b505cb506"
+    },
+    {
+      "path": "content/nextjs/n-m02-react-server-components/n-04-rsc-internals-and-relationship-to-ssr.md",
+      "bytes": 11960,
+      "sha256": "556d8b30f17830e4e0e21976698e053657c8d803a6dbd81fb1f8ccbc9b40c88e"
+    },
+    {
+      "path": "content/nextjs/n-m03-project-planning/n-05-wild-oasis-website-planning.json",
+      "bytes": 25116,
+      "sha256": "69a369568f204e6b733b094795e6eb696857947523209f9d6d8e69ae47061755"
+    },
+    {
+      "path": "content/nextjs/n-m03-project-planning/n-05-wild-oasis-website-planning.md",
+      "bytes": 12128,
+      "sha256": "6236c0de9dcd371f1a8d8ecf056d0ed248104cecc6dd53f12bc0fc33a9625e64"
+    },
+    {
+      "path": "content/nextjs/n-m04-streaming-rendering-strategies-and-caching/n-06-react-suspense-and-streaming.json",
+      "bytes": 24166,
+      "sha256": "f9004e5b8eb20a4f0e9c45fce6d974bb776a11d8361333b0071ab4f7398b241a"
+    },
+    {
+      "path": "content/nextjs/n-m04-streaming-rendering-strategies-and-caching/n-06-react-suspense-and-streaming.md",
+      "bytes": 11366,
+      "sha256": "32a35b71f543da7a760fe72cc4f06a9fa7e40a809040c9535012d6c54aa2f2f1"
+    },
+    {
+      "path": "content/nextjs/n-m04-streaming-rendering-strategies-and-caching/n-07-static-dynamic-and-partial-pre-rendering.json",
+      "bytes": 26488,
+      "sha256": "562de280cc7fa9a48ad793077dd0024a37bde09ede59d5274dd8f0c885bc4862"
+    },
+    {
+      "path": "content/nextjs/n-m04-streaming-rendering-strategies-and-caching/n-07-static-dynamic-and-partial-pre-rendering.md",
+      "bytes": 12779,
+      "sha256": "7666b3c9aff9adb40a94da4de7c70353d4cb81106a816216afe32c427d75bba1"
+    },
+    {
+      "path": "content/nextjs/n-m04-streaming-rendering-strategies-and-caching/n-08-how-next-js-caches-data.json",
+      "bytes": 25110,
+      "sha256": "e83b5b68beb5674ba1ec7ce78f46815574912643478d3cb012c1630e195f5165"
+    },
+    {
+      "path": "content/nextjs/n-m04-streaming-rendering-strategies-and-caching/n-08-how-next-js-caches-data.md",
+      "bytes": 12179,
+      "sha256": "d48c81d3f71f076a903083c8cdf8a2117ffdd0f7caa6b64bf0ad539702191a81"
+    },
+    {
+      "path": "content/nextjs/n-m05-server-and-client-architecture/n-09-server-and-client-boundaries.json",
+      "bytes": 25620,
+      "sha256": "c7b12d833d029e57c3600d3ed842be4b1eea018028d9809ead543a128a99d5b0"
+    },
+    {
+      "path": "content/nextjs/n-m05-server-and-client-architecture/n-09-server-and-client-boundaries.md",
+      "bytes": 12578,
+      "sha256": "de59d426da9bea898b94423dd6292dd28760bd0e9efed8d911c2c7ec2cd4dd0a"
+    },
+    {
+      "path": "content/nextjs/n-m05-server-and-client-architecture/n-10-middleware-in-next-js.json",
+      "bytes": 24868,
+      "sha256": "2f2878f0e6c86ec4deeb5dac21b7493dcad42b6aaf9695f6a2ca2aff69066060"
+    },
+    {
+      "path": "content/nextjs/n-m05-server-and-client-architecture/n-10-middleware-in-next-js.md",
+      "bytes": 12168,
+      "sha256": "83ff2d4bd17fff68aa5379cab6d68eb7ddfb27511d6396fb23cb28d6036f45c5"
+    },
+    {
+      "path": "content/nextjs/n-m05-server-and-client-architecture/n-11-server-actions.json",
+      "bytes": 25126,
+      "sha256": "b82b959edf1f7ffd2195a91bc96c84058e21442e83198a6b76a0c355727ddcf5"
+    },
+    {
+      "path": "content/nextjs/n-m05-server-and-client-architecture/n-11-server-actions.md",
+      "bytes": 12142,
+      "sha256": "6b0787474da708837cf516ca3e1423dddd274893afea023075295251615a88f5"
+    },
+    {
+      "path": "content/react/r-m01-react-orientation/r-01-course-orientation.json",
+      "bytes": 24392,
+      "sha256": "254a5efe753af652361d1cc32d772aa6c9a32787dadc0d9b078733b35f1b6cba"
+    },
+    {
+      "path": "content/react/r-m01-react-orientation/r-01-course-orientation.md",
+      "bytes": 12365,
+      "sha256": "d7c77532deb780f5be2e654d7f413472b7953aff407485c6fed09af96e2c229b"
+    },
+    {
+      "path": "content/react/r-m01-react-orientation/r-02-why-front-end-frameworks-and-react-exist.json",
+      "bytes": 26552,
+      "sha256": "9e8b191910b83b0b3ee5a3d6cd4add41cd01d728232778307db7d8309ef5df3b"
+    },
+    {
+      "path": "content/react/r-m01-react-orientation/r-02-why-front-end-frameworks-and-react-exist.md",
+      "bytes": 13211,
+      "sha256": "dca2698fbf96b7b69326194b0654608e1a96b00617f48f2a84ed47ea5da3fc3b"
+    },
+    {
+      "path": "content/react/r-m01-react-orientation/r-03-setting-up-a-react-project.json",
+      "bytes": 24953,
+      "sha256": "927b3fb9f6d7842582b0ad83dcc25ae12d719459852a30ba48e3dc0b5f915f90"
+    },
+    {
+      "path": "content/react/r-m01-react-orientation/r-03-setting-up-a-react-project.md",
+      "bytes": 12238,
+      "sha256": "ef8c3dae89fe19824bf15eec05f117a403ed97fb8e8a4ea50c0815534246d87b"
+    },
+    {
+      "path": "content/react/r-m02-components-jsx-and-props/r-04-components-jsx-and-separation-of-concerns.json",
+      "bytes": 27157,
+      "sha256": "f05f66847b265d3fed857f2aa6b5078820b19762568b76496b3df1b06a8f61e2"
+    },
+    {
+      "path": "content/react/r-m02-components-jsx-and-props/r-04-components-jsx-and-separation-of-concerns.md",
+      "bytes": 13140,
+      "sha256": "2c8620a2ba28b39c5f7b500d550e93237bc64a7e36fc5c543ae823449be88edd"
+    },
+    {
+      "path": "content/react/r-m02-components-jsx-and-props/r-05-props-immutability-and-one-way-data-flow.json",
+      "bytes": 25690,
+      "sha256": "24ae3b498b41a736194874cb7b22d860f4fc6f62d824058dd711def6e260b589"
+    },
+    {
+      "path": "content/react/r-m02-components-jsx-and-props/r-05-props-immutability-and-one-way-data-flow.md",
+      "bytes": 12354,
+      "sha256": "8ff3cd176e18ab3c565c43353e1263fe35337278d1cf7e5919defcfa3c91db14"
+    },
+    {
+      "path": "content/react/r-m02-components-jsx-and-props/r-06-jsx-rules-and-fundamentals-recap.json",
+      "bytes": 25328,
+      "sha256": "f2d3b48a2a3c72fe682e2166c3ec0ae3b74f978a3bc947501576637f43d7a6e5"
+    },
+    {
+      "path": "content/react/r-m02-components-jsx-and-props/r-06-jsx-rules-and-fundamentals-recap.md",
+      "bytes": 12328,
+      "sha256": "94ea7ec52b10bb0c32f1d38f4326f54a5ccbea47ff5b9fa2085b12fa50a3fa4c"
+    },
+    {
+      "path": "content/react/r-m03-state-and-thinking-in-react/r-07-state-fundamentals.json",
+      "bytes": 26374,
+      "sha256": "49ba6e7dbe8bf54b84c5cc0135ce000c270adc7028587646626a28777a65f86a"
+    },
+    {
+      "path": "content/react/r-m03-state-and-thinking-in-react/r-07-state-fundamentals.md",
+      "bytes": 12662,
+      "sha256": "07b540109ab1234fe4fd702ab1f5a50a078851d1d9ea44abb6dba65d0a3bc332"
+    },
+    {
+      "path": "content/react/r-m03-state-and-thinking-in-react/r-08-thinking-in-react-state-management-and-derived-state.json",
+      "bytes": 27241,
+      "sha256": "624aa0566c7d7fe318b48f35d2e817b90250900165dfa7880f873039c1a3457d"
+    },
+    {
+      "path": "content/react/r-m03-state-and-thinking-in-react/r-08-thinking-in-react-state-management-and-derived-state.md",
+      "bytes": 13088,
+      "sha256": "aabd920f8a9c44daf22e6268d29a9704d5783390db4413df4084f6ec6a607236"
+    },
+    {
+      "path": "content/react/r-m04-component-design-and-reusability/r-09-reusability-with-the-children-prop.json",
+      "bytes": 24960,
+      "sha256": "d0e20c1c7d4661f5d52aababf517c6c52857e6dd23d24394df666b8a13ffdcb2"
+    },
+    {
+      "path": "content/react/r-m04-component-design-and-reusability/r-09-reusability-with-the-children-prop.md",
+      "bytes": 11900,
+      "sha256": "9ca447486c34a55991dbcd4a8ce75ea0195961030c5d485a38a3040e0a5d7249"
+    },
+    {
+      "path": "content/react/r-m04-component-design-and-reusability/r-10-designing-component-trees.json",
+      "bytes": 25229,
+      "sha256": "0e585b3c67c030e3e3968237bbdec978f486ab669f2bb2fc5f0a438736c3bf30"
+    },
+    {
+      "path": "content/react/r-m04-component-design-and-reusability/r-10-designing-component-trees.md",
+      "bytes": 12173,
+      "sha256": "b983c20f5dec652394b6e68cc9f7db5886d97c5bc4ab8993934022d0e27f6f22"
+    },
+    {
+      "path": "content/react/r-m04-component-design-and-reusability/r-11-composition-and-props-as-component-apis.json",
+      "bytes": 26245,
+      "sha256": "221e6c71fc868ed1d02d8dcae81666ca2228be0883ec2324b06e9cf083c692d1"
+    },
+    {
+      "path": "content/react/r-m04-component-design-and-reusability/r-11-composition-and-props-as-component-apis.md",
+      "bytes": 12569,
+      "sha256": "01a8e2fc46231b76a77d6c887682931adcb4c7a391d8cca2929ef87994aebab6"
+    },
+    {
+      "path": "content/react/r-m05-how-react-renders/r-12-components-instances-elements-and-rendering-overview.json",
+      "bytes": 26208,
+      "sha256": "b4b3905de11766d8b127769c7374bde595cd9792dcc361cedf74cc763f71650e"
+    },
+    {
+      "path": "content/react/r-m05-how-react-renders/r-12-components-instances-elements-and-rendering-overview.md",
+      "bytes": 12540,
+      "sha256": "80d28f8984d8fc65292143fca672ce66fa2cfaf5baea58d3e1dce4efca5ca3c4"
+    },
+    {
+      "path": "content/react/r-m05-how-react-renders/r-13-render-and-commit-phases.json",
+      "bytes": 25344,
+      "sha256": "a826482aabc3aead40da8832e7df83604f31759bc2ef6084086668c391e256c3"
+    },
+    {
+      "path": "content/react/r-m05-how-react-renders/r-13-render-and-commit-phases.md",
+      "bytes": 12159,
+      "sha256": "6059f181e25c981f31bca68f77e22dddae85ea922d97c4358dfe7b90dbc1eb35"
+    },
+    {
+      "path": "content/react/r-m05-how-react-renders/r-14-diffing-keys-and-state-preservation.json",
+      "bytes": 25935,
+      "sha256": "da16c91d54d7de2590c461d3a9bd6c2a5e3b18ad1c1d3bfb8d9e2dc41d2a396e"
+    },
+    {
+      "path": "content/react/r-m05-how-react-renders/r-14-diffing-keys-and-state-preservation.md",
+      "bytes": 12596,
+      "sha256": "b1c78f6537e96e0e46ead245070287a83518a5bf29dafa3499b9879c02e6ff9b"
+    },
+    {
+      "path": "content/react/r-m05-how-react-renders/r-15-pure-render-logic-and-state-batching.json",
+      "bytes": 25721,
+      "sha256": "1034e520f16f3143a5c699e8f9db85bbd21cc9c8299d2f155bbd9c5a8de2f661"
+    },
+    {
+      "path": "content/react/r-m05-how-react-renders/r-15-pure-render-logic-and-state-batching.md",
+      "bytes": 12454,
+      "sha256": "7eaf98cc7058e51b5706fc0e64cab1fe1a75fdea617337f3c3b91ba8f428c243"
+    },
+    {
+      "path": "content/react/r-m05-how-react-renders/r-16-how-events-work-in-react.json",
+      "bytes": 24975,
+      "sha256": "b7c0e746589240aa3808c33697d643b0359b75ea6e205345eec5ed8a68ba7674"
+    },
+    {
+      "path": "content/react/r-m05-how-react-renders/r-16-how-events-work-in-react.md",
+      "bytes": 12104,
+      "sha256": "ddff7b9218c9d0ef7f70673b6e02361e8ae996d61c45e60cf0585827a9831288"
+    },
+    {
+      "path": "content/react/r-m05-how-react-renders/r-17-react-ecosystem-overview.json",
+      "bytes": 24893,
+      "sha256": "7e79fba48439ea6913c9ec34d4a3efe5c07011f6e2ee537897c27046f3e73345"
+    },
+    {
+      "path": "content/react/r-m05-how-react-renders/r-17-react-ecosystem-overview.md",
+      "bytes": 12194,
+      "sha256": "4170407b20b1c2483326822a368320582c3f2a4bf97d39037f99520389cc75df"
+    },
+    {
+      "path": "content/react/r-m06-effects-and-hooks/r-18-component-lifecycle-and-effects.json",
+      "bytes": 25899,
+      "sha256": "95e843a6c5ad7d5c5b6e6efa54e5f1b726ac1a16e0427fc77123ba4973ba7cec"
+    },
+    {
+      "path": "content/react/r-m06-effects-and-hooks/r-18-component-lifecycle-and-effects.md",
+      "bytes": 12521,
+      "sha256": "a1ccd5ab4b78cb62ab972500bbfccd2b62e852f04f074ec10c5f7ddf4765a723"
+    },
+    {
+      "path": "content/react/r-m06-effects-and-hooks/r-19-effect-dependencies-and-cleanup.json",
+      "bytes": 26012,
+      "sha256": "4e70190317b950e03d12014099f7b5fe36974d7abcf8500f33c50d8b1ba95be8"
+    },
+    {
+      "path": "content/react/r-m06-effects-and-hooks/r-19-effect-dependencies-and-cleanup.md",
+      "bytes": 12436,
+      "sha256": "f32fc121c28454be672494804c8a686c4c1c6a41a2246c4d93a42a06e8672cac"
+    },
+    {
+      "path": "content/react/r-m06-effects-and-hooks/r-20-rules-of-hooks-and-usestate-recap.json",
+      "bytes": 25230,
+      "sha256": "4c5475f979fad0c3201e48c5b140895ce538337f2bb83f2574f0e2902ac995ec"
+    },
+    {
+      "path": "content/react/r-m06-effects-and-hooks/r-20-rules-of-hooks-and-usestate-recap.md",
+      "bytes": 12036,
+      "sha256": "ca8ad8bf8fadd2d26e2b01df4d82f4ec4d0df4ddf9da486bfe865d8acc257f72"
+    },
+    {
+      "path": "content/react/r-m06-effects-and-hooks/r-21-refs-and-custom-hooks.json",
+      "bytes": 25391,
+      "sha256": "f5cc080f67bac40688eb88c22938026ecb1706ed3388f11fb5d92c0d84862276"
+    },
+    {
+      "path": "content/react/r-m06-effects-and-hooks/r-21-refs-and-custom-hooks.md",
+      "bytes": 12028,
+      "sha256": "7ceec1b6e6cb7beb528b25c55dbebbdd00e3b8e89fc595758a75f106bd1834ea"
+    },
+    {
+      "path": "content/react/r-m06-effects-and-hooks/r-22-class-components-vs-function-components.json",
+      "bytes": 25678,
+      "sha256": "af7286fe68d79f12ff20f99d19c027bd989b082a3b69b3ccf038337dc65cf405"
+    },
+    {
+      "path": "content/react/r-m06-effects-and-hooks/r-22-class-components-vs-function-components.md",
+      "bytes": 12387,
+      "sha256": "25382b7656665ce9251e4cb54f52a1a0a9606456e6131fa60e4ea015437b251a"
+    },
+    {
+      "path": "content/react/r-m07-complex-state-routing-and-styling/r-23-usereducer-and-choosing-state-tools.json",
+      "bytes": 26463,
+      "sha256": "ae343fa8dd3d18a00b0ced6512788468b3bd6d7dd3923de5c096b4ae532c818b"
+    },
+    {
+      "path": "content/react/r-m07-complex-state-routing-and-styling/r-23-usereducer-and-choosing-state-tools.md",
+      "bytes": 13044,
+      "sha256": "c54c436d4814f12028e7ef8dd079fb8ce15d4eb1978024e3764bfd75e24308d3"
+    },
+    {
+      "path": "content/react/r-m07-complex-state-routing-and-styling/r-24-routing-and-single-page-applications.json",
+      "bytes": 26100,
+      "sha256": "470a7b221762ef6feb6a54f8e2aa16b31665beb8fffd42d05cbf13cbd56b0ee5"
+    },
+    {
+      "path": "content/react/r-m07-complex-state-routing-and-styling/r-24-routing-and-single-page-applications.md",
+      "bytes": 12642,
+      "sha256": "9f7a6d90f6e66a5e973c9106d1934ba22c5c049465f70cf32d7e0d9baf663b24"
+    },
+    {
+      "path": "content/react/r-m07-complex-state-routing-and-styling/r-25-styling-options-for-react-applications.json",
+      "bytes": 25426,
+      "sha256": "d9bb264dc0108c744aa27c93eea3e6974551dac80541ff4360614f8de516edcc"
+    },
+    {
+      "path": "content/react/r-m07-complex-state-routing-and-styling/r-25-styling-options-for-react-applications.md",
+      "bytes": 12114,
+      "sha256": "8f1a5b3b2ec6af70a26efb010cfb860e112f61cf8d229016f78d9039812848c5"
+    },
+    {
+      "path": "content/react/r-m08-context-and-advanced-state-management/r-26-context-api-and-advanced-state-management.json",
+      "bytes": 27328,
+      "sha256": "affc950214120285bb399b8feacd3be4eb2c275d33349fd10d393a46a6ad1aab"
+    },
+    {
+      "path": "content/react/r-m08-context-and-advanced-state-management/r-26-context-api-and-advanced-state-management.md",
+      "bytes": 13291,
+      "sha256": "175870a91908458dcb1ab25cca125335c60ca78b22e7f85a23e279681289f94f"
+    },
+    {
+      "path": "content/react/r-m09-performance-and-advanced-effects/r-27-wasted-renders-and-memoization.json",
+      "bytes": 26789,
+      "sha256": "e0ddc5e551b0fbc32ef433a1eb72d2982bb537fa73e951849c175c9716f4a789"
+    },
+    {
+      "path": "content/react/r-m09-performance-and-advanced-effects/r-27-wasted-renders-and-memoization.md",
+      "bytes": 13057,
+      "sha256": "89fdaab561f5a9c1107fc39cc7fc11373ee0cfb4a4eea7f06b93d2e8db57af5a"
+    },
+    {
+      "path": "content/react/r-m09-performance-and-advanced-effects/r-28-code-splitting-and-pragmatic-optimization.json",
+      "bytes": 26169,
+      "sha256": "90305aa05aa66021c4cf812e6ea5dce8f4ed054732e302b3b6849cca15623617"
+    },
+    {
+      "path": "content/react/r-m09-performance-and-advanced-effects/r-28-code-splitting-and-pragmatic-optimization.md",
+      "bytes": 12630,
+      "sha256": "3260a60ea4b0643c02242c806ad4926572898dcd514fb06e6ccccf35a2d3e0ee"
+    },
+    {
+      "path": "content/react/r-m09-performance-and-advanced-effects/r-29-useeffect-rules-and-best-practices.json",
+      "bytes": 25099,
+      "sha256": "a7f7237eaa5e431d108b2e33877c1e3815965ef600a9fa91e87c113d8e6c7a4f"
+    },
+    {
+      "path": "content/react/r-m09-performance-and-advanced-effects/r-29-useeffect-rules-and-best-practices.md",
+      "bytes": 11964,
+      "sha256": "b236bdc5089ca33b873153565ef3393c978c7dadb79e9246a1c9298bbd4ac5a8"
+    },
+    {
+      "path": "content/react/r-m10-redux/r-30-redux-fundamentals.json",
+      "bytes": 24273,
+      "sha256": "872751dda0e3e21fbf2f65e689c512808175a5b7a2ad9f26eb4bf70f9fcfb0b2"
+    },
+    {
+      "path": "content/react/r-m10-redux/r-30-redux-fundamentals.md",
+      "bytes": 11463,
+      "sha256": "c00a5b9b17cbcdaa513008b1523e5504c14a997ea682815e5f077f66d077c5a4"
+    },
+    {
+      "path": "content/react/r-m10-redux/r-31-middleware-thunks-and-redux-toolkit.json",
+      "bytes": 25934,
+      "sha256": "7ba1b0cfd1182762edb9c0526feee5f64420ecfb12260f1962e277f35a900828"
+    },
+    {
+      "path": "content/react/r-m10-redux/r-31-middleware-thunks-and-redux-toolkit.md",
+      "bytes": 12390,
+      "sha256": "11b53dce2f1c8a6b8243d0fcec57627358707e48b40330dac0cb7cf642430a64"
+    },
+    {
+      "path": "content/react/r-m10-redux/r-32-redux-vs-context-api.json",
+      "bytes": 24296,
+      "sha256": "bcbf460849cb22338b6448e7b5ba64f1db82a0a6d9054edc81878c28921f6828"
+    },
+    {
+      "path": "content/react/r-m10-redux/r-32-redux-vs-context-api.md",
+      "bytes": 11697,
+      "sha256": "57594bba6463be5e33e00807e38c94e97b1751a865768867926fd8718f44905d"
+    },
+    {
+      "path": "content/react/r-m11-professional-react-workflows-and-ecosystem/r-33-fast-react-pizza-application-planning.json",
+      "bytes": 25831,
+      "sha256": "4b3fb32b178d576c057f8d24911087425fea542d939b993a860021074f01af77"
+    },
+    {
+      "path": "content/react/r-m11-professional-react-workflows-and-ecosystem/r-33-fast-react-pizza-application-planning.md",
+      "bytes": 13191,
+      "sha256": "db15e477316c033dda064c76c4a2881c923be098f5e9a5c97bf81565ba7f6e33"
+    },
+    {
+      "path": "content/react/r-m11-professional-react-workflows-and-ecosystem/r-34-tailwind-css-overview.json",
+      "bytes": 24721,
+      "sha256": "ec80800c5b3362ea74ef840507ade72a802b5009150e673c2c1131188221f684"
+    },
+    {
+      "path": "content/react/r-m11-professional-react-workflows-and-ecosystem/r-34-tailwind-css-overview.md",
+      "bytes": 12042,
+      "sha256": "52f051ebb0f7c45347ef3a4787ecfd1738e71c3eb53df7e2568f96a630f6a368"
+    },
+    {
+      "path": "content/react/r-m11-professional-react-workflows-and-ecosystem/r-35-wild-oasis-application-planning.json",
+      "bytes": 25544,
+      "sha256": "df0c530e8cb0b40b3a0e0bb2c15b894a4ce008a107e0f10de95d7bd0551dcdca"
+    },
+    {
+      "path": "content/react/r-m11-professional-react-workflows-and-ecosystem/r-35-wild-oasis-application-planning.md",
+      "bytes": 13006,
+      "sha256": "9c133642f9457b7e675b0690f838785a67a510248f4ba5600186c60edfc439dd"
+    },
+    {
+      "path": "content/react/r-m11-professional-react-workflows-and-ecosystem/r-36-supabase-overview.json",
+      "bytes": 24336,
+      "sha256": "e61cee388ac11ad456a0d5e1d28acf7e86411e034aed6d166ebfbc3425b6c07c"
+    },
+    {
+      "path": "content/react/r-m11-professional-react-workflows-and-ecosystem/r-36-supabase-overview.md",
+      "bytes": 11898,
+      "sha256": "9440ee971824e3b495137299163dffd5b3cf8f782249b771da1408524e732eb9"
+    },
+    {
+      "path": "content/react/r-m11-professional-react-workflows-and-ecosystem/r-37-modeling-application-state-and-react-query.json",
+      "bytes": 27433,
+      "sha256": "8ed15c926a90293003be4797ca3d6cd6aa8bb8c5bc9c4d74c70bbd2a1a75aa60"
+    },
+    {
+      "path": "content/react/r-m11-professional-react-workflows-and-ecosystem/r-37-modeling-application-state-and-react-query.md",
+      "bytes": 13625,
+      "sha256": "f1d7222a696523968f2b606c99fb881fd43ef1834e1e05c5fe97ec57b376bbaf"
+    },
+    {
+      "path": "content/react/r-m11-professional-react-workflows-and-ecosystem/r-38-reusability-and-advanced-react-patterns.json",
+      "bytes": 26324,
+      "sha256": "49fa350f6441c447d7280c5bf2c50caed2fb27b037c8e6b8dc0c5cef8916c61d"
+    },
+    {
+      "path": "content/react/r-m11-professional-react-workflows-and-ecosystem/r-38-reusability-and-advanced-react-patterns.md",
+      "bytes": 12706,
+      "sha256": "80e74f43b3d191bbf133a529124738ee47f4cfe5c4bd0999c85d46d91552506a"
+    },
+    {
+      "path": "curriculum/CONTENT_INVENTORY.md",
+      "bytes": 6626,
+      "sha256": "32fa5e4a8d9fe88603dfdd3dd235cedcc765473f214308e473698d2043b3e2a1"
+    },
+    {
+      "path": "curriculum/curriculum.runtime.json",
+      "bytes": 95101,
+      "sha256": "31176ab76aa4f0ef64480907875947093f4dbc44637be6e6d7ed03c6ede2678b"
+    },
+    {
+      "path": "curriculum/curriculum.source-map.json",
+      "bytes": 164416,
+      "sha256": "d6c490a33c68fd8eb02e0728897813657d9d6326b5cefb346950f6e0985032b6"
+    },
+    {
+      "path": "fixtures/local-progress.empty.json",
+      "bytes": 318,
+      "sha256": "af2f370ae6390e791691f858ef60416a838dc508b52d9e3d3759a196d2054672"
+    },
+    {
+      "path": "manifests/release-1.draft.manifest.json",
+      "bytes": 34272,
+      "sha256": "dde5fcaf094143f6a009cc0ca10c2a97181087029dc723bc94ea6444b577c784"
+    },
+    {
+      "path": "migration/LEGACY_ARCHIVE_README.md",
+      "bytes": 723,
+      "sha256": "32abeb511fa4e8c6a749278ce83cf4d9d6c992cecd615b893a61c84ecf7a9486"
+    },
+    {
+      "path": "references/CURRENT_PROJECT_AUDIT.md",
+      "bytes": 25155,
+      "sha256": "9e932d2fcf15037db7cee3315a12c988f21c409a0d9ae545d3e0159dd743fcb6"
+    },
+    {
+      "path": "references/CURRENT_PROJECT_SCHEMA.md",
+      "bytes": 13564,
+      "sha256": "8cda64496e263a0426bcf487d4b46922ff6c3ab18c7445f15f13c4326f9287cf"
+    },
+    {
+      "path": "schemas/assessment-set.schema.json",
+      "bytes": 1449,
+      "sha256": "27e7af3cfc54a9d5e1eae06959bc9752468564be5e290fb9c688b47d55792dee"
+    },
+    {
+      "path": "schemas/curriculum.schema.json",
+      "bytes": 1427,
+      "sha256": "d1e38b13f60845c2217b43c059335eb464133d2ffc28cbc59f94b51ca4be6956"
+    },
+    {
+      "path": "schemas/local-progress.schema.json",
+      "bytes": 1936,
+      "sha256": "b59ad69248635f1d06fbec1b5bee5927bb1e6a97f1043831bcdee427e404749f"
+    },
+    {
+      "path": "schemas/publication-manifest.schema.json",
+      "bytes": 1575,
+      "sha256": "8e754cceb0217c8d0db878a3b90161227c7c1a8ad4686d94a98aab1980802bbc"
+    },
+    {
+      "path": "schemas/question.schema.json",
+      "bytes": 3014,
+      "sha256": "ec300e52cf89057e06c2c6a010da13e3a3d6531ab69d7608ef8baed6746c7281"
+    },
+    {
+      "path": "schemas/topic-packet.schema.json",
+      "bytes": 3496,
+      "sha256": "7610df28fe8f4622e129cd70c77fee67145eb86c53d5971099e2f9560691578b"
+    },
+    {
+      "path": "specs/00_PRODUCT_CONTRACT.md",
+      "bytes": 2679,
+      "sha256": "37681bb97bcd7086c95c48e3e456169847cc9045d2d6e022ddc5ff59fc9b1613"
+    },
+    {
+      "path": "specs/01_RELEASE_1_SCOPE.md",
+      "bytes": 1734,
+      "sha256": "18ac3ca4f132bacf73f4291a4bf5af4fd917e8c985ee762a120f186f285de41c"
+    },
+    {
+      "path": "specs/02_PRESERVE_REPLACE_ARCHIVE.md",
+      "bytes": 1917,
+      "sha256": "d8a287a6f743a32b3a70643af67d793ae101d718b752379e5b2ee5333f6370c0"
+    },
+    {
+      "path": "specs/03_TARGET_ARCHITECTURE.md",
+      "bytes": 2517,
+      "sha256": "3f1f705d8afcd85b7aa7d021b19db10208a0f37188e1111c107e1fdccfb4e016"
+    },
+    {
+      "path": "specs/04_CONTENT_SPEC.md",
+      "bytes": 2077,
+      "sha256": "1e580f463b80403baf123080048e5c9faa0e735414fe9b1b6a89470b09dc55bd"
+    },
+    {
+      "path": "specs/05_ASSESSMENT_SPEC.md",
+      "bytes": 2078,
+      "sha256": "497f6dd58d791e9fb96ed1e106a3cc2cda194fdc743a2df933b7421fc048e8e0"
+    },
+    {
+      "path": "specs/06_PROGRESSION_SPEC.md",
+      "bytes": 1889,
+      "sha256": "92bb7af1b130c10166cf7db7611d780108bb7f37d973487f869c4446a643958c"
+    },
+    {
+      "path": "specs/07_MIGRATION_PLAN.md",
+      "bytes": 2817,
+      "sha256": "c476db4f7e0399ad9762995625a3f2f896ef6f2463ee65fc2fbc823fe0b359c6"
+    },
+    {
+      "path": "specs/08_ACCEPTANCE_CRITERIA.md",
+      "bytes": 1828,
+      "sha256": "341de8d5538ca9dd42a7af322f65b6568b45d811ecf915ce03c04361c25088c2"
+    },
+    {
+      "path": "specs/09_CONTENT_REVIEW_PLAYBOOK.md",
+      "bytes": 1477,
+      "sha256": "01c2c7714ba1051b974f0f6688c41510104922c9cf63004c37b88dea7ebdfd8b"
+    },
+    {
+      "path": "specs/10_PHASE_COVERAGE.md",
+      "bytes": 1423,
+      "sha256": "ff4d8e4c4013ffacd61618e98f485d3decb2f5388f6e4c5f33595e2fd6adb7f8"
+    },
+    {
+      "path": "validation/VALIDATION_REPORT.md",
+      "bytes": 2016,
+      "sha256": "072c961494b56cc75da03754e54c4d3ab8d82a557f606d086626aa4a7d139b71"
+    },
+    {
+      "path": "validation/inventory.json",
+      "bytes": 1085,
+      "sha256": "eeb1dd32f64eb1f783645451f7ded0941be3e69464e55b79a988d52d2a915ddd"
+    }
+  ]
+}

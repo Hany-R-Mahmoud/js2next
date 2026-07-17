@@ -1,0 +1,26 @@
+{
+  "schemaVersion": "1.0",
+  "id": "R-M08-REVIEW",
+  "kind": "module-review",
+  "trackId": "react",
+  "moduleId": "R-M08",
+  "title": "Context and Advanced State Management — Module Review",
+  "questionIds": [
+    "R-26-Q04",
+    "R-26-Q05",
+    "R-26-Q06",
+    "R-26-Q07",
+    "R-26-Q08",
+    "R-26-Q01",
+    "R-26-Q02",
+    "R-26-Q03"
+  ],
+  "masteryThresholdPercent": 80,
+  "attemptPolicy": "unlimited",
+  "failurePolicy": "Show explanations, identify missed objectives, recommend targeted topic review, and allow retry.",
+  "randomizeQuestionOrder": true,
+  "randomizeChoiceOrder": false,
+  "version": 1,
+  "status": "draft",
+  "reviewStatus": "pending-human-review"
+}

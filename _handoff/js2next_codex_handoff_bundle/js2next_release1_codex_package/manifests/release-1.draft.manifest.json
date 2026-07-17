@@ -1,0 +1,860 @@
+{
+  "schemaVersion": "1.0",
+  "release": "Release 1",
+  "curriculumPath": "curriculum/curriculum.runtime.json",
+  "topicPackets": [
+    {
+      "id": "JS-01",
+      "path": "content/javascript/js-m01-orientation-and-foundations/js-01-course-orientation.json",
+      "markdownPath": "content/javascript/js-m01-orientation-and-foundations/js-01-course-orientation.md",
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JS-02",
+      "path": "content/javascript/js-m01-orientation-and-foundations/js-02-introduction-to-javascript.json",
+      "markdownPath": "content/javascript/js-m01-orientation-and-foundations/js-02-introduction-to-javascript.md",
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JS-03",
+      "path": "content/javascript/js-m01-orientation-and-foundations/js-03-values-data-types-and-boolean-logic.json",
+      "markdownPath": "content/javascript/js-m01-orientation-and-foundations/js-03-values-data-types-and-boolean-logic.md",
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JS-04",
+      "path": "content/javascript/js-m01-orientation-and-foundations/js-04-javascript-evolution-es5-es6-and-esnext.json",
+      "markdownPath": "content/javascript/js-m01-orientation-and-foundations/js-04-javascript-evolution-es5-es6-and-esnext.md",
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JS-05",
+      "path": "content/javascript/js-m01-orientation-and-foundations/js-05-functions-working-together.json",
+      "markdownPath": "content/javascript/js-m01-orientation-and-foundations/js-05-functions-working-together.md",
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JS-06",
+      "path": "content/javascript/js-m02-developer-skills/js-06-learning-to-code-and-think-like-a-developer.json",
+      "markdownPath": "content/javascript/js-m02-developer-skills/js-06-learning-to-code-and-think-like-a-developer.md",
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JS-07",
+      "path": "content/javascript/js-m02-developer-skills/js-07-debugging-and-ai-assisted-development.json",
+      "markdownPath": "content/javascript/js-m02-developer-skills/js-07-debugging-and-ai-assisted-development.md",
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JS-08",
+      "path": "content/javascript/js-m03-browser-and-dom-foundations/js-08-the-dom-and-dom-manipulation.json",
+      "markdownPath": "content/javascript/js-m03-browser-and-dom-foundations/js-08-the-dom-and-dom-manipulation.md",
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JS-09",
+      "path": "content/javascript/js-m04-how-javascript-works/js-09-runtime-and-execution-model.json",
+      "markdownPath": "content/javascript/js-m04-how-javascript-works/js-09-runtime-and-execution-model.md",
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JS-10",
+      "path": "content/javascript/js-m04-how-javascript-works/js-10-scope-scope-chain-hoisting-and-the-tdz.json",
+      "markdownPath": "content/javascript/js-m04-how-javascript-works/js-10-scope-scope-chain-hoisting-and-the-tdz.md",
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JS-11",
+      "path": "content/javascript/js-m04-how-javascript-works/js-11-the-this-keyword.json",
+      "markdownPath": "content/javascript/js-m04-how-javascript-works/js-11-the-this-keyword.md",
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JS-12",
+      "path": "content/javascript/js-m04-how-javascript-works/js-12-memory-management-and-references.json",
+      "markdownPath": "content/javascript/js-m04-how-javascript-works/js-12-memory-management-and-references.md",
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JS-13",
+      "path": "content/javascript/js-m05-data-structures-and-functional-techniques/js-13-choosing-the-right-data-structure.json",
+      "markdownPath": "content/javascript/js-m05-data-structures-and-functional-techniques/js-13-choosing-the-right-data-structure.md",
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JS-14",
+      "path": "content/javascript/js-m05-data-structures-and-functional-techniques/js-14-first-class-and-higher-order-functions.json",
+      "markdownPath": "content/javascript/js-m05-data-structures-and-functional-techniques/js-14-first-class-and-higher-order-functions.md",
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JS-15",
+      "path": "content/javascript/js-m05-data-structures-and-functional-techniques/js-15-closures.json",
+      "markdownPath": "content/javascript/js-m05-data-structures-and-functional-techniques/js-15-closures.md",
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JS-16",
+      "path": "content/javascript/js-m05-data-structures-and-functional-techniques/js-16-array-transformations-and-method-selection.json",
+      "markdownPath": "content/javascript/js-m05-data-structures-and-functional-techniques/js-16-array-transformations-and-method-selection.md",
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JS-17",
+      "path": "content/javascript/js-m06-dom-internals-and-script-loading/js-17-dom-internals-and-event-propagation.json",
+      "markdownPath": "content/javascript/js-m06-dom-internals-and-script-loading/js-17-dom-internals-and-event-propagation.md",
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JS-18",
+      "path": "content/javascript/js-m06-dom-internals-and-script-loading/js-18-efficient-script-loading.json",
+      "markdownPath": "content/javascript/js-m06-dom-internals-and-script-loading/js-18-efficient-script-loading.md",
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JS-19",
+      "path": "content/javascript/js-m07-object-oriented-javascript/js-19-oop-foundations-and-javascript-s-object-model.json",
+      "markdownPath": "content/javascript/js-m07-object-oriented-javascript/js-19-oop-foundations-and-javascript-s-object-model.md",
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JS-20",
+      "path": "content/javascript/js-m07-object-oriented-javascript/js-20-prototypes-the-prototype-chain-and-object-create.json",
+      "markdownPath": "content/javascript/js-m07-object-oriented-javascript/js-20-prototypes-the-prototype-chain-and-object-create.md",
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JS-21",
+      "path": "content/javascript/js-m07-object-oriented-javascript/js-21-inheritance-patterns-and-es6-classes.json",
+      "markdownPath": "content/javascript/js-m07-object-oriented-javascript/js-21-inheritance-patterns-and-es6-classes.md",
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JS-22",
+      "path": "content/javascript/js-m08-project-planning-mapty/js-22-planning-a-web-project-mapty-case-study.json",
+      "markdownPath": "content/javascript/js-m08-project-planning-mapty/js-22-planning-a-web-project-mapty-case-study.md",
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JS-23",
+      "path": "content/javascript/js-m09-asynchronous-javascript/js-23-asynchronous-javascript-and-the-web-request-model.json",
+      "markdownPath": "content/javascript/js-m09-asynchronous-javascript/js-23-asynchronous-javascript-and-the-web-request-model.md",
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JS-24",
+      "path": "content/javascript/js-m09-asynchronous-javascript/js-24-promises-and-the-fetch-api.json",
+      "markdownPath": "content/javascript/js-m09-asynchronous-javascript/js-24-promises-and-the-fetch-api.md",
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JS-25",
+      "path": "content/javascript/js-m09-asynchronous-javascript/js-25-the-event-loop-and-async-execution.json",
+      "markdownPath": "content/javascript/js-m09-asynchronous-javascript/js-25-the-event-loop-and-async-execution.md",
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JS-26",
+      "path": "content/javascript/js-m10-modern-javascript-development/js-26-modern-development-workflow-and-modules.json",
+      "markdownPath": "content/javascript/js-m10-modern-javascript-development/js-26-modern-development-workflow-and-modules.md",
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JS-27",
+      "path": "content/javascript/js-m10-modern-javascript-development/js-27-clean-modern-and-declarative-javascript.json",
+      "markdownPath": "content/javascript/js-m10-modern-javascript-development/js-27-clean-modern-and-declarative-javascript.md",
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JS-28",
+      "path": "content/javascript/js-m11-application-architecture-forkify/js-28-forkify-application-planning.json",
+      "markdownPath": "content/javascript/js-m11-application-architecture-forkify/js-28-forkify-application-planning.md",
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JS-29",
+      "path": "content/javascript/js-m11-application-architecture-forkify/js-29-mvc-and-publisher-subscriber-architecture.json",
+      "markdownPath": "content/javascript/js-m11-application-architecture-forkify/js-29-mvc-and-publisher-subscriber-architecture.md",
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JS-30",
+      "path": "content/javascript/js-m11-application-architecture-forkify/js-30-forkify-capstone-retrospective.json",
+      "markdownPath": "content/javascript/js-m11-application-architecture-forkify/js-30-forkify-capstone-retrospective.md",
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "R-01",
+      "path": "content/react/r-m01-react-orientation/r-01-course-orientation.json",
+      "markdownPath": "content/react/r-m01-react-orientation/r-01-course-orientation.md",
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "R-02",
+      "path": "content/react/r-m01-react-orientation/r-02-why-front-end-frameworks-and-react-exist.json",
+      "markdownPath": "content/react/r-m01-react-orientation/r-02-why-front-end-frameworks-and-react-exist.md",
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "R-03",
+      "path": "content/react/r-m01-react-orientation/r-03-setting-up-a-react-project.json",
+      "markdownPath": "content/react/r-m01-react-orientation/r-03-setting-up-a-react-project.md",
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "R-04",
+      "path": "content/react/r-m02-components-jsx-and-props/r-04-components-jsx-and-separation-of-concerns.json",
+      "markdownPath": "content/react/r-m02-components-jsx-and-props/r-04-components-jsx-and-separation-of-concerns.md",
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "R-05",
+      "path": "content/react/r-m02-components-jsx-and-props/r-05-props-immutability-and-one-way-data-flow.json",
+      "markdownPath": "content/react/r-m02-components-jsx-and-props/r-05-props-immutability-and-one-way-data-flow.md",
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "R-06",
+      "path": "content/react/r-m02-components-jsx-and-props/r-06-jsx-rules-and-fundamentals-recap.json",
+      "markdownPath": "content/react/r-m02-components-jsx-and-props/r-06-jsx-rules-and-fundamentals-recap.md",
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "R-07",
+      "path": "content/react/r-m03-state-and-thinking-in-react/r-07-state-fundamentals.json",
+      "markdownPath": "content/react/r-m03-state-and-thinking-in-react/r-07-state-fundamentals.md",
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "R-08",
+      "path": "content/react/r-m03-state-and-thinking-in-react/r-08-thinking-in-react-state-management-and-derived-state.json",
+      "markdownPath": "content/react/r-m03-state-and-thinking-in-react/r-08-thinking-in-react-state-management-and-derived-state.md",
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "R-09",
+      "path": "content/react/r-m04-component-design-and-reusability/r-09-reusability-with-the-children-prop.json",
+      "markdownPath": "content/react/r-m04-component-design-and-reusability/r-09-reusability-with-the-children-prop.md",
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "R-10",
+      "path": "content/react/r-m04-component-design-and-reusability/r-10-designing-component-trees.json",
+      "markdownPath": "content/react/r-m04-component-design-and-reusability/r-10-designing-component-trees.md",
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "R-11",
+      "path": "content/react/r-m04-component-design-and-reusability/r-11-composition-and-props-as-component-apis.json",
+      "markdownPath": "content/react/r-m04-component-design-and-reusability/r-11-composition-and-props-as-component-apis.md",
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "R-12",
+      "path": "content/react/r-m05-how-react-renders/r-12-components-instances-elements-and-rendering-overview.json",
+      "markdownPath": "content/react/r-m05-how-react-renders/r-12-components-instances-elements-and-rendering-overview.md",
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "R-13",
+      "path": "content/react/r-m05-how-react-renders/r-13-render-and-commit-phases.json",
+      "markdownPath": "content/react/r-m05-how-react-renders/r-13-render-and-commit-phases.md",
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "R-14",
+      "path": "content/react/r-m05-how-react-renders/r-14-diffing-keys-and-state-preservation.json",
+      "markdownPath": "content/react/r-m05-how-react-renders/r-14-diffing-keys-and-state-preservation.md",
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "R-15",
+      "path": "content/react/r-m05-how-react-renders/r-15-pure-render-logic-and-state-batching.json",
+      "markdownPath": "content/react/r-m05-how-react-renders/r-15-pure-render-logic-and-state-batching.md",
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "R-16",
+      "path": "content/react/r-m05-how-react-renders/r-16-how-events-work-in-react.json",
+      "markdownPath": "content/react/r-m05-how-react-renders/r-16-how-events-work-in-react.md",
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "R-17",
+      "path": "content/react/r-m05-how-react-renders/r-17-react-ecosystem-overview.json",
+      "markdownPath": "content/react/r-m05-how-react-renders/r-17-react-ecosystem-overview.md",
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "R-18",
+      "path": "content/react/r-m06-effects-and-hooks/r-18-component-lifecycle-and-effects.json",
+      "markdownPath": "content/react/r-m06-effects-and-hooks/r-18-component-lifecycle-and-effects.md",
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "R-19",
+      "path": "content/react/r-m06-effects-and-hooks/r-19-effect-dependencies-and-cleanup.json",
+      "markdownPath": "content/react/r-m06-effects-and-hooks/r-19-effect-dependencies-and-cleanup.md",
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "R-20",
+      "path": "content/react/r-m06-effects-and-hooks/r-20-rules-of-hooks-and-usestate-recap.json",
+      "markdownPath": "content/react/r-m06-effects-and-hooks/r-20-rules-of-hooks-and-usestate-recap.md",
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "R-21",
+      "path": "content/react/r-m06-effects-and-hooks/r-21-refs-and-custom-hooks.json",
+      "markdownPath": "content/react/r-m06-effects-and-hooks/r-21-refs-and-custom-hooks.md",
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "R-22",
+      "path": "content/react/r-m06-effects-and-hooks/r-22-class-components-vs-function-components.json",
+      "markdownPath": "content/react/r-m06-effects-and-hooks/r-22-class-components-vs-function-components.md",
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "R-23",
+      "path": "content/react/r-m07-complex-state-routing-and-styling/r-23-usereducer-and-choosing-state-tools.json",
+      "markdownPath": "content/react/r-m07-complex-state-routing-and-styling/r-23-usereducer-and-choosing-state-tools.md",
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "R-24",
+      "path": "content/react/r-m07-complex-state-routing-and-styling/r-24-routing-and-single-page-applications.json",
+      "markdownPath": "content/react/r-m07-complex-state-routing-and-styling/r-24-routing-and-single-page-applications.md",
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "R-25",
+      "path": "content/react/r-m07-complex-state-routing-and-styling/r-25-styling-options-for-react-applications.json",
+      "markdownPath": "content/react/r-m07-complex-state-routing-and-styling/r-25-styling-options-for-react-applications.md",
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "R-26",
+      "path": "content/react/r-m08-context-and-advanced-state-management/r-26-context-api-and-advanced-state-management.json",
+      "markdownPath": "content/react/r-m08-context-and-advanced-state-management/r-26-context-api-and-advanced-state-management.md",
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "R-27",
+      "path": "content/react/r-m09-performance-and-advanced-effects/r-27-wasted-renders-and-memoization.json",
+      "markdownPath": "content/react/r-m09-performance-and-advanced-effects/r-27-wasted-renders-and-memoization.md",
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "R-28",
+      "path": "content/react/r-m09-performance-and-advanced-effects/r-28-code-splitting-and-pragmatic-optimization.json",
+      "markdownPath": "content/react/r-m09-performance-and-advanced-effects/r-28-code-splitting-and-pragmatic-optimization.md",
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "R-29",
+      "path": "content/react/r-m09-performance-and-advanced-effects/r-29-useeffect-rules-and-best-practices.json",
+      "markdownPath": "content/react/r-m09-performance-and-advanced-effects/r-29-useeffect-rules-and-best-practices.md",
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "R-30",
+      "path": "content/react/r-m10-redux/r-30-redux-fundamentals.json",
+      "markdownPath": "content/react/r-m10-redux/r-30-redux-fundamentals.md",
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "R-31",
+      "path": "content/react/r-m10-redux/r-31-middleware-thunks-and-redux-toolkit.json",
+      "markdownPath": "content/react/r-m10-redux/r-31-middleware-thunks-and-redux-toolkit.md",
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "R-32",
+      "path": "content/react/r-m10-redux/r-32-redux-vs-context-api.json",
+      "markdownPath": "content/react/r-m10-redux/r-32-redux-vs-context-api.md",
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "R-33",
+      "path": "content/react/r-m11-professional-react-workflows-and-ecosystem/r-33-fast-react-pizza-application-planning.json",
+      "markdownPath": "content/react/r-m11-professional-react-workflows-and-ecosystem/r-33-fast-react-pizza-application-planning.md",
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "R-34",
+      "path": "content/react/r-m11-professional-react-workflows-and-ecosystem/r-34-tailwind-css-overview.json",
+      "markdownPath": "content/react/r-m11-professional-react-workflows-and-ecosystem/r-34-tailwind-css-overview.md",
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "R-35",
+      "path": "content/react/r-m11-professional-react-workflows-and-ecosystem/r-35-wild-oasis-application-planning.json",
+      "markdownPath": "content/react/r-m11-professional-react-workflows-and-ecosystem/r-35-wild-oasis-application-planning.md",
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "R-36",
+      "path": "content/react/r-m11-professional-react-workflows-and-ecosystem/r-36-supabase-overview.json",
+      "markdownPath": "content/react/r-m11-professional-react-workflows-and-ecosystem/r-36-supabase-overview.md",
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "R-37",
+      "path": "content/react/r-m11-professional-react-workflows-and-ecosystem/r-37-modeling-application-state-and-react-query.json",
+      "markdownPath": "content/react/r-m11-professional-react-workflows-and-ecosystem/r-37-modeling-application-state-and-react-query.md",
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "R-38",
+      "path": "content/react/r-m11-professional-react-workflows-and-ecosystem/r-38-reusability-and-advanced-react-patterns.json",
+      "markdownPath": "content/react/r-m11-professional-react-workflows-and-ecosystem/r-38-reusability-and-advanced-react-patterns.md",
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "N-01",
+      "path": "content/nextjs/n-m01-rendering-foundations/n-01-server-side-rendering-and-hydration.json",
+      "markdownPath": "content/nextjs/n-m01-rendering-foundations/n-01-server-side-rendering-and-hydration.md",
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "N-02",
+      "path": "content/nextjs/n-m01-rendering-foundations/n-02-what-next-js-is-and-why-it-exists.json",
+      "markdownPath": "content/nextjs/n-m01-rendering-foundations/n-02-what-next-js-is-and-why-it-exists.md",
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "N-03",
+      "path": "content/nextjs/n-m02-react-server-components/n-03-react-server-components-fundamentals.json",
+      "markdownPath": "content/nextjs/n-m02-react-server-components/n-03-react-server-components-fundamentals.md",
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "N-04",
+      "path": "content/nextjs/n-m02-react-server-components/n-04-rsc-internals-and-relationship-to-ssr.json",
+      "markdownPath": "content/nextjs/n-m02-react-server-components/n-04-rsc-internals-and-relationship-to-ssr.md",
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "N-05",
+      "path": "content/nextjs/n-m03-project-planning/n-05-wild-oasis-website-planning.json",
+      "markdownPath": "content/nextjs/n-m03-project-planning/n-05-wild-oasis-website-planning.md",
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "N-06",
+      "path": "content/nextjs/n-m04-streaming-rendering-strategies-and-caching/n-06-react-suspense-and-streaming.json",
+      "markdownPath": "content/nextjs/n-m04-streaming-rendering-strategies-and-caching/n-06-react-suspense-and-streaming.md",
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "N-07",
+      "path": "content/nextjs/n-m04-streaming-rendering-strategies-and-caching/n-07-static-dynamic-and-partial-pre-rendering.json",
+      "markdownPath": "content/nextjs/n-m04-streaming-rendering-strategies-and-caching/n-07-static-dynamic-and-partial-pre-rendering.md",
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "N-08",
+      "path": "content/nextjs/n-m04-streaming-rendering-strategies-and-caching/n-08-how-next-js-caches-data.json",
+      "markdownPath": "content/nextjs/n-m04-streaming-rendering-strategies-and-caching/n-08-how-next-js-caches-data.md",
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "N-09",
+      "path": "content/nextjs/n-m05-server-and-client-architecture/n-09-server-and-client-boundaries.json",
+      "markdownPath": "content/nextjs/n-m05-server-and-client-architecture/n-09-server-and-client-boundaries.md",
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "N-10",
+      "path": "content/nextjs/n-m05-server-and-client-architecture/n-10-middleware-in-next-js.json",
+      "markdownPath": "content/nextjs/n-m05-server-and-client-architecture/n-10-middleware-in-next-js.md",
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "N-11",
+      "path": "content/nextjs/n-m05-server-and-client-architecture/n-11-server-actions.json",
+      "markdownPath": "content/nextjs/n-m05-server-and-client-architecture/n-11-server-actions.md",
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    }
+  ],
+  "assessmentSets": [
+    {
+      "id": "JS-M01-REVIEW",
+      "path": "assessments/module-reviews/javascript/js-m01-review.json",
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JS-M02-REVIEW",
+      "path": "assessments/module-reviews/javascript/js-m02-review.json",
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JS-M03-REVIEW",
+      "path": "assessments/module-reviews/javascript/js-m03-review.json",
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JS-M04-REVIEW",
+      "path": "assessments/module-reviews/javascript/js-m04-review.json",
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JS-M05-REVIEW",
+      "path": "assessments/module-reviews/javascript/js-m05-review.json",
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JS-M06-REVIEW",
+      "path": "assessments/module-reviews/javascript/js-m06-review.json",
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JS-M07-REVIEW",
+      "path": "assessments/module-reviews/javascript/js-m07-review.json",
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JS-M08-REVIEW",
+      "path": "assessments/module-reviews/javascript/js-m08-review.json",
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JS-M09-REVIEW",
+      "path": "assessments/module-reviews/javascript/js-m09-review.json",
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JS-M10-REVIEW",
+      "path": "assessments/module-reviews/javascript/js-m10-review.json",
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JS-M11-REVIEW",
+      "path": "assessments/module-reviews/javascript/js-m11-review.json",
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "R-M01-REVIEW",
+      "path": "assessments/module-reviews/react/r-m01-review.json",
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "R-M02-REVIEW",
+      "path": "assessments/module-reviews/react/r-m02-review.json",
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "R-M03-REVIEW",
+      "path": "assessments/module-reviews/react/r-m03-review.json",
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "R-M04-REVIEW",
+      "path": "assessments/module-reviews/react/r-m04-review.json",
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "R-M05-REVIEW",
+      "path": "assessments/module-reviews/react/r-m05-review.json",
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "R-M06-REVIEW",
+      "path": "assessments/module-reviews/react/r-m06-review.json",
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "R-M07-REVIEW",
+      "path": "assessments/module-reviews/react/r-m07-review.json",
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "R-M08-REVIEW",
+      "path": "assessments/module-reviews/react/r-m08-review.json",
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "R-M09-REVIEW",
+      "path": "assessments/module-reviews/react/r-m09-review.json",
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "R-M10-REVIEW",
+      "path": "assessments/module-reviews/react/r-m10-review.json",
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "R-M11-REVIEW",
+      "path": "assessments/module-reviews/react/r-m11-review.json",
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "N-M01-REVIEW",
+      "path": "assessments/module-reviews/nextjs/n-m01-review.json",
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "N-M02-REVIEW",
+      "path": "assessments/module-reviews/nextjs/n-m02-review.json",
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "N-M03-REVIEW",
+      "path": "assessments/module-reviews/nextjs/n-m03-review.json",
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "N-M04-REVIEW",
+      "path": "assessments/module-reviews/nextjs/n-m04-review.json",
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "N-M05-REVIEW",
+      "path": "assessments/module-reviews/nextjs/n-m05-review.json",
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "JAVASCRIPT-CUMULATIVE-REVIEW",
+      "path": "assessments/cumulative/javascript-cumulative-review.json",
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "REACT-CUMULATIVE-REVIEW",
+      "path": "assessments/cumulative/react-cumulative-review.json",
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    },
+    {
+      "id": "NEXTJS-CUMULATIVE-REVIEW",
+      "path": "assessments/cumulative/nextjs-cumulative-review.json",
+      "version": 1,
+      "status": "draft",
+      "reviewStatus": "pending-human-review"
+    }
+  ],
+  "publicationStatus": "draft",
+  "humanApproval": {
+    "required": true,
+    "approved": false,
+    "reviewer": null,
+    "reviewedAt": null
+  },
+  "runtimeEligible": false,
+  "note": "This manifest is for import and preview only. Codex must not use it as a production publication manifest."
+}
