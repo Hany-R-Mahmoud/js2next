@@ -5,9 +5,10 @@ import { lessons } from '@/data/lessons';
 import { challengeSlugs, lessonSlugs, middleware } from './middleware';
 
 describe('route and content parity', () => {
-  it('routes the default entrypoint to the Release 1 curriculum', () => {
+  it('keeps the landing page as the default entrypoint', () => {
     const response = middleware(new NextRequest('http://localhost/'));
-    expect(response.headers.get('location')).toBe('http://localhost/tracks');
+    expect(response.headers.get('location')).toBeNull();
+    expect(response.headers.get('x-middleware-next')).toBe('1');
   });
 
   it('keeps middleware route identity aligned with published content', () => {

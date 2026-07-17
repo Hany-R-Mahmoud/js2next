@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useLearnerStore } from '@/stores/learner';
@@ -78,12 +78,12 @@ export default function HomePage() {
       setProfile({ name: profile.name || 'Developer' });
       completeDiagnostic();
     }
-    router.push('/home');
+    router.push('/tracks');
   };
 
   const handleLandingAction = () => {
     if (profile.diagnosticComplete) {
-      router.push('/home');
+      router.push('/tracks');
       return;
     }
     setStep('start');
@@ -94,7 +94,7 @@ export default function HomePage() {
       setProfile({ name: name || 'Developer' });
       completeDiagnostic();
     }
-    router.push('/home');
+    router.push('/tracks');
   };
 
   if (step === 'done') {
@@ -226,12 +226,41 @@ function LandingPage({
   onPrimaryAction: () => void;
   onSkip: () => void;
 }) {
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => setIsScrolled(window.scrollY > 16);
+    handleScroll();
+    window.addEventListener('scroll', handleScroll, { passive: true });
+
+    const sections = document.querySelectorAll<HTMLElement>('[data-landing-reveal]');
+    let observer: IntersectionObserver | undefined;
+    if ('IntersectionObserver' in window) {
+      observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('landing-reveal-visible');
+            observer?.unobserve(entry.target);
+          }
+        });
+      }, { rootMargin: '0px 0px -12% 0px', threshold: 0.12 });
+      sections.forEach((section) => observer?.observe(section));
+    } else {
+      sections.forEach((section) => section.classList.add('landing-reveal-visible'));
+    }
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      observer?.disconnect();
+    };
+  }, []);
+
   return (
-    <div className="landing-canvas min-h-[100dvh] overflow-hidden text-ink">
+    <div className="landing-canvas min-h-[100dvh] overflow-x-clip text-ink">
       <div className="landing-ambient landing-ambient-blue" aria-hidden="true" />
       <div className="landing-ambient landing-ambient-red" aria-hidden="true" />
 
-      <header className="relative z-10 mx-auto flex max-w-6xl items-center justify-between px-4 py-5 sm:px-6 lg:px-8">
+      <header className={`landing-header sticky top-0 z-50 mx-auto flex max-w-6xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8 ${isScrolled ? 'landing-header-scrolled' : ''}`}>
         <Link href="/" className="inline-flex min-h-11 items-center gap-2 py-1 text-base font-bold tracking-tight text-ink" aria-label="JS2Next home">
           <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-vermillion text-sm text-white shadow-[0_2px_8px_rgb(var(--color-peloton-red)/.3)]">JS</span>
           <span>JS2Next</span>
@@ -307,7 +336,7 @@ function LandingPage({
           </div>
         </section>
 
-        <section id="journey" className="border-t border-slate-secondary/80 bg-midnight/35">
+        <section id="journey" data-landing-reveal className="landing-reveal border-t border-slate-secondary/80 bg-midnight/35">
           <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6 lg:px-8 lg:py-24">
             <div className="max-w-2xl">
               <p className="text-sm font-semibold text-teal">The journey</p>
@@ -327,7 +356,7 @@ function LandingPage({
           </div>
         </section>
 
-        <section id="loop" className="mx-auto max-w-6xl px-4 py-20 sm:px-6 lg:px-8 lg:py-24">
+        <section id="loop" data-landing-reveal className="landing-reveal mx-auto max-w-6xl px-4 py-20 sm:px-6 lg:px-8 lg:py-24">
           <div className="flex flex-col justify-between gap-5 md:flex-row md:items-end">
             <div className="max-w-2xl">
               <p className="text-sm font-semibold text-vermillion">The learning loop</p>
@@ -346,7 +375,7 @@ function LandingPage({
           </div>
         </section>
 
-        <section id="topics" className="border-y border-slate-secondary/80 bg-slate/45">
+        <section id="topics" data-landing-reveal className="landing-reveal border-y border-slate-secondary/80 bg-slate/45">
           <div className="mx-auto grid max-w-6xl gap-10 px-4 py-16 sm:px-6 md:grid-cols-[.8fr_1.2fr] md:items-center lg:px-8 lg:py-20">
             <div>
               <p className="text-sm font-semibold text-lime-badge">Inside the path</p>
@@ -360,7 +389,7 @@ function LandingPage({
           </div>
         </section>
 
-        <section className="mx-auto max-w-6xl px-4 py-20 sm:px-6 lg:px-8 lg:py-24">
+        <section data-landing-reveal className="landing-reveal mx-auto max-w-6xl px-4 py-20 sm:px-6 lg:px-8 lg:py-24">
           <div className="landing-cta relative overflow-hidden rounded-xl border border-vermillion/35 bg-vermillion/10 px-6 py-10 sm:px-10 sm:py-12">
             <div className="relative z-10 max-w-2xl">
               <h2 className="landing-heading text-3xl font-bold tracking-tight text-ink sm:text-4xl">Start with the part you want to understand next.</h2>

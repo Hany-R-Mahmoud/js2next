@@ -1,7 +1,8 @@
 const baseUrl = process.env.RELEASE_1_BASE_URL ?? 'http://localhost:3000';
 
 const routes = [
-  ['/', '/tracks', 'Choose your track'],
+  ['/', '/', 'JS2Next'],
+  ['/tracks', '/tracks', 'Choose your track'],
   ['/tracks/javascript', '/tracks/javascript', 'JavaScript'],
   ['/learn/javascript/orientation-and-foundations', '/learn/javascript/orientation-and-foundations', 'Orientation and Foundations'],
   ['/learn/javascript/orientation-and-foundations/course-orientation', '/learn/javascript/orientation-and-foundations/course-orientation', 'Course Orientation'],
