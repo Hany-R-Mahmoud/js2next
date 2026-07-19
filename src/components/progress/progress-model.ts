@@ -19,6 +19,7 @@ export type CanonicalTopic = {
 
 export type CanonicalModuleSummary = {
   readonly id: string;
+  readonly slug: string;
   readonly title: string;
   readonly requiredTopicCount: number;
   readonly masteredTopicCount: number;
@@ -53,6 +54,7 @@ export function buildCanonicalProgress(state: ProgressState): CanonicalProgress 
       const completionPercent = percentage(masteredTopicCount, requiredTopics.length);
       return {
         id: module.id,
+        slug: module.slug,
         title: module.title,
         requiredTopicCount: requiredTopics.length,
         masteredTopicCount,
@@ -75,11 +77,11 @@ export function buildCanonicalProgress(state: ProgressState): CanonicalProgress 
     } satisfies CanonicalTrackSummary;
   });
 
-  const topics = curriculum.tracks.flatMap((track) => track.modules.flatMap((module) => module.topics.map((topic) => toCanonicalTopic(track.id, track.title, module.id, module.title, topic, state))));
+  const topics = curriculum.tracks.flatMap((track) => track.modules.flatMap((module) => module.topics.map((topic) => toCanonicalTopic(track.id, track.title, module.id, module.slug, module.title, topic, state))));
   return { topics, topicMasteredCount: topics.filter((topic) => topic.masteryPercent >= 80).length, tracks };
 }
 
-function toCanonicalTopic(trackId: TrackId, trackTitle: string, moduleId: string, moduleTitle: string, topic: Topic, state: ProgressState): CanonicalTopic {
+function toCanonicalTopic(trackId: TrackId, trackTitle: string, moduleId: string, moduleSlug: string, moduleTitle: string, topic: Topic, state: ProgressState): CanonicalTopic {
   return {
     id: topic.id,
     title: topic.title,
@@ -90,7 +92,7 @@ function toCanonicalTopic(trackId: TrackId, trackTitle: string, moduleId: string
     required: topic.required,
     masteryPercent: percentage(state.topicProgress[topic.id]?.masteryPercent ?? 0, 100),
     status: state.topicProgress[topic.id]?.status ?? 'not-started',
-    href: `/learn/${trackId}/${moduleId}/${topic.slug}`,
+    href: `/learn/${trackId}/${moduleSlug}/${topic.slug}`,
   };
 }
 

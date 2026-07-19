@@ -17,7 +17,7 @@ An energized learning studio: midnight canvas, lifted slate surfaces, crisp syst
 | App background | `--color-midnight-ink` / `midnight` | `#121212` | Root canvas |
 | Card surface | `--color-slate-900` / `slate` | `#1F1F1F` | Learning cards and panels |
 | Secondary surface | `--color-slate-700` / `slate-secondary` | `#2E2E2E` | Controls, tags, secondary navigation |
-| Primary action | `--color-peloton-red` / `vermillion` | `#E63946` | CTAs, active navigation, recovery actions |
+| Primary action | `--color-peloton-red` / `vermillion` | `#EE4A5A` | CTAs, active navigation, recovery actions |
 | Progress/link | `--color-signal-blue` / `teal` | `#007AFF` | Progress, links, focus, informative states |
 | Achievement | `--color-lime-badge` / `lime-badge` | `#C7FF00` | Mastery and earned-capability badges |
 | Primary text | `--color-pure-white` / `ink` | `#FFFFFF` | Headings and body text |
@@ -82,7 +82,7 @@ Conceptual questions use a labelled choice group with four 44px-minimum choice c
 
 ### Learning stage tabs
 
-Topic journeys use a responsive stage rail with five named states: Overview, Learn, Apply, Review, and Reflect. The active state uses blue, locked states remain visible but disabled, and each tab includes a short description so the control is understandable without relying on color. The rail uses one column on mobile, two on tablet, and five on wide screens, while keeping 44px keyboard/touch targets.
+Topic and module journeys use a responsive stage rail with five named states: Overview, Learn, Practice, Check, and Reflect. The active state uses blue, completed and locked states remain visible with text status, and locked stages explain their unlock condition. Each tab includes a short description so the control is understandable without relying on color. The rail uses one column on mobile, two through desktop, and five on wide screens, while keeping 44px keyboard/touch targets.
 
 ### Surface headers
 

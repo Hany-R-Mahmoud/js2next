@@ -17,14 +17,14 @@ export function CurriculumNav({ track, module, topic }: CurriculumNavProps) {
   const lastIndex = items.length - 1;
 
   return (
-    <nav aria-label="Curriculum navigation" className="mb-6 overflow-x-auto">
-      <ol className="flex min-w-max items-center gap-2 text-sm text-ink-muted">
-        {items.map((item, index) => (
-          <li key={item.href} className="flex items-center gap-2">
-            {index > 0 ? <span aria-hidden="true">/</span> : null}
-            {index === lastIndex ? <span aria-current="page" className="font-medium text-ink">{item.label}</span> : <Link className="underline-offset-4 hover:text-teal hover:underline" href={item.href}>{item.label}</Link>}
-          </li>
-        ))}
+    <nav aria-label="Curriculum navigation" className="mb-6 min-w-0">
+      <ol className="flex min-w-0 flex-wrap items-center gap-x-2 gap-y-1 text-sm text-ink-muted">
+          {items.map((item, index) => (
+            <li key={item.href} className="flex min-w-0 items-center gap-2">
+              {index === lastIndex ? <span aria-current="page" className="inline-flex min-h-11 min-w-0 max-w-full items-center break-words px-0.5 font-medium text-ink">{item.label}</span> : <Link className="inline-flex min-h-11 min-w-0 max-w-full items-center break-words px-0.5 underline-offset-4 hover:text-teal hover:underline" href={item.href}>{item.label}</Link>}
+              {index < lastIndex ? <span aria-hidden="true" className="shrink-0">/</span> : null}
+            </li>
+          ))}
       </ol>
     </nav>
   );

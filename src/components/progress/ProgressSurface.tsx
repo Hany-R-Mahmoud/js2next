@@ -1,30 +1,16 @@
 'use client';
 
 import Link from 'next/link';
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import type { ChangeEvent } from 'react';
-import { createInitialProgress } from '@/domain/progression/core';
-import type { ProgressState } from '@/domain/progression/types';
-import {
-  createLocalProgressAdapter,
-  exportProgress,
-  loadProgress,
-  parseProgress,
-  saveProgress,
-} from '@/infrastructure/local-progress';
+import { exportProgress, parseProgress } from '@/infrastructure/local-progress';
 import {
   buildCanonicalProgress,
-  progressStorageKey,
   type CanonicalModuleSummary,
   type CanonicalTopic,
   type CanonicalTrackSummary,
 } from './progress-model';
-
-const EMPTY_PROGRESS = createInitialProgress(
-  'local-default',
-  'release-1-draft',
-  '1970-01-01T00:00:00.000Z',
-);
+import { useProgressState, writeProgress } from './useProgressState';
 
 type ImportFailureReason = Extract<ReturnType<typeof parseProgress>, { readonly ok: false }>['reason'];
 
@@ -35,16 +21,9 @@ const IMPORT_FAILURE_MESSAGES: Readonly<Record<ImportFailureReason, string>> = {
 };
 
 export function ProgressSurface() {
-  const [state, setState] = useState<ProgressState>(EMPTY_PROGRESS);
-  const [hydrated, setHydrated] = useState(false);
+  const { state, hydrated } = useProgressState();
   const [message, setMessage] = useState('');
   const input = useRef<HTMLInputElement>(null);
-
-  useEffect(() => {
-    const adapter = createLocalProgressAdapter(window.localStorage, progressStorageKey);
-    setState(loadProgress(adapter, EMPTY_PROGRESS));
-    setHydrated(true);
-  }, []);
 
   if (!hydrated) {
     return <ProgressLoading />;
@@ -77,9 +56,7 @@ export function ProgressSurface() {
         return;
       }
 
-      const adapter = createLocalProgressAdapter(window.localStorage, progressStorageKey);
-      saveProgress(adapter, result.state);
-      setState(result.state);
+      writeProgress(result.state);
       setMessage(`Progress imported. Schema ${result.state.schemaVersion} is now active.`);
     } catch (error) {
       setMessage(
@@ -228,7 +205,7 @@ function ModuleCard({ module }: { readonly module: CanonicalModuleSummary }) {
       <progress className="mt-3 h-2 w-full accent-teal" max={100} value={module.completionPercent} aria-label={`${module.title} topic mastery`} />
       <div className="mt-3 flex flex-wrap items-center justify-between gap-2 text-sm">
         <span className="text-ink-muted">Module review: {module.reviewPercent}%</span>
-        <Link className="font-semibold text-teal hover:text-teal-dark" href={`/assessments/module/${module.id}`}>Review module</Link>
+        <Link className="inline-flex min-h-11 items-center font-semibold text-teal hover:text-teal-dark" href={`/assessments/module/${module.id}`}>Review module</Link>
       </div>
       <p className={module.complete ? 'mt-2 text-sm font-semibold text-success' : 'mt-2 text-sm text-ink-muted'}>
         {module.complete ? 'Complete' : 'Not complete'}

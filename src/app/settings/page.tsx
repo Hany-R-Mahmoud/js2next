@@ -119,29 +119,35 @@ export default function SettingsPage() {
         <h2 className="text-lg font-semibold text-ink">Accessibility</h2>
 
         <div className="flex items-center justify-between">
-          <span id="reduced-motion-label" className="text-ink">Reduced Motion</span>
-          <button
-            onClick={toggleReducedMotion}
-            role="switch"
-            aria-checked={reducedMotion}
-            aria-labelledby="reduced-motion-label"
-            className={`relative w-11 min-h-11 rounded-full transition-colors ${reducedMotion ? 'bg-teal' : 'bg-paper-warm'}`}
-          >
-            <span className={`absolute top-0.5 left-0.5 w-5 h-5 rounded-full bg-white shadow transition-transform ${reducedMotion ? 'translate-x-5' : ''}`} />
-          </button>
+          <span id="reduced-motion-label" className="text-ink">Reduced motion</span>
+          <div className="flex items-center gap-3">
+            <span className="text-xs font-medium text-ink-muted">{reducedMotion ? 'On' : 'Off'}</span>
+            <button
+              onClick={toggleReducedMotion}
+              role="switch"
+              aria-checked={reducedMotion}
+              aria-labelledby="reduced-motion-label"
+              className={`relative w-11 min-h-11 rounded-full transition-colors ${reducedMotion ? 'bg-teal' : 'bg-paper-warm'}`}
+            >
+              <span className={`absolute top-0.5 left-0.5 w-5 h-5 rounded-full bg-white shadow transition-transform ${reducedMotion ? 'translate-x-5' : ''}`} />
+            </button>
+          </div>
         </div>
 
         <div className="flex items-center justify-between">
-          <span id="high-contrast-label" className="text-ink">High Contrast</span>
-          <button
-            onClick={toggleHighContrast}
-            role="switch"
-            aria-checked={highContrast}
-            aria-labelledby="high-contrast-label"
-            className={`relative w-11 min-h-11 rounded-full transition-colors ${highContrast ? 'bg-teal' : 'bg-paper-warm'}`}
-          >
-            <span className={`absolute top-0.5 left-0.5 w-5 h-5 rounded-full bg-white shadow transition-transform ${highContrast ? 'translate-x-5' : ''}`} />
-          </button>
+          <span id="high-contrast-label" className="text-ink">High contrast</span>
+          <div className="flex items-center gap-3">
+            <span className="text-xs font-medium text-ink-muted">{highContrast ? 'On' : 'Off'}</span>
+            <button
+              onClick={toggleHighContrast}
+              role="switch"
+              aria-checked={highContrast}
+              aria-labelledby="high-contrast-label"
+              className={`relative w-11 min-h-11 rounded-full transition-colors ${highContrast ? 'bg-teal' : 'bg-paper-warm'}`}
+            >
+              <span className={`absolute top-0.5 left-0.5 w-5 h-5 rounded-full bg-white shadow transition-transform ${highContrast ? 'translate-x-5' : ''}`} />
+            </button>
+          </div>
         </div>
 
         <div>

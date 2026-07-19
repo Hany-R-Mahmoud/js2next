@@ -2,6 +2,7 @@ import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 
 const progressModelSource = readFileSync(new URL('./progress-model.ts', import.meta.url), 'utf8');
+const homeSource = readFileSync(new URL('../../app/home/page.tsx', import.meta.url), 'utf8');
 const curriculumIndexSource = readFileSync(new URL('../../domain/curriculum/index.ts', import.meta.url), 'utf8');
 const curriculumLoaderSource = readFileSync(new URL('../../domain/curriculum/loader.ts', import.meta.url), 'utf8');
 const curriculumTypesSource = readFileSync(new URL('../../domain/curriculum/types.ts', import.meta.url), 'utf8');
@@ -18,5 +19,11 @@ describe('progress client import boundary', () => {
   it('keeps the curriculum modules reachable by progress free of filesystem imports', () => {
     expect(clientSafeCurriculumSources.join('\n')).not.toMatch(/node:(?:fs|path)/);
     expect(curriculumIndexSource).not.toContain("from './packet.ts'");
+  });
+
+  it('uses canonical progress for the dashboard summary', () => {
+    expect(homeSource).toContain('buildCanonicalProgress');
+    expect(homeSource).not.toContain('topicBundles.length');
+    expect(homeSource).not.toContain('canonicalProfile.masteryRecords');
   });
 });

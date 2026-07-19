@@ -1,15 +1,13 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { addObjectiveReview, createInitialProgress, createTopicProgress, recordReviewAttempt, recordTopicQuiz } from '@/domain/progression/core';
+import { addObjectiveReview, createTopicProgress, recordReviewAttempt, recordTopicQuiz } from '@/domain/progression/core';
 import type { AssessmentResult, Question } from '@/domain/assessment';
 import { createAttempt as createAssessmentAttempt, evaluateAssessment } from '@/domain/assessment';
-import type { AssessmentAttempt as ProgressAttempt, ProgressState } from '@/domain/progression/types';
-import { createLocalProgressAdapter, loadProgress, saveProgress } from '@/infrastructure/local-progress';
+import type { AssessmentAttempt as ProgressAttempt } from '@/domain/progression/types';
+import { readProgress, updateProgress } from '@/components/progress/useProgressState';
 import { AssessmentView } from './assessment-view';
 import type { AssessmentPageData } from './types';
-
-const STORAGE_KEY = 'js2next.local-progress';
 
 type AssessmentClientProps = { readonly data: AssessmentPageData; readonly backHref: string };
 
@@ -30,16 +28,6 @@ function shuffled<T>(values: readonly T[]): readonly T[] {
   return result;
 }
 
-function fallbackProgress(): ProgressState {
-  return createInitialProgress('local-default', 'release-1-draft', now());
-}
-
-function readProgress(): { readonly state: ProgressState; readonly save: (state: ProgressState) => void } {
-  const fallback = fallbackProgress();
-  const adapter = createLocalProgressAdapter(window.localStorage, STORAGE_KEY);
-  return { state: loadProgress(adapter, fallback), save: (state) => saveProgress(adapter, state) };
-}
-
 function toProgressAttempt(data: AssessmentPageData, result: AssessmentResult, completedAt: string): ProgressAttempt {
   const answers = result.questionResults.map((item) => {
     const question = data.questions.find((candidate) => candidate.id === item.questionId);
@@ -51,18 +39,19 @@ function toProgressAttempt(data: AssessmentPageData, result: AssessmentResult, c
 function persistAttempt(data: AssessmentPageData, result: AssessmentResult): void {
   const completedAt = now();
   const stored = toProgressAttempt(data, result, completedAt);
-  const current = readProgress();
-  let next = data.assessment.kind === 'topic-quiz'
-    ? recordTopicQuiz(current.state, current.state.topicProgress[data.questions[0]?.topicId ?? data.assessment.id] ?? createTopicProgress(data.questions[0]?.topicId ?? data.assessment.id, data.assessment.version, []), stored, result.missedObjectiveIds, null)
-    : recordReviewAttempt(current.state, stored);
-  const missedQuestions = result.questionResults.filter((questionResult) => !questionResult.correct);
-  for (const resultItem of missedQuestions) {
-    const question = data.questions.find((candidate) => candidate.id === resultItem.questionId);
-    if (question !== undefined) for (const objectiveId of question.objectiveIds) next = addObjectiveReview(next, question.topicId, objectiveId, completedAt, 'incorrect-answer', 0, completedAt);
-  }
-  const immutableAttempt = createAssessmentAttempt({ attemptId: stored.attemptId, assessment: data.assessment, result, submittedAt: completedAt });
-  void immutableAttempt;
-  current.save(next);
+  updateProgress((current) => {
+    let next = data.assessment.kind === 'topic-quiz'
+      ? recordTopicQuiz(current, current.topicProgress[data.questions[0]?.topicId ?? data.assessment.id] ?? createTopicProgress(data.questions[0]?.topicId ?? data.assessment.id, data.assessment.version, []), stored, result.missedObjectiveIds, null)
+      : recordReviewAttempt(current, stored);
+    const missedQuestions = result.questionResults.filter((questionResult) => !questionResult.correct);
+    for (const resultItem of missedQuestions) {
+      const question = data.questions.find((candidate) => candidate.id === resultItem.questionId);
+      if (question !== undefined) for (const objectiveId of question.objectiveIds) next = addObjectiveReview(next, question.topicId, objectiveId, completedAt, 'incorrect-answer', 0, completedAt);
+    }
+    const immutableAttempt = createAssessmentAttempt({ attemptId: stored.attemptId, assessment: data.assessment, result, submittedAt: completedAt });
+    void immutableAttempt;
+    return next;
+  });
 }
 
 export function AssessmentClient({ data, backHref }: AssessmentClientProps) {
@@ -73,7 +62,7 @@ export function AssessmentClient({ data, backHref }: AssessmentClientProps) {
 
   useEffect(() => {
     setQuestions(shuffled(data.questions));
-    const state = readProgress().state;
+    const state = readProgress();
     setAttempts(state.assessmentAttempts.filter((attempt) => attempt.assessmentId === data.assessment.id).length);
   }, [data]);
 

@@ -5,6 +5,8 @@ export interface StageTabItem<T extends string> {
   readonly label: string;
   readonly description: string;
   readonly disabled?: boolean;
+  readonly status?: 'current' | 'done' | 'available' | 'locked';
+  readonly lockReason?: string;
 }
 
 interface StageTabsProps<T extends string> {
@@ -19,17 +21,13 @@ export default function StageTabs<T extends string>({ items, activeId, onChange,
   const buttonRefs = useRef<Array<HTMLButtonElement | null>>([]);
   const [orientation, setOrientation] = useState<'horizontal' | 'vertical'>('vertical');
   const [columnCount, setColumnCount] = useState(1);
-  const enabledIndexes = items.flatMap((item, index) => item.disabled ? [] : [index]);
+  const enabledIndexes = items.flatMap((item, index) => item.disabled || item.status === 'locked' ? [] : [index]);
 
   useEffect(() => {
-    const mediaQueries = [
-      window.matchMedia('(min-width: 1280px)'),
-      window.matchMedia('(min-width: 1024px)'),
-      window.matchMedia('(min-width: 640px)'),
-    ];
+    const mediaQueries = [window.matchMedia('(min-width: 1280px)'), window.matchMedia('(min-width: 640px)')];
     const updateLayout = () => {
       const wideColumns = mediaQueries.findIndex((media) => media.matches);
-      const nextColumnCount = wideColumns === 0 ? 5 : wideColumns === 1 ? 3 : wideColumns === 2 ? 2 : 1;
+      const nextColumnCount = wideColumns === 0 ? 5 : wideColumns === 1 ? 2 : 1;
       setColumnCount(nextColumnCount);
       setOrientation(nextColumnCount > 2 ? 'horizontal' : 'vertical');
     };
@@ -68,17 +66,22 @@ export default function StageTabs<T extends string>({ items, activeId, onChange,
 
   return (
     <div className="stage-tabs" role="tablist" aria-label={ariaLabel} aria-orientation={orientation}>
-      {items.map((item, index) => (
+      {items.map((item, index) => {
+        const locked = item.disabled || item.status === 'locked';
+        const statusLabel = locked ? 'Locked' : activeId === item.id ? 'Current' : item.status === 'done' ? 'Done' : 'Available';
+        const lockReasonId = `stage-tab-reason-${item.id}`;
+        return (
         <button
           key={item.id}
           id={`stage-tab-${item.id}`}
           type="button"
           role="tab"
           aria-selected={activeId === item.id}
-          aria-controls={activeId === item.id ? `stage-panel-${item.id}` : undefined}
-          tabIndex={activeId === item.id ? 0 : -1}
-          disabled={item.disabled}
-          onClick={() => onChange(item.id)}
+          aria-controls={`stage-panel-${item.id}`}
+          aria-describedby={locked ? lockReasonId : undefined}
+          tabIndex={activeId === item.id && !locked ? 0 : -1}
+          disabled={locked}
+          onClick={() => { if (!locked) onChange(item.id); }}
           onKeyDown={(event) => handleKeyDown(event, index)}
           ref={(element) => { buttonRefs.current[index] = element; }}
           className={`stage-tab ${activeId === item.id ? 'stage-tab-active' : ''}`}
@@ -87,10 +90,13 @@ export default function StageTabs<T extends string>({ items, activeId, onChange,
           <span className="stage-tab-copy">
             <span className="stage-tab-label">{item.label}</span>
             <span className="stage-tab-description">{item.description}</span>
+            <span className="stage-tab-status">{statusLabel}</span>
+            {locked && <span id={lockReasonId} className="stage-tab-lock-reason">{item.lockReason ?? 'Complete the previous stage first'}</span>}
           </span>
           {renderSuffix?.(item)}
         </button>
-      ))}
+        );
+      })}
     </div>
   );
 }

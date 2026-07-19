@@ -49,7 +49,7 @@ describe('adaptive content recommendation', () => {
       topicId: 'due-topic',
       reason: 'due-review',
       priority: 3,
-      why: 'Review due-topic; it is due now.',
+      why: 'Review Due topic; it is due now.',
     });
   });
 

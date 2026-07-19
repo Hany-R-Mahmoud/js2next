@@ -64,7 +64,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
                 {canonicalProfile.level.charAt(0).toUpperCase() + canonicalProfile.level.slice(1)} path
               </p>
             )}
-            <p className="mt-2 text-sm font-semibold text-lime-badge">Streak · {canonicalProfile.streakDays} day{canonicalProfile.streakDays === 1 ? '' : 's'}</p>
+            <p className={`mt-2 text-sm font-semibold ${canonicalProfile.streakDays > 0 ? 'text-lime-badge' : 'text-ink-muted'}`}>Streak · {canonicalProfile.streakDays} day{canonicalProfile.streakDays === 1 ? '' : 's'}</p>
           </div>
 
           <nav className="flex flex-1 flex-col space-y-1 p-4" role="navigation" aria-label="Main navigation">
@@ -87,7 +87,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
           <div className="p-4 border-t border-slate-secondary">
             <Link
               href="/home"
-              className="text-sm text-ash hover:text-white transition-colors"
+              className="inline-flex min-h-11 items-center text-sm text-ash transition-colors hover:text-white"
             >
               Back to Home
             </Link>
@@ -95,14 +95,14 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
         </aside>
 
         <div className="relative z-40 flex h-14 shrink-0 items-center justify-center bg-midnight px-4 lg:hidden">
-          <p className="text-sm font-semibold text-lime-badge">
+          <p className={`text-sm font-semibold ${canonicalProfile.streakDays > 0 ? 'text-lime-badge' : 'text-ink-muted'}`}>
             Streak · {canonicalProfile.streakDays} day{canonicalProfile.streakDays === 1 ? '' : 's'}
           </p>
         </div>
 
-        <main id="main-content" className="app-main-scroll mx-auto min-h-0 w-full max-w-5xl flex-1 overflow-y-auto px-4 pb-6 pt-4 sm:px-6 lg:p-8">
+        <div id="main-content" className="app-main-scroll mx-auto min-h-0 w-full max-w-5xl flex-1 overflow-y-auto px-4 pb-6 pt-4 sm:px-6 lg:p-8">
           {children}
-        </main>
+        </div>
 
         <nav className="mobile-bottom-nav relative z-50 flex shrink-0 items-center gap-1 border-t border-slate-secondary bg-midnight px-2 pt-2 lg:hidden" aria-label="Primary navigation">
           {mobilePrimaryNavigation.map((item) => {

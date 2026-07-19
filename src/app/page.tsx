@@ -260,6 +260,13 @@ function LandingPage({
       <div className="landing-ambient landing-ambient-blue" aria-hidden="true" />
       <div className="landing-ambient landing-ambient-red" aria-hidden="true" />
 
+      <a
+        href="#landing-content"
+        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-cloud focus:px-4 focus:py-2 focus:text-black"
+      >
+        Skip to content
+      </a>
+
       <header className={`landing-header sticky top-0 z-50 mx-auto flex max-w-6xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8 ${isScrolled ? 'landing-header-scrolled' : ''}`}>
         <Link href="/" className="inline-flex min-h-11 items-center gap-2 py-1 text-base font-bold tracking-tight text-ink" aria-label="JS2Next home">
           <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-vermillion text-sm text-white shadow-[0_2px_8px_rgb(var(--color-peloton-red)/.3)]">JS</span>
@@ -275,7 +282,7 @@ function LandingPage({
         </button>
       </header>
 
-      <main className="relative z-10">
+      <main id="landing-content" className="relative z-10">
         <section className="mx-auto grid max-w-6xl gap-12 px-4 pb-20 pt-16 sm:px-6 md:pt-24 lg:grid-cols-[1.05fr_.95fr] lg:items-center lg:gap-16 lg:px-8 lg:pb-28">
           <div className="landing-enter">
             <p className="mb-5 inline-flex items-center gap-2 rounded-full border border-slate-secondary bg-slate/70 px-3 py-1.5 text-xs font-semibold text-ink-light">

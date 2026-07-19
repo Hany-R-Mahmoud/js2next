@@ -1,27 +1,12 @@
 'use client';
 
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
-import { createInitialProgress } from '@/domain/progression/core';
-import type { ProgressState, ReviewItem } from '@/domain/progression/types';
-import { createLocalProgressAdapter, loadProgress } from '@/infrastructure/local-progress';
-import { buildCanonicalProgress, progressStorageKey, type CanonicalTopic } from './progress-model';
-
-const EMPTY_PROGRESS = createInitialProgress(
-  'local-default',
-  'release-1-draft',
-  '1970-01-01T00:00:00.000Z',
-);
+import { useProgressState } from './useProgressState';
+import type { ReviewItem } from '@/domain/progression/types';
+import { buildCanonicalProgress, type CanonicalTopic } from './progress-model';
 
 export function ReviewSurface() {
-  const [state, setState] = useState<ProgressState>(EMPTY_PROGRESS);
-  const [hydrated, setHydrated] = useState(false);
-
-  useEffect(() => {
-    const adapter = createLocalProgressAdapter(window.localStorage, progressStorageKey);
-    setState(loadProgress(adapter, EMPTY_PROGRESS));
-    setHydrated(true);
-  }, []);
+  const { state, hydrated } = useProgressState();
 
   if (!hydrated) {
     return (
@@ -47,9 +32,12 @@ export function ReviewSurface() {
 
       {state.reviewQueue.length === 0 ? (
         <section className="card space-y-4 p-6" aria-labelledby="empty-review-title">
-          <h2 id="empty-review-title" className="text-xl font-semibold text-ink">Nothing queued yet</h2>
-          <p className="text-ink-light">A missed objective creates a review item. Complete an assessment to build a focused queue.</p>
-          <Link className="btn-primary inline-block" href="/progress">View progress</Link>
+          <h2 id="empty-review-title" className="text-xl font-semibold text-ink">No review due yet</h2>
+          <p className="text-ink-light">Review appears after an assessment surfaces something worth another look. Keep learning, then return here when your queue is ready.</p>
+          <div className="flex flex-wrap gap-3">
+            <Link className="btn-primary inline-block" href="/tracks">Open topic map</Link>
+            <Link className="btn-secondary inline-block" href="/progress">View progress</Link>
+          </div>
         </section>
       ) : (
         <section className="space-y-3" aria-labelledby="queue-title">

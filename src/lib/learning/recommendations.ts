@@ -30,7 +30,7 @@ export function recommendNextContent(
       topicId: due.topicId,
       reason: 'due-review',
       priority: 3,
-      why: `Review ${due.topicId}; it is due now.`,
+      why: `Review ${due.title}; it is due now.`,
     };
   }
 
@@ -45,7 +45,7 @@ export function recommendNextContent(
       topicId: weak.lesson.topicId,
       reason: 'weak-topic',
       priority: 2,
-      why: `Strengthen ${weak.lesson.topicId}; mastery is ${Math.round(weak.mastery * 100)}%.`,
+      why: `Strengthen ${weak.lesson.title}; mastery is ${Math.round(weak.mastery * 100)}%.`,
     };
   }
 
@@ -57,7 +57,7 @@ export function recommendNextContent(
       topicId: next.topicId,
       reason: 'new-topic',
       priority: 1,
-      why: `Start ${next.topicId}; it has no recorded mastery.`,
+      why: `Start ${next.title}; it has no recorded mastery.`,
     }
     : null;
 }
