@@ -13,26 +13,26 @@ export const topic: TopicModule = {
       "expansion-performance-diagnosis"
     ],
     "learningObjectives": [
-      "Turn a production symptom into a bounded evidence loop",
-      "Use Next.js instrumentation seams without assuming a vendor integration exists",
-      "Keep logs and traces free of secrets and unnecessary personal data",
-      "Define mitigation, verification, and rollback signals for an incident"
+      "Turn a user-visible production symptom into a scoped incident and testable hypothesis",
+      "Use Next.js 15 register and onRequestError as observability integration seams",
+      "Collect allowlisted correlation, route, deployment, timing, and error context without secrets",
+      "Choose reversible mitigation, verification, escalation, and rollback from defined signals"
     ],
-    "whyMatters": "A production failure needs evidence before a fix. Instrumentation can expose the request and error context, but only a disciplined triage loop connects that signal to a safe mitigation and recovery decision.",
-    "estimatedMinutes": 30,
+    "whyMatters": "During an incident, missing context encourages guesses while excessive logging can expose credentials or personal data. A calm triage loop collects the smallest safe evidence needed to protect users, test a hypothesis, and verify a reversible recovery decision.",
+    "estimatedMinutes": 44,
     "sections": [
       {
         "id": "expansion-instrumentation-triage-model",
         "type": "concept",
         "title": "Signal to decision",
-        "content": "Start with impact and a safe correlation identifier, collect route, deployment, request, and error evidence, test the leading hypothesis, then record mitigation, verification, owner, and rollback trigger."
+        "content": "Begin with impact: which users, operation, route, region, and deployment are affected, and when did it start? Assign a safe correlation id so browser reports and server events can refer to the same attempt without logging the request body or credentials. Compare failing and healthy requests, then write one leading hypothesis plus evidence that could disprove it.\n\nNext.js `instrumentation.ts` is an integration point. `register` runs when a server instance starts, and `onRequestError` can receive captured server errors with request and route context. Those hooks do not choose a telemetry vendor, define retention, protect fields automatically, or fix the incident. The application still owns allowlisting, redaction, sampling, alerts, runbooks, and recovery decisions."
       },
       {
         "id": "expansion-instrumentation-triage-code",
         "type": "code-example",
         "title": "Instrument the seam",
-        "content": "Next.js instrumentation is an integration seam. It can register server-side setup or error handling, but it does not prove that a provider, exporter, or alert policy is configured.",
-        "code": "export function register() {\n  // Initialize a server-safe signal boundary.\n}\n\nexport function onRequestError(error: unknown, request: { path: string }) {\n  recordSafeSignal({ path: request.path, error });\n}",
+        "content": "The handler records only an allowlisted request id, method, route type, route path, deployment id, and error digest. It does not send cookies, authorization headers, full request headers, form bodies, or raw personal data. Any asynchronous export is awaited.",
+        "code": "import type { Instrumentation } from 'next';\n\nexport function register() {\n  initializeServerTelemetry();\n}\n\nexport const onRequestError: Instrumentation.onRequestError = async (\n  error, request, context,\n) => {\n  const rawId = request.headers['x-request-id'];\n  const requestId = typeof rawId === 'string' ? rawId : undefined;\n\n  await recordSafeSignal({\n    requestId, method: request.method, routePath: context.routePath,\n    routeType: context.routeType, deployment: process.env.DEPLOYMENT_ID,\n    errorDigest: error.digest,\n  });\n};",
         "codeLanguage": "typescript",
         "codeFilePath": "instrumentation.ts"
       },
@@ -44,15 +44,15 @@ export const topic: TopicModule = {
         "questions": [
           {
             "id": "expansion-instrumentation-triage-check",
-            "question": "What is the next useful action when a route is failing and logs lack context?",
+            "question": "A deployed Server Action fails intermittently and current logs cannot connect reports to requests. What is the safest useful next step?",
             "options": [
-              "Add every request body and token to logs",
-              "Collect safe route/deployment/error evidence with a correlation identifier",
-              "Disable authorization to reproduce faster",
-              "Declare the first guessed cause confirmed"
+              "Add an allowlisted correlation id plus route, deployment, timing, and error context, then test a bounded hypothesis",
+              "Log cookies, authorization headers, and every form field",
+              "Disable authorization so reproduction is easier",
+              "Treat the first guessed cause as confirmed"
             ],
-            "correctAnswer": "Collect safe route/deployment/error evidence with a correlation identifier",
-            "expectedReasoning": "Triage needs enough bounded evidence to test a hypothesis without leaking secrets or treating instrumentation as the fix."
+            "correctAnswer": "Add an allowlisted correlation id plus route, deployment, timing, and error context, then test a bounded hypothesis",
+            "expectedReasoning": "Safe structured context can connect the user symptom to a server event and deployment. Secrets and broad payloads create security risk, disabling authorization changes the system being diagnosed, and an untested guess is not incident evidence."
           }
         ]
       },
@@ -60,28 +60,29 @@ export const topic: TopicModule = {
         "id": "expansion-instrumentation-triage-synthesis",
         "type": "synthesis",
         "title": "Synthesis",
-        "content": "Instrument the boundary, protect telemetry, reproduce against production-like behavior, mitigate safely, verify the outcome, and keep rollback criteria explicit."
+        "content": "Scope impact, collect safe correlated evidence, compare healthy and failing behavior, and test one hypothesis. Choose the smallest reversible mitigation, verify it with the same user-visible flow and server signal, and escalate or roll back when the agreed threshold is met. After recovery, remove temporary unsafe detail, preserve the useful signal, and record the follow-up owner."
       }
     ],
-    "retrievalPrompt": "Which evidence should you collect first when a production route fails, and what must never enter telemetry by default?",
-    "reflectionPrompt": "Write an incident card for one route or Server Action: impact, hypothesis, safe evidence, mitigation, verification, owner, and rollback trigger.",
+    "retrievalPrompt": "For a failing Server Action, state impact, safe correlation fields, instrumentation seam, leading hypothesis, mitigation, verification, owner, escalation, and rollback trigger.",
+    "reflectionPrompt": "Inspect one production log event. Which field supports a decision, which sensitive field should be removed, and which missing field would connect the symptom to a deployment?",
     "masteryCriteria": [
-      "Can name the instrumentation seam and its limit",
-      "Can choose safe request and error context",
-      "Can separate evidence collection from root-cause repair",
-      "Can define mitigation, verification, and rollback conditions"
+      "Can describe what register and onRequestError provide in Next.js 15.5.20",
+      "Can separate browser symptom, server error, deployment context, and root-cause hypothesis",
+      "Can design allowlisted telemetry that excludes credentials and unnecessary personal data",
+      "Can define mitigation, verification, escalation, and rollback with observable thresholds"
     ],
     "nextTopics": [
       "deep-dive-production-concerns"
     ],
     "metadata": {
-      "nextVersion": "Next.js 15.5.20",
-      "lastUpdated": "2026-07-15",
+      "nextVersion": "15.5.20",
+      "lastUpdated": "2026-07-21",
       "sources": [
         "https://nextjs.org/docs/15/app/guides/instrumentation",
         "https://nextjs.org/docs/15/app/api-reference/file-conventions/instrumentation",
         "https://nextjs.org/docs/15/app/guides/open-telemetry",
-        "https://nextjs.org/docs/15/app/guides/production-checklist"
+        "https://nextjs.org/docs/15/app/guides/production-checklist",
+        "https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html"
       ]
     },
     "diagram": {
@@ -137,41 +138,42 @@ export const topic: TopicModule = {
       {
         "id": "expansion-instrumentation-incident-triage-retrieval-1",
         "title": "Telemetry is evidence, not a fix",
-        "concept": "Instrumentation connects a production symptom to safe request and error evidence; it does not prove the root cause or authorize logging secrets.",
+        "concept": "Telemetry supports an incident decision only when its fields are safe, scoped, correlated, and connected to a hypothesis.",
         "prediction": {
-          "prompt": "What belongs in the first incident signal?",
+          "prompt": "Which first event is useful without creating a second incident?",
           "options": [
-            "A raw access token and full form body",
-            "A safe correlation id, route, deployment, and error context"
+            "Allowlisted request id, route, deployment, timing, error class or digest, and outcome",
+            "Raw session cookie, access token, and complete form body",
+            "A message that says only “something failed”"
           ],
-          "correctAnswer": "A safe correlation id, route, deployment, and error context",
-          "feedbackCorrect": "Safe structured context supports diagnosis without creating a second security incident.",
-          "feedbackWrong": "Raw credentials and unnecessary personal data do not make telemetry trustworthy."
+          "correctAnswer": "Allowlisted request id, route, deployment, timing, error class or digest, and outcome",
+          "feedbackCorrect": "Those fields connect scope and failure while avoiding credentials and unnecessary payload data.",
+          "feedbackWrong": "Raw secrets create harm, while an uncorrelated generic message cannot support a bounded decision."
         },
-        "synthesis": "Collect safe evidence, test a hypothesis, mitigate reversibly, verify, and roll back on a defined trigger."
+        "synthesis": "Collect the minimum safe context that can change the incident decision."
       }
     ],
     "miniProject": {
       "title": "Write an incident card",
-      "scenario": "Create an incident card for a failing Server Action with impact, evidence, mitigation, verification, owner, and rollback condition.",
+      "scenario": "Write an incident card for intermittent Server Action failures that began after one deployment.",
       "acceptance": [
-        "A safe correlation field is defined",
-        "Secrets and unnecessary personal data are excluded",
-        "The hypothesis has a production-like reproduction",
-        "Mitigation and rollback are reversible and measurable"
+        "Impact, start time, route, deployment, affected users, and incident owner are explicit",
+        "Browser and server events share a safe correlation contract with an allowlist and retention decision",
+        "The leading hypothesis has confirming and disproving evidence plus a production-like reproduction",
+        "Mitigation, verification, escalation, rollback, and post-incident follow-up are measurable"
       ],
       "rubric": [
         {
           "dimension": "Evidence",
-          "evidence": "Signals connect the user-visible failure to a bounded hypothesis."
+          "evidence": "Signals connect the same user attempt, route, deployment, and server failure."
         },
         {
           "dimension": "Safety",
-          "evidence": "Telemetry avoids credentials and unnecessary personal data."
+          "evidence": "Credentials, raw payloads, and unnecessary personal data are excluded by design."
         },
         {
-          "dimension": "Recovery",
-          "evidence": "Verification and rollback triggers are explicit."
+          "dimension": "Decision",
+          "evidence": "Mitigation and rollback follow thresholds and are verified with the original symptom."
         }
       ]
     }
@@ -182,56 +184,61 @@ export const topic: TopicModule = {
       "title": "Triage an Instrumented Production Incident",
       "level": 8,
       "topicFamily": "production",
-      "scenario": "A Server Action intermittently fails after deployment. Browser reports show a generic error, server logs lack a safe correlation id, and the team wants to roll back immediately without checking impact.",
+      "scenario": "After deployment `d-184`, about 8% of note-creation Server Actions fail. Browser reports show a generic error, server events lack correlation, and the team is divided between immediate rollback and adding full request bodies to logs.",
       "constraints": [
-        "Use instrumentation as an evidence seam, not a vendor requirement",
-        "Exclude secrets and unnecessary personal data from telemetry",
-        "Define a bounded hypothesis and production-like reproduction",
-        "Record mitigation, verification, owner, and rollback trigger"
+        "Use Next.js instrumentation as an integration seam, not as the root-cause fix",
+        "Allowlist fields and exclude credentials, cookies, and unnecessary personal data",
+        "Define impact, one leading hypothesis, and evidence that could disprove it",
+        "Choose a reversible mitigation and measurable verification window",
+        "Tie escalation or rollback to a declared threshold and owner"
       ],
       "acceptanceCriteria": [
-        "The plan names register or onRequestError accurately",
-        "A safe correlation and route/deployment context are collected",
-        "The browser symptom is distinguished from the server signal",
-        "The team has a reversible mitigation and verification step",
-        "Rollback is tied to an impact threshold or failed verification rather than panic"
+        "The plan uses register or onRequestError according to the Next.js 15 contract",
+        "A safe request id connects the browser symptom, server error, route, and deployment",
+        "Healthy and failing events can be compared without raw form data or authorization headers",
+        "The mitigation is smaller and more reversible than an untested permanent fix",
+        "The same note-creation smoke and error-rate signal verify recovery or trigger rollback",
+        "Temporary instrumentation has a removal or retention review owner"
       ],
       "hints": [
         {
           "stage": 1,
-          "text": "Start with impact, scope, and a safe identifier, not raw request payloads."
+          "text": "Write impact and the minimum allowlisted fields before adding any instrumentation."
         },
         {
           "stage": 2,
-          "text": "Use instrumentation to connect request/error evidence to a hypothesis."
+          "text": "Compare deployment d-184 failures with a healthy deployment or route and name one disconfirming signal."
         },
         {
           "stage": 3,
-          "text": "Set a rollback trigger and verify the mitigation with the same user-visible smoke."
+          "text": "Set an error-rate and time-window threshold, then verify mitigation with the original user flow."
         }
       ],
-      "expectedReasoning": "A production incident needs bounded evidence and a reversible decision. Instrumentation can register server-side hooks and request errors, while safe logging, reproduction, mitigation, verification, and rollback remain application responsibilities.",
+      "expectedReasoning": "The team needs enough safe correlation to locate the failing boundary and compare it with healthy behavior. Next.js hooks expose server startup and request-error seams, while field safety, hypotheses, mitigation, verification, rollback, and follow-up remain operational responsibilities.",
       "commonWrongPaths": [
-        "Logging cookies, access tokens, or full form payloads",
-        "Treating a telemetry hook as the root-cause fix",
-        "Rolling back without checking blast radius or recovery evidence",
-        "Using client-only logs to claim server authorization succeeded"
+        "Logging cookies, tokens, or complete form payloads",
+        "Treating the presence of onRequestError as proof of a configured exporter or alert",
+        "Disabling security controls to make the failure disappear",
+        "Rolling back or declaring success without a threshold and verification window",
+        "Keeping emergency verbose logging indefinitely"
       ],
-      "answerExplanation": "Capture impact, route, deployment, safe correlation, and error context; reproduce against production-like behavior; mitigate; verify the user-visible failure and server signal; then roll back when the defined trigger is met.",
-      "followUpVariation": "The mitigation removes detailed error text from the UI. What safe signal remains for support and operators?",
+      "answerExplanation": "Scope impact, add allowlisted correlation and deployment context through the supported seam, test a bounded hypothesis, mitigate reversibly, and use the original flow plus a declared error threshold to verify or roll back.",
+      "followUpVariation": "The failure includes user-entered text that support wants to inspect. Design a safer reproduction and consent/redaction path without adding raw text to routine telemetry.",
       "checkType": "free-text",
-      "prompt": "Write the incident triage loop and the evidence you would refuse to log.",
+      "prompt": "Write the impact, safe fields, instrumentation seam, hypothesis, mitigation, verification, rollback, and follow-up plan.",
       "freeTextKeywords": [
-        "instrumentation",
+        "impact",
         "correlation",
-        "safe",
-        "mitigation",
+        "allowlist",
+        "hypothesis",
         "rollback"
       ],
       "sourceLink": "https://nextjs.org/docs/15/app/guides/instrumentation",
       "sourceLinks": [
+        "https://nextjs.org/docs/15/app/guides/instrumentation",
         "https://nextjs.org/docs/15/app/api-reference/file-conventions/instrumentation",
-        "https://nextjs.org/docs/15/app/guides/production-checklist"
+        "https://nextjs.org/docs/15/app/guides/production-checklist",
+        "https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html"
       ]
     }
   ],
@@ -241,8 +248,8 @@ export const topic: TopicModule = {
       "topicId": "expansion-instrumentation-incident-triage",
       "topicFamily": "production",
       "question": "What does Next.js instrumentation contribute to an incident response?",
-      "answer": "It provides a server-side integration seam such as register or onRequestError for collecting bounded request and error signals. It does not configure a vendor, prove the root cause, or justify logging secrets and unnecessary personal data.",
-      "followUp": "Which evidence connects a browser-visible failure to a production hypothesis?",
+      "answer": "Next.js 15 provides `register` for server-instance startup integration and `onRequestError` for captured server errors with request and route context. The app still chooses an exporter, allowlists and redacts fields, defines alerts and retention, tests hypotheses, and makes mitigation or rollback decisions.",
+      "followUp": "Which allowlisted fields would connect one browser report to one Server Action error without storing its body or credentials?",
       "category": "nextjs",
       "level": "advanced",
       "tags": [
@@ -253,6 +260,7 @@ export const topic: TopicModule = {
       ],
       "sourceLink": "https://nextjs.org/docs/15/app/guides/instrumentation",
       "sourceLinks": [
+        "https://nextjs.org/docs/15/app/guides/instrumentation",
         "https://nextjs.org/docs/15/app/api-reference/file-conventions/instrumentation"
       ]
     },
@@ -260,31 +268,39 @@ export const topic: TopicModule = {
       "id": "loop-qa-expansion-instrumentation-incident-triage-1",
       "topicId": "expansion-instrumentation-incident-triage",
       "topicFamily": "production",
-      "question": "What problem does Instrument and Triage Production Failures help you solve?",
-      "answer": "A production failure needs evidence before a fix. Instrumentation can expose the request and error context, but only a disciplined triage loop connects that signal to a safe mitigation and recovery decision.",
-      "followUp": "Name one decision in your current project where this model would change the implementation.",
+      "question": "What makes a production signal useful for incident triage?",
+      "answer": "It is safe, structured, correlated, scoped to impact, and capable of confirming or disproving a hypothesis. Route, deployment, timing, outcome, and an allowlisted request id are usually more useful than a large unstructured payload.",
+      "followUp": "Which current log field never changes a decision and can be removed?",
       "category": "architecture",
       "level": "advanced",
       "tags": [
         "topic-loop",
         "expansion-instrumentation-incident-triage"
       ],
-      "sourceLink": "https://nextjs.org/docs/15/app/guides/instrumentation"
+      "sourceLink": "https://nextjs.org/docs/15/app/guides/instrumentation",
+      "sourceLinks": [
+        "https://nextjs.org/docs/15/app/guides/instrumentation",
+        "https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html"
+      ]
     },
     {
       "id": "loop-qa-expansion-instrumentation-incident-triage-2",
       "topicId": "expansion-instrumentation-incident-triage",
       "topicFamily": "production",
-      "question": "How would you explain the core idea of Instrument and Triage Production Failures to a teammate?",
-      "answer": "Which evidence should you collect first when a production route fails, and what must never enter telemetry by default? A strong explanation should connect the model to: Turn a production symptom into a bounded evidence loop; Use Next.js instrumentation seams without assuming a vendor integration exists.",
-      "followUp": "Which observable behavior would prove your explanation is correct?",
+      "question": "How should mitigation, verification, and rollback relate during an incident?",
+      "answer": "Choose the smallest reversible action that reduces impact, verify it with the same user-visible flow and server signal, and roll back or escalate when a pre-agreed threshold fails. Record the owner, time window, and post-recovery follow-up.",
+      "followUp": "What exact signal and duration would prove your latest mitigation worked?",
       "category": "architecture",
       "level": "advanced",
       "tags": [
         "topic-loop",
         "expansion-instrumentation-incident-triage"
       ],
-      "sourceLink": "https://nextjs.org/docs/15/app/guides/instrumentation"
+      "sourceLink": "https://nextjs.org/docs/15/app/guides/instrumentation",
+      "sourceLinks": [
+        "https://nextjs.org/docs/15/app/guides/instrumentation",
+        "https://nextjs.org/docs/15/app/guides/production-checklist"
+      ]
     }
   ],
   "practices": [
@@ -293,16 +309,19 @@ export const topic: TopicModule = {
       "topicId": "expansion-instrumentation-incident-triage",
       "topicFamily": "production",
       "title": "Triage from Safe Production Signals",
-      "summary": "Connect impact, route and deployment context, a safe correlation id, error evidence, mitigation, verification, and rollback without logging secrets by default.",
-      "rationale": "Instrumentation is useful only when its signal supports a bounded operational decision. Safe fields protect users while keeping the incident explainable.",
-      "tradeOffs": "Redacting and structuring telemetry takes discipline and can reduce raw debugging detail. The trade-off protects credentials and personal data from becoming incident multipliers.",
-      "appliesWhen": "A deployed route, Server Action, or background operation needs diagnosis.",
-      "doesNotApplyWhen": "A local pure function can be diagnosed deterministically without runtime telemetry.",
-      "example": "Record route, deployment, correlation id, error class, and timing; reproduce safely, apply the smallest mitigation, verify the smoke flow, and roll back on the agreed impact threshold.",
+      "summary": "Triage incidents with allowlisted correlated evidence, a bounded hypothesis, reversible mitigation, and measured verification or rollback.",
+      "rationale": "Safe structured signals connect user impact to a server and deployment boundary without turning credentials or personal data into a second incident.",
+      "tradeOffs": "Allowlisting and redaction provide less raw detail and require design work. They improve trust, retention control, comparison, and the quality of operational decisions.",
+      "appliesWhen": "A deployed route, Server Function, Route Handler, render, or background operation needs evidence-based diagnosis.",
+      "doesNotApplyWhen": "A local deterministic pure function can be reproduced and explained without production telemetry.",
+      "example": "Correlate note-create outcome, route, deployment, duration, and error digest; compare healthy and failing events; mitigate; verify the same smoke; roll back if the agreed rate persists.",
       "sourceLink": "https://nextjs.org/docs/15/app/guides/instrumentation",
       "sourceLinks": [
+        "https://nextjs.org/docs/15/app/guides/instrumentation",
         "https://nextjs.org/docs/15/app/guides/open-telemetry",
-        "https://nextjs.org/docs/15/app/guides/production-checklist"
+        "https://nextjs.org/docs/15/app/guides/production-checklist",
+        "https://nextjs.org/docs/15/app/api-reference/file-conventions/instrumentation",
+        "https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html"
       ],
       "tags": [
         "instrumentation",

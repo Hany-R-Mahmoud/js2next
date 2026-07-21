@@ -11,41 +11,41 @@ export const topic: TopicModule = {
       "closures-in-javascript"
     ],
     "learningObjectives": [
-      "Understand the event loop and why async exists",
-      "Chain promises and handle errors correctly",
-      "Use async/await as syntactic abstraction over promises",
-      "Apply async patterns to data fetching in React"
+      "Distinguish synchronous execution, host tasks, and promise microtasks in the browser model",
+      "Chain promises by returning values or promises and handle rejection at the correct boundary",
+      "Use async/await without losing errors or parallelism",
+      "Prevent stale async results from committing after their owning request is obsolete"
     ],
-    "whyMatters": "Every API call, every `fetch`, every `useEffect` that loads data relies on async JavaScript. Misunderstanding promises leads to unhandled rejections, race conditions, and loading states that never resolve. React Server Components and streaming change the game, but promises remain the foundation.",
-    "estimatedMinutes": 30,
+    "whyMatters": "Promises separate starting asynchronous work from observing its eventual result. Correct code must model fulfillment, rejection, HTTP failure, cancellation, and out-of-order completion explicitly. The same mechanics underlie browser fetches and asynchronous React event or synchronization code.",
+    "estimatedMinutes": 34,
     "sections": [
       {
         "id": "event-loop",
         "type": "concept",
         "title": "The event loop",
-        "content": "JavaScript execution on a given agent processes synchronous work on a call stack. Browser APIs can arrange for network responses, timers, and other work to be reported later, so the current stack does not wait for them.\n\nPromise reactions are microtasks: after the current synchronous work finishes, the browser drains pending microtasks before it takes the next task. Timers such as `setTimeout` are tasks. Exact scheduling details depend on the host, so treat this as the browser model used by this example, not a universal rule for every JavaScript runtime."
+        "content": "JavaScript runs synchronous code on the current execution stack. Browser APIs can arrange work such as network I/O and timers without blocking that stack. When the current task finishes and the stack is empty, the browser drains queued microtasks before moving to the next task. Promise reaction handlers are microtasks; a `setTimeout` callback is scheduled as a task.\n\nThis ordering is a browser-host model, not a promise that every JavaScript host uses identical queues. Microtasks can also enqueue more microtasks, so the browser continues draining them before the next task. Use the model to predict observable order, not to build fragile timing tricks."
       },
       {
         "id": "promise-basics",
         "type": "code-example",
-        "title": "Promise structure",
-        "content": "A Promise is an object representing the eventual completion or failure of an async operation. It has three states: pending, fulfilled, rejected.",
-        "code": "const promise = new Promise((resolve, reject) => {\n  // async work here\n  if (/* success */) resolve(data);\n  else reject(new Error('something failed'));\n});\n\npromise\n  .then(data => console.log(data))\n  .catch(err => console.error(err))\n  .finally(() => console.log('done'));",
-        "codeLanguage": "javascript",
+        "title": "Consume promises and classify failures",
+        "content": "A promise is pending until it becomes fulfilled with a value or rejected with a reason. Most application code consumes promises returned by APIs. `fetch` rejects for request failures such as a network error, but an HTTP 404 or 500 still produces a `Response`; check `response.ok` yourself.",
+        "code": "function loadUser(id: string) {\n  return fetch(`/api/users/${id}`)\n    .then(response => {\n      if (!response.ok) {\n        throw new Error(`Request failed: ${response.status}`);\n      }\n      return response.json() as Promise<User>;\n    });\n}\n\nloadUser('42')\n  .then(user => console.log(user.name))\n  .catch(error => console.error(error))\n  .finally(() => console.log('request observed'));",
+        "codeLanguage": "typescript",
         "codeFilePath": "examples/async/promise-basics.js"
       },
       {
         "id": "promise-chaining",
         "type": "concept",
         "title": "Chaining and error propagation",
-        "content": "`.then()` returns a new promise, so you can chain them. Errors propagate down the chain until a `.catch()` handles them. A `.catch()` in the middle of a chain catches errors above it, then continues the chain — this is useful for fallback logic."
+        "content": "Every call to `.then`, `.catch`, or `.finally` returns a new promise. Return the next value or promise from a handler so the following handler waits for it. Thrown errors and rejected promises skip fulfillment handlers until a rejection handler receives them. A `.catch` can recover by returning a value, or keep the chain rejected by throwing again.\n\nDo not start a dependent promise inside `.then` without returning it. That detaches the operation from the chain, so downstream completion and error handling no longer represent the whole workflow."
       },
       {
         "id": "async-await",
         "type": "code-example",
-        "title": "Async/await",
-        "content": "`async/await` is syntactic sugar over promises. An `async` function always returns a promise. `await` suspends the async function until the promise settles, allowing other work to run; synchronous work before and after the await still runs on its host execution path.",
-        "code": "async function fetchUser(id: string) {\n  try {\n    const res = await fetch(`/api/users/${id}`);\n    if (!res.ok) throw new Error('User not found');\n    return await res.json();\n  } catch (err) {\n    console.error(err);\n    return null;\n  }\n}",
+        "title": "async/await is promise control flow",
+        "content": "Calling an `async` function always returns a promise. `await` pauses that async function until the awaited value settles; it does not block the browser thread. Use `try`/`catch` where the function can add recovery or context, and otherwise let rejection propagate to a caller that owns the policy.",
+        "code": "async function loadUser(id: string): Promise<User> {\n  const response = await fetch(`/api/users/${id}`);\n\n  if (!response.ok) {\n    throw new Error(`Request failed: ${response.status}`);\n  }\n\n  return response.json() as Promise<User>;\n}\n\nasync function showUser(id: string) {\n  try {\n    const user = await loadUser(id);\n    console.log(user.name);\n  } catch (error) {\n    console.error('Could not show user', error);\n  }\n}",
         "codeLanguage": "typescript",
         "codeFilePath": "examples/async/fetchUser.ts"
       },
@@ -57,18 +57,18 @@ export const topic: TopicModule = {
         "questions": [
           {
             "id": "q2",
-            "question": "What is the order of logs?",
+            "question": "What is the browser log order for `console.log('A'); setTimeout(() => console.log('D'), 0); Promise.resolve().then(() => console.log('B')); console.log('C');`?",
             "options": [
-              "A, B, C",
-              "A, C, B",
-              "B, A, C",
-              "C, A, B"
+              "A, B, C, D",
+              "A, C, B, D",
+              "A, C, D, B",
+              "D, A, C, B"
             ],
-            "correctAnswer": "A, C, B",
-            "expectedReasoning": "console.log('A') runs synchronously. The Promise.resolve().then() callback is a microtask, queued after the current synchronous code finishes. console.log('C') runs synchronously after the then() is registered. Then the microtask fires, logging 'B'. Order: A, C, B.",
+            "correctAnswer": "A, C, B, D",
+            "expectedReasoning": "`A` and `C` are synchronous. The fulfilled-promise handler is a microtask, so `B` runs after the current task finishes. The timer callback is a later task, so `D` runs after the microtask queue is drained.",
             "commonMisconceptions": [
-              "Thinking promises run immediately",
-              "Not understanding microtask vs synchronous execution order"
+              "Assuming a zero-delay timer runs immediately",
+              "Assuming a `.then` handler runs synchronously because the promise is already fulfilled"
             ]
           }
         ]
@@ -76,15 +76,15 @@ export const topic: TopicModule = {
       {
         "id": "async-react",
         "type": "concept",
-        "title": "Async in React components",
-        "content": "Client Components cannot be declared as async component functions. Instead, use `useEffect` for synchronization, event handlers for user-initiated async work, or React Server Components (which can be async) in Next.js App Router.\n\nIn Client Components, handle loading, error, and empty states for every async operation."
+        "title": "Place async work at an owning boundary",
+        "content": "Start user-initiated work in an event handler. Use an Effect only when a Client Component must synchronize with an external system; framework data APIs or a client cache may be a better owner for application data. Do not make a Client Component function itself `async`.\n\nWhichever boundary owns the operation must represent pending, success, empty, and failure states. It must also decide what happens if the component unmounts or a newer request makes the current operation obsolete."
       },
       {
         "id": "race-conditions",
         "type": "code-example",
-        "title": "Race conditions in React",
-        "content": "If a component fetches data based on a changing prop, rapid prop changes can cause stale responses to overwrite newer ones.",
-        "code": "function UserProfile({ userId }: { userId: string }) {\n  const [user, setUser] = useState<User | null>(null);\n\n  useEffect(() => {\n    let ignore = false;\n    fetchUser(userId).then(data => {\n      if (!ignore) setUser(data);\n    });\n    return () => { ignore = true; };\n  }, [userId]);\n\n  return user ? <div>{user.name}</div> : <LoadingSkeleton />;\n}",
+        "title": "Abort obsolete fetches and ignore expected cancellation",
+        "content": "A later request is not guaranteed to finish later. Cleanup can abort the request owned by the previous synchronization. The error path should ignore the expected abort while still surfacing real failures.",
+        "code": "function SearchResults({ query }: { query: string }) {\n  const [results, setResults] = useState<SearchResult[]>([]);\n  const [error, setError] = useState<string | null>(null);\n\n  useEffect(() => {\n    const controller = new AbortController();\n\n    async function run() {\n      try {\n        setError(null);\n        const response = await fetch(`/api/search?q=${encodeURIComponent(query)}`, {\n          signal: controller.signal,\n        });\n        if (!response.ok) throw new Error(`Search failed: ${response.status}`);\n        setResults(await response.json());\n      } catch (error) {\n        if (error instanceof DOMException && error.name === 'AbortError') return;\n        setError(error instanceof Error ? error.message : 'Unknown search error');\n      }\n    }\n\n    void run();\n    return () => controller.abort();\n  }, [query]);\n\n  if (error) return <p role=\"alert\">{error}</p>;\n  return <ResultsList results={results} />;\n}",
         "codeLanguage": "typescript",
         "codeFilePath": "examples/async/UserProfile.tsx"
       },
@@ -92,26 +92,29 @@ export const topic: TopicModule = {
         "id": "async-synthesis",
         "type": "synthesis",
         "title": "Synthesis",
-        "content": "Async JavaScript is non-negotiable for React development. Server Components simplify this by making data fetching synchronous from the component's perspective, but the underlying promise mechanics still apply. When you write `const data = await db.query()` in a Server Component, you're using the same promise system — you're just not manually managing loading states because the framework handles them."
+        "content": "Promise code is correct when its ownership is visible: every dependent operation is returned or awaited, failures reach the boundary that can handle them, HTTP status is classified explicitly, and obsolete work cannot commit stale results. Use task and microtask ordering to explain behavior, not to replace explicit state and cancellation."
       }
     ],
-    "retrievalPrompt": "What is the difference between a microtask and a host task? Give one example of each and explain which runs first in the browser model used here.",
-    "reflectionPrompt": "In a React app you have built or used, where did async behavior cause the most confusion? Would the `ignore` flag pattern or React Suspense have helped?",
+    "retrievalPrompt": "Explain why promise handlers run after the current synchronous stack, why `fetch` needs an explicit HTTP-status check, and how an obsolete request can be prevented from committing stale data.",
+    "reflectionPrompt": "Pick one async feature. Where are operation ownership, error classification, cancellation, and loading completion represented?",
     "masteryCriteria": [
-      "Can explain the event loop, microtasks, and host tasks",
-      "Can chain promises and handle errors with .catch()",
-      "Can write async functions with proper error handling",
-      "Can prevent race conditions in React useEffect data fetching"
+      "Can predict browser ordering for synchronous code, promise microtasks, and timer tasks",
+      "Can build a promise chain that returns each dependent operation",
+      "Can distinguish transport rejection from an HTTP error response",
+      "Can prevent an obsolete request from updating current UI state"
     ],
     "nextTopics": [
       "components-and-jsx"
     ],
     "metadata": {
-      "reactVersion": "19.2.7",
-      "lastUpdated": "2026-07-01",
+      "reactVersion": "19.2",
+      "lastUpdated": "2026-07-20",
       "sources": [
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises",
-        "https://developer.mozilla.org/en-US/docs/Web/API/HTML_DOM_API/Microtask_guide"
+        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTML_DOM_API/Microtask_guide",
+        "https://developer.mozilla.org/en-US/docs/Web/API/AbortController",
+        "https://react.dev/learn/synchronizing-with-effects#fetching-data"
       ]
     },
     "diagram": {
@@ -149,28 +152,28 @@ export const topic: TopicModule = {
     "chunks": [
       {
         "id": "async-js-promises-retrieval-1",
-        "title": "Predict the boundary",
-        "concept": "fetch() resolves to a Response before its body is parsed, and Promise callbacks do not interrupt the current synchronous stack.",
+        "title": "Separate a Response from its body",
+        "concept": "`fetch` fulfills with a `Response`. Reading JSON is another asynchronous step, and an HTTP error response still needs an explicit status check.",
         "prediction": {
-          "prompt": "What does fetch(url) resolve to before response.json() runs?",
+          "prompt": "Immediately after `const response = await fetch(url)`, what value do you have?",
           "options": [
             "Parsed JSON",
             "A Response object"
           ],
           "correctAnswer": "A Response object",
-          "feedbackCorrect": "Body parsing is a separate asynchronous step.",
-          "feedbackWrong": "fetch resolves a Response; read the body explicitly."
+          "feedbackCorrect": "Check `response.ok`, then await a body reader such as `response.json()`.",
+          "feedbackWrong": "`fetch` does not parse JSON for you, and HTTP error statuses do not automatically reject the promise."
         },
-        "synthesis": "Name the value and queue at each async boundary before debugging order."
+        "synthesis": "Model transport, HTTP status, body parsing, and application validation as distinct boundaries."
       }
     ],
     "miniProject": {
       "title": "Design a resilient search request",
-      "scenario": "Map a search request from input to response, including HTTP failure, cancellation, and retry.",
+      "scenario": "Implement a type-ahead search that cannot display stale results from an obsolete query.",
       "acceptance": [
-        "The response/body distinction is explicit",
-        "Obsolete work cannot overwrite current input",
-        "The user sees loading and recoverable failure states"
+        "The final visible result belongs to the latest query",
+        "HTTP errors and expected cancellation take different paths",
+        "Pending, empty, failure, and success states are observable"
       ],
       "rubric": [
         {
@@ -196,37 +199,40 @@ export const topic: TopicModule = {
       "topicFamily": "foundations",
       "scenario": "A user search component shows results for the wrong query when typing quickly. The last typed query sometimes shows results from an earlier query.",
       "constraints": [
-        "Identify the root cause",
-        "Fix the race condition without throttling user input",
-        "Ensure the final query always shows its correct results"
+        "Do not rely on throttling or debouncing as the correctness mechanism",
+        "Cancel the obsolete fetch or ignore its result at the owner boundary",
+        "Preserve real HTTP and parsing failures instead of treating every error as cancellation"
       ],
       "acceptanceCriteria": [
-        "Typing \"react\" quickly shows results for \"react\", not a partial query",
-        "The fix uses the AbortController or ignore flag pattern",
-        "No unnecessary API calls are cancelled before they start"
+        "Typing `react` quickly cannot leave results for an earlier partial query on screen",
+        "Cleanup prevents an obsolete request from committing state",
+        "A non-2xx response becomes an explicit error state"
       ],
       "hints": [
         {
           "stage": 1,
-          "text": "What happens when the fetch for \"re\" completes after the fetch for \"react\"?"
+          "text": "List the requests in start order and then in possible completion order. They do not have to match."
         },
         {
           "stage": 2,
-          "text": "You need to either cancel the old request or ignore its result."
+          "text": "Give each synchronization run an ownership token: an `AbortController` or an `ignore` flag closed over by that run."
         },
         {
           "stage": 3,
-          "text": "useEffect cleanup functions run before the next effect. Use an AbortController or boolean flag."
+          "text": "Abort in cleanup, pass the signal to `fetch`, ignore only `AbortError`, and check `response.ok` before parsing."
         }
       ],
-      "expectedReasoning": "When the user types \"react\", 5 fetches fire: \"r\", \"re\", \"rea\", \"reac\", \"react\". If \"reac\"'s response arrives after \"react\"'s, stale results overwrite correct ones. Fix: abort previous requests or ignore their responses.",
+      "expectedReasoning": "A query change starts a new operation before older operations are guaranteed to finish. The previous run’s cleanup must revoke its authority to commit. Debouncing can reduce requests but does not prove that an older response cannot arrive last.",
       "commonWrongPaths": [
-        "Adding debounce without fixing the race condition (it reduces but does not fix)",
-        "Using useRef without cleanup, leaving dangling requests"
+        "Debouncing input and assuming fewer requests removes the race",
+        "Catching every error as an abort and hiding HTTP or parsing failures"
       ],
-      "answerExplanation": "Use an AbortController in useEffect: create it, pass signal to fetch, and abort in the cleanup return. Or use a boolean `ignore` flag set to true in cleanup, checked before setState.",
-      "followUpVariation": "How would you implement this with React 19's `use()` hook and Suspense?",
-      "sourceLink": "https://react.dev/learn/synchronizing-with-effects"
+      "answerExplanation": "Create one `AbortController` per request-owning Effect, pass its signal to `fetch`, and abort it in cleanup. Ignore only the expected abort exception. Check `response.ok` before parsing and route other failures to the visible error state. An `ignore` flag is an alternative when the underlying operation cannot be cancelled.",
+      "followUpVariation": "Keep the correctness guard, then add caching. Which layer should own cancellation, cache identity, and stale-result policy?",
+      "sourceLink": "https://react.dev/learn/synchronizing-with-effects#fetching-data",
+      "sourceLinks": [
+        "https://react.dev/learn/synchronizing-with-effects"
+      ]
     }
   ],
   "qa": [
@@ -234,9 +240,9 @@ export const topic: TopicModule = {
       "id": "loop-qa-async-js-promises-1",
       "topicId": "async-js-promises",
       "topicFamily": "foundations",
-      "question": "What problem does Async JavaScript & Promises help you solve?",
-      "answer": "Every API call, every `fetch`, every `useEffect` that loads data relies on async JavaScript. Misunderstanding promises leads to unhandled rejections, race conditions, and loading states that never resolve. React Server Components and streaming change the game, but promises remain the foundation.",
-      "followUp": "Name one decision in your current project where this model would change the implementation.",
+      "question": "What does a promise represent, and what does it not guarantee?",
+      "answer": "A promise represents the eventual outcome of an operation and lets code observe fulfillment or rejection. It does not guarantee completion order relative to other operations, make HTTP error statuses reject `fetch`, or provide first-class cancellation.",
+      "followUp": "Which layer owns HTTP classification and cancellation in your example?",
       "category": "react",
       "level": "beginner",
       "tags": [
@@ -249,9 +255,9 @@ export const topic: TopicModule = {
       "id": "loop-qa-async-js-promises-2",
       "topicId": "async-js-promises",
       "topicFamily": "foundations",
-      "question": "How would you explain the core idea of Async JavaScript & Promises to a teammate?",
-      "answer": "What is the difference between a microtask and a host task? Give one example of each and explain which runs first in the browser model used here. A strong explanation should connect the model to: Understand the event loop and why async exists; Chain promises and handle errors correctly.",
-      "followUp": "Which observable behavior would prove your explanation is correct?",
+      "question": "Why does a promise handler run before a zero-delay timer in the browser example?",
+      "answer": "After the current task and synchronous stack finish, the browser drains promise microtasks before taking the next task. The timer callback is a task, so it runs after the queued promise handler.",
+      "followUp": "Which parts of this explanation are ECMAScript language behavior and which belong to the browser host?",
       "category": "react",
       "level": "beginner",
       "tags": [
@@ -264,9 +270,9 @@ export const topic: TopicModule = {
       "id": "loop-qa-async-js-promises-3",
       "topicId": "async-js-promises",
       "topicFamily": "foundations",
-      "question": "What evidence shows that you can apply Async JavaScript & Promises?",
-      "answer": "Can explain the event loop, microtasks, and host tasks · Can chain promises and handle errors with .catch() · Can write async functions with proper error handling",
-      "followUp": "What failure case would you test before calling this skill reliable?",
+      "question": "How do you prove that a request-driven UI cannot display stale results?",
+      "answer": "Tie each request to an owner, revoke the previous owner in cleanup by aborting or ignoring it, and test completions out of order. Also verify that real HTTP and parsing failures remain visible.",
+      "followUp": "What test would fail if debouncing reduced requests but did not remove the race?",
       "category": "react",
       "level": "beginner",
       "tags": [

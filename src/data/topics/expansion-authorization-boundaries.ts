@@ -12,28 +12,28 @@ export const topic: TopicModule = {
       "expansion-client-server-state"
     ],
     "learningObjectives": [
-      "Separate authentication from authorization",
-      "Check resource ownership or role permissions at the server boundary",
-      "Avoid treating hidden UI and client state as security controls",
-      "Return a deliberate denied outcome without leaking protected data"
+      "Separate caller identity from permission for one operation and resource",
+      "Place ownership and role checks beside protected server data access",
+      "Treat hidden controls, route redirects, and browser state as user experience rather than authorization",
+      "Design safe denial and bounded session-refresh behavior for direct requests"
     ],
-    "whyMatters": "A route can look protected while its data operation remains vulnerable. Authorization belongs beside the resource access that must be protected, with an explicit ownership or permission decision.",
-    "estimatedMinutes": 25,
+    "whyMatters": "A signed-in user is not automatically allowed to read or change every record. The browser can alter IDs, roles, and requests, so the protected server operation must establish trusted identity and decide permission before data is returned or changed.",
+    "estimatedMinutes": 44,
     "sections": [
       {
         "id": "expansion-authorization-boundaries-model",
         "type": "concept",
         "title": "Name the decision",
-        "content": "Authentication identifies the caller. Authorization decides whether that caller may perform this operation on this resource. Keep the decision at the server boundary that owns the data."
+        "content": "Authentication answers “who is calling?” Authorization answers “may this caller perform this operation on this resource?” A valid session supplies identity; it does not grant every permission. At the server operation, parse the untrusted resource id, obtain the trusted caller from the server session, and apply an ownership, role, or policy check before reading or mutating protected data.\n\nA hidden button and a route redirect can make navigation clearer, but a caller can still send the request directly. Middleware may reject broad route classes early, yet each protected data operation still owns its specific authorization decision and safe denied outcome."
       },
       {
         "id": "expansion-authorization-boundaries-code",
         "type": "code-example",
         "title": "Bind identity to ownership",
-        "content": "Do not load by an untrusted resource id and authorize later by assumption. Make the identity and ownership part of the protected data operation.",
-        "code": "const session = await requireSession();\nconst project = await db.project.findFirst({\n  where: { id: projectId, ownerId: session.user.id },\n});\nif (!project) return forbidden();",
+        "content": "This query binds the untrusted project id to the trusted session identity. If the lookup finds nothing, the operation returns a safe denial without first exposing the project. A role-based exception would be an explicit server policy, never a role copied from the browser.",
+        "code": "const session = await requireSession();\nconst projectId = parseProjectId(formData.get('projectId'));\n\nconst project = await db.project.findFirst({\n  where: { id: projectId, ownerId: session.user.id },\n});\n\nif (!project) return { ok: false, code: 'FORBIDDEN' };\nawait db.project.update({ where: { id: project.id }, data: parseEdit(formData) });\nreturn { ok: true };",
         "codeLanguage": "typescript",
-        "codeFilePath": "Server Action or Route Handler"
+        "codeFilePath": "app/projects/actions.ts"
       },
       {
         "id": "expansion-authorization-boundaries-question",
@@ -43,15 +43,15 @@ export const topic: TopicModule = {
         "questions": [
           {
             "id": "expansion-authorization-boundaries-check",
-            "question": "Which control still matters when a user edits the request in DevTools?",
+            "question": "A signed-in user changes projectId in a direct request. Which check protects another user’s project?",
             "options": [
-              "Hiding the edit button",
-              "A client-side role flag",
-              "A server-side identity and ownership/permission check",
-              "A disabled input"
+              "A server query or policy that binds the requested project and operation to trusted caller identity",
+              "The edit button being hidden in the rendered page",
+              "An ownerId value sent by the browser",
+              "A disabled project-id input"
             ],
-            "correctAnswer": "A server-side identity and ownership/permission check",
-            "expectedReasoning": "The client can be bypassed. The protected operation must establish identity and authorize access where the data is read or changed."
+            "correctAnswer": "A server query or policy that binds the requested project and operation to trusted caller identity",
+            "expectedReasoning": "The browser-controlled ID, hidden button, and disabled input can all be changed or bypassed. The protected server operation must derive identity from a trusted session and authorize that identity for the exact resource and action."
           }
         ]
       },
@@ -59,25 +59,29 @@ export const topic: TopicModule = {
         "id": "expansion-authorization-boundaries-synthesis",
         "type": "synthesis",
         "title": "Synthesis",
-        "content": "Authenticate the caller, authorize the specific operation and resource at the server boundary, choose a safe denied response, and test direct requests rather than only visible navigation."
+        "content": "For every protected operation, establish trusted identity, parse request data, authorize the operation and resource, and only then read or write. Return a deliberate denial that does not leak protected details, and verify the policy with direct requests from anonymous, permitted, and authenticated-but-unpermitted callers."
       }
     ],
-    "retrievalPrompt": "Where should a resource ownership check run, and why is a hidden button insufficient?",
-    "reflectionPrompt": "Pick one protected mutation. What identity, resource, permission, and denied outcome must the server evaluate?",
+    "retrievalPrompt": "Trace a protected project edit through authentication, input parsing, resource lookup, authorization, mutation, denial, and a direct unauthorized test.",
+    "reflectionPrompt": "Choose one protected read or write. Which caller, operation, resource, and policy must the server evaluate, and what information should a denied response avoid revealing?",
     "masteryCriteria": [
-      "Can distinguish authentication and authorization",
-      "Can bind a resource lookup to the caller identity",
-      "Can explain why client UI is not a security boundary",
-      "Can design a direct-request denial test"
+      "Can explain authentication and authorization as separate server decisions",
+      "Can bind a resource lookup or policy to trusted caller identity",
+      "Can show why middleware, redirects, and hidden UI do not replace data-layer checks",
+      "Can test denial, concurrent refresh, logout, and stale-result cases directly"
     ],
     "nextTopics": [
       "deep-dive-production-concerns"
     ],
     "metadata": {
-      "lastUpdated": "2026-07-15",
+      "nextVersion": "15.5.20",
+      "lastUpdated": "2026-07-21",
       "sources": [
         "https://nextjs.org/docs/app/guides/authentication",
-        "https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html"
+        "https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html",
+        "https://nextjs.org/docs/15/app/guides/authentication",
+        "https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html",
+        "https://developer.mozilla.org/en-US/docs/Web/API/BroadcastChannel"
       ]
     },
     "diagram": {
@@ -124,40 +128,41 @@ export const topic: TopicModule = {
       {
         "id": "expansion-authorization-boundaries-retrieval-1",
         "title": "Do not trust the button",
-        "concept": "A hidden edit button improves navigation but does not protect a direct request to the mutation.",
+        "concept": "Visible navigation can guide a user, but authorization belongs to the server operation that owns protected data.",
         "prediction": {
-          "prompt": "Where must ownership be checked?",
+          "prompt": "A page redirects non-owners, but its Server Action updates by projectId alone. Is the project protected?",
           "options": [
-            "Only in the UI",
-            "At the protected server data boundary"
+            "No; the action still needs its own ownership or permission check",
+            "Yes; the page redirect authorizes every direct action call"
           ],
-          "correctAnswer": "At the protected server data boundary",
-          "feedbackCorrect": "The server remains authoritative for direct requests.",
-          "feedbackWrong": "A client control can be bypassed."
+          "correctAnswer": "No; the action still needs its own ownership or permission check",
+          "feedbackCorrect": "The action is a separate protected entry point and must authorize the exact project and operation.",
+          "feedbackWrong": "A caller can bypass visible navigation and invoke a server endpoint with altered request data."
         },
-        "synthesis": "Authentication identifies the caller; authorization decides the requested operation on the requested resource."
+        "synthesis": "Authorize every protected entry point with trusted identity and resource policy."
       }
     ],
     "miniProject": {
       "title": "Review an ownership mutation",
-      "scenario": "Design a direct-request test and server policy for editing a project owned by another user.",
+      "scenario": "Review a project edit operation and a session refresh flow that can overlap with logout in another tab.",
       "acceptance": [
-        "Trusted identity is derived server-side",
-        "Resource ownership is checked before the operation",
-        "Denied responses do not reveal protected data"
+        "Anonymous, owner, non-owner, and allowed-role cases have explicit outcomes",
+        "The protected lookup or policy uses trusted server identity before returning or changing data",
+        "Refresh work has one bounded owner and a late result cannot reverse logout",
+        "Denied responses, logs, and cross-tab messages expose no session secret or protected record"
       ],
       "rubric": [
         {
-          "dimension": "Identity",
-          "evidence": "The caller comes from a trusted server session or equivalent."
-        },
-        {
           "dimension": "Policy",
-          "evidence": "The permission check covers the exact resource and operation."
+          "evidence": "Caller, operation, resource, and permission are all explicit."
         },
         {
-          "dimension": "Testing",
-          "evidence": "A direct unauthorized request is covered."
+          "dimension": "Race safety",
+          "evidence": "Refresh retry, logout invalidation, and stale-result rules are bounded and testable."
+        },
+        {
+          "dimension": "Disclosure",
+          "evidence": "Denial and coordination reveal only what the caller needs to recover."
         }
       ]
     }
@@ -168,53 +173,56 @@ export const topic: TopicModule = {
       "title": "Review an Ownership Check",
       "level": 8,
       "topicFamily": "production",
-      "scenario": "A route hides its edit button for non-owners, but the mutation accepts any projectId from the request. Review the boundary before the route ships.",
+      "scenario": "The project page hides Edit for non-owners, but `updateProject(projectId, changes)` accepts any browser-provided id. Review and repair the operation before release.",
       "constraints": [
-        "Treat request data as untrusted",
-        "Establish the authenticated identity at the server",
-        "Authorize the specific resource and operation",
-        "Avoid revealing protected data through denied responses"
+        "Treat projectId, ownerId, role, and changes from the browser as untrusted",
+        "Use authenticated server identity",
+        "Authorize the exact edit operation before returning or changing protected data",
+        "Provide a safe denial and direct-request tests"
       ],
       "acceptanceCriteria": [
-        "The mutation cannot update another owner’s project",
-        "The server performs the ownership or role check even when called directly",
-        "The denied outcome is deliberate and tested",
-        "The explanation distinguishes authentication from authorization"
+        "An owner can edit the intended project",
+        "A signed-in non-owner and an anonymous caller cannot read or update it through the operation",
+        "Any administrator exception comes from a trusted server policy",
+        "The denied path does not expose the protected record",
+        "Tests call the server boundary directly with altered project ids"
       ],
       "hints": [
         {
           "stage": 1,
-          "text": "Start at the mutation boundary, not the button visibility."
+          "text": "Write a small table for anonymous, owner, non-owner, and administrator outcomes."
         },
         {
           "stage": 2,
-          "text": "Join the resource lookup to the authenticated identity or apply an explicit permission policy."
+          "text": "Use the session user id in the protected lookup or evaluate an explicit server permission policy."
         },
         {
           "stage": 3,
-          "text": "Add a direct request test for a signed-in caller who does not own the resource."
+          "text": "Assert that a direct non-owner request changes no record and receives the deliberate denied result."
         }
       ],
-      "expectedReasoning": "A hidden control is a UX choice, not an authorization policy. The server must bind the caller to the resource and deny unauthorized operations consistently.",
+      "expectedReasoning": "The UI is not the trust boundary. The operation derives identity from the server session, validates the requested id and changes, applies ownership or role policy before access, and returns a safe denial. Direct tests prove the check survives bypassed navigation.",
       "commonWrongPaths": [
-        "Trusting an ownerId sent by the browser",
-        "Checking only middleware or page navigation",
-        "Returning the protected record before checking permission",
-        "Using a client role flag as the mutation guard"
+        "Trusting ownerId or role from the request",
+        "Checking only button visibility, middleware, or page navigation",
+        "Loading and returning the protected record before permission is known",
+        "Testing only the successful owner case"
       ],
-      "answerExplanation": "Require a server session, use its trusted identity in the resource authorization query or policy, return a safe denied response, and test direct unauthorized requests.",
-      "followUpVariation": "Add an administrator role without allowing a client-provided role to grant access.",
+      "answerExplanation": "Bind the requested project to trusted session identity or an explicit server role policy, deny before disclosure or mutation, and test the server entry point directly for every permission class.",
+      "followUpVariation": "Add a support role that may read but not edit. Express operation-specific policy without trusting a client role flag.",
       "checkType": "free-text",
-      "prompt": "Explain the server-side authorization review and the direct test you would require.",
+      "prompt": "Describe the trusted identity, resource policy, safe denial, and direct tests for this project edit.",
       "freeTextKeywords": [
+        "identity",
         "authorize",
-        "ownership",
-        "server",
-        "403"
+        "resource",
+        "server"
       ],
       "sourceLink": "https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html",
       "sourceLinks": [
-        "https://nextjs.org/docs/app/guides/authentication"
+        "https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html",
+        "https://nextjs.org/docs/app/guides/authentication",
+        "https://nextjs.org/docs/15/app/guides/authentication"
       ]
     },
     {
@@ -222,58 +230,60 @@ export const topic: TopicModule = {
       "title": "Design a Bounded Session Refresh Race",
       "level": 9,
       "topicFamily": "production",
-      "scenario": "Several requests see an expired session at once while another tab logs out. Design refresh ownership, retry limits, stale-result rejection, cross-tab invalidation, and tests.",
+      "scenario": "Three requests notice an expired session together. While one refresh is running, another tab logs out. Design a bounded client coordination model without weakening server authorization.",
       "constraints": [
-        "Use one refresh owner or an equivalent single-flight contract",
-        "Bound retries and reject stale refresh results",
-        "Keep session material out of localStorage",
-        "Use cross-tab signaling only for session-view coordination",
-        "Keep server authorization authoritative"
+        "Use one in-flight refresh owner or an equivalent single-flight contract",
+        "Cap retries and stop on non-recoverable denial",
+        "Invalidate any refresh result that began before logout",
+        "Do not store session credentials in localStorage or broadcast them",
+        "Keep every protected server operation authoritative"
       ],
       "acceptanceCriteria": [
-        "Concurrent requests do not create an unbounded refresh storm",
-        "A logout in another tab invalidates the local session view",
-        "A late refresh result cannot resurrect a logged-out session",
-        "The design includes race, denial, and retry-bound tests",
-        "The explanation does not treat BroadcastChannel as permission"
+        "Concurrent failures share one refresh attempt instead of creating a storm",
+        "A generation, epoch, or equivalent rule rejects the late pre-logout result",
+        "A same-origin tab message updates session view only and contains no credential",
+        "Retry, denial, timeout, logout, and late-success races have bounded tests",
+        "Protected data remains inaccessible unless the server authorizes the final request"
       ],
       "hints": [
         {
           "stage": 1,
-          "text": "Name the owner of refresh work and the state that invalidates it."
+          "text": "Store one in-flight Promise and let concurrent callers await the same result."
         },
         {
           "stage": 2,
-          "text": "Use a bounded retry and a generation or equivalent stale-result check."
+          "text": "Increment a session generation on logout and compare it before accepting a refresh result."
         },
         {
           "stage": 3,
-          "text": "Broadcast a safe logout/session-view event; re-check authorization at the server."
+          "text": "Broadcast only a safe “session changed” event; the server still decides whether later requests are allowed."
         }
       ],
-      "expectedReasoning": "A single-flight refresh owner prevents duplicate work, bounded retry prevents loops, and stale-result rejection prevents a late response from restoring an invalid session. BroadcastChannel can coordinate same-origin tabs but cannot authorize a request or replace server checks.",
+      "expectedReasoning": "Single-flight ownership prevents duplicate refresh work, retry limits prevent loops, and a logout generation prevents a late result from restoring an invalid view. BroadcastChannel can coordinate same-origin tabs, but it carries no authorization authority and no session credential.",
       "commonWrongPaths": [
-        "Refreshing independently in every failed request",
-        "Retrying forever on 401",
-        "Storing refresh tokens in localStorage",
-        "Trusting a tab event as proof of authorization",
-        "Allowing a late refresh response to overwrite logout"
+        "Starting an independent refresh for every failed request",
+        "Retrying every 401 without a bound",
+        "Saving or broadcasting refresh credentials",
+        "Accepting a refresh response that started before logout",
+        "Treating a tab message as server permission"
       ],
-      "answerExplanation": "Coordinate refresh through one in-flight owner, cap retries, tag results so logout invalidates stale work, broadcast only safe session-view changes, and enforce the final permission at the protected server boundary.",
-      "followUpVariation": "A mobile client cannot use BroadcastChannel. Which server-side guarantees remain unchanged?",
+      "answerExplanation": "Share one bounded refresh attempt, tag it with the current session generation, invalidate that generation on logout, broadcast only safe view coordination, and authorize every retried protected request on the server.",
+      "followUpVariation": "A mobile client cannot use BroadcastChannel. Identify the refresh and server-authorization guarantees that remain unchanged.",
       "checkType": "free-text",
-      "prompt": "Describe refresh ownership, stale-result rejection, cross-tab coordination, and the tests that prove the race is bounded.",
+      "prompt": "Describe single-flight refresh, retry bounds, logout invalidation, safe tab coordination, and the race tests.",
       "freeTextKeywords": [
         "single-flight",
         "retry",
+        "generation",
         "logout",
-        "BroadcastChannel",
         "server"
       ],
       "sourceLink": "https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html",
       "sourceLinks": [
+        "https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html",
         "https://developer.mozilla.org/en-US/docs/Web/API/BroadcastChannel",
-        "https://nextjs.org/docs/app/guides/authentication"
+        "https://nextjs.org/docs/app/guides/authentication",
+        "https://nextjs.org/docs/15/app/guides/authentication"
       ]
     }
   ],
@@ -283,8 +293,8 @@ export const topic: TopicModule = {
       "topicId": "expansion-authorization-boundaries",
       "topicFamily": "production",
       "question": "What is the difference between authentication and authorization?",
-      "answer": "Authentication establishes who the caller is. Authorization decides whether that caller may perform a specific operation on a specific resource. Both must be enforced at the server boundary protecting the operation.",
-      "followUp": "Why is hiding a button not authorization?",
+      "answer": "Authentication establishes a trusted caller identity, usually through a server-validated session. Authorization then decides whether that caller may perform one operation on one resource. A protected Server Function or Route Handler needs both decisions before data access.",
+      "followUp": "Which signed-in caller should your next authorization test deny, and for which resource and operation?",
       "category": "nextjs",
       "level": "advanced",
       "tags": [
@@ -292,15 +302,19 @@ export const topic: TopicModule = {
         "authn",
         "authz"
       ],
-      "sourceLink": "https://nextjs.org/docs/app/guides/authentication"
+      "sourceLink": "https://nextjs.org/docs/app/guides/authentication",
+      "sourceLinks": [
+        "https://nextjs.org/docs/app/guides/authentication",
+        "https://nextjs.org/docs/15/app/guides/authentication"
+      ]
     },
     {
       "id": "expansion-qa-ownership-check",
       "topicId": "expansion-authorization-boundaries",
       "topicFamily": "production",
-      "question": "How do you prevent an IDOR-style ownership bug?",
-      "answer": "Do not trust an ownerId or role sent by the client. Derive identity from the authenticated server session and authorize the requested resource in the data operation or an equivalent server policy before returning or changing it.",
-      "followUp": "Which direct request should be in the test?",
+      "question": "How does a server prevent an insecure direct object reference in a project operation?",
+      "answer": "It parses the requested project id, derives caller identity from the trusted server session, and authorizes that identity for the exact read or write before returning or changing the project. Client-provided owner ids and roles are not permission evidence.",
+      "followUp": "What should a direct non-owner request prove about both the response and stored project?",
       "category": "architecture",
       "level": "advanced",
       "tags": [
@@ -308,15 +322,18 @@ export const topic: TopicModule = {
         "ownership",
         "security"
       ],
-      "sourceLink": "https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html"
+      "sourceLink": "https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html",
+      "sourceLinks": [
+        "https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html"
+      ]
     },
     {
       "id": "expansion-qa-session-refresh-race",
       "topicId": "expansion-authorization-boundaries",
       "topicFamily": "production",
       "question": "How do you keep concurrent session refresh and logout bounded?",
-      "answer": "Use one refresh owner or single-flight contract, cap retries, reject stale results after logout, and coordinate safe session-view invalidation across same-origin tabs. BroadcastChannel coordinates tabs but never replaces server authentication or authorization.",
-      "followUp": "Which test proves a late refresh cannot resurrect a logged-out session?",
+      "answer": "Share one in-flight refresh attempt, cap retries, and associate the attempt with a session generation. Logout changes the generation, so a late earlier response is ignored. Same-origin tabs may broadcast a safe session-view change, but credentials and authorization remain server-owned.",
+      "followUp": "How will a test pause the refresh, perform logout, release the response, and prove the session stays logged out?",
       "category": "architecture",
       "level": "expert",
       "tags": [
@@ -328,6 +345,7 @@ export const topic: TopicModule = {
       ],
       "sourceLink": "https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html",
       "sourceLinks": [
+        "https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html",
         "https://developer.mozilla.org/en-US/docs/Web/API/BroadcastChannel",
         "https://nextjs.org/docs/app/guides/authentication"
       ]
@@ -339,15 +357,17 @@ export const topic: TopicModule = {
       "topicId": "expansion-authorization-boundaries",
       "topicFamily": "production",
       "title": "Authorize at the Protected Data Boundary",
-      "summary": "Use trusted server identity and resource ownership or permission checks where protected data is read or changed.",
-      "rationale": "Client visibility and route redirects can be bypassed. The data operation needs a policy that remains true for direct requests and every caller.",
-      "tradeOffs": "The policy must be applied consistently across reads and writes, which adds tests and server code.",
-      "appliesWhen": "A route, action, or handler accesses user- or role-scoped data.",
-      "doesNotApplyWhen": "The resource and operation are genuinely public.",
-      "example": "Query a project by both projectId and session.user.id, then test a caller attempting to edit another owner’s project.",
+      "summary": "At each protected server read or write, bind trusted caller identity to the requested operation and resource before access.",
+      "rationale": "Routes and buttons can be bypassed. A data-boundary check protects direct requests and makes ownership or role policy testable at the point that matters.",
+      "tradeOffs": "Every protected entry point needs consistent policy and denial tests. Central helpers may reduce repetition, but each operation must still pass its real resource and action.",
+      "appliesWhen": "A Server Function, Route Handler, or server read touches user-, tenant-, or role-scoped data.",
+      "doesNotApplyWhen": "The operation and resource are intentionally public and disclose no protected data.",
+      "example": "Parse projectId, obtain session.user.id, query or authorize the project for edit, deny safely if no permission exists, and test a direct non-owner request.",
       "sourceLink": "https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html",
       "sourceLinks": [
-        "https://nextjs.org/docs/app/guides/authentication"
+        "https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html",
+        "https://nextjs.org/docs/app/guides/authentication",
+        "https://nextjs.org/docs/15/app/guides/authentication"
       ],
       "tags": [
         "expansion-authorization-boundaries",

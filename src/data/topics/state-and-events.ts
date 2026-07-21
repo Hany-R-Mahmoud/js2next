@@ -11,41 +11,41 @@ export const topic: TopicModule = {
       "components-and-jsx"
     ],
     "learningObjectives": [
-      "Understand what state is and how it differs from props",
-      "Use useState to manage local component state",
-      "Handle user events and update state in response",
-      "Lift state up when multiple components need to share it"
+      "Choose state only for information that must persist between renders and can change",
+      "Explain state snapshots and queued updates inside an event handler",
+      "Use functional updaters and immutable values for dependent transitions",
+      "Place one source of truth at the closest owner shared by its consumers"
     ],
-    "whyMatters": "State is memory for your component. Without state, a React app is a static HTML page. Understanding what should be state, where it should live, and how to update it determines whether your app behaves predictably or becomes a debugging nightmare.",
-    "estimatedMinutes": 25,
+    "whyMatters": "State gives a component memory across renders, while events describe what happened. Predictable interfaces keep one owner for each fact, derive redundant values during render, and express state transitions without relying on a stale render snapshot.",
+    "estimatedMinutes": 32,
     "sections": [
       {
         "id": "state-vs-props",
         "type": "concept",
-        "title": "State vs Props",
-        "content": "Props are passed to a component by its parent — like function arguments. State is managed within the component — like local variables that persist across renders and trigger re-renders when changed.\n\nThe key difference: a component can change its own state. It cannot change its own props. State belongs to the component; props come from above."
+        "title": "State is owned memory; props are inputs",
+        "content": "State is information a component asks React to retain between renders. Props are the inputs chosen by a parent for the current render. Local variables are recalculated on every render, while refs retain a mutable value without requesting a render.\n\nStore a value in state only if it can change over time and the rendered output needs to respond. If a value can be calculated entirely from current props and state, derive it during render. Keeping one source of truth removes synchronization bugs."
       },
       {
         "id": "usestate-basics",
         "type": "code-example",
-        "title": "useState: the state hook",
-        "content": "`useState` returns an array with two items: the current state value and a setter function. Call the setter to update state and trigger a re-render.",
-        "code": "import { useState } from 'react';\n\nfunction Counter() {\n  const [count, setCount] = useState(0);\n\n  return (\n    <div>\n      <p>Count: {count}</p>\n      <button onClick={() => setCount(count + 1)}>+1</button>\n      <button onClick={() => setCount(0)}>Reset</button>\n    </div>\n  );\n}",
+        "title": "Express transitions through the setter",
+        "content": "A state setter queues another render. When the next value depends on previous state, pass an updater function. Return a new object or array instead of mutating the current state value.",
+        "code": "function Quantity() {\n  const [count, setCount] = useState(0);\n\n  function increment() {\n    setCount(current => current + 1);\n  }\n\n  function decrement() {\n    setCount(current => Math.max(0, current - 1));\n  }\n\n  return (\n    <div>\n      <button onClick={decrement} disabled={count === 0}>−</button>\n      <output aria-live=\"polite\">{count}</output>\n      <button onClick={increment}>+</button>\n    </div>\n  );\n}",
         "codeLanguage": "typescript",
         "codeFilePath": "examples/state/Counter.tsx"
       },
       {
         "id": "state-batching",
         "type": "concept",
-        "title": "State updates are batched and asynchronous",
-        "content": "React batches multiple state updates from the same event handler into a single re-render. This means that reading state immediately after calling a setter will give you the old value. Use the functional updater form — `setCount(c => c + 1)` — when the new state depends on the previous state."
+        "title": "Handlers read one render snapshot",
+        "content": "During one render, the state variables visible to its event handlers are fixed. Calling a setter queues work; it does not change the variable inside the running handler. React batches queued updates and processes them after the event handler finishes.\n\nPassing a value such as `setCount(count + 1)` queues a replacement calculated from this render’s snapshot. Passing `setCount(current => current + 1)` queues a function that React applies to the pending state in order. Use the updater whenever the transition depends on previous state."
       },
       {
         "id": "lifting-state",
         "type": "code-example",
-        "title": "Lifting state up",
-        "content": "When two sibling components need to share state, \"lift\" the state to their closest common parent. The parent holds the state and passes it down as props, along with setter callbacks.",
-        "code": "function Accordion() {\n  const [openIndex, setOpenIndex] = useState<number | null>(null);\n\n  return (\n    <div>\n      {panels.map((panel, i) => (\n        <Panel\n          key={panel.id}\n          title={panel.title}\n          isOpen={openIndex === i}\n          onToggle={() => setOpenIndex(openIndex === i ? null : i)}\n        />\n      ))}\n    </div>\n  );\n}",
+        "title": "Lift one source of truth to the common owner",
+        "content": "When siblings must coordinate, move the shared fact to their closest common parent. The parent passes the current value down and event callbacks back up. A controlled child reflects those props instead of keeping a competing copy.",
+        "code": "function Accordion() {\n  const [openId, setOpenId] = useState<string | null>(null);\n\n  return sections.map(item => (\n    <Panel\n      key={item.id}\n      title={item.title}\n      isOpen={openId === item.id}\n      onToggle={() =>\n        setOpenId(current => current === item.id ? null : item.id)\n      }\n    >\n      {item.content}\n    </Panel>\n  ));\n}",
         "codeLanguage": "typescript",
         "codeFilePath": "examples/state/Accordion.tsx"
       },
@@ -57,18 +57,18 @@ export const topic: TopicModule = {
         "questions": [
           {
             "id": "q4",
-            "question": "After clicking \"Increment\" once, what does the alert show?",
+            "question": "Starting from `count === 0`, a click handler runs `setCount(count + 1); setCount(current => current + 1); alert(count);`. What happens?",
             "options": [
-              "0",
-              "1",
-              "3",
-              "undefined"
+              "The next render shows 1 and the alert shows 0",
+              "The next render shows 2 and the alert shows 0",
+              "The next render shows 2 and the alert shows 2",
+              "The next render shows 1 and the alert shows 1"
             ],
-            "correctAnswer": "0",
-            "expectedReasoning": "All three setCount calls use the same `count` value from the current render's closure (0). They all set the count to 0+1=1, not 0, then 1, then 2. React batches them into one update. The alert reads `count` from the current closure, which is still 0. This is the stale closure problem.",
+            "correctAnswer": "The next render shows 2 and the alert shows 0",
+            "expectedReasoning": "The first call queues replacement state 1 from the current snapshot. The updater then receives pending state 1 and returns 2. The current handler still reads the snapshot value 0, so the alert shows 0. React renders with 2 after the handler finishes.",
             "commonMisconceptions": [
-              "Thinking each setCount call uses the updated value",
-              "Not knowing that state reads are from the current closure"
+              "Expecting a setter to mutate the state variable inside the current handler",
+              "Assuming a functional updater ignores replacements already queued before it"
             ]
           }
         ]
@@ -77,25 +77,29 @@ export const topic: TopicModule = {
         "id": "state-synthesis",
         "type": "synthesis",
         "title": "Synthesis",
-        "content": "State is local, mutable memory for a component. But it's not directly mutable — you must use the setter. State updates are batched. When state is needed by multiple children, lift it up. When state is needed across distant parts of the tree, reach for context or a state management library. The question 'where should this state live?' is one of the most important architectural decisions you'll make in React."
+        "content": "Choose the smallest owner that must remember a changing fact. Keep state minimal, derive redundant values during render, and send events to the owner that can perform the transition. Inside a handler, reason from its render snapshot and use functional updaters for transitions that depend on queued previous state."
       }
     ],
-    "retrievalPrompt": "Explain why React batches state updates. What problem would occur if it didn't?",
-    "reflectionPrompt": "In your own projects, do you have state that should be lifted up? What would change if you moved it?",
+    "retrievalPrompt": "Explain why a state variable does not change inside the current handler, when a functional updater is required, and how to choose the owner of state shared by two components.",
+    "reflectionPrompt": "Find one state value in your code that could be derived from props or other state. What synchronization path disappears if you remove it?",
     "masteryCriteria": [
-      "Can distinguish state from props",
-      "Can use useState with proper update patterns",
-      "Understands that state updates are asynchronous and batched",
-      "Can lift state up to a common ancestor component"
+      "Can distinguish props, local variables, refs, and state by lifetime and ownership",
+      "Can predict queued state updates from a render snapshot",
+      "Can write dependent updates with functional updaters and immutable values",
+      "Can lift state without creating a second source of truth"
     ],
     "nextTopics": [
       "use-reducer-and-context"
     ],
     "metadata": {
-      "reactVersion": "19.2.7",
-      "lastUpdated": "2026-07-01",
+      "reactVersion": "19.2",
+      "lastUpdated": "2026-07-20",
       "sources": [
-        "https://react.dev/learn/state-a-components-memory"
+        "https://react.dev/learn/responding-to-events",
+        "https://react.dev/learn/state-a-components-memory",
+        "https://react.dev/learn/state-as-a-snapshot",
+        "https://react.dev/learn/queueing-a-series-of-state-updates",
+        "https://react.dev/learn/choosing-the-state-structure"
       ]
     },
     "diagram": {
@@ -141,28 +145,28 @@ export const topic: TopicModule = {
     "chunks": [
       {
         "id": "state-and-events-retrieval-1",
-        "title": "Predict repeated updates",
-        "concept": "When the next value depends on the previous one, updater functions compose queued changes against the latest pending state.",
+        "title": "Queue dependent updates",
+        "concept": "Repeated value replacements read one render snapshot; updater functions compose over pending state.",
         "prediction": {
-          "prompt": "What is the safest form for three increments in one handler?",
+          "prompt": "Which sequence reliably increments by three in one handler?",
           "options": [
-            "setCount(count + 1) three times",
-            "setCount(current => current + 1) three times"
+            "`setCount(count + 1)` three times",
+            "`setCount(current => current + 1)` three times"
           ],
-          "correctAnswer": "setCount(current => current + 1) three times",
-          "feedbackCorrect": "Each updater receives the pending state.",
-          "feedbackWrong": "The direct value can repeat the same captured snapshot."
+          "correctAnswer": "`setCount(current => current + 1)` three times",
+          "feedbackCorrect": "React applies each updater to the pending result of the previous updater.",
+          "feedbackWrong": "Each value replacement calculates from the same snapshot and requests the same next value."
         },
-        "synthesis": "Events schedule state transitions; the next render exposes the updated snapshot."
+        "synthesis": "Use an updater when the next state is a function of pending previous state."
       }
     ],
     "miniProject": {
       "title": "Build a predictable counter",
-      "scenario": "Design a counter with increment, decrement, reset, and milestone feedback.",
+      "scenario": "Build a controlled quantity selector shared by an item row and a cart summary.",
       "acceptance": [
-        "Previous-state updates remain correct under rapid clicks",
-        "Derived milestone feedback is not duplicated in state",
-        "Keyboard and button semantics are explicit"
+        "One owner stores the quantity and both consumers receive the same value",
+        "Increment and decrement transitions use previous state safely and never go below zero",
+        "Availability and milestone labels are derived rather than separately stored"
       ],
       "rubric": [
         {
@@ -186,48 +190,51 @@ export const topic: TopicModule = {
       "title": "Implement a Counter Component",
       "level": 2,
       "topicFamily": "state-behavior",
-      "scenario": "Build a counter that increments, decrements, and resets. Display a message when the count reaches milestones.",
+      "scenario": "Build a typed counter with increment, decrement, reset, and a milestone label derived from the current count.",
       "constraints": [
-        "Use TypeScript",
-        "The count must not go below 0",
-        "Show \"Milestone: 10!\" when reaching multiples of 10"
+        "Use TypeScript and keep one numeric state value",
+        "The count must never go below 0",
+        "Do not store the milestone label or boolean in separate state"
       ],
       "acceptanceCriteria": [
-        "Increment button adds 1",
-        "Decrement button subtracts 1 (min 0)",
-        "Reset button sets count to 0",
-        "Milestone message appears at 10, 20, 30... and disappears after 2 seconds"
+        "Increment and decrement use transitions based on previous state",
+        "Reset sets the count to 0 and decrement is clamped at 0",
+        "The UI shows `Milestone: 10!`, `Milestone: 20!`, and so on only at positive multiples of 10",
+        "Rapid clicks cannot lose increments"
       ],
       "hints": [
         {
           "stage": 1,
-          "text": "Use useState<number>(0) for the count."
+          "text": "Store only `count`. Write down which other displayed values can be calculated from it."
         },
         {
           "stage": 2,
-          "text": "For the milestone, derive a boolean from the count: `count > 0 && count % 10 === 0`."
+          "text": "Use functional updaters for increment and decrement; clamp decrement with `Math.max`."
         },
         {
           "stage": 3,
-          "text": "Use a useEffect with a timeout to clear the milestone message."
+          "text": "Derive `const milestone = count > 0 && count % 10 === 0` during render."
         }
       ],
-      "expectedReasoning": "State for count, event handlers for increment/decrement/reset, derived state for milestone detection, useEffect for auto-clearing the message.",
+      "expectedReasoning": "The count is the only independent changing fact. Each dependent transition uses the queued previous count. The milestone is a pure projection of current count, so storing it would create a second synchronization problem.",
       "commonWrongPaths": [
-        "Storing milestone as separate state instead of deriving it",
-        "Forgetting to clear the timeout in the useEffect cleanup"
+        "Calling `setCount(count + 1)` repeatedly and assuming each call sees a changed variable",
+        "Storing a milestone boolean and trying to keep it synchronized with count"
       ],
-      "answerExplanation": "The milestone should be derived during render (`count > 0 && count % 10 === 0`). The auto-clear uses useEffect with a timeout that resets a `showMilestone` state, with proper cleanup of the timeout.",
-      "followUpVariation": "Add a step size input that changes how much each click increments/decrements by.",
-      "sourceLink": "https://react.dev/reference/react/useState"
+      "answerExplanation": "Use one `useState<number>(0)`. Increment with `setCount(current => current + 1)`, decrement with `setCount(current => Math.max(0, current - 1))`, and reset with `setCount(0)`. Derive the milestone expression while rendering; no Effect or duplicate state is needed.",
+      "followUpVariation": "Add a step-size prop. Which component should own the step when two counters must share it?",
+      "sourceLink": "https://react.dev/learn/queueing-a-series-of-state-updates",
+      "sourceLinks": [
+        "https://react.dev/reference/react/useState"
+      ]
     }
   ],
   "qa": [
     {
       "id": "qa-11",
-      "question": "Why does useState not update immediately after calling the setter?",
-      "answer": "Calling a setter queues a future render; it does not change the state variable already captured by the current render. React may batch multiple updates, so code in the current handler still reads the old snapshot. If the next state depends on the previous state, use the functional updater: `setCount(prev => prev + 1)`.",
-      "followUp": "What happens if you call setState multiple times in the same event handler?",
+      "question": "Why does a state variable not change immediately after its setter is called?",
+      "answer": "The setter queues a future render. The running handler keeps the state snapshot from the render that created it, while React processes queued replacements and updater functions after the handler finishes.",
+      "followUp": "How are a queued replacement and a queued updater processed differently?",
       "category": "react",
       "level": "beginner",
       "tags": [
@@ -237,15 +244,18 @@ export const topic: TopicModule = {
       ],
       "topicId": "state-and-events",
       "topicFamily": "state-behavior",
-      "sourceLink": "https://react.dev/reference/react/useState"
+      "sourceLink": "https://react.dev/learn/state-as-a-snapshot",
+      "sourceLinks": [
+        "https://react.dev/reference/react/useState"
+      ]
     },
     {
       "id": "loop-qa-state-and-events-1",
       "topicId": "state-and-events",
       "topicFamily": "state-behavior",
-      "question": "What problem does State & Events in React help you solve?",
-      "answer": "State is memory for your component. Without state, a React app is a static HTML page. Understanding what should be state, where it should live, and how to update it determines whether your app behaves predictably or becomes a debugging nightmare.",
-      "followUp": "Name one decision in your current project where this model would change the implementation.",
+      "question": "What should become state, and what should remain derived?",
+      "answer": "State should represent an independent fact that changes over time and must affect rendering. Values fully determined by current props and state should be calculated during render so the UI has one source of truth.",
+      "followUp": "Which state value in your feature can be deleted and derived instead?",
       "category": "react",
       "level": "beginner",
       "tags": [
@@ -258,9 +268,9 @@ export const topic: TopicModule = {
       "id": "loop-qa-state-and-events-2",
       "topicId": "state-and-events",
       "topicFamily": "state-behavior",
-      "question": "How would you explain the core idea of State & Events in React to a teammate?",
-      "answer": "Explain why React batches state updates. What problem would occur if it didn't? A strong explanation should connect the model to: Understand what state is and how it differs from props; Use useState to manage local component state.",
-      "followUp": "Which observable behavior would prove your explanation is correct?",
+      "question": "How do state snapshots and functional updaters work together?",
+      "answer": "A handler reads one render snapshot. A functional updater does not change that snapshot; it tells React how to calculate the next state from the pending previous state when queued updates are processed.",
+      "followUp": "Predict the result of mixing a replacement update and an updater in one handler.",
       "category": "react",
       "level": "beginner",
       "tags": [
@@ -273,14 +283,17 @@ export const topic: TopicModule = {
   "practices": [
     {
       "id": "bp-4",
-      "title": "Use the Functional Updater for State that Depends on Previous State",
-      "summary": "Use `setCount(c => c + 1)` instead of `setCount(count + 1)` whenever the new state depends on the previous state value.",
-      "rationale": "React batches state updates. Multiple calls to `setCount(count + 1)` in the same handler all read the same closure-captured `count`. The functional updater receives the most recent state as its argument, ensuring correct increment.",
-      "tradeOffs": "Slightly more verbose. For simple updates that do not depend on previous state (e.g., `setOpen(true)`), the direct value is fine.",
-      "appliesWhen": "The new state is computed from the previous state, especially if there could be multiple updates batched together.",
-      "doesNotApplyWhen": "The new state is independent of the previous state (e.g., setting a fixed value, resetting to initial).",
-      "example": "`setCount(count + 1)` may lose updates when called multiple times rapidly. `setCount(c => c + 1)` is the appropriate form when this transition depends on the previous count.",
-      "sourceLink": "https://react.dev/reference/react/useState#updating-state-based-on-the-previous-state",
+      "title": "Use an Updater for a Previous-State Transition",
+      "summary": "Pass `current => next` when the next state is calculated from previous state.",
+      "rationale": "Handlers read a render snapshot, and React may queue several updates before rendering. Updaters are applied in queue order to pending state, so dependent transitions compose correctly.",
+      "tradeOffs": "An updater is unnecessary when replacing state with a value that does not depend on previous state, such as `setOpen(true)` or `setCount(0)`.",
+      "appliesWhen": "Incrementing, toggling, appending, removing, or otherwise calculating from previous state.",
+      "doesNotApplyWhen": "Replacing state with a fixed or externally supplied value independent of the previous state.",
+      "example": "`setCount(current => current + 1)` expresses a dependent transition; `setCount(0)` expresses a reset.",
+      "sourceLink": "https://react.dev/learn/queueing-a-series-of-state-updates",
+      "sourceLinks": [
+        "https://react.dev/reference/react/useState#updating-state-based-on-the-previous-state"
+      ],
       "tags": [
         "useState",
         "closure",
@@ -291,13 +304,13 @@ export const topic: TopicModule = {
     },
     {
       "id": "bp-5",
-      "title": "Derive State Instead of Storing It",
-      "summary": "If a value can be computed from existing state or props during render, compute it — do not store it in a separate state variable.",
-      "rationale": "Storing derived state creates a synchronization problem: you must keep the derived state in sync with the source state. This leads to bugs where they diverge. Computation during render is always consistent.",
-      "tradeOffs": "For very expensive computations, memoization (useMemo) may be appropriate. But measure first — most derived computations are cheap enough.",
-      "appliesWhen": "A value is fully determined by existing state or props.",
-      "doesNotApplyWhen": "The value needs to persist independently, or the computation triggers a side effect. In these cases, it is not truly \"derived.\"",
-      "example": "`const isFull = items.length >= maxItems` — derived from items and maxItems. Do not store `isFull` in state.",
+      "title": "Derive Redundant Values During Render",
+      "summary": "Calculate values from current props and state instead of storing synchronized copies.",
+      "rationale": "A redundant state value creates another owner and another update path. Render-time derivation is recalculated from the same inputs and cannot drift behind them.",
+      "tradeOffs": "An actually expensive pure calculation may justify measured memoization, but memoization is not a reason to duplicate the value in state.",
+      "appliesWhen": "The value is completely determined by current props or state.",
+      "doesNotApplyWhen": "The value can change independently or must preserve user input that is not derivable from the current inputs.",
+      "example": "`const isMilestone = count > 0 && count % 10 === 0` belongs in render, not in a second state variable.",
       "sourceLink": "https://react.dev/learn/choosing-the-state-structure#avoid-redundant-state",
       "tags": [
         "state",

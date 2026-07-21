@@ -12,28 +12,28 @@ export const topic: TopicModule = {
       "production-deployment"
     ],
     "learningObjectives": [
-      "Separate a user-visible performance symptom from an assumed cause",
-      "Use profiling evidence to find expensive renders or calculations",
-      "Explain memoization trade-offs and dependency correctness",
-      "Measure production-like behavior before declaring an optimization successful"
+      "Describe a slow user interaction before proposing a cause",
+      "Use React and browser profiles to locate the dominant cost",
+      "Choose memoization only when stable inputs let it skip measured work",
+      "Compare the same interaction before and after a change in a production-like build"
     ],
-    "whyMatters": "Performance fixes can add complexity without changing the bottleneck. A repeatable measurement loop keeps memoization, data loading, and bundle work tied to evidence users can feel.",
-    "estimatedMinutes": 25,
+    "whyMatters": "A pause while typing can come from rendering, a calculation, a request waterfall, a large JavaScript download, or hydration. Measuring first keeps the repair focused and prevents an optimization from adding complexity to the wrong part of the app.",
+    "estimatedMinutes": 38,
     "sections": [
       {
         "id": "expansion-performance-diagnosis-model",
         "type": "concept",
         "title": "Start with the symptom",
-        "content": "Name the interaction and measure it. Check render work, calculation cost, network waterfalls, JavaScript transfer, and hydration before choosing a fix."
+        "content": "Begin with what the user experiences: for example, “after each key press, the filtered rows appear 300 ms later.” Reproduce the same interaction with the same data size and record a baseline. Then inspect the likely layers separately: network timing, JavaScript transfer and long tasks, React render commits, and expensive calculations.\n\nA React profile can show which components rendered and how long a commit took. It cannot by itself prove that the network, server, or bundle is fast. Use the tool whose signal matches the suspected boundary, and keep alternative explanations open until the evidence rules them out."
       },
       {
         "id": "expansion-performance-diagnosis-code",
         "type": "code-example",
         "title": "Optimize a measured boundary",
-        "content": "Memoization can skip work when its inputs are stable, but it is an optimization. Keep the component pure and verify that the dependency or prop boundary matches the expensive work.",
-        "code": "const visibleRows = useMemo(\n  () => filterRows(rows, query),\n  [rows, query],\n);\n\nconst Row = memo(ProjectRow);",
+        "content": "If the profile shows that filtering is expensive and repeats with unchanged rows and query, useMemo can cache that calculation. If a costly row repeatedly receives unchanged props, memo may skip its parent-driven render. Both remain performance optimizations: keep render logic correct without them, and note that React Compiler may reduce the need for manual memoization when the project actually enables it.",
+        "code": "const visibleRows = useMemo(\n  () => filterRows(rows, query),\n  [rows, query],\n);\n\nconst ProjectRow = memo(function ProjectRow({ project }: Props) {\n  return <li>{project.name}</li>;\n});",
         "codeLanguage": "tsx",
-        "codeFilePath": "Measured list boundary"
+        "codeFilePath": "app/projects/ProjectList.tsx"
       },
       {
         "id": "expansion-performance-diagnosis-question",
@@ -43,15 +43,15 @@ export const topic: TopicModule = {
         "questions": [
           {
             "id": "expansion-performance-diagnosis-check",
-            "question": "What should you do before adding memo to a slow list?",
+            "question": "Typing in a project filter feels slow, but no profile has been captured. What is the strongest next step?",
             "options": [
-              "Add memo to every component",
-              "Profile the interaction and identify the expensive work or unstable boundary",
-              "Move all state to a global store",
-              "Disable development checks"
+              "Reproduce and profile the interaction while also checking network and main-thread evidence",
+              "Wrap every component in memo before measuring",
+              "Use an empty dependency array so the filtered rows never recompute",
+              "Assume development timing exactly matches the production build"
             ],
-            "correctAnswer": "Profile the interaction and identify the expensive work or unstable boundary",
-            "expectedReasoning": "Profiling connects a symptom to a bottleneck. Memo may help one boundary, but it cannot fix a server waterfall, a large download, or an incorrect dependency."
+            "correctAnswer": "Reproduce and profile the interaction while also checking network and main-thread evidence",
+            "expectedReasoning": "A baseline and profile connect the visible delay to a boundary. Blanket memoization may not affect a request or bundle bottleneck, an incomplete dependency array can return stale results, and development timing is not production evidence."
           }
         ]
       },
@@ -59,22 +59,24 @@ export const topic: TopicModule = {
         "id": "expansion-performance-diagnosis-synthesis",
         "type": "synthesis",
         "title": "Synthesis",
-        "content": "Measure the interaction, isolate the bottleneck, choose the smallest fix, and measure again in a production-like build. Treat memoization as a measured optimization, not a default architecture rule."
+        "content": "Use a short loop: describe one user-visible symptom, reproduce it, collect the matching evidence, change the smallest responsible boundary, and repeat the same measurement. Keep the optimization only when the interaction improves without stale data, missed updates, or a maintenance cost larger than the benefit."
       }
     ],
-    "retrievalPrompt": "What evidence would distinguish render work from a network, JavaScript-transfer, or hydration bottleneck?",
-    "reflectionPrompt": "Choose one slow interaction. What is the baseline measurement, what boundary might be expensive, and what result would prove the fix helped?",
+    "retrievalPrompt": "For a slow list filter, describe the symptom, baseline, evidence that separates render work from network or bundle work, proposed change, and before/after comparison.",
+    "reflectionPrompt": "Choose one delay a user can feel. What exactly starts and ends the interaction, which evidence will locate the cost, and what improvement would be meaningful?",
     "masteryCriteria": [
-      "Can name a measurable performance symptom",
-      "Can choose profiling evidence for the suspected bottleneck",
-      "Can explain memoization trade-offs",
-      "Can compare before/after behavior in a production-like build"
+      "Can state a reproducible symptom and baseline instead of an assumed cause",
+      "Can read a React commit profile alongside browser network and main-thread evidence",
+      "Can explain when memo, useMemo, or no memoization is the smaller choice",
+      "Can verify correctness and performance in the same production-like scenario"
     ],
     "nextTopics": [
       "deep-dive-production-concerns"
     ],
     "metadata": {
-      "lastUpdated": "2026-07-15",
+      "reactVersion": "19.2.7",
+      "nextVersion": "15.5.20",
+      "lastUpdated": "2026-07-21",
       "sources": [
         "https://react.dev/reference/react/memo",
         "https://react.dev/reference/react/useMemo",
@@ -126,40 +128,42 @@ export const topic: TopicModule = {
       {
         "id": "expansion-performance-diagnosis-retrieval-1",
         "title": "Reject optimization by reflex",
-        "concept": "A slow interaction is not proof of a render bottleneck; profiling separates render work from network, bundle, and server costs.",
+        "concept": "Performance diagnosis separates a visible symptom from render, calculation, network, bundle, server, and hydration causes.",
         "prediction": {
-          "prompt": "What should happen before adding memoization?",
+          "prompt": "A React commit is fast, but the page waits on three sequential requests. Which first change follows the evidence?",
           "options": [
-            "Profile the user-visible interaction",
-            "Add memo to every row"
+            "Investigate the request waterfall",
+            "Add memo to every row",
+            "Remove correct dependencies"
           ],
-          "correctAnswer": "Profile the user-visible interaction",
-          "feedbackCorrect": "A baseline identifies whether memoization targets the real cost.",
-          "feedbackWrong": "Blanket memoization can add complexity without improving the bottleneck."
+          "correctAnswer": "Investigate the request waterfall",
+          "feedbackCorrect": "The measured delay is outside the row render, so the request sequence is the useful boundary to inspect.",
+          "feedbackWrong": "Memoization or incomplete dependencies do not shorten a measured network waterfall and may add new problems."
         },
-        "synthesis": "Measure the same interaction before and after the smallest evidence-backed change."
+        "synthesis": "Let the dominant measured cost choose the repair."
       }
     ],
     "miniProject": {
       "title": "Investigate a slow project list",
-      "scenario": "Create a measurement plan for typing latency, render work, network waterfalls, and a production-like comparison.",
+      "scenario": "Investigate a project list where typing can trigger filtering, row renders, and an optional server search.",
       "acceptance": [
-        "At least one baseline metric is recorded",
-        "Alternative bottlenecks are considered",
-        "The fix is re-measured after implementation"
+        "The interaction, data size, environment, and baseline are recorded",
+        "React commits, browser work, and request timing are compared before choosing a cause",
+        "The proposed change targets one measured boundary and preserves correct dependencies",
+        "The same production-like scenario is measured again and the trade-off is documented"
       ],
       "rubric": [
         {
           "dimension": "Evidence",
-          "evidence": "The hypothesis is connected to a concrete profile or browser signal."
+          "evidence": "The leading hypothesis is supported by a named profile or browser signal."
         },
         {
-          "dimension": "Scope",
-          "evidence": "The fix targets the dominant boundary rather than adding broad memoization."
+          "dimension": "Correctness",
+          "evidence": "The optimization preserves current props, state, context, and dependency behavior."
         },
         {
           "dimension": "Outcome",
-          "evidence": "Before/after results and trade-offs are recorded."
+          "evidence": "Before/after results use the same interaction and include the observed maintenance cost."
         }
       ]
     }
@@ -170,54 +174,57 @@ export const topic: TopicModule = {
       "title": "Profile a Slow Project List",
       "level": 7,
       "topicFamily": "production",
-      "scenario": "Typing into a project filter feels slow. The list contains expensive row calculations, but the team is considering memoization before checking whether the delay comes from rendering, data fetching, or a large client bundle.",
+      "scenario": "A 1,000-row project list pauses after each key press. A teammate proposes memo on every component, but the route can also refetch and ships a large client bundle. Produce an evidence-based diagnosis and one smallest repair.",
       "constraints": [
-        "Define the user interaction and baseline",
-        "Use profiling or browser performance evidence",
-        "Choose the smallest boundary-level fix",
-        "Compare the result in a production-like build"
+        "Use the same query, data size, and production-like build for comparisons",
+        "Inspect render commits, main-thread work, and request timing before choosing the bottleneck",
+        "Keep every calculation dependency and component input correct",
+        "Record a measurable result and any new complexity"
       ],
       "acceptanceCriteria": [
-        "The suspected bottleneck is supported by a measurement",
-        "The proposed memoization boundary has stable, correct inputs",
-        "Network and bundle causes are considered before render-only changes",
-        "The result is measured again and recorded as an observed change"
+        "The baseline names a user-visible start, end, and duration",
+        "Evidence identifies the dominant boundary rather than merely listing possibilities",
+        "Memoization is used only if repeated expensive work and stable inputs justify it",
+        "The follow-up measurement uses the same scenario and checks correct results",
+        "An ineffective change can be removed cleanly"
       ],
       "hints": [
         {
           "stage": 1,
-          "text": "Write down the interaction, start/end markers, and baseline before editing."
+          "text": "Record one slow key press and inspect both the React commit and browser network/main-thread timeline."
         },
         {
           "stage": 2,
-          "text": "Use the React Profiler or browser Performance panel to separate render work from network and long-task costs."
+          "text": "If rows are expensive, check whether their props are actually unchanged between renders."
         },
         {
           "stage": 3,
-          "text": "Memoize only the measured boundary and verify props/dependencies preserve correctness."
+          "text": "Repeat the exact interaction after one change; do not compare unrelated runs."
         }
       ],
-      "expectedReasoning": "A slow interaction is not proof of a render bottleneck. Evidence should identify the dominant cost; memoization is one possible optimization and must be validated after the change.",
+      "expectedReasoning": "The visible pause does not identify its cause. A controlled baseline and matching profiles locate the dominant cost. Manual memoization is useful only when it can skip measured repeated work with stable inputs; other evidence may instead point to request, bundle, or state-placement changes.",
       "commonWrongPaths": [
         "Adding memo everywhere without a baseline",
-        "Using an empty dependency array to silence recomputation",
-        "Ignoring a server waterfall or bundle-size problem",
-        "Treating development timing as production truth"
+        "Omitting a dependency so cached data becomes stale",
+        "Ignoring a measured request waterfall or long task",
+        "Comparing development timing with a different production scenario"
       ],
-      "answerExplanation": "Capture a baseline, profile the interaction, classify the dominant cost, apply the smallest evidence-backed fix, and compare the same measurement in a production-like build.",
-      "followUpVariation": "The rows are fast, but the initial page is slow because a client boundary ships too much JavaScript. Re-plan the fix.",
+      "answerExplanation": "Measure one reproducible interaction, classify the dominant cost, change one boundary, and repeat the same measurement. Keep manual memoization only when the profile and stable inputs show that it saves meaningful work.",
+      "followUpVariation": "The React profile is fast, but the first interaction waits for a dynamically loaded client bundle. Redesign the investigation around transfer and execution evidence.",
       "checkType": "free-text",
-      "prompt": "Explain how you would investigate and improve this interaction without guessing.",
+      "prompt": "Describe the baseline, evidence, smallest change, correctness checks, and before/after result for this slow list.",
       "freeTextKeywords": [
+        "baseline",
         "profile",
-        "measure",
-        "memo",
+        "bottleneck",
         "production"
       ],
       "sourceLink": "https://react.dev/reference/react/Profiler",
       "sourceLinks": [
+        "https://react.dev/reference/react/Profiler",
         "https://react.dev/reference/react/memo",
-        "https://nextjs.org/docs/15/app/guides/production-checklist"
+        "https://nextjs.org/docs/15/app/guides/production-checklist",
+        "https://react.dev/reference/react/useMemo"
       ]
     }
   ],
@@ -227,23 +234,27 @@ export const topic: TopicModule = {
       "category": "performance",
       "level": "intermediate",
       "question": "When should I memoize with useMemo or useCallback?",
-      "answer": "Use them for a measured expensive calculation or a stable reference required by an optimized child or Effect. Avoid blanket memoization because it adds complexity.",
-      "followUp": "How would you measure whether memoization helped?",
+      "answer": "Use useMemo for a measured expensive calculation whose dependencies are complete, or useCallback when a stable function reference is required by a measured optimized boundary or synchronization contract. Do not add either by default: the cache has a readability and comparison cost, and React Compiler may already provide memoization if the project enables it.",
+      "followUp": "Which profile would show that the same expensive calculation or child render is repeating with unchanged inputs?",
       "tags": [
         "learn-react-bridge",
         "memoization"
       ],
       "sourceLink": "https://react.dev/reference/react/useMemo",
       "topicId": "expansion-performance-diagnosis",
-      "topicFamily": "production"
+      "topicFamily": "production",
+      "sourceLinks": [
+        "https://react.dev/reference/react/useMemo",
+        "https://react.dev/reference/react/memo"
+      ]
     },
     {
       "id": "expansion-qa-profiler",
       "topicId": "expansion-performance-diagnosis",
       "topicFamily": "production",
       "question": "What does the React Profiler help you learn?",
-      "answer": "It records render timing data for a component tree so you can investigate which interactions or components consume time. It does not by itself prove that memoization is the right fix.",
-      "followUp": "Which other evidence would you collect for a slow initial page?",
+      "answer": "The React Profiler records when a profiled tree commits and how much rendering work it performed. Use it to locate expensive or repeated renders for a specific interaction, then compare it with browser network and main-thread evidence because it does not measure every possible bottleneck.",
+      "followUp": "If the React commit is short, which browser evidence would you inspect next?",
       "category": "performance",
       "level": "advanced",
       "tags": [
@@ -251,15 +262,18 @@ export const topic: TopicModule = {
         "profiling",
         "rendering"
       ],
-      "sourceLink": "https://react.dev/reference/react/Profiler"
+      "sourceLink": "https://react.dev/reference/react/Profiler",
+      "sourceLinks": [
+        "https://react.dev/reference/react/Profiler"
+      ]
     },
     {
       "id": "expansion-qa-memoization",
       "topicId": "expansion-performance-diagnosis",
       "topicFamily": "production",
       "question": "Why is memoization an optimization rather than a correctness fix?",
-      "answer": "memo and useMemo can skip or cache work when inputs are unchanged, but correctness still depends on pure rendering, complete props/dependencies, and the actual bottleneck. They add comparison or cache complexity and should be measured.",
-      "followUp": "What can a memoized component still re-render for?",
+      "answer": "memo and useMemo may skip work when relevant inputs are unchanged, but React may still render a memoized component and its own state or consumed context can still change. Correctness must come from pure rendering and complete inputs; memoization is kept only when measurement shows a useful performance benefit.",
+      "followUp": "Which changing object, function, state, or context value could make your memo boundary render again?",
       "category": "react",
       "level": "advanced",
       "tags": [
@@ -269,6 +283,7 @@ export const topic: TopicModule = {
       ],
       "sourceLink": "https://react.dev/reference/react/memo",
       "sourceLinks": [
+        "https://react.dev/reference/react/memo",
         "https://react.dev/reference/react/useMemo"
       ]
     }
@@ -279,14 +294,15 @@ export const topic: TopicModule = {
       "topicId": "expansion-performance-diagnosis",
       "topicFamily": "production",
       "title": "Measure Before Adding Memoization",
-      "summary": "Profile a user-visible interaction and identify its dominant cost before adding memo or useMemo.",
-      "rationale": "Memoization only addresses certain render or calculation costs. A baseline prevents optimizing the wrong layer and gives the team a result to compare.",
-      "tradeOffs": "Profiling takes time and can reveal multiple contributors. That is cheaper than carrying memoization boundaries that obscure data flow without improving the measured interaction.",
-      "appliesWhen": "A render or interaction is slow enough to affect users and the cause is not yet proven.",
-      "doesNotApplyWhen": "There is no measured symptom or the bottleneck is clearly outside render work.",
-      "example": "Record filter latency, profile the list, then memoize the measured row boundary only if stable props make the comparison useful.",
+      "summary": "Measure one reproducible user interaction and locate its dominant cost before adding manual memoization.",
+      "rationale": "memo and useMemo only address particular repeated render or calculation work. A baseline prevents a render optimization from being applied to a request, bundle, server, or hydration problem.",
+      "tradeOffs": "Profiling takes focused setup, and memoization adds comparisons and cognitive load. The result is a smaller change with evidence, plus a clear reason to remove it if the benefit disappears.",
+      "appliesWhen": "A user-visible interaction is slow enough to measure and render or calculation work is a plausible contributor.",
+      "doesNotApplyWhen": "There is no reproducible symptom, or evidence already locates the delay outside React rendering.",
+      "example": "Profile the same 1,000-row filter before and after memoizing only a costly row with stable primitive props, while checking that every query result remains current.",
       "sourceLink": "https://react.dev/reference/react/Profiler",
       "sourceLinks": [
+        "https://react.dev/reference/react/Profiler",
         "https://react.dev/reference/react/memo",
         "https://react.dev/reference/react/useMemo",
         "https://nextjs.org/docs/15/app/guides/production-checklist"

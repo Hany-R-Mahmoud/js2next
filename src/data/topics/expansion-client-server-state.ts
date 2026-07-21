@@ -12,28 +12,28 @@ export const topic: TopicModule = {
       "server-data-fetching"
     ],
     "learningObjectives": [
-      "Classify local UI state, URL state, and remote server state",
-      "Design query keys that include every variable affecting a request",
-      "Model loading, error, fetching, and success states without hiding stale data",
-      "Invalidate or update cached data deliberately after a mutation"
+      "Classify ephemeral client state, shareable URL state, and authoritative remote data",
+      "Design query keys from every input that changes the returned data",
+      "Distinguish initial loading, background fetching, stale data, failure, and success",
+      "Make related cached reads current after a successful mutation"
     ],
-    "whyMatters": "Remote data has ownership, freshness, and failure behavior that local UI state does not. Clear boundaries prevent duplicated caches, stale screens, and untestable synchronization effects.",
-    "estimatedMinutes": 30,
+    "whyMatters": "A query cache solves remote-data coordination, not every state problem. Clear ownership prevents a form draft, URL filter, server result, and second hand-written copy from drifting apart while helping several consumers share freshness and failure behavior.",
+    "estimatedMinutes": 40,
     "sections": [
       {
         "id": "expansion-client-server-state-model",
         "type": "concept",
         "title": "Name the owner",
-        "content": "Keep ephemeral interaction state local, keep shareable view state in the URL, and let a server-state cache own remote data, freshness, loading, and error transitions."
+        "content": "Classify a value before choosing a store. A menu’s open state is temporary interaction and usually stays local. A filter that must survive reload, sharing, or browser history belongs in the URL. Authoritative projects remain server data. A Server Component may be enough for a simple server-rendered read. A client query cache becomes useful when mounted client consumers need shared remote data, background refresh, retries, or mutation invalidation. It does not replace local state or make every feature require a new dependency.\n\nRemote data has an identity and freshness policy. A query key names one result variant. The cache can then distinguish current data from a first load, background fetch, failure, and invalidation after a write."
       },
       {
         "id": "expansion-client-server-state-code",
         "type": "code-example",
         "title": "Make the query identity explicit",
-        "content": "Every input that changes the result belongs in the query key. A mutation must also describe how the affected cache becomes current again.",
-        "code": "const query = useQuery({\n  queryKey: ['projects', { ownerId, page }],\n  queryFn: () => fetchProjects({ ownerId, page }),\n});\n\n// after a successful write\nqueryClient.invalidateQueries({ queryKey: ['projects', { ownerId }] });",
+        "content": "The key includes every variable used by the request. After an authorized edit succeeds, invalidating the owner’s project prefix marks each affected page and filter stale without maintaining a second copy in component state.",
+        "code": "const projects = useQuery({\n  queryKey: ['projects', { ownerId, status, page }],\n  queryFn: () => fetchProjects({ ownerId, status, page }),\n});\n\nconst editProject = useMutation({\n  mutationFn: saveProject,\n  onSuccess: () => {\n    queryClient.invalidateQueries({\n      queryKey: ['projects', { ownerId }],\n    });\n  },\n});",
         "codeLanguage": "tsx",
-        "codeFilePath": "Client query boundary"
+        "codeFilePath": "app/projects/ProjectDashboard.tsx"
       },
       {
         "id": "expansion-client-server-state-question",
@@ -43,15 +43,15 @@ export const topic: TopicModule = {
         "questions": [
           {
             "id": "expansion-client-server-state-check",
-            "question": "Which design is safest when a project list depends on ownerId and page?",
+            "question": "A project request changes when ownerId, status, or page changes. Which query identity is complete?",
             "options": [
-              "Use one global key called projects",
-              "Include ownerId and page in the query key and invalidate the affected family after writes",
-              "Copy the fetched list into local state and never refetch",
-              "Use a random key so every render fetches"
+              "['projects', { ownerId, status, page }]",
+              "['projects'] for every possible result",
+              "['projects', Math.random()] on every render",
+              "A local copy of the result with no query key"
             ],
-            "correctAnswer": "Include ownerId and page in the query key and invalidate the affected family after writes",
-            "expectedReasoning": "The key identifies the data variant. Invalidation makes the cache policy explicit after a mutation without maintaining a second hand-written copy."
+            "correctAnswer": "['projects', { ownerId, status, page }]",
+            "expectedReasoning": "Every request variable that changes the result belongs in the key, so the cache can reuse and refresh the correct variant. One broad key conflates results, a random key prevents useful identity, and an unrelated local copy creates another owner."
           }
         ]
       },
@@ -59,27 +59,31 @@ export const topic: TopicModule = {
         "id": "expansion-client-server-state-synthesis",
         "type": "synthesis",
         "title": "Synthesis",
-        "content": "A query cache is a server-state boundary, not a replacement for every state store. Define ownership, query identity, freshness, and mutation invalidation before adding synchronization effects."
+        "content": "Choose a query cache only when remote-data behavior needs that client boundary. Give each result a complete key, state when it becomes stale, and connect successful writes to precise invalidation or a careful cache update. Keep transient interaction local, shareable view state in the URL, server authorization at the mutation boundary, and cached remote data in one cache owner."
       }
     ],
-    "retrievalPrompt": "What belongs in a query key, and what should happen to related cached data after a mutation?",
-    "reflectionPrompt": "Choose one remote-data screen. Which values are local, URL-owned, or server-owned, and what event makes its cache stale?",
+    "retrievalPrompt": "Classify a project dashboard’s menu state, URL filters, project rows, query identity, freshness, mutation, invalidation, and retry owner.",
+    "reflectionPrompt": "Choose one client cache in your project. Which requirement justifies it, which values define its keys, and what exact write makes each entry stale?",
     "masteryCriteria": [
-      "Can classify state by ownership",
-      "Can build a complete query key",
-      "Can distinguish stale data from loading and error states",
-      "Can explain invalidation after a mutation"
+      "Can choose local, URL, server-rendered, or client-cache ownership from lifetime and consumer needs",
+      "Can include every result-changing variable in a query key",
+      "Can preserve useful stale data during a visible background refresh",
+      "Can invalidate or update the affected query family only after a successful write"
     ],
     "nextTopics": [
       "deep-dive-nextjs-data"
     ],
     "metadata": {
-      "lastUpdated": "2026-07-15",
+      "reactVersion": "19.2.7",
+      "nextVersion": "15.5.20",
+      "lastUpdated": "2026-07-21",
       "sources": [
         "https://tanstack.com/query/latest/docs/framework/react/overview",
         "https://tanstack.com/query/latest/docs/framework/react/guides/query-keys",
         "https://tanstack.com/query/latest/docs/framework/react/guides/invalidations-from-mutations",
-        "https://nextjs.org/docs/app/getting-started/fetching-data"
+        "https://nextjs.org/docs/app/getting-started/fetching-data",
+        "https://tanstack.com/query/latest/docs/framework/react/guides/background-fetching-indicators",
+        "https://nextjs.org/docs/15/app/getting-started/fetching-data"
       ]
     },
     "diagram": {
@@ -130,27 +134,29 @@ export const topic: TopicModule = {
       {
         "id": "expansion-client-server-state-retrieval-1",
         "title": "Name every query-key input",
-        "concept": "If owner, filter, or page changes the result, it belongs in the query key so the cache can distinguish variants.",
+        "concept": "Query keys describe remote data identity; they are not arbitrary refresh switches.",
         "prediction": {
-          "prompt": "What belongs in the key for a paged project list?",
+          "prompt": "The project list request uses owner, filter, and page. What must the key include?",
           "options": [
-            "Only the word projects",
-            "Projects plus owner, filter, and page"
+            "Owner, filter, and page",
+            "Only a generic projects label",
+            "A new random value on every render"
           ],
-          "correctAnswer": "Projects plus owner, filter, and page",
-          "feedbackCorrect": "The key expresses data identity.",
-          "feedbackWrong": "One key would conflate different server results."
+          "correctAnswer": "Owner, filter, and page",
+          "feedbackCorrect": "Those variables define which server result the cache is storing.",
+          "feedbackWrong": "An incomplete key conflates results, while a random key discards stable identity and reuse."
         },
-        "synthesis": "Let the cache own remote data and make freshness transitions explicit."
+        "synthesis": "Write the request variables first, then express the same identity in the key."
       }
     ],
     "miniProject": {
       "title": "Design a query cache boundary",
-      "scenario": "Choose the key, loading states, mutation invalidation, and retry behavior for a shared project list.",
+      "scenario": "Design a project dashboard with a URL-owned status filter, paged client queries, protected edits, and background refresh.",
       "acceptance": [
-        "All result-changing inputs are in the key",
-        "The cache is not mirrored into unrelated local state",
-        "Mutation freshness is explicit"
+        "Local, URL, and remote values each have one named owner",
+        "Every request-changing variable is present in the query key",
+        "Initial loading, stale data with background fetching, error, success, and retry are distinguishable",
+        "A successful edit invalidates or precisely updates only the affected project data"
       ],
       "rubric": [
         {
@@ -174,42 +180,43 @@ export const topic: TopicModule = {
       "title": "Design a Query Cache Boundary",
       "level": 6,
       "topicFamily": "nextjs-data",
-      "scenario": "A dashboard fetches the same project data in several components. After an edit, one card updates while another shows stale data, and changing the owner or page can display the wrong result.",
+      "scenario": "A dashboard fetches projects in a table, summary, and editor. Changing owner, status, or page sometimes shows the wrong cached result, and a successful edit updates only one local copy.",
       "constraints": [
-        "Name the owner of remote data",
-        "Include all result-changing inputs in the query key",
-        "Define loading, stale, error, and retry behavior",
-        "Invalidate or update affected cache entries after a successful mutation"
+        "Keep one owner for remote project data",
+        "Include every result-changing request variable in the key",
+        "Define initial, background, error, retry, and stale-data behavior",
+        "Refresh affected reads only after an authorized mutation succeeds"
       ],
       "acceptanceCriteria": [
-        "The query key includes owner and page",
-        "The design does not mirror the query cache into a second source of truth",
-        "A mutation makes the affected project queries current",
-        "The UI distinguishes initial loading from background refresh and recoverable error"
+        "The state inventory separates local interaction, URL state, and remote data",
+        "The query key contains ownerId, status, and page for the paged list",
+        "Table and summary read from the cache boundary rather than mirrored component copies",
+        "A successful edit invalidates or updates the smallest affected query family",
+        "Background refresh may preserve visible data while exposing fetching and retry state"
       ],
       "hints": [
         {
           "stage": 1,
-          "text": "Write the data identity as a tuple before choosing components."
+          "text": "Write a state table with value, lifetime, consumers, and authoritative owner."
         },
         {
           "stage": 2,
-          "text": "Treat owner and page as part of the cache key, not incidental closure values."
+          "text": "Compare the query function parameters with the key; every result-changing parameter belongs in both."
         },
         {
           "stage": 3,
-          "text": "Choose invalidation or a precise cache update and explain the freshness trade-off."
+          "text": "After success, choose a prefix invalidation or precise update and explain why it reaches every stale consumer."
         }
       ],
-      "expectedReasoning": "Remote data needs one explicit cache owner. Query keys identify variants, and mutation invalidation or updates prevent components from drifting apart.",
+      "expectedReasoning": "The URL owns shareable filters, components own temporary interaction, and one query cache coordinates remote projects. Complete keys prevent result collisions. A protected successful write creates staleness, so targeted invalidation or a precise update restores consistency without a second hand-written store.",
       "commonWrongPaths": [
-        "Using one key for every project variant",
-        "Copying query data into local state without a synchronization contract",
-        "Showing a blank screen during every background refetch",
-        "Assuming a successful mutation automatically updates every cache entry"
+        "Using one projects key for every owner, filter, and page",
+        "Copying query data into several component states",
+        "Blanking useful data during every background refetch",
+        "Assuming a successful mutation updates every related cache entry automatically"
       ],
-      "answerExplanation": "Define a key such as projects + ownerId + page, render stale data with an explicit fetching state when appropriate, and invalidate or update the affected query family after the write.",
-      "followUpVariation": "Add a filter and decide whether it belongs in the key and which queries the mutation invalidates.",
+      "answerExplanation": "Classify ownership, make request identity complete, share remote data through one cache, and connect a successful write to the exact cached reads it makes stale.",
+      "followUpVariation": "Add an optimistic row title. Define rollback behavior and explain which server response remains authoritative.",
       "checkType": "free-text",
       "prompt": "Explain the query key, state ownership, and mutation freshness policy for this dashboard.",
       "freeTextKeywords": [
@@ -220,7 +227,9 @@ export const topic: TopicModule = {
       ],
       "sourceLink": "https://tanstack.com/query/latest/docs/framework/react/guides/query-keys",
       "sourceLinks": [
-        "https://tanstack.com/query/latest/docs/framework/react/guides/invalidations-from-mutations"
+        "https://tanstack.com/query/latest/docs/framework/react/guides/query-keys",
+        "https://tanstack.com/query/latest/docs/framework/react/guides/invalidations-from-mutations",
+        "https://tanstack.com/query/latest/docs/framework/react/guides/background-fetching-indicators"
       ]
     }
   ],
@@ -230,8 +239,8 @@ export const topic: TopicModule = {
       "topicId": "expansion-client-server-state",
       "topicFamily": "nextjs-data",
       "question": "What belongs in a TanStack Query query key?",
-      "answer": "Every variable that changes the result belongs in the key, such as an owner id, filter, or page. The key lets the cache distinguish data variants and refetch the correct one.",
-      "followUp": "What can go wrong when a result-changing variable is omitted?",
+      "answer": "Include every variable that the query function uses to change its result, such as owner id, status, and page. A complete key gives each result variant a stable identity, so the cache can reuse, refetch, and invalidate the intended data.",
+      "followUp": "Compare one query function with its key. Which result-changing argument, if any, is missing?",
       "category": "nextjs",
       "level": "advanced",
       "tags": [
@@ -239,15 +248,18 @@ export const topic: TopicModule = {
         "query-cache",
         "tanstack-query"
       ],
-      "sourceLink": "https://tanstack.com/query/latest/docs/framework/react/guides/query-keys"
+      "sourceLink": "https://tanstack.com/query/latest/docs/framework/react/guides/query-keys",
+      "sourceLinks": [
+        "https://tanstack.com/query/latest/docs/framework/react/guides/query-keys"
+      ]
     },
     {
       "id": "expansion-qa-query-invalidation",
       "topicId": "expansion-client-server-state",
       "topicFamily": "nextjs-data",
       "question": "Why should a mutation invalidate related queries?",
-      "answer": "A successful write can make cached reads stale. Invalidation marks the affected query family for refresh so separate consumers do not keep presenting old server state.",
-      "followUp": "When might a precise cache update be preferable to invalidation?",
+      "answer": "A successful write can make one or more cached reads stale. Invalidation marks the matching queries stale and lets active consumers refetch according to the cache rules. A precise update may be appropriate when the mutation response contains the complete authoritative replacement.",
+      "followUp": "Which query prefix represents every project view made stale by your mutation?",
       "category": "nextjs",
       "level": "advanced",
       "tags": [
@@ -255,22 +267,29 @@ export const topic: TopicModule = {
         "query-cache",
         "mutations"
       ],
-      "sourceLink": "https://tanstack.com/query/latest/docs/framework/react/guides/invalidations-from-mutations"
+      "sourceLink": "https://tanstack.com/query/latest/docs/framework/react/guides/invalidations-from-mutations",
+      "sourceLinks": [
+        "https://tanstack.com/query/latest/docs/framework/react/guides/invalidations-from-mutations"
+      ]
     },
     {
       "id": "loop-qa-expansion-client-server-state-1",
       "topicId": "expansion-client-server-state",
       "topicFamily": "nextjs-data",
-      "question": "What problem does Client State, Server State, and Query Caches help you solve?",
-      "answer": "Remote data has ownership, freshness, and failure behavior that local UI state does not. Clear boundaries prevent duplicated caches, stale screens, and untestable synchronization effects.",
-      "followUp": "Name one decision in your current project where this model would change the implementation.",
+      "question": "When is a client query cache unnecessary for a server read?",
+      "answer": "When a Server Component can perform the read and the screen does not need mounted client consumers, background refresh, retry coordination, or client mutation invalidation. Keep the simpler server-rendered boundary until a concrete client-cache requirement appears.",
+      "followUp": "Which user behavior in your feature would justify adding a client cache?",
       "category": "nextjs",
       "level": "advanced",
       "tags": [
         "topic-loop",
         "expansion-client-server-state"
       ],
-      "sourceLink": "https://tanstack.com/query/latest/docs/framework/react/overview"
+      "sourceLink": "https://tanstack.com/query/latest/docs/framework/react/overview",
+      "sourceLinks": [
+        "https://tanstack.com/query/latest/docs/framework/react/overview",
+        "https://nextjs.org/docs/15/app/getting-started/fetching-data"
+      ]
     }
   ],
   "practices": [
@@ -279,15 +298,18 @@ export const topic: TopicModule = {
       "topicId": "expansion-client-server-state",
       "topicFamily": "nextjs-data",
       "title": "Keep Server State in a Query Cache",
-      "summary": "Let a server-state cache own remote data, freshness, loading, and error transitions instead of mirroring the response into unrelated local state.",
-      "rationale": "Remote data has identity and freshness rules. A dedicated cache can coordinate consumers and expose invalidation semantics without hand-written synchronization effects.",
-      "tradeOffs": "A cache library adds concepts and configuration. Use it where shared remote data, retries, or invalidation justify the boundary; keep simple one-off reads simple.",
-      "appliesWhen": "Several components consume the same remote data or mutations must refresh related reads.",
-      "doesNotApplyWhen": "The value is purely local UI state or a simple server render with no client cache requirement.",
-      "example": "Use a query key containing project owner and page, then invalidate the project query family after a successful edit.",
+      "summary": "When client consumers need coordinated remote data, let one query cache own its identity, freshness, loading, failure, and invalidation.",
+      "rationale": "Remote data can change outside a component and has request and staleness rules. One cache owner coordinates consumers without Effects that copy the same response among local stores.",
+      "tradeOffs": "A cache library adds configuration and concepts. Prefer a simple Server Component read when background client behavior, shared mounted consumers, or mutation invalidation do not justify that boundary.",
+      "appliesWhen": "Several mounted client consumers share remote data or client mutations need coordinated freshness, retry, or background refresh.",
+      "doesNotApplyWhen": "The value is local interaction state, URL-owned view state, or a simple server-rendered read with no client-cache requirement.",
+      "example": "Cache projects by owner, status, and page, then invalidate the affected owner’s project family after a successful protected edit.",
       "sourceLink": "https://tanstack.com/query/latest/docs/framework/react/overview",
       "sourceLinks": [
-        "https://tanstack.com/query/latest/docs/framework/react/guides/invalidations-from-mutations"
+        "https://tanstack.com/query/latest/docs/framework/react/overview",
+        "https://tanstack.com/query/latest/docs/framework/react/guides/invalidations-from-mutations",
+        "https://tanstack.com/query/latest/docs/framework/react/guides/query-keys",
+        "https://nextjs.org/docs/15/app/getting-started/fetching-data"
       ],
       "tags": [
         "expansion-client-server-state",

@@ -85,7 +85,7 @@ function makeSource(sourceUrl: string, lastVerifiedAt: string, frameworkVersion?
 function sourceTypeFor(sourceUrl: string): SourceMetadata['sourceType'] {
   if (sourceUrl.includes('doi.org')) return 'research';
   if (sourceUrl.includes('w3.org')) return 'standard';
-  if (sourceUrl.includes('react.dev') || sourceUrl.includes('nextjs.org') || sourceUrl.includes('developer.mozilla.org') || sourceUrl.includes('cheatsheetseries.owasp.org') || sourceUrl.includes('testing-library.com') || sourceUrl.includes('tanstack.com') || sourceUrl.includes('typescriptlang.org') || sourceUrl.includes('playwright.dev') || sourceUrl.includes('redux.js.org') || sourceUrl.includes('redux-toolkit.js.org') || sourceUrl.includes('reactrouter.com') || sourceUrl.includes('github.com/pmndrs/zustand') || sourceUrl.includes('zod.dev')) return 'official';
+  if (sourceUrl.includes('react.dev') || sourceUrl.includes('nextjs.org') || sourceUrl.includes('developer.mozilla.org') || sourceUrl.includes('cheatsheetseries.owasp.org') || sourceUrl.includes('testing-library.com') || sourceUrl.includes('tanstack.com') || sourceUrl.includes('typescriptlang.org') || sourceUrl.includes('playwright.dev') || sourceUrl.includes('redux.js.org') || sourceUrl.includes('redux-toolkit.js.org') || sourceUrl.includes('reactrouter.com') || sourceUrl.includes('github.com/pmndrs/zustand') || sourceUrl.includes('zod.dev') || sourceUrl.includes('adr.github.io')) return 'official';
   return 'community';
 }
 

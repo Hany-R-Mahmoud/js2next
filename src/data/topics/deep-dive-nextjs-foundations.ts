@@ -11,39 +11,40 @@ export const topic: TopicModule = {
       "deep-dive-react-mental-model"
     ],
     "learningObjectives": [
-      "Organize route segments",
-      "Use layouts and loading states",
-      "Keep route concerns separate"
+      "Read an App Router folder tree as nested URL and UI segments",
+      "Place shared UI in layouts and route-specific UI in pages",
+      "Use loading, error, and not-found boundaries at the segment that owns recovery",
+      "Choose dynamic segments and navigation behavior deliberately"
     ],
-    "whyMatters": "The App Router makes route structure, layouts, loading UI, and error boundaries part of the product architecture.",
-    "estimatedMinutes": 25,
+    "whyMatters": "In the App Router, folders and special files form both the URL tree and the user’s loading and recovery experience. A clear segment boundary keeps shared UI stable while each route owns the work and failures that belong to it.",
+    "estimatedMinutes": 38,
     "sections": [
       {
         "id": "deep-dive-nextjs-foundations-model",
         "type": "concept",
         "title": "Plain explanation",
-        "content": "Folders define segments, layouts persist around nested pages, and special files provide route-scoped loading and error behavior."
+        "content": "The `app` folder is a tree. A folder is a route segment, but it becomes publicly reachable only when a `page.tsx` or `route.ts` file exposes it. A `layout.tsx` wraps the pages and nested layouts below that segment. During client navigation between children, the shared layout can preserve its UI and state.\n\nSpecial files define local behavior. `loading.tsx` provides an immediate fallback while the segment’s content streams. `error.tsx` provides a client-side recovery boundary for errors below it. `not-found.tsx` handles a missing resource after `notFound()` or an unmatched route. Place each file where its message and retry action make sense."
       },
       {
         "id": "deep-dive-nextjs-foundations-technical",
         "type": "concept",
         "title": "Technical model",
-        "content": "The route tree is composed from layouts, pages, and segment boundaries. Server Components are the default, so data and interactivity should be placed deliberately."
+        "content": "Pages and layouts are Server Components by default. A page receives route input such as `params` and `searchParams`; in Next.js 15 these values are Promises, so an async page awaits them before use. A folder such as `[projectId]` creates a dynamic segment whose value belongs to route identity. Route groups such as `(marketing)` organize routes without changing the URL, while private folders such as `_components` make implementation intent explicit.\n\n`loading.tsx` automatically wraps the segment page and descendants in a Suspense boundary. `error.tsx` must be a Client Component because it receives an error and a `reset` function. An error in a layout is caught by an error boundary in a parent segment, not by the boundary beside that same layout."
       },
       {
         "id": "deep-dive-nextjs-foundations-causal",
         "type": "concept",
         "title": "Why it behaves this way",
-        "content": "Clear segment boundaries prevent a single page from owning unrelated loading and error behavior and make navigation state easier to reason about."
+        "content": "A route tree gives each level a clear job. Shared navigation belongs in a layout because sibling pages should not rebuild or own it. A slow data region belongs below a loading boundary so the rest of the route can stay usable. A recoverable error belongs at the smallest segment that can explain the failure and retry safely. Putting every concern in the root makes messages vague and turns a local problem into an app-wide interruption."
       },
       {
         "id": "deep-dive-nextjs-foundations-example",
         "type": "code-example",
         "title": "Route-scoped loading UI",
-        "content": "Apply the model in a small, reviewable example.",
-        "code": "export default function Loading() {\n  return <p role=\"status\">Loading dashboard…</p>;\n}",
-        "codeLanguage": "tsx",
-        "codeFilePath": "Illustrative snippet"
+        "content": "This tree keeps dashboard navigation shared while the project page owns its loading and error experience. The dynamic project ID is route input, not duplicated client state.",
+        "code": "app/\n  dashboard/\n    layout.tsx              // shared dashboard navigation\n    projects/\n      [projectId]/\n        page.tsx            // await params, render the project\n        loading.tsx         // project-specific fallback\n        error.tsx           // project retry UI\n        not-found.tsx       // missing project message",
+        "codeLanguage": "text",
+        "codeFilePath": "app/dashboard/projects/[projectId]/"
       },
       {
         "id": "deep-dive-nextjs-foundations-check",
@@ -53,15 +54,15 @@ export const topic: TopicModule = {
         "questions": [
           {
             "id": "deep-dive-nextjs-foundations-question",
-            "question": "Which file supplies a persistent wrapper for nested routes?",
+            "question": "A billing page and profile page share account navigation, but only billing has a slow request. Where is the clearest loading boundary?",
             "options": [
-              "layout.tsx",
-              "loading.tsx",
-              "route.ts",
-              "not-found.tsx"
+              "Put `layout.tsx` in the account segment and `loading.tsx` in the billing segment",
+              "Put both the layout and loading UI only at the application root",
+              "Replace both pages with one Route Handler",
+              "Store the loading state in a module variable shared by every request"
             ],
-            "correctAnswer": "layout.tsx",
-            "expectedReasoning": "A layout wraps and persists across navigation between its child segments."
+            "correctAnswer": "Put `layout.tsx` in the account segment and `loading.tsx` in the billing segment",
+            "expectedReasoning": "The account layout owns UI shared by both pages, while the billing segment owns its slow work and fallback. A root fallback would hide unrelated UI, a Route Handler does not replace page composition, and module state is not a request-safe loading boundary."
           }
         ]
       },
@@ -69,54 +70,53 @@ export const topic: TopicModule = {
         "id": "deep-dive-nextjs-foundations-synthesis",
         "type": "synthesis",
         "title": "Synthesis",
-        "content": "The route tree is composed from layouts, pages, and segment boundaries. Server Components are the default, so data and interactivity should be placed deliberately.\n\nDecision clue: Clear segment boundaries prevent a single page from owning unrelated loading and error behavior and make navigation state easier to reason about."
+        "content": "Read the App Router as nested ownership. Layouts own shared UI, pages own route output, dynamic folders describe route identity, and loading, error, and not-found files own local feedback. Place each boundary at the smallest segment that can give the user accurate context and a useful next action."
       }
     ],
     "chunks": [
       {
         "id": "deep-dive-nextjs-foundations-prediction",
         "title": "Predict the boundary",
-        "concept": "The route tree is composed from layouts, pages, and segment boundaries. Server Components are the default, so data and interactivity should be placed deliberately.",
+        "concept": "A route segment owns a URL level, its page output, and the loading or recovery UI placed inside it.",
         "prediction": {
-          "prompt": "Which file supplies a persistent wrapper for nested routes?",
+          "prompt": "Navigation moves between two child pages under the same layout. Which UI is intended to remain shared?",
           "options": [
-            "layout.tsx",
-            "loading.tsx",
-            "route.ts",
-            "not-found.tsx"
+            "The parent layout",
+            "A separate root loading fallback",
+            "An unrelated Route Handler"
           ],
-          "correctAnswer": "layout.tsx",
-          "feedbackCorrect": "Correct. Your prediction matches the model. Now explain why it stays true under change.",
-          "feedbackWrong": "Revisit the model: A layout wraps and persists across navigation between its child segments."
+          "correctAnswer": "The parent layout",
+          "feedbackCorrect": "The layout wraps both children and provides their shared UI boundary.",
+          "feedbackWrong": "A loading file supplies fallback UI and a Route Handler serves requests; neither replaces the shared layout."
         },
-        "synthesis": "A layout wraps and persists across navigation between its child segments."
+        "synthesis": "Place shared UI above the child pages that use it."
       },
       {
         "id": "deep-dive-nextjs-foundations-failure-mode",
         "title": "Name the failure mode",
-        "concept": "Clear segment boundaries prevent a single page from owning unrelated loading and error behavior and make navigation state easier to reason about.",
+        "concept": "Recovery is clearest when the boundary is close to the work it can explain and retry.",
         "prediction": {
-          "prompt": "Which design move best prevents the failure described above?",
+          "prompt": "A project detail request fails while dashboard navigation can still work. Which scope is most helpful?",
           "options": [
-            "Make the boundary explicit",
-            "Add another duplicated state value",
-            "Hide the failure from the user"
+            "A project-segment error boundary with retry",
+            "An app-wide blank screen",
+            "No visible error because the console has details"
           ],
-          "correctAnswer": "Make the boundary explicit",
-          "feedbackCorrect": "Correct. Explicit boundaries make the cause, ownership, and recovery path inspectable.",
-          "feedbackWrong": "Prefer the smallest explicit boundary that owns the behavior and its recovery path."
+          "correctAnswer": "A project-segment error boundary with retry",
+          "feedbackCorrect": "The user keeps useful surrounding UI and receives a recovery action for the failed segment.",
+          "feedbackWrong": "A local failure should not remove healthy UI or remain invisible to the user."
         },
-        "synthesis": "Use this clue in review: Clear segment boundaries prevent a single page from owning unrelated loading and error behavior and make navigation state easier to reason about."
+        "synthesis": "Match the error message and retry action to the owning segment."
       }
     ],
     "miniProject": {
       "title": "Practice lab: Next.js App Router Foundations",
-      "scenario": "Apply the lesson to a small feature. Explain the boundary before writing code, then name how you would verify it.",
+      "scenario": "Design an account route with profile and billing children, a dynamic invoice page, and route-scoped feedback.",
       "acceptance": [
-        "Organize route segments",
-        "Use layouts and loading states",
-        "Keep route concerns separate",
-        "Name one failure state and one observable test."
+        "Shared account navigation lives in the account layout",
+        "The invoice page awaits its dynamic route input",
+        "Billing and invoice work have appropriately scoped loading UI",
+        "Missing invoices and recoverable request failures produce different user outcomes"
       ],
       "rubric": [
         {
@@ -166,21 +166,28 @@ export const topic: TopicModule = {
         }
       ]
     },
-    "retrievalPrompt": "Explain the core model of Next.js App Router Foundations and name one failure mode it prevents.",
-    "reflectionPrompt": "Find one place in a real frontend project where this next.js app router foundations decision could be made more explicit.",
+    "retrievalPrompt": "Given a dashboard with account and billing pages, draw the segment tree and place the shared layout, page, loading, error, and not-found files. Explain which users each boundary affects.",
+    "reflectionPrompt": "Choose one current route. Which UI is shared, which work can suspend, which failure is recoverable, and which folder should own each boundary?",
     "masteryCriteria": [
-      "Organize route segments",
-      "Use layouts and loading states",
-      "Keep route concerns separate"
+      "Can translate folders and special files into a route tree",
+      "Can explain when a layout is shared across child navigation",
+      "Places loading and error UI at a deliberate recovery scope",
+      "Can use a dynamic segment without mixing route identity with local UI state"
     ],
     "nextTopics": [
       "deep-dive-rsc-boundaries"
     ],
     "metadata": {
-      "lastUpdated": "2026-07-14",
+      "nextVersion": "15.5.20",
+      "lastUpdated": "2026-07-21",
       "sources": [
         "https://nextjs.org/docs/app/building-your-application/routing",
-        "https://nextjs.org/docs/app/getting-started/layouts-and-pages"
+        "https://nextjs.org/docs/app/getting-started/layouts-and-pages",
+        "https://nextjs.org/docs/15/app/getting-started/project-structure",
+        "https://nextjs.org/docs/15/app/getting-started/layouts-and-pages",
+        "https://nextjs.org/docs/15/app/getting-started/linking-and-navigating",
+        "https://nextjs.org/docs/15/app/getting-started/loading-ui-and-streaming",
+        "https://nextjs.org/docs/15/app/getting-started/error-handling"
       ]
     }
   },
@@ -190,47 +197,55 @@ export const topic: TopicModule = {
       "title": "Apply Deep Dive: Next.js App Router Foundations",
       "level": 2,
       "topicFamily": "nextjs-foundations",
-      "scenario": "Use the model from Deep Dive: Next.js App Router Foundations in a small project decision, then explain the boundary you chose.",
+      "scenario": "A dashboard currently uses one root spinner and one root error message for projects, billing, and settings. Redesign the route tree so shared navigation remains available and each feature owns accurate loading and recovery UI.",
       "constraints": [
-        "State the owner or boundary explicitly",
-        "Include one failure or recovery case",
-        "Keep the explanation tied to observable behavior"
+        "Keep shared dashboard navigation in a layout",
+        "Use a dynamic project segment for project identity",
+        "Give slow or fallible feature work a deliberate segment boundary"
       ],
       "acceptanceCriteria": [
-        "Organize route segments",
-        "Use layouts and loading states",
-        "Keep route concerns separate"
+        "The proposed tree names every `layout`, `page`, `loading`, `error`, and `not-found` file used",
+        "A project failure does not remove healthy dashboard navigation",
+        "A missing project is distinguished from a temporary request failure",
+        "The explanation identifies which boundary can retry each failure"
       ],
       "hints": [
         {
           "stage": 1,
-          "text": "Start with the first learning objective: Organize route segments."
+          "text": "Draw folders first. Mark the lowest common segment that owns dashboard navigation."
         },
         {
           "stage": 2,
-          "text": "Separate the model, the boundary that owns it, and the evidence a user or test can observe."
+          "text": "Put the project ID in `[projectId]`, then place project-specific fallback and recovery files beside its page."
         },
         {
           "stage": 3,
-          "text": "Use this retrieval prompt: Explain the core model of Next.js App Router Foundations and name one failure mode it prevents."
+          "text": "Use `notFound()` for an absent resource and an error boundary with `reset()` for a retryable failure."
         }
       ],
-      "expectedReasoning": "Organize route segments · Use layouts and loading states · Keep route concerns separate",
+      "expectedReasoning": "The shared layout belongs above its sibling pages. Each feature segment owns its slow work and recoverable failures. The dynamic project segment owns project identity, while missing data and temporary failure need different messages and actions.",
       "commonWrongPaths": [
-        "Adding a second owner without a requirement",
-        "Describing success without a failure or recovery state"
+        "Keeping every fallback at the root even when only one feature is affected",
+        "Copying the dynamic project ID into unrelated global state",
+        "Treating a missing project and a temporary server error as the same outcome"
       ],
-      "answerExplanation": "A good response names the model, its owner, and an observable way to verify it. The App Router makes route structure, layouts, loading UI, and error boundaries part of the product architecture.",
-      "followUpVariation": "Apply the same boundary to a different feature in the project.",
-      "sourceLink": "https://nextjs.org/docs/app/building-your-application/routing"
+      "answerExplanation": "Build the route tree from shared UI downward, then place feedback beside the work it describes. This preserves useful layout UI and gives each failure an accurate recovery path.",
+      "followUpVariation": "Add a marketing route group that must not change public URLs. Where does the group belong, and which layout does it use?",
+      "sourceLink": "https://nextjs.org/docs/app/building-your-application/routing",
+      "sourceLinks": [
+        "https://nextjs.org/docs/app/building-your-application/routing",
+        "https://nextjs.org/docs/15/app/getting-started/project-structure",
+        "https://nextjs.org/docs/15/app/getting-started/layouts-and-pages",
+        "https://nextjs.org/docs/15/app/getting-started/error-handling"
+      ]
     }
   ],
   "qa": [
     {
       "id": "learn-react-deep-dive-nextjs-foundations-question",
-      "question": "Which file supplies a persistent wrapper for nested routes?",
-      "answer": "layout.tsx",
-      "followUp": "A layout wraps and persists across navigation between its child segments.",
+      "question": "Why place the billing loading file below the shared account layout?",
+      "answer": "The account layout can remain useful while only the billing segment shows its fallback. This matches the feedback to the work that is actually pending instead of replacing unrelated route UI.",
+      "followUp": "Which parent layout should remain visible if the billing request fails?",
       "category": "nextjs",
       "level": "intermediate",
       "topicId": "deep-dive-nextjs-foundations",
@@ -239,37 +254,51 @@ export const topic: TopicModule = {
         "learn-react-bridge",
         "nextjs-foundations"
       ],
-      "sourceLink": "https://nextjs.org/docs/app/building-your-application/routing"
+      "sourceLink": "https://nextjs.org/docs/app/building-your-application/routing",
+      "sourceLinks": [
+        "https://nextjs.org/docs/app/building-your-application/routing",
+        "https://nextjs.org/docs/15/app/getting-started/layouts-and-pages",
+        "https://nextjs.org/docs/15/app/getting-started/loading-ui-and-streaming"
+      ]
     },
     {
       "id": "loop-qa-deep-dive-nextjs-foundations-1",
       "topicId": "deep-dive-nextjs-foundations",
       "topicFamily": "nextjs-foundations",
-      "question": "What problem does Deep Dive: Next.js App Router Foundations help you solve?",
-      "answer": "The App Router makes route structure, layouts, loading UI, and error boundaries part of the product architecture.",
-      "followUp": "Name one decision in your current project where this model would change the implementation.",
+      "question": "How do special App Router files divide responsibility?",
+      "answer": "`layout` owns shared UI, `page` exposes route UI, `loading` owns a segment fallback, `error` owns recoverable failures below it, `not-found` owns a missing-resource outcome, and `route` owns a request endpoint. Their folder level determines their scope.",
+      "followUp": "Which one of your current root boundaries could move closer to the feature it describes?",
       "category": "nextjs",
       "level": "intermediate",
       "tags": [
         "topic-loop",
         "deep-dive-nextjs-foundations"
       ],
-      "sourceLink": "https://nextjs.org/docs/app/building-your-application/routing"
+      "sourceLink": "https://nextjs.org/docs/app/building-your-application/routing",
+      "sourceLinks": [
+        "https://nextjs.org/docs/app/building-your-application/routing",
+        "https://nextjs.org/docs/15/app/getting-started/project-structure",
+        "https://nextjs.org/docs/15/app/getting-started/error-handling"
+      ]
     },
     {
       "id": "loop-qa-deep-dive-nextjs-foundations-2",
       "topicId": "deep-dive-nextjs-foundations",
       "topicFamily": "nextjs-foundations",
-      "question": "How would you explain the core idea of Deep Dive: Next.js App Router Foundations to a teammate?",
-      "answer": "Explain the core model of Next.js App Router Foundations and name one failure mode it prevents. A strong explanation should connect the model to: Organize route segments; Use layouts and loading states.",
-      "followUp": "Which observable behavior would prove your explanation is correct?",
+      "question": "What makes a useful App Router segment boundary?",
+      "answer": "It groups one level of route identity and the UI, work, loading, and recovery behavior that change together. Shared concerns stay in a parent layout; feature-specific concerns move down to the feature segment.",
+      "followUp": "What user-visible behavior proves your chosen boundary is neither too broad nor too narrow?",
       "category": "nextjs",
       "level": "intermediate",
       "tags": [
         "topic-loop",
         "deep-dive-nextjs-foundations"
       ],
-      "sourceLink": "https://nextjs.org/docs/app/building-your-application/routing"
+      "sourceLink": "https://nextjs.org/docs/app/building-your-application/routing",
+      "sourceLinks": [
+        "https://nextjs.org/docs/app/building-your-application/routing",
+        "https://nextjs.org/docs/15/app/getting-started/layouts-and-pages"
+      ]
     }
   ],
   "practices": [],

@@ -11,34 +11,34 @@ export const topic: TopicModule = {
       "async-js-promises"
     ],
     "learningObjectives": [
-      "Trace event propagation before changing handlers",
-      "Separate network failure from an HTTP error response",
-      "Abort or ignore obsolete requests",
-      "Expose recoverable loading and error states"
+      "Trace an event from its target through the handlers that observe it",
+      "Separate network failure, HTTP error responses, cancellation, and usable success",
+      "Keep the newest request authoritative when responses arrive out of order",
+      "Provide visible loading, failure, retry, and replacement states"
     ],
-    "whyMatters": "Most frontend failures become easier when you can name the event path, request lifecycle, and exact observable failure instead of guessing from the final screen.",
-    "estimatedMinutes": 25,
+    "whyMatters": "Browser bugs often look random only because several timelines are hidden. Naming the event path, request identity, HTTP status, cancellation, and current UI owner turns a guess into a testable explanation.",
+    "estimatedMinutes": 34,
     "sections": [
       {
         "id": "expansion-browser-failure-events",
         "type": "concept",
         "title": "Trace the event",
-        "content": "Start with the target, bubbling path, and listener that actually ran. Event delegation is useful when a stable ancestor owns repeated targets, but it must preserve the target identity you need."
+        "content": "An event starts at a target and can travel through ancestors. `event.target` is the element where the event began; `event.currentTarget` is the element whose listener is currently running. A delegated handler on a stable parent can serve many child controls, but it must inspect the target carefully and ignore clicks that do not match its contract. Log the event type, target, currentTarget, and handler order before moving code.\n\nStopping propagation changes which later listeners can observe the event, so use it only when the interaction contract requires that boundary. It should not be the first repair for a handler whose ownership is unclear."
       },
       {
         "id": "expansion-browser-failure-fetch",
         "type": "concept",
         "title": "Classify the request",
-        "content": "fetch() rejects for a network-level failure, not merely because the server returned 404 or 500. Inspect response.ok and status before treating a response as usable."
+        "content": "`fetch` rejects for failures such as an invalid request setup, a network problem, or cancellation. It usually resolves when the server returns an HTTP response, even if that response is 404 or 500. Check `response.ok` or `response.status` before reading the response as success. Keep network failure, HTTP failure, cancellation, and successful data as separate outcomes because each has a different message or recovery path.\n\nRapid input creates another outcome: obsolete success. Request A can begin first and finish after request B. Give each request an identity or abort the previous controller, and update the screen only if the completion still belongs to the current input."
       },
       {
         "id": "expansion-browser-failure-code",
         "type": "code-example",
         "title": "Prevent stale results",
-        "content": "Cancel work when the query changes, and still keep a visible recovery path for failure.",
-        "code": "const controller = new AbortController();\nconst response = await fetch(`/api/search?q=${query}`, { signal: controller.signal });\nif (!response.ok) throw new Error(`Search failed: ${response.status}`);",
+        "content": "This Effect creates one controller for the current query. Cleanup cancels the replaced request. The status check handles HTTP failure, while the cancellation branch avoids presenting expected replacement as a user-facing server error.",
+        "code": "useEffect(() => {\n  const controller = new AbortController();\n  const requestedQuery = query;\n\n  async function runSearch() {\n    setStatus('loading');\n    try {\n      const response = await fetch(`/api/search?q=${encodeURIComponent(query)}`, {\n        signal: controller.signal,\n      });\n      if (!response.ok) throw new Error(`Search failed: ${response.status}`);\n      const items = await response.json();\n      if (requestedQuery === query) {\n        setResults(items);\n        setStatus('success');\n      }\n    } catch (error) {\n      if (controller.signal.aborted) return;\n      setStatus('error');\n    }\n  }\n\n  runSearch();\n  return () => controller.abort();\n}, [query]);",
         "codeLanguage": "typescript",
-        "codeFilePath": "Search request boundary"
+        "codeFilePath": "app/search/SearchResults.tsx"
       },
       {
         "id": "expansion-browser-failure-question",
@@ -48,15 +48,15 @@ export const topic: TopicModule = {
         "questions": [
           {
             "id": "expansion-browser-failure-check",
-            "question": "What should a search UI do when an older response arrives after a newer query?",
+            "question": "The response for `re` arrives after the response for the current query `react`. What should control the displayed result?",
             "options": [
-              "Always display the older response",
-              "Abort or ignore the obsolete response and keep the newer request authoritative",
-              "Reload the entire page",
-              "Hide the error permanently"
+              "Only a response that still belongs to the current query",
+              "Whichever request started first",
+              "Whichever response has the larger body",
+              "Both responses written into the same state without an identity check"
             ],
-            "correctAnswer": "Abort or ignore the obsolete response and keep the newer request authoritative",
-            "expectedReasoning": "Request order can differ from input order; the current query must own the displayed result."
+            "correctAnswer": "Only a response that still belongs to the current query",
+            "expectedReasoning": "Network completion order does not define UI authority. The current input owns the view, so the older request must be cancelled or ignored. Starting first, response size, and unguarded writes do not preserve that ownership."
           }
         ]
       },
@@ -64,26 +64,31 @@ export const topic: TopicModule = {
         "id": "expansion-browser-failure-synthesis",
         "type": "synthesis",
         "title": "Synthesis",
-        "content": "Debug from observable boundaries: event target and propagation, request status and response body, cancellation or invalidation, then loading/error recovery."
+        "content": "Debug from observable boundaries. For events, record target, currentTarget, propagation, and listener order. For requests, record query identity, start, response status, cancellation, and state update. Then make one current owner explicit, distinguish failure classes, and give the user a clear retry or replacement path."
       }
     ],
-    "retrievalPrompt": "How do you distinguish a network failure, an HTTP error response, and an obsolete response?",
-    "reflectionPrompt": "Choose one search or autocomplete flow. Which request wins when typing changes quickly, and how can the user recover from failure?",
+    "retrievalPrompt": "Trace a delegated click and a rapid search request. Name the event target, currentTarget, response status, winning request, cancellation outcome, and user recovery path.",
+    "reflectionPrompt": "Choose an autocomplete or filter in your project. How can you prove that an old response cannot replace results for the current input?",
     "masteryCriteria": [
-      "Can trace bubbling and delegated handlers",
-      "Can explain fetch rejection versus HTTP status",
-      "Can prevent obsolete results from winning",
-      "Can expose a retryable error state"
+      "Can distinguish event.target from event.currentTarget while tracing bubbling",
+      "Can explain why fetch may resolve for a 404 or 500 response",
+      "Can cancel or ignore obsolete work without showing cancellation as a server failure",
+      "Can design a retryable error state that preserves useful context"
     ],
     "nextTopics": [
       "deep-dive-app-quality"
     ],
     "metadata": {
-      "lastUpdated": "2026-07-15",
+      "reactVersion": "19.2.7",
+      "lastUpdated": "2026-07-21",
       "sources": [
         "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/Event_bubbling",
         "https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch",
-        "https://developer.mozilla.org/en-US/docs/Web/API/AbortController"
+        "https://developer.mozilla.org/en-US/docs/Web/API/AbortController",
+        "https://developer.mozilla.org/en-US/docs/Web/API/Event/target",
+        "https://developer.mozilla.org/en-US/docs/Web/API/Event/currentTarget",
+        "https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch#checking_response_status",
+        "https://react.dev/reference/react/useEffect#fetching-data-with-effects"
       ]
     },
     "diagram": {
@@ -130,27 +135,29 @@ export const topic: TopicModule = {
       {
         "id": "expansion-browser-failure-debugging-retrieval-1",
         "title": "Separate fetch failure modes",
-        "concept": "fetch() can resolve for a 404 or 500, while an abort is a replacement outcome rather than a user-facing server failure.",
+        "concept": "Promise settlement, HTTP status, cancellation, and request authority are separate facts.",
         "prediction": {
-          "prompt": "What should happen after fetch resolves with a 500 response?",
+          "prompt": "A search fetch resolves with status 500. Which handling is accurate?",
           "options": [
-            "Treat it as success because the Promise resolved",
-            "Check response.ok/status and show recoverable failure"
+            "Check response.ok and show a recoverable HTTP failure",
+            "Treat it as successful data because the Promise resolved",
+            "Report it as an AbortController cancellation"
           ],
-          "correctAnswer": "Check response.ok/status and show recoverable failure",
-          "feedbackCorrect": "HTTP status is part of the response contract.",
-          "feedbackWrong": "Promise resolution only means a response arrived."
+          "correctAnswer": "Check response.ok and show a recoverable HTTP failure",
+          "feedbackCorrect": "A response arrived, but its status says the HTTP operation did not succeed.",
+          "feedbackWrong": "Promise resolution does not make every HTTP status a successful application result, and cancellation is a different outcome."
         },
-        "synthesis": "Track request identity, status, cancellation, and retry as separate observable states."
+        "synthesis": "Classify the outcome before choosing the message or recovery action."
       }
     ],
     "miniProject": {
       "title": "Debug stale search results",
-      "scenario": "Design a search flow where newer input wins, HTTP failures are visible, and retry is possible.",
+      "scenario": "Build a small autocomplete trace where quick typing starts overlapping requests and one request returns an HTTP error.",
       "acceptance": [
-        "Obsolete responses cannot overwrite current input",
-        "Non-2xx responses are handled",
-        "Abort and retry outcomes are distinguishable"
+        "The trace records each request id, query, start, status, and completion",
+        "Only the request for the current query may update results",
+        "HTTP failure is visible and retryable, while replacement cancellation is quiet",
+        "A retry uses the current query rather than an obsolete captured value"
       ],
       "rubric": [
         {
@@ -174,40 +181,42 @@ export const topic: TopicModule = {
       "title": "Debug Stale Search Results",
       "level": 4,
       "topicFamily": "app-quality",
-      "scenario": "A search box renders an older response after the user has already typed a newer query, and the UI gives no useful recovery when the request fails.",
+      "scenario": "A product search starts one request per query. Typing quickly lets an older response replace current results, a 500 response is parsed as success, and cancellation leaves the spinner running.",
       "constraints": [
-        "Keep the latest query authoritative",
-        "Distinguish HTTP failure from network failure",
-        "Show loading and retryable error states"
+        "Keep the newest query as the only result owner",
+        "Distinguish HTTP failure, network failure, and cancellation",
+        "Preserve useful current input and offer retry for real failure"
       ],
       "acceptanceCriteria": [
-        "Obsolete responses cannot overwrite the latest query",
-        "Abort or ignore logic is explained",
-        "Non-2xx responses are handled explicitly",
-        "The user can retry after a failure"
+        "A trace reproduces the out-of-order response before the repair",
+        "Cleanup aborts replaced work or a request identity check ignores it",
+        "Every response is checked before its body becomes successful data",
+        "Cancellation cannot leave loading active or appear as a server error",
+        "Retry starts a request for the current query"
       ],
       "hints": [
         {
           "stage": 1,
-          "text": "Record which query each response belongs to before changing rendering."
+          "text": "Log a request number and query at start and completion so the race is visible."
         },
         {
           "stage": 2,
-          "text": "fetch resolves for HTTP errors; inspect response.ok and status."
+          "text": "Create one AbortController per request and abort it when that request is replaced."
         },
         {
           "stage": 3,
-          "text": "Abort on cleanup or ignore a response that no longer matches the current query."
+          "text": "Check response.ok, then handle an aborted signal separately from a failure the user can retry."
         }
       ],
-      "expectedReasoning": "Input order and response order can differ. The current request owns the view, while explicit status checks and recovery states prevent silent failure.",
+      "expectedReasoning": "The input, not completion order, owns the view. One controller or request token connects work to that input. HTTP status is checked explicitly, expected cancellation does not become an error, and a real failure keeps enough context for a current-query retry.",
       "commonWrongPaths": [
-        "Rendering every response as it arrives",
-        "Assuming fetch rejects on 404 or 500",
-        "Showing a spinner forever after AbortError"
+        "Rendering every successful completion without checking its query",
+        "Assuming fetch rejects for every non-2xx status",
+        "Using one already-aborted controller for later requests",
+        "Treating replacement cancellation as a server outage"
       ],
-      "answerExplanation": "Associate each response with its query, abort or invalidate obsolete work, check response.ok, and render an actionable retry state for failures.",
-      "followUpVariation": "Add debounce without changing which response is authoritative.",
+      "answerExplanation": "First make the response order observable. Then associate work with one query, abort or ignore obsolete completions, check HTTP status, and model cancellation and retryable failure separately.",
+      "followUpVariation": "Add a 250 ms debounce. Explain why debounce reduces requests but does not replace request authority.",
       "checkType": "free-text",
       "prompt": "Explain how you keep stale search results from winning and how the UI handles failure.",
       "freeTextKeywords": [
@@ -216,7 +225,12 @@ export const topic: TopicModule = {
         "response",
         "retry"
       ],
-      "sourceLink": "https://developer.mozilla.org/en-US/docs/Web/API/AbortController"
+      "sourceLink": "https://developer.mozilla.org/en-US/docs/Web/API/AbortController",
+      "sourceLinks": [
+        "https://developer.mozilla.org/en-US/docs/Web/API/AbortController",
+        "https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch#checking_response_status",
+        "https://react.dev/reference/react/useEffect#fetching-data-with-effects"
+      ]
     }
   ],
   "qa": [
@@ -225,8 +239,8 @@ export const topic: TopicModule = {
       "topicId": "expansion-browser-failure-debugging",
       "topicFamily": "app-quality",
       "question": "Why is response.ok needed after fetch() resolves?",
-      "answer": "fetch() resolves when an HTTP response is received, including 404 or 500 responses. Check response.ok or status before treating the body as a successful result.",
-      "followUp": "How should a stale response be handled?",
+      "answer": "`fetch` can resolve after receiving a 404 or 500 response. Resolution means a response arrived, not that the application operation succeeded. Check `response.ok` or `response.status`, then show a recoverable HTTP failure instead of treating an error body as successful data.",
+      "followUp": "How will your UI distinguish an expected cancellation from an HTTP failure the user can retry?",
       "category": "debugging",
       "level": "intermediate",
       "tags": [
@@ -234,37 +248,51 @@ export const topic: TopicModule = {
         "fetch",
         "debugging"
       ],
-      "sourceLink": "https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch"
+      "sourceLink": "https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch",
+      "sourceLinks": [
+        "https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch",
+        "https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch#checking_response_status"
+      ]
     },
     {
       "id": "loop-qa-expansion-browser-failure-debugging-1",
       "topicId": "expansion-browser-failure-debugging",
       "topicFamily": "app-quality",
-      "question": "What problem does Debug Browser Events and Stale Requests help you solve?",
-      "answer": "Most frontend failures become easier when you can name the event path, request lifecycle, and exact observable failure instead of guessing from the final screen.",
-      "followUp": "Name one decision in your current project where this model would change the implementation.",
+      "question": "How do target and currentTarget help debug a delegated event handler?",
+      "answer": "`target` identifies where the event began. `currentTarget` identifies the element whose listener is running now. Logging both shows whether the handler observed the intended child through its stable ancestor or matched an unrelated click.",
+      "followUp": "What target-matching rule makes your delegated handler safe for nested elements?",
       "category": "testing",
       "level": "intermediate",
       "tags": [
         "topic-loop",
         "expansion-browser-failure-debugging"
       ],
-      "sourceLink": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/Event_bubbling"
+      "sourceLink": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/Event_bubbling",
+      "sourceLinks": [
+        "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/Event_bubbling",
+        "https://developer.mozilla.org/en-US/docs/Web/API/Event/target",
+        "https://developer.mozilla.org/en-US/docs/Web/API/Event/currentTarget"
+      ]
     },
     {
       "id": "loop-qa-expansion-browser-failure-debugging-2",
       "topicId": "expansion-browser-failure-debugging",
       "topicFamily": "app-quality",
-      "question": "How would you explain the core idea of Debug Browser Events and Stale Requests to a teammate?",
-      "answer": "How do you distinguish a network failure, an HTTP error response, and an obsolete response? A strong explanation should connect the model to: Trace event propagation before changing handlers; Separate network failure from an HTTP error response.",
-      "followUp": "Which observable behavior would prove your explanation is correct?",
+      "question": "Why does debouncing search input not completely solve stale response races?",
+      "answer": "Debouncing may start fewer requests, but two requests can still overlap and finish out of order. The current query still needs authority through cancellation or a request identity check before a completion updates the view.",
+      "followUp": "Which log fields would prove that an obsolete response was ignored?",
       "category": "testing",
       "level": "intermediate",
       "tags": [
         "topic-loop",
         "expansion-browser-failure-debugging"
       ],
-      "sourceLink": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/Event_bubbling"
+      "sourceLink": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/Event_bubbling",
+      "sourceLinks": [
+        "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/Event_bubbling",
+        "https://developer.mozilla.org/en-US/docs/Web/API/AbortController",
+        "https://react.dev/reference/react/useEffect#fetching-data-with-effects"
+      ]
     }
   ],
   "practices": [
@@ -273,17 +301,21 @@ export const topic: TopicModule = {
       "topicId": "expansion-browser-failure-debugging",
       "topicFamily": "app-quality",
       "title": "Keep Obsolete Responses from Winning",
-      "summary": "When inputs change during an async request, abort or ignore responses that no longer match the current input.",
-      "rationale": "Network completion order is independent from input order; rendering every response can show data for a query the user has already replaced.",
-      "tradeOffs": "Cancellation needs cleanup, and ignored work may still consume server resources when cancellation is not supported.",
-      "appliesWhen": "Search, autocomplete, filters, or any request is keyed by changing input.",
-      "doesNotApplyWhen": "Every response is independently useful and can be appended without replacing current state.",
-      "example": "Abort the previous search request on cleanup and ignore AbortError while preserving a retryable error state for other failures.",
+      "summary": "Associate async work with the input that started it, then abort or ignore a completion after that input is replaced.",
+      "rationale": "Request completion order is independent from input order. A current owner prevents old data from silently replacing the view the user asked for.",
+      "tradeOffs": "Cancellation needs cleanup, and a server may already have done work before noticing it. An identity check is still useful when an API cannot be cancelled.",
+      "appliesWhen": "Changing search, autocomplete, filters, route input, or selection can start overlapping replaceable work.",
+      "doesNotApplyWhen": "Every independent result remains useful and is intentionally appended, such as separately identified upload completions.",
+      "example": "Create a controller for `react`, abort the previous `re` request on cleanup, and update results only while `react` is still the current query.",
       "sourceLink": "https://developer.mozilla.org/en-US/docs/Web/API/AbortController",
       "tags": [
         "expansion",
         "async",
         "debugging"
+      ],
+      "sourceLinks": [
+        "https://developer.mozilla.org/en-US/docs/Web/API/AbortController",
+        "https://react.dev/reference/react/useEffect#fetching-data-with-effects"
       ]
     }
   ],

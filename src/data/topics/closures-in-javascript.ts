@@ -9,26 +9,26 @@ export const topic: TopicModule = {
     "level": "beginner",
     "prerequisites": [],
     "learningObjectives": [
-      "Define what a closure is in precise terms",
-      "Trace variable access through nested function scopes",
-      "Identify closures in React hooks and event handlers",
-      "Avoid common closure-related bugs in React"
+      "Define a closure as a function together with access to its lexical environment",
+      "Trace captured bindings across calls and distinguish separate closure instances",
+      "Predict which render snapshot a React callback can read",
+      "Choose an updater, ref, dependency, or explicit argument for the boundary being fixed"
     ],
-    "whyMatters": "Closures are the invisible mechanism behind every useState, useEffect, and event handler in React. Without understanding closures, you cannot reliably predict when your components will see stale state or why your effects fire when they do.",
-    "estimatedMinutes": 25,
+    "whyMatters": "Closures determine what callbacks can read. In React, every render creates new props, state values, and handlers, so a delayed callback can legitimately retain an older render snapshot. A precise closure model prevents lost updates and “stale value” fixes that solve the wrong problem.",
+    "estimatedMinutes": 28,
     "sections": [
       {
         "id": "closure-definition",
         "type": "concept",
         "title": "What is a closure?",
-        "content": "A closure is created when a function retains access to variables from its outer lexical scope, even after that outer function has finished executing. The function \"closes over\" the variables — hence the name.\n\nIn ordinary JavaScript, a closure retains access to a lexical binding. React adds an important distinction: each render creates a new snapshot of props and state, so a callback created during one render sees that render's values. Do not treat React state in a callback as a live read of the latest render."
+        "content": "A closure is a function together with access to the lexical environment where that function was created. JavaScript creates closures whenever it creates functions. Name lookup follows the function’s source-code nesting, not the place where the function is later called.\n\nA closure retains access to bindings. If a captured `let` binding changes, the closure can observe the changed binding. React adds a separate idea: each component render calls the component again and creates a new `const` binding for that render’s props and state. A handler created in that render closes over those particular bindings, so the handler reads that render’s snapshot."
       },
       {
         "id": "closure-example-basic",
         "type": "code-example",
-        "title": "Basic closure example",
-        "content": "Observe how `createCounter` returns a function that still has access to `count` long after `createCounter` has returned.",
-        "code": "function createCounter() {\n  let count = 0;\n  return function increment() {\n    count += 1;\n    return count;\n  };\n}\n\nconst counter = createCounter();\nconsole.log(counter()); // 1\nconsole.log(counter()); // 2\nconsole.log(counter()); // 3\n\n// createCounter's execution is done — but count lives on.\n// Why? Because increment() closes over count.",
+        "title": "Trace one lexical environment",
+        "content": "Each call to `createCounter` creates a new `count` binding. Repeated calls to one returned function share its binding; another counter has a different binding.",
+        "code": "function createCounter() {\n  let count = 0;\n\n  return function increment() {\n    count += 1;\n    return count;\n  };\n}\n\nconst first = createCounter();\nconst second = createCounter();\n\nconsole.log(first());  // 1\nconsole.log(first());  // 2\nconsole.log(second()); // 1",
         "codeLanguage": "javascript",
         "codeFilePath": "examples/closures/createCounter.js"
       },
@@ -40,19 +40,18 @@ export const topic: TopicModule = {
         "questions": [
           {
             "id": "q1",
-            "question": "What value does `logCount()` print on the third call?",
+            "question": "After the code example runs, what does a third call to `first()` return?",
             "options": [
-              "0",
               "1",
               "2",
               "3",
               "undefined"
             ],
             "correctAnswer": "3",
-            "expectedReasoning": "The closure keeps the same `count` binding. Each call increments before returning: first call returns 1, second returns 2, third returns 3.",
+            "expectedReasoning": "`first` closes over one `count` binding. Its first two calls changed that binding from 0 to 1 and then 2. The third call changes the same binding to 3. Calls to `second` use a separate environment and do not reset `first`.",
             "commonMisconceptions": [
-              "Thinking count resets to 0 each call",
-              "Forgetting the increment happens before the return"
+              "Assuming a local variable is recreated every time the returned function runs",
+              "Assuming `second()` changes the binding captured by `first`"
             ]
           }
         ]
@@ -60,48 +59,50 @@ export const topic: TopicModule = {
       {
         "id": "closure-react",
         "type": "concept",
-        "title": "Closures in React",
-        "content": "Every React hook that uses a callback forms a closure. When you write `useEffect(() => { console.log(value) }, [])`, the function inside closes over `value` from the render it was created in. If `value` changes in a later render, that effect does not automatically see the new render's value.\n\nThis is the root cause of \"stale closure\" bugs: a callback keeps the values from a past render because its identity and dependencies have not been updated."
+        "title": "Render snapshots are separate lexical bindings",
+        "content": "A component render calculates JSX and creates event handlers from that render’s props and state. Calling a state setter requests another render; it does not change the state variable inside an already-running handler. A timer, promise callback, or subscription created by that handler therefore keeps reading the snapshot it closed over unless the program deliberately supplies another read strategy.\n\nThis is normal JavaScript behavior, not React “failing to update” a variable. First decide what the callback should mean: preserve the value at scheduling time, compute a state transition from the latest queued state, or read the latest value when the callback eventually runs."
       },
       {
         "id": "closure-react-code",
         "type": "code-example",
-        "title": "Stale closure in a React component",
-        "content": "Click the button rapidly. What does the alert show? Does it always show the latest count?",
-        "code": "function Counter() {\n  const [count, setCount] = useState(0);\n\n  function handleClick() {\n    setCount(count + 1);\n    setTimeout(() => {\n      alert(count); // Which count is this?\n    }, 5000);\n  }\n\n  return <button onClick={handleClick}>Increment</button>;\n}",
+        "title": "A correct update can coexist with a stale read",
+        "content": "The updater increments correctly, but the timeout still logs the `count` binding from the render that created `handleClick`.",
+        "code": "function DelayedCount() {\n  const [count, setCount] = useState(0);\n\n  function handleClick() {\n    setCount(current => current + 1);\n\n    setTimeout(() => {\n      console.log(count); // snapshot from this render\n    }, 1000);\n  }\n\n  return <button onClick={handleClick}>Count: {count}</button>;\n}",
         "codeLanguage": "typescript",
         "codeFilePath": "examples/closures/StaleClosureCounter.tsx"
       },
       {
         "id": "closure-fix",
         "type": "concept",
-        "title": "Fixing stale closures",
-        "content": "Use the functional updater form `setCount(c => c + 1)` when the next state depends on the previous state. That fixes the state transition, but it does not rewrite values captured by an already-created timeout or promise callback. Use a ref for a latest-value read, or include the reactive value in an Effect's dependencies when synchronization is the goal.\n\nReact re-renders create new functions with new render snapshots. Choose the fix that matches the job: functional updater for a state transition, ref for a latest mutable read, and dependencies for external synchronization."
+        "title": "Match the remedy to the requirement",
+        "content": "Use a functional updater when the next state depends on queued previous state: `setCount(current => current + 1)`. That fixes the transition, but it does not alter callbacks that already exist.\n\nIf a callback should preserve the value from the moment it was scheduled, pass that value as an argument or close over a deliberately named local value. If it must read the latest value when it runs, use an explicit latest-value channel such as a ref and keep that channel synchronized. If an Effect synchronizes with an external system, declare every reactive dependency and let React recreate the synchronization when those inputs change. These strategies solve different problems and are not interchangeable."
       },
       {
         "id": "closure-synthesis",
         "type": "synthesis",
         "title": "Synthesis",
-        "content": "Closures are not a React feature — they're a JavaScript feature that React relies on heavily. Every time you see a function inside a component, you're looking at a closure. The function remembers the props and state from its render.\n\nWhen debugging: if a callback or effect is seeing \"old\" data, check whether it's a stale closure. The fix is usually: (1) add the variable to the dependency array, (2) use a ref, or (3) use a functional updater."
+        "content": "Closures follow lexical scope. React render snapshots follow from creating new bindings on each component call. When a callback appears stale, identify the required time boundary before changing code: creation-time value, latest queued transition, latest mutable read, or renewed external synchronization. Then choose the smallest mechanism that expresses that requirement."
       }
     ],
-    "retrievalPrompt": "Explain what a closure is in one sentence. Then describe what happens when a React effect with an empty dependency array accesses a state variable that changes across renders.",
-    "reflectionPrompt": "Think of a bug you have encountered or can imagine in a React app. Would understanding closures have helped you debug it faster? Why or why not?",
+    "retrievalPrompt": "Define a closure without using the word “remember.” Then explain why a callback created during one React render can read an older state value after a later render.",
+    "reflectionPrompt": "Find one delayed callback, subscription, or event handler in your code. Does it need the value from creation time, the latest value, or only a correct state transition?",
     "masteryCriteria": [
-      "Can explain what a closure captures (live reference, not snapshot)",
-      "Can trace variable values through nested closures",
-      "Can identify a stale closure bug in React code",
-      "Can fix a stale closure using ref, functional updater, or dependency array"
+      "Can explain that closures retain access to lexical bindings, not frozen copies of arbitrary objects",
+      "Can trace two closure instances without mixing their environments",
+      "Can predict a callback result from the render that created it",
+      "Can choose a fix based on whether the job is a transition, latest read, or synchronization"
     ],
     "nextTopics": [
       "async-js-promises"
     ],
     "metadata": {
-      "reactVersion": "19.2.7",
-      "lastUpdated": "2026-07-01",
+      "reactVersion": "19.2",
+      "lastUpdated": "2026-07-20",
       "sources": [
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Closures",
-        "https://react.dev/learn/state-as-a-snapshot"
+        "https://react.dev/learn/state-as-a-snapshot",
+        "https://react.dev/learn/queueing-a-series-of-state-updates",
+        "https://react.dev/reference/react/useRef"
       ]
     },
     "diagram": {
@@ -139,28 +140,28 @@ export const topic: TopicModule = {
     "chunks": [
       {
         "id": "closures-in-javascript-retrieval-1",
-        "title": "Separate the two problems",
-        "concept": "A functional updater fixes a state transition, while a delayed callback may still hold an older render snapshot.",
+        "title": "Separate transition correctness from read timing",
+        "concept": "A functional updater computes from the latest queued state; it does not rewrite the lexical bindings of an existing callback.",
         "prediction": {
-          "prompt": "Which fix addresses a delayed callback that must read the latest value?",
+          "prompt": "A timeout must read the latest committed value when it fires. Which strategy addresses that read requirement?",
           "options": [
-            "Only use a functional updater",
-            "Use an explicit latest-value strategy such as a ref"
+            "Only switch the setter to a functional updater",
+            "Read through an explicitly synchronized latest-value ref"
           ],
-          "correctAnswer": "Use an explicit latest-value strategy such as a ref",
-          "feedbackCorrect": "The updater and the callback-read problem are different boundaries.",
-          "feedbackWrong": "A functional updater changes the queued state transition, not an existing closure."
+          "correctAnswer": "Read through an explicitly synchronized latest-value ref",
+          "feedbackCorrect": "A ref can provide a deliberate latest-value channel without pretending the old closure changed.",
+          "feedbackWrong": "The updater fixes how state is calculated. The timeout still has the bindings from the render that created it."
         },
-        "synthesis": "Match the fix to the boundary: transition, latest read, or synchronization."
+        "synthesis": "Name the time boundary first; then choose updater, argument, ref, or dependency."
       }
     ],
     "miniProject": {
       "title": "Repair a delayed notification",
-      "scenario": "Review a notification counter that reports stale values after rapid clicks.",
+      "scenario": "Repair a notification counter whose delayed messages report values from the wrong time boundary.",
       "acceptance": [
-        "The state transition remains correct under rapid input",
-        "The delayed read has an explicit current-value strategy",
-        "The trade-off is explained in a short note"
+        "Rapid updates do not lose state transitions",
+        "The delayed read explicitly implements either scheduled-time or latest-time semantics",
+        "A short note explains why the chosen semantics match the product requirement"
       ],
       "rubric": [
         {
@@ -184,37 +185,39 @@ export const topic: TopicModule = {
       "title": "Fix the Stale Closure",
       "level": 1,
       "topicFamily": "foundations",
-      "scenario": "A notification counter shows the wrong count after rapid clicks. The developer used a closure that captures a stale value.",
+      "scenario": "A notification counter increments correctly, but delayed messages read the count from the render that scheduled them. Product requires every delayed message to report the latest notification total when it fires.",
       "constraints": [
-        "Do not remove the setTimeout",
-        "The alert must show the correct count after 2 seconds"
+        "Keep the `setTimeout` boundary",
+        "Use a functional state updater so rapid increments cannot lose transitions",
+        "Use an explicit latest-value channel for the delayed read"
       ],
       "acceptanceCriteria": [
-        "Clicking \"Notify\" 3 times rapidly should alert \"You have 3 notifications\" after 2 seconds",
-        "The solution must use the functional updater form of setCount and a current-value strategy for the delayed alert"
+        "Three rapid clicks render a count of 3",
+        "Every delayed message produced by those clicks reports 3 when it fires",
+        "The explanation distinguishes transition correctness from callback read timing"
       ],
       "hints": [
         {
           "stage": 1,
-          "text": "Look at what value `count` holds at the time setTimeout fires."
+          "text": "Write down two questions separately: how is the next count calculated, and where does the timeout read its value?"
         },
         {
           "stage": 2,
-          "text": "setCount can accept a function: `setCount(c => c + 1)`, but that alone does not update the timeout closure."
+          "text": "Use `setCount(current => current + 1)` for the transition. This does not change the timeout’s existing closure."
         },
         {
           "stage": 3,
-          "text": "Use a ref or another explicit current-value strategy for the delayed alert; use the functional updater for the state transition."
+          "text": "Keep a ref as the deliberate latest-value channel and update it along the same event path before the timeout reads it."
         }
       ],
-      "expectedReasoning": "Each click creates a new closure capturing `count` from that render. The functional updater fixes the state transition, but the timeout still reads its old closure. Keep the latest count in a ref (or pass a computed value deliberately) for the delayed alert.",
+      "expectedReasoning": "The state updater must derive from queued state, while the delayed callback needs a separate latest-value source. A ref can cross render boundaries without forcing another render. The implementation must keep the ref and state transitions coordinated for every update path.",
       "commonWrongPaths": [
-        "Changing only setCount to the functional updater while leaving the delayed alert reading count",
-        "Adding count to a useEffect dependency array unnecessarily"
+        "Changing only the setter to a functional updater and leaving the timeout reading `count`",
+        "Adding a dependency array even though this behavior belongs to an event and timeout, not external synchronization"
       ],
-      "answerExplanation": "Use the functional updater for the state transition and a ref for the delayed read. Updating only `setCount` does not change the `count` captured by an already-created timeout callback.",
-      "followUpVariation": "What if we wanted to debounce the notification instead? How would the solution change?",
-      "starterCode": "function NotificationCounter() {\n  const [count, setCount] = useState(0);\n  const countRef = useRef(0);\n\n  function handleNotify() {\n    countRef.current += 1;\n    setCount(() => countRef.current);\n    setTimeout(() => {\n      alert(`You have ${countRef.current} notifications`);\n    }, 2000);\n  }\n\n  return <button onClick={handleNotify}>Notify ({count})</button>;\n}",
+      "answerExplanation": "Use the functional updater for React state and a ref for the timeout’s latest read. The updater prevents lost increments; the ref gives callbacks created by older renders one deliberate place to read the latest total. Document that all count updates must also maintain that channel.",
+      "followUpVariation": "Change the requirement so each message reports the total at scheduling time. Which local value should the callback capture instead?",
+      "starterCode": "function NotificationCounter() {\n  const [count, setCount] = useState(0);\n\n  function handleNotify() {\n    setCount(count + 1);\n    setTimeout(() => {\n      alert(`You have ${count} notifications`);\n    }, 2000);\n  }\n\n  return <button onClick={handleNotify}>Notify ({count})</button>;\n}",
       "sourceLink": "https://react.dev/learn/state-as-a-snapshot"
     }
   ],
@@ -223,9 +226,9 @@ export const topic: TopicModule = {
       "id": "loop-qa-closures-in-javascript-1",
       "topicId": "closures-in-javascript",
       "topicFamily": "foundations",
-      "question": "What problem does Closures in JavaScript help you solve?",
-      "answer": "Closures are the invisible mechanism behind every useState, useEffect, and event handler in React. Without understanding closures, you cannot reliably predict when your components will see stale state or why your effects fire when they do.",
-      "followUp": "Name one decision in your current project where this model would change the implementation.",
+      "question": "What does a closure preserve, and why does that matter in a React callback?",
+      "answer": "A closure preserves access to bindings in its lexical environment. A React callback is recreated during a render and closes over that render’s props and state bindings, so a delayed callback can read an older render snapshot even after state has triggered a newer render.",
+      "followUp": "Is the callback supposed to preserve its scheduling-time value or read the latest value when it runs?",
       "category": "react",
       "level": "beginner",
       "tags": [
@@ -238,9 +241,9 @@ export const topic: TopicModule = {
       "id": "loop-qa-closures-in-javascript-2",
       "topicId": "closures-in-javascript",
       "topicFamily": "foundations",
-      "question": "How would you explain the core idea of Closures in JavaScript to a teammate?",
-      "answer": "Explain what a closure is in one sentence. Then describe what happens when a React effect with an empty dependency array accesses a state variable that changes across renders. A strong explanation should connect the model to: Define what a closure is in precise terms; Trace variable access through nested function scopes.",
-      "followUp": "Which observable behavior would prove your explanation is correct?",
+      "question": "Why does a functional state updater not automatically fix every stale callback?",
+      "answer": "The updater changes how React calculates the next queued state. It does not mutate lexical bindings inside callbacks that were already created. A latest read needs a separate strategy; a scheduling-time read may need no fix at all.",
+      "followUp": "Show one example where an updater is enough and one where a ref or explicit argument is required.",
       "category": "react",
       "level": "beginner",
       "tags": [
@@ -253,9 +256,9 @@ export const topic: TopicModule = {
       "id": "loop-qa-closures-in-javascript-3",
       "topicId": "closures-in-javascript",
       "topicFamily": "foundations",
-      "question": "What evidence shows that you can apply Closures in JavaScript?",
-      "answer": "Can explain what a closure captures (live reference, not snapshot) · Can trace variable values through nested closures · Can identify a stale closure bug in React code",
-      "followUp": "What failure case would you test before calling this skill reliable?",
+      "question": "How do you choose among an updater, ref, dependency, and explicit argument?",
+      "answer": "Use an updater for a transition based on previous state, a ref for an intentional latest mutable read, dependencies for synchronization that must be recreated when reactive inputs change, and an explicit argument or local binding when the callback should preserve a scheduling-time value.",
+      "followUp": "Which choice makes the time semantics easiest for a reviewer to verify?",
       "category": "react",
       "level": "beginner",
       "tags": [
