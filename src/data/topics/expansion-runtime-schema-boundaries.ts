@@ -12,28 +12,28 @@ export const topic: TopicModule = {
       "expansion-typescript-react-boundaries"
     ],
     "learningObjectives": [
-      "Separate compile-time TypeScript descriptions from runtime validation",
-      "Use a schema to parse untrusted FormData or JSON at a protected boundary",
-      "Choose safeParse-style failure handling that preserves actionable field errors",
-      "Keep native form semantics and pending feedback when a schema library is introduced"
+      "Explain why TypeScript types do not inspect runtime input",
+      "Adapt FormData or JSON into a small schema input at the trust boundary",
+      "Return safe field-level issues while preventing unchecked data from reaching the mutation",
+      "Keep validation, authentication, and authorization as separate decisions"
     ],
-    "whyMatters": "A typed form can still receive malformed runtime input. A schema makes the boundary executable while the UI remains responsible for clear, accessible recovery.",
-    "estimatedMinutes": 25,
+    "whyMatters": "A type describes what code expects during development; it does not prove what a browser, API caller, URL, or storage system actually sent. Runtime parsing turns an assumption into evidence and gives invalid data a deliberate recovery path.",
+    "estimatedMinutes": 36,
     "sections": [
       {
         "id": "expansion-runtime-schema-model",
         "type": "concept",
         "title": "Types describe; schemas check",
-        "content": "TypeScript helps during development, but FormData, JSON, URL values, and browser storage arrive at runtime. A schema turns those values into an explicit pass or failure result."
+        "content": "TypeScript checks the code the compiler can see, then its types are removed from the emitted JavaScript. A type assertion changes the compiler’s assumption; it does not inspect a runtime value. `FormData.get()` can produce a string, `File`, or `null`, and parsed JSON can have any shape. Adapt only the fields you accept, then parse them with a runtime validator before treating them as application data.\n\nA schema library is one way to express this parser, not a required dependency for every value. Use it at real trust boundaries when structured parsing and issue paths justify its maintenance cost. Validation proves shape and rules; authentication proves identity; authorization proves permission."
       },
       {
         "id": "expansion-runtime-schema-code",
         "type": "code-example",
         "title": "Parse before mutation",
-        "content": "Validate at the server boundary and return structured failure data instead of mutating with unchecked fields.",
-        "code": "const result = ProfileSchema.safeParse({\n  email: formData.get('email'),\n});\n\nif (!result.success) return { ok: false, errors: result.error.flatten().fieldErrors };\nawait saveProfile(result.data);",
+        "content": "The boundary creates an explicit object from raw FormData and uses a non-throwing parse result. Only verified data reaches authorization and persistence; expected field issues return safe recovery details.",
+        "code": "const raw = {\n  email: formData.get('email'),\n  displayName: formData.get('displayName'),\n};\n\nconst result = ProfileSchema.safeParse(raw);\nif (!result.success) {\n  return {\n    ok: false,\n    fieldErrors: result.error.flatten().fieldErrors,\n  };\n}\n\nconst user = await requireUser();\nawait authorizeProfileEdit(user, result.data);\nawait saveProfile(result.data);",
         "codeLanguage": "typescript",
-        "codeFilePath": "Server Action or API boundary"
+        "codeFilePath": "Server Function or Route Handler boundary"
       },
       {
         "id": "expansion-runtime-schema-question",
@@ -43,15 +43,15 @@ export const topic: TopicModule = {
         "questions": [
           {
             "id": "expansion-runtime-schema-check",
-            "question": "What should happen before a submitted email reaches the mutation?",
+            "question": "A Server Function receives FormData for an email and display name. What should happen before those values reach the mutation?",
             "options": [
-              "Trust the TypeScript interface",
-              "Parse the runtime value with the boundary schema",
-              "Read the placeholder as the value",
-              "Disable the submit button permanently"
+              "Adapt the raw values and parse them with the runtime boundary schema",
+              "Cast the FormData to the desired TypeScript interface",
+              "Trust the browser because the inputs used `required`",
+              "Save first and validate only if the database rejects the write"
             ],
-            "correctAnswer": "Parse the runtime value with the boundary schema",
-            "expectedReasoning": "The client and its declared types can be bypassed; the protected boundary must validate the runtime value."
+            "correctAnswer": "Adapt the raw values and parse them with the runtime boundary schema",
+            "expectedReasoning": "Runtime parsing inspects the values and produces verified data or structured issues. A cast performs no check, browser constraints can be bypassed, and saving before validation lets invalid input reach a protected operation."
           }
         ]
       },
@@ -59,27 +59,31 @@ export const topic: TopicModule = {
         "id": "expansion-runtime-schema-synthesis",
         "type": "synthesis",
         "title": "Synthesis",
-        "content": "Keep native form behavior and accessible feedback, then add a runtime schema where data becomes trusted. A schema library is a boundary tool, not a replacement for authorization, persistence, or user-facing error design."
+        "content": "At an external boundary, build the accepted input shape, parse it at runtime, return safe actionable issues on expected failure, then authenticate and authorize before mutation. Keep native form semantics and pending feedback around the boundary. A schema improves runtime evidence; it does not replace permission checks, persistence rules, or thoughtful error design."
       }
     ],
-    "retrievalPrompt": "Why can a TypeScript type not replace runtime schema validation for FormData or JSON?",
-    "reflectionPrompt": "Choose one form or API boundary. Which fields need parsing, which errors can the user fix, and where is authorization still required?",
+    "retrievalPrompt": "Trace one FormData or JSON request through input adaptation, schema parsing, safe error mapping, authentication, authorization, and mutation. State what each step proves.",
+    "reflectionPrompt": "Choose one external input boundary. Which values can be null, files, malformed strings, extra fields, or unexpected JSON shapes, and how should each failure recover?",
     "masteryCriteria": [
-      "Can explain the compile-time/runtime distinction",
-      "Can parse untrusted input before mutation",
-      "Can return field-level failure information",
-      "Can preserve accessible pending and recovery states"
+      "Can distinguish a compile-time type from runtime evidence",
+      "Parses a deliberate input shape before business logic uses it",
+      "Maps expected validation issues to safe actionable feedback",
+      "Does not confuse valid data with permission to perform an operation"
     ],
     "nextTopics": [
       "expansion-client-server-state"
     ],
     "metadata": {
-      "nextVersion": "Next.js 15.5.20; Zod 4",
-      "lastUpdated": "2026-07-15",
+      "reactVersion": "19.2.7",
+      "nextVersion": "15.5.20",
+      "lastUpdated": "2026-07-21",
       "sources": [
         "https://zod.dev/basics",
         "https://nextjs.org/docs/15/app/guides/forms",
-        "https://react.dev/reference/react-dom/components/form"
+        "https://react.dev/reference/react-dom/components/form",
+        "https://www.typescriptlang.org/docs/handbook/typescript-from-scratch.html#erased-types",
+        "https://developer.mozilla.org/en-US/docs/Web/API/FormData/get",
+        "https://www.w3.org/WAI/tutorials/forms/notifications/"
       ]
     },
     "diagram": {
@@ -126,28 +130,28 @@ export const topic: TopicModule = {
       {
         "id": "expansion-runtime-schema-boundaries-retrieval-1",
         "title": "Types are not runtime evidence",
-        "concept": "A TypeScript interface cannot inspect FormData or JSON at runtime; a schema must parse the value before the protected operation trusts it.",
+        "concept": "A runtime parser changes unknown input into either verified data or explicit issues.",
         "prediction": {
-          "prompt": "What should a Server Action do with FormData before saving it?",
+          "prompt": "What does `formData as ProfileInput` prove at runtime?",
           "options": [
-            "Cast it to the expected interface",
-            "Parse it with a runtime schema and handle failure"
+            "Nothing about the submitted values",
+            "That every field was parsed and authorized"
           ],
-          "correctAnswer": "Parse it with a runtime schema and handle failure",
-          "feedbackCorrect": "The schema creates runtime evidence and a structured recovery path.",
-          "feedbackWrong": "A cast changes compiler assumptions but does not inspect the submitted value."
+          "correctAnswer": "Nothing about the submitted values",
+          "feedbackCorrect": "The assertion only changes a compiler assumption; it executes no validation.",
+          "feedbackWrong": "Types and assertions are erased. Runtime code must inspect external values."
         },
-        "synthesis": "Parse first, authorize the operation, then mutate verified data."
+        "synthesis": "Parse first, map expected issues, authorize separately, then mutate verified data."
       }
     ],
     "miniProject": {
       "title": "Design a schema-backed form action",
-      "scenario": "Specify a profile form that maps FormData into a runtime schema, returns field errors, and preserves accessible pending feedback.",
+      "scenario": "Design a profile action that accepts FormData today and JSON from a mobile client later, while sharing one verified application shape.",
       "acceptance": [
-        "Raw values are parsed at the server boundary",
-        "Failure returns field-level recovery information",
-        "Authorization remains separate from validation",
-        "The form keeps native labels and pending/error states"
+        "Each transport adapts raw values into the same schema input",
+        "Invalid fields return safe field-level recovery information",
+        "Only parsed data reaches authorization and persistence",
+        "The design states when a schema dependency is justified and does not add one at runtime"
       ],
       "rubric": [
         {
@@ -171,42 +175,42 @@ export const topic: TopicModule = {
       "title": "Design a Runtime-Safe Form Boundary",
       "level": 5,
       "topicFamily": "app-quality",
-      "scenario": "A profile form accepts FormData and saves an email plus display name. The UI has TypeScript types, but direct requests can submit missing, malformed, or unexpected values.",
+      "scenario": "A profile update accepts FormData from the browser and JSON from a mobile client. TypeScript interfaces exist, but callers can send missing fields, Files, extra values, or malformed strings. Design one runtime-safe application boundary.",
       "constraints": [
-        "Keep native form semantics and pending feedback",
-        "Parse untrusted values before the mutation",
-        "Return actionable field errors without leaking internals",
-        "Keep authorization separate from validation"
+        "Keep native form behavior and observable pending feedback",
+        "Adapt each transport before parsing",
+        "Return safe field issues without exposing internal exceptions",
+        "Authorize separately after validation succeeds"
       ],
       "acceptanceCriteria": [
-        "The boundary schema defines the accepted fields and constraints",
-        "Invalid input returns structured field-level feedback",
-        "Only parsed data reaches the mutation",
-        "The explanation distinguishes runtime validation from authorization"
+        "The accepted email and display-name shape and constraints are explicit",
+        "FormData and JSON adapters feed one runtime parser",
+        "Only verified data reaches the protected mutation",
+        "The answer distinguishes validation failure, unauthenticated identity, denied permission, and unexpected service failure"
       ],
       "hints": [
         {
           "stage": 1,
-          "text": "Start with the raw FormData values; do not treat them as the final application type."
+          "text": "List the runtime types each transport can produce before writing the application schema."
         },
         {
           "stage": 2,
-          "text": "Use a schema parser with a success/failure result and preserve the field paths."
+          "text": "Use a result with success/data or issues; map expected issue paths to fields."
         },
         {
           "stage": 3,
-          "text": "After validation succeeds, authorize the caller and only then perform the mutation."
+          "text": "After parsing, obtain the current identity and check permission for this profile before saving."
         }
       ],
-      "expectedReasoning": "TypeScript does not inspect runtime FormData. Parse the submitted values with a schema, return field issues on failure, and run authorization separately before saving verified data.",
+      "expectedReasoning": "Transport adapters handle raw FormData and JSON differences. One parser establishes the application shape and returns structured expected issues. Authentication and authorization answer separate trust questions. Persistence receives only verified, permitted data.",
       "commonWrongPaths": [
-        "Using a type assertion as validation",
-        "Trusting client constraints as the server boundary",
-        "Returning a generic failure that loses field recovery",
-        "Treating schema validation as permission checking"
+        "Using a type assertion as a runtime check",
+        "Sending raw validation-library internals to the user",
+        "Treating schema success as proof that the caller owns the profile",
+        "Adding a schema dependency without a real external boundary or reuse need"
       ],
-      "answerExplanation": "Keep the native form and pending state, map FormData into a runtime schema, use a safe parse result to return field errors, then authorize the operation and persist only the parsed data.",
-      "followUpVariation": "The API now accepts JSON from a mobile client. Which boundary stays the same and which input adapter changes?",
+      "answerExplanation": "Adapt raw transport values, parse one accepted shape, map expected issues safely, authorize the operation, and persist only the parsed data. This order keeps both correctness and recovery inspectable.",
+      "followUpVariation": "A batch endpoint accepts ten profiles. Decide whether to reject the whole batch or return per-item issues, and explain the transactional consequence.",
       "checkType": "free-text",
       "prompt": "Explain the schema, failure response, authorization, and mutation order for this form.",
       "freeTextKeywords": [
@@ -218,8 +222,11 @@ export const topic: TopicModule = {
       ],
       "sourceLink": "https://zod.dev/basics",
       "sourceLinks": [
+        "https://zod.dev/basics",
         "https://nextjs.org/docs/15/app/guides/forms",
-        "https://react.dev/reference/react-dom/components/form"
+        "https://react.dev/reference/react-dom/components/form",
+        "https://developer.mozilla.org/en-US/docs/Web/API/FormData/get",
+        "https://cheatsheetseries.owasp.org/cheatsheets/Input_Validation_Cheat_Sheet.html"
       ]
     }
   ],
@@ -229,8 +236,8 @@ export const topic: TopicModule = {
       "topicId": "expansion-runtime-schema-boundaries",
       "topicFamily": "app-quality",
       "question": "Why use a runtime schema for FormData when the fields already have TypeScript types?",
-      "answer": "TypeScript types guide compilation but do not inspect values submitted by a browser or another client. A runtime schema parses the input, returns structured issues on failure, and produces data the server can safely pass to the next boundary; authorization is still a separate check.",
-      "followUp": "How should field issues become accessible recovery feedback?",
+      "answer": "TypeScript types and assertions do not execute after compilation, so they cannot inspect FormData or JSON. A runtime parser checks the actual value, returns verified data or structured issues, and prevents unchecked input from reaching application logic. Authentication and authorization remain separate checks.",
+      "followUp": "Which raw runtime values can each field produce before your schema sees them?",
       "category": "nextjs",
       "level": "intermediate",
       "tags": [
@@ -242,38 +249,50 @@ export const topic: TopicModule = {
       ],
       "sourceLink": "https://zod.dev/basics",
       "sourceLinks": [
-        "https://nextjs.org/docs/15/app/guides/forms"
+        "https://zod.dev/basics",
+        "https://nextjs.org/docs/15/app/guides/forms",
+        "https://www.typescriptlang.org/docs/handbook/typescript-from-scratch.html#erased-types",
+        "https://developer.mozilla.org/en-US/docs/Web/API/FormData/get"
       ]
     },
     {
       "id": "loop-qa-expansion-runtime-schema-boundaries-1",
       "topicId": "expansion-runtime-schema-boundaries",
       "topicFamily": "app-quality",
-      "question": "What problem does Runtime Schemas at Form and API Boundaries help you solve?",
-      "answer": "A typed form can still receive malformed runtime input. A schema makes the boundary executable while the UI remains responsible for clear, accessible recovery.",
-      "followUp": "Name one decision in your current project where this model would change the implementation.",
+      "question": "What does successful schema parsing prove, and what does it not prove?",
+      "answer": "It proves that the runtime value matches the accepted shape and validation rules and gives the application verified data. It does not prove who the caller is, whether the caller may perform the action, or whether the database operation will succeed.",
+      "followUp": "Where are identity, permission, and service failure handled after parsing?",
       "category": "testing",
       "level": "intermediate",
       "tags": [
         "topic-loop",
         "expansion-runtime-schema-boundaries"
       ],
-      "sourceLink": "https://zod.dev/basics"
+      "sourceLink": "https://zod.dev/basics",
+      "sourceLinks": [
+        "https://zod.dev/basics",
+        "https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html"
+      ]
     },
     {
       "id": "loop-qa-expansion-runtime-schema-boundaries-2",
       "topicId": "expansion-runtime-schema-boundaries",
       "topicFamily": "app-quality",
-      "question": "How would you explain the core idea of Runtime Schemas at Form and API Boundaries to a teammate?",
-      "answer": "Why can a TypeScript type not replace runtime schema validation for FormData or JSON? A strong explanation should connect the model to: Separate compile-time TypeScript descriptions from runtime validation; Use a schema to parse untrusted FormData or JSON at a protected boundary.",
-      "followUp": "Which observable behavior would prove your explanation is correct?",
+      "question": "How should runtime validation issues become form feedback?",
+      "answer": "Map expected issue paths to safe visible field messages, associate each message with its control, preserve useful input, and provide a form-level message for failures that are not tied to one field. Do not expose stack traces or internal schema details.",
+      "followUp": "Which issue belongs to one field, and which requires a form-level recovery message?",
       "category": "testing",
       "level": "intermediate",
       "tags": [
         "topic-loop",
         "expansion-runtime-schema-boundaries"
       ],
-      "sourceLink": "https://zod.dev/basics"
+      "sourceLink": "https://zod.dev/basics",
+      "sourceLinks": [
+        "https://zod.dev/basics",
+        "https://www.w3.org/WAI/tutorials/forms/notifications/",
+        "https://nextjs.org/docs/15/app/guides/forms#validation-errors"
+      ]
     }
   ],
   "practices": [
@@ -282,15 +301,18 @@ export const topic: TopicModule = {
       "topicId": "expansion-runtime-schema-boundaries",
       "topicFamily": "app-quality",
       "title": "Parse External Data Before Trusting It",
-      "summary": "Use a runtime schema for FormData or JSON before passing values to a typed component, query, or mutation.",
-      "rationale": "Compile-time types do not inspect runtime input. Parsing creates a deliberate success or recovery path and keeps invalid data from becoming an accidental application assumption.",
-      "tradeOffs": "Schema definitions and field mapping add maintenance cost; keep them at real trust boundaries and avoid duplicating checks for purely internal values.",
-      "appliesWhen": "Data comes from a browser form, API, URL, storage, or another untyped client.",
-      "doesNotApplyWhen": "The value was constructed and validated inside the same trusted module.",
-      "example": "Call `safeParse` at the Server Action boundary, return field issues on failure, then authorize and save only the parsed data.",
+      "summary": "Adapt and parse FormData, JSON, URL values, or storage data before typed application code trusts them.",
+      "rationale": "Compile-time types do not inspect external runtime values. Parsing creates verified data or an explicit recovery result and keeps malformed input away from protected logic.",
+      "tradeOffs": "Schemas and adapters add code and maintenance. Use them at real trust boundaries and avoid introducing a library for values already constructed and proven inside one trusted module.",
+      "appliesWhen": "Data enters from a browser form, API client, URL, file, storage system, or another process.",
+      "doesNotApplyWhen": "The value is created and constrained entirely inside the same trusted module with no external representation.",
+      "example": "Adapt `FormData.get()` results, call a non-throwing parser, return field issues on failure, then authorize and save only the parsed value.",
       "sourceLink": "https://zod.dev/basics",
       "sourceLinks": [
-        "https://nextjs.org/docs/15/app/guides/forms"
+        "https://zod.dev/basics",
+        "https://nextjs.org/docs/15/app/guides/forms",
+        "https://developer.mozilla.org/en-US/docs/Web/API/FormData/get",
+        "https://cheatsheetseries.owasp.org/cheatsheets/Input_Validation_Cheat_Sheet.html"
       ],
       "tags": [
         "expansion",

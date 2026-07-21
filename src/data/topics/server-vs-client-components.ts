@@ -12,40 +12,40 @@ export const topic: TopicModule = {
       "state-and-events"
     ],
     "learningObjectives": [
-      "Distinguish Server Components from Client Components",
-      "Understand the RSC boundary and serializable props",
-      "Decide when to use each type of component",
-      "Compose Server and Client Components effectively"
+      "Explain which code runs in the server and client module graphs",
+      "Add a Client Component boundary only when interactivity or a browser capability requires it",
+      "Pass values across the boundary using React-supported serialization",
+      "Compose server-rendered content with small client-owned interactive areas"
     ],
-    "whyMatters": "The Server/Client split is the defining architecture of modern Next.js. Choosing wrong means shipping unnecessary JavaScript to the browser or losing access to server-only capabilities. Understanding the boundary — and the serialization contract — prevents the most common Next.js production bugs.",
-    "estimatedMinutes": 30,
+    "whyMatters": "Server and Client Components let one UI use two environments. Server Components can read server-side resources without putting that access code in the browser bundle. Client Components add state, events, Effects, and browser APIs. A clear boundary keeps sensitive work on the server and sends only the data and JavaScript the interaction needs.",
+    "estimatedMinutes": 36,
     "sections": [
       {
         "id": "rsc-basics",
         "type": "concept",
         "title": "What are Server Components?",
-        "content": "By default, a component in the App Router is a Server Component. Server-only code stays on the server and is not sent to the browser as component JavaScript; Server Components can access databases, filesystems, and backend services directly, but cannot use client hooks, event handlers, or browser APIs. Their output is serialized and sent to the client as an RSC payload.\n\nClient Components are explicitly marked with `'use client'`. They may render on the server for the initial response and then hydrate in the browser. They can use hooks, event handlers, and browser APIs, but cannot directly access databases or other server-only resources."
+        "content": "In the App Router, pages and layouts are Server Components by default. They can await data, use server-only modules, and prepare UI without sending their component implementation to the browser as client JavaScript. They cannot use client state, Effects, event handlers, or browser APIs.\n\nA file beginning with `'use client'` defines an entry into the client module graph. That component and the modules it imports are available to the browser. Client Components can use state, events, Effects, and browser APIs. Next.js can still use them to produce initial HTML, then React hydrates them so interaction works in the browser. The labels describe module capabilities, not simply whether the user sees HTML from the server."
       },
       {
         "id": "boundary-rules",
         "type": "concept",
         "title": "The boundary rules",
-        "content": "Server Components can render Client Components — that's how interactivity enters the tree. Client Components can render Server Components ONLY if those Server Components are passed as children or props (the 'slot' pattern). You cannot import a Server Component into a Client Component file and use it directly.\n\nProps passed from Server to Client Components must be serializable: strings, numbers, booleans, arrays, plain objects. Functions and class instances do not cross the boundary; React also supports passing Promises for the Client Component to read with `use`."
+        "content": "A Server Component may import and render a Client Component. Put `'use client'` at the smallest useful entry point; descendants imported by that entry do not each need the directive. A Client Component must not directly import server-only implementation code. To interleave server-rendered content, let a Server Component create that content and pass it to a Client Component as `children` or another React-node prop.\n\nValues passed from server to a boundary Client Component must be serializable by React. This includes common primitives, arrays, plain objects made from supported values, and several supported built-ins such as `Date`, `Map`, and `Set`. Ordinary functions and arbitrary class instances do not cross. A function marked as a Server Function with `'use server'` is a deliberate exception and must still validate and authorize client-controlled arguments."
       },
       {
         "id": "composition-pattern",
         "type": "code-example",
         "title": "Composing Server and Client",
-        "content": "Use the children/slot pattern to interleave Server and Client Components without losing server-only capabilities.",
-        "code": "// Server Component — runs on server, has DB access\nimport { db } from '@/lib/db';\n\nexport default async function PostFeed() {\n  const posts = await db.post.findMany();\n  return (\n    <PostFeedClient>\n      {posts.map(post => (\n        <PostCard key={post.id} post={post} />\n      ))}\n    </PostFeedClient>\n  );\n}\n\n// Client Component — handles interactivity\n'use client';\nexport default function PostFeedClient({\n  children\n}: {\n  children: React.ReactNode\n}) {\n  const [sort, setSort] = useState<'new' | 'top'>('new');\n  return (\n    <div>\n      <SortToggle value={sort} onChange={setSort} />\n      <div className=\"grid\">{children}</div>\n    </div>\n  );\n}",
+        "content": "If the browser needs to sort and filter product fields, pass a small serializable data shape to a Client Component. Keep the database query and private model on the server, then map the result to the fields the client actually needs.",
+        "code": "// app/products/page.tsx — Server Component\nimport ProductExplorer from './ProductExplorer';\nimport { db } from '@/lib/db';\n\nexport default async function ProductsPage() {\n  const rows = await db.product.findMany();\n  const products = rows.map(({ id, name, priceInCents }) => ({\n    id,\n    name,\n    priceInCents,\n  }));\n\n  return <ProductExplorer products={products} />;\n}\n\n// app/products/ProductExplorer.tsx — Client Component\n'use client';\n\ntype Product = { id: string; name: string; priceInCents: number };\n\nexport default function ProductExplorer({ products }: { products: Product[] }) {\n  const [query, setQuery] = useState('');\n  const visible = products.filter((product) =>\n    product.name.toLowerCase().includes(query.toLowerCase())\n  );\n\n  return (\n    <>\n      <label>Search <input value={query} onChange={(e) => setQuery(e.target.value)} /></label>\n      <ProductList products={visible} />\n    </>\n  );\n}",
         "codeLanguage": "typescript",
-        "codeFilePath": "app/posts/PostFeed.tsx + PostFeedClient.tsx"
+        "codeFilePath": "app/products/page.tsx + app/products/ProductExplorer.tsx"
       },
       {
         "id": "decision-guide",
         "type": "concept",
         "title": "When to use which",
-        "content": "Use Server Components when: data fetching, accessing backend resources, keeping large dependencies off the client, or when the component has no interactivity.\n\nUse Client Components when: you need event listeners (onClick, onChange), hooks (useState, useEffect), browser-only APIs (window, localStorage), or custom hooks that depend on any of the above.\n\nDefault to Server. Push Client Components as far down the tree as possible — make only the interactive leaves Client Components, not entire pages."
+        "content": "Choose from capabilities, one step at a time. Use a Server Component for server data access, secrets, private modules, or UI that needs no browser interaction. Use a Client Component for state, event handlers, Effects, browser APIs, or a custom Hook that depends on them.\n\nThen place the boundary. A single interactive control does not require the whole page to enter the client graph. Keep the server-owned page above it, pass the smallest serializable data or rendered slot, and let the client area own only its interaction. A wider boundary can be reasonable for a highly interactive subtree; the goal is an understandable boundary, not the smallest possible file at any cost."
       },
       {
         "id": "rsc-question",
@@ -55,18 +55,19 @@ export const topic: TopicModule = {
         "questions": [
           {
             "id": "q8",
-            "question": "A Server Component passes a callback function `onSave` as a prop to a Client Component. What happens?",
+            "question": "A Server Component creates an ordinary `onSave` callback and passes it to a boundary Client Component. The callback is not marked `use server`. What happens?",
             "options": [
-              "It works fine — the callback is serialized and sent to the client",
-              "It throws an error — functions are not serializable",
-              "It works but the callback runs on the server, not the client",
-              "Next.js automatically wraps it in a Server Action"
+              "React serializes the function body and runs it in the browser",
+              "The boundary rejects the prop because an ordinary function is not serializable",
+              "The callback silently becomes a Server Function",
+              "The Client Component can call it only during its first render"
             ],
-            "correctAnswer": "It throws an error — functions are not serializable",
-            "expectedReasoning": "Functions are not serializable and cannot be passed as props from Server to Client Components. The RSC boundary requires all props to be serializable. If you need a callback in a Client Component, define it in a Client Component (or in a parent Client Component) and pass it down. Server Actions are the exception — they're created with 'use server' and are serializable by Next.js.",
+            "correctAnswer": "The boundary rejects the prop because an ordinary function is not serializable",
+            "expectedReasoning": "Ordinary functions cannot be serialized from the server module graph to a boundary Client Component. Define browser event logic in the client graph, pass data instead, or deliberately use an async Server Function marked with `use server` for a server mutation. React does not send arbitrary function source, does not silently add a directive, and does not make the function valid only during first render.",
             "commonMisconceptions": [
-              "Thinking any value can cross the boundary",
-              "Confusing Server Actions with regular functions"
+              "Assuming React serializes any JavaScript value",
+              "Treating every server-defined function as a Server Function",
+              "Confusing a rendered server slot with importing server implementation into the client graph"
             ]
           }
         ]
@@ -75,16 +76,17 @@ export const topic: TopicModule = {
         "id": "rsc-synthesis",
         "type": "synthesis",
         "title": "Synthesis",
-        "content": "The Server/Client split is not an all-or-nothing choice. It's a composition pattern. Server Components fetch data, Client Components add interactivity. The children pattern lets you compose them. The serialization boundary ensures you think deliberately about what data crosses from server to client. This architecture reduces client-side JavaScript, improves performance, and keeps secrets on the server — but only if you respect the boundary."
+        "content": "The boundary is a data-and-capability contract. Server Components own server-only access and prepare UI or serializable data. Client Components own browser interaction. Compose them by passing supported values or server-rendered slots, and keep authorization at the server operation even when a Client Component starts the action."
       }
     ],
-    "retrievalPrompt": "What three things make a component a Client Component? What three capabilities does a Server Component have that a Client Component does not?",
-    "reflectionPrompt": "Audit your current project: which components are Client Components that could be Server Components? What would change if you moved them?",
+    "retrievalPrompt": "For a database query, a product card, a sort control, and an `onClick` handler, name the owning environment and describe the value that crosses the boundary.",
+    "reflectionPrompt": "Choose one Client Component in your project. Which exact requirement needs the client? Could static content and server data remain above a smaller client boundary?",
     "masteryCriteria": [
-      "Can distinguish Server from Client Components by their capabilities",
-      "Understands the RSC serialization boundary and its constraints",
-      "Can compose Server and Client Components using the children pattern",
-      "Makes informed decisions about which component type to use for a given need"
+      "Can explain that `use client` defines a module-graph boundary",
+      "Can choose Server or Client Components from required capabilities",
+      "Can identify ordinary functions and class instances that cannot cross as props",
+      "Can pass serializable data or server-rendered slots to a Client Component",
+      "Can diagnose common hydration mismatches without hiding the warning"
     ],
     "nextTopics": [
       "server-data-fetching"
@@ -92,10 +94,14 @@ export const topic: TopicModule = {
     "metadata": {
       "reactVersion": "19.2.7",
       "nextVersion": "15.5.20",
-      "lastUpdated": "2026-07-01",
+      "lastUpdated": "2026-07-21",
       "sources": [
-        "https://nextjs.org/docs/app/building-your-application/rendering/server-components",
-        "https://react.dev/reference/rsc/use-client"
+        "https://nextjs.org/docs/15/app/getting-started/server-and-client-components",
+        "https://nextjs.org/docs/15/app/api-reference/directives/use-client",
+        "https://react.dev/reference/rsc/use-client",
+        "https://react.dev/reference/rsc/use-server",
+        "https://react.dev/reference/react-dom/client/hydrateRoot#hydrating-server-rendered-html",
+        "https://nextjs.org/docs/app/building-your-application/rendering/server-components"
       ]
     },
     "diagram": {
@@ -133,27 +139,27 @@ export const topic: TopicModule = {
       {
         "id": "server-vs-client-components-retrieval-1",
         "title": "Keep the island small",
-        "concept": "One interactive button does not require moving the entire page and its data fetching into the client graph.",
+        "concept": "The client boundary follows the capability that needs the browser, not the size of the page.",
         "prediction": {
-          "prompt": "Where should a like button’s local state live?",
+          "prompt": "A server-rendered product page needs one quantity selector with local state. Where should that state live?",
           "options": [
-            "In a small Client Component island",
-            "By marking the entire data page client-only"
+            "In a focused Client Component for the selector",
+            "By marking the entire page `use client`"
           ],
-          "correctAnswer": "In a small Client Component island",
-          "feedbackCorrect": "The boundary follows the interactive requirement.",
-          "feedbackWrong": "A broad client boundary moves unrelated code and data into the browser."
+          "correctAnswer": "In a focused Client Component for the selector",
+          "feedbackCorrect": "The interactive requirement can be isolated while data access and static UI stay server-owned.",
+          "feedbackWrong": "A page-wide client boundary would move unrelated imports and UI into the client graph."
         },
-        "synthesis": "Place server data and client interaction on the smallest boundary that satisfies the contract."
+        "synthesis": "Keep server access above the boundary and browser interaction inside it."
       }
     ],
     "miniProject": {
       "title": "Split a product page",
-      "scenario": "Design a server-rendered product page with a client-owned quantity selector and mutation feedback.",
+      "scenario": "Split a product page into server-owned data and a client-owned quantity and add-to-cart interaction.",
       "acceptance": [
-        "Server-only data access stays server-side",
-        "Props crossing the boundary are serializable",
-        "The client island has explicit pending/error behavior"
+        "Database access and private fields remain on the server",
+        "Only a documented, serializable product view crosses to the client",
+        "The client area shows pending, success, and recoverable failure feedback"
       ],
       "rubric": [
         {
@@ -177,48 +183,54 @@ export const topic: TopicModule = {
       "title": "Integrate RSC Data with Client Interactivity",
       "level": 6,
       "topicFamily": "rsc-client",
-      "scenario": "Build a product listing page with server-fetched products and client-side sorting/filtering. Products come from a Server Component, but sorting happens in the browser.",
+      "scenario": "Build a product catalog whose database read stays in a Server Component while search and price sorting respond immediately in the browser.",
       "constraints": [
-        "Products must be fetched on the server (Server Component)",
-        "Sorting and search filtering happen on the client without refetching",
-        "Pass serializable product data from the Server Component to a Client Component"
+        "Fetch products in the Server Component and map them to an explicit client-safe product type",
+        "Pass only serializable fields needed for display, search, and sorting",
+        "Keep query and sort state inside one focused Client Component"
       ],
       "acceptanceCriteria": [
-        "Products display on the initial rendered page without a client-side data fetch",
-        "Clicking sort by price reorders products without page reload",
-        "Search input filters products by name in real-time",
-        "The architecture correctly separates server-rendered content from client interactivity"
+        "The initial catalog is produced without a second client-side data request",
+        "Typing filters by product name and changing sort order updates the derived list",
+        "Database clients, secrets, and private product fields do not enter the client module graph",
+        "The explanation identifies the exact `use client` boundary and transfer shape"
       ],
       "hints": [
         {
           "stage": 1,
-          "text": "Create a Server Component that fetches and maps products to JSX."
+          "text": "Start with an async Server Component that reads the database and creates a small product DTO."
         },
         {
           "stage": 2,
-          "text": "Create a Client Component that receives the serializable product data."
+          "text": "Pass that array to a Client Component; do not pass the database model or an ordinary callback."
         },
         {
           "stage": 3,
-          "text": "The Client Component manages sort/filter state and derives the visible product data."
+          "text": "Keep only `query` and `sort` as state. Derive the visible list during render."
         }
       ],
-      "expectedReasoning": "The Server Component fetches products and passes serializable product data. The Client Component holds sort/filter state and derives the visible product data. If a Server Component renders product JSX as children, the client cannot reliably inspect arbitrary product fields to sort those elements.",
+      "expectedReasoning": "The server owns privileged data access and chooses which fields may cross. The client owns interaction and can derive filtered and sorted views from the serializable array. Passing data, rather than opaque rendered children, gives the client the fields it needs without moving the database query into the browser graph.",
       "commonWrongPaths": [
-        "Passing non-serializable values across the boundary",
-        "Moving the entire page to a Client Component"
+        "Marking the page `use client` and trying to import the database module",
+        "Passing an ORM model instance or ordinary server callback as a prop",
+        "Copying the filtered list into Effect state instead of deriving it during render"
       ],
-      "answerExplanation": "The Server Component fetches products and passes a serializable data prop to a Client Component. The Client Component owns the sort/filter state and derives the visible list. Keep server-rendered data and client interactivity separate without assuming the client can inspect product fields hidden inside pre-rendered children.",
-      "followUpVariation": "What if sorting should happen on the server (for pagination)? How would the architecture change?",
-      "sourceLink": "https://react.dev/reference/rsc/use-client"
+      "answerExplanation": "Create a server-owned product DTO array, pass it to the focused client catalog, and derive the visible list from props plus client state. This keeps private access server-side while giving the browser exactly the data needed for responsive interaction.",
+      "followUpVariation": "The catalog now has server pagination. Which query values should move into the URL and server data request?",
+      "sourceLink": "https://nextjs.org/docs/15/app/getting-started/server-and-client-components",
+      "sourceLinks": [
+        "https://nextjs.org/docs/15/app/getting-started/server-and-client-components",
+        "https://react.dev/reference/rsc/use-client",
+        "https://react.dev/learn/you-might-not-need-an-effect"
+      ]
     }
   ],
   "qa": [
     {
       "id": "qa-2",
       "question": "When should I use Server Components vs Client Components?",
-      "answer": "Default to Server Components. Only add 'use client' when you need: event listeners (onClick, etc.), hooks (useState, useEffect, etc.), browser APIs (window, localStorage), or custom hooks that depend on those. Push Client Components as deep as possible — make only the interactive leaf nodes Client Components, not entire pages. This minimizes the JavaScript sent to the browser.",
-      "followUp": "Can a Server Component pass a callback function to a Client Component? Why or why not?",
+      "answer": "Begin with the capability. Use a Server Component for server data, private modules, and UI that needs no browser interaction. Add a Client Component when you need state, event handlers, Effects, or browser APIs. Then place `use client` at a useful entry point so unrelated server work stays outside the client module graph. A larger client subtree can be appropriate when its interaction is genuinely shared.",
+      "followUp": "Which exact browser capability requires your proposed client boundary, and what data must cross into it?",
       "category": "nextjs",
       "level": "intermediate",
       "tags": [
@@ -228,13 +240,17 @@ export const topic: TopicModule = {
       ],
       "topicId": "server-vs-client-components",
       "topicFamily": "rsc-client",
-      "sourceLink": "https://react.dev/reference/rsc/use-client"
+      "sourceLink": "https://nextjs.org/docs/15/app/getting-started/server-and-client-components",
+      "sourceLinks": [
+        "https://nextjs.org/docs/15/app/getting-started/server-and-client-components",
+        "https://react.dev/reference/rsc/use-client"
+      ]
     },
     {
       "id": "qa-4",
       "question": "How do I fix \"Functions cannot be passed directly to Client Components\" error?",
-      "answer": "This error occurs when a Server Component tries to pass a function (like an event handler) as a prop to a Client Component. Functions are not serializable and cannot cross the RSC boundary. Solutions: (1) Move the function definition into the Client Component or its parent Client Component. (2) Use a Server Action (marked with 'use server') — these ARE serializable. (3) Restructure: pass data as props and let the Client Component define its own event handlers.",
-      "followUp": "What types ARE serializable across the RSC boundary?",
+      "answer": "The message means an ordinary function is crossing from the server graph to a boundary Client Component. Move browser event logic into a Client Component, or pass serializable data so the client can create its own handler. For a server mutation, an async function deliberately marked `use server` may cross as a Server Function. That is not a shortcut around security: validate its arguments and authorize the operation on every call.",
+      "followUp": "Is this function browser interaction or a protected server mutation, and which boundary should own it?",
       "category": "nextjs",
       "level": "intermediate",
       "tags": [
@@ -244,13 +260,17 @@ export const topic: TopicModule = {
       ],
       "topicId": "server-vs-client-components",
       "topicFamily": "rsc-client",
-      "sourceLink": "https://react.dev/reference/rsc/use-client"
+      "sourceLink": "https://react.dev/reference/rsc/use-client",
+      "sourceLinks": [
+        "https://react.dev/reference/rsc/use-client",
+        "https://react.dev/reference/rsc/use-server"
+      ]
     },
     {
       "id": "qa-8",
       "question": "How do I debug a \"Hydration failed because the initial UI does not match\" error?",
-      "answer": "This means the HTML rendered on the server does not match what React expects on the client during hydration. Common causes: (1) Using browser-only APIs (window, localStorage) during render without checking typeof window. (2) Using Date.now() or Math.random() during render. (3) Invalid HTML nesting (div inside p, etc.). (4) Using different data on server vs client. Fix: wrap browser-only code in useEffect (runs after hydration) or use the `suppressHydrationWarning` prop for intentional differences like timestamps.",
-      "followUp": "What is the difference between suppressing a hydration warning and actually fixing the mismatch?",
+      "answer": "Hydration expects the client’s first render to match the server HTML. Check for time or random values during render, invalid HTML nesting, data that differs between environments, browser-only branches such as `typeof window`, and extensions that alter the page. Fix the shared initial output first. If a value is intentionally client-only, render a stable placeholder and update it after hydration. `suppressHydrationWarning` is a narrow escape hatch for an unavoidable one-level difference; it does not repair the mismatch.",
+      "followUp": "What is the first differing node, and which input made the server and client render different values there?",
       "category": "debugging",
       "level": "intermediate",
       "tags": [
@@ -260,45 +280,60 @@ export const topic: TopicModule = {
       ],
       "topicId": "server-vs-client-components",
       "topicFamily": "rsc-client",
-      "sourceLink": "https://react.dev/reference/react-dom/client/hydrateRoot"
+      "sourceLink": "https://react.dev/reference/react-dom/client/hydrateRoot#hydrating-server-rendered-html",
+      "sourceLinks": [
+        "https://react.dev/reference/react-dom/client/hydrateRoot#hydrating-server-rendered-html",
+        "https://nextjs.org/docs/messages/react-hydration-error",
+        "https://react.dev/reference/react-dom/client/hydrateRoot"
+      ]
     }
   ],
   "practices": [
     {
       "id": "bp-1",
       "title": "Keep Server Components as the Default",
-      "summary": "Every component in the App Router is a Server Component by default. Only opt into Client Components explicitly.",
-      "rationale": "Server Components reduce client-side JavaScript, improve initial page load, and enable direct backend access. They are the foundation of Next.js performance.",
-      "tradeOffs": "You lose access to browser APIs, hooks, and interactivity in Server Components. You must restructure components to isolate client-only code into Client Component leaves.",
-      "appliesWhen": "The component has no event handlers, no hooks (useState, useEffect, etc.), and no browser-only API calls.",
-      "doesNotApplyWhen": "The component needs: user interaction (onClick, onChange), state or effects, browser APIs (window, localStorage), or custom hooks that depend on the above.",
-      "example": "A blog post content display should be a Server Component. A like button within that post should be a Client Component nested inside.",
-      "sourceLink": "https://nextjs.org/docs/app/building-your-application/rendering/server-components",
+      "summary": "Keep server-capable UI in the server graph until a specific interaction or browser API requires a client boundary.",
+      "rationale": "This protects server-only modules and avoids sending unrelated component code to the browser. It also makes the data transfer between environments visible for review.",
+      "tradeOffs": "A server boundary cannot use client state, Effects, event handlers, or browser APIs. Splitting a component can add files and props, so choose a boundary that remains understandable.",
+      "appliesWhen": "The component reads server data, uses private modules, or renders UI without browser interaction.",
+      "doesNotApplyWhen": "The subtree genuinely needs shared client state, events, Effects, or browser APIs at that boundary.",
+      "example": "Keep a product page and database read server-owned, then render a small Client Component for the quantity selector.",
+      "sourceLink": "https://nextjs.org/docs/15/app/getting-started/server-and-client-components",
       "tags": [
         "rsc",
         "architecture",
         "performance"
       ],
       "topicId": "server-vs-client-components",
-      "topicFamily": "rsc-client"
+      "topicFamily": "rsc-client",
+      "sourceLinks": [
+        "https://nextjs.org/docs/15/app/getting-started/server-and-client-components",
+        "https://react.dev/reference/rsc/use-client",
+        "https://nextjs.org/docs/app/building-your-application/rendering/server-components"
+      ]
     },
     {
       "id": "bp-3",
       "title": "Push Client Components to the Leaves",
-      "summary": "Make as few components Client Components as possible. Push interactivity down to the smallest possible leaf nodes.",
-      "rationale": "The more code is on the client, the larger the JavaScript bundle, the slower the hydration, and the worse the performance. Server-only code stays on the server.",
-      "tradeOffs": "Requires deliberate component decomposition. You may need to split a single \"smart\" component into a Server parent (data fetching) and Client leaf (interactivity). This adds file count but reduces bundle size.",
-      "appliesWhen": "Most of your component tree is static content, and only specific interactive elements need client-side JavaScript.",
-      "doesNotApplyWhen": "The entire component tree is interactive (e.g., a real-time collaborative editor). In that case, use a Client boundary at the appropriate level without forcing unnecessary splits.",
-      "example": "A product listing page is a Server Component. Each product card's \"Add to Cart\" button is a separate Client Component.",
-      "sourceLink": "https://nextjs.org/docs/app/building-your-application/rendering/composition-patterns",
+      "summary": "Place `use client` around the smallest coherent interactive subtree, not automatically around the whole page.",
+      "rationale": "The directive defines a client module-graph entry. A focused entry keeps unrelated imports and server data access outside that graph.",
+      "tradeOffs": "Very small boundaries can create noisy component plumbing. Prefer the smallest coherent interaction boundary rather than splitting every button into its own file.",
+      "appliesWhen": "Most of the page is server-rendered and a clear leaf or subtree needs browser interaction.",
+      "doesNotApplyWhen": "Interaction and client state genuinely coordinate across the whole subtree, making a higher client boundary easier to understand.",
+      "example": "A server-rendered article can contain a client-owned reaction toolbar without moving the article body into the client graph.",
+      "sourceLink": "https://nextjs.org/docs/15/app/getting-started/server-and-client-components#reducing-js-bundle-size",
       "tags": [
         "rsc",
         "performance",
         "architecture"
       ],
       "topicId": "server-vs-client-components",
-      "topicFamily": "rsc-client"
+      "topicFamily": "rsc-client",
+      "sourceLinks": [
+        "https://nextjs.org/docs/15/app/getting-started/server-and-client-components#reducing-js-bundle-size",
+        "https://react.dev/reference/rsc/use-client",
+        "https://nextjs.org/docs/app/building-your-application/rendering/composition-patterns"
+      ]
     }
   ],
   "meta": {

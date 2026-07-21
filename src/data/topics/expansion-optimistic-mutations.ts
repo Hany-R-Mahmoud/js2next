@@ -12,28 +12,28 @@ export const topic: TopicModule = {
       "expansion-accessible-forms"
     ],
     "learningObjectives": [
-      "Separate an optimistic projection from authoritative server state",
-      "Use a pending action to show immediate feedback without declaring success early",
-      "Restore or reconcile the UI when the server rejects a mutation",
-      "Keep pending, error, and retry feedback accessible"
+      "Describe optimistic state as a temporary projection shown during an Action",
+      "Keep server validation, authorization, and confirmed data authoritative",
+      "Reconcile temporary identity and overlapping actions after success or rejection",
+      "Provide accessible pending, error, correction, and retry behavior"
     ],
-    "whyMatters": "Optimistic UI can make a mutation feel immediate, but an optimistic projection is only a temporary hypothesis. Without a recovery path, a failed write leaves the interface lying to the learner.",
-    "estimatedMinutes": 25,
+    "whyMatters": "Immediate feedback can make a slow mutation feel responsive, but the projected result may be rejected or changed by the server. A trustworthy optimistic flow makes “pending” visible, keeps the real operation authoritative, and defines how every temporary item converges or recovers.",
+    "estimatedMinutes": 42,
     "sections": [
       {
         "id": "expansion-optimistic-mutations-model",
         "type": "concept",
         "title": "Projection, then confirmation",
-        "content": "Show the expected result while an action is pending, but keep the server response authoritative. On success, use the confirmed data; on failure, remove or reconcile the projection and expose a retryable error."
+        "content": "Optimistic state is a temporary view of what the interface expects while an Action is running. The base value—usually props or state updated from the server—decides what remains after the Action. In React 19.2, the optimistic setter is called inside an Action or Transition; form Action props already provide that context.\n\nBefore projecting, write both endings. On success, replace a temporary id, timestamp, or label with the confirmed server record. On rejection, the base state remains authoritative, the projection disappears or becomes a deliberate failed item, and the UI explains how to correct or retry. The server still parses input and authorizes the mutation."
       },
       {
         "id": "expansion-optimistic-mutations-code",
         "type": "code-example",
         "title": "Keep the pending action explicit",
-        "content": "React’s optimistic state is a temporary view for an in-flight action. The mutation still needs server validation, authorization, and a success or failure result.",
-        "code": "const [optimisticItems, addOptimisticItem] = useOptimistic(\n  items,\n  (current, pendingItem) => [...current, pendingItem],\n);\n\nasync function submit(formData: FormData) {\n  addOptimisticItem({ id: 'pending', title: String(formData.get('title')), pending: true });\n  await saveItem(formData);\n}",
+        "content": "Because submitAction is passed to the form action prop, the optimistic update runs inside an Action. The pending note has a unique temporary id. The parent data changes only when createNote succeeds; on failure, React returns to the unchanged base notes and the error message supplies recovery.",
+        "code": "const [optimisticNotes, addOptimisticNote] = useOptimistic(\n  notes,\n  (current, pending: Note) => [...current, pending],\n);\n\nasync function submitAction(formData: FormData) {\n  const tempId = crypto.randomUUID();\n  const title = String(formData.get('title') ?? '').trim();\n  addOptimisticNote({ id: tempId, title, pending: true });\n\n  const result = await createNote(formData);\n  if (!result.ok) setError(result.message);\n}\n\nreturn <form action={submitAction}>{/* fields and status */}</form>;",
         "codeLanguage": "tsx",
-        "codeFilePath": "Client form and Server Action boundary"
+        "codeFilePath": "app/notes/NoteForm.tsx"
       },
       {
         "id": "expansion-optimistic-mutations-question",
@@ -43,15 +43,15 @@ export const topic: TopicModule = {
         "questions": [
           {
             "id": "expansion-optimistic-mutations-check",
-            "question": "What must happen when an optimistic save is rejected?",
+            "question": "The server rejects an optimistically added note. What should the interface do?",
             "options": [
-              "Keep the optimistic item permanently",
-              "Reconcile or remove the projection and expose a recoverable error",
-              "Reload until the item appears",
-              "Hide the failure from the user"
+              "Return to authoritative base data and show a clear correction or retry path",
+              "Keep the pending note as confirmed forever",
+              "Hide the rejection so the interaction still feels fast",
+              "Retry indefinitely without user-visible status"
             ],
-            "correctAnswer": "Reconcile or remove the projection and expose a recoverable error",
-            "expectedReasoning": "Optimistic state is temporary. The server result is authoritative, so rejection needs reconciliation plus feedback and a retry path."
+            "correctAnswer": "Return to authoritative base data and show a clear correction or retry path",
+            "expectedReasoning": "Optimistic state is temporary and the server result controls confirmation. Keeping or hiding a rejected projection presents false data, while unbounded silent retries remove control and can repeat the mutation."
           }
         ]
       },
@@ -59,16 +59,16 @@ export const topic: TopicModule = {
         "id": "expansion-optimistic-mutations-synthesis",
         "type": "synthesis",
         "title": "Synthesis",
-        "content": "Optimistic UI is a latency strategy, not a correctness boundary. Define the pending projection, authoritative response, rollback or reconciliation rule, and accessible failure path before shipping it."
+        "content": "Use optimism only when the projected result is clear, useful, and recoverable. Call the optimistic setter inside an Action, mark temporary UI as pending, and keep server validation and authorization unchanged. Define confirmed replacement, rejection, concurrent-action identity, correction, and retry before shipping the faster-feeling path."
       }
     ],
-    "retrievalPrompt": "What is optimistic state allowed to claim while a mutation is pending, and how should a rejected mutation change the UI?",
-    "reflectionPrompt": "Choose one mutation in your app. What can be projected safely, what server result confirms it, and what should the user retry after failure?",
+    "retrievalPrompt": "Trace an optimistic note from temporary identity through Action, server validation and authorization, confirmed replacement or rejection, accessible error, and retry.",
+    "reflectionPrompt": "Choose a mutation that feels slow. Is its expected result safe and reversible enough to project, and how would the user understand a rejection?",
     "masteryCriteria": [
-      "Can distinguish optimistic projection from server truth",
-      "Can identify the pending action boundary",
-      "Can describe rollback or reconciliation on rejection",
-      "Can preserve accessible pending and error feedback"
+      "Can explain the React 19.2 Action requirement and temporary value model",
+      "Can separate projected UI from authoritative server data",
+      "Can reconcile temporary ids and concurrent optimistic actions",
+      "Can design pending, rejection, correction, retry, and confirmation states"
     ],
     "nextTopics": [
       "expansion-production-readiness"
@@ -107,47 +107,54 @@ export const topic: TopicModule = {
       {
         "id": "expansion-optimistic-mutations-chunk-1",
         "title": "Name the truth source",
-        "concept": "Optimistic state is temporary; the server result owns confirmation.",
+        "concept": "The optimistic value is temporary during an Action; the base value controls the final UI.",
         "prediction": {
-          "prompt": "What should replace a pending projection after rejection?",
+          "prompt": "The server returns note id `n-42` for temporary id `tmp-7`. Which record should remain after success?",
           "options": [
-            "A permanent success badge",
-            "A reconciled state with recovery feedback"
+            "The confirmed `n-42` record",
+            "Both records permanently",
+            "Only the temporary record marked confirmed without server data"
           ],
-          "correctAnswer": "A reconciled state with recovery feedback",
-          "feedbackCorrect": "Rejection must be visible and recoverable.",
-          "feedbackWrong": "Pending UI cannot become server truth by itself."
+          "correctAnswer": "The confirmed `n-42` record",
+          "feedbackCorrect": "The authoritative response replaces temporary identity and any server-owned fields.",
+          "feedbackWrong": "Leaving duplicate or invented confirmation separates the UI from the server’s actual record."
         },
-        "synthesis": "Define success and rejection before adding optimistic feedback."
+        "synthesis": "Project immediately, then converge on the authoritative result."
       }
     ],
     "miniProject": {
       "title": "Add optimistic note creation",
-      "scenario": "Design a note form that shows a pending item, confirms it from the server, and recovers after rejection.",
+      "scenario": "Add optimistic note creation where two submissions may overlap and the server can return validation, authorization, or service failure.",
       "acceptance": [
-        "Pending item is visibly distinct",
-        "Server validates and authorizes",
-        "Success replaces temporary identity",
-        "Failure offers reconciliation and retry"
+        "Each pending note has a unique temporary identity and visible pending state",
+        "The server parses, authorizes, and returns the confirmed record or a safe failure",
+        "Success replaces only the matching projection with server-owned id and timestamp",
+        "Rejection restores or marks the matching item and offers correction or bounded retry"
       ],
       "rubric": [
         {
-          "dimension": "State ownership",
-          "evidence": "Projection and authoritative server state are distinct."
+          "dimension": "Authority",
+          "evidence": "Projected and confirmed records are distinct and converge through the server result."
+        },
+        {
+          "dimension": "Concurrency",
+          "evidence": "Overlapping actions reconcile by unique identity without removing the wrong item."
         },
         {
           "dimension": "Recovery",
-          "evidence": "Rejected writes are visible and retryable."
+          "evidence": "Pending, validation, denial, service failure, correction, and retry are observable."
         }
       ]
     },
     "metadata": {
-      "nextVersion": "Next.js 15.5.20; React 19.2.7",
-      "lastUpdated": "2026-07-15",
+      "nextVersion": "15.5.20",
+      "reactVersion": "19.2.7",
+      "lastUpdated": "2026-07-21",
       "sources": [
         "https://react.dev/reference/react/useOptimistic",
         "https://react.dev/reference/react-dom/hooks/useFormStatus",
-        "https://nextjs.org/docs/app/guides/forms"
+        "https://nextjs.org/docs/app/guides/forms",
+        "https://nextjs.org/docs/15/app/guides/forms"
       ]
     }
   },
@@ -157,54 +164,60 @@ export const topic: TopicModule = {
       "title": "Design an Optimistic Mutation with Rollback",
       "level": 8,
       "topicFamily": "nextjs-data",
-      "scenario": "A learner adds a note from a slow connection. The product wants the note to appear immediately, but the server may reject it for validation or authorization.",
+      "scenario": "A note form runs on a slow connection. Two notes can be submitted quickly, the server assigns ids and timestamps, and either write may fail validation or authorization. Design the optimistic lifecycle.",
       "constraints": [
-        "Keep the server response authoritative",
-        "Show pending status without claiming confirmed success",
-        "Define rollback or reconciliation",
-        "Include a retryable failure path"
+        "Call optimistic setters inside a React Action or Transition",
+        "Give every projection a stable temporary identity and pending presentation",
+        "Keep the protected server mutation authoritative",
+        "Reconcile the correct action after success or rejection",
+        "Provide accessible correction and bounded retry behavior"
       ],
       "acceptanceCriteria": [
-        "Optimistic item is marked pending",
-        "Server validation and authorization remain in the mutation boundary",
-        "Rejected writes remove or reconcile the projection",
-        "The UI exposes pending, failure, and retry behavior"
+        "Two overlapping notes cannot overwrite or remove each other accidentally",
+        "Server validation and authorization still happen before persistence",
+        "A success replaces temporary id and server-owned fields with the confirmed record",
+        "A rejection removes or marks only its projection and announces an actionable error",
+        "Retry does not silently duplicate an already accepted mutation"
       ],
       "hints": [
         {
           "stage": 1,
-          "text": "Treat the immediate item as a projection, not confirmed data."
+          "text": "Model each action with a unique temporary id and status before writing UI code."
         },
         {
           "stage": 2,
-          "text": "The server action still validates and authorizes the write."
+          "text": "Write the server result as either confirmed record or a specific validation, denial, or service failure."
         },
         {
           "stage": 3,
-          "text": "Name what happens to the projected item when the write fails."
+          "text": "Reconcile by temporary/action identity and preserve the user’s editable title on a correctable failure."
         }
       ],
-      "expectedReasoning": "An optimistic mutation can improve perceived latency only if the pending projection is visibly distinct, the server remains authoritative, and rejection has explicit reconciliation and recovery.",
+      "expectedReasoning": "Optimistic feedback is a temporary projection attached to one Action. Unique identity makes concurrent reconciliation safe. The server remains responsible for correctness and permission, and each result changes only its matching projection while giving the user a clear recovery path.",
       "commonWrongPaths": [
-        "Persisting the optimistic item without confirmation",
-        "Trusting client validation as authorization",
-        "Hiding a rejected write",
-        "Retrying silently forever"
+        "Using the same `pending` id for every submission",
+        "Calling the optimistic setter outside an Action or Transition",
+        "Treating client validation as server authorization",
+        "Removing every pending note when one request fails",
+        "Retrying without considering duplicate server acceptance"
       ],
-      "answerExplanation": "Render a pending projection through the action boundary, submit to a server-validated and authorized mutation, replace it with confirmed data on success, and remove or mark it failed with a retry action on rejection.",
-      "followUpVariation": "The mutation creates a server-generated id and timestamp. Explain how the confirmed response replaces the temporary client identity.",
+      "answerExplanation": "Create one identified projection per Action, validate and authorize on the server, replace it with confirmed data on success, and reconcile only that item with accessible correction or retry on failure.",
+      "followUpVariation": "The request times out after the server may have saved it. Add an idempotency or reconciliation strategy that avoids a duplicate retry.",
       "checkType": "free-text",
-      "prompt": "Describe the pending, success, and rejection states for this optimistic note mutation.",
+      "prompt": "Describe Action context, temporary identity, server authority, concurrent reconciliation, failure feedback, and retry behavior.",
       "freeTextKeywords": [
-        "pending",
+        "Action",
+        "temporary",
         "server",
-        "rollback",
+        "reconcile",
         "retry"
       ],
       "sourceLink": "https://react.dev/reference/react/useOptimistic",
       "sourceLinks": [
+        "https://react.dev/reference/react/useOptimistic",
         "https://react.dev/reference/react-dom/hooks/useFormStatus",
-        "https://nextjs.org/docs/app/guides/forms"
+        "https://nextjs.org/docs/app/guides/forms",
+        "https://nextjs.org/docs/15/app/guides/forms"
       ]
     }
   ],
@@ -214,8 +227,8 @@ export const topic: TopicModule = {
       "topicId": "expansion-optimistic-mutations",
       "topicFamily": "nextjs-data",
       "question": "What makes an optimistic mutation trustworthy?",
-      "answer": "The UI distinguishes a pending projection from confirmed server state, the mutation validates and authorizes at the server boundary, and rejection reconciles the projection with a visible retryable error.",
-      "followUp": "Which value should replace a temporary client id after success?",
+      "answer": "A trustworthy optimistic mutation marks its temporary projection, runs it inside an Action, keeps server validation and authorization authoritative, and reconciles the exact projection with confirmed data or an actionable failure. The user can always tell pending from confirmed state.",
+      "followUp": "Which temporary and server-owned fields must be matched when this mutation succeeds?",
       "category": "nextjs",
       "level": "advanced",
       "tags": [
@@ -226,38 +239,46 @@ export const topic: TopicModule = {
       ],
       "sourceLink": "https://react.dev/reference/react/useOptimistic",
       "sourceLinks": [
-        "https://nextjs.org/docs/app/guides/forms"
+        "https://react.dev/reference/react/useOptimistic",
+        "https://nextjs.org/docs/app/guides/forms",
+        "https://nextjs.org/docs/15/app/guides/forms"
       ]
     },
     {
       "id": "loop-qa-expansion-optimistic-mutations-1",
       "topicId": "expansion-optimistic-mutations",
       "topicFamily": "nextjs-data",
-      "question": "What problem does Design Optimistic Mutations with Recovery help you solve?",
-      "answer": "Optimistic UI can make a mutation feel immediate, but an optimistic projection is only a temporary hypothesis. Without a recovery path, a failed write leaves the interface lying to the learner.",
-      "followUp": "Name one decision in your current project where this model would change the implementation.",
+      "question": "What does React display when a useOptimistic Action fails before base state changes?",
+      "answer": "When the Action ends, React renders the current base value passed to useOptimistic. If the parent or real state changed only on success, the rejected projection no longer appears. Catch or return the failure so the UI can explain correction or retry.",
+      "followUp": "Which base value should remain visible after your next rejected mutation?",
       "category": "nextjs",
       "level": "advanced",
       "tags": [
         "topic-loop",
         "expansion-optimistic-mutations"
       ],
-      "sourceLink": "https://react.dev/reference/react/useOptimistic"
+      "sourceLink": "https://react.dev/reference/react/useOptimistic",
+      "sourceLinks": [
+        "https://react.dev/reference/react/useOptimistic"
+      ]
     },
     {
       "id": "loop-qa-expansion-optimistic-mutations-2",
       "topicId": "expansion-optimistic-mutations",
       "topicFamily": "nextjs-data",
-      "question": "How would you explain the core idea of Design Optimistic Mutations with Recovery to a teammate?",
-      "answer": "What is optimistic state allowed to claim while a mutation is pending, and how should a rejected mutation change the UI? A strong explanation should connect the model to: Separate an optimistic projection from authoritative server state; Use a pending action to show immediate feedback without declaring success early.",
-      "followUp": "Which observable behavior would prove your explanation is correct?",
+      "question": "Why does an optimistic list item need a unique temporary identity?",
+      "answer": "Several Actions can overlap and finish in a different order. A unique temporary id lets each server result replace, remove, or mark only its own projection instead of affecting another pending item.",
+      "followUp": "How will you match a confirmed server record to the projection that created it?",
       "category": "nextjs",
       "level": "advanced",
       "tags": [
         "topic-loop",
         "expansion-optimistic-mutations"
       ],
-      "sourceLink": "https://react.dev/reference/react/useOptimistic"
+      "sourceLink": "https://react.dev/reference/react/useOptimistic",
+      "sourceLinks": [
+        "https://react.dev/reference/react/useOptimistic"
+      ]
     }
   ],
   "practices": [
@@ -266,14 +287,15 @@ export const topic: TopicModule = {
       "topicId": "expansion-optimistic-mutations",
       "topicFamily": "nextjs-data",
       "title": "Reconcile Optimistic State with Server Truth",
-      "summary": "Use optimistic UI for pending feedback, then replace or remove the projection according to the authoritative mutation result.",
-      "rationale": "Optimistic state improves perceived latency but can be wrong. A visible pending state and explicit rejection path prevent stale or unauthorized projections from becoming misleading product state.",
-      "tradeOffs": "Rollback and reconciliation add state transitions and failure UI. That cost is justified only when latency materially affects the interaction.",
-      "appliesWhen": "A mutation is user-visible, latency-sensitive, and has a clear temporary projection.",
-      "doesNotApplyWhen": "The operation is destructive, ambiguous, or too costly to represent safely before confirmation.",
-      "example": "Show a pending note with a temporary id, replace it with the server-generated record on success, and remove it with a retry action on rejection.",
+      "summary": "Show one identified temporary projection during an Action, then converge on confirmed server data or an actionable failure.",
+      "rationale": "Optimistic feedback reduces perceived latency but may be wrong. Explicit authority and reconciliation prevent pending UI from becoming false product state.",
+      "tradeOffs": "Temporary identities, concurrent Actions, rollback, idempotency, and recovery add state transitions. Use optimism where latency matters and the projection is understandable and safely reversible.",
+      "appliesWhen": "A user-visible mutation has a predictable temporary result and a clear confirmed or rejected outcome.",
+      "doesNotApplyWhen": "The operation is destructive, irreversible, ambiguous, or too risky to present before server confirmation.",
+      "example": "Add a pending note with a unique temp id inside a form Action, replace it with the server record on success, or preserve the title with an error and retry on rejection.",
       "sourceLink": "https://react.dev/reference/react/useOptimistic",
       "sourceLinks": [
+        "https://react.dev/reference/react/useOptimistic",
         "https://react.dev/reference/react-dom/hooks/useFormStatus"
       ],
       "tags": [

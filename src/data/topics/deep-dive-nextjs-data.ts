@@ -11,39 +11,40 @@ export const topic: TopicModule = {
       "deep-dive-rsc-boundaries"
     ],
     "learningObjectives": [
-      "Make cache intent explicit",
-      "Choose revalidation boundaries",
-      "Model mutation and refresh states"
+      "Choose cached or fresh reads explicitly in Next.js 15.5.20",
+      "Distinguish request data, cached data, and cached route output",
+      "Use paths or tags to revalidate the smallest affected ownership boundary",
+      "Design mutations with validation, authorization, pending, success, and failure states"
     ],
-    "whyMatters": "Production correctness depends on knowing where data is fetched, cached, invalidated, and mutated.",
-    "estimatedMinutes": 25,
+    "whyMatters": "A data feature is correct only when its read, freshness, mutation, and recovery rules agree. Naming those rules prevents a page from looking current in development while serving stale or unauthorized results in production.",
+    "estimatedMinutes": 44,
     "sections": [
       {
         "id": "deep-dive-nextjs-data-model",
         "type": "concept",
         "title": "Plain explanation",
-        "content": "Fetch data where it belongs, state cache intent explicitly, and invalidate the smallest path or tag after a mutation."
+        "content": "Start with the product promise: must this read be fresh on every request, may it be reused, or may it be stale for a known time? In Next.js 15, `fetch` responses are not cached by default. Use `cache: \"force-cache\"` for data you deliberately want in the Data Cache, `cache: \"no-store\"` for a fresh request, or `next.revalidate` for a time limit. Tags give shared data a name for later invalidation.\n\nA route may still be prerendered and its output cached even when these layers differ. Keep the read policy, route rendering behavior, and browser navigation cache as separate questions. Test the deployed behavior instead of using “cached” as one undifferentiated label."
       },
       {
         "id": "deep-dive-nextjs-data-technical",
         "type": "concept",
         "title": "Technical model",
-        "content": "A request may be cached, revalidated, or dynamic depending on its options and context. Route Handlers and Server Actions have different control-flow and invalidation responsibilities."
+        "content": "A Server Component can read data directly. A Route Handler defines an HTTP endpoint for callers that need one. A Server Function can handle a mutation started by React UI. Both server boundaries receive untrusted input and must validate and authorize before changing protected data.\n\nAfter a successful write, `revalidatePath` makes route output for a path stale, while `revalidateTag` targets cached data labeled with that tag. Choose the target from ownership: a path for route-specific output, a tag for the same data used in several routes. In a webhook, authenticate the sender before invalidating anything."
       },
       {
         "id": "deep-dive-nextjs-data-causal",
         "type": "concept",
         "title": "Why it behaves this way",
-        "content": "A stale production page is usually a cache contract or invalidation problem, not a rendering mystery. Align fetch options and mutation revalidation with the data ownership boundary."
+        "content": "Stale output is usually a mismatch between the read policy and the event that changes data. Disabling every cache hides that mismatch but gives up useful reuse. Revalidating everything creates unrelated work. A precise contract says who owns the data, how stale it may be, what mutation changes it, and which path or tag becomes stale afterward. Revalidation follows a successful write; it does not make a failed mutation successful."
       },
       {
         "id": "deep-dive-nextjs-data-example",
         "type": "code-example",
         "title": "Explicit revalidation",
-        "content": "Apply the model in a small, reviewable example.",
-        "code": "fetch('/api/posts', { next: { revalidate: 60, tags: ['posts'] } });",
+        "content": "This read is deliberately cached and tagged. The Server Function validates and authorizes before writing, then revalidates the shared data tag only after success.",
+        "code": "const posts = await fetch(cmsUrl, {\n  cache: 'force-cache',\n  next: { tags: ['posts'] },\n}).then(response => {\n  if (!response.ok) throw new Error(`CMS ${response.status}`);\n  return response.json();\n});\n\n'use server';\nasync function updatePost(formData: FormData) {\n  const input = parsePost(formData);\n  const user = await requireUser();\n  await authorizePostEdit(user, input.id);\n  await savePost(input);\n  revalidateTag('posts');\n}",
         "codeLanguage": "typescript",
-        "codeFilePath": "Illustrative snippet"
+        "codeFilePath": "app/posts/data.ts + app/posts/actions.ts"
       },
       {
         "id": "deep-dive-nextjs-data-check",
@@ -53,15 +54,15 @@ export const topic: TopicModule = {
         "questions": [
           {
             "id": "deep-dive-nextjs-data-question",
-            "question": "What should a CMS webhook do after a post mutation?",
+            "question": "A signed CMS webhook reports that post 42 changed, and several routes read data tagged `posts`. What is the clearest next step after verifying the webhook?",
             "options": [
-              "Reload every browser tab",
-              "Invalidate the affected path or tag",
-              "Disable all caching permanently",
-              "Change React keys"
+              "Revalidate the affected `posts` tag",
+              "Disable every cache in the application permanently",
+              "Change React list keys so the server data becomes fresh",
+              "Reload every user’s browser tab from the webhook"
             ],
-            "correctAnswer": "Invalidate the affected path or tag",
-            "expectedReasoning": "Targeted invalidation refreshes the affected cached data without discarding unrelated cache policy."
+            "correctAnswer": "Revalidate the affected `posts` tag",
+            "expectedReasoning": "The tag represents shared post data across routes, so targeted invalidation matches ownership. Disabling all caching removes an unrelated capability, React keys do not control the server data cache, and a server webhook cannot depend on forcing every open browser tab to reload."
           }
         ]
       },
@@ -69,54 +70,53 @@ export const topic: TopicModule = {
         "id": "deep-dive-nextjs-data-synthesis",
         "type": "synthesis",
         "title": "Synthesis",
-        "content": "A request may be cached, revalidated, or dynamic depending on its options and context. Route Handlers and Server Actions have different control-flow and invalidation responsibilities.\n\nDecision clue: A stale production page is usually a cache contract or invalidation problem, not a rendering mystery. Align fetch options and mutation revalidation with the data ownership boundary."
+        "content": "Write a complete data contract: read owner, cache choice, acceptable staleness, mutation trust boundary, and post-success invalidation. Use a path for route-specific output and a tag for shared data identity. Show pending and recoverable failure in the UI, but keep validation and authorization on the server operation."
       }
     ],
     "chunks": [
       {
         "id": "deep-dive-nextjs-data-prediction",
         "title": "Predict the boundary",
-        "concept": "A request may be cached, revalidated, or dynamic depending on its options and context. Route Handlers and Server Actions have different control-flow and invalidation responsibilities.",
+        "concept": "Cache policy begins with freshness requirements, not a universal default.",
         "prediction": {
-          "prompt": "What should a CMS webhook do after a post mutation?",
+          "prompt": "A price must be fresh for every request. Which fetch intent is clearest?",
           "options": [
-            "Reload every browser tab",
-            "Invalidate the affected path or tag",
-            "Disable all caching permanently",
-            "Change React keys"
+            "`cache: \"no-store\"`",
+            "`cache: \"force-cache\"` with no invalidation plan",
+            "A random React key"
           ],
-          "correctAnswer": "Invalidate the affected path or tag",
-          "feedbackCorrect": "Correct. Your prediction matches the model. Now explain why it stays true under change.",
-          "feedbackWrong": "Revisit the model: Targeted invalidation refreshes the affected cached data without discarding unrelated cache policy."
+          "correctAnswer": "`cache: \"no-store\"`",
+          "feedbackCorrect": "The request explicitly opts out of reuse for this freshness requirement.",
+          "feedbackWrong": "A persistent cache or client key does not express “fresh on every server request.”"
         },
-        "synthesis": "Targeted invalidation refreshes the affected cached data without discarding unrelated cache policy."
+        "synthesis": "State the freshness promise before choosing the API."
       },
       {
         "id": "deep-dive-nextjs-data-failure-mode",
         "title": "Name the failure mode",
-        "concept": "A stale production page is usually a cache contract or invalidation problem, not a rendering mystery. Align fetch options and mutation revalidation with the data ownership boundary.",
+        "concept": "Invalidation follows data identity and a successful mutation.",
         "prediction": {
-          "prompt": "Which design move best prevents the failure described above?",
+          "prompt": "One post title changes and cached post lists share a `posts` tag. What should the mutation do after saving?",
           "options": [
-            "Make the boundary explicit",
-            "Add another duplicated state value",
-            "Hide the failure from the user"
+            "Revalidate the relevant tag",
+            "Invalidate before authorization",
+            "Clear unrelated user caches"
           ],
-          "correctAnswer": "Make the boundary explicit",
-          "feedbackCorrect": "Correct. Explicit boundaries make the cause, ownership, and recovery path inspectable.",
-          "feedbackWrong": "Prefer the smallest explicit boundary that owns the behavior and its recovery path."
+          "correctAnswer": "Revalidate the relevant tag",
+          "feedbackCorrect": "The tag reaches the cached reads whose data is now stale.",
+          "feedbackWrong": "Authorization and the write come first; unrelated cache entries should keep their policy."
         },
-        "synthesis": "Use this clue in review: A stale production page is usually a cache contract or invalidation problem, not a rendering mystery. Align fetch options and mutation revalidation with the data ownership boundary."
+        "synthesis": "Successful writes create staleness; invalidate the smallest boundary that owns it."
       }
     ],
     "miniProject": {
       "title": "Practice lab: Data Fetching, Caching & Mutations",
-      "scenario": "Apply the lesson to a small feature. Explain the boundary before writing code, then name how you would verify it.",
+      "scenario": "Design a cached post list, protected edit action, and authenticated CMS webhook.",
       "acceptance": [
-        "Make cache intent explicit",
-        "Choose revalidation boundaries",
-        "Model mutation and refresh states",
-        "Name one failure state and one observable test."
+        "Every read has an explicit Next.js 15.5.20 cache and freshness policy",
+        "The edit validates input and authorizes the current user before saving",
+        "The webhook authenticates its sender before targeted invalidation",
+        "Pending, validation failure, service failure, success, and refreshed output are observable"
       ],
       "rubric": [
         {
@@ -166,22 +166,28 @@ export const topic: TopicModule = {
         }
       ]
     },
-    "retrievalPrompt": "Explain the core model of Data Fetching, Caching & Mutations and name one failure mode it prevents.",
-    "reflectionPrompt": "Find one place in a real frontend project where this data fetching, caching & mutations decision could be made more explicit.",
+    "retrievalPrompt": "For a product read and edit, state the fetch cache option, acceptable staleness, mutation boundary, revalidation target, and user-visible pending and failure states.",
+    "reflectionPrompt": "Choose one cached screen. What exactly is cached, what event makes it stale, and which path or tag should become current after a successful write?",
     "masteryCriteria": [
-      "Make cache intent explicit",
-      "Choose revalidation boundaries",
-      "Model mutation and refresh states"
+      "Can state that Next.js 15 fetch responses are not cached by default",
+      "Can select no-store, force-cache, time revalidation, path, or tag from a freshness requirement",
+      "Can distinguish a Route Handler from a Server Function mutation",
+      "Validates and authorizes before writing, then revalidates only after success"
     ],
     "nextTopics": [
       "deep-dive-production-concerns"
     ],
     "metadata": {
-      "lastUpdated": "2026-07-14",
+      "nextVersion": "15.5.20",
+      "lastUpdated": "2026-07-21",
       "sources": [
         "https://nextjs.org/docs/app/building-your-application/caching",
         "https://nextjs.org/docs/15/app/guides/caching",
-        "https://nextjs.org/docs/15/app/guides/forms"
+        "https://nextjs.org/docs/15/app/guides/forms",
+        "https://nextjs.org/docs/15/app/getting-started/fetching-data",
+        "https://nextjs.org/docs/15/app/getting-started/updating-data",
+        "https://nextjs.org/docs/15/app/api-reference/functions/revalidatePath",
+        "https://nextjs.org/docs/15/app/api-reference/functions/revalidateTag"
       ]
     }
   },
@@ -191,50 +197,61 @@ export const topic: TopicModule = {
       "title": "Deep Challenge: Production stale cache failure",
       "level": 9,
       "topicFamily": "nextjs-data",
-      "scenario": "Editors update a blog post in a CMS, but production shows old content for minutes while staging uses no-store.",
+      "scenario": "Editors update a CMS post, but production keeps old content while staging uses fresh reads. Diagnose the cache contract and design a precise production repair.",
       "constraints": [
-        "Do not disable all caching without reason"
+        "Do not disable all caching without a stated freshness requirement",
+        "Compare the read and rendering policy in both environments",
+        "Authenticate any webhook before it can trigger invalidation"
       ],
       "acceptanceCriteria": [
-        "Mentions revalidation",
-        "Mentions a tag or path",
-        "Mentions the environment difference"
+        "The hypothesis names the cached read or route output that can remain stale",
+        "The proposed fix chooses a path or tag that matches the changed data",
+        "A failed or unauthorized mutation does not trigger success revalidation",
+        "Verification repeats the production-like request and observes the expected freshness"
       ],
       "hints": [
         {
           "stage": 1,
-          "text": "Production may be caching the fetch or render."
+          "text": "Write down the exact `fetch` options and whether the route output is prerendered in each environment."
         },
         {
           "stage": 2,
-          "text": "A CMS webhook can revalidate a path or tag."
+          "text": "If several pages read the same post data, a tag may express ownership better than one route path."
         },
         {
           "stage": 3,
-          "text": "Compare fetch options between staging and production."
+          "text": "Have the CMS webhook prove its identity, then invalidate only after the CMS confirms the change."
         }
       ],
-      "expectedReasoning": "A cached render or fetch lacks targeted invalidation after the CMS mutation.",
+      "expectedReasoning": "Staging and production use different freshness contracts. Production needs either a deliberate staleness window or an authenticated event that invalidates the cached data or route output. The repair should be measured against a production-like build rather than inferred from development mode.",
       "commonWrongPaths": [
-        "Blaming React keys"
+        "Blaming React keys for a server cache problem",
+        "Switching every request to no-store without evaluating the product requirement",
+        "Allowing an unauthenticated webhook to invalidate arbitrary paths or tags"
       ],
-      "answerExplanation": "Use a CMS webhook to revalidate the affected path or tag and align cache intent across environments.",
-      "followUpVariation": "How would you verify cache headers during an incident?",
+      "answerExplanation": "Trace the read and route-output caches, align their policy across environments, and connect the successful CMS mutation to a verified, targeted invalidation boundary.",
+      "followUpVariation": "A post detail page must update immediately, but the archive may be five minutes stale. Give each read a different explicit policy.",
       "checkType": "free-text",
       "prompt": "Hypothesize the root cause and a precise fix.",
       "freeTextKeywords": [
         "revalidat",
         "cache"
       ],
-      "sourceLink": "https://nextjs.org/docs/app/guides/caching-without-cache-components"
+      "sourceLink": "https://nextjs.org/docs/app/guides/caching-without-cache-components",
+      "sourceLinks": [
+        "https://nextjs.org/docs/app/guides/caching-without-cache-components",
+        "https://nextjs.org/docs/15/app/guides/caching",
+        "https://nextjs.org/docs/15/app/api-reference/functions/revalidateTag",
+        "https://nextjs.org/docs/15/app/api-reference/functions/revalidatePath"
+      ]
     }
   ],
   "qa": [
     {
       "id": "learn-react-deep-dive-nextjs-data-question",
       "question": "What should a CMS webhook do after a post mutation?",
-      "answer": "Invalidate the affected path or tag",
-      "followUp": "Targeted invalidation refreshes the affected cached data without discarding unrelated cache policy.",
+      "answer": "After authenticating the webhook and confirming the mutation, revalidate the affected path or data tag. Use a tag when several routes share the same cached data and a path when the stale ownership is route-specific.",
+      "followUp": "Which routes consume the changed data, and does a shared tag or one path express that ownership better?",
       "category": "nextjs",
       "level": "advanced",
       "topicId": "deep-dive-nextjs-data",
@@ -243,37 +260,52 @@ export const topic: TopicModule = {
         "learn-react-bridge",
         "nextjs-data"
       ],
-      "sourceLink": "https://nextjs.org/docs/app/building-your-application/caching"
+      "sourceLink": "https://nextjs.org/docs/app/building-your-application/caching",
+      "sourceLinks": [
+        "https://nextjs.org/docs/app/building-your-application/caching",
+        "https://nextjs.org/docs/15/app/api-reference/functions/revalidateTag",
+        "https://nextjs.org/docs/15/app/api-reference/functions/revalidatePath"
+      ]
     },
     {
       "id": "loop-qa-deep-dive-nextjs-data-1",
       "topicId": "deep-dive-nextjs-data",
       "topicFamily": "nextjs-data",
-      "question": "What problem does Deep Dive: Data Fetching, Caching & Mutations help you solve?",
-      "answer": "Production correctness depends on knowing where data is fetched, cached, invalidated, and mutated.",
-      "followUp": "Name one decision in your current project where this model would change the implementation.",
+      "question": "What belongs in a complete Next.js data contract?",
+      "answer": "Name the read owner, explicit cache behavior, acceptable staleness, mutation boundary, validation and authorization checks, success invalidation, and user-visible pending and failure states. These decisions must agree for the feature to stay correct.",
+      "followUp": "Which one of those decisions is currently implicit in your project?",
       "category": "nextjs",
       "level": "advanced",
       "tags": [
         "topic-loop",
         "deep-dive-nextjs-data"
       ],
-      "sourceLink": "https://nextjs.org/docs/app/building-your-application/caching"
+      "sourceLink": "https://nextjs.org/docs/app/building-your-application/caching",
+      "sourceLinks": [
+        "https://nextjs.org/docs/app/building-your-application/caching",
+        "https://nextjs.org/docs/15/app/getting-started/fetching-data",
+        "https://nextjs.org/docs/15/app/getting-started/updating-data"
+      ]
     },
     {
       "id": "loop-qa-deep-dive-nextjs-data-2",
       "topicId": "deep-dive-nextjs-data",
       "topicFamily": "nextjs-data",
-      "question": "How would you explain the core idea of Deep Dive: Data Fetching, Caching & Mutations to a teammate?",
-      "answer": "Explain the core model of Data Fetching, Caching & Mutations and name one failure mode it prevents. A strong explanation should connect the model to: Make cache intent explicit; Choose revalidation boundaries.",
-      "followUp": "Which observable behavior would prove your explanation is correct?",
+      "question": "How do `revalidatePath` and `revalidateTag` express different ownership?",
+      "answer": "`revalidatePath` targets cached output associated with a route path. `revalidateTag` targets cached data labeled with a tag, which can be shared by several routes. Choose the smallest target that represents what the mutation made stale.",
+      "followUp": "What is one mutation where a shared tag is more accurate than a single path?",
       "category": "nextjs",
       "level": "advanced",
       "tags": [
         "topic-loop",
         "deep-dive-nextjs-data"
       ],
-      "sourceLink": "https://nextjs.org/docs/app/building-your-application/caching"
+      "sourceLink": "https://nextjs.org/docs/app/building-your-application/caching",
+      "sourceLinks": [
+        "https://nextjs.org/docs/app/building-your-application/caching",
+        "https://nextjs.org/docs/15/app/api-reference/functions/revalidatePath",
+        "https://nextjs.org/docs/15/app/api-reference/functions/revalidateTag"
+      ]
     }
   ],
   "practices": [],

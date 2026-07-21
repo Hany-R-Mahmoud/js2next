@@ -12,28 +12,28 @@ export const topic: TopicModule = {
       "expansion-url-state"
     ],
     "learningObjectives": [
-      "Compare local state, Zustand, Redux, URL state, and server-state caches by ownership",
-      "Distinguish Next App Router from a client-side routing library",
-      "Choose the smallest tool boundary that fits the product contract",
-      "Write a migration decision with trade-offs instead of copying ecosystem defaults"
+      "Classify local interaction, URL, remote server, and shared client state before choosing a library",
+      "Compare Next App Router, React Router, Redux Toolkit, and a query cache by the responsibility each would own",
+      "Prefer an existing platform boundary when it already satisfies the product contract",
+      "Record benefits, costs, migration work, and a measurable trigger for revisiting the decision"
     ],
-    "whyMatters": "Libraries solve different boundaries. Choosing by popularity can create duplicate stores, competing routers, or unnecessary client code; choosing by ownership makes the architecture explainable.",
-    "estimatedMinutes": 25,
+    "whyMatters": "A library can be excellent and still be the wrong owner for a value. Starting with lifetime, consumers, navigation, freshness, and trust prevents two routers or stores from competing for the same truth and keeps a future migration understandable.",
+    "estimatedMinutes": 40,
     "sections": [
       {
         "id": "expansion-ecosystem-comparisons-model",
         "type": "concept",
         "title": "Compare responsibilities",
-        "content": "URL state belongs to navigation, server state belongs to a cache or server boundary, and local UI state belongs near the interaction. Redux or Zustand can coordinate client-owned state; Next App Router owns the app’s route model here."
+        "content": "First name the responsibility. Temporary interaction such as a modal usually stays local. A filter that must survive reload, sharing, and browser history belongs in the URL. Authoritative remote projects belong to the server and, when client coordination requires it, one query cache. Shared client-owned workflow state may justify a client store when lifting or composition no longer gives it a clear owner.\n\nNext App Router already owns routes, layouts, navigation, and server/client rendering in this application. React Router has its own routing and data APIs and may be right for a different application or a deliberate isolated boundary, but adding it beside Next without a route-ownership contract creates competing URL identities. Compare actual capabilities, integration cost, bundle and client boundaries, testing, migration, and exit cost."
       },
       {
         "id": "expansion-ecosystem-comparisons-code",
         "type": "code-example",
         "title": "Record the decision",
-        "content": "A tool decision should name the owner, the reason, and the cost of adding another boundary.",
-        "code": "type Decision = {\n  owner: 'url' | 'server-cache' | 'client-store' | 'local';\n  tool: 'Next App Router' | 'TanStack Query' | 'Zustand' | 'Redux';\n  reason: string;\n  rejectedAlternative: string;\n};",
+        "content": "A decision record starts with the state or route requirement, not the tool name. It records one owner, why existing capabilities do or do not fit, accepted costs, and evidence that would reopen the choice.",
+        "code": "type ToolDecision = {\n  requirement: string;\n  owner: 'local' | 'url' | 'server' | 'query-cache' | 'client-store';\n  chosenBoundary: string;\n  consideredAlternatives: string[];\n  acceptedCosts: string[];\n  reviewTrigger: string;\n};",
         "codeLanguage": "typescript",
-        "codeFilePath": "Architecture decision record"
+        "codeFilePath": "docs/decisions/021-state-and-routing-owner.ts"
       },
       {
         "id": "expansion-ecosystem-comparisons-question",
@@ -43,15 +43,15 @@ export const topic: TopicModule = {
         "questions": [
           {
             "id": "expansion-ecosystem-comparisons-check",
-            "question": "A shareable filter must survive refresh and browser history. Which owner should be evaluated first?",
+            "question": "A catalog filter must be shareable, survive refresh, and support browser Back. Which owner should be evaluated first?",
             "options": [
-              "A new global Redux slice",
-              "URL search params in the existing Next route model",
-              "A random module variable",
-              "A second client-side router"
+              "URL search parameters in the existing Next route model",
+              "A new Redux slice that must synchronize with the URL",
+              "A module variable that resets on reload",
+              "A second router with no ownership boundary"
             ],
-            "correctAnswer": "URL search params in the existing Next route model",
-            "expectedReasoning": "The product contract is navigation and shareability. A new global store or router duplicates ownership unless a separate requirement justifies it."
+            "correctAnswer": "URL search parameters in the existing Next route model",
+            "expectedReasoning": "The requirements are navigation, sharing, refresh, and history, which the URL already owns. The other choices either lose those behaviors or add a second source that must be synchronized without a distinct requirement."
           }
         ]
       },
@@ -59,26 +59,30 @@ export const topic: TopicModule = {
         "id": "expansion-ecosystem-comparisons-synthesis",
         "type": "synthesis",
         "title": "Synthesis",
-        "content": "Map state and navigation responsibilities first. Add Redux, React Router, or another library only when its specific boundary and trade-off are clearer than the existing platform capabilities."
+        "content": "Choose ownership before libraries. Use local state for local interaction, URL state for navigation, server or query-cache state for remote data, and a client store only for a distinct shared client lifecycle. Keep one route model unless an explicit isolation or migration contract justifies another, and record the evidence that would change the decision."
       }
     ],
-    "retrievalPrompt": "What requirement would justify adding another state store or router to a Next.js app?",
-    "reflectionPrompt": "Choose one feature. Which values are local, URL-owned, server-owned, or shared client state, and which existing boundary should remain the single owner?",
+    "retrievalPrompt": "Classify a shareable filter, modal state, project list, and multi-step client draft, then compare the smallest suitable owner and tool for each.",
+    "reflectionPrompt": "Choose one proposed dependency. Which requirement is unmet today, which existing boundary was evaluated, and what measurable signal would justify the added tool?",
     "masteryCriteria": [
-      "Can compare state ownership across tools",
-      "Can explain Next App Router versus client routing",
-      "Can reject duplicate boundaries",
-      "Can record a migration trade-off"
+      "Can classify values by owner, lifetime, consumers, and trust boundary",
+      "Can compare tools without treating popularity or app size as a requirement",
+      "Can avoid duplicate URL, remote-data, or client-state ownership",
+      "Can write a reversible decision with migration and removal costs"
     ],
     "nextTopics": [
       "deep-dive-architecture-decisions"
     ],
     "metadata": {
-      "lastUpdated": "2026-07-15",
+      "nextVersion": "15.5.20",
+      "reactVersion": "19.2.7",
+      "lastUpdated": "2026-07-21",
       "sources": [
         "https://nextjs.org/docs/app",
         "https://redux-toolkit.js.org/introduction/getting-started",
-        "https://reactrouter.com/home"
+        "https://reactrouter.com/home",
+        "https://nextjs.org/docs/15/app",
+        "https://tanstack.com/query/latest/docs/framework/react/overview"
       ]
     },
     "diagram": {
@@ -125,40 +129,42 @@ export const topic: TopicModule = {
       {
         "id": "expansion-ecosystem-comparisons-retrieval-1",
         "title": "Choose ownership before libraries",
-        "concept": "A shareable filter belongs to the URL first; adding Redux or a second router requires a distinct unmet requirement.",
+        "concept": "Tool choice follows a product responsibility and one accountable owner.",
         "prediction": {
-          "prompt": "What should be evaluated first for a shareable filter?",
+          "prompt": "Several client components need the same remote projects and mutation freshness. Which boundary should be evaluated before a general client store?",
           "options": [
-            "URL search params in the current route model",
-            "A new global store by default"
+            "One server-state query cache",
+            "Duplicate local arrays in each component",
+            "A second router"
           ],
-          "correctAnswer": "URL search params in the current route model",
-          "feedbackCorrect": "The product contract identifies the owner before the tool.",
-          "feedbackWrong": "A global store would duplicate navigation ownership without evidence."
+          "correctAnswer": "One server-state query cache",
+          "feedbackCorrect": "The requirement is shared remote-data identity and freshness, which a query cache is designed to own.",
+          "feedbackWrong": "Duplicated arrays or an unrelated router do not provide one remote-data freshness contract."
         },
-        "synthesis": "Choose the smallest boundary that fits the requirement, then record why another tool was rejected."
+        "synthesis": "Match the tool’s responsibility to the state’s real owner."
       }
     ],
     "miniProject": {
       "title": "Write an ecosystem decision record",
-      "scenario": "Compare Next App Router, URL state, server cache, Zustand, Redux Toolkit, and React Router for one feature.",
+      "scenario": "Write a decision for a dashboard with shareable filters, cached server projects, local menus, and a multi-step client draft used across distant components.",
       "acceptance": [
-        "Each value has one proposed owner",
-        "The platform capability is compared with library alternatives",
-        "A migration trigger is measurable"
+        "Every value has one owner based on lifetime and consumers",
+        "Next App Router and URL capabilities are evaluated before another router or store",
+        "Redux Toolkit, a smaller client store, and local composition are compared for the draft",
+        "The chosen boundary includes integration cost, migration plan, exit cost, and a measurable review trigger"
       ],
       "rubric": [
         {
           "dimension": "Ownership",
-          "evidence": "State, route, and server data are not assigned duplicate owners."
+          "evidence": "No value is writable in two route or state systems."
         },
         {
-          "dimension": "Trade-off",
-          "evidence": "The cost and benefit of each candidate are explicit."
+          "dimension": "Comparison",
+          "evidence": "Each candidate is evaluated for the responsibility it actually provides."
         },
         {
           "dimension": "Reversibility",
-          "evidence": "The decision names evidence that would justify change."
+          "evidence": "The record identifies migration steps and evidence for changing or removing the tool."
         }
       ]
     }
@@ -169,54 +175,59 @@ export const topic: TopicModule = {
       "title": "Review an Ecosystem Tool Proposal",
       "level": 8,
       "topicFamily": "architecture",
-      "scenario": "A team proposes Redux for a shareable filter and React Router beside Next App Router. The feature already has URL search params, a persisted learner store, and a server-state cache boundary.",
+      "scenario": "A Next.js dashboard already uses URL search parameters for filters and a query cache for remote projects. A proposal adds Redux for the same filters and React Router around part of the same route tree because “the app is getting large.” Review the proposal.",
       "constraints": [
-        "Name the state or routing owner first",
-        "Avoid duplicate sources of truth",
-        "Compare a platform capability with a library capability",
-        "Record when an additional tool would become justified"
+        "Classify every value and route responsibility before naming a tool",
+        "Keep one writable owner for URL and remote data",
+        "Compare platform capabilities with each proposed library capability",
+        "Record a distinct requirement and measurable trigger for any added boundary"
       ],
       "acceptanceCriteria": [
-        "The filter remains owned by the URL",
-        "The proposal identifies whether Redux adds a distinct client-state need",
-        "The routing choice does not create competing route identity",
-        "Trade-offs and migration triggers are documented"
+        "Shareable filters remain URL-owned unless a new requirement disproves that fit",
+        "Remote project data remains server/query-cache owned rather than copied into Redux",
+        "React Router is rejected for the same route tree unless an explicit isolation or migration contract exists",
+        "Any Redux use is tied to distinct shared client-owned state",
+        "The decision records integration, testing, bundle, migration, and exit costs"
       ],
       "hints": [
         {
           "stage": 1,
-          "text": "Classify each value before discussing libraries."
+          "text": "Create rows for filter, projects, modal, and draft with lifetime, consumers, and current owner."
         },
         {
           "stage": 2,
-          "text": "Ask what requirement Next App Router and the current stores cannot satisfy."
+          "text": "Ask which specific capability the existing Next route and query boundaries cannot provide."
         },
         {
           "stage": 3,
-          "text": "Write a reversible decision and one measurable trigger for revisiting it."
+          "text": "Write the review trigger as observable evidence, not “when the app feels bigger.”"
         }
       ],
-      "expectedReasoning": "Tool choice follows ownership and requirements. Adding Redux or a second router without a distinct boundary creates synchronization and identity costs.",
+      "expectedReasoning": "App size is not a state or routing requirement. The URL already owns shareable filters, and a query cache owns remote freshness. A client store or router is justified only by a distinct responsibility that can be named, integrated, tested, and later migrated.",
       "commonWrongPaths": [
-        "Adding Redux because the app is growing",
-        "Putting URL filters in both search params and a store",
-        "Running two routers without a route-ownership contract",
-        "Treating library popularity as architecture evidence"
+        "Adding Redux because the application has many files",
+        "Keeping writable filter copies in both URL and store",
+        "Copying remote query data into a second client cache",
+        "Running two routers over the same URLs without an ownership contract"
       ],
-      "answerExplanation": "Keep the filter in the URL and Next App Router. Add a client store only for distinct shared client state, and add another router only after a concrete route-model requirement and migration plan exist.",
-      "followUpVariation": "A separate admin app needs a different routing tree but shares UI primitives. Re-evaluate the boundary without duplicating domain state by default.",
+      "answerExplanation": "Keep existing owners where they fit, reject duplicate writable boundaries, and approve a new library only for a distinct unmet requirement with explicit costs and a review trigger.",
+      "followUpVariation": "A separately deployed admin application needs its own routing tree but shares UI primitives. Re-evaluate routing and shared-package boundaries without sharing app state by default.",
       "checkType": "free-text",
-      "prompt": "Explain whether Redux or React Router should be added and what evidence would change the decision.",
+      "prompt": "Review each proposed owner, library capability, duplication risk, cost, and the evidence that would change the decision.",
       "freeTextKeywords": [
-        "URL",
         "owner",
+        "URL",
+        "server",
         "router",
         "trade-off"
       ],
       "sourceLink": "https://nextjs.org/docs/app",
       "sourceLinks": [
+        "https://nextjs.org/docs/app",
         "https://redux-toolkit.js.org/introduction/getting-started",
-        "https://reactrouter.com/home"
+        "https://reactrouter.com/home",
+        "https://nextjs.org/docs/15/app",
+        "https://tanstack.com/query/latest/docs/framework/react/overview"
       ]
     }
   ],
@@ -226,8 +237,8 @@ export const topic: TopicModule = {
       "topicId": "expansion-ecosystem-comparisons",
       "topicFamily": "architecture",
       "question": "How should you decide whether to add Redux or another client store?",
-      "answer": "First identify shared client-owned state that existing local, URL, or server-state boundaries do not serve well. Add a store only when its distinct ownership, benefits, and migration cost are explicit.",
-      "followUp": "Why is a growing app alone not enough evidence?",
+      "answer": "Identify shared client-owned state whose lifetime and consumers are not served clearly by local state, composition, the URL, or a server-state cache. Then compare a store’s API, subscriptions, testing, bundle, migration, and ownership cost. Application size alone does not define that requirement.",
+      "followUp": "Which concrete shared client value cannot be owned clearly by the boundaries already in your app?",
       "category": "architecture",
       "level": "advanced",
       "tags": [
@@ -235,15 +246,18 @@ export const topic: TopicModule = {
         "redux",
         "state-ownership"
       ],
-      "sourceLink": "https://redux-toolkit.js.org/introduction/getting-started"
+      "sourceLink": "https://redux-toolkit.js.org/introduction/getting-started",
+      "sourceLinks": [
+        "https://redux-toolkit.js.org/introduction/getting-started"
+      ]
     },
     {
       "id": "expansion-qa-next-router-choice",
       "topicId": "expansion-ecosystem-comparisons",
       "topicFamily": "architecture",
       "question": "Why can adding React Router beside Next App Router be risky?",
-      "answer": "It can create competing route identity, data-loading models, navigation semantics, and ownership of URLs. A second router needs a concrete boundary and an explicit integration contract.",
-      "followUp": "What separate requirement might justify it?",
+      "answer": "Both systems can own URL matching, navigation, data APIs, and route identity. Using them over the same application tree can split history and loading behavior. Add a second router only for a deliberate isolated application or migration boundary with one clear owner for each URL.",
+      "followUp": "Which URLs, navigation events, and data loaders would belong exclusively to the proposed second boundary?",
       "category": "nextjs",
       "level": "advanced",
       "tags": [
@@ -251,22 +265,31 @@ export const topic: TopicModule = {
         "react-router",
         "next-app-router"
       ],
-      "sourceLink": "https://nextjs.org/docs/app"
+      "sourceLink": "https://nextjs.org/docs/app",
+      "sourceLinks": [
+        "https://nextjs.org/docs/app",
+        "https://nextjs.org/docs/15/app",
+        "https://reactrouter.com/home"
+      ]
     },
     {
       "id": "loop-qa-expansion-ecosystem-comparisons-1",
       "topicId": "expansion-ecosystem-comparisons",
       "topicFamily": "architecture",
-      "question": "What problem does Choose State and Routing Tools Deliberately help you solve?",
-      "answer": "Libraries solve different boundaries. Choosing by popularity can create duplicate stores, competing routers, or unnecessary client code; choosing by ownership makes the architecture explainable.",
-      "followUp": "Name one decision in your current project where this model would change the implementation.",
+      "question": "What information should appear before a library name in a state or routing decision?",
+      "answer": "Record the product requirement, value lifetime, consumers, trust boundary, current owner, and missing capability. Then compare candidate tools, accepted costs, migration path, exit cost, and the evidence that would reopen the choice.",
+      "followUp": "Which proposed tool in your project currently lacks a named missing capability?",
       "category": "architecture",
       "level": "advanced",
       "tags": [
         "topic-loop",
         "expansion-ecosystem-comparisons"
       ],
-      "sourceLink": "https://nextjs.org/docs/app"
+      "sourceLink": "https://nextjs.org/docs/app",
+      "sourceLinks": [
+        "https://nextjs.org/docs/app",
+        "https://nextjs.org/docs/15/app"
+      ]
     }
   ],
   "practices": [
@@ -275,16 +298,18 @@ export const topic: TopicModule = {
       "topicId": "expansion-ecosystem-comparisons",
       "topicFamily": "architecture",
       "title": "Record Tool Ownership Before Adding Libraries",
-      "summary": "Name the state or route owner and rejected alternatives before adding another ecosystem tool.",
-      "rationale": "Explicit ownership prevents duplicate stores, competing routers, and synchronization code that exists only because a library was added without a distinct requirement.",
-      "tradeOffs": "Writing a short decision record slows the first implementation. It makes later migration safer and gives the team a concrete trigger for revisiting the choice.",
-      "appliesWhen": "A feature proposal introduces a new state, data, routing, or framework library.",
-      "doesNotApplyWhen": "The tool is an internal implementation detail with no competing ownership or user-visible contract.",
-      "example": "Keep a shareable filter in Next URL search params; add a client store only for a separate shared client-state requirement.",
+      "summary": "Before adding a state, data, or routing library, name the requirement and one owner, then compare existing capabilities and migration costs.",
+      "rationale": "Ownership-first decisions prevent duplicate stores, caches, and route identities while giving the team a clear reason to revisit a choice later.",
+      "tradeOffs": "A short decision record slows the first implementation and may preserve a simpler local solution. It reduces hidden synchronization and makes later adoption or removal safer.",
+      "appliesWhen": "A proposal adds or replaces a state store, server-state cache, router, or framework-level boundary.",
+      "doesNotApplyWhen": "A tool is a truly internal implementation detail with no new owner, runtime boundary, or user-visible contract.",
+      "example": "Keep shareable filters in Next search params and remote projects in one query cache; evaluate a client store only for a separate cross-tree draft lifecycle.",
       "sourceLink": "https://nextjs.org/docs/app",
       "sourceLinks": [
+        "https://nextjs.org/docs/app",
         "https://redux-toolkit.js.org/introduction/getting-started",
-        "https://reactrouter.com/home"
+        "https://reactrouter.com/home",
+        "https://nextjs.org/docs/15/app"
       ],
       "tags": [
         "expansion-ecosystem-comparisons",

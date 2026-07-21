@@ -11,28 +11,28 @@ export const topic: TopicModule = {
       "app-router-and-layouts"
     ],
     "learningObjectives": [
-      "Separate shareable state from ephemeral UI state",
-      "Read and update search params at the route boundary",
-      "Keep filters bookmarkable without duplicating server state",
-      "Choose a reset behavior users can predict"
+      "Choose URL state when refresh, sharing, or browser history must reproduce a view",
+      "Parse missing, repeated, and invalid search parameters at the route boundary",
+      "Update search parameters without maintaining a second writable copy",
+      "Define push, replace, debounce, and dependent reset behavior from the user flow"
     ],
-    "whyMatters": "Search, filters, and pagination become easier to share, reload, and debug when their state has a URL representation.",
-    "estimatedMinutes": 20,
+    "whyMatters": "A URL can be a product contract for a view. When filters, sorting, search, and pagination live there, a copied link and browser navigation can reproduce the same state. Clear parsing and update rules keep that contract predictable.",
+    "estimatedMinutes": 34,
     "sections": [
       {
         "id": "expansion-url-state-model",
         "type": "concept",
         "title": "Choose the owner",
-        "content": "Put shareable filters, sorting, and pagination in the URL. Keep transient input, open menus, and draft text local until the product needs a shareable representation."
+        "content": "Put a value in the URL when another person, a refresh, or browser Back and Forward should reproduce it. Product filters, sorting, search, tabs with stable meaning, and pagination often fit. Keep transient interaction such as a menu being open, hover, animation progress, or an unsaved draft local unless the product explicitly needs a public representation.\n\nThe URL is the single owner. Parse it into application values and derive the view from those values. Do not keep an independent writable filter copy in component or global state, because two owners require synchronization and can disagree."
       },
       {
         "id": "expansion-url-state-code",
         "type": "code-example",
         "title": "Read a filter",
-        "content": "Treat URL state as input to the route, not as a second hidden store.",
-        "code": "const query = searchParams.get('query') ?? '';\nconst page = Number(searchParams.get('page') ?? '1');",
+        "content": "In Next.js 15, a page awaits its `searchParams` prop. The parsing boundary validates defaults before data fetching uses them.",
+        "code": "type CatalogParams = Promise<{ query?: string; page?: string; sort?: string }>;\n\nexport default async function CatalogPage({\n  searchParams,\n}: { searchParams: CatalogParams }) {\n  const raw = await searchParams;\n  const query = raw.query?.trim() ?? '';\n  const parsedPage = Number.parseInt(raw.page ?? '1', 10);\n  const page = Number.isFinite(parsedPage) && parsedPage > 0 ? parsedPage : 1;\n  const sort = raw.sort === 'price' ? 'price' : 'relevance';\n\n  const products = await getProducts({ query, page, sort });\n  return <Catalog products={products} />;\n}",
         "codeLanguage": "typescript",
-        "codeFilePath": "Page or search-params boundary"
+        "codeFilePath": "app/products/page.tsx"
       },
       {
         "id": "expansion-url-state-question",
@@ -42,15 +42,15 @@ export const topic: TopicModule = {
         "questions": [
           {
             "id": "expansion-url-state-check",
-            "question": "Which state belongs in search params by default?",
+            "question": "Which value is the strongest default candidate for URL search parameters?",
             "options": [
-              "Whether a tooltip is open",
-              "A shareable product filter",
-              "An uncontrolled input draft",
-              "A WebSocket instance"
+              "A product filter that teammates should share and restore",
+              "Whether the filter popover is currently open",
+              "The active WebSocket connection object",
+              "A password draft before submission"
             ],
-            "correctAnswer": "A shareable product filter",
-            "expectedReasoning": "A filter benefits from links, refreshes, and browser history; the other values are ephemeral or external resources."
+            "correctAnswer": "A product filter that teammates should share and restore",
+            "expectedReasoning": "The product filter has public lifetime requirements: link sharing, reload, and history. Popover state is ephemeral, a WebSocket is an external resource rather than serializable view state, and sensitive unsaved input should not be placed in a URL."
           }
         ]
       },
@@ -58,25 +58,29 @@ export const topic: TopicModule = {
         "id": "expansion-url-state-synthesis",
         "type": "synthesis",
         "title": "Synthesis",
-        "content": "URL state is a public contract. Keep its names stable, parse defaults deliberately, and avoid copying it into another state store unless synchronization has a clear owner."
+        "content": "Treat search parameters as a stable public input: name keys clearly, parse defaults, reject or normalize invalid values, and define dependent resets such as returning to page 1 when a filter changes. Use navigation updates as the one writer. Keep transient and sensitive values local."
       }
     ],
-    "retrievalPrompt": "Which UI values should survive a refresh or be shareable as a link?",
-    "reflectionPrompt": "Pick one filter in your project. What should the URL show, and what should reset when the user changes it?",
+    "retrievalPrompt": "For a catalog query, category, sort, and page, define URL keys, parsing defaults, invalid-value behavior, navigation history, and which transient controls remain local.",
+    "reflectionPrompt": "Copy one filtered view URL, reload it, and use Back and Forward. Which value fails to reproduce, and where is its second owner?",
     "masteryCriteria": [
-      "Can distinguish shareable and ephemeral state",
-      "Can parse a missing search param safely",
-      "Can explain URL state as a product contract",
-      "Can avoid duplicating URL state in a second store"
+      "Can justify URL ownership from sharing and navigation requirements",
+      "Parses route input into safe application values",
+      "Updates one URL source of truth without a synchronization Effect",
+      "Can explain when to reset page and whether an update should push or replace history"
     ],
     "nextTopics": [
       "server-data-fetching"
     ],
     "metadata": {
-      "nextVersion": "Next.js 15.5.20",
-      "lastUpdated": "2026-07-15",
+      "nextVersion": "15.5.20",
+      "lastUpdated": "2026-07-21",
       "sources": [
-        "https://nextjs.org/docs/15/app/getting-started/linking-and-navigating"
+        "https://nextjs.org/docs/15/app/getting-started/linking-and-navigating",
+        "https://nextjs.org/docs/15/app/api-reference/file-conventions/page#searchparams-optional",
+        "https://nextjs.org/docs/15/app/api-reference/functions/use-search-params",
+        "https://nextjs.org/docs/15/app/api-reference/functions/use-router",
+        "https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams"
       ]
     },
     "diagram": {
@@ -123,27 +127,28 @@ export const topic: TopicModule = {
       {
         "id": "expansion-url-state-retrieval-1",
         "title": "Choose the owner",
-        "concept": "A shareable filter must survive refresh and browser history, so the URL owns it instead of a hidden second store.",
+        "concept": "URL ownership follows reproducibility: link, refresh, and history should restore the same meaningful view.",
         "prediction": {
-          "prompt": "Where should a shareable product filter live?",
+          "prompt": "A category changes while the URL still says `page=8`, but the new category has two pages. What should the update contract do?",
           "options": [
-            "URL search params",
-            "Only component state"
+            "Reset page to 1 while updating the category",
+            "Keep an impossible page and show a blank view"
           ],
-          "correctAnswer": "URL search params",
-          "feedbackCorrect": "The URL makes the view reproducible and shareable.",
-          "feedbackWrong": "Local state disappears on refresh and is invisible to links."
+          "correctAnswer": "Reset page to 1 while updating the category",
+          "feedbackCorrect": "The dependent reset keeps the public URL in a valid, predictable state.",
+          "feedbackWrong": "Changing one parameter can invalidate another; define that relationship in the update contract."
         },
-        "synthesis": "Treat URL keys, defaults, and dependent resets as a public product contract."
+        "synthesis": "Stable keys, safe defaults, and dependent resets are part of the URL API."
       }
     ],
     "miniProject": {
       "title": "Design a shareable catalog view",
-      "scenario": "Specify query, sort, and page search parameters with invalid-value defaults and reset behavior.",
+      "scenario": "Design a shareable product catalog with query, category, sort, and page search parameters.",
       "acceptance": [
-        "A copied URL restores the view",
-        "Back/forward behavior is predictable",
-        "Changing filters handles dependent pagination"
+        "A copied URL and reload reproduce the same valid view",
+        "Missing, repeated, malformed, and out-of-range values have documented behavior",
+        "Filter changes reset dependent pagination deliberately",
+        "Typing updates are debounced and use a stated push or replace history policy"
       ],
       "rubric": [
         {
@@ -167,40 +172,40 @@ export const topic: TopicModule = {
       "title": "Design Shareable Filter State",
       "level": 5,
       "topicFamily": "nextjs-data",
-      "scenario": "A catalog filter works until refresh, back-button navigation, or a teammate needs to share the exact view with a link.",
+      "scenario": "A catalog filter works in local state but disappears on refresh, cannot be shared, and fights browser history. Redesign it with the URL as the one owner.",
       "constraints": [
-        "Keep the filter in the URL",
-        "Define defaults for missing and invalid values",
-        "Do not duplicate the filter in a second global store"
+        "Define stable keys for query, category, sort, and page",
+        "Parse missing and invalid values at the route boundary",
+        "Do not mirror the same writable values into a global store"
       ],
       "acceptanceCriteria": [
-        "A copied URL restores the same filter",
-        "Back and forward navigation restore prior filters",
-        "Invalid values fall back to a documented default",
-        "Changing the filter resets pagination deliberately"
+        "A copied URL restores the same valid catalog view",
+        "Back and Forward restore prior filter states",
+        "Typing and navigation use a documented debounce and push/replace policy",
+        "Changing query, category, or sort resets page when the old page may be invalid"
       ],
       "hints": [
         {
           "stage": 1,
-          "text": "Name the URL keys before writing components."
+          "text": "Write the URL examples and default table before writing components."
         },
         {
           "stage": 2,
-          "text": "Parse at the route boundary and choose a default for invalid values."
+          "text": "Read current params, create a new `URLSearchParams`, change the intended keys, and navigate to the result."
         },
         {
           "stage": 3,
-          "text": "Treat pagination reset as part of the filter contract."
+          "text": "Use replace for rapid draft-like search updates when each keystroke should not create a history stop; document the product choice."
         }
       ],
-      "expectedReasoning": "Shareable state belongs in the URL because navigation, refresh, and collaboration are part of its behavior. A single owner prevents synchronization drift.",
+      "expectedReasoning": "The URL already provides the required lifetime and navigation semantics. Parsing creates safe application input. One navigation writer avoids drift. Reset and history policy turn several parameters into a coherent public contract.",
       "commonWrongPaths": [
-        "Keeping the filter only in useState",
-        "Writing every transient UI value to the URL",
-        "Changing filters while leaving an impossible page number"
+        "Keeping independent URL and global-store copies synchronized with Effects",
+        "Writing passwords, transient popovers, or external resource objects into search params",
+        "Preserving an invalid page after the result set changes"
       ],
-      "answerExplanation": "Parse search params into typed route inputs, update them through navigation, and reset dependent pagination when the filter changes.",
-      "followUpVariation": "Add a sort key and document which combinations are stable links.",
+      "answerExplanation": "Use the URL as the source of truth, parse it once, update it through navigation, and document dependencies between keys. This makes sharing, refresh, and history reliable without a second store.",
+      "followUpVariation": "Add a saved server preference for sort order. Explain precedence when the URL explicitly supplies a different sort.",
       "checkType": "free-text",
       "prompt": "Explain why URL search params are the owner for this filter and how you handle invalid input.",
       "freeTextKeywords": [
@@ -209,7 +214,14 @@ export const topic: TopicModule = {
         "default",
         "pagination"
       ],
-      "sourceLink": "https://nextjs.org/docs/15/app/getting-started/linking-and-navigating"
+      "sourceLink": "https://nextjs.org/docs/15/app/getting-started/linking-and-navigating",
+      "sourceLinks": [
+        "https://nextjs.org/docs/15/app/getting-started/linking-and-navigating",
+        "https://nextjs.org/docs/15/app/api-reference/functions/use-search-params",
+        "https://nextjs.org/docs/15/app/api-reference/functions/use-router",
+        "https://nextjs.org/docs/15/app/getting-started/linking-and-navigating#using-the-native-history-api",
+        "https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams"
+      ]
     }
   ],
   "qa": [
@@ -218,8 +230,8 @@ export const topic: TopicModule = {
       "topicId": "expansion-url-state",
       "topicFamily": "nextjs-data",
       "question": "When should a filter live in the URL?",
-      "answer": "When users should be able to refresh, bookmark, navigate back to, or share that exact filtered view.",
-      "followUp": "Which values should remain local instead?",
+      "answer": "Use the URL when users should be able to refresh, bookmark, share, or navigate back to the same meaningful view. Keep ephemeral, sensitive, and non-serializable interaction values local unless a separate product requirement gives them a public representation.",
+      "followUp": "Which dependent parameter must reset when this filter changes?",
       "category": "nextjs",
       "level": "intermediate",
       "tags": [
@@ -227,49 +239,62 @@ export const topic: TopicModule = {
         "url-state",
         "search-params"
       ],
-      "sourceLink": "https://nextjs.org/docs/15/app/getting-started/linking-and-navigating"
+      "sourceLink": "https://nextjs.org/docs/15/app/getting-started/linking-and-navigating",
+      "sourceLinks": [
+        "https://nextjs.org/docs/15/app/getting-started/linking-and-navigating",
+        "https://nextjs.org/docs/15/app/api-reference/functions/use-search-params",
+        "https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams"
+      ]
     },
     {
       "id": "loop-qa-expansion-url-state-1",
       "topicId": "expansion-url-state",
       "topicFamily": "nextjs-data",
-      "question": "What problem does Shareable UI State with URL Search Params help you solve?",
-      "answer": "Search, filters, and pagination become easier to share, reload, and debug when their state has a URL representation.",
-      "followUp": "Name one decision in your current project where this model would change the implementation.",
+      "question": "How do you keep URL state from becoming a second source of truth?",
+      "answer": "Treat the current search parameters as the owner, parse them into values, and derive the view. Update them through navigation. Do not copy the same writable filter into component or global state and then try to synchronize both directions.",
+      "followUp": "Which Effect or setter can disappear when the URL becomes the owner?",
       "category": "nextjs",
       "level": "intermediate",
       "tags": [
         "topic-loop",
         "expansion-url-state"
       ],
-      "sourceLink": "https://nextjs.org/docs/15/app/getting-started/linking-and-navigating"
+      "sourceLink": "https://nextjs.org/docs/15/app/getting-started/linking-and-navigating",
+      "sourceLinks": [
+        "https://nextjs.org/docs/15/app/getting-started/linking-and-navigating",
+        "https://nextjs.org/docs/15/app/api-reference/functions/use-search-params"
+      ]
     },
     {
       "id": "loop-qa-expansion-url-state-2",
       "topicId": "expansion-url-state",
       "topicFamily": "nextjs-data",
-      "question": "How would you explain the core idea of Shareable UI State with URL Search Params to a teammate?",
-      "answer": "Which UI values should survive a refresh or be shareable as a link? A strong explanation should connect the model to: Separate shareable state from ephemeral UI state; Read and update search params at the route boundary.",
-      "followUp": "Which observable behavior would prove your explanation is correct?",
+      "question": "What belongs in a URL-state parsing contract?",
+      "answer": "Define accepted keys and values, missing defaults, repeated-value behavior, invalid-value recovery, sensitive-value exclusions, dependent resets, and whether updates push or replace browser history.",
+      "followUp": "Which malformed URL will you test first, and what safe view should it produce?",
       "category": "nextjs",
       "level": "intermediate",
       "tags": [
         "topic-loop",
         "expansion-url-state"
       ],
-      "sourceLink": "https://nextjs.org/docs/15/app/getting-started/linking-and-navigating"
+      "sourceLink": "https://nextjs.org/docs/15/app/getting-started/linking-and-navigating",
+      "sourceLinks": [
+        "https://nextjs.org/docs/15/app/getting-started/linking-and-navigating",
+        "https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams"
+      ]
     }
   ],
   "practices": [
     {
       "id": "bp-7",
       "title": "Use URL Search Params for Shareable Filters",
-      "summary": "Store filter, sort, search, and pagination state in the URL when the view should be shareable or restorable.",
-      "rationale": "URL state is shareable (bookmark a filtered view), survives refresh, works with browser back/forward, and is SEO-friendly. React state is ephemeral and invisible to the browser.",
-      "tradeOffs": "URL manipulation is more verbose than setState. Reading/writing searchParams requires `useSearchParams` (Client) or the `searchParams` prop (Server). For very frequent updates (e.g., typing in a search box), debounce before updating the URL.",
-      "appliesWhen": "State should be shareable via URL, should persist across navigation, or should be reflected in browser history.",
-      "doesNotApplyWhen": "State is ephemeral and meaningless outside the current session (e.g., dropdown open state, animation progress, modal visibility). Keep that state local.",
-      "example": "`/products?category=electronics&sort=price_asc&page=2` — all filter state is in the URL, shareable and bookmarkable.",
+      "summary": "Store filters, sorting, search, and pagination in search parameters when links, reloads, or browser history must reproduce the view.",
+      "rationale": "The URL supplies the required public lifetime and navigation behavior. One route-owned value avoids synchronization between hidden client copies.",
+      "tradeOffs": "URL keys become a public contract and need parsing, defaults, dependent resets, and history policy. Debounce frequent text updates and decide whether they should replace or push history.",
+      "appliesWhen": "The state describes a view users should share, revisit, refresh, or navigate through.",
+      "doesNotApplyWhen": "The value is transient, sensitive, or meaningless outside the current interaction, such as hover, a password draft, or an open menu.",
+      "example": "`/products?category=electronics&sort=price&page=2` reproduces the catalog; changing category also resets page to 1.",
       "sourceLink": "https://nextjs.org/docs/15/app/getting-started/linking-and-navigating",
       "tags": [
         "routing",
@@ -277,25 +302,33 @@ export const topic: TopicModule = {
         "architecture"
       ],
       "topicId": "expansion-url-state",
-      "topicFamily": "nextjs-data"
+      "topicFamily": "nextjs-data",
+      "sourceLinks": [
+        "https://nextjs.org/docs/15/app/getting-started/linking-and-navigating",
+        "https://nextjs.org/docs/15/app/api-reference/functions/use-search-params",
+        "https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams"
+      ]
     },
     {
       "id": "expansion-keep-shareable-state-in-url",
       "topicId": "expansion-url-state",
       "topicFamily": "nextjs-data",
       "title": "Keep Shareable Filters in the URL",
-      "summary": "Represent filters, sorting, and pagination in search params when users need links, refreshes, or browser history.",
-      "rationale": "A single URL owner makes the view reproducible and avoids synchronization drift between route state and a client store.",
-      "tradeOffs": "URL keys become a public contract and need stable defaults, parsing, and reset rules.",
-      "appliesWhen": "The state describes a view users may revisit or share.",
-      "doesNotApplyWhen": "The value is transient interaction state such as an open menu or draft text.",
-      "example": "Use `?query=react&page=2` for a catalog view; keep the filter popover’s open state local.",
+      "summary": "Use search parameters as the single owner of a shareable view, and derive route input from them.",
+      "rationale": "A single public owner makes links, reloads, and browser navigation reproduce the same view without an Effect that synchronizes another store.",
+      "tradeOffs": "The team must maintain stable key names and safe parsing. Rapid updates may need debounce and replace-history behavior.",
+      "appliesWhen": "A user should be able to send or revisit a link that describes the current view.",
+      "doesNotApplyWhen": "The value is short-lived interaction state with no sharing or restoration requirement.",
+      "example": "Use `?query=react&page=2` for the view and keep the filter panel’s open state local.",
       "sourceLink": "https://nextjs.org/docs/15/app/getting-started/linking-and-navigating",
       "nextVersion": "Next.js 15.5.20",
       "tags": [
         "expansion",
         "url-state",
         "navigation"
+      ],
+      "sourceLinks": [
+        "https://nextjs.org/docs/15/app/getting-started/linking-and-navigating"
       ]
     }
   ],

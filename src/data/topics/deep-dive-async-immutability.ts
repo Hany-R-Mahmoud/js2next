@@ -9,39 +9,40 @@ export const topic: TopicModule = {
     "level": "beginner",
     "prerequisites": [],
     "learningObjectives": [
-      "Trace promise settlement and microtask order",
-      "Update nested data without mutation",
-      "Choose clear module boundaries"
+      "Trace synchronous work, Promise reactions, and later tasks in execution order",
+      "Handle both network failures and unsuccessful HTTP responses from fetch",
+      "Update nested data without mutating objects or arrays already in use",
+      "Use module exports to create a clear boundary instead of a shared mutable hiding place"
     ],
-    "whyMatters": "React state updates and data fetching depend on promises, immutable references, and module boundaries.",
-    "estimatedMinutes": 25,
+    "whyMatters": "Async work completes later, objects can share references, and modules connect distant files. A clear model for scheduling, identity, and boundaries helps you predict results instead of relying on timing or accidental mutation.",
+    "estimatedMinutes": 40,
     "sections": [
       {
         "id": "deep-dive-async-immutability-model",
         "type": "concept",
         "title": "Plain explanation",
-        "content": "JavaScript schedules asynchronous work through the event loop. Immutability means creating new values instead of changing existing references, which lets React detect state changes predictably."
+        "content": "JavaScript runs the current synchronous call stack first. An `async` function returns a Promise immediately, and code after an `await` continues later as a Promise reaction. Promise reactions use the microtask queue, which is drained after the current stack is empty and before the browser takes the next task such as a timer callback.\n\nImmutability solves a different problem: identity. If existing code still refers to an object or array, do not change that value in place. Create a new value for every changed path so a reader can compare old and new snapshots. Modules add a third boundary: export the small public contract and keep implementation details private."
       },
       {
         "id": "deep-dive-async-immutability-technical",
         "type": "concept",
         "title": "Technical model",
-        "content": "A Promise moves from pending to fulfilled or rejected. async functions return Promises. Shallow copies protect the root object; every nested object that changes needs its own new reference."
+        "content": "`async` always returns a Promise. `await value` pauses only that async function, not the whole JavaScript thread; its continuation is queued when the awaited Promise settles. `fetch` rejects for some request or network failures, but an HTTP response such as 404 still resolves to a `Response`, so check `response.ok` or `status` before reading it as success.\n\nFor an immutable nested update, copy the outer object and each object or array on the path to the changed field. Unchanged branches may safely keep their old references. An ES module executes in its own scope and exposes only named or default exports; avoid exporting mutable state that unrelated callers can change."
       },
       {
         "id": "deep-dive-async-immutability-causal",
         "type": "concept",
         "title": "Why it behaves this way",
-        "content": "Mutating a nested object while preserving its parent reference can make an update invisible to reference-based comparison and can leave async results out of order."
+        "content": "A timer does not interrupt the current stack, and a resolved Promise callback does not run in the middle of the current function. That is why synchronous output comes first and Promise reactions usually run before a ready timer. A delayed response can also arrive after a newer request, so compare request identity or cancel obsolete work before committing results.\n\nMutation is hard to trace because an old reference can appear to change later. Copying the changed path preserves earlier snapshots. A narrow module API then keeps callers from depending on internal data shape or mutable implementation details."
       },
       {
         "id": "deep-dive-async-immutability-example",
         "type": "code-example",
         "title": "Immutable nested update",
-        "content": "Apply the model in a small, reviewable example.",
-        "code": "const next = { ...state, user: { ...state.user, age: 31 } };",
+        "content": "This example checks the HTTP result and returns a new nested state path. The original `state`, `profile`, and `contact` objects remain unchanged.",
+        "code": "type ProfileState = {\n  profile: { contact: { email: string }; status: 'idle' | 'saved' }\n};\n\nexport async function saveEmail(\n  state: ProfileState,\n  email: string\n): Promise<ProfileState> {\n  const response = await fetch('/api/profile', {\n    method: 'POST',\n    headers: { 'Content-Type': 'application/json' },\n    body: JSON.stringify({ email }),\n  });\n\n  if (!response.ok) {\n    throw new Error(`Save failed: ${response.status}`);\n  }\n\n  return {\n    ...state,\n    profile: {\n      ...state.profile,\n      contact: { ...state.profile.contact, email },\n      status: 'saved',\n    },\n  };\n}",
         "codeLanguage": "typescript",
-        "codeFilePath": "Illustrative snippet"
+        "codeFilePath": "profile-state.ts"
       },
       {
         "id": "deep-dive-async-immutability-check",
@@ -51,15 +52,15 @@ export const topic: TopicModule = {
         "questions": [
           {
             "id": "deep-dive-async-immutability-question",
-            "question": "What does fetch(url) resolve to before json() is called?",
+            "question": "What order is logged by `console.log(\"A\"); Promise.resolve().then(() => console.log(\"B\")); setTimeout(() => console.log(\"C\"), 0); console.log(\"D\");`?",
             "options": [
-              "Parsed JSON",
-              "A Response object",
-              "undefined",
-              "A rejected Promise"
+              "A, D, B, C",
+              "A, B, D, C",
+              "A, D, C, B",
+              "B, A, D, C"
             ],
-            "correctAnswer": "A Response object",
-            "expectedReasoning": "fetch resolves to a Response; the body must be read separately with json(), text(), or another body method."
+            "correctAnswer": "A, D, B, C",
+            "expectedReasoning": "The current stack logs A and D first. The resolved Promise reaction is a microtask, so B runs after the stack and before the next timer task. C runs in that later task. The other choices either interrupt synchronous work or run the timer before an already queued microtask."
           }
         ]
       },
@@ -67,54 +68,53 @@ export const topic: TopicModule = {
         "id": "deep-dive-async-immutability-synthesis",
         "type": "synthesis",
         "title": "Synthesis",
-        "content": "A Promise moves from pending to fulfilled or rejected. async functions return Promises. Shallow copies protect the root object; every nested object that changes needs its own new reference.\n\nDecision clue: Mutating a nested object while preserving its parent reference can make an update invisible to reference-based comparison and can leave async results out of order."
+        "content": "Trace scheduling and data separately. Finish the current stack, then run queued Promise reactions before the next task. Treat an HTTP response as success only after checking it. When committing data, create new values along the changed path. Put the request and transformation behind a small module contract so timing and mutation rules have one clear owner."
       }
     ],
     "chunks": [
       {
         "id": "deep-dive-async-immutability-prediction",
         "title": "Predict the boundary",
-        "concept": "A Promise moves from pending to fulfilled or rejected. async functions return Promises. Shallow copies protect the root object; every nested object that changes needs its own new reference.",
+        "concept": "The current stack finishes before Promise microtasks, and Promise microtasks finish before the next task.",
         "prediction": {
-          "prompt": "What does fetch(url) resolve to before json() is called?",
+          "prompt": "A click handler queues a resolved Promise callback and a zero-delay timer, then logs `done`. What runs first?",
           "options": [
-            "Parsed JSON",
-            "A Response object",
-            "undefined",
-            "A rejected Promise"
+            "The `done` log",
+            "The Promise callback",
+            "The timer callback"
           ],
-          "correctAnswer": "A Response object",
-          "feedbackCorrect": "Correct. Your prediction matches the model. Now explain why it stays true under change.",
-          "feedbackWrong": "Revisit the model: fetch resolves to a Response; the body must be read separately with json(), text(), or another body method."
+          "correctAnswer": "The `done` log",
+          "feedbackCorrect": "The current handler must finish before queued callbacks run. The Promise microtask then runs before the timer task.",
+          "feedbackWrong": "Queued work does not interrupt the current stack. Finish the handler first, then drain microtasks, then take the timer task."
         },
-        "synthesis": "fetch resolves to a Response; the body must be read separately with json(), text(), or another body method."
+        "synthesis": "Draw three columns—current stack, microtasks, and later tasks—when timing feels unclear."
       },
       {
         "id": "deep-dive-async-immutability-failure-mode",
         "title": "Name the failure mode",
-        "concept": "Mutating a nested object while preserving its parent reference can make an update invisible to reference-based comparison and can leave async results out of order.",
+        "concept": "A robust async update separates transport, HTTP, parsing, and state-identity failures.",
         "prediction": {
-          "prompt": "Which design move best prevents the failure described above?",
+          "prompt": "`fetch` resolves with status 404. Which step prevents the UI from treating it as saved?",
           "options": [
-            "Make the boundary explicit",
-            "Add another duplicated state value",
-            "Hide the failure from the user"
+            "Check `response.ok` and enter the failure path",
+            "Assume every resolved Promise is an HTTP success",
+            "Mutate the existing state before inspecting the response"
           ],
-          "correctAnswer": "Make the boundary explicit",
-          "feedbackCorrect": "Correct. Explicit boundaries make the cause, ownership, and recovery path inspectable.",
-          "feedbackWrong": "Prefer the smallest explicit boundary that owns the behavior and its recovery path."
+          "correctAnswer": "Check `response.ok` and enter the failure path",
+          "feedbackCorrect": "A resolved `fetch` Promise can still carry an unsuccessful HTTP status.",
+          "feedbackWrong": "Separate Promise settlement from HTTP success, and do not commit state until the result is accepted."
         },
-        "synthesis": "Use this clue in review: Mutating a nested object while preserving its parent reference can make an update invisible to reference-based comparison and can leave async results out of order."
+        "synthesis": "Check the boundary result first, then create the next immutable snapshot."
       }
     ],
     "miniProject": {
       "title": "Practice lab: Async JavaScript, Immutability & Modules",
-      "scenario": "Apply the lesson to a small feature. Explain the boundary before writing code, then name how you would verify it.",
+      "scenario": "Build a small profile save module and UI model that can show pending, saved, validation failure, HTTP failure, and a newer request replacing an older one.",
       "acceptance": [
-        "Trace promise settlement and microtask order",
-        "Update nested data without mutation",
-        "Choose clear module boundaries",
-        "Name one failure state and one observable test."
+        "The request helper checks `response.ok` and returns a documented result or error",
+        "The caller does not let an older response replace a newer submitted email",
+        "Every changed nested path receives a new object while unchanged branches may be reused",
+        "The module exports a small request function instead of shared mutable state"
       ],
       "rubric": [
         {
@@ -164,22 +164,28 @@ export const topic: TopicModule = {
         }
       ]
     },
-    "retrievalPrompt": "Explain the core model of Async JavaScript, Immutability & Modules and name one failure mode it prevents.",
-    "reflectionPrompt": "Find one place in a real frontend project where this async javascript, immutability & modules decision could be made more explicit.",
+    "retrievalPrompt": "Trace one async request from the current call stack to its Promise reaction, then show an immutable state update and name what the module exposes to its caller.",
+    "reflectionPrompt": "Choose one async update in your project. Mark the pending, success, and failure paths, every object reference that changes, and the module responsible for the request.",
     "masteryCriteria": [
-      "Trace promise settlement and microtask order",
-      "Update nested data without mutation",
-      "Choose clear module boundaries"
+      "Can predict the order of synchronous logs, Promise reactions, and timer callbacks",
+      "Checks `response.ok` before treating an HTTP response as success",
+      "Creates new objects or arrays along every changed path",
+      "Keeps one clear owner for mutable data",
+      "Can explain a module in terms of its public inputs, outputs, and hidden implementation"
     ],
     "nextTopics": [
       "deep-dive-react-mental-model"
     ],
     "metadata": {
-      "lastUpdated": "2026-07-14",
+      "reactVersion": "19.2.7",
+      "lastUpdated": "2026-07-21",
       "sources": [
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function",
         "https://developer.mozilla.org/en-US/docs/Web/API/HTML_DOM_API/Microtask_guide",
-        "https://developer.mozilla.org/en-US/docs/Web/API/Window/fetch"
+        "https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch#checking_response_status",
+        "https://react.dev/learn/updating-objects-in-state",
+        "https://react.dev/learn/updating-arrays-in-state",
+        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules"
       ]
     }
   },
@@ -189,34 +195,40 @@ export const topic: TopicModule = {
       "title": "Deep Challenge: Trace the microtask order",
       "level": 1,
       "topicFamily": "foundations",
-      "scenario": "You are debugging log order in a React data loader's unit test.",
+      "scenario": "Trace a save handler that logs synchronously, awaits a request Promise, queues a timer, and then returns a new profile object. Explain both the callback order and which object references change.",
       "constraints": [
-        "No running code in your head beyond the event loop model"
+        "Label each step as current stack, Promise microtask, or later task",
+        "Check an HTTP response before calling the save successful",
+        "Do not mutate the original profile or nested contact object"
       ],
       "acceptanceCriteria": [
-        "Correct order selected",
-        "Reason mentions microtasks"
+        "The trace finishes synchronous work before the awaited continuation",
+        "A ready Promise reaction is placed before a ready timer task",
+        "The error path covers both request rejection and an unsuccessful HTTP status",
+        "The returned profile and contact are new objects and the input remains unchanged"
       ],
       "hints": [
         {
           "stage": 1,
-          "text": "Sync code runs to completion first."
+          "text": "Write the current call stack first; queued callbacks cannot interrupt it."
         },
         {
           "stage": 2,
-          "text": "Promise then callbacks are microtasks."
+          "text": "Code after `await` continues as a Promise reaction when the awaited value settles."
         },
         {
           "stage": 3,
-          "text": "Order: A, C, then B."
+          "text": "Copy the outer profile and the nested contact object before replacing the email."
         }
       ],
-      "expectedReasoning": "Sync logs A and C; the microtask logs B.",
+      "expectedReasoning": "Synchronous statements finish first. The awaited continuation runs through the microtask queue, and a timer runs as a later task. The request result needs an HTTP status check. The update creates new identities along the changed path so earlier snapshots remain reliable.",
       "commonWrongPaths": [
-        "Assuming promises run immediately before the next sync line"
+        "Assuming `await` blocks all JavaScript until the request finishes",
+        "Treating every resolved `fetch` call as a successful HTTP response",
+        "Copying only the outer object and mutating the old nested contact object"
       ],
-      "answerExplanation": "The call stack runs A and C. After it clears, the microtask queue runs B.",
-      "followUpVariation": "Add setTimeout(() => console.log('D'), 0)—where does D go?",
+      "answerExplanation": "Trace the scheduler before tracing the data. Finish the stack, resume Promise work through microtasks, then handle later tasks. Accept the response only after its status is checked, and return new objects for every changed path.",
+      "followUpVariation": "Start two saves and resolve the older one last. How will the caller prevent the older result from replacing the newer choice?",
       "checkType": "choice",
       "prompt": "What is the console order?\n\nconsole.log('A');\nPromise.resolve().then(() => console.log('B'));\nconsole.log('C');",
       "options": [
@@ -226,15 +238,21 @@ export const topic: TopicModule = {
         "C B A"
       ],
       "correctIndex": 1,
-      "sourceLink": "https://developer.mozilla.org/en-US/docs/Web/API/HTML_DOM_API/Microtask_guide"
+      "sourceLink": "https://developer.mozilla.org/en-US/docs/Web/API/HTML_DOM_API/Microtask_guide",
+      "sourceLinks": [
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTML_DOM_API/Microtask_guide",
+        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function",
+        "https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch#checking_response_status",
+        "https://react.dev/learn/updating-objects-in-state"
+      ]
     }
   ],
   "qa": [
     {
       "id": "learn-react-deep-dive-async-immutability-question",
       "question": "What does fetch(url) resolve to before json() is called?",
-      "answer": "A Response object",
-      "followUp": "fetch resolves to a Response; the body must be read separately with json(), text(), or another body method.",
+      "answer": "The order is A, D, B, C. A and D run on the current stack. The resolved Promise queues B as a microtask, which runs after the stack is empty. The zero-delay timer queues C as a later task, so it follows the already queued microtask.",
+      "followUp": "Where would code after an `await Promise.resolve()` appear in the same trace?",
       "category": "debugging",
       "level": "beginner",
       "topicId": "deep-dive-async-immutability",
@@ -243,37 +261,50 @@ export const topic: TopicModule = {
         "learn-react-bridge",
         "foundations"
       ],
-      "sourceLink": "https://developer.mozilla.org/en-US/docs/Web/API/Window/fetch"
+      "sourceLink": "https://developer.mozilla.org/en-US/docs/Web/API/HTML_DOM_API/Microtask_guide",
+      "sourceLinks": [
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTML_DOM_API/Microtask_guide",
+        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function",
+        "https://developer.mozilla.org/en-US/docs/Web/API/Window/fetch"
+      ]
     },
     {
       "id": "loop-qa-deep-dive-async-immutability-1",
       "topicId": "deep-dive-async-immutability",
       "topicFamily": "foundations",
-      "question": "What problem does Deep Dive: Async JavaScript, Immutability & Modules help you solve?",
-      "answer": "React state updates and data fetching depend on promises, immutable references, and module boundaries.",
-      "followUp": "Name one decision in your current project where this model would change the implementation.",
+      "question": "Why does `await` not block the whole JavaScript environment?",
+      "answer": "Calling an async function returns a Promise to its caller. When that function reaches `await`, only that function pauses. Other work can run. After the awaited Promise settles, the remaining function body is queued as Promise work and continues when the current stack is empty.",
+      "followUp": "Which values from before the `await` could be stale when the function resumes?",
       "category": "react",
       "level": "beginner",
       "tags": [
         "topic-loop",
         "deep-dive-async-immutability"
       ],
-      "sourceLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function"
+      "sourceLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function",
+      "sourceLinks": [
+        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function",
+        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"
+      ]
     },
     {
       "id": "loop-qa-deep-dive-async-immutability-2",
       "topicId": "deep-dive-async-immutability",
       "topicFamily": "foundations",
-      "question": "How would you explain the core idea of Deep Dive: Async JavaScript, Immutability & Modules to a teammate?",
-      "answer": "Explain the core model of Async JavaScript, Immutability & Modules and name one failure mode it prevents. A strong explanation should connect the model to: Trace promise settlement and microtask order; Update nested data without mutation.",
-      "followUp": "Which observable behavior would prove your explanation is correct?",
+      "question": "How do immutability and module boundaries make async code easier to review?",
+      "answer": "Immutable updates preserve earlier snapshots and make changed identity visible. A focused module keeps request, status checking, parsing, and transformation behind a small public function. Together they make it clearer when data may change, who is allowed to change it, and which result a caller receives.",
+      "followUp": "Which mutable value in your current async flow could become a returned value with one owner?",
       "category": "react",
       "level": "beginner",
       "tags": [
         "topic-loop",
         "deep-dive-async-immutability"
       ],
-      "sourceLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function"
+      "sourceLink": "https://react.dev/learn/updating-objects-in-state",
+      "sourceLinks": [
+        "https://react.dev/learn/updating-objects-in-state",
+        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules"
+      ]
     }
   ],
   "practices": [],

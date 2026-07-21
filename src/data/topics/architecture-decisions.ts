@@ -13,38 +13,38 @@ export const topic: TopicModule = {
       "server-data-fetching"
     ],
     "learningObjectives": [
-      "Evaluate feature organization strategies (colocation vs. separation)",
-      "Determine state ownership and server/client responsibility boundaries",
-      "Make informed dependency choices with trade-off analysis",
-      "Plan migration strategies for evolving architectures",
-      "Communicate architectural decisions with rationale"
+      "Organize code around clear ownership and change boundaries",
+      "Choose the smallest state owner that serves every consumer",
+      "Keep validation, authentication, and authorization at trustworthy boundaries",
+      "Evaluate a dependency from requirements, cost, evidence, and an exit plan",
+      "Record an architecture decision so a teammate can understand and revisit it"
     ],
-    "whyMatters": "Architecture is not about picking the \"best\" pattern — it is about making intentional trade-offs you can explain and revisit. Every decision (file structure, state placement, data fetching strategy, dependency choice) has a cost now and a cost later. Understanding the trade-offs lets you make reversible decisions quickly and irreversible decisions carefully.",
-    "estimatedMinutes": 25,
+    "whyMatters": "Architecture is the set of boundaries that makes change understandable. A useful decision names the problem, the owner, the trade-offs, and the evidence that will show whether the choice is working. That is more durable than choosing a folder pattern or library because it is popular.",
+    "estimatedMinutes": 42,
     "sections": [
       {
         "id": "feature-organization",
         "type": "concept",
         "title": "Feature organization",
-        "content": "Two dominant approaches: (1) file-type grouping (components/, hooks/, utils/) and (2) feature colocation (features/auth/, features/dashboard/). File-type grouping works for small projects but scales poorly — related code drifts apart. Feature colocation keeps everything for a feature together but requires discipline to avoid feature coupling. Most production apps use a hybrid: feature folders for domain logic, shared folders for truly cross-cutting utilities."
+        "content": "There is no single folder layout that fits every application. Start with ownership: which code changes together because it serves one user capability? A small project can keep route, component, and helper files close together. As a feature grows, a feature folder can group its UI, tests, types, and server access while truly shared code remains outside it.\n\nIn the Next.js App Router, files can safely live inside a route segment without becoming routes; a segment becomes public through route files such as `page` or `route`. Use private folders or route groups when they make intent clearer. Reorganize when navigation, ownership, or repeated cross-feature imports provide evidence that the current boundary is costly."
       },
       {
         "id": "state-ownership",
         "type": "concept",
         "title": "State ownership and boundaries",
-        "content": "For each piece of state, ask: which component would break first if it were wrong? That component should own it. Server state (data from APIs) should live as close to the fetch as possible — prefer Server Components that pass data down. Client state (UI toggles, form inputs) should live in the nearest common ancestor of the components that use it. Global client state is the exception, not the default."
+        "content": "Place each state value at the lowest component that must coordinate every consumer of that value. Keep temporary input or open/closed state local when only one component needs it. Lift state to the closest common parent when siblings must agree. Use context when a stable value must reach a distant subtree and passing it through many unrelated components obscures the API. Use an external store only when its subscription or cross-tree requirements justify another system.\n\nDo not copy a value into several owners. Keep one source of truth, pass it down, and derive values such as filtered lists during render. For server data, prefer the framework data boundary and cache model before copying remote results into global client state."
       },
       {
         "id": "network-boundary",
         "type": "concept",
         "title": "The network boundary",
-        "content": "In Next.js, `'use client'` marks a module-graph boundary: imports reachable from that module become part of the Client Component graph. Client Components can still render on the server for the initial response, then hydrate in the browser. The boundary controls which APIs and props are allowed, not a simple line where all code below runs only in the browser."
+        "content": "The browser is an untrusted caller. Client validation can give fast, kind feedback, but the server must validate every value that affects stored data or protected work. Authenticate the current user, authorize the exact operation on the exact resource, and return a safe result. Keep secrets and private data access in server-only modules.\n\nDesign failure as part of the contract: define validation errors, unavailable dependencies, empty results, and retry behavior. The UI can then show a useful recovery path instead of treating every failure as an unexpected exception."
       },
       {
         "id": "dependency-decisions",
         "type": "concept",
         "title": "Dependency choices",
-        "content": "Every dependency is a bet. Frontend: React + Next.js are the foundation. State management: start with React's built-in tools (useState, useReducer, Context), then add a library such as Zustand or TanStack Query when a concrete server-state, persistence, synchronization, or sharing problem justifies it. Forms: React Hook Form for complex forms, native form elements for simple ones. Testing: Vitest + React Testing Library for unit/integration, Playwright for E2E. The question is never 'what should I use?' but 'what problem does this dependency solve that I actually have?'"
+        "content": "Begin with the requirement, not a library name. Write the behavior you need, the environments it must support, and the risks it must reduce. Compare a small local implementation with candidate dependencies using evidence: API fit, accessibility, security history, maintenance, bundle or runtime cost, testability, and migration cost.\n\nA dependency can be the simplest responsible choice when it solves difficult, well-understood work. It can also add more concepts than the feature needs. Record why it was chosen, how it is isolated behind your code, and what signal would cause a review. Check the current official documentation before adopting or upgrading it."
       },
       {
         "id": "architecture-question",
@@ -54,18 +54,19 @@ export const topic: TopicModule = {
         "questions": [
           {
             "id": "q10",
-            "question": "A junior developer puts all state in a global Zustand store \"just in case.\" What is the strongest argument against this?",
+            "question": "A product filter is used only inside one catalog subtree today. A team proposes a global store because another project used one. What is the best first decision?",
             "options": [
-              "Zustand is slower than React Context",
-              "Global state makes components harder to test and reuse",
-              "Global state cannot be used in Server Components",
-              "It violates the single responsibility principle"
+              "Keep the state at the closest catalog owner and record what future requirement would justify moving it",
+              "Move it to a global store now so the architecture looks consistent",
+              "Copy the filter into local state and URL state without choosing one owner",
+              "Put the filter in a module variable so every component can mutate it"
             ],
-            "correctAnswer": "Global state makes components harder to test and reuse",
-            "expectedReasoning": "Components that depend on global state are coupled to the store's shape and existence. You cannot test them in isolation without setting up the store. You cannot reuse them in a different context because they assume the store is present. The strongest argument against unnecessary global state is not performance — it's the erosion of component independence and testability.",
+            "correctAnswer": "Keep the state at the closest catalog owner and record what future requirement would justify moving it",
+            "expectedReasoning": "The current consumers define a clear local owner, and a review trigger keeps the choice reversible. A global store adds a new subscription boundary without a present requirement. Duplicating the value creates synchronization problems. A mutable module variable bypasses React state and has unclear lifecycle and ownership.",
             "commonMisconceptions": [
-              "Prematurely reaching for global state management",
-              "Not considering the testing and reusability cost"
+              "Treating a familiar tool as evidence that every feature needs it",
+              "Assuming more global access automatically means simpler ownership",
+              "Keeping several writable copies of the same decision value"
             ]
           }
         ]
@@ -74,22 +75,30 @@ export const topic: TopicModule = {
         "id": "architecture-synthesis",
         "type": "synthesis",
         "title": "Synthesis",
-        "content": "Architecture is a continuous practice, not a one-time decision. Start simple, let patterns emerge, then formalize them. Document decisions with rationale (ADR format): what was the context, what did we choose, why, and what were the alternatives. This creates institutional knowledge and makes future architectural changes informed, not reactive."
+        "content": "Start with the user capability and expected changes. Name one owner for UI, state, data access, and policy. Put trustworthy checks at the server boundary. Choose dependencies from explicit requirements and evidence. Write down the decision, consequences, and review signal so the architecture can evolve without losing its reasoning."
       }
     ],
-    "retrievalPrompt": "What is the most important boundary in a Next.js application? What crosses it, and what stays on each side?",
-    "reflectionPrompt": "Look at your current project structure. If you had to onboard a new developer tomorrow, what three things would confuse them most about the architecture?",
+    "retrievalPrompt": "For one feature, name its UI owner, state owner, server boundary, dependency choices, and the evidence that would make you revisit the design.",
+    "reflectionPrompt": "Find one decision in your project that is currently implicit. Write the context, options, choice, consequences, and one review trigger.",
     "masteryCriteria": [
-      "Can evaluate feature organization strategies with trade-offs",
-      "Can determine appropriate state ownership for different kinds of state",
-      "Understands the network boundary and what data crosses it",
-      "Makes dependency decisions based on actual problems, not trends",
-      "Can communicate architectural decisions with rationale"
+      "Can explain a feature boundary in terms of ownership and expected change",
+      "Can place state from the consumers that need one shared value",
+      "Can distinguish a user-friendly UI check from a trustworthy server check",
+      "Can compare a dependency with a small local solution without trend-based reasoning",
+      "Can write a short decision record with consequences and a review trigger"
     ],
     "nextTopics": [],
     "metadata": {
-      "lastUpdated": "2026-07-01",
+      "reactVersion": "19.2.7",
+      "nextVersion": "15.5.20",
+      "lastUpdated": "2026-07-21",
       "sources": [
+        "https://nextjs.org/docs/15/app/getting-started/project-structure",
+        "https://react.dev/learn/sharing-state-between-components",
+        "https://react.dev/learn/choosing-the-state-structure",
+        "https://nextjs.org/docs/15/app/guides/authentication",
+        "https://nextjs.org/docs/15/app/guides/forms",
+        "https://adr.github.io/",
         "https://nextjs.org/docs/app/building-your-application/rendering"
       ]
     },
@@ -142,27 +151,29 @@ export const topic: TopicModule = {
       {
         "id": "architecture-decisions-retrieval-1",
         "title": "Reject trend-driven ownership",
-        "concept": "A new library is justified by a distinct requirement and an explicit owner, not by application size or popularity alone.",
+        "concept": "Architecture is a revisable ownership decision supported by requirements and evidence.",
         "prediction": {
-          "prompt": "What should be named before adding a global store?",
+          "prompt": "A teammate asks why a dependency and state boundary were chosen. Which answer is most useful?",
           "options": [
-            "The shared client state it uniquely owns",
-            "The library’s popularity ranking"
+            "The requirement, considered options, trade-offs, evidence, and review trigger",
+            "The tool is popular and the folder structure looks modern",
+            "The decision should never be revisited after implementation"
           ],
-          "correctAnswer": "The shared client state it uniquely owns",
-          "feedbackCorrect": "Ownership and evidence keep the decision reversible.",
-          "feedbackWrong": "Popularity does not define a product boundary."
+          "correctAnswer": "The requirement, considered options, trade-offs, evidence, and review trigger",
+          "feedbackCorrect": "That answer makes the decision understandable, testable, and safe to revisit.",
+          "feedbackWrong": "Popularity and permanence do not explain fit. Connect the choice to a need, consequences, evidence, and a review signal."
         },
-        "synthesis": "Record context, owner, alternatives, trade-off, and the evidence that would trigger change."
+        "synthesis": "A good boundary has a named owner, a reason, observable evidence, and a path to change."
       }
     ],
     "miniProject": {
       "title": "Write an architecture decision record",
-      "scenario": "Choose ownership for local UI state, URL filters, server data, and shared client state in one feature.",
+      "scenario": "Write an architecture decision record for a filterable catalog that needs shareable URL filters, server data, and one protected saved-search action.",
       "acceptance": [
-        "Every value has one primary owner",
-        "At least one rejected alternative is explained",
-        "A migration trigger and verification method are recorded"
+        "Names the owners of URL state, local interaction state, server data, and authorization",
+        "Compares at least two state or dependency options against current requirements",
+        "Lists positive and negative consequences plus one measurable review trigger",
+        "Includes success, validation failure, unavailable-data, and retry behavior"
       ],
       "rubric": [
         {
@@ -186,42 +197,45 @@ export const topic: TopicModule = {
       "title": "Choose a State Strategy",
       "level": 5,
       "topicFamily": "architecture",
-      "scenario": "A dashboard has: user profile (from API), theme toggle, search query, filter state, cart items (persisted), and a multi-step form wizard. Choose the right state management strategy for each.",
+      "scenario": "A catalog has a local draft search field, shareable URL filters, server-fetched results, and a compare tray used by two sibling panels. Choose an owner for each value and explain when you would reconsider it.",
       "constraints": [
-        "Justify each choice with a specific reason",
-        "Consider: local state, lifted state, context, URL search params, server state, and persisted state",
-        "Explain at least one trade-off for each choice"
+        "Give every writable value one source of truth",
+        "Keep server data separate from client interaction state",
+        "Use current consumers and required persistence to justify each boundary"
       ],
       "acceptanceCriteria": [
-        "Each piece of state has an appropriate home with justification",
-        "At least three different strategies are used",
-        "Trade-offs are clearly stated"
+        "The draft search remains local unless another consumer needs it",
+        "Shareable filters use the URL as their owner",
+        "The compare tray is lifted to the closest common parent of its consumers",
+        "The answer names a concrete trigger that could justify context or an external store later"
       ],
       "hints": [
         {
           "stage": 1,
-          "text": "Think about: who needs this data? How long does it live? Does it survive refreshes?"
+          "text": "List each value, who reads it, who writes it, and whether it must survive navigation or be shareable."
         },
         {
           "stage": 2,
-          "text": "URL search params are perfect for shareable, bookmarkable filter state."
+          "text": "The URL is useful state when reload and sharing must reproduce the same filter."
         },
         {
           "stage": 3,
-          "text": "Server state (API data) should not be stored in global client state unless you have a specific reason."
+          "text": "Choose the closest common owner for the compare tray; add a wider state system only when a wider requirement appears."
         }
       ],
-      "expectedReasoning": "User profile = server state (fetch in Server Component or React Query). Theme = context + localStorage. Search query = local state (only the search bar needs it). Filters = URL search params (shareable). Cart = Zustand + localStorage (persisted, needed globally). Form wizard = local state or useReducer (isolated to the form).",
+      "expectedReasoning": "State location follows consumers and lifetime. Local drafts stay local, shareable filters belong in the URL, siblings share through their closest common owner, and server results remain in the server data boundary. A future cross-route consumer or independent subscription requirement could justify a wider client store.",
       "commonWrongPaths": [
-        "Putting everything in a global store",
-        "Using URL params for ephemeral UI state that should not be shareable",
-        "Duplicating server state in client stores"
+        "Putting every value in one global store without a present requirement",
+        "Keeping URL filters and local filter state as independent writable copies",
+        "Treating server-fetched results as permanent global client state by default"
       ],
-      "answerExplanation": "The key principle: put state as close to where it is used as possible. Only lift when multiple consumers need it. Only persist when it must survive refresh. Only put in URL when it is shareable/filterable. Only make global when it is truly app-wide.",
-      "followUpVariation": "How would the architecture change if the dashboard needed real-time collaboration?",
+      "answerExplanation": "Map each value to its consumers and lifetime, then choose the narrowest owner that satisfies them. This produces one source of truth now while leaving an explicit trigger for a future change.",
+      "followUpVariation": "A compare tray must now survive route changes. Which requirement changed, and what new boundary would you evaluate?",
       "sourceLinks": [
-        "https://tanstack.com/query/latest/docs/framework/react/overview",
-        "https://github.com/pmndrs/zustand"
+        "https://react.dev/learn/sharing-state-between-components",
+        "https://react.dev/learn/choosing-the-state-structure",
+        "https://nextjs.org/docs/15/app/getting-started/linking-and-navigating#using-the-native-history-api",
+        "https://tanstack.com/query/latest/docs/framework/react/overview"
       ],
       "sourceLink": "https://react.dev/learn/sharing-state-between-components"
     },
@@ -230,55 +244,56 @@ export const topic: TopicModule = {
       "title": "Capstone: Build a Developer Portfolio",
       "level": 10,
       "topicFamily": "architecture",
-      "scenario": "Build a complete developer portfolio site with: a home page, project showcase, blog with Markdown content, contact form with validation, dark/light theme, and SEO optimization. Deploy and explain your architecture.",
+      "scenario": "Plan and build a small developer portfolio with a project list, project detail routes, a contact form, and a documented deployment decision. Keep the architecture proportional to this scope.",
       "constraints": [
-        "Use Next.js App Router with TypeScript",
-        "Blog posts stored as Markdown files",
-        "Contact form uses Server Actions",
-        "Dark/light theme persists and respects system preference",
-        "Set page-specific Lighthouse targets and record a production-like baseline rather than assuming one universal score",
-        "Include tests for the contact form validation logic"
+        "Use the existing React and Next.js stack without adding a dependency unless a written requirement justifies it",
+        "Keep secrets and contact-form validation on the server",
+        "Record one architecture decision with alternatives, consequences, and a review trigger"
       ],
       "acceptanceCriteria": [
-        "All pages render with real content",
-        "Blog posts load from Markdown files (at least 2 seeded posts)",
-        "Contact form validates inputs and shows success/error states",
-        "Theme toggle works and persists",
-        "Measured Lighthouse evidence meets the agreed page-specific targets, with any trade-offs documented",
-        "At least 3 unit tests for form validation",
-        "README explains architecture decisions"
+        "Routes, feature ownership, and data boundaries are easy to trace",
+        "The contact form has labels, pending feedback, validation feedback, success, and recoverable failure",
+        "Protected configuration does not enter client code or public environment variables",
+        "A production build and critical keyboard flow are verified before handoff"
       ],
       "hints": [
         {
           "stage": 1,
-          "text": "Start with the route structure: /, /projects, /blog, /blog/[slug], /contact."
+          "text": "Write the routes and user flows before choosing folders or packages."
         },
         {
           "stage": 2,
-          "text": "Use gray-matter to parse Markdown frontmatter for blog posts."
+          "text": "Keep project content simple unless editing requirements prove that a content system is needed."
         },
         {
           "stage": 3,
-          "text": "Theme: use a context provider, localStorage, and the `prefers-color-scheme` media query."
+          "text": "Test the production build and submit the form through both success and failure paths."
         }
       ],
-      "expectedReasoning": "This is a capstone — combine all skills. Server Components for static content, Client Components for interactive parts (theme toggle, contact form). Markdown processing at build time or on-demand. Server Action for form submission. next-themes or custom context for theming.",
+      "expectedReasoning": "The portfolio needs clear route and server boundaries, not maximum infrastructure. Requirements determine where content lives and whether any dependency is useful. The server validates the contact request and owns secrets, while the UI communicates each state. The decision record keeps one important trade-off visible.",
       "commonWrongPaths": [
-        "Making everything a Client Component",
-        "Not handling the form's pending state during Server Action submission",
-        "Forgetting to add metadata to all pages"
+        "Adding a content, state, or styling dependency before naming the requirement it solves",
+        "Trusting only browser validation for the contact form",
+        "Calling the project complete after development mode renders the happy path"
       ],
-      "answerExplanation": "Architecture: App Router with Server Components by default. Blog: read Markdown from filesystem using fs + gray-matter, render to HTML. Contact: Client form component calls a Server Action. Theme: ThemeProvider (Client) wrapping children, using localStorage + system preference. Tests: Vitest for form validation logic. Deploy to Vercel.",
-      "followUpVariation": "Add an admin dashboard to CRUD blog posts. How does the architecture evolve?",
-      "sourceLink": "https://nextjs.org/docs/app/building-your-application/deploying"
+      "answerExplanation": "Build the smallest architecture that supports the named flows, keep trust checks on the server, verify observable quality, and document a decision that may need to change later.",
+      "followUpVariation": "Editors now need previews and scheduled publishing. Which content decision should be reopened, and what evidence will compare the new options?",
+      "sourceLink": "https://nextjs.org/docs/15/app/getting-started/project-structure",
+      "sourceLinks": [
+        "https://nextjs.org/docs/15/app/getting-started/project-structure",
+        "https://nextjs.org/docs/15/app/guides/forms",
+        "https://nextjs.org/docs/15/app/getting-started/deploying",
+        "https://www.w3.org/WAI/tutorials/forms/",
+        "https://nextjs.org/docs/app/building-your-application/deploying"
+      ]
     }
   ],
   "qa": [
     {
       "id": "qa-12",
       "question": "How do I organize a large Next.js project?",
-      "answer": "Start with feature colocation: `features/` contains domain-specific code, `shared/` contains cross-cutting utilities. Inside each feature, group by purpose: components, hooks, actions, types. At the app level, use route groups `(marketing)`, `(dashboard)` for different layouts. Keep the src/ structure flat for small projects, nested for large ones. Treat this as a maintainable project-organization option rather than a universal Next.js rule: a developer working on a feature should find related code in one place, not scattered across the project.",
-      "followUp": "At what project size does feature colocation become more valuable than file-type grouping?",
+      "answer": "Use a structure that makes ownership and navigation clear for the current project. Keep related route UI, tests, and helpers close while the feature is small; extract a feature or shared module when several routes truly share it or when ownership becomes hard to trace. In the App Router, a folder is not publicly routable by itself: route files such as `page` or `route` expose the segment. Record local conventions so teammates know where new work belongs.",
+      "followUp": "Which files change together for one feature, and which imports show that a boundary may need to move?",
       "category": "architecture",
       "level": "advanced",
       "tags": [
@@ -288,37 +303,48 @@ export const topic: TopicModule = {
       ],
       "topicId": "architecture-decisions",
       "topicFamily": "architecture",
-      "sourceLink": "https://nextjs.org/docs/app/getting-started/project-structure"
+      "sourceLink": "https://nextjs.org/docs/15/app/getting-started/project-structure",
+      "sourceLinks": [
+        "https://nextjs.org/docs/15/app/getting-started/project-structure",
+        "https://nextjs.org/docs/app/getting-started/project-structure"
+      ]
     },
     {
       "id": "loop-qa-architecture-decisions-1",
       "topicId": "architecture-decisions",
       "topicFamily": "architecture",
-      "question": "What problem does Architecture & Decision-Making help you solve?",
-      "answer": "Architecture is not about picking the \"best\" pattern — it is about making intentional trade-offs you can explain and revisit. Every decision (file structure, state placement, data fetching strategy, dependency choice) has a cost now and a cost later. Understanding the trade-offs lets you make reversible decisions quickly and irreversible decisions carefully.",
-      "followUp": "Name one decision in your current project where this model would change the implementation.",
+      "question": "How do you choose a state boundary without starting from a favorite library?",
+      "answer": "List the value’s readers, writers, lifetime, persistence, and sharing needs. Keep it local when one component owns it, lift it to the closest common parent when siblings coordinate, use the URL when navigation and sharing must reproduce it, and use a wider store only for a demonstrated wider subscription or ownership need.",
+      "followUp": "What new requirement would make your current state owner too narrow?",
       "category": "architecture",
       "level": "advanced",
       "tags": [
         "topic-loop",
         "architecture-decisions"
       ],
-      "sourceLink": "https://nextjs.org/docs/app/building-your-application/rendering"
+      "sourceLink": "https://react.dev/learn/sharing-state-between-components",
+      "sourceLinks": [
+        "https://react.dev/learn/sharing-state-between-components",
+        "https://react.dev/learn/choosing-the-state-structure"
+      ]
     },
     {
       "id": "loop-qa-architecture-decisions-2",
       "topicId": "architecture-decisions",
       "topicFamily": "architecture",
-      "question": "How would you explain the core idea of Architecture & Decision-Making to a teammate?",
-      "answer": "What is the most important boundary in a Next.js application? What crosses it, and what stays on each side? A strong explanation should connect the model to: Evaluate feature organization strategies (colocation vs. separation); Determine state ownership and server/client responsibility boundaries.",
-      "followUp": "Which observable behavior would prove your explanation is correct?",
+      "question": "What belongs in a useful architecture decision record?",
+      "answer": "State the context and requirement, the options considered, the decision, positive and negative consequences, supporting evidence, and a concrete trigger or date for review. Keep it short enough to maintain. The record explains why the boundary exists; it does not claim the choice can never change.",
+      "followUp": "Which observable signal would make you reopen your most recent architecture decision?",
       "category": "architecture",
       "level": "advanced",
       "tags": [
         "topic-loop",
         "architecture-decisions"
       ],
-      "sourceLink": "https://nextjs.org/docs/app/building-your-application/rendering"
+      "sourceLink": "https://adr.github.io/",
+      "sourceLinks": [
+        "https://adr.github.io/"
+      ]
     }
   ],
   "practices": [],

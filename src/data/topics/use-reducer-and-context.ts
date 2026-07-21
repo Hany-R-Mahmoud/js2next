@@ -11,41 +11,41 @@ export const topic: TopicModule = {
       "state-and-events"
     ],
     "learningObjectives": [
-      "Recognize when useState is insufficient and useReducer is appropriate",
-      "Write reducer functions following the dispatch/action/reducer pattern",
-      "Use Context to avoid prop drilling",
-      "Combine context and reducers for scalable state management"
+      "Choose a reducer when named actions make related state transitions easier to review",
+      "Write a pure reducer with immutable updates and an explicit action model",
+      "Use context for deliberate subtree-wide access without treating it as automatic global state",
+      "Combine reducer and context while keeping provider scope and consumer contracts explicit"
     ],
-    "whyMatters": "As components grow, scattered useState calls become hard to reason about. Reducers centralize state update logic. Context eliminates prop drilling. Together, they form the foundation of lightweight, library-free state management that scales from small apps to production systems.",
-    "estimatedMinutes": 30,
+    "whyMatters": "Reducers make transition rules explicit; context changes how selected values reach descendants. They solve different problems. Combining them can clarify a coordinated subtree, but only when state ownership, provider scope, invalid actions, and consumer update behavior remain visible.",
+    "estimatedMinutes": 34,
     "sections": [
       {
         "id": "reducer-pattern",
         "type": "concept",
-        "title": "The reducer pattern",
-        "content": "A reducer is a pure function that takes the current state and an action, and returns the next state: `(state, action) => nextState`. The action describes what happened — it's usually an object with a `type` string and optional payload. This pattern comes from functional programming and is the foundation of Redux."
+        "title": "Reducers centralize transition rules",
+        "content": "A reducer receives current state and an action and returns next state. Actions describe events that happened; the reducer decides the state transition. Use a reducer when several related transitions are easier to understand as one explicit model—not merely because a component has several state variables.\n\nReducers must be pure: do not mutate state, read changing external values, write storage, call APIs, or generate time-dependent values inside them. The same inputs must produce the same result. Side effects belong at event or synchronization boundaries."
       },
       {
         "id": "usereducer-code",
         "type": "code-example",
-        "title": "useReducer in practice",
-        "content": "Instead of multiple useState calls with interdependent update logic, useReducer gives you a single state object and a dispatch function.",
-        "code": "type State = { count: number; step: number };\ntype Action = { type: 'inc' } | { type: 'dec' } | { type: 'reset' } | { type: 'setStep'; payload: number };\n\nfunction reducer(state: State, action: Action): State {\n  switch (action.type) {\n    case 'inc': return { ...state, count: state.count + state.step };\n    case 'dec': return { ...state, count: state.count - state.step };\n    case 'reset': return { ...state, count: 0 };\n    case 'setStep': return { ...state, step: action.payload };\n    default: return state;\n  }\n}\n\nfunction Stepper() {\n  const [state, dispatch] = useReducer(reducer, { count: 0, step: 1 });\n  return (\n    <>\n      <p>Count: {state.count}</p>\n      <button onClick={() => dispatch({ type: 'inc' })}>+</button>\n      <button onClick={() => dispatch({ type: 'dec' })}>-</button>\n      <input value={state.step} onChange={e =>\n        dispatch({ type: 'setStep', payload: Number(e.target.value) })\n      } />\n    </>\n  );\n}",
+        "title": "Model actions as a discriminated union",
+        "content": "Typed actions make valid transitions visible and let TypeScript check that every action is handled.",
+        "code": "type State = { count: number; step: number };\ntype Action =\n  | { type: 'increment' }\n  | { type: 'decrement' }\n  | { type: 'setStep'; step: number }\n  | { type: 'reset' };\n\nfunction assertNever(value: never): never {\n  throw new Error(`Unhandled action: ${JSON.stringify(value)}`);\n}\n\nfunction reducer(state: State, action: Action): State {\n  switch (action.type) {\n    case 'increment':\n      return { ...state, count: state.count + state.step };\n    case 'decrement':\n      return { ...state, count: Math.max(0, state.count - state.step) };\n    case 'setStep':\n      return { ...state, step: action.step };\n    case 'reset':\n      return { count: 0, step: 1 };\n    default:\n      return assertNever(action);\n  }\n}\n\nfunction Stepper() {\n  const [state, dispatch] = useReducer(reducer, { count: 0, step: 1 });\n  return <button onClick={() => dispatch({ type: 'increment' })}>{state.count}</button>;\n}",
         "codeLanguage": "typescript",
         "codeFilePath": "examples/state/Stepper.tsx"
       },
       {
         "id": "context",
         "type": "concept",
-        "title": "Context: avoid prop drilling",
-        "content": "Context lets a parent component provide data to the entire tree below it, without passing props through every level. Use context when data is truly \"global\" to a subtree — theme, auth user, locale. Do not use context to avoid passing props one or two levels; that is normal and fine."
+        "title": "Context changes access, not ownership",
+        "content": "Context lets a descendant read the value from the closest matching provider above it without every intermediate component forwarding a prop. It is appropriate for data intentionally shared across a subtree, such as theme, locale, authenticated identity, or coordinated feature state.\n\nContext is not automatically global, and it does not replace ordinary props or composition. Scope the provider to the consumers that coordinate. When the provider value changes, consumers that read that context receive the new value and render again. Split contexts or stabilize provider design only when measurement and responsibility justify it."
       },
       {
         "id": "context-reducer-code",
         "type": "code-example",
-        "title": "Context + Reducer = scalable state",
-        "content": "Combine createContext with useReducer to create a lightweight state management system without external libraries.",
-        "code": "const TasksContext = createContext<TasksContextType | null>(null);\n\nfunction TasksProvider({ children }: { children: React.ReactNode }) {\n  const [tasks, dispatch] = useReducer(taskReducer, initialTasks);\n  return (\n    <TasksContext.Provider value={{ tasks, dispatch }}>\n      {children}\n    </TasksContext.Provider>\n  );\n}\n\nfunction TaskList() {\n  const { tasks, dispatch } = useContext(TasksContext)!;\n  return tasks.map(task => (\n    <TaskItem key={task.id} task={task} onComplete={() =>\n      dispatch({ type: 'toggle', id: task.id })\n    } />\n  ));\n}",
+        "title": "Provide state and dispatch with guarded consumers",
+        "content": "Separate state and dispatch contexts so consumers declare which capability they need. Guard custom hooks so using them outside the provider fails immediately and clearly.",
+        "code": "const TasksStateContext = createContext<readonly Task[] | null>(null);\nconst TasksDispatchContext = createContext<Dispatch<Action> | null>(null);\n\nfunction TasksProvider({ children }: { children: React.ReactNode }) {\n  const [tasks, dispatch] = useReducer(tasksReducer, initialTasks);\n\n  return (\n    <TasksStateContext.Provider value={tasks}>\n      <TasksDispatchContext.Provider value={dispatch}>\n        {children}\n      </TasksDispatchContext.Provider>\n    </TasksStateContext.Provider>\n  );\n}\n\nfunction useTasks() {\n  const value = useContext(TasksStateContext);\n  if (value === null) throw new Error('useTasks must be used within TasksProvider');\n  return value;\n}\n\nfunction useTasksDispatch() {\n  const value = useContext(TasksDispatchContext);\n  if (value === null) throw new Error('useTasksDispatch must be used within TasksProvider');\n  return value;\n}",
         "codeLanguage": "typescript",
         "codeFilePath": "examples/state/TaskProvider.tsx"
       },
@@ -57,18 +57,18 @@ export const topic: TopicModule = {
         "questions": [
           {
             "id": "q5",
-            "question": "Why must a reducer be a pure function?",
+            "question": "Which reducer follows React’s reducer contract?",
             "options": [
-              "React will call it multiple times and expects consistent results",
-              "It is a convention but not strictly required",
-              "To enable time-travel debugging in development",
-              "Both A and C"
+              "One that returns a new state value using only `state` and `action`",
+              "One that mutates `state.items` and returns the same object",
+              "One that writes the new state to `localStorage` before returning",
+              "One that calls `Date.now()` to create missing action data"
             ],
-            "correctAnswer": "Both A and C",
-            "expectedReasoning": "Reducers must be pure because React can call reducer and initializer logic more than once in development with Strict Mode enabled, and expects the same output for the same input. Purity also enables features like time-travel debugging where actions can be replayed deterministically.",
+            "correctAnswer": "One that returns a new state value using only `state` and `action`",
+            "expectedReasoning": "A reducer must be pure and update state immutably. In development Strict Mode, React may call reducers and initializers twice to expose accidental impurities; one result is ignored. Storage, network calls, and time-dependent values belong outside the reducer.",
             "commonMisconceptions": [
-              "Thinking purity is just a convention",
-              "Putting side effects (API calls, localStorage) inside reducers"
+              "Assuming mutation is safe if the reducer eventually returns state",
+              "Putting persistence or ID generation inside the transition function"
             ]
           }
         ]
@@ -77,24 +77,28 @@ export const topic: TopicModule = {
         "id": "reducer-synthesis",
         "type": "synthesis",
         "title": "Synthesis",
-        "content": "useState for simple values. useReducer when multiple state values change together or when the next state depends on the previous state in complex ways. Context when data is needed by many components at different levels. Context + Reducer when you need both. This pattern scales well without external libraries, and migrating to Zustand or Redux later is straightforward because the mental model is identical."
+        "content": "`useState` and `useReducer` are two ways to own local state; choose the one that makes transitions clearer. Context is a separate access mechanism. Combine reducer and context only when descendants genuinely share the state and dispatch boundary. Keep reducers pure, providers narrow, consumers guarded, and derived views outside stored state."
       }
     ],
-    "retrievalPrompt": "What are three signs that you should use useReducer instead of multiple useState calls?",
-    "reflectionPrompt": "Find a component in your codebase with 3+ useState calls. Would refactoring to useReducer make the update logic clearer? Why or why not?",
+    "retrievalPrompt": "Explain separately what a reducer changes and what context changes. Then describe why reducer purity and provider scope are testable correctness properties.",
+    "reflectionPrompt": "Find a provider or component with several related updates. Would named actions clarify the transitions, and is every current context consumer inside the narrowest useful provider?",
     "masteryCriteria": [
-      "Can write a reducer function following the (state, action) -> state pattern",
-      "Knows when to use useReducer vs useState",
-      "Can create Context providers and consume them with useContext",
-      "Can combine Context with useReducer for scalable state"
+      "Can model related transitions with typed actions and a pure reducer",
+      "Can explain when useState is clearer than useReducer",
+      "Can create guarded context consumers and choose provider scope deliberately",
+      "Can keep derived filters outside reducer state and side effects outside the reducer"
     ],
     "nextTopics": [
       "use-effect-and-custom-hooks"
     ],
     "metadata": {
-      "reactVersion": "19.2.7",
-      "lastUpdated": "2026-07-01",
+      "reactVersion": "19.2",
+      "lastUpdated": "2026-07-20",
       "sources": [
+        "https://react.dev/reference/react/useReducer",
+        "https://react.dev/reference/react/useContext",
+        "https://react.dev/learn/extracting-state-logic-into-a-reducer",
+        "https://react.dev/learn/passing-data-deeply-with-context",
         "https://react.dev/learn/scaling-up-with-reducer-and-context"
       ]
     },
@@ -141,28 +145,28 @@ export const topic: TopicModule = {
     "chunks": [
       {
         "id": "use-reducer-and-context-retrieval-1",
-        "title": "Choose the boundary",
-        "concept": "A reducer centralizes transitions; context supplies a deliberately shared state and dispatch boundary.",
+        "title": "Keep transitions pure and access deliberate",
+        "concept": "Reducers calculate next state; context supplies a value to descendants. Neither boundary should hide external side effects.",
         "prediction": {
-          "prompt": "Which responsibility belongs in the reducer?",
+          "prompt": "Which responsibility belongs inside the reducer?",
           "options": [
-            "Reading window width directly",
-            "Returning the next state for an action"
+            "Writing the next tasks to browser storage",
+            "Returning the next tasks for a dispatched action"
           ],
-          "correctAnswer": "Returning the next state for an action",
-          "feedbackCorrect": "Reducers stay pure and describe state transitions.",
-          "feedbackWrong": "External subscriptions do not belong inside a reducer."
+          "correctAnswer": "Returning the next tasks for a dispatched action",
+          "feedbackCorrect": "The reducer owns a deterministic state transition.",
+          "feedbackWrong": "Persistence is an external side effect and needs a separate owner."
         },
-        "synthesis": "Use reducer for transitions and context for access, not as a reason to globalize unrelated state."
+        "synthesis": "Reducer answers “how does state change?”; context answers “who can read or dispatch?”"
       }
     ],
     "miniProject": {
       "title": "Design a shared cart state",
-      "scenario": "Model add, remove, and clear actions for a cart consumed by a header and checkout view.",
+      "scenario": "Design shared cart state for a product list, header count, and checkout view.",
       "acceptance": [
-        "Actions and state transitions are explicit",
-        "Only the needed subtree receives context",
-        "Invalid transitions have a deliberate outcome"
+        "Typed actions cover add, remove, quantity change, and clear transitions",
+        "The reducer is pure and rejects or exhaustively handles invalid actions",
+        "Provider scope includes only the coordinated cart subtree and consumers use guarded hooks"
       ],
       "rubric": [
         {
@@ -186,42 +190,43 @@ export const topic: TopicModule = {
       "title": "Build a Todo List",
       "level": 3,
       "topicFamily": "state-behavior",
-      "scenario": "Create a todo list with add, toggle, delete, and filter capabilities. The todo items must persist in localStorage.",
+      "scenario": "Build a shared task board whose header shows the remaining count while the list can add, toggle, delete, and filter tasks.",
       "constraints": [
-        "Use useReducer for state management",
-        "Persist todos to localStorage from a Client Component with hydration-safe initialization",
-        "Validate parsed storage data before using it as application state",
-        "Filter buttons: All, Active, Completed"
+        "Use `useReducer` with a typed action union for task transitions",
+        "Expose task state and dispatch through a provider scoped to the task-board subtree",
+        "Keep the active filter local or derived; do not store a filtered copy of the task array"
       ],
       "acceptanceCriteria": [
-        "Can add new todos by typing and pressing Enter",
-        "Can toggle todo completion by clicking the checkbox",
-        "Can delete a todo",
-        "Filter buttons show only matching todos",
-        "Todos survive page refresh"
+        "Adding, toggling, and deleting tasks use immutable reducer transitions",
+        "The header and list read the same task source of truth",
+        "All, Active, and Completed views are derived from tasks plus the selected filter",
+        "Using a task context hook outside the provider throws a clear error"
       ],
       "hints": [
         {
           "stage": 1,
-          "text": "Define a Todo type and a reducer with actions: ADD, TOGGLE, DELETE."
+          "text": "Define `Task`, `State`, and a discriminated `Action` union before writing the reducer."
         },
         {
           "stage": 2,
-          "text": "Keep browser storage behind a Client Component boundary and initialize after hydration or with a validated browser-only loader."
+          "text": "Return new arrays for add, toggle, and delete. Keep ID creation in the event boundary and pass the ID in the action."
         },
         {
           "stage": 3,
-          "text": "Use a useEffect to sync validated state to localStorage whenever todos change."
+          "text": "Provide state and dispatch, guard custom consumer hooks, and calculate the visible array during render."
         }
       ],
-      "expectedReasoning": "Reducer centralizes state logic. A Client Component loads and validates browser storage without reading localStorage during the server render, then writes state in an Effect. Filter is derived state computed during render from the full todo list.",
+      "expectedReasoning": "The reducer owns deterministic task transitions. The provider owns one shared task source for the coordinated subtree. Filter selection and the visible list are separate concerns; the visible list is derived rather than stored. External work and ID generation remain outside the reducer.",
       "commonWrongPaths": [
-        "Trying to store the filtered list instead of deriving it",
-        "Not handling the initial localStorage read (null case)"
+        "Generating IDs or writing storage inside the reducer",
+        "Storing both the full task list and a filtered task list"
       ],
-      "answerExplanation": "The reducer handles ADD, TOGGLE, and DELETE actions. Keep storage access in a Client Component, avoid reading localStorage during the server render, and validate the parsed value before adopting it. A useEffect syncs validated todos to localStorage. The filter is `const filtered = todos.filter(t => filter === \"all\" ? true : filter === \"active\" ? !t.done : t.done)`.",
-      "followUpVariation": "Add drag-and-drop reordering and a \"Clear Completed\" button.",
-      "sourceLink": "https://react.dev/reference/react/useReducer"
+      "answerExplanation": "Use typed event actions whose payloads contain any generated IDs. Return immutable task arrays from the reducer. Place the provider around the task-board feature, expose guarded state and dispatch hooks, and derive `visibleTasks` from tasks and the selected filter during render.",
+      "followUpVariation": "Split a frequently changing draft input away from task context. Which components actually need that draft?",
+      "sourceLink": "https://react.dev/learn/scaling-up-with-reducer-and-context",
+      "sourceLinks": [
+        "https://react.dev/reference/react/useReducer"
+      ]
     }
   ],
   "qa": [
@@ -229,9 +234,9 @@ export const topic: TopicModule = {
       "id": "loop-qa-use-reducer-and-context-1",
       "topicId": "use-reducer-and-context",
       "topicFamily": "state-behavior",
-      "question": "What problem does useReducer & Context help you solve?",
-      "answer": "As components grow, scattered useState calls become hard to reason about. Reducers centralize state update logic. Context eliminates prop drilling. Together, they form the foundation of lightweight, library-free state management that scales from small apps to production systems.",
-      "followUp": "Name one decision in your current project where this model would change the implementation.",
+      "question": "What separate problems do a reducer and context solve?",
+      "answer": "A reducer centralizes how state transitions in response to actions. Context lets descendants read a provided value without intermediate prop forwarding. Combining them does not change who owns the state; the provider remains the owner.",
+      "followUp": "Could composition or ordinary props keep this boundary simpler?",
       "category": "react",
       "level": "intermediate",
       "tags": [
@@ -244,9 +249,9 @@ export const topic: TopicModule = {
       "id": "loop-qa-use-reducer-and-context-2",
       "topicId": "use-reducer-and-context",
       "topicFamily": "state-behavior",
-      "question": "How would you explain the core idea of useReducer & Context to a teammate?",
-      "answer": "What are three signs that you should use useReducer instead of multiple useState calls? A strong explanation should connect the model to: Recognize when useState is insufficient and useReducer is appropriate; Write reducer functions following the dispatch/action/reducer pattern.",
-      "followUp": "Which observable behavior would prove your explanation is correct?",
+      "question": "When is `useReducer` clearer than several `useState` calls?",
+      "answer": "When several related transitions benefit from named actions and one reviewable transition function. The number of state variables alone is not the deciding factor; a simple independent value is often clearer with `useState`.",
+      "followUp": "Name one action and show the exact state invariant it preserves.",
       "category": "react",
       "level": "intermediate",
       "tags": [
@@ -259,9 +264,9 @@ export const topic: TopicModule = {
       "id": "loop-qa-use-reducer-and-context-3",
       "topicId": "use-reducer-and-context",
       "topicFamily": "state-behavior",
-      "question": "What evidence shows that you can apply useReducer & Context?",
-      "answer": "Can write a reducer function following the (state, action) -> state pattern · Knows when to use useReducer vs useState · Can create Context providers and consume them with useContext",
-      "followUp": "What failure case would you test before calling this skill reliable?",
+      "question": "How do you verify a reducer-and-context boundary?",
+      "answer": "Replay reducer actions to prove deterministic immutable transitions, test an invalid or unhandled action policy, verify consumers fail clearly outside the provider, and confirm the provider is scoped only to components that coordinate.",
+      "followUp": "Which consumer re-renders when the provided state value changes, and is that behavior acceptable?",
       "category": "react",
       "level": "intermediate",
       "tags": [
