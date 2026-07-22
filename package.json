@@ -17,6 +17,7 @@
     "typecheck": "next typegen && tsc --noEmit"
   },
   "dependencies": {
+    "@vercel/analytics": "^2.0.1",
     "next": "15.5.20",
     "react": "19.2.7",
     "react-dom": "19.2.7",
