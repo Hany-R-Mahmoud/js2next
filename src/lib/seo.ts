@@ -2,8 +2,9 @@ import type { Metadata } from 'next';
 
 export const siteName = 'JS2Next';
 export const siteDescription = 'A connected learning path from JavaScript to React to Next.js, built for durable frontend understanding.';
+const defaultSiteUrl = 'https://js2next.vercel.app';
 
-const rawSiteUrl = process.env.SITE_URL?.trim() || process.env.NEXT_PUBLIC_SITE_URL?.trim();
+const rawSiteUrl = process.env.SITE_URL?.trim() || process.env.NEXT_PUBLIC_SITE_URL?.trim() || defaultSiteUrl;
 export const siteUrl = rawSiteUrl === undefined ? undefined : normalizeSiteUrl(rawSiteUrl);
 export const metadataBase = siteUrl === undefined ? undefined : new URL(siteUrl);
 
