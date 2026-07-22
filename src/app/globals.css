@@ -114,11 +114,11 @@
   }
 
   .stage-tabs {
-    @apply grid gap-2 sm:grid-cols-2 xl:grid-cols-5;
+    @apply grid gap-2 sm:grid-cols-2 xl:grid-cols-4;
   }
 
   .stage-tab {
-    @apply flex min-h-20 items-start gap-3 rounded-xl border border-slate-secondary bg-slate p-3 text-left transition-colors duration-150;
+    @apply flex min-h-16 items-start gap-3 rounded-xl border border-slate-secondary bg-slate p-3 text-left transition-colors duration-150;
   }
 
   .stage-tab:hover:not(:disabled) {
@@ -297,6 +297,10 @@
 
   .mobile-bottom-nav-item {
     @apply flex min-h-11 min-w-0 flex-1 flex-col items-center justify-center gap-1 rounded-full px-1 py-2 text-[11px] font-medium text-ash transition-colors;
+  }
+
+  .mobile-more-sheet::backdrop {
+    background: rgb(0 0 0 / 0.62);
   }
 
   .landing-canvas {

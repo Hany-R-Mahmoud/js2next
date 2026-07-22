@@ -14,18 +14,23 @@ export const desktopNavigation = [
   { href: '/settings', label: 'Settings', icon: 'settings' },
 ] as const satisfies readonly NavigationItem[];
 
-export const moreNavigation: readonly NavigationItem[] = [];
+export const moreNavigation = [
+  { href: '/tracks', label: 'Tracks', icon: 'dashboard' },
+  { href: '/review', label: 'Review', icon: 'target' },
+  { href: '/settings', label: 'Settings', icon: 'settings' },
+] as const satisfies readonly NavigationItem[];
 
 export const mobileNavigation = [
   { href: '/home', label: 'Home', icon: 'book' },
-  { href: '/review', label: 'Review', icon: 'target' },
+  { href: '/search', label: 'Search', icon: 'search' },
   { href: '/progress', label: 'Progress', icon: 'trend' },
-  { href: '/settings', label: 'Settings', icon: 'settings' },
+  { href: '#more', label: 'More', icon: 'more' },
 ] as const satisfies readonly NavigationItem[];
 
 export const mobilePrimaryNavigation = mobileNavigation;
 
 export function isNavigationActive(pathname: string, href: string): boolean {
+  if (href === '#more') return moreNavigation.some((item) => isNavigationActive(pathname, item.href));
   if (href === '/home' && pathname.startsWith('/topic/')) return true;
   return pathname === href || pathname.startsWith(`${href}/`);
 }

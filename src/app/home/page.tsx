@@ -7,6 +7,7 @@ import SearchBar from '@/components/shared/SearchBar';
 import SurfaceHeader from '@/components/shared/SurfaceHeader';
 import { buildCanonicalProgress } from '@/components/progress/progress-model';
 import { useProgressState } from '@/components/progress/useProgressState';
+import { searchTextMatches } from '@/lib/content/search';
 
 export default function HomePage() {
   const { canonicalProfile } = useLearnerStore();
@@ -23,9 +24,8 @@ export default function HomePage() {
 
   const progress = buildCanonicalProgress(state);
   const visibleTopics = useMemo(() => {
-    const normalizedQuery = query.trim().toLowerCase();
-    if (!normalizedQuery) return progress.topics;
-    return progress.topics.filter((topic) => `${topic.title} ${topic.trackTitle} ${topic.moduleTitle}`.toLowerCase().includes(normalizedQuery));
+    if (!query.trim()) return progress.topics;
+    return progress.topics.filter((topic) => searchTextMatches(`${topic.title} ${topic.trackTitle} ${topic.moduleTitle}`, query));
   }, [progress.topics, query]);
   const nextTopic = progress.topics.find((topic) => topic.required && topic.masteryPercent < 80) ?? progress.topics.find((topic) => topic.masteryPercent < 80);
 

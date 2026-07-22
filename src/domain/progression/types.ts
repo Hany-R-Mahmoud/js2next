@@ -3,6 +3,7 @@ export type ProgressSchemaVersion = typeof PROGRESS_SCHEMA_VERSION;
 export type AssessmentBankVersion = 1 | 2;
 export type ProgressStatus = 'not-started' | 'in-progress' | 'review-needed' | 'mastered';
 export type AssessmentKind = 'topic-quiz' | 'module-review' | 'cumulative-review';
+export type PracticeKind = 'topic-practice' | 'module-practice';
 
 export interface CheckResponse {
   readonly response: string | number | readonly number[];
@@ -29,6 +30,27 @@ export interface AssessmentAttempt {
   readonly scorePercent: number;
   readonly passed: boolean;
   readonly answers: readonly AssessmentAnswer[];
+}
+
+export interface PracticeAttempt {
+  readonly attemptId: string;
+  readonly kind: PracticeKind;
+  readonly ownerId: string;
+  readonly contentVersion: number;
+  readonly completedAt: string;
+  readonly questionIds: readonly string[];
+  readonly answeredQuestionIds: readonly string[];
+  readonly correctCount: number;
+}
+
+export interface ReflectionEntry {
+  readonly id: string;
+  readonly ownerId: string;
+  readonly kind: 'topic-reflection' | 'module-reflection';
+  readonly retrieval: string;
+  readonly application: string;
+  readonly confidence: number;
+  readonly submittedAt: string;
 }
 
 export interface ReviewItem {
@@ -97,6 +119,8 @@ export interface ProgressState {
   readonly moduleProgress?: Readonly<Record<string, ModuleProgress>>;
   readonly trackProgress?: Readonly<Record<string, TrackProgress>>;
   readonly assessmentAttempts: readonly AssessmentAttempt[];
+  readonly practiceAttempts?: readonly PracticeAttempt[];
+  readonly reflections?: readonly ReflectionEntry[];
   readonly reviewQueue: readonly ReviewItem[];
   readonly legacyProgress: LegacyProgressRecord;
   readonly assessmentBankVersion?: AssessmentBankVersion;
@@ -113,5 +137,5 @@ export interface PrerequisiteWarning {
   readonly prerequisiteId: string;
   readonly masteryPercent: number;
   readonly canContinue: true;
-  readonly requiresExplicitConfirmation: true;
+  readonly requiresExplicitConfirmation: false;
 }

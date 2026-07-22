@@ -27,7 +27,7 @@ export default function StageTabs<T extends string>({ items, activeId, onChange,
     const mediaQueries = [window.matchMedia('(min-width: 1280px)'), window.matchMedia('(min-width: 640px)')];
     const updateLayout = () => {
       const wideColumns = mediaQueries.findIndex((media) => media.matches);
-      const nextColumnCount = wideColumns === 0 ? 5 : wideColumns === 1 ? 2 : 1;
+      const nextColumnCount = wideColumns === 0 ? 4 : wideColumns === 1 ? 2 : 1;
       setColumnCount(nextColumnCount);
       setOrientation(nextColumnCount > 2 ? 'horizontal' : 'vertical');
     };

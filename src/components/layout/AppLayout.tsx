@@ -4,8 +4,8 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useLearnerStore } from '@/stores/learner';
 import { useSettingsStore } from '@/stores/settings';
-import { desktopNavigation, isNavigationActive, mobilePrimaryNavigation, type NavigationIcon } from '@/lib/navigation';
-import { useEffect } from 'react';
+import { desktopNavigation, isNavigationActive, mobilePrimaryNavigation, moreNavigation, type NavigationIcon } from '@/lib/navigation';
+import { useEffect, useRef, useState } from 'react';
 
 type NavIconName = NavigationIcon;
 
@@ -25,6 +25,9 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const { canonicalProfile } = useLearnerStore();
   const { reducedMotion, highContrast, fontSize } = useSettingsStore();
+  const [moreOpen, setMoreOpen] = useState(false);
+  const moreDialogRef = useRef<HTMLDialogElement>(null);
+  const moreTriggerRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     document.documentElement.dataset.contrast = highContrast ? 'high' : 'normal';
@@ -34,6 +37,29 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
       delete document.documentElement.dataset.fontSize;
     };
   }, [fontSize, highContrast]);
+
+  useEffect(() => {
+    setMoreOpen(false);
+  }, [pathname]);
+
+  useEffect(() => {
+    const dialog = moreDialogRef.current;
+    if (!dialog || !moreOpen) return;
+    if (!dialog.open) dialog.showModal();
+    const firstLink = dialog.querySelector<HTMLAnchorElement>('a');
+    firstLink?.focus();
+    return () => {
+      if (dialog.open) dialog.close();
+    };
+  }, [moreOpen]);
+
+  useEffect(() => {
+    if (!moreOpen) moreTriggerRef.current?.focus();
+  }, [moreOpen]);
+
+  const closeMore = () => {
+    setMoreOpen(false);
+  };
 
   if (pathname === '/' || pathname === '/onboarding') {
     return (
@@ -107,6 +133,20 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
         <nav className="mobile-bottom-nav relative z-50 flex shrink-0 items-center gap-1 border-t border-slate-secondary bg-midnight px-2 pt-2 lg:hidden" aria-label="Primary navigation">
           {mobilePrimaryNavigation.map((item) => {
             const isActive = isNavigationActive(pathname, item.href);
+            if (item.href === '#more') {
+              return <button
+                key={item.href}
+                ref={moreTriggerRef}
+                type="button"
+                className={`mobile-bottom-nav-item nav-item ${isActive ? 'nav-item-active' : ''}`}
+                aria-expanded={moreOpen}
+                aria-controls="mobile-more-sheet"
+                onClick={() => setMoreOpen(true)}
+              >
+                <NavIcon name={item.icon} />
+                <span>{item.label}</span>
+              </button>;
+            }
             return (
               <Link
                 key={item.href}
@@ -120,6 +160,34 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
             );
           })}
         </nav>
+
+        {moreOpen && <dialog
+          ref={moreDialogRef}
+          id="mobile-more-sheet"
+          className="mobile-more-sheet m-0 mt-auto w-full max-w-none rounded-t-2xl border border-slate-secondary bg-midnight p-5 text-white shadow-2xl"
+          aria-labelledby="mobile-more-title"
+          onCancel={(event) => { event.preventDefault(); closeMore(); }}
+          onClose={closeMore}
+          onClick={(event) => { if (event.target === event.currentTarget) closeMore(); }}
+        >
+          <div className="mx-auto mb-4 h-1 w-10 rounded-full bg-ash" aria-hidden="true" />
+          <div className="flex items-center justify-between gap-4">
+            <h2 id="mobile-more-title" className="text-lg font-semibold text-ink">More destinations</h2>
+            <button type="button" className="btn-secondary min-h-11 px-3 text-sm" onClick={closeMore}>Close</button>
+          </div>
+          <nav className="mt-4 grid gap-2" aria-label="More navigation">
+            {moreNavigation.map((item) => <Link
+              key={item.href}
+              href={item.href}
+              className={`nav-link nav-item flex min-h-11 items-center gap-3 ${isNavigationActive(pathname, item.href) ? 'nav-item-active' : ''}`}
+              aria-current={isNavigationActive(pathname, item.href) ? 'page' : undefined}
+              onClick={closeMore}
+            >
+              <NavIcon name={item.icon} />
+              {item.label}
+            </Link>)}
+          </nav>
+        </dialog>}
       </div>
     </div>
   );

@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useLearnerStore } from '@/stores/learner';
 import { toLearnerProfile } from '@/lib/learning/migration';
+import type { Level } from '@/types';
 
 const startOptions = [
   {
@@ -12,7 +13,6 @@ const startOptions = [
     title: 'Start with JavaScript',
     detail: 'Closures, async code, and the language model React relies on.',
     tone: 'border-vermillion/50 bg-vermillion/5',
-    level: 'beginner' as const,
     focusArea: 'react-fundamentals',
     goal: 'Build the JavaScript foundation for React',
   },
@@ -21,7 +21,6 @@ const startOptions = [
     title: 'Start with React',
     detail: 'Components, state, effects, and the mental model behind UI.',
     tone: 'border-teal/50 bg-teal/5',
-    level: 'intermediate' as const,
     focusArea: 'react-fundamentals',
     goal: 'Learn React fundamentals end to end',
   },
@@ -30,11 +29,24 @@ const startOptions = [
     title: 'Start with Next.js',
     detail: 'App Router, Server Components, data, and shipping decisions.',
     tone: 'border-lime-badge/50 bg-lime-badge/5',
-    level: 'advanced' as const,
     focusArea: 'nextjs-app-router',
     goal: 'Master Next.js App Router and RSC',
   },
 ] as const;
+
+const levelOptions: readonly { value: Level; label: string; detail: string }[] = [
+  { value: 'beginner', label: 'Beginner', detail: 'I am building the fundamentals.' },
+  { value: 'intermediate', label: 'Intermediate', detail: 'I can build with the basics and want stronger models.' },
+  { value: 'advanced', label: 'Advanced', detail: 'I want deeper architecture and production trade-offs.' },
+  { value: 'expert', label: 'Expert', detail: 'I want rigorous edge cases and design decisions.' },
+];
+
+const styleOptions: readonly { value: 'visual' | 'verbal' | 'active' | 'reflective'; label: string; detail: string }[] = [
+  { value: 'visual', label: 'Visual', detail: 'Diagrams and spatial explanations.' },
+  { value: 'verbal', label: 'Verbal', detail: 'Reading explanations and code examples.' },
+  { value: 'active', label: 'Active', detail: 'Building things as I learn.' },
+  { value: 'reflective', label: 'Reflective', detail: 'Theory first, then application.' },
+];
 
 const landingTopics = [
   { label: 'JavaScript', detail: 'Closures, events, async code, and the language model React relies on.', tone: 'text-vermillion' },
@@ -52,23 +64,60 @@ export default function HomePage() {
   const router = useRouter();
   const { canonicalProfile, setProfile, completeDiagnostic } = useLearnerStore();
   const profile = toLearnerProfile(canonicalProfile);
-  const [step, setStep] = useState<'welcome' | 'start' | 'name' | 'done'>(
+  const [step, setStep] = useState<'welcome' | 'start' | 'level' | 'style' | 'name' | 'review' | 'done'>(
     'welcome'
   );
+  const [hydrated, setHydrated] = useState(false);
+  const [editing, setEditing] = useState(false);
   const [name, setName] = useState(profile.name || '');
+  const [level, setLevel] = useState<Level>(profile.level);
+  const [preferredStyle, setPreferredStyle] = useState<typeof profile.preferredStyle>(profile.preferredStyle);
+  const [focusArea, setFocusArea] = useState(profile.focusArea || 'react-fundamentals');
+  const [goal, setGoal] = useState(profile.goals[0] || 'Build a connected frontend learning model');
+  const profileName = profile.name;
+  const profileLevel = profile.level;
+  const profileStyle = profile.preferredStyle;
+  const profileFocusArea = profile.focusArea;
+  const profileGoal = profile.goals[0];
+
+  useEffect(() => {
+    const persist = useLearnerStore.persist;
+    const finish = () => {
+      setHydrated(true);
+      setEditing(new URLSearchParams(window.location.search).get('edit') === '1');
+    };
+    if (persist.hasHydrated()) finish();
+    else return persist.onFinishHydration(finish);
+  }, []);
+
+  useEffect(() => {
+    if (!hydrated) return;
+    setName(profileName || '');
+    setLevel(profileLevel);
+    setPreferredStyle(profileStyle);
+    setFocusArea(profileFocusArea || 'react-fundamentals');
+    setGoal(profileGoal || 'Build a connected frontend learning model');
+  }, [hydrated, profileFocusArea, profileGoal, profileLevel, profileName, profileStyle]);
 
   const handleStartOption = (option: typeof startOptions[number]) => {
-    setProfile({
-      level: option.level,
-      focusArea: option.focusArea,
-      goals: Array.from(new Set([...profile.goals, option.goal])),
-    });
-    setStep('name');
+    setFocusArea(option.focusArea);
+    setGoal(option.goal);
+    setStep('level');
   };
 
   const handleNameSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setProfile({ name: name || 'Developer' });
+    setStep('review');
+  };
+
+  const confirmProfile = () => {
+    setProfile({
+      name: name || 'Developer',
+      level,
+      preferredStyle,
+      focusArea,
+      goals: Array.from(new Set([...profile.goals, goal])),
+    });
     completeDiagnostic();
     setStep('done');
   };
@@ -82,7 +131,7 @@ export default function HomePage() {
   };
 
   const handleLandingAction = () => {
-    if (profile.diagnosticComplete) {
+    if (profile.diagnosticComplete && !editing) {
       router.push('/tracks');
       return;
     }
@@ -90,12 +139,14 @@ export default function HomePage() {
   };
 
   const handleStartLearning = () => {
-    if (!profile.diagnosticComplete) {
-      setProfile({ name: name || 'Developer' });
-      completeDiagnostic();
-    }
     router.push('/tracks');
   };
+
+  const cancelSetup = () => router.push(editing ? '/settings' : '/');
+
+  if (!hydrated) {
+    return <div className="min-h-screen bg-paper p-6" role="status" aria-live="polite">Loading your learning setup…</div>;
+  }
 
   if (step === 'done') {
     return (
@@ -185,8 +236,13 @@ export default function HomePage() {
               ))}
             </div>
             <button type="button" onClick={handleSkipDiagnostic} className="mx-auto block text-sm text-ink-muted underline hover:text-teal">Let me browse the full map first</button>
+            <button type="button" onClick={cancelSetup} className="mx-auto block min-h-11 px-3 text-sm text-ink-muted underline hover:text-teal">Cancel</button>
           </div>
         )}
+
+        {step === 'level' && <ChoiceStep title="How familiar are you with frontend development?" description="This changes the depth and starting difficulty, not which layers you can access." options={levelOptions} selected={level} onSelect={setLevel} onNext={() => setStep('style')} onBack={() => setStep('start')} />}
+
+        {step === 'style' && <ChoiceStep title="How do you learn best?" description="We will use this preference to shape prompts and examples. You can change it later." options={styleOptions} selected={preferredStyle} onSelect={setPreferredStyle} onNext={() => setStep('name')} onBack={() => setStep('level')} />}
 
         {step === 'name' && (
           <div className="text-center space-y-6 max-w-md mx-auto">
@@ -198,6 +254,7 @@ export default function HomePage() {
               <input
                 id="learner-name"
                 type="text"
+                dir="auto"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 placeholder="Your name (optional)"
@@ -209,9 +266,52 @@ export default function HomePage() {
               <button type="submit" className="btn-primary w-full">
                 Continue →
               </button>
+              <button type="button" onClick={() => setStep('style')} className="min-h-11 px-3 text-sm text-ink-muted underline hover:text-teal">Back</button>
             </form>
           </div>
         )}
+
+        {step === 'review' && <div className="mx-auto max-w-md space-y-6"><div className="text-center"><p className="surface-eyebrow">Review your setup</p><h2 className="mt-2 text-3xl font-bold text-ink" style={{ fontFamily: 'var(--font-display)' }}>Ready to start?</h2><p className="mt-3 text-ink-light">These choices shape your first recommendation and can be changed in Settings.</p></div><dl className="card space-y-4 p-6 text-sm"><div><dt className="text-ink-muted">Starting layer</dt><dd className="mt-1 font-semibold capitalize text-ink">{focusArea.replaceAll('-', ' ')}</dd></div><div><dt className="text-ink-muted">Experience</dt><dd className="mt-1 font-semibold capitalize text-ink">{level}</dd></div><div><dt className="text-ink-muted">Learning style</dt><dd className="mt-1 font-semibold capitalize text-ink">{preferredStyle}</dd></div><div><dt className="text-ink-muted">Name</dt><dd className="mt-1 font-semibold text-ink">{name || 'Developer'}</dd></div></dl><div className="flex flex-wrap gap-3"><button type="button" className="btn-secondary flex-1" onClick={() => setStep('name')}>Edit</button><button type="button" className="btn-primary flex-1" onClick={confirmProfile}>Confirm setup</button></div><button type="button" onClick={cancelSetup} className="mx-auto block min-h-11 px-3 text-sm text-ink-muted underline hover:text-teal">Cancel</button></div>}
+      </div>
+    </div>
+  );
+}
+
+function ChoiceStep<T extends string>({
+  title,
+  description,
+  options,
+  selected,
+  onSelect,
+  onNext,
+  onBack,
+}: {
+  readonly title: string;
+  readonly description: string;
+  readonly options: readonly { value: T; label: string; detail: string }[];
+  readonly selected: T;
+  readonly onSelect: (value: T) => void;
+  readonly onNext: () => void;
+  readonly onBack: () => void;
+}) {
+  return (
+    <div className="space-y-6">
+      <div className="text-center">
+        <p className="surface-eyebrow">Your learning setup</p>
+        <h2 className="mt-2 text-3xl font-bold text-ink" style={{ fontFamily: 'var(--font-display)' }}>{title}</h2>
+        <p className="mx-auto mt-3 max-w-xl text-ink-light">{description}</p>
+      </div>
+      <div className="grid gap-3">
+        {options.map((option) => (
+          <button key={option.value} type="button" onClick={() => onSelect(option.value)} className={`min-h-20 rounded-xl border p-4 text-left transition-colors ${selected === option.value ? 'border-teal bg-teal/10' : 'border-paper-warm bg-slate hover:border-teal/60'}`} aria-pressed={selected === option.value}>
+            <span className="block font-semibold text-ink">{option.label}</span>
+            <span className="mt-1 block text-sm leading-6 text-ink-light">{option.detail}</span>
+          </button>
+        ))}
+      </div>
+      <div className="flex flex-wrap gap-3">
+        <button type="button" onClick={onBack} className="btn-secondary flex-1">Back</button>
+        <button type="button" onClick={onNext} className="btn-primary flex-1">Continue →</button>
       </div>
     </div>
   );

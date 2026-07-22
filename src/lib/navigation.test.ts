@@ -4,9 +4,9 @@ import { isNavigationActive, mobileNavigation, moreNavigation } from '@/lib/navi
 describe('navigation contract', () => {
   it('exposes the canonical navigation surface', () => {
     expect(mobileNavigation.map((item) => item.label)).toEqual([
-      'Home', 'Review', 'Progress', 'Settings',
+      'Home', 'Search', 'Progress', 'More',
     ]);
-    expect(moreNavigation).toEqual([]);
+    expect(moreNavigation.map((item) => item.label)).toEqual(['Tracks', 'Review', 'Settings']);
   });
 
   it('matches nested routes without activating similar prefixes', () => {
@@ -14,6 +14,8 @@ describe('navigation contract', () => {
     expect(isNavigationActive('/topic/detail', '/home')).toBe(true);
     expect(isNavigationActive('/progress', '/progress')).toBe(true);
     expect(isNavigationActive('/review', '/review')).toBe(true);
+    expect(isNavigationActive('/settings', '#more')).toBe(true);
+    expect(isNavigationActive('/search', '#more')).toBe(false);
     expect(isNavigationActive('/progressive', '/progress')).toBe(false);
   });
 });

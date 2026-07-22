@@ -4,8 +4,10 @@ import { parseAssessmentSet, parseQuestionBank } from '@/domain/assessment';
 import type { AssessmentSet, Question, TrackId } from '@/domain/assessment';
 import type { AssessmentPageData } from './types';
 
+export type PracticePageData = { readonly ownerId: string; readonly title: string; readonly questions: readonly Question[] };
+
 type JsonRecord = { readonly [key: string]: unknown };
-type TopicPacket = JsonRecord & { readonly id: string; readonly title: string; readonly trackId: TrackId; readonly moduleId: string; readonly status: string; readonly reviewStatus: string; readonly version: number; readonly topicQuiz: JsonRecord; readonly assessmentProfile: JsonRecord; readonly questions: readonly unknown[] };
+type TopicPacket = JsonRecord & { readonly id: string; readonly title: string; readonly trackId: TrackId; readonly moduleId: string; readonly status: string; readonly reviewStatus: string; readonly version: number; readonly topicQuiz: JsonRecord; readonly assessmentProfile: JsonRecord; readonly inLessonQuestionIds: readonly string[]; readonly questions: readonly unknown[] };
 
 const contentRoot = join(process.cwd(), 'content');
 const tracks: readonly TrackId[] = ['javascript', 'react', 'nextjs'];
@@ -46,6 +48,12 @@ export function getTopicQuiz(topicId: string): AssessmentPageData | null {
   if (packet === undefined) return null;
   const topicQuiz = parseAssessmentSet({ kind: 'topic-quiz', ...packet.topicQuiz, assessmentProfile: packet.assessmentProfile, trackId: packet.trackId, moduleId: packet.moduleId, title: `${packet.title} quiz`, status: packet.status, reviewStatus: packet.reviewStatus, version: packet.version, schemaVersion: '2.0', assessmentPolicyVersion: '2.0' });
   return { assessment: topicQuiz, questions: questionsFor(topicQuiz) };
+}
+
+export function getTopicPractice(topicId: string): PracticePageData | null {
+  const packet = topicPackets.find((candidate) => candidate.id === topicId);
+  if (packet === undefined) return null;
+  return { ownerId: topicId, title: `${packet.title} practice`, questions: packet.inLessonQuestionIds.map((questionId) => questionBank.get(questionId)).filter((question): question is Question => question !== undefined) };
 }
 
 export function getModuleReview(moduleId: string): AssessmentPageData | null {

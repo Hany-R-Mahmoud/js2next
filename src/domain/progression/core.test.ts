@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
-import { aggregateModule, aggregateTrack, createInitialProgress, createTopicProgress, prerequisiteWarning, recordCheckResponse, recordLessonCompletion, recordReviewAttempt, recordTopicQuiz } from './core';
-import type { AssessmentAttempt, CurriculumDefinition } from './types';
+import { aggregateModule, aggregateTrack, createInitialProgress, createTopicProgress, prerequisiteWarning, recordCheckResponse, recordLessonCompletion, recordPracticeAttempt, recordReviewAttempt, recordTopicQuiz } from './core';
+import type { AssessmentAttempt, CurriculumDefinition, PracticeAttempt } from './types';
 
 const answer = (questionId: string, objectiveIds: readonly string[], correct: boolean) => ({ questionId, objectiveIds, answer: 1, correct });
 const attempt = (kind: AssessmentAttempt['kind'], scorePercent: number, id: string, answers = [answer('q1', ['o1'], scorePercent >= 80)]): AssessmentAttempt => ({ attemptId: id, assessmentId: `${kind}:a`, kind, ownerId: 'topic-1', contentVersion: 1, startedAt: '2026-07-17T00:00:00Z', completedAt: '2026-07-17T01:00:00Z', scorePercent, passed: scorePercent >= 80, answers });
@@ -33,6 +33,13 @@ describe('progression core', () => {
     expect(retried.assessmentAttempts).toHaveLength(2);
   });
 
+  it('stores practice separately from scored assessment history', () => {
+    const practice: PracticeAttempt = { attemptId: 'practice-1', kind: 'topic-practice', ownerId: 'topic-1', contentVersion: 2, completedAt: '2026-07-17T01:00:00Z', questionIds: ['q1', 'q2'], answeredQuestionIds: ['q1', 'q2'], correctCount: 1 };
+    const state = recordPracticeAttempt(createInitialProgress('p1', 'release-1', 'now'), practice);
+    expect(state.practiceAttempts).toEqual([practice]);
+    expect(state.assessmentAttempts).toEqual([]);
+  });
+
   it('aggregates required content while ignoring optional topics and modules', () => {
     let state = createInitialProgress('p1', 'release-1', 'now');
     state = { ...state, topicProgress: { required: { ...createTopicProgress('required', 1, []), masteryPercent: 100, status: 'mastered' }, optional: { ...createTopicProgress('optional', 1, []), masteryPercent: 0 } } };
@@ -44,6 +51,6 @@ describe('progression core', () => {
 
   it('returns a soft prerequisite warning with explicit continue', () => {
     const state = createInitialProgress('p1', 'release-1', 'now');
-    expect(prerequisiteWarning(state, 'missing')).toEqual({ prerequisiteId: 'missing', masteryPercent: 0, canContinue: true, requiresExplicitConfirmation: true });
+    expect(prerequisiteWarning(state, 'missing')).toEqual({ prerequisiteId: 'missing', masteryPercent: 0, canContinue: true, requiresExplicitConfirmation: false });
   });
 });

@@ -54,9 +54,10 @@ export default function SearchPageContent({ initialQuery, initialKind }: SearchP
             <span className="sr-only">Search content</span>
             <input
               type="search"
+              dir="auto"
               value={query}
               onChange={(event) => { setQuery(event.target.value); updateUrl(event.target.value, kind); }}
-              placeholder="Try “state”, “server”, or “testing”"
+              placeholder="Try “state”, “جافاسكريبت”, or “testing”"
               className="min-h-11 w-full rounded-[10px] border border-ash bg-slate px-4 py-3 text-white placeholder:text-ash focus:border-transparent focus:outline-none focus:ring-2 focus:ring-teal"
             />
           </label>
@@ -77,7 +78,7 @@ export default function SearchPageContent({ initialQuery, initialKind }: SearchP
         <div className="flex items-baseline justify-between gap-4">
           <h2 id="results-title" className="text-xl font-semibold text-ink">{query.trim() ? `${results.length} result${results.length === 1 ? '' : 's'}` : 'Start with a search'}</h2>
         </div>
-        {query.trim() && results.length === 0 && <p className="mt-4 text-sm text-ink-muted">No matches yet. Try a broader topic, family, or tag.</p>}
+        {query.trim() && results.length === 0 && <p className="mt-4 text-sm text-ink-muted">No matches yet. Try a broader topic, family, or tag. الدروس متاحة بالإنجليزية؛ جرّب الاسم الإنجليزي للمفهوم إذا لزم الأمر.</p>}
         <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
           {results.map(({ record }) => (
             <Link key={record.id} href={`/topic/${record.topicId}`} className="rounded-lg border border-paper-warm p-4 transition-colors hover:border-teal/40">

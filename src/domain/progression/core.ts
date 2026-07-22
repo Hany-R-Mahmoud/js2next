@@ -1,11 +1,11 @@
-import type { AssessmentAttempt, CheckResponse, CurriculumDefinition, ModuleDefinition, ModuleProgress, PrerequisiteWarning, ProgressState, TopicProgress, TrackProgress } from './types';
+import type { AssessmentAttempt, CheckResponse, CurriculumDefinition, ModuleDefinition, ModuleProgress, PracticeAttempt, PrerequisiteWarning, ProgressState, ReflectionEntry, TopicProgress, TrackProgress } from './types';
 import { PROGRESS_SCHEMA_VERSION } from './types';
 
 const clamp = (value: number): number => Math.max(0, Math.min(100, value));
 const unique = (values: readonly string[]): readonly string[] => [...new Set(values)];
 
 export function createInitialProgress(profileId: string, curriculumVersion: string, now: string): ProgressState {
-  return { schemaVersion: PROGRESS_SCHEMA_VERSION, profileId, curriculumVersion, topicProgress: {}, moduleProgress: {}, trackProgress: {}, assessmentAttempts: [], reviewQueue: [], legacyProgress: { imported: false, countsTowardNewMastery: false, exportReference: null }, updatedAt: now };
+  return { schemaVersion: PROGRESS_SCHEMA_VERSION, profileId, curriculumVersion, topicProgress: {}, moduleProgress: {}, trackProgress: {}, assessmentAttempts: [], practiceAttempts: [], reflections: [], reviewQueue: [], legacyProgress: { imported: false, countsTowardNewMastery: false, exportReference: null }, updatedAt: now };
 }
 
 export function createTopicProgress(topicId: string, contentVersion: number, requiredCheckIds: readonly string[]): TopicProgress {
@@ -36,6 +36,14 @@ export function recordReviewAttempt(state: ProgressState, attempt: AssessmentAtt
   return { ...state, assessmentAttempts: [...state.assessmentAttempts, attempt], updatedAt: attempt.completedAt };
 }
 
+export function recordPracticeAttempt(state: ProgressState, attempt: PracticeAttempt): ProgressState {
+  return { ...state, practiceAttempts: [...(state.practiceAttempts ?? []), attempt], updatedAt: attempt.completedAt };
+}
+
+export function recordReflection(state: ProgressState, reflection: ReflectionEntry): ProgressState {
+  return { ...state, reflections: [...(state.reflections ?? []).filter((item) => item.ownerId !== reflection.ownerId || item.kind !== reflection.kind), reflection], updatedAt: reflection.submittedAt };
+}
+
 export function addObjectiveReview(state: ProgressState, topicId: string, objectiveId: string, dueAt: string, reason: 'incorrect-answer' | 'low-mastery' | 'manual-review', confidence: number, at: string): ProgressState {
   const current = state.reviewQueue.find((item) => item.topicId === topicId && item.objectiveId === objectiveId);
   const next = { topicId, objectiveId, dueAt, reason, confidence: clamp(confidence), attempts: (current?.attempts ?? 0) + 1, lastActivity: at };
@@ -59,5 +67,5 @@ export function aggregateTrack(state: ProgressState, track: CurriculumDefinition
 
 export function prerequisiteWarning(state: ProgressState, prerequisiteId: string): PrerequisiteWarning | null {
   const masteryPercent = state.topicProgress[prerequisiteId]?.masteryPercent ?? 0;
-  return masteryPercent < 80 ? { prerequisiteId, masteryPercent, canContinue: true, requiresExplicitConfirmation: true } : null;
+  return masteryPercent < 80 ? { prerequisiteId, masteryPercent, canContinue: true, requiresExplicitConfirmation: false } : null;
 }

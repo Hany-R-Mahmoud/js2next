@@ -110,7 +110,7 @@ export default function SettingsPage() {
           </select>
         </div>
 
-        <button type="button" onClick={() => { setProfile({ diagnosticComplete: false }); router.push('/onboarding'); }} className="btn-secondary w-full">
+        <button type="button" onClick={() => router.push('/onboarding?edit=1')} className="btn-secondary w-full">
           Re-run onboarding
         </button>
       </div>

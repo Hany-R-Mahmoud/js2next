@@ -9,6 +9,7 @@ import type { AssessmentPageData } from './types';
 import type { AssessmentAttempt as ProgressAttempt, AssessmentAnswer, ProgressState } from '@/domain/progression/types';
 import { addObjectiveReview, createInitialProgress, createTopicProgress, recordReviewAttempt, recordTopicQuiz } from '@/domain/progression/core';
 import { createLocalProgressAdapter, loadProgress, saveProgress } from '@/infrastructure/local-progress';
+import { writeProgress } from '@/components/progress/useProgressState';
 
 const storageKey = 'js2next.local-progress';
 const now = (): string => new Date().toISOString();
@@ -41,7 +42,7 @@ export function AssessmentRunner({ data, backHref }: { readonly data: Assessment
       ? recordTopicQuiz(current.state, current.state.topicProgress[data.assessment.id.replace('-QUIZ', '')] ?? createTopicProgress(data.assessment.id.replace('-QUIZ', ''), data.assessment.version, [1, 2, 3].map((number) => `${data.assessment.id.replace('-QUIZ', '')}-Q0${number}`)), stored, result.missedObjectiveIds, null)
       : recordReviewAttempt(current.state, stored);
     if (!stored.passed) for (const question of data.questions) for (const objectiveId of question.objectiveIds) nextState = addObjectiveReview(nextState, question.topicId, objectiveId, stored.completedAt, 'incorrect-answer', 0, stored.completedAt);
-    current.save(nextState);
+    writeProgress(nextState);
     setSubmitted(result);
     setAttempts((value) => value + 1);
   };

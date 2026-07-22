@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { contentCatalog } from './catalog';
-import { searchContent } from './search';
+import { normalizeSearchText, searchContent, searchTextMatches } from './search';
 
 describe('searchContent', () => {
   it('searches titles, topic metadata, and tags across all content kinds', () => {
@@ -20,5 +20,12 @@ describe('searchContent', () => {
     expect(searchContent(records, 'react').map(({ record }) => record.id)).toEqual(
       [...records].sort((a, b) => a.title.localeCompare(b.title) || a.id.localeCompare(b.id)).map((record) => record.id),
     );
+  });
+
+  it('normalizes Arabic variants and maps reviewed aliases to English concepts', () => {
+    expect(normalizeSearchText('إِدارةُ الحالة')).toBe('ادارة الحالة');
+    expect(searchTextMatches('Closures in JavaScript', 'الإغلاقات')).toBe(true);
+    expect(searchContent(contentCatalog, 'مكونات').slice(0, 3).every(({ record }) => record.title.toLowerCase().includes('component') || record.topicId.includes('component'))).toBe(true);
+    expect(searchContent(contentCatalog, 'جافاسكريبت').length).toBeGreaterThan(0);
   });
 });

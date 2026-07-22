@@ -1,4 +1,4 @@
-import type { AssessmentAttempt, LegacyProgressRecord, ProgressState, ReviewItem, TopicProgress } from '@/domain/progression/types';
+import type { AssessmentAttempt, LegacyProgressRecord, PracticeAttempt, ProgressState, ReflectionEntry, ReviewItem, TopicProgress } from '@/domain/progression/types';
 import { PROGRESS_SCHEMA_VERSION } from '@/domain/progression/types';
 
 export type ImportResult = { readonly ok: true; readonly state: ProgressState } | { readonly ok: false; readonly reason: 'invalid-json' | 'invalid-schema' | 'future-version' };
@@ -15,7 +15,7 @@ export function exportProgress(state: ProgressState): string { return JSON.strin
 
 function isProgressState(value: unknown): value is ProgressState {
   if (!isRecord(value)) return false;
-  return typeof value.profileId === 'string' && typeof value.curriculumVersion === 'string' && isRecord(value.topicProgress) && Object.entries(value.topicProgress).every(([id, topic]) => isTopic(topic, id)) && Array.isArray(value.assessmentAttempts) && value.assessmentAttempts.every(isAttempt) && Array.isArray(value.reviewQueue) && value.reviewQueue.every(isReview) && isLegacy(value.legacyProgress) && typeof value.updatedAt === 'string' && (value.moduleProgress === undefined || isRecord(value.moduleProgress)) && (value.trackProgress === undefined || isRecord(value.trackProgress)) && (value.assessmentBankVersion === undefined || value.assessmentBankVersion === 1 || value.assessmentBankVersion === 2) && (value.assessmentV1Archive === undefined || isArchive(value.assessmentV1Archive));
+  return typeof value.profileId === 'string' && typeof value.curriculumVersion === 'string' && isRecord(value.topicProgress) && Object.entries(value.topicProgress).every(([id, topic]) => isTopic(topic, id)) && Array.isArray(value.assessmentAttempts) && value.assessmentAttempts.every(isAttempt) && (value.practiceAttempts === undefined || Array.isArray(value.practiceAttempts) && value.practiceAttempts.every(isPracticeAttempt)) && (value.reflections === undefined || Array.isArray(value.reflections) && value.reflections.every(isReflection)) && Array.isArray(value.reviewQueue) && value.reviewQueue.every(isReview) && isLegacy(value.legacyProgress) && typeof value.updatedAt === 'string' && (value.moduleProgress === undefined || isRecord(value.moduleProgress)) && (value.trackProgress === undefined || isRecord(value.trackProgress)) && (value.assessmentBankVersion === undefined || value.assessmentBankVersion === 1 || value.assessmentBankVersion === 2) && (value.assessmentV1Archive === undefined || isArchive(value.assessmentV1Archive));
 }
 
 function isArchive(value: unknown): boolean {
@@ -33,6 +33,14 @@ function isAttempt(value: unknown): value is AssessmentAttempt {
   return value.answers.every((answer) => isRecord(answer) && typeof answer.questionId === 'string' && isStringArray(answer.objectiveIds) && isAnswer(answer.answer) && typeof answer.correct === 'boolean');
 }
 
+function isPracticeAttempt(value: unknown): value is PracticeAttempt {
+  return isRecord(value) && typeof value.attemptId === 'string' && (value.kind === 'topic-practice' || value.kind === 'module-practice') && typeof value.ownerId === 'string' && isPositiveInt(value.contentVersion) && typeof value.completedAt === 'string' && isStringArray(value.questionIds) && isStringArray(value.answeredQuestionIds) && typeof value.correctCount === 'number' && Number.isInteger(value.correctCount) && value.correctCount >= 0;
+}
+
+function isReflection(value: unknown): value is ReflectionEntry {
+  return isRecord(value) && typeof value.id === 'string' && typeof value.ownerId === 'string' && (value.kind === 'topic-reflection' || value.kind === 'module-reflection') && typeof value.retrieval === 'string' && typeof value.application === 'string' && isConfidence(value.confidence) && typeof value.submittedAt === 'string';
+}
+
 function isReview(value: unknown): value is ReviewItem { return isRecord(value) && typeof value.topicId === 'string' && typeof value.objectiveId === 'string' && typeof value.dueAt === 'string' && isReviewReason(value.reason) && isPercent(value.confidence) && isPositiveInt(value.attempts) && typeof value.lastActivity === 'string'; }
 function isCheckResponse(value: unknown): boolean { return isRecord(value) && isAnswer(value.response) && (value.correct === undefined || typeof value.correct === 'boolean') && typeof value.answeredAt === 'string' && isPositiveInt(value.contentVersion); }
 function isLegacy(value: unknown): value is LegacyProgressRecord { return isRecord(value) && typeof value.imported === 'boolean' && value.countsTowardNewMastery === false && (value.exportReference === null || typeof value.exportReference === 'string'); }
@@ -40,6 +48,7 @@ function isAnswer(value: unknown): value is string | number | readonly number[] 
 function isRecord(value: unknown): value is Record<string, unknown> { return typeof value === 'object' && value !== null && !Array.isArray(value); }
 function isStringArray(value: unknown): value is readonly string[] { return Array.isArray(value) && value.every((item) => typeof item === 'string'); }
 function isPercent(value: unknown): value is number { return typeof value === 'number' && Number.isFinite(value) && value >= 0 && value <= 100; }
+function isConfidence(value: unknown): value is number { return typeof value === 'number' && Number.isInteger(value) && value >= 1 && value <= 5; }
 function isPositiveInt(value: unknown): value is number { return typeof value === 'number' && Number.isInteger(value) && value >= 1; }
 function isStatus(value: unknown): value is TopicProgress['status'] { return value === 'not-started' || value === 'in-progress' || value === 'review-needed' || value === 'mastered'; }
 function isAssessmentKind(value: unknown): value is AssessmentAttempt['kind'] { return value === 'topic-quiz' || value === 'module-review' || value === 'cumulative-review'; }

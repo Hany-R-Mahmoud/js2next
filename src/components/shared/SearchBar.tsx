@@ -23,6 +23,7 @@ export default function SearchBar({ onSearch, placeholder = 'Search...', classNa
       <input
         id={inputId}
         type="search"
+        dir="auto"
         value={query}
         onChange={handleChange}
         placeholder={placeholder}

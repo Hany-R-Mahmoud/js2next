@@ -82,7 +82,7 @@ Conceptual questions use a labelled choice group with four 44px-minimum choice c
 
 ### Learning stage tabs
 
-Topic and module journeys use a responsive stage rail with five named states: Overview, Learn, Practice, Check, and Reflect. The active state uses blue, completed and locked states remain visible with text status, and locked stages explain their unlock condition. Each tab includes a short description so the control is understandable without relying on color. The rail uses one column on mobile, two through desktop, and five on wide screens, while keeping 44px keyboard/touch targets.
+Topic and module journeys use a responsive stage rail with four named states: Learn, Practice, Check, and Reflect. Learn is the default entry and contains the former overview context. Practice is guided and low-stakes; Check is scored and mastery-bearing; Reflect is available after a submitted Check. The active state uses blue, completed and locked states remain visible with text status, and locked stages explain their unlock condition. Each tab includes a short description so the control is understandable without relying on color. The rail uses one column on mobile, two through desktop, and four on wide screens, while keeping 44px keyboard/touch targets.
 
 ### Surface headers
 
