@@ -48,7 +48,7 @@ export function AssessmentRunner({ data, backHref }: { readonly data: Assessment
   };
 
   if (submitted !== null) {
-    return <main className="mx-auto w-full max-w-3xl space-y-6 px-4 py-8 sm:px-6 lg:px-8" aria-labelledby="assessment-result-title">
+    return <div className="mx-auto w-full max-w-3xl space-y-6 px-4 py-8 sm:px-6 lg:px-8" aria-labelledby="assessment-result-title">
       <section className="card space-y-4 p-6 sm:p-8">
         <p className="surface-eyebrow">Attempt {attempts}</p>
         <h1 id="assessment-result-title" className="surface-title">{Math.round(submitted.scorePercent)}% — {submitted.mastered ? 'Mastery reached' : 'Keep going'}</h1>
@@ -58,14 +58,14 @@ export function AssessmentRunner({ data, backHref }: { readonly data: Assessment
       <section className="space-y-4" aria-label="Answer feedback">
         {data.questions.map((question, index) => { const result = submitted.questionResults.find((item) => item.questionId === question.id); return <article className="card space-y-3 p-5" key={question.id}><h2 className="font-semibold text-ink">{index + 1}. {question.prompt}</h2><p className={result?.correct ? 'text-success' : 'text-coral'}>{result?.correct ? 'Correct' : 'Needs another look'}</p><p className="text-sm leading-6 text-ink-light">{result?.choiceFeedback ?? 'No answer submitted.'}</p><p className="text-sm leading-6 text-ink-light">{result?.explanation}</p>{result?.hint && <p className="text-sm text-warning">Hint: {result.hint}</p>}</article>; })}
       </section>
-    </main>;
+    </div>;
   }
 
-  return <main className="mx-auto w-full max-w-3xl space-y-6 px-4 py-8 sm:px-6 lg:px-8" aria-labelledby="assessment-title">
+  return <div className="mx-auto w-full max-w-3xl space-y-6 px-4 py-8 sm:px-6 lg:px-8" aria-labelledby="assessment-title">
     <header><p className="surface-eyebrow">{data.assessment.kind === 'topic-quiz' && data.assessment.assessmentProfile ? assessmentProfileLabel(data.assessment.assessmentProfile.type) : data.assessment.kind.replace('-', ' ')}</p><h1 id="assessment-title" className="surface-title">{data.assessment.title}</h1><p className="surface-description">Five or more questions. Choices stay in source order; question order is stable for review.</p></header>
     <form className="space-y-5" onSubmit={(event) => { event.preventDefault(); submit(); }}>
       {data.questions.map((question, index) => <fieldset className="card space-y-4 p-5 sm:p-6" key={question.id}><legend className="w-full font-semibold leading-6 text-ink">{index + 1}. {question.prompt}</legend>{question.code && <CodeBlock code={question.code.source} language={question.code.language} ariaLabel={`${question.code.language} assessment example`} />}<div className="space-y-2" role="radiogroup" aria-label={`Answers for question ${index + 1}`}>{question.choices.map((choice) => <label className={`flex min-h-11 cursor-pointer items-start gap-3 rounded-lg border p-3 transition-colors ${answers[question.id] === choice.id ? 'border-teal bg-teal/10' : 'border-slate-secondary hover:border-teal/60'}`} key={choice.id}><input className="mt-1 h-4 w-4 accent-teal" type="radio" name={question.id} value={choice.id} checked={answers[question.id] === choice.id} onChange={() => setAnswers((current) => ({ ...current, [question.id]: choice.id }))} required /><span className="break-words text-sm leading-5 text-ink-light">{choice.label}</span></label>)}</div></fieldset>)}
       <button className="btn-primary w-full sm:w-auto" type="submit">Submit answers</button>
     </form>
-  </main>;
+  </div>;
 }

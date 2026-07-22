@@ -1,4 +1,5 @@
 import { notFound } from 'next/navigation';
+import type { Metadata } from 'next';
 import { findModule, findTopic, findTrack, prerequisitesFor } from '@/domain/curriculum';
 import { loadTopicPacket } from '@/domain/curriculum/packet';
 import { CurriculumBadge, CurriculumHeader } from '@/components/curriculum/CurriculumHeader';
@@ -6,6 +7,23 @@ import { CurriculumNav } from '@/components/curriculum/CurriculumNav';
 import { PrerequisiteNotice } from '@/components/curriculum/PrerequisiteNotice';
 import TopicStageTabs from '@/components/curriculum/TopicStageTabs';
 import { getTopicPractice } from '@/components/assessment/release1-data.server';
+import { pageMetadata } from '@/lib/seo';
+
+export async function generateMetadata({ params }: { readonly params: Promise<{ readonly track: string; readonly module: string; readonly topic: string }> }): Promise<Metadata> {
+  const { track: trackSlug, module: moduleSlug, topic: topicSlug } = await params;
+  const track = findTrack(trackSlug);
+  const moduleDefinition = findModule(trackSlug, moduleSlug);
+  const topic = findTopic(trackSlug, moduleSlug, topicSlug);
+  const packet = topic === undefined ? undefined : loadTopicPacket(topic);
+  if (!track || !moduleDefinition || !topic || !packet) return pageMetadata({ title: 'Topic not found', description: 'The requested JS2Next topic does not exist.', path: `/learn/${trackSlug}/${moduleSlug}/${topicSlug}`, indexable: false });
+  return pageMetadata({
+    title: packet.title,
+    description: packet.whyThisMatters,
+    path: `/learn/${track.slug}/${moduleDefinition.slug}/${topic.slug}`,
+    type: 'article',
+    indexable: topic.status !== 'archived',
+  });
+}
 
 export default async function TopicPage({ params }: { readonly params: Promise<{ readonly track: string; readonly module: string; readonly topic: string }> }) {
   const { track: trackSlug, module: moduleSlug, topic: topicSlug } = await params;

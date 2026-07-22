@@ -1,8 +1,21 @@
 import Link from 'next/link';
+import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { findTrack } from '@/domain/curriculum';
 import { CurriculumBadge, CurriculumHeader } from '@/components/curriculum/CurriculumHeader';
 import { CurriculumNav } from '@/components/curriculum/CurriculumNav';
+import { pageMetadata } from '@/lib/seo';
+
+export async function generateMetadata({ params }: { readonly params: Promise<{ readonly track: string }> }): Promise<Metadata> {
+  const { track: trackSlug } = await params;
+  const track = findTrack(trackSlug);
+  if (!track) return pageMetadata({ title: 'Track not found', description: 'The requested JS2Next track does not exist.', path: `/tracks/${trackSlug}`, indexable: false });
+  return pageMetadata({
+    title: `${track.title} learning track`,
+    description: `Follow the ${track.title} path in JS2Next, with ordered modules and practical topics that connect to the next layer.`,
+    path: `/tracks/${track.slug}`,
+  });
+}
 
 export default async function TrackPage({ params }: { readonly params: Promise<{ readonly track: string }> }) {
   const { track: trackSlug } = await params;

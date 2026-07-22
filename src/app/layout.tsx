@@ -1,15 +1,31 @@
 import type { Metadata } from 'next';
 import { Analytics } from '@vercel/analytics/next';
 import AppLayout from '@/components/layout/AppLayout';
+import { absoluteUrl, metadataBase, siteDescription, siteName, socialImage } from '@/lib/seo';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'JS2Next',
-  description: 'A connected learning path from JavaScript to React to Next.js, built for durable frontend understanding.',
+  metadataBase,
+  title: {
+    default: 'Learn JavaScript, React, and Next.js | JS2Next',
+    template: '%s | JS2Next',
+  },
+  description: siteDescription,
+  alternates: { canonical: '/' },
+  robots: { index: true, follow: true },
   openGraph: {
-    title: 'JS2Next',
-    description: 'A connected learning path from JavaScript to React to Next.js.',
+    title: 'Learn JavaScript, React, and Next.js',
+    description: siteDescription,
+    siteName,
     type: 'website',
+    url: absoluteUrl('/') ?? '/',
+    images: [socialImage],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Learn JavaScript, React, and Next.js',
+    description: siteDescription,
+    images: [socialImage.url],
   },
 };
 

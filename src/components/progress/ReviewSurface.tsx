@@ -10,12 +10,12 @@ export function ReviewSurface() {
 
   if (!hydrated) {
     return (
-      <main className="mx-auto w-full max-w-3xl" aria-labelledby="review-loading-title">
+      <div className="mx-auto w-full max-w-3xl" aria-labelledby="review-loading-title">
         <section className="card space-y-3 p-6" role="status" aria-live="polite">
           <h1 id="review-loading-title" className="text-xl font-semibold text-ink">Loading review queue</h1>
           <p className="text-sm text-ink-muted">Reading this browser&apos;s saved review items.</p>
         </section>
-      </main>
+      </div>
     );
   }
 
@@ -23,7 +23,7 @@ export function ReviewSurface() {
   const topicsById = new Map(progress.topics.map((topic) => [topic.id, topic]));
 
   return (
-    <main className="mx-auto w-full max-w-3xl space-y-6" aria-labelledby="review-title">
+    <div className="mx-auto w-full max-w-3xl space-y-6" aria-labelledby="review-title">
       <header>
         <p className="surface-eyebrow">Review queue</p>
         <h1 id="review-title" className="surface-title">Practice what needs another look</h1>
@@ -50,7 +50,7 @@ export function ReviewSurface() {
           ))}
         </section>
       )}
-    </main>
+    </div>
   );
 }
 

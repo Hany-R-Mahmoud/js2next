@@ -126,9 +126,9 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
           </p>
         </div>
 
-        <div id="main-content" className="app-main-scroll mx-auto min-h-0 w-full max-w-5xl flex-1 overflow-y-auto px-4 pb-6 pt-4 sm:px-6 lg:p-8">
+        <main id="main-content" className="app-main-scroll mx-auto min-h-0 w-full max-w-5xl flex-1 overflow-y-auto px-4 pb-6 pt-4 sm:px-6 lg:p-8">
           {children}
-        </div>
+        </main>
 
         <nav className="mobile-bottom-nav relative z-50 flex shrink-0 items-center gap-1 border-t border-slate-secondary bg-midnight px-2 pt-2 lg:hidden" aria-label="Primary navigation">
           {mobilePrimaryNavigation.map((item) => {

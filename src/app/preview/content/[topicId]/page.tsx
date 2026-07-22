@@ -1,10 +1,14 @@
 import Link from 'next/link';
+import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { curriculum, findTopicById, moduleForTopic } from '@/domain/curriculum';
 import { loadTopicPacket } from '@/domain/curriculum/packet';
 import { CurriculumBadge, CurriculumHeader } from '@/components/curriculum/CurriculumHeader';
 import { CurriculumNav } from '@/components/curriculum/CurriculumNav';
 import { TopicPacketView } from '@/components/curriculum/TopicPacketView';
+import { pageMetadata } from '@/lib/seo';
+
+export const metadata: Metadata = pageMetadata({ title: 'Draft content preview', description: 'Internal JS2Next draft content preview.', path: '/preview/content', indexable: false });
 
 export default async function ContentPreviewPage({ params }: { readonly params: Promise<{ readonly topicId: string }> }) {
   const { topicId } = await params;

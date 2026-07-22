@@ -144,10 +144,6 @@ export default function HomePage() {
 
   const cancelSetup = () => router.push(editing ? '/settings' : '/');
 
-  if (!hydrated) {
-    return <div className="min-h-screen bg-paper p-6" role="status" aria-live="polite">Loading your learning setup…</div>;
-  }
-
   if (step === 'done') {
     return (
       <div className="min-h-screen bg-paper flex items-center justify-center p-4">

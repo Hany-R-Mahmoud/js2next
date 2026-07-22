@@ -70,7 +70,7 @@ export function ProgressSurface() {
   };
 
   return (
-    <main className="mx-auto w-full max-w-5xl space-y-8" aria-labelledby="progress-title">
+    <div className="mx-auto w-full max-w-5xl space-y-8" aria-labelledby="progress-title">
       <header className="surface-header">
         <div>
           <p className="surface-eyebrow">Progress</p>
@@ -137,18 +137,18 @@ export function ProgressSurface() {
           </p>
         )}
       </section>
-    </main>
+    </div>
   );
 }
 
 function ProgressLoading() {
   return (
-    <main className="mx-auto w-full max-w-5xl" aria-labelledby="progress-loading-title">
+    <div className="mx-auto w-full max-w-5xl" aria-labelledby="progress-loading-title">
       <section className="card space-y-3 p-6" role="status" aria-live="polite">
         <h1 id="progress-loading-title" className="text-xl font-semibold text-ink">Loading local progress</h1>
         <p className="text-sm text-ink-muted">Reading this browser&apos;s saved learning evidence.</p>
       </section>
-    </main>
+    </div>
   );
 }
 

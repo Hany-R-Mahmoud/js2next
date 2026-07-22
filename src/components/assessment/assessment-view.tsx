@@ -23,7 +23,7 @@ export function AssessmentView({ data, questions, answers, submitted, attempts, 
     return <AssessmentResultView data={data} questions={questions} result={submitted} attempts={attempts} backHref={backHref} onRetry={onRetry} />;
   }
 
-  return <main className="mx-auto w-full max-w-6xl space-y-6 py-8" aria-labelledby="assessment-title">
+  return <div className="mx-auto w-full max-w-6xl space-y-6 py-8" aria-labelledby="assessment-title">
     <header>
       <p className="surface-eyebrow">{assessmentLabel(data.assessment)}</p>
       <h1 id="assessment-title" className="surface-title">{data.assessment.title}</h1>
@@ -33,7 +33,7 @@ export function AssessmentView({ data, questions, answers, submitted, attempts, 
        {questions.map((question, index) => <QuestionCard key={question.id} question={question} index={index} total={questions.length} answer={answers[question.id]} onAnswer={onAnswer} />)}
       <button className="btn-primary w-full sm:w-auto" type="submit">Submit answers</button>
     </form>
-  </main>;
+  </div>;
 }
 
 function QuestionCard({ question, index, total, answer, onAnswer }: { readonly question: Question; readonly index: number; readonly total: number; readonly answer: string | undefined; readonly onAnswer: (questionId: string, choiceId: string) => void }) {
@@ -71,7 +71,7 @@ function QuestionCard({ question, index, total, answer, onAnswer }: { readonly q
 }
 
 function AssessmentResultView({ data, questions, result, attempts, backHref, onRetry }: { readonly data: AssessmentPageData; readonly questions: readonly Question[]; readonly result: AssessmentResult; readonly attempts: number; readonly backHref: string; readonly onRetry: () => void }) {
-  return <main className="mx-auto w-full max-w-6xl space-y-6 py-8" aria-labelledby="assessment-result-title">
+  return <div className="mx-auto w-full max-w-6xl space-y-6 py-8" aria-labelledby="assessment-result-title">
     <section className="card space-y-4 p-6 sm:p-8">
       <p className="surface-eyebrow">Attempt {attempts}</p>
       <h1 id="assessment-result-title" className="surface-title">{Math.round(result.scorePercent)}% — {result.mastered ? 'Mastery reached' : 'Keep going'}</h1>
@@ -82,7 +82,7 @@ function AssessmentResultView({ data, questions, result, attempts, backHref, onR
     <section className="space-y-4" aria-label="Answer feedback">
        {questions.map((question, index) => <FeedbackCard key={question.id} question={question} index={index} total={questions.length} result={result.questionResults.find((item) => item.questionId === question.id)} />)}
     </section>
-  </main>;
+  </div>;
 }
 
 function FeedbackCard({ question, index, total, result }: { readonly question: Question; readonly index: number; readonly total: number; readonly result: AssessmentResult['questionResults'][number] | undefined }) {
