@@ -374,9 +374,14 @@ function LandingPage({
           <a className="inline-flex min-h-11 items-center px-2 transition-colors hover:text-ink" href="#loop">How it works</a>
           <a className="inline-flex min-h-11 items-center px-2 transition-colors hover:text-ink" href="#topics">Topics</a>
         </nav>
-        <button type="button" onClick={onPrimaryAction} className="btn-secondary px-4 py-2 text-sm">
-          {hasPath ? 'Continue learning' : 'Start the path'}
-        </button>
+        <div className="flex items-center gap-2">
+          <Link href="/sign-in" className="inline-flex min-h-11 items-center px-3 text-sm font-semibold text-ink-muted transition-colors hover:text-ink">
+            Sign in
+          </Link>
+          <button type="button" onClick={onPrimaryAction} className="btn-secondary px-4 py-2 text-sm">
+            {hasPath ? 'Continue learning' : 'Start the path'}
+          </button>
+        </div>
       </header>
 
       <main id="landing-content" className="relative z-10">
@@ -400,6 +405,9 @@ function LandingPage({
               <a href="#journey" className="inline-flex min-h-12 items-center justify-center px-4 text-sm font-semibold text-ink-light transition-colors hover:text-ink">
                 See the journey
               </a>
+              <Link href="/sign-in" className="inline-flex min-h-12 items-center justify-center px-4 text-sm font-semibold text-teal transition-colors hover:text-ink">
+                Create account or sign in
+              </Link>
             </div>
             <div className="mt-9 flex flex-wrap gap-x-5 gap-y-2 text-xs font-medium text-ink-muted">
               <span>Local-first progress</span>
