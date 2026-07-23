@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useLearnerStore } from '@/stores/learner';
@@ -82,7 +83,8 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
           className="hidden lg:sticky lg:top-0 lg:flex lg:h-dvh lg:w-64 lg:max-w-none lg:flex-col lg:overflow-y-auto lg:border-r lg:border-slate-secondary lg:bg-midnight"
         >
           <div className="p-6 border-b border-slate-secondary">
-            <Link href="/home" className="text-xl font-bold text-white" style={{ fontFamily: 'var(--font-display)' }}>
+            <Link href="/home" className="inline-flex items-center gap-3 text-xl font-bold text-white" style={{ fontFamily: 'var(--font-display)' }}>
+              <Image src="/brand/js2next-icon.png" alt="" width={40} height={40} className="h-10 w-10 rounded-lg object-cover" />
               JS2Next
             </Link>
             {canonicalProfile.diagnosticDone && (
@@ -120,7 +122,11 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
           </div>
         </aside>
 
-        <div className="relative z-40 flex h-14 shrink-0 items-center justify-center bg-midnight px-4 lg:hidden">
+        <div className="relative z-40 flex h-14 shrink-0 items-center justify-between bg-midnight px-4 lg:hidden">
+          <Link href="/home" className="inline-flex items-center gap-2 text-sm font-bold text-white" aria-label="JS2Next home">
+            <Image src="/brand/js2next-icon.png" alt="" width={28} height={28} className="h-7 w-7 rounded-md object-cover" />
+            JS2Next
+          </Link>
           <p className={`text-sm font-semibold ${canonicalProfile.streakDays > 0 ? 'text-lime-badge' : 'text-ink-muted'}`}>
             Streak · {canonicalProfile.streakDays} day{canonicalProfile.streakDays === 1 ? '' : 's'}
           </p>

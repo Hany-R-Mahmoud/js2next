@@ -12,6 +12,11 @@ export const metadata: Metadata = {
   },
   description: siteDescription,
   alternates: { canonical: '/' },
+  icons: {
+    icon: '/brand/js2next-icon.png',
+    shortcut: '/brand/js2next-icon.png',
+    apple: '/brand/js2next-icon.png',
+  },
   robots: { index: true, follow: true },
   openGraph: {
     title: 'Learn JavaScript, React, and Next.js',

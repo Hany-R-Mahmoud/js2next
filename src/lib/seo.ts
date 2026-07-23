@@ -9,9 +9,9 @@ export const siteUrl = rawSiteUrl === undefined ? undefined : normalizeSiteUrl(r
 export const metadataBase = siteUrl === undefined ? undefined : new URL(siteUrl);
 
 export const socialImage = {
-  url: '/opengraph-image',
-  width: 1200,
-  height: 630,
+  url: '/brand/js2next-logo.png',
+  width: 1024,
+  height: 1024,
   alt: 'JS2Next: learn JavaScript, React, and Next.js as one connected path',
 } as const;
 

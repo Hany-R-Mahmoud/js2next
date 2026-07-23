@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useLearnerStore } from '@/stores/learner';
@@ -365,7 +366,7 @@ function LandingPage({
 
       <header className={`landing-header sticky top-0 z-50 mx-auto flex max-w-6xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8 ${isScrolled ? 'landing-header-scrolled' : ''}`}>
         <Link href="/" className="inline-flex min-h-11 items-center gap-2 py-1 text-base font-bold tracking-tight text-ink" aria-label="JS2Next home">
-          <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-vermillion text-sm text-white shadow-[0_2px_8px_rgb(var(--color-peloton-red)/.3)]">JS</span>
+          <Image src="/brand/js2next-icon.png" alt="" width={40} height={40} className="h-9 w-9 rounded-lg object-cover shadow-[0_2px_8px_rgb(0_0_0/.25)]" priority />
           <span>JS2Next</span>
         </Link>
         <nav className="hidden items-center gap-6 text-sm text-ink-muted md:flex" aria-label="Landing page navigation">
