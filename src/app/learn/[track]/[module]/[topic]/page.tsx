@@ -8,6 +8,7 @@ import { PrerequisiteNotice } from '@/components/curriculum/PrerequisiteNotice';
 import TopicStageTabs from '@/components/curriculum/TopicStageTabs';
 import { getTopicPractice } from '@/components/assessment/release1-data.server';
 import { pageMetadata } from '@/lib/seo';
+import { enforceTopicAccess } from '@/lib/security/route-access';
 
 export async function generateMetadata({ params }: { readonly params: Promise<{ readonly track: string; readonly module: string; readonly topic: string }> }): Promise<Metadata> {
   const { track: trackSlug, module: moduleSlug, topic: topicSlug } = await params;
@@ -21,7 +22,7 @@ export async function generateMetadata({ params }: { readonly params: Promise<{ 
     description: packet.whyThisMatters,
     path: `/learn/${track.slug}/${moduleDefinition.slug}/${topic.slug}`,
     type: 'article',
-    indexable: topic.status !== 'archived',
+    indexable: false,
   });
 }
 
@@ -31,6 +32,7 @@ export default async function TopicPage({ params }: { readonly params: Promise<{
   const moduleDefinition = findModule(trackSlug, moduleSlug);
   const topic = findTopic(trackSlug, moduleSlug, topicSlug);
   if (!track || !moduleDefinition || !topic) notFound();
+  await enforceTopicAccess(topic, `/learn/${trackSlug}/${moduleSlug}/${topicSlug}`);
   const packet = loadTopicPacket(topic);
   if (!packet) notFound();
   const practice = getTopicPractice(topic.id);

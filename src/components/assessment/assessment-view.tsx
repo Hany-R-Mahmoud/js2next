@@ -1,14 +1,15 @@
 import Link from 'next/link';
 import type { FormEvent } from 'react';
-import type { AssessmentResult, Question } from '@/domain/assessment';
+import type { AssessmentResult } from '@/domain/assessment';
 import { assessmentProfileLabel } from '@/domain/assessment';
 import CodeBlock from '@/components/shared/CodeBlock';
 import InlineMarkdown from '@/components/shared/InlineMarkdown';
 import type { AssessmentPageData } from './types';
+import type { PublicQuestion } from './types';
 
 type AssessmentViewProps = {
   readonly data: AssessmentPageData;
-  readonly questions: readonly Question[];
+  readonly questions: readonly PublicQuestion[];
   readonly answers: Readonly<Record<string, string>>;
   readonly submitted: AssessmentResult | null;
   readonly attempts: number;
@@ -36,7 +37,7 @@ export function AssessmentView({ data, questions, answers, submitted, attempts, 
   </div>;
 }
 
-function QuestionCard({ question, index, total, answer, onAnswer }: { readonly question: Question; readonly index: number; readonly total: number; readonly answer: string | undefined; readonly onAnswer: (questionId: string, choiceId: string) => void }) {
+function QuestionCard({ question, index, total, answer, onAnswer }: { readonly question: PublicQuestion; readonly index: number; readonly total: number; readonly answer: string | undefined; readonly onAnswer: (questionId: string, choiceId: string) => void }) {
   const groupId = `question-${question.id}`;
   const questionLabel = `Question ${index + 1} of ${total}`;
   const choices = <div className="space-y-2">
@@ -70,7 +71,7 @@ function QuestionCard({ question, index, total, answer, onAnswer }: { readonly q
   </fieldset>;
 }
 
-function AssessmentResultView({ data, questions, result, attempts, backHref, onRetry }: { readonly data: AssessmentPageData; readonly questions: readonly Question[]; readonly result: AssessmentResult; readonly attempts: number; readonly backHref: string; readonly onRetry: () => void }) {
+function AssessmentResultView({ data, questions, result, attempts, backHref, onRetry }: { readonly data: AssessmentPageData; readonly questions: readonly PublicQuestion[]; readonly result: AssessmentResult; readonly attempts: number; readonly backHref: string; readonly onRetry: () => void }) {
   return <div className="mx-auto w-full max-w-6xl space-y-6 py-8" aria-labelledby="assessment-result-title">
     <section className="card space-y-4 p-6 sm:p-8">
       <p className="surface-eyebrow">Attempt {attempts}</p>
@@ -85,8 +86,7 @@ function AssessmentResultView({ data, questions, result, attempts, backHref, onR
   </div>;
 }
 
-function FeedbackCard({ question, index, total, result }: { readonly question: Question; readonly index: number; readonly total: number; readonly result: AssessmentResult['questionResults'][number] | undefined }) {
-  const correctChoice = question.choices.find((choice) => choice.id === question.correctChoiceIds[0]);
+function FeedbackCard({ question, index, total, result }: { readonly question: PublicQuestion; readonly index: number; readonly total: number; readonly result: AssessmentResult['questionResults'][number] | undefined }) {
   const selectedChoice = question.choices.find((choice) => choice.id === result?.submittedChoiceId);
   const correct = result?.correct === true;
   return <article className={`card min-w-0 space-y-3 p-5 ${question.code ? 'lg:grid lg:grid-cols-2 lg:gap-6 lg:space-y-0' : ''}`} aria-labelledby={`feedback-${question.id}`}>
@@ -98,8 +98,8 @@ function FeedbackCard({ question, index, total, result }: { readonly question: Q
       <p className={correct ? 'font-semibold text-success' : 'font-semibold text-coral'}>{correct ? 'Correct' : 'Needs another look'}</p>
       <p className="text-sm leading-6 text-ink-light">{selectedChoice ? `Your choice: ${selectedChoice.label}` : 'No answer submitted.'}</p>
       {result?.choiceFeedback && <p className="text-sm leading-6 text-ink-light">{result.choiceFeedback}</p>}
-      {!correct && correctChoice && <p className="text-sm leading-6 text-ink-light">Correct answer: {correctChoice.label}</p>}
-      <p className="text-sm leading-6 text-ink-light">{result?.explanation ?? question.explanation}</p>
+      {!correct && result?.correctChoiceLabel && <p className="text-sm leading-6 text-ink-light">Correct answer: {result.correctChoiceLabel}</p>}
+      <p className="text-sm leading-6 text-ink-light">{result?.explanation ?? 'Feedback is available after submission.'}</p>
       {result?.hint && <p className="text-sm leading-6 text-warning">Hint: {result.hint}</p>}
     </div>
   </article>;

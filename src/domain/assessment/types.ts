@@ -41,7 +41,7 @@ export type AssessmentSet = TopicQuiz | ModuleReview | CumulativeReview;
 export type SubmittedAnswer = { readonly questionId: string; readonly choiceId?: string };
 export type QuestionResult = {
   readonly questionId: string; readonly submittedChoiceId?: string; readonly correct: boolean; readonly explanation: string;
-  readonly hint?: string; readonly choiceFeedback?: string; readonly missedObjectiveIds: readonly string[];
+  readonly hint?: string; readonly choiceFeedback?: string; readonly correctChoiceLabel?: string; readonly missedObjectiveIds: readonly string[];
 };
 export type AssessmentResult = {
   readonly assessmentId: string; readonly assessmentVersion: number; readonly submittedCount: number; readonly correctCount: number;

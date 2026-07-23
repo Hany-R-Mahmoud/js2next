@@ -62,7 +62,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
     setMoreOpen(false);
   };
 
-  if (pathname === '/' || pathname === '/onboarding') {
+  if (pathname === '/' || pathname === '/onboarding' || pathname === '/sign-in') {
     return (
       <div className={reducedMotion ? 'reduced-motion' : ''}>
         {children}

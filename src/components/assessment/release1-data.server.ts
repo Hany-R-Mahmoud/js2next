@@ -2,9 +2,9 @@ import { readdirSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { parseAssessmentSet, parseQuestionBank } from '@/domain/assessment';
 import type { AssessmentSet, Question, TrackId } from '@/domain/assessment';
-import type { AssessmentPageData } from './types';
+import type { AssessmentPageData, PublicQuestion } from './types';
 
-export type PracticePageData = { readonly ownerId: string; readonly title: string; readonly questions: readonly Question[] };
+export type PracticePageData = { readonly ownerId: string; readonly title: string; readonly questions: readonly PublicQuestion[] };
 
 type JsonRecord = { readonly [key: string]: unknown };
 type TopicPacket = JsonRecord & { readonly id: string; readonly title: string; readonly trackId: TrackId; readonly moduleId: string; readonly status: string; readonly reviewStatus: string; readonly version: number; readonly topicQuiz: JsonRecord; readonly assessmentProfile: JsonRecord; readonly inLessonQuestionIds: readonly string[]; readonly questions: readonly unknown[] };
@@ -43,26 +43,45 @@ const questionsFor = (assessment: AssessmentSet): readonly Question[] => assessm
   return question;
 });
 
+const publicQuestion = (question: Question): PublicQuestion => {
+  const { correctChoiceIds, choices, ...withoutAnswerKey } = question;
+  void correctChoiceIds;
+  return { ...withoutAnswerKey, choices: choices.map(({ id, label }) => ({ id, label })) };
+};
+const publicQuestionsFor = (assessment: AssessmentSet): readonly PublicQuestion[] => questionsFor(assessment).map(publicQuestion);
+
 export function getTopicQuiz(topicId: string): AssessmentPageData | null {
   const packet = topicPackets.find((candidate) => candidate.id === topicId);
   if (packet === undefined) return null;
   const topicQuiz = parseAssessmentSet({ kind: 'topic-quiz', ...packet.topicQuiz, assessmentProfile: packet.assessmentProfile, trackId: packet.trackId, moduleId: packet.moduleId, title: `${packet.title} quiz`, status: packet.status, reviewStatus: packet.reviewStatus, version: packet.version, schemaVersion: '2.0', assessmentPolicyVersion: '2.0' });
-  return { assessment: topicQuiz, questions: questionsFor(topicQuiz) };
+  return { assessment: topicQuiz, questions: publicQuestionsFor(topicQuiz) };
 }
 
 export function getTopicPractice(topicId: string): PracticePageData | null {
   const packet = topicPackets.find((candidate) => candidate.id === topicId);
   if (packet === undefined) return null;
-  return { ownerId: topicId, title: `${packet.title} practice`, questions: packet.inLessonQuestionIds.map((questionId) => questionBank.get(questionId)).filter((question): question is Question => question !== undefined) };
+  return { ownerId: topicId, title: `${packet.title} practice`, questions: packet.inLessonQuestionIds.map((questionId) => questionBank.get(questionId)).filter((question): question is Question => question !== undefined).map(publicQuestion) };
+}
+
+export function getPracticeQuestionForEvaluation(ownerId: string, questionId: string): Question | null {
+  const packet = topicPackets.find((candidate) => candidate.id === ownerId);
+  if (packet === undefined || !packet.inLessonQuestionIds.includes(questionId)) return null;
+  return questionBank.get(questionId) ?? null;
 }
 
 export function getModuleReview(moduleId: string): AssessmentPageData | null {
   const assessment = sourceSets.find((candidate) => candidate.kind === 'module-review' && candidate.moduleId === moduleId);
-  return assessment === undefined ? null : { assessment, questions: questionsFor(assessment) };
+  return assessment === undefined ? null : { assessment, questions: publicQuestionsFor(assessment) };
 }
 
 export function getCumulativeReview(trackId: TrackId): AssessmentPageData {
   const assessment = findSet((candidate) => candidate.kind === 'cumulative-review' && candidate.trackId === trackId);
+  return { assessment, questions: publicQuestionsFor(assessment) };
+}
+
+export function getAssessmentById(assessmentId: string): { readonly assessment: AssessmentSet; readonly questions: readonly Question[] } | null {
+  const assessment = sourceSets.find((candidate) => candidate.id === assessmentId);
+  if (assessment === undefined) return null;
   return { assessment, questions: questionsFor(assessment) };
 }
 

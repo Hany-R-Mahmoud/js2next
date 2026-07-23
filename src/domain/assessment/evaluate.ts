@@ -5,7 +5,8 @@ const choiceFor = (question: Question, choiceId: string | undefined): Choice | u
 export const evaluateQuestion = (question: Question, submittedChoiceId?: string): QuestionResult => {
   if (submittedChoiceId !== undefined && choiceFor(question, submittedChoiceId) === undefined) throw new AssessmentEvaluationError(`invalid choice ${submittedChoiceId}`, question.id);
   const correct = submittedChoiceId !== undefined && question.correctChoiceIds[0] === submittedChoiceId; const choice = choiceFor(question, submittedChoiceId);
-  return { questionId: question.id, ...(submittedChoiceId === undefined ? {} : { submittedChoiceId }), correct, explanation: question.explanation, ...(question.hint === undefined ? {} : { hint: question.hint }), ...(choice === undefined ? {} : { choiceFeedback: choice.feedback }), missedObjectiveIds: correct ? [] : [...question.objectiveIds] };
+  const correctChoice = choiceFor(question, question.correctChoiceIds[0]);
+  return { questionId: question.id, ...(submittedChoiceId === undefined ? {} : { submittedChoiceId }), correct, explanation: question.explanation, ...(question.hint === undefined ? {} : { hint: question.hint }), ...(choice === undefined ? {} : { choiceFeedback: choice.feedback }), ...(correctChoice === undefined ? {} : { correctChoiceLabel: correctChoice.label }), missedObjectiveIds: correct ? [] : [...question.objectiveIds] };
 };
 
 export const evaluateAssessment = (assessment: AssessmentSet, questions: readonly Question[], submissions: readonly SubmittedAnswer[]): AssessmentResult => {

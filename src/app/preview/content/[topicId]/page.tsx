@@ -7,11 +7,13 @@ import { CurriculumBadge, CurriculumHeader } from '@/components/curriculum/Curri
 import { CurriculumNav } from '@/components/curriculum/CurriculumNav';
 import { TopicPacketView } from '@/components/curriculum/TopicPacketView';
 import { pageMetadata } from '@/lib/seo';
+import { requirePreviewAccess } from '@/lib/security/route-access';
 
 export const metadata: Metadata = pageMetadata({ title: 'Draft content preview', description: 'Internal JS2Next draft content preview.', path: '/preview/content', indexable: false });
 
 export default async function ContentPreviewPage({ params }: { readonly params: Promise<{ readonly topicId: string }> }) {
   const { topicId } = await params;
+  await requirePreviewAccess();
   const topic = findTopicById(topicId);
   if (!topic || topic.status !== 'draft') notFound();
   const packet = loadTopicPacket(topic);

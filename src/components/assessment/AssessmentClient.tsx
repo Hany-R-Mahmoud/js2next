@@ -1,13 +1,14 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import ky from 'ky';
 import { addObjectiveReview, createTopicProgress, recordReviewAttempt, recordTopicQuiz } from '@/domain/progression/core';
-import type { AssessmentResult, Question } from '@/domain/assessment';
-import { createAttempt as createAssessmentAttempt, evaluateAssessment } from '@/domain/assessment';
+import type { AssessmentResult } from '@/domain/assessment';
+import { createAttempt as createAssessmentAttempt } from '@/domain/assessment';
 import type { AssessmentAttempt as ProgressAttempt } from '@/domain/progression/types';
 import { readProgress, updateProgress } from '@/components/progress/useProgressState';
 import { AssessmentView } from './assessment-view';
-import type { AssessmentPageData } from './types';
+import type { AssessmentPageData, PublicQuestion } from './types';
 
 type AssessmentClientProps = { readonly data: AssessmentPageData; readonly backHref: string };
 
@@ -55,7 +56,7 @@ function persistAttempt(data: AssessmentPageData, result: AssessmentResult): voi
 }
 
 export function AssessmentClient({ data, backHref }: AssessmentClientProps) {
-  const [questions, setQuestions] = useState<readonly Question[]>(data.questions);
+  const [questions, setQuestions] = useState<readonly PublicQuestion[]>(data.questions);
   const [answers, setAnswers] = useState<Readonly<Record<string, string>>>({});
   const [submitted, setSubmitted] = useState<AssessmentResult | null>(null);
   const [attempts, setAttempts] = useState(0);
@@ -67,12 +68,16 @@ export function AssessmentClient({ data, backHref }: AssessmentClientProps) {
   }, [data]);
 
   const answer = (questionId: string, choiceId: string): void => setAnswers((current) => ({ ...current, [questionId]: choiceId }));
-  const submit = (event: React.FormEvent<HTMLFormElement>): void => {
+  const submit = async (event: React.FormEvent<HTMLFormElement>): Promise<void> => {
     event.preventDefault();
-    const result = evaluateAssessment(data.assessment, data.questions, data.questions.map((question) => ({ questionId: question.id, choiceId: answers[question.id] })));
-    persistAttempt(data, result);
-    setSubmitted(result);
-    setAttempts((count) => count + 1);
+    try {
+      const result = await ky.post(`/api/member/assessments/${encodeURIComponent(data.assessment.id)}/attempts`, { json: { answers: data.questions.map((question) => ({ questionId: question.id, choiceId: answers[question.id] })) } }).json<AssessmentResult>();
+      persistAttempt(data, result);
+      setSubmitted(result);
+      setAttempts((count) => count + 1);
+    } catch {
+      setSubmitted(null);
+    }
   };
   const retry = (): void => { setAnswers({}); setSubmitted(null); setQuestions(shuffled(data.questions)); };
 

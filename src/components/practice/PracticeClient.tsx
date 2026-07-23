@@ -8,15 +8,18 @@ import CodeBlock from '@/components/shared/CodeBlock';
 import InlineMarkdown from '@/components/shared/InlineMarkdown';
 import { updateProgress } from '@/components/progress/useProgressState';
 import type { PracticeSet } from './types';
+import ky from 'ky';
 
 type PracticeClientProps = { readonly set: PracticeSet; readonly backHref: string };
 type AnswerState = { readonly questionId: string; readonly choiceId: string; readonly correct: boolean };
+type PracticeResult = { readonly correct: boolean; readonly explanation: string; readonly choiceFeedback?: string; readonly hint?: string };
 
 export default function PracticeClient({ set, backHref }: PracticeClientProps) {
   const [index, setIndex] = useState(0);
   const [answers, setAnswers] = useState<readonly AnswerState[]>([]);
   const [selected, setSelected] = useState<string>();
   const [submitted, setSubmitted] = useState(false);
+  const [submittedResult, setSubmittedResult] = useState<PracticeResult | null>(null);
   const [complete, setComplete] = useState(false);
   const actionButtonRef = useRef<HTMLButtonElement>(null);
   const question = set.questions[index];
@@ -30,12 +33,13 @@ export default function PracticeClient({ set, backHref }: PracticeClientProps) {
   if (complete) return <PracticeComplete set={set} correctCount={answers.filter((answer) => answer.correct).length} backHref={backHref} />;
   if (!question) return <p className="text-sm text-ink-light">Practice content is being prepared for this topic.</p>;
 
-  const answer = question.choices.find((choice) => choice.id === selected);
-  const isCorrect = selected === question.correctChoiceIds[0];
+  const isCorrect = submittedResult?.correct === true;
 
-  const submit = () => {
+  const submit = async () => {
     if (selected === undefined || submitted) return;
-    setAnswers((current) => [...current.filter((item) => item.questionId !== question.id), { questionId: question.id, choiceId: selected, correct: isCorrect }]);
+    const result = await ky.post('/api/member/practice', { json: { ownerId: set.ownerId, questionId: question.id, choiceId: selected } }).json<PracticeResult>();
+    setAnswers((current) => [...current.filter((item) => item.questionId !== question.id), { questionId: question.id, choiceId: selected, correct: result.correct }]);
+    setSubmittedResult(result);
     setSubmitted(true);
   };
 
@@ -43,6 +47,7 @@ export default function PracticeClient({ set, backHref }: PracticeClientProps) {
     if (!submitted || isCorrect) return;
     setSelected(undefined);
     setSubmitted(false);
+    setSubmittedResult(null);
   };
 
   const next = () => {
@@ -57,6 +62,7 @@ export default function PracticeClient({ set, backHref }: PracticeClientProps) {
     setIndex((current) => current + 1);
     setSelected(undefined);
     setSubmitted(false);
+    setSubmittedResult(null);
   };
 
   return <section className="card space-y-5 p-6" aria-labelledby="practice-title">
@@ -66,8 +72,7 @@ export default function PracticeClient({ set, backHref }: PracticeClientProps) {
     {question.code && <CodeBlock code={question.code.source} language={question.code.language} ariaLabel={`${question.code.language} practice example`} />}
     <h3 className="font-semibold leading-6 text-ink"><InlineMarkdown text={question.prompt} /></h3>
     <fieldset className="space-y-2"><legend className="sr-only">Choose an answer</legend>{question.choices.map((choice) => <label key={choice.id} className={`flex min-h-11 cursor-pointer items-start gap-3 rounded-lg border p-3 transition-colors ${selected === choice.id ? 'border-teal bg-teal/10' : 'border-slate-secondary hover:border-teal/60'}`}><input className="mt-1 h-4 w-4 accent-teal" type="radio" name={`practice-${question.id}`} value={choice.id} checked={selected === choice.id} onChange={() => setSelected(choice.id)} disabled={submitted} /><span className="break-words text-sm leading-5 text-ink-light">{choice.label}</span></label>)}</fieldset>
-    {!submitted && question.hint && <p className="rounded-lg border border-warning/40 bg-warning/10 p-3 text-sm leading-6 text-ink-light"><strong className="text-ink">Hint:</strong> {question.hint}</p>}
-    {submitted && <div className={`rounded-lg border p-4 text-sm leading-6 ${isCorrect ? 'border-success/40 bg-success/10' : 'border-warning/40 bg-warning/10'}`} role="status"><p className="font-semibold text-ink">{isCorrect ? 'Correct' : 'Try the reasoning again'}</p><p className="mt-1 text-ink-light">{isCorrect ? question.explanation : answer?.feedback ?? question.explanation}</p>{!isCorrect && <p className="mt-2 text-ink-light">{question.explanation}</p>}</div>}
+    {submitted && submittedResult && <div className={`rounded-lg border p-4 text-sm leading-6 ${isCorrect ? 'border-success/40 bg-success/10' : 'border-warning/40 bg-warning/10'}`} role="status"><p className="font-semibold text-ink">{isCorrect ? 'Correct' : 'Try the reasoning again'}</p><p className="mt-1 text-ink-light">{isCorrect ? submittedResult.explanation : submittedResult.choiceFeedback ?? submittedResult.explanation}</p>{!isCorrect && <p className="mt-2 text-ink-light">{submittedResult.explanation}</p>}{submittedResult.hint && <p className="mt-2 text-warning">Hint: {submittedResult.hint}</p>}</div>}
     <div className="flex flex-wrap gap-3"><button ref={actionButtonRef} type="button" className="btn-primary" onClick={submitted ? isCorrect ? next : retry : submit} disabled={!submitted && selected === undefined}>{submitted ? isCorrect ? index === set.questions.length - 1 ? 'Finish practice' : 'Next question' : 'Try again' : 'Check answer'}</button><Link href={backHref} className="btn-secondary">Back to learning</Link></div>
   </section>;
 }
