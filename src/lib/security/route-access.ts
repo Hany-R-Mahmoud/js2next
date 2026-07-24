@@ -16,10 +16,14 @@ export class ContentAccessDeniedError extends Error {
 
 export async function requireTopicAccess(topic: Pick<Topic, 'status' | 'reviewStatus'>): Promise<void> {
   const mode = getContentAccessMode();
+  if (mode === 'members') {
+    if ((await getMemberAccess()) === null) throw new ContentAccessDeniedError('unauthenticated');
+    return;
+  }
   const decision = resolveContentAccess({
     mode,
     topic,
-    membership: mode === 'members' ? (await getMemberAccess())?.membership ?? null : null,
+    membership: null,
   });
   if (!decision.allowed) throw new ContentAccessDeniedError(decision.reason);
 }
