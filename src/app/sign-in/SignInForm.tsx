@@ -1,7 +1,6 @@
 'use client';
 
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
 import { Turnstile, type TurnstileInstance } from '@marsidev/react-turnstile';
 import { FormEvent, useRef, useState } from 'react';
 import { readSupabaseConfig } from '@/lib/supabase/config';
@@ -9,13 +8,12 @@ import { createSupabaseBrowserClient } from '@/lib/supabase/client';
 
 type AuthMode = 'sign-in' | 'sign-up';
 
-export default function SignInForm({ nextPath }: { readonly nextPath: string }) {
-  const router = useRouter();
+export default function SignInForm({ nextPath, callbackError }: { readonly nextPath: string; readonly callbackError?: string }) {
   const [mode, setMode] = useState<AuthMode>('sign-in');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState<string | null>(null);
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(callbackError ?? null);
   const [pending, setPending] = useState(false);
   const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
   const turnstileRef = useRef<TurnstileInstance | null>(null);
@@ -58,8 +56,7 @@ export default function SignInForm({ nextPath }: { readonly nextPath: string }) 
           options: { captchaToken: turnstileToken ?? undefined },
         });
         if (result.error !== null) throw result.error;
-        router.replace(nextPath);
-        router.refresh();
+        window.location.assign(nextPath);
       }
     } catch (caught) {
       setError(caught instanceof Error ? caught.message : 'Unable to authenticate.');
