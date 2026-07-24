@@ -22,7 +22,7 @@ export default function SignInForm({ nextPath }: { readonly nextPath: string }) 
   const turnstileSiteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY?.trim();
   const supabaseConfigured = readSupabaseConfig() !== null;
   const turnstileConfigured = turnstileSiteKey !== undefined && turnstileSiteKey.length > 0;
-  const configured = supabaseConfigured && (mode === 'sign-in' || turnstileConfigured);
+  const configured = supabaseConfigured && turnstileConfigured;
 
   const changeMode = (nextMode: AuthMode) => {
     setMode(nextMode);
@@ -52,7 +52,11 @@ export default function SignInForm({ nextPath }: { readonly nextPath: string }) 
         if (result.error !== null) throw result.error;
         setMessage('Account created. Check your email, verify your address, then return here to sign in.');
       } else {
-        const result = await supabase.auth.signInWithPassword({ email, password });
+        const result = await supabase.auth.signInWithPassword({
+          email,
+          password,
+          options: { captchaToken: turnstileToken ?? undefined },
+        });
         if (result.error !== null) throw result.error;
         router.replace(nextPath);
         router.refresh();
@@ -86,14 +90,14 @@ export default function SignInForm({ nextPath }: { readonly nextPath: string }) 
             <label className="block text-sm font-semibold text-ink" htmlFor="member-password">Password</label>
             <input id="member-password" name="password" type="password" autoComplete={mode === 'sign-up' ? 'new-password' : 'current-password'} minLength={8} required value={password} onChange={(event) => setPassword(event.target.value)} className="mt-2 min-h-11 w-full rounded-[10px] border border-ash bg-slate px-4 py-3 text-white placeholder:text-ash focus:border-transparent focus:outline-none focus:ring-2 focus:ring-teal" placeholder="At least 8 characters" />
           </div>
-          {mode === 'sign-up' && turnstileSiteKey && <Turnstile ref={turnstileRef} siteKey={turnstileSiteKey} onSuccess={setTurnstileToken} onExpire={() => setTurnstileToken(null)} onError={() => setTurnstileToken(null)} />}
-          <button className="btn-primary w-full" type="submit" disabled={pending || !configured || (mode === 'sign-up' && turnstileToken === null)}>
+          {turnstileSiteKey && <Turnstile ref={turnstileRef} siteKey={turnstileSiteKey} onSuccess={setTurnstileToken} onExpire={() => setTurnstileToken(null)} onError={() => setTurnstileToken(null)} />}
+          <button className="btn-primary w-full" type="submit" disabled={pending || !configured || turnstileToken === null}>
             {pending ? (mode === 'sign-up' ? 'Creating account…' : 'Signing in…') : (mode === 'sign-up' ? 'Create account' : 'Sign in')}
           </button>
         </form>
 
         {!supabaseConfigured && <p className="rounded-lg border border-warning/40 bg-warning/10 p-3 text-sm text-ink-light" role="alert">Authentication is not configured yet. Set the Supabase public variables.</p>}
-        {mode === 'sign-up' && supabaseConfigured && !turnstileConfigured && <p className="rounded-lg border border-warning/40 bg-warning/10 p-3 text-sm text-ink-light" role="alert">Signup protection is not configured yet. Set the Turnstile site key.</p>}
+        {supabaseConfigured && !turnstileConfigured && <p className="rounded-lg border border-warning/40 bg-warning/10 p-3 text-sm text-ink-light" role="alert">Authentication protection is not configured yet. Set the Turnstile site key.</p>}
         {message && <p className="rounded-lg border border-success/40 bg-success/10 p-3 text-sm text-ink-light" role="status">{message}</p>}
         {error && <p className="rounded-lg border border-coral/40 bg-coral/10 p-3 text-sm text-ink-light" role="alert">{error}</p>}
 
